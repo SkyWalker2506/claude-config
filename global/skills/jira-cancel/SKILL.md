@@ -33,8 +33,3 @@ Yukarıdaki çıktıyı kullanıcıya **olduğu gibi** ilet; sonra kısa ekle:
 
 - `/jira-run` bir sonraki tur **başında** çıkar.
 - Ana oturum hâlâ meşgulse ve bu skill geciktiyse, bir daha hatırlat: **`bash scripts/jira_run_cancel.sh`**
-</think>
-
-
-<｜tool▁calls▁begin｜><｜tool▁call▁begin｜>
-StrReplace

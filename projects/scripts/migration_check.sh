@@ -119,7 +119,7 @@ if [ -f "$INDEX_MARKER" ]; then
     MARKER_AGE=$(( $(date +%s) - MARKER_MTIME ))
   fi
   # 5dk'dan eski ise guncelleme sinyali ver (session basi bir kez)
-  if [ "$MARKER_AGE" -gt 300 ]; then
+  if [ "$MARKER_AGE" -gt 1800 ]; then
     echo "🔍 INDEX_UPDATE: jCodeMunch index guncelleme zamani."
   fi
 else
@@ -136,7 +136,47 @@ if [ -f "$PROJECT_SETTINGS" ]; then
   fi
 fi
 
-# ── 7. Secrets kontrolü ──
+# ── 7. claude-config update check (first launch + hourly) ──
+CONFIG_REPO="$PROJECTS_ROOT/claude-config"
+UPDATE_CHECK_FILE="/tmp/claude-config-update-check"
+SESSION_MARKER="/tmp/claude-config-session-$$"
+CHECK_INTERVAL=3600  # 1 saat
+
+if [ -d "$CONFIG_REPO/.git" ]; then
+  SHOULD_CHECK=0
+  NOW_TS=$(date +%s)
+
+  # İlk açılış kontrolü: session marker yoksa → ilk kez
+  if [ ! -f "/tmp/claude-config-session-checked" ]; then
+    SHOULD_CHECK=1
+    echo "$NOW_TS" > /tmp/claude-config-session-checked
+  fi
+
+  # Saatlik kontrol
+  LAST_CHECK=0
+  if [ -f "$UPDATE_CHECK_FILE" ]; then
+    LAST_CHECK=$(cat "$UPDATE_CHECK_FILE" 2>/dev/null || echo 0)
+  fi
+  ELAPSED=$(( NOW_TS - LAST_CHECK ))
+  if [ "$ELAPSED" -ge "$CHECK_INTERVAL" ]; then
+    SHOULD_CHECK=1
+  fi
+
+  if [ "$SHOULD_CHECK" -eq 1 ]; then
+    echo "$NOW_TS" > "$UPDATE_CHECK_FILE"
+    git -C "$CONFIG_REPO" fetch --quiet 2>/dev/null || true
+    LOCAL_SHA=$(git -C "$CONFIG_REPO" rev-parse HEAD 2>/dev/null || echo "")
+    REMOTE_SHA=$(git -C "$CONFIG_REPO" rev-parse @{u} 2>/dev/null || echo "")
+    if [ -n "$LOCAL_SHA" ] && [ -n "$REMOTE_SHA" ] && [ "$LOCAL_SHA" != "$REMOTE_SHA" ]; then
+      BEHIND=$(git -C "$CONFIG_REPO" rev-list --count HEAD..@{u} 2>/dev/null || echo 0)
+      if [ "$BEHIND" -gt 0 ]; then
+        echo "🔄 CONFIG_UPDATE: claude-config reposunda $BEHIND yeni commit var. Cekmek ister misin?"
+      fi
+    fi
+  fi
+fi
+
+# ── 8. Secrets kontrolü ──
 SECRETS_ENV="$HOME/.claude/secrets/secrets.env"
 SECRETS_GIT="$HOME/.claude/secrets/.git"
 if [ -f "$SECRETS_ENV" ]; then

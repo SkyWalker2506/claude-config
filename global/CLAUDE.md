@@ -54,7 +54,7 @@ Hook ciktisinda su sinyaller gorunebilir:
 | Sinyal | Aksiyon |
 |--------|---------|
 | `INDEX_ASK` | Kullaniciya sor: "Bu klasorde jCodeMunch indexleme yapayim mi?" Onay gelirse: `resolve_repo` → `index_folder` → marker olustur |
-| `INDEX_UPDATE` | Sessizce guncelle: `resolve_repo` → `index_folder` → marker guncelle. Kullaniciya bildirme. |
+| `INDEX_UPDATE` | Sessizce guncelle: `resolve_repo` → `index_folder` → marker guncelle. Kullaniciya bildirim yapma. |
 
 **Marker:** Indexleme sonrasi marker'i guncelle:
 ```bash
@@ -75,6 +75,7 @@ Her konusma basinda `migration_check.sh` hook'u calisir. Ciktisina gore:
 | `MIGRATION_UPDATE` | `MIGRATION_GUIDE.md` Changelog'dan delta uygula, versiyon guncelle |
 | `SECRETS_MISSING` | Kullaniciya eksik secret'lari bildir. `~/.claude/secrets/secrets.env` dosyasini duzenlemesini soylen. Git reposu varsa commit+push hatırlat. **Secret degerlerini asla konusma ciktisina, public repoya veya log'a yazma.** |
 | `SECRETS_NONE` | Secrets dosyasi yok. Kullaniciya `install.sh` calistirmasini veya `~/.claude/secrets/secrets.env` olusturmasini soylen. |
+| `CONFIG_UPDATE` | claude-config reposunda guncelleme var. Kullaniciya sor: "claude-config guncellendi, git'ten cekmek ister misin?" Onay verirse: (1) `cd ~/Projects/claude-config && git pull` calistir, (2) `./install.sh` calistir, (3) "Degisiklikler uygulandi. Oturumu yeniden baslatmak ister misin?" sor. Hayir derse: "Sorun degil — claude tekrar acildiginda otomatik kontrol edecek." de. |
 | Sinyal yok | Sessiz gec |
 
 ### Secrets guvenligi
@@ -107,6 +108,8 @@ Tum skill'ler `~/.claude/skills/` altinda — proje klasorlerine kopyalamak gere
 | sprint-plan | `/sprint-plan` | Analiz raporlarindan sprint plani |
 | web-research | `/web-research [odak]` | Web arastirmasi (parametrik) |
 | agent-browser | `/agent-browser` | Browser otomasyon CLI |
+| prd | `/prd` | Feature icin PRD olustur |
+| ralph | `/ralph` | PRD'yi prd.json'a cevir + Ralph baslat |
 | restart | `/restart` | Oturumu yeniden baslat |
 | index | `/index [force]` | jCodeMunch indexle + auto-update aktif et |
 

@@ -49,5 +49,5 @@ Bu dosya `~/Projects/` altindaki **tum projeler** icin gecerlidir. Framework/dil
 repo yapisi → paket yoneticisi → bagimliliklar → .env.example → calistir/build
 ```
 
-- Self-healing max 3 deneme; sonra rapor
+- Self-healing: §4 kurali gecerli
 - Mantikli varsayimlarla ilerle; her adimda sorma

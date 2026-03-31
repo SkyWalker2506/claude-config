@@ -252,6 +252,11 @@ cp "$SCRIPT_DIR/projects/PROJECT_ANALYSIS.md" "$PROJECTS_ROOT/PROJECT_ANALYSIS.m
 cp "$SCRIPT_DIR/projects/scripts/migration_check.sh" "$PROJECTS_ROOT/scripts/migration_check.sh"
 chmod +x "$PROJECTS_ROOT/scripts/migration_check.sh"
 
+# Ralph — autonomous agent loop
+cp "$SCRIPT_DIR/projects/scripts/ralph.sh" "$PROJECTS_ROOT/scripts/ralph.sh"
+cp "$SCRIPT_DIR/projects/scripts/ralph-prompt.md" "$PROJECTS_ROOT/scripts/ralph-prompt.md"
+chmod +x "$PROJECTS_ROOT/scripts/ralph.sh"
+
 # 8. Templates kopyala
 mkdir -p "$PROJECTS_ROOT/.claude-templates"
 cp "$SCRIPT_DIR/templates/"* "$PROJECTS_ROOT/.claude-templates/" 2>/dev/null || true
