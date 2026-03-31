@@ -31,14 +31,26 @@ if [ "$OS" = "windows" ]; then
 fi
 
 # ── Argument parsing ──
+# --auto: skip all interactive prompts
+# --root PATH: projects root directory
+# --skip-login: skip GitHub login step
+# --skip-secrets: skip secrets step
+# --secrets-repo URL: clone this secrets repo
 AUTO=0
 CUSTOM_ROOT=""
+SKIP_LOGIN=0
+SKIP_SECRETS=0
+SECRETS_REPO_URL=""
 
 while [[ $# -gt 0 ]]; do
   case $1 in
     --auto|-y) AUTO=1; shift ;;
     --root) CUSTOM_ROOT="$2"; shift 2 ;;
     --root=*) CUSTOM_ROOT="${1#*=}"; shift ;;
+    --skip-login) SKIP_LOGIN=1; shift ;;
+    --skip-secrets) SKIP_SECRETS=1; shift ;;
+    --secrets-repo) SECRETS_REPO_URL="$2"; shift 2 ;;
+    --secrets-repo=*) SECRETS_REPO_URL="${1#*=}"; shift ;;
     *) shift ;;
   esac
 done
@@ -107,7 +119,9 @@ if command -v gh &>/dev/null; then
   CURRENT_USER=$(gh api user -q .login 2>/dev/null || echo "")
 fi
 
-if [ -z "$CURRENT_USER" ]; then
+if [ "$SKIP_LOGIN" -eq 1 ]; then
+  echo "Login atlandi (--skip-login)"
+elif [ -z "$CURRENT_USER" ]; then
   if ! command -v gh &>/dev/null; then
     echo "⚠️  GitHub CLI (gh) bulunamadi."
     if [ "$OS" = "windows" ]; then
@@ -115,7 +129,8 @@ if [ -z "$CURRENT_USER" ]; then
     else
       echo "   Kur: brew install gh"
     fi
-    echo "   Login ve secrets atlaniyor."
+  elif [ "$AUTO" -eq 1 ]; then
+    echo "⚠️  GitHub login yok. --skip-login veya once 'gh auth login' calistir."
   elif confirm "GitHub'a giris yapilmamis. Simdi giris yapmak ister misin?"; then
     gh auth login --web -p https || true
     CURRENT_USER=$(gh api user -q .login 2>/dev/null || echo "")
@@ -137,32 +152,42 @@ echo "=== Secrets ==="
 IS_OWNER=0
 [ "$CURRENT_USER" = "$OWNER_GITHUB" ] && IS_OWNER=1
 
-if [ -d "$SECRETS_DIR/.git" ]; then
+if [ "$SKIP_SECRETS" -eq 1 ]; then
+  echo "Secrets atlandi (--skip-secrets)"
+  mkdir -p "$SECRETS_DIR"
+
+elif [ -d "$SECRETS_DIR/.git" ]; then
   echo "✅ Secrets reposu mevcut"
   git -C "$SECRETS_DIR" pull --quiet 2>/dev/null && echo "   Guncellendi." || echo "   ⚠️ Pull basarisiz, mevcut kullanilacak."
 
 elif [ -f "$SECRETS_DIR/secrets.env" ]; then
   echo "✅ Lokal secrets.env mevcut"
 
-elif [ -n "$CURRENT_USER" ]; then
+elif [ -n "$SECRETS_REPO_URL" ]; then
+  # --secrets-repo argumani verilmis → direkt clone
+  echo "Secrets clone ediliyor..."
+  git clone --quiet "$SECRETS_REPO_URL" "$SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || { echo "❌ Clone basarisiz."; mkdir -p "$SECRETS_DIR"; }
+
+elif [ -n "$CURRENT_USER" ] && [ "$IS_OWNER" -eq 1 ]; then
+  # Sahip → otomatik clone (sormadan)
+  echo "Private secrets clone ediliyor..."
+  git clone --quiet "$OWNER_SECRETS_REPO" "$SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || { echo "❌ Clone basarisiz."; mkdir -p "$SECRETS_DIR"; }
+
+elif [ -n "$CURRENT_USER" ] && [ "$AUTO" -eq 0 ]; then
   if confirm "Secrets reposunu indirmek ister misin?"; then
-    if [ "$IS_OWNER" -eq 1 ]; then
-      echo "Private secrets clone ediliyor..."
-      git clone --quiet "$OWNER_SECRETS_REPO" "$SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || { echo "❌ Clone basarisiz."; mkdir -p "$SECRETS_DIR"; }
+    ask "Private secrets repo URL'niz" "" SECRETS_REPO
+    if [ -n "$SECRETS_REPO" ]; then
+      git clone --quiet "$SECRETS_REPO" "$SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || { echo "❌ Clone basarisiz."; mkdir -p "$SECRETS_DIR"; }
     else
-      ask "Private secrets repo URL'niz" "" SECRETS_REPO
-      if [ -n "$SECRETS_REPO" ]; then
-        git clone --quiet "$SECRETS_REPO" "$SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || { echo "❌ Clone basarisiz."; mkdir -p "$SECRETS_DIR"; }
-      else
-        mkdir -p "$SECRETS_DIR"
-      fi
+      mkdir -p "$SECRETS_DIR"
     fi
   else
     echo "Atlandi. /download-secrets ile sonra indirebilirsin."
     mkdir -p "$SECRETS_DIR"
   fi
+
 else
-  echo "Login yok, secrets atlandi. /admin-login + /download-secrets ile kurabilirsin."
+  echo "Secrets atlandi. /download-secrets ile sonra indirebilirsin."
   mkdir -p "$SECRETS_DIR"
 fi
 
