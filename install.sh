@@ -258,6 +258,23 @@ sed \
   -e "s|__HOME__|$HOME|g" \
   "$SCRIPT_DIR/global/settings.json.template" > "$HOME/.claude/settings.json"
 
+# Windows: wrap npx commands with 'cmd /c npx' for Claude Code compatibility
+if [ "$OS" = "windows" ]; then
+  node -e "
+    const fs = require('fs');
+    const p = process.argv[1];
+    const s = JSON.parse(fs.readFileSync(p, 'utf8'));
+    for (const v of Object.values(s.mcpServers || {})) {
+      if (v.command === 'npx') {
+        v.command = 'cmd';
+        v.args = ['/c', 'npx', ...v.args];
+      }
+    }
+    fs.writeFileSync(p, JSON.stringify(s, null, 2) + '\n');
+  " "$HOME/.claude/settings.json"
+  echo "  Windows npx wrapper uygulandi."
+fi
+
 # MCP servers
 echo "MCP sunuculari ekleniyor..."
 GITHUB_TOKEN_VAL="${GITHUB_TOKEN:-}"
