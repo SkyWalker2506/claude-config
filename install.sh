@@ -8,6 +8,10 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 SECRETS_DIR="$HOME/.claude/secrets"
 
+# Repo sahibi — bu config'i olusturan kisi
+OWNER_GITHUB="SkyWalker2506"
+OWNER_SECRETS_REPO="https://github.com/SkyWalker2506/claude-secrets.git"
+
 echo "=== Claude Code Config Installer ==="
 echo ""
 
@@ -34,60 +38,82 @@ echo "uvx: $UVX_PATH"
 echo ""
 echo "=== Secrets (API key, token vb.) ==="
 
+# GitHub kullanicisini al
+CURRENT_USER=""
+if command -v gh &>/dev/null; then
+  CURRENT_USER=$(gh api user -q .login 2>/dev/null || echo "")
+fi
+IS_OWNER=0
+if [ "$CURRENT_USER" = "$OWNER_GITHUB" ]; then
+  IS_OWNER=1
+fi
+
 if [ -d "$SECRETS_DIR/.git" ]; then
-  # ── Mevcut secrets reposu var → git pull ile guncelle ──
+  # ── Mevcut secrets reposu var → git pull ──
   echo "✅ Secrets reposu mevcut: $SECRETS_DIR"
   git -C "$SECRETS_DIR" pull --quiet 2>/dev/null && echo "   Guncellendi." || echo "   ⚠️ Pull basarisiz, mevcut versiyon kullanilacak."
 
 elif [ -f "$SECRETS_DIR/secrets.env" ]; then
-  # ── secrets.env var ama git reposu degil → elle girilmis, dokunma ──
-  echo "✅ Lokal secrets.env mevcut (git reposu yok)"
+  # ── Lokal secrets.env var, git yok → dokunma ──
+  echo "✅ Lokal secrets.env mevcut"
+
+elif [ "$IS_OWNER" -eq 1 ]; then
+  # ── Sahip, yeni PC → kendi private reposundan otomatik cek ──
+  echo "Sahip olarak tespit edildin ($CURRENT_USER)."
+  echo "Private secrets reposu clone ediliyor..."
+  if git clone --quiet "$OWNER_SECRETS_REPO" "$SECRETS_DIR" 2>/dev/null; then
+    echo "✅ Secrets otomatik yuklendi"
+  else
+    echo "❌ Clone basarisiz. Erisim izninizi kontrol edin."
+    echo "   gh auth login ile GitHub'a giris yapin."
+    mkdir -p "$SECRETS_DIR"
+  fi
 
 else
-  # ── Hic secrets yok → yeni kullanici ──
+  # ── Baska kullanici → kendi secrets'ini kursun ──
   echo ""
-  echo "Secrets vault bulunamadi."
+  if [ -n "$CURRENT_USER" ]; then
+    echo "Hosgeldin $CURRENT_USER! Secrets vault kurulumu gerekiyor."
+  else
+    echo "Secrets vault kurulumu gerekiyor."
+  fi
   echo ""
-  echo "Iki secenek var:"
-  echo "  1) Zaten bir private secrets reponuz varsa → link verin, otomatik cekilir"
-  echo "  2) Sifirdan olusturalim → secrets'lari elle girersiniz, private repo olusturulur"
+  echo "API key ve token'larinizi guvenli saklamak icin private bir secrets reposu kullanilir."
+  echo ""
+  echo "Iki secenek:"
+  echo "  1) Zaten private secrets reponuz varsa → URL girin"
+  echo "  2) Yoksa → simdi olusturalim"
   echo ""
   read -p "Private secrets repo URL'niz var mi? (varsa girin, yoksa ENTER): " SECRETS_REPO
 
   if [ -n "$SECRETS_REPO" ]; then
-    # ── Var olan private repoyu clone et ──
-    echo "Secrets reposu clone ediliyor..."
+    echo "Clone ediliyor..."
     if git clone --quiet "$SECRETS_REPO" "$SECRETS_DIR" 2>/dev/null; then
       echo "✅ Secrets reposu yuklendi"
     else
-      echo "❌ Clone basarisiz. URL'yi veya erisim izninizi kontrol edin."
-      echo "   Devam ediyoruz — secrets'lari sonra ekleyebilirsiniz."
+      echo "❌ Clone basarisiz. URL veya erisimi kontrol edin."
       mkdir -p "$SECRETS_DIR"
     fi
   else
-    # ── Sifirdan olustur ──
+    # Sifirdan olustur
     echo ""
     echo "Secrets'lari girelim (bos birakirsaniz sonra eklersiniz):"
     echo ""
 
-    # Zorunlu
     read -p "  GITHUB_TOKEN: " INPUT_GITHUB_TOKEN
     read -p "  JIRA_URL (orn: https://site.atlassian.net): " INPUT_JIRA_URL
     read -p "  JIRA_USERNAME: " INPUT_JIRA_USERNAME
     read -p "  JIRA_API_TOKEN: " INPUT_JIRA_API_TOKEN
 
-    # Opsiyonel
     echo ""
     echo "  Opsiyonel (bos birakilabilir):"
     read -p "  FIREBASE_SERVICE_ACCOUNT_PATH: " INPUT_FIREBASE_SA
     read -p "  TELEGRAM_BOT_TOKEN: " INPUT_TELEGRAM_TOKEN
     read -p "  TELEGRAM_CHAT_ID: " INPUT_TELEGRAM_CHAT
 
-    # secrets.env olustur
     mkdir -p "$SECRETS_DIR"
     cat > "$SECRETS_DIR/secrets.env" <<ENVEOF
-# Claude Config Secrets — olusturulma: $TIMESTAMP
-# Bu dosya ~/.claude/secrets/secrets.env konumunda saklanir
+# Claude Config Secrets — $TIMESTAMP
 # ASLA public repoya commit etmeyin!
 
 # ZORUNLU
@@ -106,14 +132,13 @@ ENVEOF
     echo ""
     echo "✅ secrets.env olusturuldu"
 
-    # Private git reposu olusturmak ister mi?
+    # Private repo olustur
     echo ""
-    echo "Bu secrets'lari baska PC'lere tasimak icin private bir GitHub reposu olusturabilirsiniz."
+    echo "Bu secrets'lari baska PC'lere tasimak icin private GitHub repo olusturabilirsiniz."
     read -p "Private secrets reposu olusturulsun mu? [E/h]: " CREATE_SECRETS_REPO
     CREATE_SECRETS_REPO="${CREATE_SECRETS_REPO:-E}"
 
     if [[ "$CREATE_SECRETS_REPO" =~ ^[Ee]$ ]]; then
-      # .gitignore ekle
       cat > "$SECRETS_DIR/.gitignore" <<'GIEOF'
 *.bak
 *.tmp
@@ -138,12 +163,12 @@ RDEOF
       git commit --quiet -m "Initial commit: secrets vault"
 
       if command -v gh &>/dev/null; then
-        if gh repo create claude-secrets --private --source=. --push --description "Private secrets for claude-config" 2>/dev/null; then
-          echo "✅ Private repo olusturuldu: https://github.com/$(gh api user -q .login)/claude-secrets"
-          echo "   Baska PC'de install.sh calistirinca bu repo otomatik bulunacak."
+        REPO_NAME="claude-secrets"
+        if gh repo create "$REPO_NAME" --private --source=. --push --description "Private secrets for claude-config" 2>/dev/null; then
+          echo "✅ Private repo olusturuldu: https://github.com/$CURRENT_USER/$REPO_NAME"
         else
-          echo "⚠️  gh repo create basarisiz. Manuel olusturun:"
-          echo "   github.com → New repo → 'claude-secrets' → Private"
+          echo "⚠️  Otomatik repo olusturulamadi. Manuel:"
+          echo "   github.com → New repo → '$REPO_NAME' → Private"
           echo "   git remote add origin <URL> && git push -u origin main"
         fi
       else
