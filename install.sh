@@ -218,12 +218,28 @@ for skill_dir in "$SCRIPT_DIR/global/skills"/*/; do
   cp -r "$skill_dir"* "$HOME/.claude/skills/$skill_name/" 2>/dev/null || true
 done
 
-# settings.json — template'den olustur
+# settings.json — template'den olustur (permissions, hooks vb.)
 sed \
   -e "s|__UVX_PATH__|$UVX_PATH|g" \
   -e "s|__PROJECTS_ROOT__|$PROJECTS_ROOT|g" \
   -e "s|__HOME__|$HOME|g" \
   "$SCRIPT_DIR/global/settings.json.template" > "$HOME/.claude/settings.json"
+
+# MCP sunucularini claude mcp add ile ekle (claude.json'a yazar)
+echo "MCP sunuculari ekleniyor..."
+GITHUB_TOKEN_VAL="${GITHUB_TOKEN:-}"
+FIREBASE_SA_VAL="${FIREBASE_SERVICE_ACCOUNT_PATH:-}"
+
+claude mcp add -s user github -e "GITHUB_PERSONAL_ACCESS_TOKEN=$GITHUB_TOKEN_VAL" -- npx -y @modelcontextprotocol/server-github 2>/dev/null && echo "  ✅ github" || echo "  ⚠️ github eklenemedi"
+claude mcp add -s user git -- "$UVX_PATH" mcp-server-git 2>/dev/null && echo "  ✅ git" || echo "  ⚠️ git eklenemedi"
+claude mcp add -s user atlassian -- npx -y mcp-remote@latest https://mcp.atlassian.com/v1/mcp 2>/dev/null && echo "  ✅ atlassian" || echo "  ⚠️ atlassian eklenemedi"
+claude mcp add -s user flutter-dev -- npx -y flutter-dev-mcp 2>/dev/null && echo "  ✅ flutter-dev" || echo "  ⚠️ flutter-dev eklenemedi"
+if [ -n "$FIREBASE_SA_VAL" ]; then
+  claude mcp add -s user firebase -e "SERVICE_ACCOUNT_KEY_PATH=$FIREBASE_SA_VAL" -- npx -y @gannonh/firebase-mcp 2>/dev/null && echo "  ✅ firebase" || echo "  ⚠️ firebase eklenemedi"
+fi
+claude mcp add -s user context7 -- npx -y @upstash/context7-mcp 2>/dev/null && echo "  ✅ context7" || echo "  ⚠️ context7 eklenemedi"
+claude mcp add -s user jcodemunch -- "$UVX_PATH" jcodemunch-mcp 2>/dev/null && echo "  ✅ jcodemunch" || echo "  ⚠️ jcodemunch eklenemedi"
+claude mcp add -s user fetch -- npx -y mcp-fetch-server 2>/dev/null && echo "  ✅ fetch" || echo "  ⚠️ fetch eklenemedi"
 
 # 7. Projects dosyalari kopyala
 echo "Projects dosyalari kopyalaniyor..."

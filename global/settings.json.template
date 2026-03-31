@@ -102,6 +102,13 @@
       "args": [
         "jcodemunch-mcp"
       ]
+    },
+    "fetch": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-fetch-server"
+      ]
     }
   },
   "model": "opus"
