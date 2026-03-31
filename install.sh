@@ -36,11 +36,13 @@ fi
 # --skip-login: skip GitHub login step
 # --skip-secrets: skip secrets step
 # --secrets-repo URL: clone this secrets repo
+# --stacks LIST: comma-separated project stacks (flutter,firebase,unity,web,python)
 AUTO=0
 CUSTOM_ROOT=""
 SKIP_LOGIN=0
 SKIP_SECRETS=0
 SECRETS_REPO_URL=""
+STACKS=""
 
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -51,9 +53,16 @@ while [[ $# -gt 0 ]]; do
     --skip-secrets) SKIP_SECRETS=1; shift ;;
     --secrets-repo) SECRETS_REPO_URL="$2"; shift 2 ;;
     --secrets-repo=*) SECRETS_REPO_URL="${1#*=}"; shift ;;
+    --stacks) STACKS="$2"; shift 2 ;;
+    --stacks=*) STACKS="${1#*=}"; shift ;;
     *) shift ;;
   esac
 done
+
+# Helper: check if a stack is in the STACKS list
+has_stack() {
+  [[ ",$STACKS," == *",$1,"* ]]
+}
 
 # Helper: prompt or use default in auto mode
 ask() {
@@ -254,16 +263,30 @@ echo "MCP sunuculari ekleniyor..."
 GITHUB_TOKEN_VAL="${GITHUB_TOKEN:-}"
 FIREBASE_SA_VAL="${FIREBASE_SERVICE_ACCOUNT_PATH:-}"
 
+# Core MCPs — always installed
 claude mcp add -s user github -e "GITHUB_PERSONAL_ACCESS_TOKEN=$GITHUB_TOKEN_VAL" -- npx -y @modelcontextprotocol/server-github 2>/dev/null && echo "  ✅ github" || echo "  ⚠️ github eklenemedi"
 claude mcp add -s user git -- "$UVX_PATH" mcp-server-git 2>/dev/null && echo "  ✅ git" || echo "  ⚠️ git eklenemedi"
 claude mcp add -s user atlassian -- npx -y mcp-remote@latest https://mcp.atlassian.com/v1/mcp 2>/dev/null && echo "  ✅ atlassian" || echo "  ⚠️ atlassian eklenemedi"
-claude mcp add -s user flutter-dev -- npx -y flutter-dev-mcp 2>/dev/null && echo "  ✅ flutter-dev" || echo "  ⚠️ flutter-dev eklenemedi"
-if [ -n "$FIREBASE_SA_VAL" ]; then
-  claude mcp add -s user firebase -e "SERVICE_ACCOUNT_KEY_PATH=$FIREBASE_SA_VAL" -- npx -y @gannonh/firebase-mcp 2>/dev/null && echo "  ✅ firebase" || echo "  ⚠️ firebase eklenemedi"
-fi
 claude mcp add -s user context7 -- npx -y @upstash/context7-mcp 2>/dev/null && echo "  ✅ context7" || echo "  ⚠️ context7 eklenemedi"
 claude mcp add -s user jcodemunch -- "$UVX_PATH" jcodemunch-mcp 2>/dev/null && echo "  ✅ jcodemunch" || echo "  ⚠️ jcodemunch eklenemedi"
 claude mcp add -s user fetch -- npx -y mcp-fetch-server 2>/dev/null && echo "  ✅ fetch" || echo "  ⚠️ fetch eklenemedi"
+
+# Stack-specific MCPs
+if has_stack flutter; then
+  claude mcp add -s user flutter-dev -- npx -y flutter-dev-mcp 2>/dev/null && echo "  ✅ flutter-dev" || echo "  ⚠️ flutter-dev eklenemedi"
+else
+  echo "  ⏭️  flutter-dev atlandi (stacks: $STACKS)"
+fi
+
+if has_stack firebase || has_stack flutter; then
+  if [ -n "$FIREBASE_SA_VAL" ]; then
+    claude mcp add -s user firebase -e "SERVICE_ACCOUNT_KEY_PATH=$FIREBASE_SA_VAL" -- npx -y @gannonh/firebase-mcp 2>/dev/null && echo "  ✅ firebase" || echo "  ⚠️ firebase eklenemedi"
+  else
+    echo "  ⏭️  firebase atlandi (FIREBASE_SERVICE_ACCOUNT_PATH ayarli degil)"
+  fi
+else
+  echo "  ⏭️  firebase atlandi (stacks: $STACKS)"
+fi
 
 # Projects files
 cp "$SCRIPT_DIR/projects/CLAUDE.md" "$PROJECTS_ROOT/CLAUDE.md"

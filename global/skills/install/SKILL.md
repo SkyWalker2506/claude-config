@@ -40,12 +40,24 @@ Login istemezse → `--skip-login` flag kullan.
 - URL verdiyse → `--secrets-repo URL`
 - "yok" dediyse → `--skip-secrets`
 
+**D. Proje tipleri (stacks):**
+> Hangi proje tiplerin var? (birden fazla secebilirsin)
+> 1. Flutter
+> 2. Unity
+> 3. Web (Next.js, React vb.)
+> 4. Python
+> 5. Genel (sadece temel araclar)
+
+- Secimleri virgullu listeye cevir: `flutter,unity,web,python`
+- **Yalnizca temel** secildiyse → `--stacks general`
+- Secim yapmadiysa → `--stacks general`
+
 ### 3. install.sh calistir
 
 Topladığın cevaplardan komutu olustur:
 
 ```bash
-cd ~/Projects/claude-config && bash ./install.sh --auto --root <CEVAP_A> [--skip-login] [--skip-secrets] [--secrets-repo <URL>]
+cd ~/Projects/claude-config && bash ./install.sh --auto --root <CEVAP_A> --stacks <CEVAP_D> [--skip-login] [--skip-secrets] [--secrets-repo <URL>]
 ```
 
 `--auto` her zaman ekle — script'in kendi read -p'leri calismaz, tum parametreler arguman olarak gecer.

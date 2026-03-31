@@ -111,6 +111,7 @@ Tum skill'ler `~/.claude/skills/` altinda — proje klasorlerine kopyalamak gere
 | prd | `/prd` | Feature icin PRD olustur |
 | ralph | `/ralph` | PRD'yi prd.json'a cevir + Ralph baslat |
 | restart | `/restart` | Oturumu yeniden baslat |
+| add-mcp | `/add-mcp [flutter\|firebase]` | Sonradan MCP sunucusu ekle/kaldir |
 | index | `/index [force]` | jCodeMunch indexle + auto-update aktif et |
 
 ## 7. Watchdog (uzun suren gorevler)
