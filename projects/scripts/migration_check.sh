@@ -102,6 +102,7 @@ fi
 
 # ── 7. Secrets kontrolü ──
 SECRETS_ENV="$HOME/.claude/secrets/secrets.env"
+SECRETS_GIT="$HOME/.claude/secrets/.git"
 if [ -f "$SECRETS_ENV" ]; then
   MISSING_SECRETS=""
   for var in GITHUB_TOKEN JIRA_URL JIRA_USERNAME JIRA_API_TOKEN; do
@@ -113,6 +114,9 @@ if [ -f "$SECRETS_ENV" ]; then
   if [ -n "$MISSING_SECRETS" ]; then
     echo "🔑 SECRETS_MISSING: Eksik zorunlu secrets:$MISSING_SECRETS"
     echo "   Duzelt: nano $HOME/.claude/secrets/secrets.env"
+    if [ -d "$SECRETS_GIT" ]; then
+      echo "   Sonra: cd ~/.claude/secrets && git add -A && git commit -m 'update' && git push"
+    fi
   fi
 else
   echo "🔑 SECRETS_NONE: Secrets dosyasi bulunamadi."

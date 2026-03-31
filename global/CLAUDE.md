@@ -71,7 +71,17 @@ Her konusma basinda `migration_check.sh` hook'u calisir. Ciktisina gore:
 |--------|---------|
 | `MIGRATION_NEEDED` | `/migration` calistir veya `MIGRATION_GUIDE.md` Bolum 0'i izle |
 | `MIGRATION_UPDATE` | `MIGRATION_GUIDE.md` Changelog'dan delta uygula, versiyon guncelle |
+| `SECRETS_MISSING` | Kullaniciya eksik secret'lari bildir. `~/.claude/secrets/secrets.env` dosyasini duzenlemesini soylen. Git reposu varsa commit+push hatırlat. **Secret degerlerini asla konusma ciktisina, public repoya veya log'a yazma.** |
+| `SECRETS_NONE` | Secrets dosyasi yok. Kullaniciya `install.sh` calistirmasini veya `~/.claude/secrets/secrets.env` olusturmasini soylen. |
 | Sinyal yok | Sessiz gec |
+
+### Secrets guvenligi
+
+- **Secret degerleri ASLA** konusma ciktisina, commit mesajina, public dosyaya veya log'a yazilmaz
+- Secret'lar yalnizca `~/.claude/secrets/` altinda tutulur
+- `~/.claude/secrets/.git` varsa → private repo, degisiklik sonrasi `git push` hatırlat
+- `~/.claude/secrets/.git` yoksa → lokal dosya, sadece o PC'de gecerli
+- Kullanici secret ekledi/degistirdiyse ve git reposu varsa, **yalnizca private repoya** push edilir
 
 ## 6. Global skills
 
