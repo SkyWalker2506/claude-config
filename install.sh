@@ -34,15 +34,37 @@ if [ -z "$UVX_PATH" ]; then
 fi
 echo "uvx: $UVX_PATH"
 
-# ── 3. Secrets Vault ──
+# ── 3. GitHub Login + Secrets Vault ──
 echo ""
-echo "=== Secrets (API key, token vb.) ==="
+echo "=== GitHub Login ==="
 
-# GitHub kullanicisini al
+# GitHub login kontrolu
 CURRENT_USER=""
 if command -v gh &>/dev/null; then
   CURRENT_USER=$(gh api user -q .login 2>/dev/null || echo "")
 fi
+
+if [ -z "$CURRENT_USER" ]; then
+  echo "⚠️  GitHub'a giris yapilmamis."
+  read -p "Simdi giris yapmak ister misin? [E/h]: " DO_LOGIN
+  DO_LOGIN="${DO_LOGIN:-E}"
+  if [[ "$DO_LOGIN" =~ ^[Ee]$ ]]; then
+    gh auth login --web -p https
+    CURRENT_USER=$(gh api user -q .login 2>/dev/null || echo "")
+    if [ -n "$CURRENT_USER" ]; then
+      echo "✅ GitHub'a $CURRENT_USER olarak giris yapildi"
+      gh auth setup-git
+    else
+      echo "⚠️  Login basarisiz. Secrets adimi atlanacak."
+    fi
+  fi
+else
+  echo "✅ GitHub: $CURRENT_USER"
+fi
+
+echo ""
+echo "=== Secrets (API key, token vb.) ==="
+
 IS_OWNER=0
 if [ "$CURRENT_USER" = "$OWNER_GITHUB" ]; then
   IS_OWNER=1
@@ -57,15 +79,38 @@ elif [ -f "$SECRETS_DIR/secrets.env" ]; then
   # ── Lokal secrets.env var, git yok → dokunma ──
   echo "✅ Lokal secrets.env mevcut"
 
-elif [ "$IS_OWNER" -eq 1 ]; then
-  # ── Sahip, yeni PC → kendi private reposundan otomatik cek ──
-  echo "Sahip olarak tespit edildin ($CURRENT_USER)."
-  echo "Private secrets reposu clone ediliyor..."
-  if git clone --quiet "$OWNER_SECRETS_REPO" "$SECRETS_DIR" 2>/dev/null; then
-    echo "✅ Secrets otomatik yuklendi"
+elif [ -n "$CURRENT_USER" ]; then
+  # ── Login var, secrets yok → indirmek ister mi sor ──
+  echo ""
+  read -p "Secrets reposunu indirmek ister misin? [E/h]: " DO_SECRETS
+  DO_SECRETS="${DO_SECRETS:-E}"
+
+  if [[ "$DO_SECRETS" =~ ^[Ee]$ ]]; then
+    if [ "$IS_OWNER" -eq 1 ]; then
+      # Sahip → otomatik clone
+      echo "Private secrets reposu clone ediliyor..."
+      if git clone --quiet "$OWNER_SECRETS_REPO" "$SECRETS_DIR" 2>/dev/null; then
+        echo "✅ Secrets otomatik yuklendi"
+      else
+        echo "❌ Clone basarisiz. Erisim izninizi kontrol edin."
+        mkdir -p "$SECRETS_DIR"
+      fi
+    else
+      # Baska kullanici → URL sor
+      read -p "Private secrets repo URL'niz: " SECRETS_REPO
+      if [ -n "$SECRETS_REPO" ]; then
+        if git clone --quiet "$SECRETS_REPO" "$SECRETS_DIR" 2>/dev/null; then
+          echo "✅ Secrets reposu yuklendi"
+        else
+          echo "❌ Clone basarisiz."
+          mkdir -p "$SECRETS_DIR"
+        fi
+      else
+        mkdir -p "$SECRETS_DIR"
+      fi
+    fi
   else
-    echo "❌ Clone basarisiz. Erisim izninizi kontrol edin."
-    echo "   gh auth login ile GitHub'a giris yapin."
+    echo "Secrets atlandi. Sonra /download-secrets ile indirebilirsin."
     mkdir -p "$SECRETS_DIR"
   fi
 
