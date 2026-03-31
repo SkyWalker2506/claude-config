@@ -22,6 +22,42 @@ case "$CWD_LOWER" in
   "${PROJECTS_LOWER}"|"${PROJECTS_LOWER}/") exit 0 ;;
 esac
 
+# claude-config yonetici reposu → migration/index/mcp kontrolu atla
+if [ -f "$(pwd)/install.sh" ] && [ -f "$(pwd)/global/CLAUDE.md" ]; then
+  # Sadece secrets kontrolu yap, gerisi atla
+  SECRETS_ENV="$HOME/.claude/secrets/secrets.env"
+  SECRETS_GIT="$HOME/.claude/secrets/.git"
+  if [ -f "$SECRETS_ENV" ]; then
+    MISSING_SECRETS=""
+    for var in GITHUB_TOKEN JIRA_URL JIRA_USERNAME JIRA_API_TOKEN; do
+      val=$(grep "^${var}=" "$SECRETS_ENV" 2>/dev/null | head -1 | cut -d'=' -f2-)
+      if [ -z "$val" ]; then
+        MISSING_SECRETS="$MISSING_SECRETS $var"
+      fi
+    done
+    if [ -n "$MISSING_SECRETS" ]; then
+      echo "🔑 SECRETS_MISSING: Eksik zorunlu secrets:$MISSING_SECRETS"
+      echo "   Duzelt: nano $HOME/.claude/secrets/secrets.env"
+      if [ -d "$SECRETS_GIT" ]; then
+        echo "   Sonra: cd ~/.claude/secrets && git add -A && git commit -m 'update' && git push"
+      fi
+    fi
+  fi
+  # MCP kurulum kontrolu
+  MCP_COUNT=$(claude mcp list 2>/dev/null | grep -c "✓ Connected" || echo 0)
+  if [ "$MCP_COUNT" -lt 3 ]; then
+    echo "⚠️  MCP_SETUP_NEEDED: Sadece $MCP_COUNT MCP bagli. install.sh calistirip oturumu yeniden baslatin."
+  fi
+  exit 0
+fi
+
+# ── 0. install.sh kurulum kontrolü ──
+# claude mcp list hizli degil, sadece dosya varligina bak
+if [ ! -f "$HOME/.claude/CLAUDE.md" ] || [ ! -f "$PROJECTS_ROOT/MIGRATION_VERSION" ]; then
+  echo "🚨 INSTALL_NEEDED: claude-config kurulumu yapilmamis veya eksik."
+  echo "   cd ~/Projects/claude-config && ./install.sh calistirin, sonra oturumu yeniden baslatin."
+fi
+
 # ── 1. Versiyon kontrolü ──
 MASTER_VERSION=$(cat "$MASTER_FILE" 2>/dev/null | tr -d '[:space:]')
 PROJECT_VERSION=$(cat "$PROJECT_VERSION_FILE" 2>/dev/null | tr -d '[:space:]')

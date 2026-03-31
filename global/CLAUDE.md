@@ -69,6 +69,8 @@ Her konusma basinda `migration_check.sh` hook'u calisir. Ciktisina gore:
 
 | Sinyal | Aksiyon |
 |--------|---------|
+| `INSTALL_NEEDED` | Kullaniciya `cd ~/Projects/claude-config && ./install.sh` calistirmasini ve sonra oturumu yeniden baslatmasini (`/restart`) soylen. Baska islem yapma. |
+| `MCP_SETUP_NEEDED` | MCP sunuculari eksik. Kullaniciya `cd ~/Projects/claude-config && ./install.sh` calistirmasini ve oturumu yeniden baslatmasini soylen. |
 | `MIGRATION_NEEDED` | `/migration` calistir veya `MIGRATION_GUIDE.md` Bolum 0'i izle |
 | `MIGRATION_UPDATE` | `MIGRATION_GUIDE.md` Changelog'dan delta uygula, versiyon guncelle |
 | `SECRETS_MISSING` | Kullaniciya eksik secret'lari bildir. `~/.claude/secrets/secrets.env` dosyasini duzenlemesini soylen. Git reposu varsa commit+push hatırlat. **Secret degerlerini asla konusma ciktisina, public repoya veya log'a yazma.** |
