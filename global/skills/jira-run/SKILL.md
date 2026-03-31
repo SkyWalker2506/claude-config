@@ -251,7 +251,7 @@ Task: [VOC-XX] — [summary]
 
 ## ÇALIŞMA KURALLARI
 - Proje kökü: mevcut proje dizini
-- cloudId: musabkara1990.atlassian.net
+- cloudId: projenin docs/CLAUDE_JIRA.md dosyasından oku
 - Working lock: .jira-state/working-[VOC-XX].lock
   - Her 10dk güncelle: date -u +”%Y-%m-%dT%H:%M:%SZ” > .jira-state/working-[VOC-XX].lock
   - Bitince MUTLAKA sil: rm -f .jira-state/working-[VOC-XX].lock

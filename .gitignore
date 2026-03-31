@@ -3,3 +3,5 @@
 *.swo
 *~
 .env
+secrets.env
+secrets/

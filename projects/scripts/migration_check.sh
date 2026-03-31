@@ -3,19 +3,23 @@
 # Hook: UserPromptSubmit — her mesajda çalışır, max 1 sn
 # Çıktı yalnızca aksiyon gerektiğinde üretilir; güncel projede sessiz kalır.
 
-MASTER_FILE="__PROJECTS_ROOT__/MIGRATION_VERSION"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECTS_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+MASTER_FILE="$PROJECTS_ROOT/MIGRATION_VERSION"
 PROJECT_VERSION_FILE="$(pwd)/.claude/migration_version"
 PROJECT_SETTINGS="$(pwd)/.claude/settings.json"
 GLOBAL_SETTINGS="$HOME/.claude/settings.json"
 
 # ── Kapsam kontrolü ──
 CWD_LOWER=$(echo "$(pwd)" | tr '[:upper:]' '[:lower:]')
+PROJECTS_LOWER=$(echo "$PROJECTS_ROOT" | tr '[:upper:]' '[:lower:]')
 case "$CWD_LOWER" in
-  "/users/musabkara/projects/"*) ;;
+  "${PROJECTS_LOWER}/"*) ;;
   *) exit 0 ;;
 esac
 case "$CWD_LOWER" in
-  "/users/musabkara/projects"|"/users/musabkara/projects/") exit 0 ;;
+  "${PROJECTS_LOWER}"|"${PROJECTS_LOWER}/") exit 0 ;;
 esac
 
 # ── 1. Versiyon kontrolü ──
@@ -26,7 +30,7 @@ if [ -n "$MASTER_VERSION" ]; then
   if [ -z "$PROJECT_VERSION" ]; then
     echo "⚠️  MIGRATION_NEEDED: Bu proje henüz kurulmamış."
     echo "   Master versiyon: $MASTER_VERSION"
-    echo "   Aksiyon: /migration komutu çalıştır veya __PROJECTS_ROOT__/MIGRATION_GUIDE.md oku."
+    echo "   Aksiyon: /migration komutu çalıştır veya $PROJECTS_ROOT/MIGRATION_GUIDE.md oku."
   elif [ "$PROJECT_VERSION" != "$MASTER_VERSION" ]; then
     echo "🔄 MIGRATION_UPDATE: Proje ($PROJECT_VERSION) → Master ($MASTER_VERSION)"
     echo "   Aksiyon: /migration komutu çalıştır."
@@ -94,4 +98,24 @@ if [ -f "$PROJECT_SETTINGS" ]; then
     echo "⚠️  MCP_NOT_ENABLED: .claude/settings.json'da enabledMcpjsonServers tanımlı değil."
     echo "   MCP sunucuları bu projede aktif olmayabilir. /migration fix ile düzelt."
   fi
+fi
+
+# ── 7. Secrets kontrolü ──
+SECRETS_ENV="$HOME/.claude/secrets/secrets.env"
+if [ -f "$SECRETS_ENV" ]; then
+  MISSING_SECRETS=""
+  for var in GITHUB_TOKEN JIRA_URL JIRA_USERNAME JIRA_API_TOKEN; do
+    val=$(grep "^${var}=" "$SECRETS_ENV" 2>/dev/null | head -1 | cut -d'=' -f2-)
+    if [ -z "$val" ]; then
+      MISSING_SECRETS="$MISSING_SECRETS $var"
+    fi
+  done
+  if [ -n "$MISSING_SECRETS" ]; then
+    echo "🔑 SECRETS_MISSING: Eksik zorunlu secrets:$MISSING_SECRETS"
+    echo "   Duzelt: nano $HOME/.claude/secrets/secrets.env"
+  fi
+else
+  echo "🔑 SECRETS_NONE: Secrets dosyasi bulunamadi."
+  echo "   MCP servisleri (GitHub, Jira) calismayabilir."
+  echo "   Kurmak icin: cd ~/Projects/claude-config && ./install.sh"
 fi
