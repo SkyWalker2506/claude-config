@@ -29,7 +29,7 @@ if [ -f "$(pwd)/install.sh" ] && [ -f "$(pwd)/global/CLAUDE.md" ]; then
   SECRETS_GIT="$HOME/.claude/secrets/.git"
   if [ -f "$SECRETS_ENV" ]; then
     MISSING_SECRETS=""
-    for var in GITHUB_TOKEN JIRA_URL JIRA_USERNAME JIRA_API_TOKEN; do
+    for var in GITHUB_TOKEN; do
       val=$(grep "^${var}=" "$SECRETS_ENV" 2>/dev/null | head -1 | cut -d'=' -f2-)
       if [ -z "$val" ]; then
         MISSING_SECRETS="$MISSING_SECRETS $var"
@@ -181,7 +181,7 @@ SECRETS_ENV="$HOME/.claude/secrets/secrets.env"
 SECRETS_GIT="$HOME/.claude/secrets/.git"
 if [ -f "$SECRETS_ENV" ]; then
   MISSING_SECRETS=""
-  for var in GITHUB_TOKEN JIRA_URL JIRA_USERNAME JIRA_API_TOKEN; do
+  for var in GITHUB_TOKEN; do
     val=$(grep "^${var}=" "$SECRETS_ENV" 2>/dev/null | head -1 | cut -d'=' -f2-)
     if [ -z "$val" ]; then
       MISSING_SECRETS="$MISSING_SECRETS $var"
