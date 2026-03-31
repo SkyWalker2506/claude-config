@@ -59,17 +59,20 @@ command -v unity-mcp-cli
 ```
 Yoksa: `npm install -g unity-mcp-cli`
 
-2. Bulundugun dizin Unity projesi mi?
+2. **SADECE `$(pwd)` dizinini kontrol et** — parent, child veya sibling dizinlere bakma:
 ```bash
-ls -d "$(pwd)/Assets" "$(pwd)/ProjectSettings" 2>/dev/null
+CUR="$(pwd)"
+ls -d "$CUR/Assets" "$CUR/ProjectSettings" 2>/dev/null
 ```
-Unity projesi degilse → **KURMA**. Kullaniciya de:
-> Bu klasor Unity projesi degil. Unity proje dizininde `/add-mcp unity` calistir.
+**Her ikisi de** ayni dizinde yoksa → **KURMA**. Kullaniciya de:
+> Bu klasor ($CUR) Unity projesi degil. Unity proje kok dizininde (Assets/ ve ProjectSettings/ olan yer) `/add-mcp unity` calistir.
 
-3. Unity projesi ise:
+Alt klasorde veya parent'ta Unity projesi olsa bile **o dizine gecmeden kurma**.
+
+3. Her ikisi de varsa → Unity projesi:
 ```bash
-unity-mcp-cli install-plugin .
-unity-mcp-cli setup-skills claude-code .
+unity-mcp-cli install-plugin "$CUR"
+unity-mcp-cli setup-skills claude-code "$CUR"
 ```
 
 ### 4. Kur
