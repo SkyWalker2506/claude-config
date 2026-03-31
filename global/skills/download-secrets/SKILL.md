@@ -76,4 +76,3 @@ Hayir → "Tamam, sonraki install.sh'da otomatik uygulanacak" de
 
 - `gh auth login` interaktif — kullanici `!` ile calistirmali
 - Secret degerlerini terminale yazma
-- Sadece claude-config dizininden calisir

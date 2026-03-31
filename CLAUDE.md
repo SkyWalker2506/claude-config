@@ -41,13 +41,6 @@ mkdir -p global/skills/yeni-skill
 ./install.sh  # → ~/.claude/skills/yeni-skill/ olusur
 ```
 
-## Proje-local skill'ler (sadece bu repo)
-
-| Skill | Komut | Aciklama |
-|-------|-------|----------|
-| admin-login | `/admin-login` | GitHub login + hesap yonetimi |
-| download-secrets | `/download-secrets` | Private secrets reposunu indir/guncelle |
-
 ## Migration guncelleme
 
 1. `projects/MIGRATION_GUIDE.md` → Changelog'a yeni versiyon ekle

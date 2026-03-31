@@ -115,115 +115,10 @@ elif [ -n "$CURRENT_USER" ]; then
   fi
 
 else
-  # ── Baska kullanici → kendi secrets'ini kursun ──
-  echo ""
-  if [ -n "$CURRENT_USER" ]; then
-    echo "Hosgeldin $CURRENT_USER! Secrets vault kurulumu gerekiyor."
-  else
-    echo "Secrets vault kurulumu gerekiyor."
-  fi
-  echo ""
-  echo "API key ve token'larinizi guvenli saklamak icin private bir secrets reposu kullanilir."
-  echo ""
-  echo "Iki secenek:"
-  echo "  1) Zaten private secrets reponuz varsa → URL girin"
-  echo "  2) Yoksa → simdi olusturalim"
-  echo ""
-  read -p "Private secrets repo URL'niz var mi? (varsa girin, yoksa ENTER): " SECRETS_REPO
-
-  if [ -n "$SECRETS_REPO" ]; then
-    echo "Clone ediliyor..."
-    if git clone --quiet "$SECRETS_REPO" "$SECRETS_DIR" 2>/dev/null; then
-      echo "✅ Secrets reposu yuklendi"
-    else
-      echo "❌ Clone basarisiz. URL veya erisimi kontrol edin."
-      mkdir -p "$SECRETS_DIR"
-    fi
-  else
-    # Sifirdan olustur
-    echo ""
-    echo "Secrets'lari girelim (bos birakirsaniz sonra eklersiniz):"
-    echo ""
-
-    read -p "  GITHUB_TOKEN: " INPUT_GITHUB_TOKEN
-    read -p "  JIRA_URL (orn: https://site.atlassian.net): " INPUT_JIRA_URL
-    read -p "  JIRA_USERNAME: " INPUT_JIRA_USERNAME
-    read -p "  JIRA_API_TOKEN: " INPUT_JIRA_API_TOKEN
-
-    echo ""
-    echo "  Opsiyonel (bos birakilabilir):"
-    read -p "  FIREBASE_SERVICE_ACCOUNT_PATH: " INPUT_FIREBASE_SA
-    read -p "  TELEGRAM_BOT_TOKEN: " INPUT_TELEGRAM_TOKEN
-    read -p "  TELEGRAM_CHAT_ID: " INPUT_TELEGRAM_CHAT
-
-    mkdir -p "$SECRETS_DIR"
-    cat > "$SECRETS_DIR/secrets.env" <<ENVEOF
-# Claude Config Secrets — $TIMESTAMP
-# ASLA public repoya commit etmeyin!
-
-# ZORUNLU
-GITHUB_TOKEN=$INPUT_GITHUB_TOKEN
-JIRA_URL=$INPUT_JIRA_URL
-JIRA_USERNAME=$INPUT_JIRA_USERNAME
-JIRA_API_TOKEN=$INPUT_JIRA_API_TOKEN
-
-# OPSIYONEL
-FIREBASE_SERVICE_ACCOUNT_PATH=$INPUT_FIREBASE_SA
-TELEGRAM_BOT_TOKEN=$INPUT_TELEGRAM_TOKEN
-TELEGRAM_CHAT_ID=$INPUT_TELEGRAM_CHAT
-ENVEOF
-
-    chmod 600 "$SECRETS_DIR/secrets.env"
-    echo ""
-    echo "✅ secrets.env olusturuldu"
-
-    # Private repo olustur
-    echo ""
-    echo "Bu secrets'lari baska PC'lere tasimak icin private GitHub repo olusturabilirsiniz."
-    read -p "Private secrets reposu olusturulsun mu? [E/h]: " CREATE_SECRETS_REPO
-    CREATE_SECRETS_REPO="${CREATE_SECRETS_REPO:-E}"
-
-    if [[ "$CREATE_SECRETS_REPO" =~ ^[Ee]$ ]]; then
-      cat > "$SECRETS_DIR/.gitignore" <<'GIEOF'
-*.bak
-*.tmp
-GIEOF
-      cat > "$SECRETS_DIR/README.md" <<'RDEOF'
-# claude-secrets (private)
-
-Claude Code API key, token ve credential deposu.
-`claude-config/install.sh` bu repoyu otomatik clone/pull eder.
-
-## Duzenleme
-
-```bash
-nano ~/.claude/secrets/secrets.env
-cd ~/.claude/secrets && git add -A && git commit -m "update" && git push
-```
-RDEOF
-
-      cd "$SECRETS_DIR"
-      git init --quiet
-      git add -A
-      git commit --quiet -m "Initial commit: secrets vault"
-
-      if command -v gh &>/dev/null; then
-        REPO_NAME="claude-secrets"
-        if gh repo create "$REPO_NAME" --private --source=. --push --description "Private secrets for claude-config" 2>/dev/null; then
-          echo "✅ Private repo olusturuldu: https://github.com/$CURRENT_USER/$REPO_NAME"
-        else
-          echo "⚠️  Otomatik repo olusturulamadi. Manuel:"
-          echo "   github.com → New repo → '$REPO_NAME' → Private"
-          echo "   git remote add origin <URL> && git push -u origin main"
-        fi
-      else
-        echo "⚠️  GitHub CLI (gh) bulunamadi. Manuel olusturun:"
-        echo "   github.com → New repo → 'claude-secrets' → Private"
-        echo "   cd $SECRETS_DIR && git remote add origin <URL> && git push -u origin main"
-      fi
-      cd "$SCRIPT_DIR"
-    fi
-  fi
+  # ── Login yok veya basarisiz → secrets atalanacak ──
+  echo "GitHub login yok. Secrets atlandi."
+  echo "Sonra /admin-login ve /download-secrets ile kurabilirsin."
+  mkdir -p "$SECRETS_DIR"
 fi
 
 # Secrets dosyasini source et (varsa)
@@ -345,8 +240,8 @@ fi
 echo ""
 echo "=== Secrets Kontrolu ==="
 
-REQUIRED_SECRETS=("GITHUB_TOKEN" "JIRA_URL" "JIRA_USERNAME" "JIRA_API_TOKEN")
-OPTIONAL_SECRETS=("FIREBASE_SERVICE_ACCOUNT_PATH" "TELEGRAM_BOT_TOKEN" "TELEGRAM_CHAT_ID")
+REQUIRED_SECRETS=("GITHUB_TOKEN")
+OPTIONAL_SECRETS=("JIRA_URL" "JIRA_USERNAME" "JIRA_API_TOKEN" "FIREBASE_SERVICE_ACCOUNT_PATH" "TELEGRAM_BOT_TOKEN" "TELEGRAM_CHAT_ID")
 MISSING_REQUIRED=()
 
 for var in "${REQUIRED_SECRETS[@]}"; do
