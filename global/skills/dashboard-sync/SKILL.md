@@ -11,8 +11,10 @@ Jira'dan taze veri cek + dashboard goster.
 
 ### 1. Jira'dan veri cek (paralel 2 cagri)
 
-- **Not-done:** `project = VOC AND status NOT IN ("Done") AND key != VOC-46 ORDER BY status ASC, priority DESC` — fields: summary, status, priority, labels — max 50
-- **Done:** `project = VOC AND status = "Done" ORDER BY updated DESC` — fields: summary, status, priority — max 10
+Proje anahtarini projenin `docs/CLAUDE_JIRA.md` veya `CLAUDE.md` dosyasindan oku (orn: VOC, AC, TASK).
+
+- **Not-done:** `project = {KEY} AND status NOT IN ("Done") ORDER BY status ASC, priority DESC` — fields: summary, status, priority, labels — max 50
+- **Done:** `project = {KEY} AND status = "Done" ORDER BY updated DESC` — fields: summary, status, priority — max 10
 
 Sonuclar buyukse dosyaya duser; python3 ile parse et.
 
@@ -24,12 +26,12 @@ Sonuclari parse et ve `.jira_cache.json`'a yaz:
 {
   "updated": "<ISO timestamp>",
   "summary": {"total": N, "todo": N, "in_progress": N, "waiting": N, "blocked": N, "backlog": N, "done": N},
-  "todo": [{"key": "VOC-XX", "summary": "...", "priority": "High", "labels": [...]}],
+  "todo": [{"key": "PROJECT-XX", "summary": "...", "priority": "High", "labels": [...]}],
   "in_progress": [...],
   "waiting": [...],
   "blocked": [...],
   "backlog": [...],
-  "done_recent": [{"key": "VOC-XX", "summary": "..."}]
+  "done_recent": [{"key": "PROJECT-XX", "summary": "..."}]
 }
 ```
 

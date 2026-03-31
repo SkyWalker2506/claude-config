@@ -1,6 +1,6 @@
 ---
 name: jira-run
-description: VOC Jira wait-and-check döngüsü. Büyük/küçük harf duyarsız. Tur sayısı + tur arası bekleme (örn. 50 1s). Durdurma /jira-cancel.
+description: Jira wait-and-check döngüsü. Proje anahtarini docs/CLAUDE_JIRA.md'den okur. Tur sayısı + tur arası bekleme (örn. 50 1s). Durdurma /jira-cancel.
 argument-hint: "[tur] [aralık] — örn. 50 1s | 10 | 10_1m | boş → 10 tur 1dk"
 disable-model-invocation: true
 ---
@@ -149,7 +149,7 @@ echo "{\"task\":\"jira-run\",\"started\":$(cat /tmp/jira_run_start.txt 2>/dev/nu
 date +%s > /tmp/jira_run_start.txt
 ```
 
-Tur sonunda notes alanını güncelle (ör. `"notes":"tur 3 — VOC-12 Done taşındı"`).
+Tur sonunda notes alanını güncelle (ör. `"notes":"tur 3 — {KEY}-12 Done taşındı"`).
 
 ---
 
@@ -241,7 +241,7 @@ Bash, Write, Edit, Read, Grep, Glob araçlarını kullanarak kodu yaz, test et v
 MCP Jira araçlarını kullanarak task’ı Done’a taşı.
 
 ## TASK
-Task: [VOC-XX] — [summary]
+Task: [{KEY}-XX] — [summary]
 
 ### Açıklama
 [description tam metin — getJiraIssue’dan]
@@ -252,9 +252,9 @@ Task: [VOC-XX] — [summary]
 ## ÇALIŞMA KURALLARI
 - Proje kökü: mevcut proje dizini
 - cloudId: projenin docs/CLAUDE_JIRA.md dosyasından oku
-- Working lock: .jira-state/working-[VOC-XX].lock
-  - Her 10dk güncelle: date -u +”%Y-%m-%dT%H:%M:%SZ” > .jira-state/working-[VOC-XX].lock
-  - Bitince MUTLAKA sil: rm -f .jira-state/working-[VOC-XX].lock
+- Working lock: .jira-state/working-[{KEY}-XX].lock
+  - Her 10dk güncelle: date -u +”%Y-%m-%dT%H:%M:%SZ” > .jira-state/working-[{KEY}-XX].lock
+  - Bitince MUTLAKA sil: rm -f .jira-state/working-[{KEY}-XX].lock
 
 ## SIRA (sabit)
 1. Kodu yaz (Entity → ARB → provider → UI → test)
@@ -262,13 +262,13 @@ Task: [VOC-XX] — [summary]
 3. flutter gen-l10n (ARB değiştiyse)
 4. flutter analyze — hata varsa düzelt
 5. flutter test — fail varsa düzelt
-6. git add [değişen dosyalar] && git commit -m “feat(VOC-XX): [özet]”
+6. git add [değişen dosyalar] && git commit -m “feat({KEY}-XX): [özet]”
 7. git push
-8. Jira’da Done’a taşı: transitionJiraIssue(issueIdOrKey: “VOC-XX”, transitionId: “31”)
-9. Lock sil: rm -f .jira-state/working-[VOC-XX].lock
+8. Jira’da Done’a taşı: transitionJiraIssue(issueIdOrKey: “{KEY}-XX”, transitionId: “31”)
+9. Lock sil: rm -f .jira-state/working-[{KEY}-XX].lock
 
 ## HATA DURUMU
-Hata/iptal/çökme’de: lock MUTLAKA sil → rm -f .jira-state/working-[VOC-XX].lock
+Hata/iptal/çökme’de: lock MUTLAKA sil → rm -f .jira-state/working-[{KEY}-XX].lock
 ```
 
 ### jira-run’ın KENDİ Araç Kısıtı

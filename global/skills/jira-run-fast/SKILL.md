@@ -1,6 +1,6 @@
 ---
 name: jira-run-fast
-description: VOC Jira wait-and-check hızlı ön ayarı — tur arası her zaman 1 saniye; tur sayısı isteğe bağlı (ör. 100 → 100 tur × 1s). /jira-run-fast ve eşanlamlıları; Claude’da tam döngü arka planda, Cursor’da mevcut sohbette (jira-run skill); docs/CLAUDE_JIRA.md.
+description: Jira wait-and-check hizli dongu — tur arasi 1 saniye; tur sayisi istege bagli (orn. 100 → 100 tur × 1s). Durdurma /jira-cancel.
 disable-model-invocation: true
 ---
 

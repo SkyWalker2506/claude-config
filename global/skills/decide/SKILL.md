@@ -23,7 +23,9 @@ Runs in main session (interactive — no background agent).
 
 ### Step 1: Fetch WAITING cards
 
-JQL: `project = VOC AND status = "WAITING FOR APPROVAL" AND key != VOC-46 ORDER BY priority DESC`
+Proje anahtarini `docs/CLAUDE_JIRA.md` veya `CLAUDE.md`'den oku.
+
+JQL: `project = {KEY} AND status = "WAITING FOR APPROVAL" ORDER BY priority DESC`
 fields: summary, priority, labels — max 50
 
 If result is saved to file (too large), parse with python3.
@@ -33,10 +35,10 @@ If result is saved to file (too large), parse with python3.
 Plain text, one card per block — easy to mouse-select:
 
 ```
- 1  VOC-XXX  Card title here                          High  #label
+ 1  {KEY}-XXX  Card title here                          High  #label
     Why waiting: one sentence reason
 
- 2  VOC-YYY  Another card title                       Med   #label
+ 2  {KEY}-YYY  Another card title                       Med   #label
     Why waiting: one sentence reason
 ```
 

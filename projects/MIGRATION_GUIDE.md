@@ -967,4 +967,4 @@ claude
 
 ---
 
-*Bu rehber VocabLearningApp projesinden olusturulmustur. Son guncelleme: 2026-03-30*
+*Son guncelleme: 2026-03-31*

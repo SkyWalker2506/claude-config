@@ -107,7 +107,6 @@ Tum skill'ler `~/.claude/skills/` altinda — proje klasorlerine kopyalamak gere
 | agent-browser | `/agent-browser` | Browser otomasyon CLI |
 | restart | `/restart` | Oturumu yeniden baslat |
 | index | `/index [force]` | jCodeMunch indexle + auto-update aktif et |
-| claude-api | `/claude-api` | Claude API/SDK yardim |
 
 ## 7. Watchdog (uzun suren gorevler)
 

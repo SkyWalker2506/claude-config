@@ -121,8 +121,8 @@ Mevcut To Do kartları hangi sırayla çalışılmalı ve neden.
 (tablo formatında)
 
 ## Öncelik Sırası
-1. VOC-XXX — sebep
-2. VOC-YYY — sebep
+1. {KEY}-XXX — sebep
+2. {KEY}-YYY — sebep
 ...
 
 ## KURALLAR

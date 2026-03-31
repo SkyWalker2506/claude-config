@@ -197,7 +197,7 @@ if [ -d "$HOME/.claude" ]; then
   BACKUP="$HOME/.claude.backup.$TIMESTAMP"
   echo ""
   echo "Mevcut ~/.claude/ yedekleniyor → $BACKUP"
-  cp -r "$HOME/.claude" "$BACKUP"
+  rsync -a --exclude='secrets/' "$HOME/.claude/" "$BACKUP/" 2>/dev/null || cp -r "$HOME/.claude" "$BACKUP"
 fi
 
 # 5. Dizinleri olustur

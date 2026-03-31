@@ -112,7 +112,7 @@ Arastirma bulgularini projeye uygula:
 
 ## Pazar Trendleri
 - Öne çıkan trendler
-- VOC için fırsatlar
+- Proje icin firsatlar
 
 ## UX Önerileri
 - Onboarding

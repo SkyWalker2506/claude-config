@@ -80,4 +80,3 @@ Her bulgu/öneri için:
 
 - Task başlık: **İngilizce**
 - Task açıklama + kullanıcı iletişim: **Türkçe**
-- Kaynak: `__PROJECTS_ROOT__/football-ai-platform/.claude/skills/sprint-plan/SKILL.md`

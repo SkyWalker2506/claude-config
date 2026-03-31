@@ -17,7 +17,7 @@ Ana oturum **tek sıra** işlerse `/jira-cancel` slash’i, ana agent o an üret
 
 (Bu script doğrudan `.jira-state/jira-run.stop` yazar; Claude sırasına ihtiyaç yok.)
 
-**Not (working lock):** `/jira-run` değil, **tek task** üzerindeki implementation agent iptal / çökme sonrası kalan `.jira-state/working-VOC-XX.lock` için: `bash scripts/jira_clear_working_lock.sh VOC-XX` veya `--all`. Ayrıntı: `docs/CLAUDE_JIRA.md` (Lock Sistemi).
+**Not (working lock):** `/jira-run` değil, **tek task** üzerindeki implementation agent iptal / çökme sonrası kalan `.jira-state/working-{KEY}-XX.lock` için: `bash scripts/jira_clear_working_lock.sh {KEY}-XX` veya `--all`. Ayrıntı: `docs/CLAUDE_JIRA.md` (Lock Sistemi).
 
 **Ajan:** Bu skill metninde **Jira iptal / stop davranışını** değiştirirsen → `docs/CLAUDE_JIRA_NOTES.md` «Ajan talimatı».
 

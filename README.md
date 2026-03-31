@@ -12,14 +12,15 @@ Tasinabilir Claude Code konfigurasyonu. Clone + `install.sh` ile herhangi bir Ma
 ## Kurulum
 
 ```bash
-git clone <repo-url> ~/Projects/claude-config
+git clone https://github.com/SkyWalker2506/claude-config.git ~/Projects/claude-config
 cd ~/Projects/claude-config
 ./install.sh
 ```
 
 Installer soracak:
 1. **Proje kok dizini** (default: `~/Projects`)
-2. **uvx yolu** otomatik bulunur (jCodeMunch MCP icin)
+2. **Secrets vault** — sahipsen otomatik cekilir, degilsen elle girersin veya kendi private reponun URL'sini verirsin
+3. **uvx yolu** otomatik bulunur (jCodeMunch MCP icin)
 
 Mevcut `~/.claude/` varsa `~/.claude.backup.<tarih>` olarak yedeklenir.
 
@@ -120,11 +121,23 @@ cp ~/Projects/.claude-templates/project-settings.json .claude/settings.json
 # Placeholder'lari duzenle
 ```
 
+## Secrets vault
+
+API key ve token'lar private bir git reposunda saklanir (`~/.claude/secrets/`).
+
+| Durum | Ne olur |
+|-------|---------|
+| Repo sahibi, yeni PC | `gh api user` ile otomatik tespit → `claude-secrets` clone edilir |
+| Baska kullanici | URL sorar veya elle giris + kendi private reposunu olusturur |
+| Mevcut secrets var | `git pull` ile gunceller |
+
+Secret'lar asla public repoya girmez. `secrets.env` dosya izni 600.
+
 ## Baska PC'ye tasima
 
 ```bash
 # Yeni PC'de:
-git clone <repo-url> ~/Projects/claude-config
+git clone https://github.com/SkyWalker2506/claude-config.git ~/Projects/claude-config
 cd ~/Projects/claude-config
 ./install.sh
 

@@ -2,7 +2,7 @@
 name: jira-start-new-task
 description: Sahipsiz IP veya To Do'dan N task seç, her biri için Sonnet kod + Opus review pipeline'ı başlat (branch → PR → review → merge)
 argument-hint: "[N=1]"
-disable-model-invocation: false
+disable-model-in{key}ation: false
 context: fork
 agent: general-purpose
 ---
@@ -24,17 +24,17 @@ agent: general-purpose
 Her task icin `scripts/run_task_agent.sh` wrapper calisir:
 
 ### Adim 1 -- Kod (Sonnet)
-- `feat/voc-xxx` branch olusturur (main'den)
+- `feat/{key}-xxx` branch olusturur (main'den)
 - Kodu yazar, dosya lock kurallarina uyar
 - `flutter pub get` + `flutter gen-l10n` (gerekirse) + `flutter analyze` + `flutter test`
-- `git commit` + `git push -u origin feat/voc-xxx`
+- `git commit` + `git push -u origin feat/{key}-xxx`
 - `gh pr create --base main` ile PR acar
 - **Merge YAPMAZ** -- review bekler
 
 ### Adim 2 -- Review (Opus)
-- PR'i bulur (`gh pr list --head feat/voc-xxx`)
-- `git checkout feat/voc-xxx && git pull`
-- `git diff main...feat/voc-xxx` ile tum degisiklikleri inceler
+- PR'i bulur (`gh pr list --head feat/{key}-xxx`)
+- `git checkout feat/{key}-xxx && git pull`
+- `git diff main...feat/{key}-xxx` ile tum degisiklikleri inceler
 - `flutter analyze` + `flutter test`
 - Kod kalitesi kontrol (import, type, Riverpod pattern, null safety, test coverage)
 - Sorun varsa: duzelt, commit, push, tekrar analyze+test
@@ -101,7 +101,7 @@ mkdir -p .jira-state/file-locks
 
 **JQL:**
 ```jql
-project = VOC AND status = "In Progress" AND key != VOC-46 ORDER BY priority DESC
+project = {KEY} AND status = "In Progress" AND key != {KEY}-46 ORDER BY priority DESC
 ```
 
 Her IP karti icin `.jira-state/working-<KEY>.lock` kontrol et:
@@ -112,7 +112,7 @@ Her IP karti icin `.jira-state/working-<KEY>.lock` kontrol et:
 ### Adim 2 -- To Do'dan kalan N'i doldur
 
 ```jql
-project = VOC AND status = "To Do" AND key != VOC-46 ORDER BY priority DESC
+project = {KEY} AND status = "To Do" AND key != {KEY}-46 ORDER BY priority DESC
 ```
 
 Her kart icin: Transition 21 -> IP, lock yaz, sub-agent baslat.
@@ -139,7 +139,7 @@ echo $! > .jira-state/pid-<KEY>
 ```
 
 Wrapper (`run_task_agent.sh`) otomatik olarak:
-- **git worktree** ile `.worktrees/voc-xxx/` dizininde izole calisir
+- **git worktree** ile `.worktrees/{key}-xxx/` dizininde izole calisir
 - Paralel agent'lar birbirini etkilemez (her biri kendi worktree'sinde)
 - Sonnet ile kod yazar (worktree icinde)
 - PR acar
@@ -154,12 +154,12 @@ Wrapper (`run_task_agent.sh`) otomatik olarak:
 ### Basari
 ```
 N task baslatildi:
-  [IP sahipsiz] VOC-123 -- Task Title (lock yenilendi)
-  [To Do -> IP] VOC-125 -- New Task
+  [IP sahipsiz] {KEY}-123 -- Task Title (lock yenilendi)
+  [To Do -> IP] {KEY}-125 -- New Task
   ...
 
 Pipeline: Sonnet kod -> PR -> Opus review -> merge -> Done
-Loglar: /tmp/impl-VOC-XXX.log, /tmp/review-VOC-XXX.log
+Loglar: /tmp/impl-{KEY}-XXX.log, /tmp/review-{KEY}-XXX.log
 ```
 
 ### Hic is yok
@@ -177,7 +177,7 @@ Sira N'de bulamadim -- ne sahipsiz IP ne de To Do'da is var.
 - **Cleanup:** `trap cleanup EXIT INT TERM` -- kill/crash durumunda otomatik temizlik
 - **Max N:** 20 (cok paralel agent memory/CPU issue)
 - **Error handling:** Jira tool basarisiz -> log + continue
-- **Branch pattern:** `feat/voc-xxx` (key lowercase)
+- **Branch pattern:** `feat/{key}-xxx` (key lowercase)
 - **PR merge:** `--squash --delete-branch` (temiz git history)
 
 ---
