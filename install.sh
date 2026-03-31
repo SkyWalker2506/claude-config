@@ -312,6 +312,18 @@ else
   echo "  ⏭️  firebase atlandi (stacks: $STACKS)"
 fi
 
+if has_stack unity; then
+  # unity-mcp-cli global install (needed for per-project setup)
+  if ! command -v unity-mcp-cli &>/dev/null; then
+    echo "  unity-mcp-cli kuruluyor..."
+    npm install -g unity-mcp-cli 2>/dev/null && echo "  ✅ unity-mcp-cli kuruldu" || echo "  ⚠️ unity-mcp-cli kurulamadi (npm install -g unity-mcp-cli)"
+  else
+    echo "  ✅ unity-mcp-cli zaten kurulu"
+  fi
+else
+  echo "  ⏭️  unity-mcp atlandi (stacks: $STACKS)"
+fi
+
 # Projects files
 cp "$SCRIPT_DIR/projects/CLAUDE.md" "$PROJECTS_ROOT/CLAUDE.md"
 cp "$SCRIPT_DIR/projects/MIGRATION_GUIDE.md" "$PROJECTS_ROOT/MIGRATION_GUIDE.md"
