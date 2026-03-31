@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "enabledMcpjsonServers": ["github", "git", "atlassian", "context7"],
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__TEST_CMD__",
+            "async": true,
+            "timeout": 300,
+            "statusMessage": "Running tests..."
+          }
+        ]
+      }
+    ]
+  }
+}

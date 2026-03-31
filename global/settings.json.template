@@ -1,0 +1,108 @@
+{
+  "includeGitInstructions": true,
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(flutter *)",
+      "Bash(dart *)",
+      "Bash(gh *)",
+      "Bash(brew *)",
+      "Bash(mkdir *)",
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(node *)",
+      "Bash(tsx *)",
+      "Bash(python3 *)",
+      "Bash(python *)",
+      "Bash(curl *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(env *)",
+      "Bash(open *)",
+      "Read(~/.zshrc)"
+    ],
+    "deny": [],
+    "ask": [
+      "Bash(git push --force*)",
+      "Bash(git push -f *)",
+      "Bash(rm -rf *)",
+      "Bash(rm -fr *)",
+      "Bash(gh repo delete*)",
+      "Bash(shred *)"
+    ],
+    "defaultMode": "bypassPermissions"
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash __PROJECTS_ROOT__/scripts/migration_check.sh 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  },
+  "effortLevel": "high",
+  "voiceEnabled": true,
+  "skipDangerousModePermissionPrompt": true,
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      }
+    },
+    "git": {
+      "command": "__UVX_PATH__",
+      "args": [
+        "mcp-server-git"
+      ]
+    },
+    "atlassian": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://mcp.atlassian.com/v1/mcp"
+      ]
+    },
+    "flutter-dev": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "flutter-dev-mcp"
+      ]
+    },
+    "firebase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@gannonh/firebase-mcp"
+      ],
+      "env": {
+        "SERVICE_ACCOUNT_KEY_PATH": "${FIREBASE_SERVICE_ACCOUNT_PATH}"
+      }
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ]
+    },
+    "jcodemunch": {
+      "command": "__UVX_PATH__",
+      "args": [
+        "jcodemunch-mcp"
+      ]
+    }
+  },
+  "model": "opus"
+}
