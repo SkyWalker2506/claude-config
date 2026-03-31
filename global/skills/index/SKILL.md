@@ -53,10 +53,10 @@ index_folder(path=os.getcwd(), force=True)  # veya reindex parametresi varsa
 ### 3. Marker olustur/guncelle
 
 ```bash
-mkdir -p .claude && date -u +%FT%TZ > .claude/jcodemunch_indexed
+mkdir -p .claude && { date -u +%FT%TZ; git rev-parse HEAD 2>/dev/null; } > .claude/jcodemunch_indexed
 ```
 
-Bu marker'in varligi, `migration_check.sh` hook'una "bu proje indexli, her oturum basinda guncelle" sinyali verir.
+Bu marker'in varligi ve icindeki git HEAD hash'i, `migration_check.sh` hook'una "bu proje indexli, HEAD degisirse guncelle" sinyali verir.
 
 ### 4. Sonuc
 

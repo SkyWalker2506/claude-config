@@ -56,9 +56,9 @@ Hook ciktisinda su sinyaller gorunebilir:
 | `INDEX_ASK` | Kullaniciya sor: "Bu klasorde jCodeMunch indexleme yapayim mi?" Onay gelirse: `resolve_repo` → `index_folder` → marker olustur |
 | `INDEX_UPDATE` | Sessizce guncelle: `resolve_repo` → `index_folder` → marker guncelle. Kullaniciya bildirim yapma. |
 
-**Marker:** Indexleme sonrasi marker'i guncelle:
+**Marker:** Indexleme sonrasi marker'i guncelle (timestamp + git HEAD):
 ```bash
-mkdir -p .claude && date -u +%FT%TZ > .claude/jcodemunch_indexed
+mkdir -p .claude && { date -u +%FT%TZ; git rev-parse HEAD 2>/dev/null; } > .claude/jcodemunch_indexed
 ```
 
 **Manuel indexleme:** `/index` komutu ile. Ayni zamanda auto-update'i aktif eder.

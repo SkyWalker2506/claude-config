@@ -112,15 +112,23 @@ fi
 # ── 5. jCodeMunch index kontrolü ──
 INDEX_MARKER="$(pwd)/.claude/jcodemunch_indexed"
 if [ -f "$INDEX_MARKER" ]; then
-  # Marker var — bu session'da zaten sinyal verildiyse tekrarlama
-  MARKER_AGE=0
-  MARKER_MTIME=$(stat -f %m "$INDEX_MARKER" 2>/dev/null || stat -c %Y "$INDEX_MARKER" 2>/dev/null || echo 0)
-  if [ "$MARKER_MTIME" -gt 0 ]; then
-    MARKER_AGE=$(( $(date +%s) - MARKER_MTIME ))
-  fi
-  # 5dk'dan eski ise guncelleme sinyali ver (session basi bir kez)
-  if [ "$MARKER_AGE" -gt 1800 ]; then
-    echo "🔍 INDEX_UPDATE: jCodeMunch index guncelleme zamani."
+  # Marker format: line 1 = timestamp, line 2 = git HEAD hash at index time
+  INDEXED_HEAD=$(sed -n '2p' "$INDEX_MARKER" 2>/dev/null | tr -d '[:space:]')
+  CURRENT_HEAD=$(git rev-parse HEAD 2>/dev/null | tr -d '[:space:]')
+
+  # Git HEAD degismisse → yeni commit/pull var, re-index gerek
+  if [ -n "$CURRENT_HEAD" ] && [ -n "$INDEXED_HEAD" ] && [ "$CURRENT_HEAD" != "$INDEXED_HEAD" ]; then
+    echo "🔍 INDEX_UPDATE: Git HEAD degisti (${INDEXED_HEAD:0:7} → ${CURRENT_HEAD:0:7}). jCodeMunch index guncellenecek."
+  elif [ -z "$INDEXED_HEAD" ]; then
+    # Eski format marker (sadece timestamp) — zaman bazli fallback
+    MARKER_AGE=0
+    MARKER_MTIME=$(stat -f %m "$INDEX_MARKER" 2>/dev/null || stat -c %Y "$INDEX_MARKER" 2>/dev/null || echo 0)
+    if [ "$MARKER_MTIME" -gt 0 ]; then
+      MARKER_AGE=$(( $(date +%s) - MARKER_MTIME ))
+    fi
+    if [ "$MARKER_AGE" -gt 1800 ]; then
+      echo "🔍 INDEX_UPDATE: jCodeMunch index guncelleme zamani."
+    fi
   fi
 else
   # Hic indexlenmemis — kullaniciya sor
