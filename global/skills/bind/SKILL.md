@@ -1,6 +1,6 @@
 ---
 name: bind
-description: claude-config baglantisi kur — global CLAUDE.md'yi yonlendiriciye cevir, mevcut icerigi tasit
+description: claude-config baglantisi kur — global ve projects CLAUDE.md'yi yonlendiriciye cevir, mevcut icerigi tasit
 user_invocable: true
 trigger_phrases:
   - /bind
@@ -12,26 +12,33 @@ trigger_phrases:
 
 # /bind — claude-config Baglanti Kurulumu
 
-Bu skill, global `~/.claude/CLAUDE.md` dosyasini `~/Projects/claude-config` reposuna baglar. Tum kurallar ve konfigürasyon claude-config'den yonetilir hale gelir.
+Bu skill, `~/.claude/CLAUDE.md` (global) ve `~/Projects/CLAUDE.md` (projects) dosyalarini `~/Projects/claude-config` reposuna baglar. Tum kurallar ve konfigürasyon claude-config'den yonetilir hale gelir.
 
 ## Adim adim akis
 
-Asagidaki adimlari **sirayla ve kullaniciya sorarak** uygula. Her adimda kullanicinin onayini al.
+Asagidaki adimlari **sirayla ve kullaniciya sorarak** uygula.
 
 ### Adim 1: Durum kontrolu
 
-1. `~/.claude/CLAUDE.md` dosyasinin varligini kontrol et
-2. `~/Projects/claude-config/CLAUDE.md` dosyasinin varligini kontrol et
-3. Mevcut global CLAUDE.md'de "claude-config/CLAUDE.md dosyasini oku" ifadesi var mi kontrol et
+Su dosyalari kontrol et:
 
-Eger baglanti zaten kuruluysa → "Baglanti zaten aktif. Islem gerekmiyor." de ve dur.
+| Dosya | Kontrol |
+|-------|---------|
+| `~/.claude/CLAUDE.md` | Var mi? "claude-config/CLAUDE.md dosyasini oku" iceriyor mu? |
+| `~/Projects/CLAUDE.md` | Var mi? "claude-config/CLAUDE.md dosyasini oku" iceriyor mu? |
+| `~/Projects/claude-config/CLAUDE.md` | Var mi? (master dosya) |
+
+Duruma gore rapor ver:
+- Her ikisi de baglanmis → "Baglanti zaten aktif. Islem gerekmiyor." → dur.
+- Sadece biri baglanmis → hangisinin eksik oldugunu bildir, Adim 2'ye gec.
+- Hicbiri baglanmamis → her ikisini de baglanacagini bildir, Adim 2'ye gec.
 
 ### Adim 2: Baglanti onayi
 
 Kullaniciya sor:
 
 > claude-config baglantisi kurulsun mu? Bu islem:
-> - Global CLAUDE.md'yi sadece yonlendirici yapacak
+> - [baglanmamis dosyalari listele] yonlendirici yapacak
 > - Tum kurallar ~/Projects/claude-config/CLAUDE.md'den okunacak
 > - Config degisiklikleri sadece claude-config reposu uzerinden yapilacak
 >
@@ -41,27 +48,28 @@ Hayir derse → dur.
 
 ### Adim 3: Mevcut icerik analizi
 
-1. `~/.claude/CLAUDE.md` dosyasini oku
+Baglanmamis her dosya icin:
+1. Dosyayi oku
 2. Icerigini `~/Projects/claude-config/CLAUDE.md` ile karsilastir
 3. Kullaniciya rapor ver:
 
-> Mevcut global CLAUDE.md'de su icerikler var:
+> [dosya adi]'de su icerikler var:
 > - [bolum listesi]
 >
 > claude-config/CLAUDE.md'de zaten mevcut olanlar: [liste]
 > Eksik olup tasinmasi gerekenler: [liste]
 > Tasiyayim mi?
 
-Tasinacak icerik yoksa → "Tum icerik zaten claude-config'de. Dogrudan yonlendirici yaziyorum." de, Adim 5'e atla.
+Tasinacak icerik yoksa → "Tum icerik zaten claude-config'de." de, Adim 5'e atla.
 
 ### Adim 4: Icerik tasima
 
 1. Eksik icerikleri `~/Projects/claude-config/CLAUDE.md` dosyasina ekle (uygun bolume)
 2. Kullaniciya ne eklendigini 1-2 satirda ozetle
 
-### Adim 5: Yonlendirici yazma
+### Adim 5: Yonlendiricileri yaz
 
-1. `~/Projects/claude-config/global/CLAUDE.md` dosyasini yonlendirici icerigi ile guncelle:
+**Global CLAUDE.md** (`~/Projects/claude-config/global/CLAUDE.md`):
 
 ```markdown
 # Global Claude — Yonlendirici
@@ -100,15 +108,36 @@ Degisiklik yapmak icin `~/Projects/claude-config/` reposunda duzenle → `./inst
 - Secret'lar yalnizca `~/.claude/secrets/` altinda
 ```
 
-2. `install.sh` calistir → yonlendirici `~/.claude/CLAUDE.md`'ye kopyalanir
+**Projects CLAUDE.md** (`~/Projects/claude-config/projects/CLAUDE.md`):
+
+```markdown
+# Projects — Yonlendirici
+
+> **Bu dosya sadece yonlendiricidir.** Tum kurallar `~/Projects/claude-config/CLAUDE.md` dosyasindadir.
+
+---
+
+## Her oturum basinda
+
+1. **`~/Projects/claude-config/CLAUDE.md` dosyasini oku** ve talimatlarini uygula
+2. Yanit basinda model etiketi: `(Model Adi)`
+3. Dil: kullaniciya Turkce; kod/commit Ingilizce
+
+## Degisiklik
+
+Proje kurallarini degistirmek icin `~/Projects/claude-config/` reposunda duzenle → `./install.sh` calistir.
+```
+
+Sonra `install.sh` calistir → her iki yonlendirici yerine kopyalanir.
 
 ### Adim 6: Dogrulama
 
-1. `~/.claude/CLAUDE.md` dosyasini oku, yonlendirici icerigini dogrula
-2. Kullaniciya bildir: "Baglanti kuruldu. Artik tum kurallar ~/Projects/claude-config/CLAUDE.md'den okunuyor."
+1. `~/.claude/CLAUDE.md` oku → yonlendirici mi?
+2. `~/Projects/CLAUDE.md` oku → yonlendirici mi?
+3. Kullaniciya bildir: "Baglanti kuruldu. Artik tum kurallar ~/Projects/claude-config/CLAUDE.md'den okunuyor."
 
 ## Onemli
 
-- **Her adimda kullanici onayi al** — otomatik ilerleme
+- **Her adimda kullanici onayi al**
 - Mevcut icerikte kullanicinin elle ekledigi ozel kurallar olabilir — bunlari kaybetme
 - `install.sh` calistirmadan once degisiklikleri claude-config reposunda commit et

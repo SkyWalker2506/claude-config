@@ -51,17 +51,33 @@ if [ -f "$(pwd)/install.sh" ] && [ -f "$(pwd)/global/CLAUDE.md" ]; then
   exit 0
 fi
 
-# ── 0a. Bind kontrolü — global CLAUDE.md redirector ──
+# ── 0a. Bind kontrolü — global + projects CLAUDE.md redirector ──
 GLOBAL_MD="$HOME/.claude/CLAUDE.md"
+PROJECTS_MD="$PROJECTS_ROOT/CLAUDE.md"
 CONFIG_REPO_PATH="$PROJECTS_ROOT/claude-config"
+BIND_MISSING=""
 if [ -d "$CONFIG_REPO_PATH" ]; then
+  # Global CLAUDE.md kontrolu
   if [ -f "$GLOBAL_MD" ]; then
     HAS_REDIRECT=$(grep -c "claude-config/CLAUDE.md dosyasini oku" "$GLOBAL_MD" 2>/dev/null || echo 0)
     if [ "$HAS_REDIRECT" -eq 0 ]; then
-      echo "🔗 BIND_NEEDED: Global CLAUDE.md henuz claude-config'e baglanmamis. /bind ile baglanti kur."
+      BIND_MISSING="global"
     fi
   else
-    echo "🔗 BIND_NEEDED: Global CLAUDE.md mevcut degil. /bind ile claude-config baglantisi kur."
+    BIND_MISSING="global"
+  fi
+  # Projects CLAUDE.md kontrolu
+  if [ -f "$PROJECTS_MD" ]; then
+    HAS_REDIRECT2=$(grep -c "claude-config/CLAUDE.md dosyasini oku" "$PROJECTS_MD" 2>/dev/null || echo 0)
+    if [ "$HAS_REDIRECT2" -eq 0 ]; then
+      BIND_MISSING="$BIND_MISSING projects"
+    fi
+  else
+    BIND_MISSING="$BIND_MISSING projects"
+  fi
+  BIND_MISSING=$(echo "$BIND_MISSING" | xargs)
+  if [ -n "$BIND_MISSING" ]; then
+    echo "🔗 BIND_NEEDED: CLAUDE.md yonlendiricisi eksik ($BIND_MISSING). /bind ile baglanti kur."
   fi
 fi
 
