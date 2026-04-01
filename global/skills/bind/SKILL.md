@@ -93,8 +93,8 @@ Degisiklik yapmak icin `~/Projects/claude-config/` reposunda duzenle → `./inst
 
 | Sinyal | Aksiyon |
 |--------|---------|
-| `INSTALL_NEEDED` | `cd ~/Projects/claude-config && ./install.sh` + `/restart` |
-| `MCP_SETUP_NEEDED` | `cd ~/Projects/claude-config && ./install.sh` + `/restart` |
+| `INSTALL_NEEDED` | `cd ~/Projects/claude-config && ./install.sh` |
+| `MCP_SETUP_NEEDED` | `cd ~/Projects/claude-config && ./install.sh` |
 | `MIGRATION_NEEDED` | `/migration` calistir |
 | `MIGRATION_UPDATE` | Delta uygula, versiyon guncelle |
 | `SECRETS_MISSING` | `~/.claude/secrets/secrets.env` duzenle |

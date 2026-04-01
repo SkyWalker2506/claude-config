@@ -94,8 +94,8 @@ Hook ciktisindaki sinyaller:
 
 | Sinyal | Aksiyon |
 |--------|---------|
-| `INSTALL_NEEDED` | `cd ~/Projects/claude-config && ./install.sh` + `/restart` |
-| `MCP_SETUP_NEEDED` | `cd ~/Projects/claude-config && ./install.sh` + `/restart` |
+| `INSTALL_NEEDED` | `cd ~/Projects/claude-config && ./install.sh` |
+| `MCP_SETUP_NEEDED` | `cd ~/Projects/claude-config && ./install.sh` |
 | `MIGRATION_NEEDED` | `/migration` calistir veya `MIGRATION_GUIDE.md` Bolum 0 |
 | `MIGRATION_UPDATE` | Changelog'dan delta uygula, versiyon guncelle |
 | `SECRETS_MISSING` | `~/.claude/secrets/secrets.env` duzenle, git varsa push hatırlat |

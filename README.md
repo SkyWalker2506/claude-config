@@ -60,7 +60,7 @@ claude-config/
 │       ├── project-analysis/  #   12 kategori derin audit
 │       ├── sprint-plan/       #   Sprint planlama
 │       ├── agent-browser/     #   Tarayici ajanı
-│       └── restart/           #   Session restart
+│       └── agent-browser/     #   Browser automation
 ├── projects/
 │   ├── CLAUDE.md              # → $PROJECTS_ROOT/CLAUDE.md
 │   ├── MIGRATION_GUIDE.md     # → Setup wizard + changelog
@@ -175,4 +175,3 @@ claude
 | `/project-analysis` | 12 kategori derin audit |
 | `/sprint-plan` | Sprint planlama + Jira task |
 | `/agent-browser` | Tarayici ajani |
-| `/restart` | Session restart |

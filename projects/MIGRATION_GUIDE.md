@@ -447,7 +447,6 @@ Tum skill'ler `.claude/skills/<skill-adi>/SKILL.md` konumunda. Asagidaki tabloda
 | **dashboard** | `/dashboard` | Terminal dashboard (cache, 0 token) |
 | **dashboard-sync** | `/dashboard-sync` | Jira'dan taze veri + dashboard |
 | **agent-browser** | `/agent-browser` | Browser otomasyon CLI |
-| **restart** | `/restart` | Oturumu yeniden baslat |
 | **claude-api** | `/claude-api` | Claude API/SDK yardim |
 
 ### Jira Skills (Jira kullanan projeler icin)

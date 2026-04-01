@@ -109,7 +109,7 @@ cd ~/Projects/claude-config && bash ./install.sh --auto --root <CEVAP_B> --stack
 ### 4. Sonuc
 
 Script ciktisini goster. Hata varsa yardimci ol.
-Basarili ise: "Kurulum tamamlandi. /restart ile oturumu yeniden baslat." de.
+Basarili ise: "Kurulum tamamlandi." de.
 
 ## Kurallar
 
