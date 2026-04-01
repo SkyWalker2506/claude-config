@@ -1,53 +1,15 @@
-# Projects — Ortak Kurallar
+# Projects — Yonlendirici
 
-Bu dosya `~/Projects/` altindaki **tum projeler** icin gecerlidir. Framework/dil bagimsiz genel kurallar. Projeye ozel detaylar (framework komutlari, Jira anahtari, test komutu) her projenin kendi `CLAUDE.md` dosyasinda tanimlanir.
+> **Bu dosya sadece yonlendiricidir.** Tum kurallar `~/Projects/claude-config/CLAUDE.md` dosyasindadir.
 
 ---
 
-## 1. Gorev parcalama
+## Her oturum basinda
 
-- Gorev ≤ ~10 dakika; asarsa Jira'da alt goreve bol, sonra tek tek uygula
-- **Paten → Kaykay → Bisiklet → Araba:** Her sprint sonunda deploy edilebilir, test edilebilir, kullanici tarafindan deneyimlenebilir bir butun teslim et
-- **Kapsam:** "Sunu da yapayim" yok; refactor gorursen ayri task ac
-- **Sirala:** IP'deki isi tamamla → commit → push → CI yesil → Done
+1. **`~/Projects/claude-config/CLAUDE.md` dosyasini oku** ve talimatlarini uygula
+2. Yanit basinda model etiketi: `(Model Adi)`
+3. Dil: kullaniciya Turkce; kod/commit Ingilizce
 
-## 2. Git ve CI
+## Degisiklik
 
-- **Conventional commit:** `feat:`, `fix:`, `refactor:`, `chore:` (Ingilizce)
-- **Dal kurali:**
-  - 1-3 dosya, tek commit → main'e direkt push
-  - 4+ dosya veya birden fazla commit → feature branch → PR → CI yesil → merge
-  - CI workflow degisikligi → her zaman PR
-  - Mimari / buyuk refactor → feature branch + PR + review
-- **Force push → sor**
-
-## 3. Dosya sistemi ve guvenlik
-
-- **Proje ici:** olusturma, duzenleme, refactor, gereksiz dosya silme — sormadan yap
-- **Proje disi / kisisel / sistem dosyalari:** ASLA sormadan dokunma
-- **Guvenli sil:** `build/`, cache, gecici, generated, kullanilmayan proje dosyasi
-- **Mutlaka sor:** `rm -rf` (tehlikeli kapsam), `git reset --hard`, `git push --force`, repo silme, guvenlik/KVKK, odeme, secrets (`.env`), ucretli servis
-
-## 4. Hata yonetimi
-
-- **Self-healing:** analiz → kok neden → duzelt → tekrar dene; **max 3 deneme**; sonra kullaniciya rapor
-- **Akilli tekrar:** ayni hatayi tekrarlama; farkli cozum dene
-- **Riskli is oncesi yedek:** `.backup/<timestamp>/` — buyuk refactor, toplu silme, config degisimi
-
-## 5. Jira (kullanan projeler icin)
-
-> Jira detaylari projenin `docs/CLAUDE_JIRA.md` dosyasinda. Asagisi sadece genel prensipler.
-
-- Koda baslamadan **In Progress** (transition 21)
-- Tum alt gorevler bitmeden ana gorevi Done yapma
-- **WAITING (7):** onay, credential, ucretli servis, urun karari gereken isler
-- IP'de "bekletme" yok — ya tamamla ya WAITING'e tasi
-
-## 6. Bootstrap (setup eksikse)
-
-```
-repo yapisi → paket yoneticisi → bagimliliklar → .env.example → calistir/build
-```
-
-- Self-healing: §4 kurali gecerli
-- Mantikli varsayimlarla ilerle; her adimda sorma
+Proje kurallarini degistirmek icin `~/Projects/claude-config/` reposunda duzenle → `./install.sh` calistir.

@@ -20,7 +20,7 @@ global/
   skills/                  → Tum skill SKILL.md dosyalari
 
 projects/
-  CLAUDE.md                → Ortak proje kurallari
+  CLAUDE.md                → Yonlendirici (claude-config'e yonlendirir)
   MIGRATION_GUIDE.md       → Setup wizard
   scripts/                 → Hook script'leri
 
@@ -160,9 +160,61 @@ Tum skill'ler `global/skills/` altinda:
 | team-build | `/team-build [setup\|run\|status]` | Multi-agent takim |
 | bind | `/bind` | Global CLAUDE.md'yi claude-config'e bagla |
 
-### 9. Task Discipline & Watchdog
+### 9. Proje gelistirme kurallari
 
-#### 9a. Gorev basinda — Plan (zorunlu)
+Asagidaki kurallar `~/Projects/` altindaki **tum projeler** icin gecerlidir. Projeye ozel detaylar her projenin kendi `CLAUDE.md` dosyasinda tanimlanir.
+
+#### 9a. Gorev parcalama
+
+- Gorev ≤ ~10 dakika; asarsa Jira'da alt goreve bol, sonra tek tek uygula
+- **Paten → Kaykay → Bisiklet → Araba:** Her sprint sonunda deploy edilebilir, test edilebilir, kullanici tarafindan deneyimlenebilir bir butun teslim et
+- **Kapsam:** "Sunu da yapayim" yok; refactor gorursen ayri task ac
+- **Sirala:** IP'deki isi tamamla → commit → push → CI yesil → Done
+
+#### 9b. Git ve CI
+
+- **Conventional commit:** `feat:`, `fix:`, `refactor:`, `chore:` (Ingilizce)
+- **Dal kurali:**
+  - 1-3 dosya, tek commit → main'e direkt push
+  - 4+ dosya veya birden fazla commit → feature branch → PR → CI yesil → merge
+  - CI workflow degisikligi → her zaman PR
+  - Mimari / buyuk refactor → feature branch + PR + review
+- **Force push → sor**
+
+#### 9c. Dosya sistemi ve guvenlik
+
+- **Proje ici:** olusturma, duzenleme, refactor, gereksiz dosya silme — sormadan yap
+- **Proje disi / kisisel / sistem dosyalari:** ASLA sormadan dokunma
+- **Guvenli sil:** `build/`, cache, gecici, generated, kullanilmayan proje dosyasi
+- **Mutlaka sor:** `rm -rf` (tehlikeli kapsam), `git reset --hard`, `git push --force`, repo silme, guvenlik/KVKK, odeme, secrets (`.env`), ucretli servis
+
+#### 9d. Hata yonetimi
+
+- **Self-healing:** analiz → kok neden → duzelt → tekrar dene; **max 3 deneme**; sonra kullaniciya rapor
+- **Akilli tekrar:** ayni hatayi tekrarlama; farkli cozum dene
+- **Riskli is oncesi yedek:** `.backup/<timestamp>/` — buyuk refactor, toplu silme, config degisimi
+
+#### 9e. Jira (kullanan projeler icin)
+
+> Jira detaylari projenin `docs/CLAUDE_JIRA.md` dosyasinda. Asagisi sadece genel prensipler.
+
+- Koda baslamadan **In Progress** (transition 21)
+- Tum alt gorevler bitmeden ana gorevi Done yapma
+- **WAITING (7):** onay, credential, ucretli servis, urun karari gereken isler
+- IP'de "bekletme" yok — ya tamamla ya WAITING'e tasi
+
+#### 9f. Bootstrap (setup eksikse)
+
+```
+repo yapisi → paket yoneticisi → bagimliliklar → .env.example → calistir/build
+```
+
+- Self-healing: §9d kurali gecerli
+- Mantikli varsayimlarla ilerle; her adimda sorma
+
+### 10. Task Discipline & Watchdog
+
+#### 10a. Gorev basinda — Plan (zorunlu)
 
 Her oturum basinda **plan moduna gir** (`EnterPlanMode`). Ilk gorev geldiginde once planla → kullanici onayi → sonra uygula. Plan onaylanana kadar kod yazma.
 
@@ -186,7 +238,7 @@ Tahmin: quick | medium | long
 - "Hemen yap" denirse → 1 satirda ozetle, basla
 - Sub-agent'lara da plan zorunlu
 
-#### 9b. Self-monitoring
+#### 10b. Self-monitoring
 
 **Her 5 tool call → sessiz self-check:**
 1. Dogru adimda miyim?
@@ -207,7 +259,7 @@ Tahmin: quick | medium | long
 | 5+ call ayni dosya dongusu | DUR → donguden cik |
 | Onceki adima geri donme | 1 satirda bildir |
 
-#### 9c. Overrun detection
+#### 10c. Overrun detection
 
 | Tahmin | Limit | Asilirsa |
 |--------|-------|----------|
@@ -217,13 +269,13 @@ Tahmin: quick | medium | long
 
 Onay sonrasi yeni limit: mevcut + 50%. Tekrar asarsa durdur.
 
-#### 9d. Recovery
+#### 10d. Recovery
 
 1. Sorunu 1 cumlede belirt
 2. TEK alternatif dene
 3. Basarisizsa → rapor et, DUR
 
-#### 9e. Otonom gorevler (heartbeat)
+#### 10e. Otonom gorevler (heartbeat)
 
 ```bash
 mkdir -p /tmp/watchdog
@@ -237,7 +289,7 @@ echo '{"task":"TASK","step":"...","progress":"3/7","status":"running","ts":"..."
 
 Stale alert: >10dk guncellenmemis → uyari. Kisa gorevlerde (<10 dk) watchdog baslatma.
 
-#### 9f. Sub-agent watchdog
+#### 10f. Sub-agent watchdog
 
 Sub-agent prompt'una ekle:
 ```
