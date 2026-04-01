@@ -39,7 +39,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash __PROJECTS_ROOT__/scripts/migration_check.sh 2>/dev/null || true"
+            "command": "bash __PROJECTS_ROOT__/claude-config/projects/scripts/migration_check.sh 2>/dev/null || true"
           }
         ]
       }

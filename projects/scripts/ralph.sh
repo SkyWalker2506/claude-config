@@ -1,7 +1,7 @@
 #!/bin/bash
 # Ralph — Autonomous AI agent loop for Claude Code
-# Usage: ~/Projects/scripts/ralph.sh [max_iterations]
-# Run from project directory: cd ~/Projects/MyApp && ~/Projects/scripts/ralph.sh
+# Usage: ~/Projects/claude-config/projects/scripts/ralph.sh [max_iterations]
+# Run from project directory: cd ~/Projects/MyApp && ~/Projects/claude-config/projects/scripts/ralph.sh
 #
 # Prerequisites: jq (brew install jq), claude CLI, prd.json in project root
 # Create prd.json: /prd → /ralph

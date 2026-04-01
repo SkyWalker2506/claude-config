@@ -168,7 +168,7 @@ Spec'ler yazıldıktan sonra Faz 3'e geç.
 Shell script'i başlat:
 
 ```bash
-~/Projects/scripts/team-build.sh
+~/Projects/claude-config/projects/scripts/team-build.sh
 ```
 
 Script şöyle çalışır (her iterasyon):

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Team Build — Multi-agent autonomous development loop
-# Usage: ~/Projects/scripts/team-build.sh [max_iterations]
-# Run from project directory: cd ~/Projects/MyApp && ~/Projects/scripts/team-build.sh
+# Usage: ~/Projects/claude-config/projects/scripts/team-build.sh [max_iterations]
+# Run from project directory: cd ~/Projects/MyApp && ~/Projects/claude-config/projects/scripts/team-build.sh
 #
 # Prerequisites: jq, claude CLI, .team-build/config.json in project root
 

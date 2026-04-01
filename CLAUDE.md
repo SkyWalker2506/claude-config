@@ -122,7 +122,7 @@ Hook ciktisindaki sinyaller:
 | `voiceEnabled` | `true` |
 | `includeGitInstructions` | `true` |
 | `skipDangerousModePermissionPrompt` | `true` |
-| Hook | `migration_check.sh` (UserPromptSubmit) |
+| Hook | `claude-config/projects/scripts/migration_check.sh` (UserPromptSubmit) |
 
 **MCP sunuculari:** github, git, atlassian, flutter-dev, firebase, context7, jcodemunch, fetch
 

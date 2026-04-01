@@ -59,12 +59,12 @@ $ARGUMENTS
 ~/.claude/mcp.json
 ~/.claude/skills/**/SKILL.md
 ~/Projects/CLAUDE.md
-~/Projects/MIGRATION_GUIDE.md
-~/Projects/MIGRATION_VERSION
-~/Projects/PROJECT_ANALYSIS.md
-~/Projects/scripts/*.sh
-~/Projects/.claude/settings.json
-~/Projects/.claude/settings.local.json
+~/Projects/claude-config/projects/MIGRATION_GUIDE.md
+~/Projects/claude-config/projects/MIGRATION_VERSION
+~/Projects/claude-config/projects/PROJECT_ANALYSIS.md
+~/Projects/claude-config/projects/scripts/*.sh
+~/.claude/settings.json
+~/.claude/settings.local.json
 ```
 
 ### `/refine project`

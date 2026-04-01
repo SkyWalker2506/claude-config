@@ -324,27 +324,16 @@ else
   echo "  ⏭️  unity-mcp atlandi (stacks: $STACKS)"
 fi
 
-# Projects files
+# Projects — only CLAUDE.md redirector is copied to PROJECTS_ROOT
+# All other files (scripts, migration, templates) stay in claude-config
 cp "$SCRIPT_DIR/projects/CLAUDE.md" "$PROJECTS_ROOT/CLAUDE.md"
-cp "$SCRIPT_DIR/projects/MIGRATION_GUIDE.md" "$PROJECTS_ROOT/MIGRATION_GUIDE.md"
-cp "$SCRIPT_DIR/projects/MIGRATION_VERSION" "$PROJECTS_ROOT/MIGRATION_VERSION"
-cp "$SCRIPT_DIR/projects/PROJECT_ANALYSIS.md" "$PROJECTS_ROOT/PROJECT_ANALYSIS.md"
 
-cp "$SCRIPT_DIR/projects/scripts/migration_check.sh" "$PROJECTS_ROOT/scripts/migration_check.sh"
-chmod +x "$PROJECTS_ROOT/scripts/migration_check.sh" 2>/dev/null || true
-
-cp "$SCRIPT_DIR/projects/scripts/ralph.sh" "$PROJECTS_ROOT/scripts/ralph.sh"
-cp "$SCRIPT_DIR/projects/scripts/ralph-prompt.md" "$PROJECTS_ROOT/scripts/ralph-prompt.md"
-chmod +x "$PROJECTS_ROOT/scripts/ralph.sh" 2>/dev/null || true
-
-cp "$SCRIPT_DIR/projects/scripts/team-build.sh" "$PROJECTS_ROOT/scripts/team-build.sh"
-cp "$SCRIPT_DIR/projects/scripts/team-build-prompt.md" "$PROJECTS_ROOT/scripts/team-build-prompt.md"
-cp "$SCRIPT_DIR/projects/scripts/team-build-review-prompt.md" "$PROJECTS_ROOT/scripts/team-build-review-prompt.md"
-chmod +x "$PROJECTS_ROOT/scripts/team-build.sh" 2>/dev/null || true
-
-# Templates
-mkdir -p "$PROJECTS_ROOT/.claude-templates"
-cp "$SCRIPT_DIR/templates/"* "$PROJECTS_ROOT/.claude-templates/" 2>/dev/null || true
+# Clean up old files from previous installs (now managed from claude-config)
+rm -f "$PROJECTS_ROOT/MIGRATION_GUIDE.md" 2>/dev/null || true
+rm -f "$PROJECTS_ROOT/MIGRATION_VERSION" 2>/dev/null || true
+rm -f "$PROJECTS_ROOT/PROJECT_ANALYSIS.md" 2>/dev/null || true
+rm -rf "$PROJECTS_ROOT/scripts" 2>/dev/null || true
+rm -rf "$PROJECTS_ROOT/.claude-templates" 2>/dev/null || true
 
 # ── 7. Validation ──
 echo ""
@@ -378,7 +367,7 @@ else
 fi
 
 # File existence
-for f in "$HOME/.claude/CLAUDE.md" "$PROJECTS_ROOT/CLAUDE.md" "$PROJECTS_ROOT/scripts/migration_check.sh" "$PROJECTS_ROOT/MIGRATION_VERSION"; do
+for f in "$HOME/.claude/CLAUDE.md" "$PROJECTS_ROOT/CLAUDE.md" "$SCRIPT_DIR/projects/scripts/migration_check.sh" "$SCRIPT_DIR/projects/MIGRATION_VERSION"; do
   if [ -f "$f" ]; then
     echo "✅ $(basename "$f") mevcut"
   else

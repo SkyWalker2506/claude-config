@@ -61,7 +61,7 @@ Bad: "Works correctly". Good: "Filter dropdown has options: All, Active, Complet
 
 After creating prd.json, run from project directory:
 ```bash
-~/Projects/scripts/ralph.sh [max_iterations]
+~/Projects/claude-config/projects/scripts/ralph.sh [max_iterations]
 ```
 
 Default: 10 iterations. Each iteration spawns fresh Claude Code instance.

@@ -4,9 +4,11 @@
 # Çıktı yalnızca aksiyon gerektiğinde üretilir; güncel projede sessiz kalır.
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-PROJECTS_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+# Script is at claude-config/projects/scripts/ → go up 3 levels for PROJECTS_ROOT
+PROJECTS_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+CONFIG_ROOT="$PROJECTS_ROOT/claude-config"
 
-MASTER_FILE="$PROJECTS_ROOT/MIGRATION_VERSION"
+MASTER_FILE="$CONFIG_ROOT/projects/MIGRATION_VERSION"
 PROJECT_VERSION_FILE="$(pwd)/.claude/migration_version"
 PROJECT_SETTINGS="$(pwd)/.claude/settings.json"
 GLOBAL_SETTINGS="$HOME/.claude/settings.json"
@@ -54,7 +56,7 @@ fi
 # ── 0a. Bind kontrolü — global + projects CLAUDE.md redirector ──
 GLOBAL_MD="$HOME/.claude/CLAUDE.md"
 PROJECTS_MD="$PROJECTS_ROOT/CLAUDE.md"
-CONFIG_REPO_PATH="$PROJECTS_ROOT/claude-config"
+CONFIG_REPO_PATH="$CONFIG_ROOT"
 BIND_MISSING=""
 if [ -d "$CONFIG_REPO_PATH" ]; then
   # Global CLAUDE.md kontrolu
@@ -83,7 +85,7 @@ fi
 
 # ── 0b. install.sh kurulum kontrolü ──
 # claude mcp list hizli degil, sadece dosya varligina bak
-if [ ! -f "$HOME/.claude/CLAUDE.md" ] || [ ! -f "$PROJECTS_ROOT/MIGRATION_VERSION" ]; then
+if [ ! -f "$HOME/.claude/CLAUDE.md" ] || [ ! -f "$MASTER_FILE" ]; then
   echo "🚨 INSTALL_NEEDED: claude-config kurulumu yapilmamis veya eksik."
   echo "   cd ~/Projects/claude-config && ./install.sh calistirin, sonra oturumu yeniden baslatin."
 fi
@@ -96,7 +98,7 @@ if [ -n "$MASTER_VERSION" ]; then
   if [ -z "$PROJECT_VERSION" ]; then
     echo "⚠️  MIGRATION_NEEDED: Bu proje henüz kurulmamış."
     echo "   Master versiyon: $MASTER_VERSION"
-    echo "   Aksiyon: /migration komutu çalıştır veya $PROJECTS_ROOT/MIGRATION_GUIDE.md oku."
+    echo "   Aksiyon: /migration komutu çalıştır veya $CONFIG_ROOT/projects/MIGRATION_GUIDE.md oku."
   elif [ "$PROJECT_VERSION" != "$MASTER_VERSION" ]; then
     echo "🔄 MIGRATION_UPDATE: Proje ($PROJECT_VERSION) → Master ($MASTER_VERSION)"
     echo "   Aksiyon: /migration komutu çalıştır."
@@ -179,7 +181,7 @@ if [ -f "$PROJECT_SETTINGS" ]; then
 fi
 
 # ── 7. claude-config update check (first launch + hourly) ──
-CONFIG_REPO="$PROJECTS_ROOT/claude-config"
+CONFIG_REPO="$CONFIG_ROOT"
 UPDATE_CHECK_FILE="/tmp/claude-config-update-check"
 SESSION_MARKER="/tmp/claude-config-session-$$"
 CHECK_INTERVAL=3600  # 1 saat
