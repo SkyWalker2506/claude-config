@@ -100,11 +100,15 @@ if [ -d "/tmp/watchdog" ]; then
     [ -f "$wf" ] || continue
     MTIME=$(stat -f %m "$wf" 2>/dev/null || stat -c %Y "$wf" 2>/dev/null || echo "$NOW")
     AGE=$(( NOW - MTIME ))
-    if [ "$AGE" -gt 900 ]; then
-      WTASK=$(python3 -c "import json;print(json.load(open('$wf')).get('task','?'))" 2>/dev/null || echo "?")
+    if [ "$AGE" -gt 600 ]; then
+      WTASK=$(python3 -c "import json;d=json.load(open('$wf'));print(d.get('task','?'))" 2>/dev/null || echo "?")
+      WPROG=$(python3 -c "import json;d=json.load(open('$wf'));print(d.get('progress',d.get('step','?')))" 2>/dev/null || echo "?")
       MINS=$(( AGE / 60 ))
-      echo "⚠️  WATCHDOG_STALE: '$WTASK' son ${MINS}dk dir guncellenmedi. Arka plan agent takilmis olabilir."
+      echo "⚠️  WATCHDOG_STALE: '$WTASK' son ${MINS}dk dir guncellenmedi (son durum: $WPROG). Agent takilmis olabilir."
       echo "   Dosya: $wf"
+      if [ "$AGE" -gt 1800 ]; then
+        echo "   ❌ 30dk+ sessiz — muhtemelen olmus. Temizlemek icin: rm $wf"
+      fi
     fi
   done
 fi

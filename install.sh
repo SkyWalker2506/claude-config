@@ -337,6 +337,11 @@ cp "$SCRIPT_DIR/projects/scripts/ralph.sh" "$PROJECTS_ROOT/scripts/ralph.sh"
 cp "$SCRIPT_DIR/projects/scripts/ralph-prompt.md" "$PROJECTS_ROOT/scripts/ralph-prompt.md"
 chmod +x "$PROJECTS_ROOT/scripts/ralph.sh" 2>/dev/null || true
 
+cp "$SCRIPT_DIR/projects/scripts/team-build.sh" "$PROJECTS_ROOT/scripts/team-build.sh"
+cp "$SCRIPT_DIR/projects/scripts/team-build-prompt.md" "$PROJECTS_ROOT/scripts/team-build-prompt.md"
+cp "$SCRIPT_DIR/projects/scripts/team-build-review-prompt.md" "$PROJECTS_ROOT/scripts/team-build-review-prompt.md"
+chmod +x "$PROJECTS_ROOT/scripts/team-build.sh" 2>/dev/null || true
+
 # Templates
 mkdir -p "$PROJECTS_ROOT/.claude-templates"
 cp "$SCRIPT_DIR/templates/"* "$PROJECTS_ROOT/.claude-templates/" 2>/dev/null || true

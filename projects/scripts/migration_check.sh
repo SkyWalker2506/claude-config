@@ -51,7 +51,21 @@ if [ -f "$(pwd)/install.sh" ] && [ -f "$(pwd)/global/CLAUDE.md" ]; then
   exit 0
 fi
 
-# ── 0. install.sh kurulum kontrolü ──
+# ── 0a. Bind kontrolü — global CLAUDE.md redirector ──
+GLOBAL_MD="$HOME/.claude/CLAUDE.md"
+CONFIG_REPO_PATH="$PROJECTS_ROOT/claude-config"
+if [ -d "$CONFIG_REPO_PATH" ]; then
+  if [ -f "$GLOBAL_MD" ]; then
+    HAS_REDIRECT=$(grep -c "claude-config/CLAUDE.md dosyasini oku" "$GLOBAL_MD" 2>/dev/null || echo 0)
+    if [ "$HAS_REDIRECT" -eq 0 ]; then
+      echo "🔗 BIND_NEEDED: Global CLAUDE.md henuz claude-config'e baglanmamis. /bind ile baglanti kur."
+    fi
+  else
+    echo "🔗 BIND_NEEDED: Global CLAUDE.md mevcut degil. /bind ile claude-config baglantisi kur."
+  fi
+fi
+
+# ── 0b. install.sh kurulum kontrolü ──
 # claude mcp list hizli degil, sadece dosya varligina bak
 if [ ! -f "$HOME/.claude/CLAUDE.md" ] || [ ! -f "$PROJECTS_ROOT/MIGRATION_VERSION" ]; then
   echo "🚨 INSTALL_NEEDED: claude-config kurulumu yapilmamis veya eksik."
@@ -100,11 +114,15 @@ if [ -d "/tmp/watchdog" ]; then
     [ -f "$wf" ] || continue
     MTIME=$(stat -f %m "$wf" 2>/dev/null || stat -c %Y "$wf" 2>/dev/null || echo "$NOW")
     AGE=$(( NOW - MTIME ))
-    if [ "$AGE" -gt 900 ]; then
-      WTASK=$(python3 -c "import json;print(json.load(open('$wf')).get('task','?'))" 2>/dev/null || echo "?")
+    if [ "$AGE" -gt 600 ]; then
+      WTASK=$(python3 -c "import json;d=json.load(open('$wf'));print(d.get('task','?'))" 2>/dev/null || echo "?")
+      WPROG=$(python3 -c "import json;d=json.load(open('$wf'));print(d.get('progress',d.get('step','?')))" 2>/dev/null || echo "?")
       MINS=$(( AGE / 60 ))
-      echo "⚠️  WATCHDOG_STALE: '$WTASK' son ${MINS}dk dir guncellenmedi. Arka plan agent takilmis olabilir."
+      echo "⚠️  WATCHDOG_STALE: '$WTASK' son ${MINS}dk dir guncellenmedi (son durum: $WPROG). Agent takilmis olabilir."
       echo "   Dosya: $wf"
+      if [ "$AGE" -gt 1800 ]; then
+        echo "   ❌ 30dk+ sessiz — muhtemelen olmus. Temizlemek icin: rm $wf"
+      fi
     fi
   done
 fi
