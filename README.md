@@ -16,8 +16,8 @@ Tasinabilir Claude Code konfigurasyonu. Clone + `install.sh` ile herhangi bir Ma
 git clone https://github.com/SkyWalker2506/claude-config.git ~/Projects/claude-config
 cd ~/Projects/claude-config
 ./install.sh
-# OpenCode CLI de kurulsun (npm global, paket: opencode-ai):
-# ./install.sh --opencode
+# OpenCode CLI: ./install.sh --opencode
+# opencode.json Zen+Ollama sablonuna sabitle (yedek alir): ./install.sh --refresh-opencode-config
 ```
 
 Installer soracak:

@@ -6,7 +6,8 @@ set -euo pipefail
 #   ./install.sh                    # interactive (asks questions)
 #   ./install.sh --auto             # non-interactive (defaults, no prompts)
 #   ./install.sh --auto --root ~/Dev  # non-interactive with custom root
-#   ./install.sh --opencode         # also: npm install -g opencode-ai
+#   ./install.sh --opencode              # also: npm install -g opencode-ai
+#   ./install.sh --refresh-opencode-config  # overwrite ~/.config/opencode/opencode.json from template (backup .bak.*)
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
@@ -38,7 +39,8 @@ fi
 # --skip-secrets: skip secrets step
 # --secrets-repo URL: clone this secrets repo
 # --stacks LIST: comma-separated project stacks (flutter,firebase,unity,web,python)
-# --opencode: install OpenCode CLI globally via npm: opencode-ai (after Ollama config template)
+# --opencode: install OpenCode CLI globally via npm: opencode-ai
+# --refresh-opencode-config: reset opencode.json to repo template (Zen + Ollama)
 AUTO=0
 CUSTOM_ROOT=""
 SKIP_LOGIN=0
@@ -46,6 +48,7 @@ SKIP_SECRETS=0
 SECRETS_REPO_URL=""
 STACKS=""
 WITH_OPENCODE=0
+REFRESH_OPENCODE_CONFIG=0
 
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -59,6 +62,7 @@ while [[ $# -gt 0 ]]; do
     --stacks) STACKS="$2"; shift 2 ;;
     --stacks=*) STACKS="${1#*=}"; shift ;;
     --opencode) WITH_OPENCODE=1; shift ;;
+    --refresh-opencode-config) REFRESH_OPENCODE_CONFIG=1; shift ;;
     *) shift ;;
   esac
 done
@@ -338,18 +342,26 @@ if [ -d "$SCRIPT_DIR/bootstrapper" ]; then
   cp -r "$SCRIPT_DIR/bootstrapper/"* "$PROJECTS_ROOT/bootstrapper/" 2>/dev/null || true
 fi
 
-# OpenCode — global Ollama-only template (~/.config/opencode/opencode.json)
+# OpenCode — global template: Zen (opencode) + Ollama (~/.config/opencode/opencode.json)
 echo ""
-echo "=== OpenCode (Zen web + Ollama lokal) ==="
+echo "=== OpenCode (Zen web + Ollama lokal — ikisi birden) ==="
 OPENCODE_DIR="$HOME/.config/opencode"
 mkdir -p "$OPENCODE_DIR"
-if [ ! -f "$OPENCODE_DIR/opencode.json" ] && [ -f "$SCRIPT_DIR/templates/opencode.json" ]; then
-  cp "$SCRIPT_DIR/templates/opencode.json" "$OPENCODE_DIR/opencode.json"
+OPENCODE_TEMPLATE="$SCRIPT_DIR/templates/opencode.json"
+if [ "$REFRESH_OPENCODE_CONFIG" -eq 1 ] && [ -f "$OPENCODE_TEMPLATE" ]; then
+  if [ -f "$OPENCODE_DIR/opencode.json" ]; then
+    cp "$OPENCODE_DIR/opencode.json" "$OPENCODE_DIR/opencode.json.bak.$TIMESTAMP"
+    echo "  📦 Yedek: $OPENCODE_DIR/opencode.json.bak.$TIMESTAMP"
+  fi
+  cp "$OPENCODE_TEMPLATE" "$OPENCODE_DIR/opencode.json"
+  echo "  ✅ opencode.json sablonla guncellendi (enabled_providers: opencode + ollama)"
+elif [ ! -f "$OPENCODE_DIR/opencode.json" ] && [ -f "$OPENCODE_TEMPLATE" ]; then
+  cp "$OPENCODE_TEMPLATE" "$OPENCODE_DIR/opencode.json"
   echo "  ✅ opencode.json olusturuldu: $OPENCODE_DIR/opencode.json"
 elif [ -f "$OPENCODE_DIR/opencode.json" ]; then
-  echo "  ⏭️  opencode.json zaten var — degistirilmedi (elle veya sablonla karsilastir)"
+  echo "  ⏭️  opencode.json zaten var — atlandi. Zen+Ollama sablonu icin: ./install.sh --refresh-opencode-config"
 else
-  echo "  ⚠️  Sablon bulunamadi: $SCRIPT_DIR/templates/opencode.json"
+  echo "  ⚠️  Sablon bulunamadi: $OPENCODE_TEMPLATE"
 fi
 if [ "$WITH_OPENCODE" -eq 1 ]; then
   if command -v npm &>/dev/null; then

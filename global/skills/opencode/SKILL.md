@@ -1,6 +1,6 @@
 ---
 name: opencode
-description: "OpenCode terminal asistani — OpenCode Zen (opencode.ai) ucretsiz/web modeller + Ollama lokal. Triggers: opencode, open code, zen, kota bitti."
+description: "OpenCode — Zen (web) ve Ollama (lokal) birlikte; sablon her ikisini acar. Triggers: opencode, zen, ollama, kota bitti."
 user-invocable: true
 ---
 
@@ -8,11 +8,12 @@ user-invocable: true
 
 [OpenCode](https://opencode.ai/) terminal/IDE/desktop icin acik kaynak kod asistani. Claude kotasi bitince veya ek model yolu olarak kullan.
 
-Bu repodaki sablon: **`opencode`** saglayicisi (OpenCode Zen, bulut) + **`ollama`** (ucretsiz, makinede). Ayrinti: [Zen dokumanlari](https://open-code.ai/docs/en/zen), [Providers](https://open-code.ai/docs/en/providers).
+Bu repodaki sablon **her iki yolu da acik tutar:** **`opencode`** (Zen, bulut) + **`ollama`** (lokal). `enabled_providers: ["opencode", "ollama"]`. Ayrinti: [Zen](https://open-code.ai/docs/en/zen), [Providers](https://open-code.ai/docs/en/providers).
 
 ## Durum (claude-config)
 
 - Sablon: `claude-config/templates/opencode.json` → `install.sh` ilk calistirmada `~/.config/opencode/opencode.json` **yoksa** kopyalar (mevcut dosyayi ezmez).
+- Eski tek-saglayici config varsa sablonu zorla yaz: `./install.sh --refresh-opencode-config` (once `opencode.json.bak.<tarih>` yedegi alinir).
 - CLI: `npm install -g opencode-ai` veya `./install.sh --opencode`
 - Kimlik bilgisi: Zen icin `/connect` → `opencode` → [opencode.ai/auth](https://opencode.ai/auth) uzerinden API anahtari (OpenCode’un sakladigi yer: `~/.local/share/opencode/auth.json`).
 
@@ -59,4 +60,5 @@ TUI: `/models` → `ollama/qwen2.5-coder:7b`
 cd ~/Projects/claude-config && ./install.sh
 ```
 
-Opsiyonel CLI: `./install.sh --opencode`
+- CLI: `./install.sh --opencode`
+- `opencode.json` sablonla esitle (ikisi birden): `./install.sh --refresh-opencode-config`
