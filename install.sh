@@ -340,7 +340,7 @@ fi
 
 # OpenCode — global Ollama-only template (~/.config/opencode/opencode.json)
 echo ""
-echo "=== OpenCode (Ollama / ucretsiz lokal) ==="
+echo "=== OpenCode (Zen web + Ollama lokal) ==="
 OPENCODE_DIR="$HOME/.config/opencode"
 mkdir -p "$OPENCODE_DIR"
 if [ ! -f "$OPENCODE_DIR/opencode.json" ] && [ -f "$SCRIPT_DIR/templates/opencode.json" ]; then
