@@ -429,11 +429,15 @@ else
 fi
 
 # Add cl() function to shell RC if not present
-if [ -f "$SHELL_RC" ] && ! grep -q "Claude Project Picker" "$SHELL_RC" 2>/dev/null; then
+CL_MARKER="Claude Project Picker"
+if [ -f "$SHELL_RC" ] && grep -q "$CL_MARKER" "$SHELL_RC" 2>/dev/null; then
+  # Remove old version, will re-add updated
+  sed -i.bak "/$CL_MARKER/,/^}/d" "$SHELL_RC" 2>/dev/null || true
+fi
+if [ -f "$SHELL_RC" ] && ! grep -q "$CL_MARKER" "$SHELL_RC" 2>/dev/null; then
   cat >> "$SHELL_RC" << 'CLEOF'
 
 # Claude Project Picker — cl komutu
-# .claude/ klasörü olan projeleri listeler, seç, claude açar
 function cl() {
   local projects_dir="$HOME/Projects"
   local selected
@@ -443,16 +447,30 @@ function cl() {
   fi
   selected=$(
     for d in "$projects_dir"/*/; do
-      [ -d "$d/.claude" ] && basename "${d%/}"
+      [ -d "$d/.claude" ] || continue
+      local name=$(basename "${d%/}")
+      local tag=""
+      if [ -f "$d/pubspec.yaml" ]; then tag="Flutter"
+      elif [ -d "$d/Assets" ] || [ -d "$d/ProjectSettings" ]; then tag="Unity"
+      elif [ -f "$d/package.json" ]; then
+        if [ -d "$d/app" ] || grep -q "next" "$d/package.json" 2>/dev/null; then tag="Next.js"
+        else tag="Node.js"; fi
+      elif [ -f "$d/pyproject.toml" ] || [ -f "$d/requirements.txt" ]; then tag="Python"
+      elif [ -f "$d/Cargo.toml" ]; then tag="Rust"
+      elif [ -f "$d/go.mod" ]; then tag="Go"
+      else tag="—"; fi
+      printf "%-30s [%s]\n" "$name" "$tag"
     done | sort | fzf \
       --height=60% \
       --border=rounded \
       --prompt="▶ Proje: " \
       --header="Claude Projeleri  [Enter: aç, Esc: çık]" \
-      --cycle
+      --cycle \
+      --nth=1
   )
   [ -z "$selected" ] && return
-  cd "$projects_dir/$selected" && claude
+  local dir=$(echo "$selected" | sed 's/ *\[.*$//' | sed 's/ *$//')
+  cd "$projects_dir/$dir" && claude
 }
 CLEOF
   echo "✅ cl() fonksiyonu $SHELL_RC'ye eklendi"
