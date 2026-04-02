@@ -159,6 +159,8 @@ Tum skill'ler `global/skills/` altinda:
 | index | `/index [force]` | jCodeMunch indexle + auto-update |
 | team-build | `/team-build [setup\|run\|status]` | Multi-agent takim |
 | bind | `/bind` | Global CLAUDE.md'yi claude-config'e bagla |
+| yolo | `/yolo <gorev>` | Tam otonom — soru sormadan gider, engel atlar, commit atar |
+| yolo-log | `/yolo-log [--all]` | Son /yolo ne yapti goster (--all: atlananlar dahil) |
 
 ### 9. Proje gelistirme kurallari
 
@@ -196,7 +198,7 @@ Asagidaki kurallar `~/Projects/` altindaki **tum projeler** icin gecerlidir. Pro
 
 #### 9e. Jira (kullanan projeler icin)
 
-> Jira detaylari projenin `docs/CLAUDE_JIRA.md` dosyasinda. Asagisi sadece genel prensipler.
+> Jira detaylari projenin `docs/CLAUDE_JIRA.md` dosyasinda. Lock sistemi: `~/Projects/claude-config/docs/LOCK_SYSTEM.md`. Implementation agent şablonu: skill'in `docs/agent-template.md` dosyasinda.
 
 - Koda baslamadan **In Progress** (transition 21)
 - Tum alt gorevler bitmeden ana gorevi Done yapma
@@ -211,6 +213,7 @@ repo yapisi → paket yoneticisi → bagimliliklar → .env.example → calistir
 
 - Self-healing: §9d kurali gecerli
 - Mantikli varsayimlarla ilerle; her adimda sorma
+- `.claudeignore` yoksa → `~/Projects/claude-config/templates/claudeignore.template` kopyala
 
 ### 10. Task Discipline & Watchdog
 
@@ -287,6 +290,8 @@ echo '{"task":"TASK","step":"...","progress":"3/7","status":"running","ts":"..."
 {"id":"ID","task":"...","project":"...","model":"...","started":"T","ended":"T","tool_calls":N,"outcome":"success|recovered|failed","stuck_reason":null,"learnings":"..."}
 ```
 
+`learnings` alani: otonom gorevlerde VE her interaktif session sonunda yazilir (bkz §11).
+
 Stale alert: >10dk guncellenmemis → uyari. Kisa gorevlerde (<10 dk) watchdog baslatma.
 
 #### 10f. Sub-agent watchdog
@@ -295,6 +300,60 @@ Sub-agent prompt'una ekle:
 ```
 WATCHDOG: Bu gorev [quick|medium|long]. Max N tool call.
 Plan: [1-3 adim]. Her 5 call self-check yap.
+```
+
+---
+
+### 11. Session sonu — ders çıkarma (otomatik)
+
+Her session'da proaktif olarak ders çıkar ve kaydet. **Kullaniciya sorma** — dogrudan yap.
+
+#### Ne zaman tetiklenir
+
+| Durum | Örnek |
+|-------|-------|
+| Hata yapıp düzelttinde | Yanlış API çağrısı → doğruya bulundu |
+| Kullanıcı düzeltme/yönlendirme yaptığında | "Hayır öyle değil, şöyle yap" |
+| Beklenmedik çözüm bulunduğunda | Paket versiyon çakışması, garip davranış |
+| Görev tamamlandığında — öğrenilecek bir şey varsa | Mimari karar, teknik insight |
+
+Sıradan soru-cevap, trivial değişiklikler → ders çıkarmaya gerek yok.
+
+#### Ne yapar
+
+1. Oturumda öğrenilen 1-3 şeyi belirle
+2. Her ders için memory sistemine `feedback` tipi dosya yaz
+3. `~/Projects/.watchdog/feedback.jsonl`'e JSON satırı ekle
+4. Kullanıcıya kısa blok göster:
+
+```
+📋 Bu oturumdan dersler:
+- [ders 1]
+- [ders 2]
+Kaydedildi → memory/feedback_xxx.md
+```
+
+#### Memory dosyasi formati
+
+`feedback_<konu>.md` — CLAUDE.md §feedback tipi kurallari gecerli:
+
+```markdown
+---
+name: <konu>
+description: <tek satir — gelecekte alaka degerlendirmesi icin spesifik ol>
+type: feedback
+---
+
+<kural>
+
+**Why:** <sebep — kullanicinin verdigi neden veya yasanan olay>
+**How to apply:** <ne zaman / nerede bu kural devreye girer>
+```
+
+#### feedback.jsonl satiri
+
+```json
+{"id":"session-<tarih>","task":"<kisa aciklama>","project":"<proje>","model":"<model>","started":"<T>","ended":"<T>","tool_calls":<N>,"outcome":"success|recovered|failed","stuck_reason":null,"learnings":"<serbest metin>"}
 ```
 
 ---

@@ -1,0 +1,63 @@
+# .claudeignore — Claude Code'un okumaması gereken dosyalar
+# Bu template'i proje köküne .claudeignore olarak kopyala
+
+# Bağımlılıklar
+node_modules/
+vendor/
+.pub-cache/
+
+# Build çıktıları
+dist/
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+*.g.dart
+*.freezed.dart
+*.gr.dart
+
+# Lock dosyaları (içerik token israfı)
+package-lock.json
+yarn.lock
+pubspec.lock
+Gemfile.lock
+poetry.lock
+go.sum
+
+# Cache
+.cache/
+__pycache__/
+*.pyc
+.pytest_cache/
+.next/
+.nuxt/
+.gradle/
+
+# IDE & sistem
+.idea/
+.vscode/
+*.DS_Store
+*.swp
+*.swo
+
+# Log dosyaları
+*.log
+logs/
+
+# Test coverage
+coverage/
+lcov.info
+*.lcov
+
+# Sertifikalar & anahtarlar (güvenlik)
+*.pem
+*.key
+*.p12
+*.jks
+
+# Büyük medya (Claude okuyamaz zaten)
+*.mp4
+*.mp3
+*.zip
+*.tar.gz
+*.dmg
