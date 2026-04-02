@@ -10,6 +10,17 @@ user-invocable: true
 
 Bu repodaki sablon **her iki yolu da acik tutar:** **`opencode`** (Zen, bulut) + **`ollama`** (lokal). `enabled_providers: ["opencode", "ollama"]`. Ayrinti: [Zen](https://open-code.ai/docs/en/zen), [Providers](https://open-code.ai/docs/en/providers).
 
+## GPT-5 Nano — ekle / kur (ucretsiz bulut)
+
+**Indirilecek bir model dosyasi yok** — `ollama pull gpt-5-nano` calismaz. Zen bulutundan API ile kullanilir.
+
+| Adim | Ne yap |
+|------|--------|
+| 1 | OpenCode CLI: `npm install -g opencode-ai` veya `cd ~/Projects/claude-config && ./install.sh --opencode` |
+| 2 | Varsayilan model zaten `opencode/gpt-5-nano`: `~/.config/opencode/opencode.json` (`model`, `small_model`). Yoksa: `./install.sh --refresh-opencode-config` |
+| 3 | Zen anahtari: terminalde `opencode` → `/connect` → **opencode** → [opencode.ai/auth](https://opencode.ai/auth) API key yapistir |
+| 4 | TUI’de `/models` ile `opencode/gpt-5-nano` secili oldugunu dogrula |
+
 ## Durum (claude-config)
 
 - Sablon: `claude-config/templates/opencode.json` → `install.sh` ilk calistirmada `~/.config/opencode/opencode.json` **yoksa** kopyalar (mevcut dosyayi ezmez).
