@@ -33,16 +33,21 @@ Kullanici `/project-analysis` yazdiginda:
 
 ```
 Analiz icin agent model tipini sec:
-  1) Opus — en detayli, en pahali
-  2) Sonnet — dengeli
-  3) Haiku — hizli, ekonomik
+  1) Opus    — en detayli, en pahali
+  2) Sonnet  — dengeli
+  3) Haiku   — hizli, ekonomik
   4) Karisik — her kategori icin ayri sorarim
+  5) Otomatik — Opus her kategori icin en uygun modeli secer
 
-Seciminiz (1/2/3/4):
+Seciminiz (1/2/3/4/5):
 ```
 
 - 1/2/3 secilirse tum agentlar o modeli kullanir
 - 4 secilirse her kategori icin ayri model sorulur
+- 5 secilirse: **kategori secimi adimi atlanir.** Bir Opus agent direkt projeyi tarayarak her kategori icin iki karar verir:
+  1. **Gerekli mi?** — Bu projeye uygun mu, atlansın mı? (ornegin yeni bir proje icin SEO erken olabilir, scraping altyapisi yoksa kategori 4 anlamsiz olabilir)
+  2. **Hangi model?** — Karmasik/kritik → Opus, orta → Sonnet, yuzeysel/hizli → Haiku
+  Sonucta her kategori icin `{ include: true/false, model: opus/sonnet/haiku, reason: "..." }` cikarir, kullaniciya ozetler ve onay alir, sonra ana analiz o atamayla baslar
 
 ### 3. Kategori secimi sor (tek tek)
 
@@ -67,6 +72,25 @@ Her agent su siralamayla calisir:
 1. **Proje taramasi** — Read, Grep, Glob ile projeyi incele (max 15 tool call)
 2. **Dis dunya arastirmasi** — WebSearch, WebFetch ile guncel bilgi topla (max 10 tool call)
 3. **Rapor olustur** — Markdown formatinda detayli rapor yaz
+
+#### Watchdog
+
+Tum agentlar baslatildiktan sonra ana oturum **watchdog** gorevi ustlenir:
+
+- Agentlar tamamlandikca bildirim gelir (background agent completion)
+- Her 3 dakikada bir tamamlanan vs bekleyen kategori listesini goster:
+  ```
+  Analiz durumu (X/Y tamamlandi):
+  ✅ UI/UX Design
+  ✅ Security
+  ⏳ Performance (calisıyor...)
+  ⏳ SEO (calisıyor...)
+  ```
+- Bir agent 8 dakika icinde tamamlanmazsa **takili kabul et**:
+  1. Kullaniciya bildir: `⚠️ [KATEGORİ] agent takıldı görünüyor. Yeniden başlatayım mı? (e/h)`
+  2. Onay gelirse o kategoriyi ayni parametrelerle tek basina yeniden baslat
+  3. Onceki agent'in ciktisi yoksa temiz baslat; kismi cikti varsa devam et
+- Tum agentlar bitince (veya maksimum 20 dk sonra) master rapor asamasina gec
 
 Her agent'in prompt'u asagidaki sablonu kullanir:
 
