@@ -328,6 +328,12 @@ fi
 # All other files (scripts, migration, templates) stay in claude-config
 cp "$SCRIPT_DIR/projects/CLAUDE.md" "$PROJECTS_ROOT/CLAUDE.md"
 
+# Bootstrapper — copy to PROJECTS_ROOT/bootstrapper
+if [ -d "$SCRIPT_DIR/bootstrapper" ]; then
+  mkdir -p "$PROJECTS_ROOT/bootstrapper"
+  cp -r "$SCRIPT_DIR/bootstrapper/"* "$PROJECTS_ROOT/bootstrapper/" 2>/dev/null || true
+fi
+
 # Clean up old files from previous installs (now managed from claude-config)
 rm -f "$PROJECTS_ROOT/MIGRATION_GUIDE.md" 2>/dev/null || true
 rm -f "$PROJECTS_ROOT/MIGRATION_VERSION" 2>/dev/null || true
@@ -389,7 +395,72 @@ else
   echo "⚪ GITHUB_TOKEN ayarlanmamis"
 fi
 
-# ── 8. Done ──
+# ── 8. Shell integration (fzf + cl function) ──
+echo ""
+echo "=== Shell ==="
+
+# Detect shell RC file
+if [ "$OS" = "windows" ]; then
+  SHELL_RC="$HOME/.bashrc"
+else
+  SHELL_RC="$HOME/.zshrc"
+fi
+
+# Install fzf if missing
+if ! command -v fzf &>/dev/null; then
+  echo "📦 fzf yukleniyor..."
+  if [ "$OS" = "mac" ]; then
+    brew install fzf 2>/dev/null && echo "✅ fzf yuklendi (brew)" || echo "⚠️  fzf yuklenemedi"
+  elif [ "$OS" = "windows" ]; then
+    if command -v winget &>/dev/null; then
+      winget install junegunn.fzf --silent 2>/dev/null && echo "✅ fzf yuklendi (winget)"
+    elif command -v scoop &>/dev/null; then
+      scoop install fzf 2>/dev/null && echo "✅ fzf yuklendi (scoop)"
+    elif command -v choco &>/dev/null; then
+      choco install fzf -y 2>/dev/null && echo "✅ fzf yuklendi (choco)"
+    else
+      echo "⚠️  fzf yuklenemedi — winget/scoop/choco bulunamadi"
+    fi
+  else
+    echo "⚠️  fzf yuklenemedi — manuel kur: https://github.com/junegunn/fzf"
+  fi
+else
+  echo "✅ fzf mevcut"
+fi
+
+# Add cl() function to shell RC if not present
+if [ -f "$SHELL_RC" ] && ! grep -q "Claude Project Picker" "$SHELL_RC" 2>/dev/null; then
+  cat >> "$SHELL_RC" << 'CLEOF'
+
+# Claude Project Picker — cl komutu
+# .claude/ klasörü olan projeleri listeler, seç, claude açar
+function cl() {
+  local projects_dir="$HOME/Projects"
+  local selected
+  if ! command -v fzf &>/dev/null; then
+    echo "fzf bulunamadi. Kur: brew install fzf (mac) / winget install junegunn.fzf (win)"
+    return 1
+  fi
+  selected=$(
+    for d in "$projects_dir"/*/; do
+      [ -d "$d/.claude" ] && basename "${d%/}"
+    done | sort | fzf \
+      --height=60% \
+      --border=rounded \
+      --prompt="▶ Proje: " \
+      --header="Claude Projeleri  [Enter: aç, Esc: çık]" \
+      --cycle
+  )
+  [ -z "$selected" ] && return
+  cd "$projects_dir/$selected" && claude
+}
+CLEOF
+  echo "✅ cl() fonksiyonu $SHELL_RC'ye eklendi"
+else
+  echo "✅ cl() fonksiyonu mevcut"
+fi
+
+# ── 9. Done ──
 echo ""
 if [ "$ERRORS" -eq 0 ]; then
   echo "=== Kurulum basarili! ==="
