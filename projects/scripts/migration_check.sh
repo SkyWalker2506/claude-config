@@ -183,7 +183,6 @@ fi
 # ── 7. claude-config update check (first launch + hourly) ──
 CONFIG_REPO="$CONFIG_ROOT"
 UPDATE_CHECK_FILE="/tmp/claude-config-update-check"
-SESSION_MARKER="/tmp/claude-config-session-$$"
 CHECK_INTERVAL=3600  # 1 saat
 
 if [ -d "$CONFIG_REPO/.git" ]; then

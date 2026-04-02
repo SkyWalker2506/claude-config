@@ -1,41 +1,6 @@
-# claude-config — Merkezi Konfigürasyon
+# claude-config — Calisma Kurallari
 
-Bu klasor Claude Code konfigürasyonunun **kaynak reposudur**. Global CLAUDE.md, settings.json, skill'ler ve migration — her sey buradan yonetilir.
-
-**Global `~/.claude/CLAUDE.md` sadece yonlendiricidir. Tum kurallar bu dosyadadir.**
-
----
-
-## Repo yapisi
-
-`install.sh` calistirinca:
-- `global/` → `~/.claude/` (CLAUDE.md, settings.json, skills/)
-- `projects/` → `$PROJECTS_ROOT/` (CLAUDE.md, MIGRATION_GUIDE.md, scripts/)
-- Placeholder'lar (`__PROJECTS_ROOT__`, `__UVX_PATH__`) otomatik degistirilir
-
-```
-global/
-  CLAUDE.md                → Yonlendirici (minimal)
-  settings.json.template   → MCP, izinler, hook'lar
-  skills/                  → Tum skill SKILL.md dosyalari
-
-projects/
-  CLAUDE.md                → Yonlendirici (claude-config'e yonlendirir)
-  MIGRATION_GUIDE.md       → Setup wizard
-  scripts/                 → Hook script'leri
-
-templates/                 → Yeni proje sablonlari
-```
-
-## Degisiklik yapma
-
-1. **Bu repodaki** dosyayi duzenle
-2. `./install.sh` calistir → yerlerine kopyalanir
-3. Commit + push → diger PC'lerde `git pull && ./install.sh`
-
-**`~/.claude/` altindaki dosyalari dogrudan duzenleme** — `install.sh` ile ezilir.
-
----
+> Degisiklik: bu repoda duzenle → `./install.sh` → commit + push. `~/.claude/` altini dogrudan duzenleme.
 
 ## Calisma kurallari (tum projeler)
 
@@ -110,70 +75,22 @@ Hook ciktisindaki sinyaller:
 - `.git` varsa → private repo, push hatırlat
 - `.git` yoksa → lokal, sadece o PC
 
-### 7. settings.json konfigürasyonu
+### 7. Skill'ler
 
-`global/settings.json.template` icerigi — `install.sh` placeholder'lari cozer:
+Tum skill'ler `global/skills/` altinda — her klasorde `SKILL.md` trigger ve aciklama icerir. Ayrintili konfigürasyon: `global/settings.json.template`.
 
-| Ayar | Deger |
-|------|-------|
-| `defaultMode` | `bypassPermissions` |
-| `effortLevel` | `high` |
-| `model` | `opus` |
-| `voiceEnabled` | `true` |
-| `includeGitInstructions` | `true` |
-| `skipDangerousModePermissionPrompt` | `true` |
-| Hook | `claude-config/projects/scripts/migration_check.sh` (UserPromptSubmit) |
-
-**MCP sunuculari:** github, git, atlassian, flutter-dev, firebase, context7, jcodemunch, fetch
-
-**Izin ask:** `git push --force`, `rm -rf`, `gh repo delete`, `shred`
-
-### 8. Skill'ler
-
-Tum skill'ler `global/skills/` altinda:
-
-| Skill | Komut | Aciklama |
-|-------|-------|----------|
-| install | `/install` | claude-config kurulumu |
-| admin-login | `/admin-login` | GitHub auth ve hesap yonetimi |
-| download-secrets | `/download-secrets` | Private repo'dan secrets indir |
-| refine | `/refine [global\|all] [model]` | Config dosyalarini rafine et |
-| migration | `/migration [health\|setup\|fix]` | Proje kurulum + saglik kontrolu |
-| audit | `/audit [security\|cost\|performance\|cleanup\|all]` | Kod taramasi |
-| rbg | `/rbg <gorev>` | Arka plan delegasyonu |
-| dashboard | `/dashboard` | Terminal dashboard (cache, 0 token) |
-| dashboard-sync | `/dashboard-sync` | Jira'dan taze veri + dashboard |
-| jira-run | `/jira-run [N] [aralik]` | Jira wait-and-check dongusu |
-| jira-run-fast | `/jira-run-fast [N]` | 1s aralikli hizli dongu |
-| jira-run-detailed | `/jira-run-detailed [odak]` | Board derinlemesine audit + bakim |
-| jira-cancel | `/jira-cancel` | jira-run durdur |
-| jira-start-new-task | `/jira-start-new-task` | Coklu agent pipeline |
-| decide | `/decide` | WAITING kartlari hizli karar |
-| project-analysis | `/project-analysis` | 12 kategori paralel audit |
-| sprint-plan | `/sprint-plan` | Analiz raporlarindan sprint plani |
-| web-research | `/web-research [odak]` | Web arastirmasi (parametrik) |
-| agent-browser | `/agent-browser` | Browser otomasyon CLI |
-| prd | `/prd` | Feature icin PRD olustur |
-| ralph | `/ralph` | PRD → prd.json + Ralph baslat |
-| add-mcp | `/add-mcp [flutter\|firebase]` | MCP sunucusu ekle/kaldir |
-| index | `/index [force]` | jCodeMunch indexle + auto-update |
-| team-build | `/team-build [setup\|run\|status]` | Multi-agent takim |
-| bind | `/bind` | Global CLAUDE.md'yi claude-config'e bagla |
-| yolo | `/yolo <gorev>` | Tam otonom — soru sormadan gider, engel atlar, commit atar |
-| yolo-log | `/yolo-log [--all]` | Son /yolo ne yapti goster (--all: atlananlar dahil) |
-
-### 9. Proje gelistirme kurallari
+### 8. Proje gelistirme kurallari
 
 Asagidaki kurallar `~/Projects/` altindaki **tum projeler** icin gecerlidir. Projeye ozel detaylar her projenin kendi `CLAUDE.md` dosyasinda tanimlanir.
 
-#### 9a. Gorev parcalama
+#### 8a. Gorev parcalama
 
 - Gorev ≤ ~10 dakika; asarsa Jira'da alt goreve bol, sonra tek tek uygula
 - **Paten → Kaykay → Bisiklet → Araba:** Her sprint sonunda deploy edilebilir, test edilebilir, kullanici tarafindan deneyimlenebilir bir butun teslim et
 - **Kapsam:** "Sunu da yapayim" yok; refactor gorursen ayri task ac
 - **Sirala:** IP'deki isi tamamla → commit → push → CI yesil → Done
 
-#### 9b. Git ve CI
+#### 8b. Git ve CI
 
 - **Conventional commit:** `feat:`, `fix:`, `refactor:`, `chore:` (Ingilizce)
 - **Dal kurali:**
@@ -183,20 +100,20 @@ Asagidaki kurallar `~/Projects/` altindaki **tum projeler** icin gecerlidir. Pro
   - Mimari / buyuk refactor → feature branch + PR + review
 - **Force push → sor**
 
-#### 9c. Dosya sistemi ve guvenlik
+#### 8c. Dosya sistemi ve guvenlik
 
 - **Proje ici:** olusturma, duzenleme, refactor, gereksiz dosya silme — sormadan yap
 - **Proje disi / kisisel / sistem dosyalari:** ASLA sormadan dokunma
 - **Guvenli sil:** `build/`, cache, gecici, generated, kullanilmayan proje dosyasi
 - **Mutlaka sor:** `rm -rf` (tehlikeli kapsam), `git reset --hard`, `git push --force`, repo silme, guvenlik/KVKK, odeme, secrets (`.env`), ucretli servis
 
-#### 9d. Hata yonetimi
+#### 8d. Hata yonetimi
 
 - **Self-healing:** analiz → kok neden → duzelt → tekrar dene; **max 3 deneme**; sonra kullaniciya rapor
 - **Akilli tekrar:** ayni hatayi tekrarlama; farkli cozum dene
 - **Riskli is oncesi yedek:** `.backup/<timestamp>/` — buyuk refactor, toplu silme, config degisimi
 
-#### 9e. Jira (kullanan projeler icin)
+#### 8e. Jira (kullanan projeler icin)
 
 > Jira detaylari projenin `docs/CLAUDE_JIRA.md` dosyasinda. Lock sistemi: `~/Projects/claude-config/docs/LOCK_SYSTEM.md`. Implementation agent şablonu: skill'in `docs/agent-template.md` dosyasinda.
 
@@ -205,7 +122,7 @@ Asagidaki kurallar `~/Projects/` altindaki **tum projeler** icin gecerlidir. Pro
 - **WAITING (7):** onay, credential, ucretli servis, urun karari gereken isler
 - IP'de "bekletme" yok — ya tamamla ya WAITING'e tasi
 
-#### 9f. Bootstrap (setup eksikse)
+#### 8f. Bootstrap (setup eksikse)
 
 ```
 repo yapisi → paket yoneticisi → bagimliliklar → .env.example → calistir/build
@@ -215,9 +132,9 @@ repo yapisi → paket yoneticisi → bagimliliklar → .env.example → calistir
 - Mantikli varsayimlarla ilerle; her adimda sorma
 - `.claudeignore` yoksa → `~/Projects/claude-config/templates/claudeignore.template` kopyala
 
-### 10. Task Discipline & Watchdog
+### 9. Task Discipline & Watchdog
 
-#### 10a. Gorev basinda — Plan (zorunlu)
+#### 9a. Gorev basinda — Plan (zorunlu)
 
 Her oturum basinda **plan moduna gir** (`EnterPlanMode`). Ilk gorev geldiginde once planla → kullanici onayi → sonra uygula. Plan onaylanana kadar kod yazma.
 
@@ -241,7 +158,7 @@ Tahmin: quick | medium | long
 - "Hemen yap" denirse → 1 satirda ozetle, basla
 - Sub-agent'lara da plan zorunlu
 
-#### 10b. Self-monitoring
+#### 9b. Self-monitoring
 
 **Her 5 tool call → sessiz self-check:**
 1. Dogru adimda miyim?
@@ -262,7 +179,7 @@ Tahmin: quick | medium | long
 | 5+ call ayni dosya dongusu | DUR → donguden cik |
 | Onceki adima geri donme | 1 satirda bildir |
 
-#### 10c. Overrun detection
+#### 9c. Overrun detection
 
 | Tahmin | Limit | Asilirsa |
 |--------|-------|----------|
@@ -272,13 +189,13 @@ Tahmin: quick | medium | long
 
 Onay sonrasi yeni limit: mevcut + 50%. Tekrar asarsa durdur.
 
-#### 10d. Recovery
+#### 9d. Recovery
 
 1. Sorunu 1 cumlede belirt
 2. TEK alternatif dene
 3. Basarisizsa → rapor et, DUR
 
-#### 10e. Otonom gorevler (heartbeat)
+#### 9e. Otonom gorevler (heartbeat)
 
 ```bash
 mkdir -p /tmp/watchdog
@@ -294,7 +211,7 @@ echo '{"task":"TASK","step":"...","progress":"3/7","status":"running","ts":"..."
 
 Stale alert: >10dk guncellenmemis → uyari. Kisa gorevlerde (<10 dk) watchdog baslatma.
 
-#### 10f. Sub-agent watchdog
+#### 9f. Sub-agent watchdog
 
 Sub-agent prompt'una ekle:
 ```
@@ -304,7 +221,7 @@ Plan: [1-3 adim]. Her 5 call self-check yap.
 
 ---
 
-### 11. Session sonu — ders çıkarma (otomatik)
+### 10. Session sonu — ders çıkarma (otomatik)
 
 Her session'da proaktif olarak ders çıkar ve kaydet. **Kullaniciya sorma** — dogrudan yap.
 
@@ -352,22 +269,4 @@ type: feedback
 
 #### feedback.jsonl satiri
 
-```json
-{"id":"session-<tarih>","task":"<kisa aciklama>","project":"<proje>","model":"<model>","started":"<T>","ended":"<T>","tool_calls":<N>,"outcome":"success|recovered|failed","stuck_reason":null,"learnings":"<serbest metin>"}
-```
-
----
-
-## Yeni skill ekleme
-
-```bash
-mkdir -p global/skills/yeni-skill
-# global/skills/yeni-skill/SKILL.md olustur
-./install.sh
-```
-
-## Migration guncelleme
-
-1. `projects/MIGRATION_GUIDE.md` → Changelog'a versiyon ekle
-2. `projects/MIGRATION_VERSION` → numara artir
-3. `./install.sh` → tasinir
+Format: `§9e` ile ayni — `learnings` alani serbest metin.
