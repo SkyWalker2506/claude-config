@@ -4,6 +4,11 @@
   "model": "opencode/gpt-5-nano",
   "small_model": "opencode/gpt-5-nano",
   "provider": {
+    "opencode": {
+      "options": {
+        "apiKey": "{env:OPENCODE_ZEN_API_KEY}"
+      }
+    },
     "ollama": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Ollama (local)",

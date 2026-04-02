@@ -18,8 +18,15 @@ Bu repodaki sablon **her iki yolu da acik tutar:** **`opencode`** (Zen, bulut) +
 |------|--------|
 | 1 | OpenCode CLI: `npm install -g opencode-ai` veya `cd ~/Projects/claude-config && ./install.sh --opencode` |
 | 2 | Varsayilan model zaten `opencode/gpt-5-nano`: `~/.config/opencode/opencode.json` (`model`, `small_model`). Yoksa: `./install.sh --refresh-opencode-config` |
-| 3 | Zen anahtari: terminalde `opencode` → `/connect` → **opencode** → [opencode.ai/auth](https://opencode.ai/auth) API key yapistir |
+| 3 | Zen anahtari (bir yol yeter): **A)** `opencode` → `/connect` → **opencode** → yapistir — veya **B)** asagiya bak |
 | 4 | TUI’de `/models` ile `opencode/gpt-5-nano` secili oldugunu dogrula |
+
+### Zen API anahtarini elle (`~/.config/opencode/opencode.json`)
+
+- Repoda **gercek anahtar yok**; sablonda `provider.opencode.options.apiKey` icin `{env:OPENCODE_ZEN_API_KEY}` kullanilir.
+- **Elle degistir:** Ayni dosyada `apiKey` degerini dogrudan `"sk-..."` yapabilirsin (yalnizca bu dosya makinede kalsin — git’e atma).
+- **Ortam degiskeni:** `export OPENCODE_ZEN_API_KEY='sk-...'` (orn. `~/.zshrc`) — anahtari dosyada tutmazsin.
+- **`./install.sh --refresh-opencode-config`** bu dosyayi sablonla **ez**er; elle yazdigin anahtari kaybedersin — once yedek veya env yolu kullan.
 
 ## Durum (claude-config)
 
