@@ -10,12 +10,18 @@ user-invocable: true
 
 Bu repodaki sablon **her iki yolu da acik tutar:** **`opencode`** (Zen, bulut) + **`ollama`** (lokal). `enabled_providers: ["opencode", "ollama"]`. Ayrinti: [Zen](https://open-code.ai/docs/en/zen), [Providers](https://open-code.ai/docs/en/providers).
 
-## Claude Code “Select model” ekrani — Zen eklenmez
+## Claude Code model menusu vs baska modeller
 
-**Claude Code** icindeki model menusu (Default / Sonnet / Haiku / Opus) Anthropic’in sabit listesidir; **`gpt-5-nano`, Zen veya OpenAI modellerini bu listeye sen ekleyemezsin** — farkli bir urun katmani degil.
+**Secici (picker) listesi:** Claude Code’daki “Select model” ekranindaki satirlar (Default / Sonnet / Haiku / Opus) urun icinde **hazir listelenir**; buraya kendi basina **yeni bir satir** (or. Zen’deki `opencode/gpt-5-nano`) **eklenmez** — bu menunun tasarimi boyle.
 
-- Zen / `opencode/gpt-5-nano` icin: **`opencode`** programini ac, **`/models`** kullan (bu Claude Code degil).
-- Claude Code’da baska isimler icin resmi yol genelde **`claude --model ...`** ve Anthropic model ID’leri; menude yeni satir olusturmaz.
+**Baska modeller yine kullanilabilir** — sadece o liste degil, genelde:
+
+- **`claude --model <model-id>`** ile (ve uygun hesap / kota),
+- Ileri kurulumda **yonlendirme** (or. `ANTHROPIC_BASE_URL` + uyumlu API) ile; bu tur modeller **o grafik menude gorunmeden** calisir.
+
+**Zen / OpenCode modelleri** Claude Code menusunun parcasi degil; onlar icin **`opencode`** + **`/models`** veya `~/.config/opencode/opencode.json`.
+
+**OpenCode’da model eklemek:** Zen’de `/connect` + `/models`; Ollama’da `provider.ollama.models` + `ollama pull ...`; `model` anahtarini `saglayici/model` yap — **burada ekleme normaldir**.
 
 ## GPT-5 Nano — ekle / kur (ucretsiz bulut)
 
