@@ -10,6 +10,13 @@ user-invocable: true
 
 Bu repodaki sablon **her iki yolu da acik tutar:** **`opencode`** (Zen, bulut) + **`ollama`** (lokal). `enabled_providers: ["opencode", "ollama"]`. Ayrinti: [Zen](https://open-code.ai/docs/en/zen), [Providers](https://open-code.ai/docs/en/providers).
 
+## Claude Code “Select model” ekrani — Zen eklenmez
+
+**Claude Code** icindeki model menusu (Default / Sonnet / Haiku / Opus) Anthropic’in sabit listesidir; **`gpt-5-nano`, Zen veya OpenAI modellerini bu listeye sen ekleyemezsin** — farkli bir urun katmani degil.
+
+- Zen / `opencode/gpt-5-nano` icin: **`opencode`** programini ac, **`/models`** kullan (bu Claude Code degil).
+- Claude Code’da baska isimler icin resmi yol genelde **`claude --model ...`** ve Anthropic model ID’leri; menude yeni satir olusturmaz.
+
 ## GPT-5 Nano — ekle / kur (ucretsiz bulut)
 
 **Indirilecek bir model dosyasi yok** — `ollama pull gpt-5-nano` calismaz. Zen bulutundan API ile kullanilir.
