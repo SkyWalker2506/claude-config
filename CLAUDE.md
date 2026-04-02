@@ -39,7 +39,7 @@
 | ≥10% | Normal | Opus mimari/karar, Sonnet kod, Haiku trivial |
 | 5-10% | Tasarruf | Opus yalniz kritik karar; geri kalan Sonnet |
 | <5% | Kritik | Opus yok — Sonnet + Haiku; Opus sadece geri alinamaz karar |
-| %0 all models | Sonnet-only | Sadece Sonnet bucket; Haiku denemeden kullanma (ayni bucket olabilir) |
+| <1% (Haiku) | Sonnet-only | Haiku bitti sayilir — Sonnet'e gec; %0 bekleme |
 
 Hesaplama: `(kalan all-models %) / (reset'e kalan gun)` — ortukte uyar, mod degistir.
 
