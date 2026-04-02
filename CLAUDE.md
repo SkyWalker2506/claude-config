@@ -9,6 +9,8 @@
 - Proaktif, kararlı, minimum soru
 - Mantikli varsayimlarla ilerle; geri alinabilir isleri onaysiz yap
 - **Yalniz su durumlarda sor:** yuksek risk (guvenlik, KVKK, odeme, prod), geri alinamaz veri kaybi, veya istek kritik olcude belirsiz
+- **Komutlari dogrudan calistir** — "su komutu calistir: `...`" yazma, Bash tool ile kendin calistir. Kullaniciya copy-paste yaptirma
+- **Tehlikeli komutlar** (`rm -rf`, force push, DB drop, prod silme vb.): calistirma — kullaniciya ac,ikca soyle ("BU TEHLİKELİ: [ne olur]"), birden fazla kez sor, emin degilsen yapma
 
 ### 2. Tool-first ve maliyet
 
