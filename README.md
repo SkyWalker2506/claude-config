@@ -8,6 +8,7 @@ Tasinabilir Claude Code konfigurasyonu. Clone + `install.sh` ile herhangi bir Ma
 - Proje kok dizinine (`~/Projects/` vb.) ortak kurallar, migration sistemi ve script'leri yazar
 - Yeni projelerde `claude` acinca otomatik setup wizard tetiklenir
 - Hardcoded path yok — her sey `install.sh` ile hedef PC'ye uyarlanir
+- OpenCode (Claude’dan bagimsiz terminal asistani): Ollama ile ucretsiz lokal modeller — ilk `install.sh` calistirmasinda `~/.config/opencode/opencode.json` sablonu (dosya yoksa)
 
 ## Kurulum
 
@@ -15,6 +16,8 @@ Tasinabilir Claude Code konfigurasyonu. Clone + `install.sh` ile herhangi bir Ma
 git clone https://github.com/SkyWalker2506/claude-config.git ~/Projects/claude-config
 cd ~/Projects/claude-config
 ./install.sh
+# OpenCode CLI de kurulsun (npm global, paket: opencode-ai):
+# ./install.sh --opencode
 ```
 
 Installer soracak:
@@ -175,3 +178,6 @@ claude
 | `/project-analysis` | 12 kategori derin audit |
 | `/sprint-plan` | Sprint planlama + Jira task |
 | `/agent-browser` | Tarayici ajani |
+| `/opencode` | OpenCode + Ollama — Claude kotasi bitince lokal ucretsiz model |
+
+OpenCode kullanimi: [Ollama](https://ollama.com) kur, `ollama pull qwen2.5-coder:7b`, proje dizininde `opencode`. Ayrinti: `/opencode` skill.

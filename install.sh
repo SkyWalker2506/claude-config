@@ -6,6 +6,7 @@ set -euo pipefail
 #   ./install.sh                    # interactive (asks questions)
 #   ./install.sh --auto             # non-interactive (defaults, no prompts)
 #   ./install.sh --auto --root ~/Dev  # non-interactive with custom root
+#   ./install.sh --opencode         # also: npm install -g opencode-ai
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
@@ -37,12 +38,14 @@ fi
 # --skip-secrets: skip secrets step
 # --secrets-repo URL: clone this secrets repo
 # --stacks LIST: comma-separated project stacks (flutter,firebase,unity,web,python)
+# --opencode: install OpenCode CLI globally via npm: opencode-ai (after Ollama config template)
 AUTO=0
 CUSTOM_ROOT=""
 SKIP_LOGIN=0
 SKIP_SECRETS=0
 SECRETS_REPO_URL=""
 STACKS=""
+WITH_OPENCODE=0
 
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -55,6 +58,7 @@ while [[ $# -gt 0 ]]; do
     --secrets-repo=*) SECRETS_REPO_URL="${1#*=}"; shift ;;
     --stacks) STACKS="$2"; shift 2 ;;
     --stacks=*) STACKS="${1#*=}"; shift ;;
+    --opencode) WITH_OPENCODE=1; shift ;;
     *) shift ;;
   esac
 done
@@ -332,6 +336,30 @@ cp "$SCRIPT_DIR/projects/CLAUDE.md" "$PROJECTS_ROOT/CLAUDE.md"
 if [ -d "$SCRIPT_DIR/bootstrapper" ]; then
   mkdir -p "$PROJECTS_ROOT/bootstrapper"
   cp -r "$SCRIPT_DIR/bootstrapper/"* "$PROJECTS_ROOT/bootstrapper/" 2>/dev/null || true
+fi
+
+# OpenCode — global Ollama-only template (~/.config/opencode/opencode.json)
+echo ""
+echo "=== OpenCode (Ollama / ucretsiz lokal) ==="
+OPENCODE_DIR="$HOME/.config/opencode"
+mkdir -p "$OPENCODE_DIR"
+if [ ! -f "$OPENCODE_DIR/opencode.json" ] && [ -f "$SCRIPT_DIR/templates/opencode-ollama.json" ]; then
+  cp "$SCRIPT_DIR/templates/opencode-ollama.json" "$OPENCODE_DIR/opencode.json"
+  echo "  ✅ opencode.json olusturuldu: $OPENCODE_DIR/opencode.json"
+elif [ -f "$OPENCODE_DIR/opencode.json" ]; then
+  echo "  ⏭️  opencode.json zaten var — degistirilmedi (elle veya sablonla karsilastir)"
+else
+  echo "  ⚠️  Sablon bulunamadi: $SCRIPT_DIR/templates/opencode-ollama.json"
+fi
+if [ "$WITH_OPENCODE" -eq 1 ]; then
+  if command -v npm &>/dev/null; then
+    echo "  OpenCode CLI kuruluyor: npm install -g opencode-ai …"
+    npm install -g opencode-ai 2>/dev/null && echo "  ✅ opencode-ai (opencode)" || echo "  ⚠️  opencode-ai kurulamadi"
+  else
+    echo "  ⚠️  npm bulunamadi — CLI: npm install -g opencode-ai"
+  fi
+else
+  echo "  ℹ️  CLI icin: npm install -g opencode-ai veya ./install.sh --opencode"
 fi
 
 # Clean up old files from previous installs (now managed from claude-config)
