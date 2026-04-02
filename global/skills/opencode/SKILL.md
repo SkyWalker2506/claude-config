@@ -1,54 +1,62 @@
 ---
 name: opencode
-description: "OpenCode terminal asistani — Ollama ile ucretsiz lokal modeller. Triggers: opencode, open code, lokal model, kota bitti."
+description: "OpenCode terminal asistani — OpenCode Zen (opencode.ai) ucretsiz/web modeller + Ollama lokal. Triggers: opencode, open code, zen, kota bitti."
 user-invocable: true
 ---
 
-# OpenCode — Ucretsiz (lokal) kod asistani
+# OpenCode — Zen (web) + Ollama (lokal)
 
-Claude kotasi bittiginde veya API kullanmadan **OpenCode** + **Ollama** ile devam et.
+[OpenCode](https://opencode.ai/) terminal/IDE/desktop icin acik kaynak kod asistani. Claude kotasi bitince veya ek model yolu olarak kullan.
 
-OpenCode, Claude Code’dan bagimsiz bir CLI/TUI aracidir. Bu skill, `claude-config` kurulumunun yazdigi `~/.config/opencode/opencode.json` ile **yalnizca Ollama** (lokal, ucretsiz) kullanmayi hedefler.
+Bu repodaki sablon: **`opencode`** saglayicisi (OpenCode Zen, bulut) + **`ollama`** (ucretsiz, makinede). Ayrinti: [Zen dokumanlari](https://open-code.ai/docs/en/zen), [Providers](https://open-code.ai/docs/en/providers).
 
-## Oncelik sirasi
+## Durum (claude-config)
 
-1. **Ollama** calisiyor mu: `ollama --version`
-2. Model cekilmis mi: `ollama list` — yoksa asagidaki gibi cek
-3. **OpenCode** CLI: `opencode --version` — yoksa `npm install -g opencode-ai` (npm paket adi: `opencode-ai`, binary: `opencode`)
+- Sablon: `claude-config/templates/opencode.json` → `install.sh` ilk calistirmada `~/.config/opencode/opencode.json` **yoksa** kopyalar (mevcut dosyayi ezmez).
+- CLI: `npm install -g opencode-ai` veya `./install.sh --opencode`
+- Kimlik bilgisi: Zen icin `/connect` → `opencode` → [opencode.ai/auth](https://opencode.ai/auth) uzerinden API anahtari (OpenCode’un sakladigi yer: `~/.local/share/opencode/auth.json`).
 
-## Hizli baslangic
+## 1) OpenCode Zen — ucretsiz (sinirli sure / kosullu) web modelleri
+
+Zen, OpenCode ekibinin [test ettigi modeller](https://open-code.ai/docs/en/zen) listesi; **ucretsiz** olanlara ornekler (fiyatlandirma tablosuna gore; promosyonlar degisebilir):
+
+| Model ID (Zen) | Not |
+|----------------|-----|
+| `opencode/gpt-5-nano` | Ucretsiz (tablo) |
+| `opencode/minimax-m2.1-free` | Ucretsiz, sinirli sure |
+| `opencode/glm-4.7-free` | Ucretsiz, sinirli sure |
+| `opencode/kimi-k2.5-free` | Ucretsiz, sinirli sure |
+| `opencode/big-pickle` | Ucretsiz, sinirli sure |
+
+**Uyari:** Ucretsiz Zen modellerinin bir kisminda gizlilik notu: gelistirme icin veri toplanabilir. Tam liste ve guncel fiyat: [Zen — Pricing & Privacy](https://open-code.ai/docs/en/zen).
+
+### Akis
+
+1. `opencode` ac
+2. `/connect` → **opencode** sec → [opencode.ai/auth](https://opencode.ai/auth) ile anahtar yapistir
+3. `/models` ile model sec (ornek: `opencode/gpt-5-nano`)
+
+Varsayilan sablon `model` / `small_model`: `opencode/gpt-5-nano`. Anahtar yoksa once `/connect` yap veya `/models` ile `ollama/...` sec.
+
+## 2) Ollama — tamamen lokal, API anahtari yok
 
 ```bash
-# 1) Ollama: https://ollama.com — sonra ornek model
 ollama pull qwen2.5-coder:7b
-
-# 2) Proje dizininde ac
-cd ~/Projects/SeninProje
-opencode
+cd ~/Projects/SeninProje && opencode
 ```
 
-TUI icinde model degistirmek: `/models`
+TUI: `/models` → `ollama/qwen2.5-coder:7b`
 
-## Yapilandirma
+## Yapilandirma dosyalari
 
-- Global dosya: `~/.config/opencode/opencode.json` (install.sh ilk kurulumda sablon kopyalar; yoksa manuel kopyala: `claude-config/templates/opencode-ollama.json`)
-- Sadece lokal kullanmak icin `enabled_providers: ["ollama"]` kullanilir; boylesce Anthropic/OpenAI anahtarlari otomatik yuklenmez.
+- Global: `~/.config/opencode/opencode.json`
+- Kaynak sablon: `~/Projects/claude-config/templates/opencode.json`
+- `enabled_providers`: `["opencode","ollama"]` — sadece lokal istiyorsan `["ollama"]` yap
 
-## Baska Ollama modeli secmek
+## claude-config senkron
 
-1. `ollama pull <model>` (ornek: `deepseek-coder-v2:16b`, `codellama`)
-2. `~/.config/opencode/opencode.json` icinde:
-   - `provider.ollama.models` altina yeni anahtar ekle
-   - `model` ve `small_model` degerini `ollama/<ollama-model-adi>` yap
+```bash
+cd ~/Projects/claude-config && ./install.sh
+```
 
-Arac cagrilarinda sorun yasarsan Ollama’daki baglami artir (OpenCode dokumanlari: `num_ctx` ~ 16k–32k).
-
-## claude-config ile senkron
-
-Repoda degisiklik yaptiysan: `cd ~/Projects/claude-config && ./install.sh`
-
-Opsiyonel CLI kurulumu ile: `./install.sh --opencode`
-
-## Not
-
-Ucretsiz bulut API’leri (ornekle sinirli tier’ler) OpenCode’da ayri provider ile mumkun; bu sablon yalnizca **tamamen lokal / ucretsiz** Ollama yolunu sabitler.
+Opsiyonel CLI: `./install.sh --opencode`

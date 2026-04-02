@@ -8,7 +8,7 @@ Tasinabilir Claude Code konfigurasyonu. Clone + `install.sh` ile herhangi bir Ma
 - Proje kok dizinine (`~/Projects/` vb.) ortak kurallar, migration sistemi ve script'leri yazar
 - Yeni projelerde `claude` acinca otomatik setup wizard tetiklenir
 - Hardcoded path yok — her sey `install.sh` ile hedef PC'ye uyarlanir
-- OpenCode (Claude’dan bagimsiz terminal asistani): Ollama ile ucretsiz lokal modeller — ilk `install.sh` calistirmasinda `~/.config/opencode/opencode.json` sablonu (dosya yoksa)
+- OpenCode ([opencode.ai](https://opencode.ai/)): [Zen](https://open-code.ai/docs/en/zen) web modelleri + yerel Ollama — ilk `install.sh`’ta `~/.config/opencode/opencode.json` sablonu yoksa kopyalanir (`templates/opencode.json`)
 
 ## Kurulum
 
@@ -178,6 +178,6 @@ claude
 | `/project-analysis` | 12 kategori derin audit |
 | `/sprint-plan` | Sprint planlama + Jira task |
 | `/agent-browser` | Tarayici ajani |
-| `/opencode` | OpenCode + Ollama — Claude kotasi bitince lokal ucretsiz model |
+| `/opencode` | OpenCode: Zen (opencode.ai/auth + `/connect`) veya Ollama (lokal) |
 
-OpenCode kullanimi: [Ollama](https://ollama.com) kur, `ollama pull qwen2.5-coder:7b`, proje dizininde `opencode`. Ayrinti: `/opencode` skill.
+OpenCode: `/opencode` skill; Zen ucretsiz modeller ve Ollama icin adimlar orada. Resmi: [opencode.ai](https://opencode.ai/), [Zen docs](https://open-code.ai/docs/en/zen).

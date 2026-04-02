@@ -343,13 +343,13 @@ echo ""
 echo "=== OpenCode (Ollama / ucretsiz lokal) ==="
 OPENCODE_DIR="$HOME/.config/opencode"
 mkdir -p "$OPENCODE_DIR"
-if [ ! -f "$OPENCODE_DIR/opencode.json" ] && [ -f "$SCRIPT_DIR/templates/opencode-ollama.json" ]; then
-  cp "$SCRIPT_DIR/templates/opencode-ollama.json" "$OPENCODE_DIR/opencode.json"
+if [ ! -f "$OPENCODE_DIR/opencode.json" ] && [ -f "$SCRIPT_DIR/templates/opencode.json" ]; then
+  cp "$SCRIPT_DIR/templates/opencode.json" "$OPENCODE_DIR/opencode.json"
   echo "  ✅ opencode.json olusturuldu: $OPENCODE_DIR/opencode.json"
 elif [ -f "$OPENCODE_DIR/opencode.json" ]; then
   echo "  ⏭️  opencode.json zaten var — degistirilmedi (elle veya sablonla karsilastir)"
 else
-  echo "  ⚠️  Sablon bulunamadi: $SCRIPT_DIR/templates/opencode-ollama.json"
+  echo "  ⚠️  Sablon bulunamadi: $SCRIPT_DIR/templates/opencode.json"
 fi
 if [ "$WITH_OPENCODE" -eq 1 ]; then
   if command -v npm &>/dev/null; then
