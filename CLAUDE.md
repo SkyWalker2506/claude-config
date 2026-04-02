@@ -32,6 +32,17 @@
 | Sonnet 4.6 | Orta | Kod, orta karmasiklik |
 | Opus 4.6 | En yuksek | Mimari, buyuk feature, zor debug |
 
+**Haftalik kota yonetimi** (reset gunu: /usage'dan oku):
+
+| Kalan / gun | Mod | Kural |
+|-------------|-----|-------|
+| ≥10% | Normal | Opus mimari/karar, Sonnet kod, Haiku trivial |
+| 5-10% | Tasarruf | Opus yalniz kritik karar; geri kalan Sonnet |
+| <5% | Kritik | Opus yok — Sonnet + Haiku; Opus sadece geri alinamaz karar |
+| %0 all models | Sonnet-only | Sadece Sonnet bucket; Haiku denemeden kullanma (ayni bucket olabilir) |
+
+Hesaplama: `(kalan all-models %) / (reset'e kalan gun)` — ortukte uyar, mod degistir.
+
 **Token koruma:**
 - Iki paralel Opus session acma
 - Sub-agent: prompt basinda `(Model Adi)`, limit belirt, max 2-3 paralel

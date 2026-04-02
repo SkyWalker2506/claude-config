@@ -213,7 +213,19 @@ if [ -d "$CONFIG_REPO/.git" ]; then
     if [ -n "$LOCAL_SHA" ] && [ -n "$REMOTE_SHA" ] && [ "$LOCAL_SHA" != "$REMOTE_SHA" ]; then
       BEHIND=$(git -C "$CONFIG_REPO" rev-list --count HEAD..@{u} 2>/dev/null || echo 0)
       if [ "$BEHIND" -gt 0 ]; then
-        echo "🔄 CONFIG_UPDATE: claude-config reposunda $BEHIND yeni commit var. Cekmek ister misin?"
+        # Auto-pull + auto-install (uncommitted değişiklik yoksa)
+        DIRTY=$(git -C "$CONFIG_REPO" status --porcelain 2>/dev/null | head -1)
+        if [ -z "$DIRTY" ]; then
+          git -C "$CONFIG_REPO" pull --ff-only --quiet 2>/dev/null
+          if [ $? -eq 0 ]; then
+            bash "$CONFIG_REPO/install.sh" --auto 2>/dev/null
+            echo "✅ CONFIG_SYNCED: $BEHIND commit cekildi + install.sh otomatik calisti"
+          else
+            echo "🔄 CONFIG_UPDATE: auto-pull basarisiz — elle cek: cd $CONFIG_REPO && git pull && ./install.sh"
+          fi
+        else
+          echo "🔄 CONFIG_UPDATE: $BEHIND yeni commit var ama lokal degisiklik mevcut — elle cek: cd $CONFIG_REPO && git pull && ./install.sh"
+        fi
       fi
     fi
   fi
