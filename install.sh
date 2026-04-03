@@ -169,6 +169,13 @@ echo "=== Secrets ==="
 IS_OWNER=0
 [ "$CURRENT_USER" = "$OWNER_GITHUB" ] && IS_OWNER=1
 
+# secrets yolu icin ~/.claude mutlaka olsun; kirik symlink (silinen/tasinan hedef) clone'i kirar
+mkdir -p "$(dirname "$SECRETS_DIR")"
+if [ -L "$SECRETS_DIR" ] && [ ! -e "$SECRETS_DIR" ]; then
+  echo "⚠️  Kirilan secrets symlink kaldiriliyor (hedef yok): $SECRETS_DIR"
+  rm -f "$SECRETS_DIR"
+fi
+
 if [ "$SKIP_SECRETS" -eq 1 ]; then
   echo "Secrets atlandi (--skip-secrets)"
   mkdir -p "$SECRETS_DIR"
@@ -183,18 +190,18 @@ elif [ -f "$SECRETS_DIR/secrets.env" ]; then
 elif [ -n "$SECRETS_REPO_URL" ]; then
   # --secrets-repo argumani verilmis → direkt clone
   echo "Secrets clone ediliyor..."
-  git clone --quiet "$SECRETS_REPO_URL" "$SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || { echo "❌ Clone basarisiz."; mkdir -p "$SECRETS_DIR"; }
+  git clone --quiet "$SECRETS_REPO_URL" "$SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || { echo "❌ Clone basarisiz. (gh auth, repo erisimi, veya ~/.claude/secrets kirik symlink)"; mkdir -p "$SECRETS_DIR" 2>/dev/null || true; }
 
 elif [ -n "$CURRENT_USER" ] && [ "$IS_OWNER" -eq 1 ]; then
   # Sahip → otomatik clone (sormadan)
   echo "Private secrets clone ediliyor..."
-  git clone --quiet "$OWNER_SECRETS_REPO" "$SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || { echo "❌ Clone basarisiz."; mkdir -p "$SECRETS_DIR"; }
+  git clone --quiet "$OWNER_SECRETS_REPO" "$SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || { echo "❌ Clone basarisiz. (gh auth, repo erisimi, veya ~/.claude/secrets kirik symlink)"; mkdir -p "$SECRETS_DIR" 2>/dev/null || true; }
 
 elif [ -n "$CURRENT_USER" ] && [ "$AUTO" -eq 0 ]; then
   if confirm "Secrets reposunu indirmek ister misin?"; then
     ask "Private secrets repo URL'niz" "" SECRETS_REPO
     if [ -n "$SECRETS_REPO" ]; then
-      git clone --quiet "$SECRETS_REPO" "$SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || { echo "❌ Clone basarisiz."; mkdir -p "$SECRETS_DIR"; }
+      git clone --quiet "$SECRETS_REPO" "$SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || { echo "❌ Clone basarisiz. (gh auth, repo erisimi, veya ~/.claude/secrets kirik symlink)"; mkdir -p "$SECRETS_DIR" 2>/dev/null || true; }
     else
       mkdir -p "$SECRETS_DIR"
     fi
