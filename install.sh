@@ -302,24 +302,62 @@ else
   NPX_CMD="npx"
 fi
 
+# Claude Code CLI: login olmayan PATH (brew, nvm, npm global) — yoksa "claude mcp add" sessizce duser
+if [ "$OS" != "windows" ]; then
+  export PATH="$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
+  if [ -s "$HOME/.nvm/nvm.sh" ]; then
+    # shellcheck disable=SC1090
+    . "$HOME/.nvm/nvm.sh" 2>/dev/null || true
+  fi
+  if command -v npm &>/dev/null; then
+    _npmg="$(npm prefix -g 2>/dev/null)/bin"
+    [ -d "$_npmg" ] && case ":$PATH:" in *":${_npmg}:"*) ;; *) export PATH="${_npmg}:$PATH" ;; esac
+  fi
+fi
+
+# claude mcp add siklikla exit 1 + "already exists" — yine de basari
+mcp_register() {
+  local label="$1"; shift
+  local out
+  out="$("$@" 2>&1)" && { echo "  ✅ $label"; return 0; }
+  if echo "$out" | grep -qi 'already exists'; then
+    echo "  ✅ $label (zaten kayitli)"
+    return 0
+  fi
+  echo "  ⚠️ $label eklenemedi"
+  return 1
+}
+
 # Core MCPs — always installed
-claude mcp add -s user github -e "GITHUB_PERSONAL_ACCESS_TOKEN=$GITHUB_TOKEN_VAL" -- $NPX_CMD -y @modelcontextprotocol/server-github 2>/dev/null && echo "  ✅ github" || echo "  ⚠️ github eklenemedi"
-claude mcp add -s user git -- "$UVX_PATH" mcp-server-git 2>/dev/null && echo "  ✅ git" || echo "  ⚠️ git eklenemedi"
-claude mcp add -s user atlassian -- $NPX_CMD -y mcp-remote@latest https://mcp.atlassian.com/v1/mcp 2>/dev/null && echo "  ✅ atlassian" || echo "  ⚠️ atlassian eklenemedi"
-claude mcp add -s user context7 -- $NPX_CMD -y @upstash/context7-mcp 2>/dev/null && echo "  ✅ context7" || echo "  ⚠️ context7 eklenemedi"
-claude mcp add -s user jcodemunch -- "$UVX_PATH" jcodemunch-mcp 2>/dev/null && echo "  ✅ jcodemunch" || echo "  ⚠️ jcodemunch eklenemedi"
-claude mcp add -s user fetch -- $NPX_CMD -y mcp-fetch-server 2>/dev/null && echo "  ✅ fetch" || echo "  ⚠️ fetch eklenemedi"
+if ! command -v claude &>/dev/null; then
+  echo "  ⚠️  claude CLI bulunamadi — MCP kaydi atlandi (PATH / npm i -g @anthropic-ai/claude-code)"
+else
+  mcp_register github claude mcp add -s user github -e "GITHUB_PERSONAL_ACCESS_TOKEN=$GITHUB_TOKEN_VAL" -- $NPX_CMD -y @modelcontextprotocol/server-github
+  mcp_register git claude mcp add -s user git -- "$UVX_PATH" mcp-server-git
+  mcp_register atlassian claude mcp add -s user atlassian -- $NPX_CMD -y mcp-remote@latest https://mcp.atlassian.com/v1/mcp
+  mcp_register context7 claude mcp add -s user context7 -- $NPX_CMD -y @upstash/context7-mcp
+  mcp_register jcodemunch claude mcp add -s user jcodemunch -- "$UVX_PATH" jcodemunch-mcp
+  mcp_register fetch claude mcp add -s user fetch -- $NPX_CMD -y mcp-fetch-server
+fi
 
 # Stack-specific MCPs
 if has_stack flutter; then
-  claude mcp add -s user flutter-dev -- $NPX_CMD -y flutter-dev-mcp 2>/dev/null && echo "  ✅ flutter-dev" || echo "  ⚠️ flutter-dev eklenemedi"
+  if command -v claude &>/dev/null; then
+    mcp_register flutter-dev claude mcp add -s user flutter-dev -- $NPX_CMD -y flutter-dev-mcp
+  else
+    echo "  ⏭️  flutter-dev — claude yok"
+  fi
 else
   echo "  ⏭️  flutter-dev atlandi (stacks: $STACKS)"
 fi
 
 if has_stack firebase || has_stack flutter; then
   if [ -n "$FIREBASE_SA_VAL" ]; then
-    claude mcp add -s user firebase -e "SERVICE_ACCOUNT_KEY_PATH=$FIREBASE_SA_VAL" -- $NPX_CMD -y @gannonh/firebase-mcp 2>/dev/null && echo "  ✅ firebase" || echo "  ⚠️ firebase eklenemedi"
+    if command -v claude &>/dev/null; then
+      mcp_register firebase claude mcp add -s user firebase -e "SERVICE_ACCOUNT_KEY_PATH=$FIREBASE_SA_VAL" -- $NPX_CMD -y @gannonh/firebase-mcp
+    else
+      echo "  ⏭️  firebase — claude yok"
+    fi
   else
     echo "  ⏭️  firebase atlandi (FIREBASE_SERVICE_ACCOUNT_PATH ayarli degil)"
   fi
@@ -475,16 +513,21 @@ else
   echo "✅ fzf mevcut"
 fi
 
-# Add cl() function to shell RC if not present
-CL_MARKER="Claude Project Picker"
-if [ -f "$SHELL_RC" ] && grep -q "$CL_MARKER" "$SHELL_RC" 2>/dev/null; then
-  # Remove old version, will re-add updated
-  sed -i.bak "/$CL_MARKER/,/^}/d" "$SHELL_RC" 2>/dev/null || true
+# Shell helpers: cl + OpenCode shortcuts (full block replaced each install)
+SHELL_HELP_BEGIN="# __CLAUDE_CONFIG_SHELL_BLOCK_START__"
+SHELL_HELP_END="# __CLAUDE_CONFIG_SHELL_BLOCK_END__"
+touch "$SHELL_RC"
+# Legacy: only first function was removed on upgrade → stale claude-free/local possible; strip old marker block
+if grep -q "Claude Project Picker" "$SHELL_RC" 2>/dev/null; then
+  sed -i.bak '/# Claude Project Picker/,/^}/d' "$SHELL_RC" 2>/dev/null || true
 fi
-if [ -f "$SHELL_RC" ] && ! grep -q "$CL_MARKER" "$SHELL_RC" 2>/dev/null; then
-  cat >> "$SHELL_RC" << 'CLEOF'
+if grep -q "$SHELL_HELP_BEGIN" "$SHELL_RC" 2>/dev/null; then
+  sed -i.bak "/$SHELL_HELP_BEGIN/,/$SHELL_HELP_END/d" "$SHELL_RC" 2>/dev/null || true
+fi
+cat >> "$SHELL_RC" << 'CLEOF'
 
-# Claude Project Picker — cl komutu
+# __CLAUDE_CONFIG_SHELL_BLOCK_START__
+# cl: Claude Code proje secici | claude-free: OpenCode Zen (gpt-5-nano) | claude-local: Ollama
 function cl() {
   local projects_dir="$HOME/Projects"
   local selected
@@ -519,11 +562,27 @@ function cl() {
   local dir=$(echo "$selected" | sed 's/ *\[.*$//' | sed 's/ *$//')
   cd "$projects_dir/$dir" && claude
 }
+
+claude-free() {
+  if ! command -v opencode &>/dev/null; then
+    echo "opencode bulunamadi. Kur: npm install -g opencode-ai veya ~/Projects/claude-config/./install.sh --opencode"
+    return 1
+  fi
+  (( $# )) || set -- .
+  opencode -m opencode/gpt-5-nano "$@"
+}
+
+claude-local() {
+  if ! command -v opencode &>/dev/null; then
+    echo "opencode bulunamadi. Kur: npm install -g opencode-ai veya ~/Projects/claude-config/./install.sh --opencode"
+    return 1
+  fi
+  (( $# )) || set -- .
+  opencode -m ollama/qwen2.5-coder:7b "$@"
+}
+# __CLAUDE_CONFIG_SHELL_BLOCK_END__
 CLEOF
-  echo "✅ cl() fonksiyonu $SHELL_RC'ye eklendi"
-else
-  echo "✅ cl() fonksiyonu mevcut"
-fi
+echo "✅ Shell: cl, claude-free, claude-local → $SHELL_RC"
 
 # ── 9. Done ──
 echo ""
@@ -535,4 +594,7 @@ fi
 echo ""
 echo "Kullanim:"
 echo "  cd $PROJECTS_ROOT/HerhangiBirProje && claude"
+echo "  claude-free   # OpenCode TUI, Zen opencode/gpt-5-nano (/\`/connect ile anahtar)"
+echo "  claude-local  # OpenCode TUI, Ollama qwen2.5-coder:7b (once: ollama pull ...)"
+echo "  (Yeni shell veya: source $SHELL_RC)"
 [ -n "${BACKUP:-}" ] && echo "Yedek: $BACKUP"

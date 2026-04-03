@@ -85,6 +85,15 @@ TUI: `/models` → `ollama/qwen2.5-coder:7b`
 - Kaynak sablon: `~/Projects/claude-config/templates/opencode.json`
 - `enabled_providers`: `["opencode","ollama"]` — sadece lokal istiyorsan `["ollama"]` yap
 
+## Hizli komutlar (install.sh → `~/.zshrc`)
+
+| Komut | Ne acar |
+|-------|---------|
+| `claude-free` | OpenCode TUI, model `opencode/gpt-5-nano` (Zen; TUI icinde /connect ile anahtar) |
+| `claude-local` | OpenCode TUI, model `ollama/qwen2.5-coder:7b` (once `ollama pull qwen2.5-coder:7b`) |
+
+Arguman vermezsen mevcut dizin (`.`) kullanilir ornek: `cd ~/Projects/Foo && claude-local`.
+
 ## claude-config senkron
 
 ```bash
