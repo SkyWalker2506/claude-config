@@ -354,7 +354,7 @@ if [ "$REFRESH_OPENCODE_CONFIG" -eq 1 ] && [ -f "$OPENCODE_TEMPLATE" ]; then
     echo "  📦 Yedek: $OPENCODE_DIR/opencode.json.bak.$TIMESTAMP"
   fi
   cp "$OPENCODE_TEMPLATE" "$OPENCODE_DIR/opencode.json"
-  echo "  ✅ opencode.json sablonla guncellendi (enabled_providers: opencode + ollama)"
+  echo "  ✅ opencode.json sablonla guncellendi (Zen ucretsiz model listesi + Ollama lokal)"
 elif [ ! -f "$OPENCODE_DIR/opencode.json" ] && [ -f "$OPENCODE_TEMPLATE" ]; then
   cp "$OPENCODE_TEMPLATE" "$OPENCODE_DIR/opencode.json"
   echo "  ✅ opencode.json olusturuldu: $OPENCODE_DIR/opencode.json"

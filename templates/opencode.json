@@ -7,6 +7,23 @@
     "opencode": {
       "options": {
         "apiKey": "{env:OPENCODE_ZEN_API_KEY}"
+      },
+      "models": {
+        "gpt-5-nano": {
+          "name": "Zen — GPT-5 Nano (free tier)"
+        },
+        "minimax-m2.1-free": {
+          "name": "Zen — MiniMax M2.1 (free, limited)"
+        },
+        "glm-4.7-free": {
+          "name": "Zen — GLM 4.7 (free, limited)"
+        },
+        "kimi-k2.5-free": {
+          "name": "Zen — Kimi K2.5 (free, limited)"
+        },
+        "big-pickle": {
+          "name": "Zen — Big Pickle (free, limited)"
+        }
       }
     },
     "ollama": {

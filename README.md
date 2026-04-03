@@ -4,11 +4,11 @@ Tasinabilir Claude Code konfigurasyonu. Clone + `install.sh` ile herhangi bir Ma
 
 ## Ne yapar
 
-- `~/.claude/` altina global talimatlar, 18 skill, MCP ayarlari ve hook'lari kurar
+- `~/.claude/` altina global talimatlar, skill'ler, MCP ayarlari ve hook'lari kurar
 - Proje kok dizinine (`~/Projects/` vb.) ortak kurallar, migration sistemi ve script'leri yazar
 - Yeni projelerde `claude` acinca otomatik setup wizard tetiklenir
 - Hardcoded path yok — her sey `install.sh` ile hedef PC'ye uyarlanir
-- OpenCode ([opencode.ai](https://opencode.ai/)): [Zen](https://open-code.ai/docs/en/zen) web modelleri + yerel Ollama — ilk `install.sh`’ta `~/.config/opencode/opencode.json` sablonu yoksa kopyalanir (`templates/opencode.json`)
+- OpenCode ([opencode.ai](https://opencode.ai/)) — Claude Code ile birlikte: **[Zen = ucretsiz/kosullu bulut modelleri](https://open-code.ai/docs/en/zen)** + **[Ollama = tamamen lokal, API anahtari yok](https://opencode.ai/docs/providers/)** — ilk `install.sh`’ta `~/.config/opencode/opencode.json` yoksa sablon kopyalanir (`templates/opencode.json`; Zen ucretsiz model listesi dahil; eski dosyayi sablonla esitlemek icin `./install.sh --refresh-opencode-config`)
 
 ## Kurulum
 
@@ -62,8 +62,8 @@ claude-config/
 │       ├── dashboard-sync/    #   Dashboard Jira sync
 │       ├── project-analysis/  #   12 kategori derin audit
 │       ├── sprint-plan/       #   Sprint planlama
-│       ├── agent-browser/     #   Tarayici ajanı
-│       └── agent-browser/     #   Browser automation
+│       ├── opencode/          #   OpenCode: Zen (ucretsiz) + Ollama (lokal)
+│       └── agent-browser/     #   Tarayici / browser automation
 ├── projects/
 │   ├── CLAUDE.md              # → $PROJECTS_ROOT/CLAUDE.md
 │   ├── MIGRATION_GUIDE.md     # → Setup wizard + changelog
