@@ -9,6 +9,7 @@ capabilities: [multi-agent, orchestration, parallel-dispatch]
 max_tool_calls: 30
 template: autonomous
 related: [A1, A2]
+status: active
 ---
 
 # G1: Agent Coordinator

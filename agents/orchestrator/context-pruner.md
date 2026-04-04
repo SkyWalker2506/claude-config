@@ -9,6 +9,7 @@ capabilities: [summarization, context-management, state-transfer]
 max_tool_calls: 10
 template: autonomous
 related: [A1]
+status: active
 ---
 
 # A5: Context Pruner

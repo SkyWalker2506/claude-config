@@ -9,6 +9,7 @@ capabilities: [quota-tracking, mode-switching, cost-control]
 max_tool_calls: 5
 template: autonomous
 related: [A2, A3]
+status: active
 ---
 
 # A4: Token Budget Manager

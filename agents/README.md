@@ -1,23 +1,23 @@
 # Multi-Agent OS v6 — Agent Definitions
 
 ## Overview
-110 agents across 13 categories. v0.1 launches with 30 active agents; remaining 80 are in pool (activate on demand).
+110 agents across 13 categories. v0.2 has 30 active agents with .md definitions; remaining 80 are in pool (activate on demand).
 
 ## Categories
-| Prefix | Category | Active | Pool |
-|--------|----------|--------|------|
+| Prefix | Category | Active (.md) | Pool |
+|--------|----------|--------------|------|
 | A | Orchestrator & Sistem | 5 | 3 |
 | B | Kod / Backend | 7 | 8 |
 | C | Code Review | 3 | 3 |
 | D | Dizayn / 2D | 0 | 8 |
 | E | 3D / CAD | 0 | 5 |
 | F | Veri & Analiz | 0 | 10 |
-| G | AI Ops / Workflow | 3 | 7 |
-| H | Pazar Arastirmasi | 3 | 9 |
-| I | Jira & Proje Yonetimi | 3 | 7 |
-| J | DevOps & Altyapi | 2 | 6 |
-| K | Arastirma & Ogrenme | 3 | 5 |
-| L | Kisisel Verimlilik | 1 | 5 |
+| G | AI Ops / Workflow | 3 (G1, G3, G7) | 7 |
+| H | Pazar Arastirmasi | 3 (H1, H5, H6) | 9 |
+| I | Jira & Proje Yonetimi | 3 (I1, I2, I4) | 7 |
+| J | DevOps & Altyapi | 2 (J2, J7) | 6 |
+| K | Arastirma & Ogrenme | 3 (K1, K3, K4) | 5 |
+| L | Kisisel Verimlilik | 1 (L1) | 5 |
 | M | Pazarlama Motoru | 0 | 4 |
 
 ## Model Distribution

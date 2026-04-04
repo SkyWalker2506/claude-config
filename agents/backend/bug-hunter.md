@@ -9,6 +9,7 @@ capabilities: [debugging, root-cause-analysis, error-tracing, log-analysis]
 max_tool_calls: 30
 template: autonomous
 related: [B2, B13, C3]
+status: active
 ---
 
 # B7: Bug Hunter

@@ -10,6 +10,7 @@ languages: [dart]
 max_tool_calls: 30
 template: autonomous
 related: [B2, B3, J6]
+status: active
 ---
 
 # B15: Mobile Dev Agent

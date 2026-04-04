@@ -10,6 +10,7 @@ max_tool_calls: 3
 template: code-review
 layer: L1
 related: [C2, C3]
+status: active
 ---
 
 # C1: Lint & Format Hook

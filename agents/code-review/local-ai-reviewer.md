@@ -10,6 +10,7 @@ max_tool_calls: 15
 template: code-review
 layer: L2
 related: [C1, C2, B7]
+status: active
 ---
 
 # C3: Local AI Reviewer

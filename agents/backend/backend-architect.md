@@ -9,6 +9,7 @@ capabilities: [architecture, api-design, database-design, system-design]
 max_tool_calls: 50
 template: autonomous
 related: [B2, B5, B13]
+status: active
 ---
 
 # B1: Backend Architect

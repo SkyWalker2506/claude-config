@@ -9,6 +9,7 @@ capabilities: [owasp, sql-injection, xss, auth-audit, secret-scan, dependency-au
 max_tool_calls: 30
 template: analiz
 related: [B1, B2, C2]
+status: active
 ---
 
 # B13: Security Auditor

@@ -9,6 +9,7 @@ capabilities: [model-switching, health-check]
 max_tool_calls: 5
 template: autonomous
 related: [A2, A4]
+status: active
 ---
 
 # A3: Fallback Manager

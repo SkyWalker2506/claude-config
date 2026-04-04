@@ -9,6 +9,7 @@ capabilities: [planning, dispatch, coordination, escalation]
 max_tool_calls: 50
 template: autonomous
 related: [A2, A5, G1]
+status: active
 ---
 
 # A1: Lead Orchestrator

@@ -10,6 +10,7 @@ languages: [typescript, dart, css]
 max_tool_calls: 30
 template: autonomous
 related: [B2, B15, D2]
+status: active
 ---
 
 # B3: Frontend Coder

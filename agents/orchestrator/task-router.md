@@ -11,6 +11,7 @@ template: analiz
 related: [A1, A4]
 escalate_to: opus
 escalate_when: multi_category >= 4 OR confidence < 0.6
+status: active
 ---
 
 # A2: Task Router

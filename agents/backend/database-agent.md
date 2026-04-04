@@ -9,6 +9,7 @@ capabilities: [sql, nosql, migration, query-optimization, schema-design]
 max_tool_calls: 25
 template: autonomous
 related: [B1, B2]
+status: active
 ---
 
 # B5: Database Agent

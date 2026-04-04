@@ -10,6 +10,7 @@ max_tool_calls: 3
 template: code-review
 layer: L1
 related: [C1, B13]
+status: active
 ---
 
 # C2: Security Scanner Hook
