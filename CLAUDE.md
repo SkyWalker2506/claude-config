@@ -165,7 +165,18 @@ PLAN:
 2. [adim 2]
 3. [adim 3]
 Tahmin: quick | medium | long
+Model: Haiku/Sonnet/Opus | Effort: low/medium/high
 ```
+
+**Otomatik model/effort onerisi:** Her planda gorev tipine gore model ve effort oner. Kullanici gecmezse hatırlat.
+
+| Gorev tipi | Model | Effort |
+|-----------|-------|--------|
+| Sohbet, karar, README, config | Haiku/Sonnet | low |
+| Kod yazma, bug fix, refactor | Sonnet | medium |
+| Mimari, buyuk feature, karmasik debug | Opus | high |
+| GitHub API, topic/description, polish | Sonnet | low |
+| Plan tartismasi, strateji | Sonnet | medium |
 
 | Seviye | Tool call | Sure | Effort |
 |--------|-----------|------|--------|
