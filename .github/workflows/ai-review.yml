@@ -38,7 +38,7 @@ jobs:
           import json, sys
           prompt = sys.stdin.read()
           print(json.dumps({
-            'model': 'qwen/qwen3-coder:free',
+            'model': 'meta-llama/llama-3.3-70b-instruct:free',
             'messages': [{'role': 'user', 'content': prompt}],
             'max_tokens': 2000
           }))
