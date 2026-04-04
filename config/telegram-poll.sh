@@ -31,6 +31,19 @@ send_msg() {
 }
 
 echo "$(date): Telegram polling başladı → proje: $PROJECT_DIR" | tee -a "$LOG_FILE"
+
+# Başlangıçta bekleyen tüm eski mesajları atla
+LATEST=$(curl -s "$API/getUpdates?offset=-1" | python3 -c "
+import json, sys
+data = json.load(sys.stdin)
+results = data.get('result', [])
+if results:
+    print(results[-1]['update_id'] + 1)
+else:
+    print(0)
+" 2>/dev/null)
+[ -n "$LATEST" ] && [ "$LATEST" -gt "$OFFSET" ] && OFFSET="$LATEST" && echo "$OFFSET" > "$OFFSET_FILE"
+
 send_msg "🟢 *Claude Code bağlandı*
 Proje: \`$(basename "$PROJECT_DIR")\`
 Mesaj at, çalıştırayım."
@@ -51,9 +64,9 @@ for u in data.get('result', []):
 
   while IFS= read -r line; do
     [ -z "$line" ] && continue
-    UPDATE_ID=$(echo "$line" | cut -d'|||' -f1)
-    CHAT_ID=$(echo "$line" | cut -d'|||' -f2)
-    TEXT=$(echo "$line" | cut -d'|||' -f3)
+    UPDATE_ID=$(echo "$line" | python3 -c "import sys; p=sys.stdin.read().strip().split('|||'); print(p[0] if p else '')")
+    CHAT_ID=$(echo "$line"   | python3 -c "import sys; p=sys.stdin.read().strip().split('|||'); print(p[1] if len(p)>1 else '')")
+    TEXT=$(echo "$line"      | python3 -c "import sys; p=sys.stdin.read().strip().split('|||'); print('|||'.join(p[2:]) if len(p)>2 else '')")
 
     # Sadece yetkili chat ID'den gelen mesajları işle
     if [ "$CHAT_ID" != "$TELEGRAM_CHAT_ID" ]; then
@@ -85,7 +98,7 @@ for u in data.get('result', []):
     # Claude'a gönder
     send_msg "⚙️ Çalışıyor: _${TEXT}_"
 
-    RESULT=$(cd "$PROJECT_DIR" && claude -p "$TEXT" --output-format text 2>&1 | tail -50)
+    RESULT=$(cd "$PROJECT_DIR" && timeout 120 claude -p "$TEXT" --output-format text 2>&1 | tail -50)
 
     # Sonucu Telegram'a gönder (max 4000 karakter)
     if [ ${#RESULT} -gt 4000 ]; then
