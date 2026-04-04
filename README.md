@@ -1,6 +1,6 @@
 # claude-config
 
-**Multi-Agent OS for Claude Code** — 110 agents, 14 plugins, local-first routing, Telegram bridge, plugin marketplace.
+**Multi-Agent OS for Claude Code** — 134 agents, 14 plugins, local-first routing, Telegram bridge, plugin marketplace.
 
 by [Musab Kara](https://linkedin.com/in/musab-kara-85580612a) · [GitHub](https://github.com/SkyWalker2506)
 
@@ -10,7 +10,7 @@ by [Musab Kara](https://linkedin.com/in/musab-kara-85580612a) · [GitHub](https:
 
 A portable, self-installing configuration system that turns Claude Code into a multi-agent operating system. Clone → `./install.sh` → done.
 
-- **110 AI agents** across 13 categories (30 active, 80 pool — activate on demand)
+- **134 AI agents** across 15 categories (30 active, 80 pool — activate on demand)
 - **14 custom plugins** published on our own [marketplace](https://github.com/SkyWalker2506/claude-marketplace)
 - **8 MCP servers** integrated (GitHub, Atlassian/Jira, Firebase, Flutter, jCodeMunch, Git, Fetch, Context7)
 - **31 slash commands** (/yolo, /team-build, /jira-run, /audit, /web-research, /sprint-plan, and more)
@@ -39,7 +39,7 @@ The installer sets up everything: CLAUDE.md hierarchy, skills, MCP servers, hook
 ┌─────────────────────────────────────────────────┐
 │              Routing & Budget                    │
 │   Task Router → Token Budget → Fallback Manager  │
-│              Agent Registry (110)                │
+│              Agent Registry (134)                │
 └──────────────────────┬──────────────────────────┘
                        ▼
 ┌───────────┬──────────┬──────────┬───────────────┐
@@ -81,7 +81,7 @@ Then browse with `/plugin > Discover` or install directly:
 
 ## Agent System
 
-110 agents across 13 categories. Each agent has a `.md` file with model assignment, capabilities, and fallback chain.
+134 agents across 15 categories. Each agent has a `.md` file with model assignment, capabilities, and fallback chain.
 
 | Category | Agents | Examples |
 |----------|--------|---------|
@@ -93,7 +93,7 @@ Then browse with `/plugin > Discover` or install directly:
 | Research | K1–K8 | Web Researcher, Doc Fetcher, Trend Analyzer |
 | Market Research | H1–H12 | Competitor Analyst, SEO, GEO |
 | DevOps | J1–J8 | Cloud Deploy, Incident Responder |
-| And more... | D, E, F, L, M | Design, 3D/CAD, Data, Productivity, Marketing |
+| And more... | D, E, F, L, M, N, O | Design, 3D/CAD, Data, Productivity, Marketing, Prompt Eng, Sales |
 
 ## Telegram Bot
 
@@ -145,11 +145,11 @@ claude-config/
 │   ├── CLAUDE.md           # → ~/.claude/CLAUDE.md
 │   ├── settings.json.template  # MCP servers, hooks, permissions
 │   └── skills/             # 31 slash commands
-├── agents/                 # 110 agent definitions
+├── agents/                 # 134 agent definitions
 │   ├── orchestrator/       # A1–A8
 │   ├── backend/            # B1–B15
 │   ├── code-review/        # C1–C6
-│   └── ...                 # 13 categories
+│   └── ...                 # 15 categories
 ├── config/
 │   ├── agent-registry.json # Agent → model mapping
 │   ├── fallback-chains.json
@@ -182,6 +182,7 @@ cd ~/Projects/claude-config
 ## Related
 
 - [Plugin Marketplace](https://github.com/SkyWalker2506/claude-marketplace) — 14 plugins for Claude Code, browse & install
+- [Agent Catalog](https://github.com/SkyWalker2506/claude-agent-catalog) — 134 agents across 15 categories
 - [OpenCode](https://opencode.ai/) — Free/local models via Zen + Ollama
 
 ## Author
