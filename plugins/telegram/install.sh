@@ -12,15 +12,35 @@ done
 
 # Add aliases to zshrc if not present
 ZSHRC="$HOME/.zshrc"
-if ! grep -q "tgbot-start" "$ZSHRC" 2>/dev/null; then
-  cat >> "$ZSHRC" << 'EOF'
+if grep -q "tgbot-start" "$ZSHRC" 2>/dev/null; then
+  # Eski alias'ı güncelle
+  sed -i '' '/alias tgbot-start=/d' "$ZSHRC"
+  sed -i '' '/alias tgbot-stop=/d' "$ZSHRC"
+  sed -i '' '/alias tgbot-status=/d' "$ZSHRC"
+  sed -i '' '/alias tgbot-tmux=/d' "$ZSHRC"
+fi
+cat >> "$ZSHRC" << 'EOF'
 
 # Telegram bot (ccplugin-telegram)
+# tgbot-tmux: Claude'u tmux'ta aç + botu başlat — Telegram mesajları direkt terminale gelir
+tgbot-tmux() {
+  local proj="${1:-${PWD}}"
+  local sess="claude-tg"
+  tmux has-session -t "$sess" 2>/dev/null || \
+    tmux new-session -s "$sess" -d -c "$proj" "claude"
+  export CLAUDE_TMUX_SESSION="$sess"
+  mkdir -p ~/.watchdog
+  CLAUDE_TMUX_SESSION="$sess" \
+    nohup bash ~/.claude/config/telegram-poll.sh "$proj" \
+    > ~/.watchdog/telegram.log 2>&1 &
+  echo "Bot başladı — Claude tmux oturumu: $sess"
+  echo "Terminale bağlan: tmux attach -t $sess"
+}
+# tgbot-start: klasik mod (claude -p --continue, tmux yok)
 alias tgbot-start='nohup bash ~/.claude/config/telegram-poll.sh ${PWD} > ~/.watchdog/telegram.log 2>&1 & echo "Bot başladı (PID: $!)"'
 alias tgbot-stop='pkill -f telegram-poll.sh && echo "Bot durduruldu"'
 alias tgbot-status='ps aux | grep telegram-poll | grep -v grep; tail -3 ~/.watchdog/telegram.log'
 EOF
-fi
 
 # Validate token
 source "$HOME/Projects/claude-config/claude-secrets/secrets.env" 2>/dev/null || source "$HOME/.claude/secrets/secrets.env" 2>/dev/null

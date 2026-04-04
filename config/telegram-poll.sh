@@ -57,8 +57,45 @@ run_claude() {
   local task="$1"
   local out="$WORKDIR/out.txt"
   typing
+
+  # TMUX modu: CLAUDE_TMUX_SESSION set ise mesajı direkt o terminale inject et
+  if [ -n "$CLAUDE_TMUX_SESSION" ] && tmux has-session -t "$CLAUDE_TMUX_SESSION" 2>/dev/null; then
+    # Önceki pane içeriğini kaydet (baseline)
+    local before
+    before=$(tmux capture-pane -t "$CLAUDE_TMUX_SESSION" -p 2>/dev/null | tail -5)
+    # Mesajı tmux pane'e yaz — Claude'a direkt gidiyor
+    tmux send-keys -t "$CLAUDE_TMUX_SESSION" "$task" Enter
+    send "📨 _İletildi → Claude terminal oturumu_"
+    # Yanıt bekleme: 60s boyunca çıktıyı izle, değişince oku
+    local waited=0
+    while [ $waited -lt 60 ]; do
+      sleep 2; waited=$((waited+2))
+      local current
+      current=$(tmux capture-pane -t "$CLAUDE_TMUX_SESSION" -p 2>/dev/null | tail -5)
+      [ "$current" != "$before" ] && before="$current"
+      # Claude yanıtı tamamladı mı? prompt işareti var mı?
+      if tmux capture-pane -t "$CLAUDE_TMUX_SESSION" -p 2>/dev/null | grep -q "^>"; then
+        break
+      fi
+    done
+    # Son çıktıyı yakala
+    local result
+    result=$(tmux capture-pane -t "$CLAUDE_TMUX_SESSION" -p -S -200 2>/dev/null \
+      | sed '/^$/d' | tail -80)
+    if [ ${#result} -gt 3500 ]; then
+      echo "$result" > "$out"
+      send_file "$out" "Çıktı"
+    else
+      send "💬
+\`\`\`
+${result}
+\`\`\`" "$MAIN_KB"
+    fi
+    return
+  fi
+
+  # Normal mod: claude -p --continue (yeni process, aynı session context)
   send "⚙️ _Çalışıyor..._"
-  # --continue: mevcut session'ı devam ettirir (proje dizinine göre)
   (cd "$PROJECT_DIR" && timeout 300 claude -p "$task" --continue --output-format text 2>&1) > "$out"
   local result; result=$(cat "$out")
   if [ ${#result} -gt 3500 ]; then
