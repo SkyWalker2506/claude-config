@@ -14,8 +14,8 @@
       "default": "sonnet",
       "on_error": "local-qwen-9b",
       "on_timeout_5s": "local-qwen-9b",
-      "on_rate_limit": "local-gemma-9b",
-      "on_low_quality": "sonnet",
+      "on_rate_limit": "nemotron-120b-free",
+      "on_low_quality": "qwen-3.6-plus-free",
       "on_all_fail": "local-qwen-9b"
     },
     "light-work": {
@@ -28,10 +28,10 @@
     },
     "research": {
       "default": "local-qwen-9b",
-      "on_error": "qwen-3.6-free",
+      "on_error": "qwen-3.6-plus-free",
       "on_timeout_5s": "local-gemma-9b",
-      "on_rate_limit": "local-qwen-9b",
-      "on_low_quality": "haiku",
+      "on_rate_limit": "gpt-oss-120b-free",
+      "on_low_quality": "nemotron-120b-free",
       "on_all_fail": "local-qwen-9b"
     },
     "script-cron": {
@@ -68,7 +68,10 @@
     "free-router": { "type": "openrouter", "id": "openrouter/auto", "tier": "free" },
     "local-qwen-9b": { "type": "ollama", "id": "qwen3.5:9b", "tier": "local", "device": "mac" },
     "local-qwen-72b": { "type": "ollama", "id": "qwen3.6:72b", "tier": "local", "device": "desktop" },
-    "local-gemma-9b": { "type": "ollama", "id": "gemma4:9b", "tier": "local", "device": "mac" }
+    "local-gemma-9b": { "type": "ollama", "id": "gemma4:9b", "tier": "local", "device": "mac" },
+    "qwen-3.6-plus-free": { "type": "openrouter", "id": "qwen/qwen3.6-plus:free", "tier": "free" },
+    "nemotron-120b-free": { "type": "openrouter", "id": "nvidia/nemotron-3-super-120b-a12b:free", "tier": "free" },
+    "gpt-oss-120b-free": { "type": "openrouter", "id": "openai/gpt-oss-120b:free", "tier": "free" }
   },
   "on_exhausted": "alert",
   "alert_channels": ["terminal"]

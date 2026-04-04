@@ -52,6 +52,38 @@
       "strength": "high",
       "tool_calling": true,
       "recommended_for": ["coding", "small-tasks"]
+    },
+    {
+      "id": "qwen/qwen3.6-plus:free",
+      "name": "Qwen 3.6 Plus Free",
+      "context": 1000000,
+      "strength": "very-high",
+      "tool_calling": true,
+      "recommended_for": ["coding", "analysis", "long-context"]
+    },
+    {
+      "id": "nvidia/nemotron-3-super-120b-a12b:free",
+      "name": "Nemotron 3 Super 120B",
+      "context": 262000,
+      "strength": "high",
+      "tool_calling": true,
+      "recommended_for": ["coding", "reasoning", "analysis"]
+    },
+    {
+      "id": "openai/gpt-oss-120b:free",
+      "name": "GPT OSS 120B",
+      "context": 131000,
+      "strength": "high",
+      "tool_calling": true,
+      "recommended_for": ["coding", "general", "reasoning"]
+    },
+    {
+      "id": "nousresearch/hermes-3-llama-3.1-405b:free",
+      "name": "Hermes 3 405B",
+      "context": 131000,
+      "strength": "very-high",
+      "tool_calling": true,
+      "recommended_for": ["complex-reasoning", "coding", "analysis"]
     }
   ],
   "rate_limits": {

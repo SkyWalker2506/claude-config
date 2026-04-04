@@ -154,6 +154,20 @@
         "-y",
         "mcp-fetch-server"
       ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ]
+    },
+    "dbhub": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "dbhub@latest"
+      ]
     }
   },
   "model": "opus"
