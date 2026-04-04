@@ -1,0 +1,62 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-04-04",
+  "update_frequency": "weekly",
+  "note": "Free models change frequently. Run daily-check.sh or manually verify at openrouter.ai",
+  "models": [
+    {
+      "id": "qwen/qwen3.6-free",
+      "name": "Qwen 3.6 Free",
+      "context": 1000000,
+      "strength": "high",
+      "tool_calling": true,
+      "recommended_for": ["coding", "analysis", "general"]
+    },
+    {
+      "id": "minimax/minimax-m2.1-free",
+      "name": "MiniMax M2.1 Free",
+      "context": 200000,
+      "strength": "medium",
+      "tool_calling": true,
+      "recommended_for": ["tool-calling", "research"]
+    },
+    {
+      "id": "zhipu/glm-4.7-free",
+      "name": "GLM 4.7 Free",
+      "context": 128000,
+      "strength": "medium",
+      "tool_calling": false,
+      "recommended_for": ["documentation", "translation"]
+    },
+    {
+      "id": "moonshot/kimi-k2.5-free",
+      "name": "Kimi K2.5 Free",
+      "context": 128000,
+      "strength": "medium",
+      "tool_calling": false,
+      "recommended_for": ["reasoning", "math"]
+    },
+    {
+      "id": "openrouter/auto",
+      "name": "OpenRouter Free Router",
+      "context": "variable",
+      "strength": "variable",
+      "tool_calling": true,
+      "recommended_for": ["rate-limit-bypass", "general"],
+      "note": "Routes to least-busy free model"
+    },
+    {
+      "id": "google/gemma-4-12b-it:free",
+      "name": "Gemma 4 12B Free",
+      "context": 128000,
+      "strength": "high",
+      "tool_calling": true,
+      "recommended_for": ["coding", "small-tasks"]
+    }
+  ],
+  "rate_limits": {
+    "no_credit": { "requests_per_day": 50, "note": "Very limited, fallback only" },
+    "with_credit_5usd": { "requests_per_day": 1000, "note": "Recommended minimum" },
+    "with_credit_10usd": { "requests_per_day": 2000, "note": "Comfortable usage" }
+  }
+}

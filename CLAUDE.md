@@ -283,3 +283,16 @@ type: feedback
 #### feedback.jsonl satiri
 
 Format: `§9e` ile ayni — `learnings` alani serbest metin.
+
+### 11. Multi-Agent Sistemi
+
+- Agent tanimlari: `agents/` dizini (110 agent, 13 kategori — 30 active, 80 pool)
+- Registry: `config/agent-registry.json` — agent → model mapping, capability tags, retry strategy
+- Fallback: `config/fallback-chains.json` — conditional (hata turune gore farkli yol), local-first
+- Tier kurallari: `config/model-tiers.json` — kota bazli mod (Normal/Saving/Critical/Local-only), cost control
+- Layer contracts: `config/layer-contracts.json` — Ultra Plan Mode structured output zorunluluklari
+- Health check: `config/daily-check.sh` — gunluk Ollama/MCP/API/registry kontrolu
+- Routing: A2 (Task Router, Sonnet) capability match + confidence skoru ile agent secer
+- Fallback oncelik: LOCAL (Ollama) → CLAUDE (paid) → FREE (OpenRouter)
+- Mevcut skill'ler aynen calisir — agent sistemi ust katman, degisiklik yok
+- Pool → Active gecis: `agent-registry.json`'da `status` degistir

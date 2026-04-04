@@ -1,0 +1,52 @@
+{
+  "version": "1.0",
+  "description": "Ultra Plan Mode — structured output contracts per reasoning layer",
+  "layer_contracts": {
+    "research": {
+      "required_output": {
+        "insights": { "type": "array", "min_items": 1, "description": "Key findings" },
+        "risks": { "type": "array", "description": "Identified risks" },
+        "opportunities": { "type": "array", "description": "Identified opportunities" },
+        "data_sources": { "type": "array", "description": "Sources used" }
+      },
+      "max_summary_tokens": 500,
+      "prune_before_next": true
+    },
+    "strategy": {
+      "required_output": {
+        "goals": { "type": "array", "min_items": 1, "description": "Strategic goals" },
+        "approach": { "type": "string", "description": "Chosen approach summary" },
+        "dependencies": { "type": "array", "description": "What this depends on" },
+        "timeline": { "type": "string", "description": "Estimated timeline" }
+      },
+      "max_summary_tokens": 500,
+      "prune_before_next": true
+    },
+    "execution": {
+      "required_output": {
+        "tasks": { "type": "array", "min_items": 1, "description": "Concrete tasks" },
+        "agent_assignments": { "type": "array", "description": "Which agent does what" },
+        "commits": { "type": "array", "description": "Expected commits/deliverables" },
+        "blockers": { "type": "array", "description": "Known blockers" }
+      },
+      "max_summary_tokens": 800,
+      "prune_before_next": true
+    },
+    "measurement": {
+      "required_output": {
+        "metrics": { "type": "array", "description": "What to measure" },
+        "success_criteria": { "type": "array", "min_items": 1, "description": "Definition of done" },
+        "actual_results": { "type": "array", "description": "Observed results (filled post-execution)" },
+        "learnings": { "type": "array", "description": "Lessons learned" }
+      },
+      "max_summary_tokens": 500,
+      "prune_before_next": false
+    }
+  },
+  "state_persistence": {
+    "file": "~/.claude/agent-memory/session_state.json",
+    "transfer_mode": "semantic_summary",
+    "max_active_context_tokens": 2000,
+    "pruner_agent": "A5"
+  }
+}
