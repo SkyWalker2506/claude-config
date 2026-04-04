@@ -868,6 +868,26 @@ setup_plugins() {
   echo "    claude plugin install ai-review@musabkara-claude-marketplace"
   echo "    claude plugin install daily-check@musabkara-claude-marketplace"
   echo "    claude plugin install sync-agents@musabkara-claude-marketplace"
+
+  # Auto-install plugins based on project type
+  echo ""
+  echo "── Auto-installing plugins ──"
+
+  # Always install these core plugins
+  for plugin in code-quality devtools-setup git-github; do
+    claude plugin install "${plugin}@musabkara-claude-marketplace" 2>/dev/null && echo "✅ $plugin" || echo "⚠️  $plugin (install manually)"
+  done
+
+  # Flutter projects
+  if [ -f "pubspec.yaml" ]; then
+    claude plugin install "flutter-firebase@musabkara-claude-marketplace" 2>/dev/null && echo "✅ flutter-firebase" || true
+  fi
+
+  # Jira projects (check for CLAUDE_JIRA.md or jira config)
+  if [ -f "docs/CLAUDE_JIRA.md" ] || [ -f ".jira" ]; then
+    claude plugin install "jira-suite@musabkara-claude-marketplace" 2>/dev/null && echo "✅ jira-suite" || true
+    claude plugin install "sprint-planner@musabkara-claude-marketplace" 2>/dev/null && echo "✅ sprint-planner" || true
+  fi
 }
 
 # ── Run Phase 8-14 ──
