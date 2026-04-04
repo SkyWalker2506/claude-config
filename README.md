@@ -2,7 +2,7 @@
 
 **Multi-Agent OS for Claude Code** — 110 agents, 14 plugins, local-first routing, Telegram bridge, plugin marketplace.
 
-by [Musab Kara](https://github.com/SkyWalker2506)
+by [Musab Kara](https://linkedin.com/in/musab-kara-85580612a) · [GitHub](https://github.com/SkyWalker2506)
 
 ---
 
@@ -181,8 +181,12 @@ cd ~/Projects/claude-config
 
 ## Related
 
-- [Plugin Marketplace](https://github.com/SkyWalker2506/claude-marketplace) — 14 plugins, browse & install
+- [Plugin Marketplace](https://github.com/SkyWalker2506/claude-marketplace) — 14 plugins for Claude Code, browse & install
 - [OpenCode](https://opencode.ai/) — Free/local models via Zen + Ollama
+
+## Author
+
+**Musab Kara** — [LinkedIn](https://linkedin.com/in/musab-kara-85580612a) · [GitHub](https://github.com/SkyWalker2506)
 
 ## License
 
