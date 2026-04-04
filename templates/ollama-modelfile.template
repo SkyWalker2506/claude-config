@@ -1,0 +1,15 @@
+# Ollama Modelfile template — extended context window
+# Usage: ollama create mymodel -f Modelfile
+#
+# Replace MODEL_NAME with the base model (e.g., qwen3.5:9b)
+# Replace CONTEXT_SIZE with desired context (e.g., 65536)
+
+FROM MODEL_NAME
+
+PARAMETER num_ctx CONTEXT_SIZE
+
+# Optional: adjust temperature for coding tasks
+# PARAMETER temperature 0.3
+
+# Optional: stop tokens
+# PARAMETER stop "<|im_end|>"

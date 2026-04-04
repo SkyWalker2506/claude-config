@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "quota_modes": {
+    "normal":    { "threshold": ">=10%", "opus": true, "sonnet": true, "haiku": true, "local": true, "free": true },
+    "saving":    { "threshold": "5-10%", "opus": "critical-only", "sonnet": true, "haiku": true, "local": true, "free": true },
+    "critical":  { "threshold": "<5%", "opus": false, "sonnet": true, "haiku": true, "local": true, "free": true },
+    "local-only": { "threshold": "<1%", "opus": false, "sonnet": false, "haiku": false, "local": true, "free": true }
+  },
+  "peak_hours": {
+    "start": "08:00",
+    "end": "14:00",
+    "timezone": "America/New_York",
+    "strategy": "prefer_local_and_haiku"
+  },
+  "context_hygiene": {
+    "warn_at_pct": 50,
+    "compact_at_pct": 60,
+    "new_session_after_compacts": 3,
+    "afk_5min_action": "compact_or_clear"
+  },
+  "concurrency": {
+    "mac": { "max_parallel_agents": 3 },
+    "desktop": { "max_parallel_agents": 5 }
+  },
+  "cost_control": {
+    "daily_budget_usd": 5.00,
+    "warn_at_pct": 70,
+    "actions": {
+      "if_daily_cost_gt_3": { "disable": ["opus"], "force_primary": "sonnet" },
+      "if_daily_cost_gt_4": { "disable": ["opus", "sonnet"], "force_primary": "local" },
+      "if_daily_cost_gt_5": { "mode": "local-only", "alert": "user" }
+    },
+    "track_file": "~/.watchdog/cost.json"
+  },
+  "openrouter_limits": {
+    "daily_budget_requests": 1000,
+    "warn_at": 800,
+    "on_exhausted": "switch_to_local",
+    "track_file": "~/.watchdog/openrouter_usage.json"
+  },
+  "self_evaluation": {
+    "enabled": true,
+    "method": "output_check",
+    "evaluator_model": "haiku",
+    "min_quality_score": 0.6,
+    "on_low_score": "fallback_to_next_model",
+    "check_interval": "after_each_task"
+  }
+}
