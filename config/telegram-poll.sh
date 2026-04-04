@@ -58,7 +58,8 @@ run_claude() {
   local out="$WORKDIR/out.txt"
   typing
   send "⚙️ _Çalışıyor..._"
-  (cd "$PROJECT_DIR" && timeout 120 claude -p "$task" --output-format text 2>&1) > "$out"
+  # --continue: mevcut session'ı devam ettirir (proje dizinine göre)
+  (cd "$PROJECT_DIR" && timeout 300 claude -p "$task" --continue --output-format text 2>&1) > "$out"
   local result; result=$(cat "$out")
   if [ ${#result} -gt 3500 ]; then
     send_file "$out" "Çıktı ($(wc -l < "$out" | tr -d ' ') satır)"
@@ -113,8 +114,8 @@ while true; do
         typing
         send "🖼️ _Resim alındı, analiz ediliyor..._"
         OUT="$WORKDIR/out.txt"
-        (cd "$PROJECT_DIR" && timeout 120 claude -p "$PROMPT" --image "$IMGFILE" --output-format text 2>&1) > "$OUT" || \
-        (cd "$PROJECT_DIR" && timeout 120 claude -p "$(cat $IMGFILE | base64 | head -c 100)... [Resim alındı: $IMGFILE] $PROMPT" --output-format text 2>&1) > "$OUT"
+        (cd "$PROJECT_DIR" && timeout 300 claude -p "$PROMPT" --continue --image "$IMGFILE" --output-format text 2>&1) > "$OUT" || \
+        (cd "$PROJECT_DIR" && timeout 300 claude -p "[Resim: $IMGFILE] $PROMPT" --continue --output-format text 2>&1) > "$OUT"
         RESULT=$(cat "$OUT")
         [ ${#RESULT} -gt 3500 ] && send_file "$OUT" "Analiz" || send "✅ $RESULT" "$MAIN_KB"
       else
@@ -135,14 +136,14 @@ while true; do
         # Metin dosyası ise içeriği Claude'a ver
         if file "$DOCFILE" | grep -qiE "text|json|python|shell|csv"; then
           CONTENT=$(head -c 8000 "$DOCFILE")
-          (cd "$PROJECT_DIR" && timeout 120 claude -p "$PROMPT
+          (cd "$PROJECT_DIR" && timeout 300 claude -p "$PROMPT
 
 Dosya içeriği:
 \`\`\`
 $CONTENT
-\`\`\`" --output-format text 2>&1) > "$OUT"
+\`\`\`" --continue --output-format text 2>&1) > "$OUT"
         else
-          (cd "$PROJECT_DIR" && timeout 120 claude -p "$PROMPT (Dosya: $DOCFILE)" --output-format text 2>&1) > "$OUT"
+          (cd "$PROJECT_DIR" && timeout 300 claude -p "$PROMPT (Dosya: $DOCFILE)" --continue --output-format text 2>&1) > "$OUT"
         fi
         RESULT=$(cat "$OUT")
         [ ${#RESULT} -gt 3500 ] && send_file "$OUT" "Analiz" || send "✅ $RESULT" "$MAIN_KB"
