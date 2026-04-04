@@ -850,8 +850,8 @@ setup_plugins() {
 
   # Bizim marketplace'i ekle
   # Resmi marketplace zaten varsayılan — sadece bizim kataloğu ekle
-  echo "  📦 SkyWalker2506/claude-plugins marketplace kaydediliyor..."
-  if claude plugin marketplace add SkyWalker2506/claude-plugins 2>/dev/null; then
+  echo "  📦 SkyWalker2506/claude-marketplace marketplace kaydediliyor..."
+  if claude plugin marketplace add SkyWalker2506/claude-marketplace 2>/dev/null; then
     echo "  ✅ Marketplace kaydedildi"
   else
     echo "  ○  Marketplace zaten kayıtlı"
@@ -861,10 +861,10 @@ setup_plugins() {
   echo "  Mevcut pluginler (keşfet ve kur):"
   echo "    /plugin > Discover"
   echo "  Veya doğrudan:"
-  echo "    claude plugin install telegram-bridge@SkyWalker2506-claude-plugins"
-  echo "    claude plugin install ai-review@SkyWalker2506-claude-plugins"
-  echo "    claude plugin install daily-check@SkyWalker2506-claude-plugins"
-  echo "    claude plugin install sync-agents@SkyWalker2506-claude-plugins"
+  echo "    claude plugin install telegram-bridge@musabkara-claude-marketplace"
+  echo "    claude plugin install ai-review@musabkara-claude-marketplace"
+  echo "    claude plugin install daily-check@musabkara-claude-marketplace"
+  echo "    claude plugin install sync-agents@musabkara-claude-marketplace"
 }
 
 # ── Run Phase 8-14 ──
