@@ -744,15 +744,25 @@ setup_cron() {
   mkdir -p "$HOME/.watchdog"
   echo "  ✅ Watchdog directory ready"
 
-  # Create agent-memory directory
-  mkdir -p "$HOME/.claude/agent-memory"
-  echo "  ✅ Agent memory directory ready"
+  # Create agent-memory directory structure
+  mkdir -p "$HOME/.claude/agent-memory/sessions"
+  mkdir -p "$HOME/.claude/agent-memory/feedback"
+  if [ ! -f "$HOME/.claude/agent-memory/session_state.json" ]; then
+    echo '{"version":"1.0","active_layer":null,"layers":{}}' > "$HOME/.claude/agent-memory/session_state.json"
+  fi
+  echo "  ✅ Agent memory structure ready (sessions/, feedback/, session_state.json)"
 
-  echo "  ℹ  Optional: set up daily cron with:"
-  if [ "$OS" = "mac" ]; then
-    echo "     launchctl (see docs) or: crontab -e → 0 9 * * * bash ~/.claude/config/daily-check.sh"
+  # Cron registration (duplicate-safe)
+  CRON_LINE="0 9 * * * bash $HOME/.claude/config/daily-check.sh >> $HOME/.watchdog/cron.log 2>&1"
+  if [ "$OS" = "windows" ]; then
+    echo "  ℹ  Windows: Task Scheduler ile daily-check.sh zamanla"
   else
-    echo "     crontab -e → 0 9 * * * bash ~/.claude/config/daily-check.sh"
+    if crontab -l 2>/dev/null | grep -qF "daily-check.sh"; then
+      echo "  ✅ Cron zaten kayıtlı"
+    else
+      (crontab -l 2>/dev/null; echo "$CRON_LINE") | crontab -
+      echo "  ✅ Cron eklendi: günlük 09:00 → daily-check.sh"
+    fi
   fi
 }
 
