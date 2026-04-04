@@ -1,11 +1,12 @@
 ---
 id: F10
 name: Statistics Agent
-model: local-qwen-9b
+category: data-analytics
+primary_model: local-qwen-9b
 capabilities: [hypothesis-testing, regression, bayesian]
-max_tools: 15
+max_tool_calls: 15
 effort: medium
-mode: autonomous
+template: autonomous
 status: pool
 related: [F2, F8]
 ---

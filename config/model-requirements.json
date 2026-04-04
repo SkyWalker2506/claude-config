@@ -1,0 +1,65 @@
+{
+  "model_requirements": {
+    "local-qwen-9b": {
+      "needs": ["ollama"],
+      "ollama_model": "qwen3.5:9b",
+      "install": "ollama pull qwen3.5:9b"
+    },
+    "local-qwen-72b": {
+      "needs": ["ollama"],
+      "ollama_model": "qwen3.6:72b",
+      "install": "ollama pull qwen3.6:72b",
+      "min_ram_gb": 64
+    },
+    "local-gemma-9b": {
+      "needs": ["ollama"],
+      "ollama_model": "gemma4:9b",
+      "install": "ollama pull gemma4:9b"
+    },
+    "sonnet": {
+      "needs": ["claude-api"],
+      "check_env": "ANTHROPIC_API_KEY",
+      "console": "https://console.anthropic.com/settings/keys"
+    },
+    "opus": {
+      "needs": ["claude-api"],
+      "check_env": "ANTHROPIC_API_KEY",
+      "console": "https://console.anthropic.com/settings/keys"
+    },
+    "haiku": {
+      "needs": ["claude-api"],
+      "check_env": "ANTHROPIC_API_KEY",
+      "console": "https://console.anthropic.com/settings/keys"
+    },
+    "qwen-3.6-free": {
+      "needs": ["openrouter-api"],
+      "check_env": "OPENROUTER_API_KEY",
+      "console": "https://openrouter.ai/keys"
+    },
+    "qwen-3.6-plus-free": {
+      "needs": ["openrouter-api"],
+      "check_env": "OPENROUTER_API_KEY",
+      "console": "https://openrouter.ai/keys"
+    },
+    "nemotron-120b-free": {
+      "needs": ["openrouter-api"],
+      "check_env": "OPENROUTER_API_KEY",
+      "console": "https://openrouter.ai/keys"
+    },
+    "gpt-oss-120b-free": {
+      "needs": ["openrouter-api"],
+      "check_env": "OPENROUTER_API_KEY",
+      "console": "https://openrouter.ai/keys"
+    }
+  },
+  "platform_requirements": {
+    "ollama": {
+      "check": "command -v ollama && ollama list",
+      "install": {
+        "mac": "brew install ollama && ollama serve &",
+        "linux": "curl -fsSL https://ollama.com/install.sh | sh"
+      },
+      "url": "https://ollama.com"
+    }
+  }
+}

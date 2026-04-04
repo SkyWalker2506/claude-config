@@ -1,11 +1,12 @@
 ---
 id: F9
 name: Data Quality Agent
-model: free-script
+category: data-analytics
+primary_model: free-script
 capabilities: [data-validation, consistency]
-max_tools: 10
+max_tool_calls: 10
 effort: low
-mode: autonomous
+template: autonomous
 status: pool
 related: [F1, F4]
 ---

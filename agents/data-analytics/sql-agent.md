@@ -1,12 +1,13 @@
 ---
 id: F6
 name: SQL Agent
-model: haiku
+category: data-analytics
+primary_model: haiku
 fallbacks: [local-qwen-9b]
 capabilities: [sql, query-optimization]
-max_tools: 15
+max_tool_calls: 15
 effort: medium
-mode: autonomous
+template: autonomous
 status: pool
 related: [B5, F2]
 ---

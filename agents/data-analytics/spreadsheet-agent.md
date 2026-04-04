@@ -1,11 +1,12 @@
 ---
 id: F7
 name: Spreadsheet Agent
-model: local-qwen-9b
+category: data-analytics
+primary_model: local-qwen-9b
 capabilities: [excel, sheets, formulas]
-max_tools: 10
+max_tool_calls: 10
 effort: low
-mode: autonomous
+template: autonomous
 status: pool
 related: [F5]
 ---

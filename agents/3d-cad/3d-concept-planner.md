@@ -1,12 +1,13 @@
 ---
 id: E1
 name: 3D Concept Planner
-model: haiku
+category: 3d-cad
+primary_model: haiku
 fallbacks: [local-qwen-9b]
 capabilities: [3d-planning, reference, scene-composition, lighting-setup, camera-angles]
-max_tools: 15
+max_tool_calls: 15
 effort: medium
-mode: analiz
+template: analiz
 status: pool
 related: [E2, E5]
 ---

@@ -1,12 +1,13 @@
 ---
 id: D3
 name: Stitch Coordinator
-model: haiku
+category: design
+primary_model: haiku
 fallbacks: [local-qwen-9b]
 capabilities: [stitch, design-to-code, tailwind, html-to-component, responsive-layout, css-grid, flexbox]
-max_tools: 20
+max_tool_calls: 20
 effort: medium
-mode: autonomous
+template: autonomous
 status: pool
 related: [D2, B3]
 ---

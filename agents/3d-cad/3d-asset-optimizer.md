@@ -1,11 +1,12 @@
 ---
 id: E5
 name: 3D Asset Optimizer
-model: local-qwen-9b
+category: 3d-cad
+primary_model: local-qwen-9b
 capabilities: [lod, polygon-reduction, texture-optimization, gltf-optimization, draco-compression, texture-atlas, normal-maps]
-max_tools: 15
+max_tool_calls: 15
 effort: medium
-mode: autonomous
+template: autonomous
 status: pool
 related: [E1, D7]
 ---

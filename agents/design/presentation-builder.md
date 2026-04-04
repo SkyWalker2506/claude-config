@@ -1,11 +1,12 @@
 ---
 id: D5
 name: Presentation Builder
-model: local-qwen-9b
+category: design
+primary_model: local-qwen-9b
 capabilities: [slides, powerpoint, keynote]
-max_tools: 15
+max_tool_calls: 15
 effort: medium
-mode: autonomous
+template: autonomous
 status: pool
 related: [F5]
 ---

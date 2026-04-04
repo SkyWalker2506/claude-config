@@ -1,11 +1,12 @@
 ---
 id: F5
 name: Report Generator
-model: local-qwen-9b
+category: data-analytics
+primary_model: local-qwen-9b
 capabilities: [pdf, markdown, report]
-max_tools: 15
+max_tool_calls: 15
 effort: low
-mode: autonomous
+template: autonomous
 status: pool
 related: [F2, F3]
 ---

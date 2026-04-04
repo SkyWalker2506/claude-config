@@ -56,6 +56,10 @@
     "prompt-engineering": {
       "prefix": "N",
       "description": "Prompt Engineering & Agent Design"
+    },
+    "sales-bizdev": {
+      "prefix": "O",
+      "description": "Satis & Is Gelistirme"
     }
   },
   "active_agents": [
@@ -2463,6 +2467,313 @@
       ],
       "max_tool_calls": 30,
       "effort": "high",
+      "template": "autonomous"
+    },
+    "O1": {
+      "name": "Sales Proposal Agent",
+      "version": "1.0",
+      "category": "sales-bizdev",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "haiku"
+      ],
+      "mcps": [
+        "github",
+        "fetch"
+      ],
+      "capabilities": [
+        "proposal",
+        "rfp",
+        "pricing",
+        "presentation",
+        "pitch-deck"
+      ],
+      "max_tool_calls": 25,
+      "effort": "high",
+      "template": "autonomous"
+    },
+    "O2": {
+      "name": "CRM Agent",
+      "version": "1.0",
+      "category": "sales-bizdev",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "hubspot",
+        "pipedrive",
+        "lead-management",
+        "pipeline",
+        "follow-up"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "O3": {
+      "name": "Outreach Agent",
+      "version": "1.0",
+      "category": "sales-bizdev",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "cold-email",
+        "linkedin-outreach",
+        "personalization",
+        "sequence"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "O4": {
+      "name": "Pricing Calculator",
+      "version": "1.0",
+      "category": "sales-bizdev",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "cost-estimation",
+        "margin",
+        "markup",
+        "bundle-pricing"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "O5": {
+      "name": "Client Onboarding Agent",
+      "version": "1.0",
+      "category": "sales-bizdev",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "atlassian"
+      ],
+      "capabilities": [
+        "onboarding-checklist",
+        "welcome-sequence",
+        "handoff",
+        "documentation"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "B20": {
+      "name": "API Gateway Agent",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "context7"
+      ],
+      "capabilities": [
+        "api-gateway",
+        "rate-limiting",
+        "auth-middleware",
+        "cors",
+        "request-validation"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "B21": {
+      "name": "WebSocket Agent",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "context7"
+      ],
+      "capabilities": [
+        "websocket",
+        "socket-io",
+        "real-time",
+        "event-streaming",
+        "pub-sub"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "H13": {
+      "name": "Social Media Strategist",
+      "version": "1.0",
+      "category": "market-research",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "content-calendar",
+        "platform-strategy",
+        "engagement",
+        "analytics",
+        "hashtag"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "H14": {
+      "name": "Community Manager Agent",
+      "version": "1.0",
+      "category": "market-research",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "community-moderation",
+        "discord",
+        "slack",
+        "engagement",
+        "faq"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "H15": {
+      "name": "Influencer Research Agent",
+      "version": "1.0",
+      "category": "market-research",
+      "status": "pool",
+      "primary_model": "free-web",
+      "fallbacks": [],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "influencer-discovery",
+        "audience-analysis",
+        "collaboration",
+        "micro-influencer"
+      ],
+      "max_tool_calls": 15,
+      "effort": "low",
+      "template": "analiz"
+    },
+    "D9": {
+      "name": "Brand Identity Agent",
+      "version": "1.0",
+      "category": "design",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "brand-guide",
+        "logo-concept",
+        "color-palette",
+        "voice-tone",
+        "brand-messaging"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "D10": {
+      "name": "Motion Graphics Agent",
+      "version": "1.0",
+      "category": "design",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "animation-script",
+        "lottie",
+        "css-animation",
+        "ffmpeg",
+        "after-effects-script"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "K10": {
+      "name": "Regulatory Compliance Agent",
+      "version": "1.0",
+      "category": "research",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "haiku"
+      ],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "gdpr",
+        "kvkk",
+        "ccpa",
+        "hipaa",
+        "compliance-audit",
+        "data-protection"
+      ],
+      "max_tool_calls": 25,
+      "effort": "high",
+      "template": "analiz"
+    },
+    "J9": {
+      "name": "Performance Load Tester",
+      "version": "1.0",
+      "category": "devops",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "load-test",
+        "artillery",
+        "k6",
+        "stress-test",
+        "benchmark",
+        "latency"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
       "template": "autonomous"
     }
   },

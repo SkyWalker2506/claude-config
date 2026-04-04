@@ -1,11 +1,12 @@
 ---
 id: D6
 name: Image Prompt Generator
-model: free-router
+category: design
+primary_model: free-router
 capabilities: [midjourney, dalle, prompt-engineering, stable-diffusion, flux, comfyui, negative-prompt]
-max_tools: 10
+max_tool_calls: 10
 effort: low
-mode: autonomous
+template: autonomous
 status: pool
 related: [D7]
 ---

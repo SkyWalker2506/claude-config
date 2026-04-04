@@ -1,6 +1,10 @@
 {
   "version": "1.0",
-  "routing_priority": ["local", "claude", "free"],
+  "routing_priority": [
+    "local",
+    "claude",
+    "free"
+  ],
   "chains": {
     "critical-code": {
       "default": "opus",
@@ -58,21 +62,77 @@
       "on_error": "local-qwen-9b",
       "on_timeout_3s": "local-gemma-9b",
       "on_all_fail": "alert_user"
+    },
+    "sales": {
+      "default": "sonnet",
+      "on_error": "haiku",
+      "on_timeout_5s": "local-qwen-9b",
+      "on_rate_limit": "local-qwen-9b",
+      "on_all_fail": "haiku"
     }
   },
   "models": {
-    "opus": { "type": "claude", "id": "claude-opus-4-6", "tier": "premium" },
-    "sonnet": { "type": "claude", "id": "claude-sonnet-4-6", "tier": "standard" },
-    "haiku": { "type": "claude", "id": "claude-haiku-4-5-20251001", "tier": "economy" },
-    "qwen-3.6-free": { "type": "openrouter", "id": "qwen/qwen3.6-free", "tier": "free" },
-    "free-router": { "type": "openrouter", "id": "openrouter/auto", "tier": "free" },
-    "local-qwen-9b": { "type": "ollama", "id": "qwen3.5:9b", "tier": "local", "device": "mac" },
-    "local-qwen-72b": { "type": "ollama", "id": "qwen3.6:72b", "tier": "local", "device": "desktop" },
-    "local-gemma-9b": { "type": "ollama", "id": "gemma4:9b", "tier": "local", "device": "mac" },
-    "qwen-3.6-plus-free": { "type": "openrouter", "id": "qwen/qwen3.6-plus:free", "tier": "free" },
-    "nemotron-120b-free": { "type": "openrouter", "id": "nvidia/nemotron-3-super-120b-a12b:free", "tier": "free" },
-    "gpt-oss-120b-free": { "type": "openrouter", "id": "openai/gpt-oss-120b:free", "tier": "free" }
+    "opus": {
+      "type": "claude",
+      "id": "claude-opus-4-6",
+      "tier": "premium"
+    },
+    "sonnet": {
+      "type": "claude",
+      "id": "claude-sonnet-4-6",
+      "tier": "standard"
+    },
+    "haiku": {
+      "type": "claude",
+      "id": "claude-haiku-4-5-20251001",
+      "tier": "economy"
+    },
+    "qwen-3.6-free": {
+      "type": "openrouter",
+      "id": "qwen/qwen3.6-free",
+      "tier": "free"
+    },
+    "free-router": {
+      "type": "openrouter",
+      "id": "openrouter/auto",
+      "tier": "free"
+    },
+    "local-qwen-9b": {
+      "type": "ollama",
+      "id": "qwen3.5:9b",
+      "tier": "local",
+      "device": "mac"
+    },
+    "local-qwen-72b": {
+      "type": "ollama",
+      "id": "qwen3.6:72b",
+      "tier": "local",
+      "device": "desktop"
+    },
+    "local-gemma-9b": {
+      "type": "ollama",
+      "id": "gemma4:9b",
+      "tier": "local",
+      "device": "mac"
+    },
+    "qwen-3.6-plus-free": {
+      "type": "openrouter",
+      "id": "qwen/qwen3.6-plus:free",
+      "tier": "free"
+    },
+    "nemotron-120b-free": {
+      "type": "openrouter",
+      "id": "nvidia/nemotron-3-super-120b-a12b:free",
+      "tier": "free"
+    },
+    "gpt-oss-120b-free": {
+      "type": "openrouter",
+      "id": "openai/gpt-oss-120b:free",
+      "tier": "free"
+    }
   },
   "on_exhausted": "alert",
-  "alert_channels": ["terminal"]
+  "alert_channels": [
+    "terminal"
+  ]
 }

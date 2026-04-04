@@ -1,11 +1,12 @@
 ---
 id: D4
 name: Figma Assistant
-model: local-qwen-9b
+category: design
+primary_model: local-qwen-9b
 capabilities: [figma, component-extraction, figma-api, design-tokens-export, component-inventory]
-max_tools: 15
+max_tool_calls: 15
 effort: medium
-mode: analiz
+template: analiz
 status: pool
 related: [D2, D3]
 ---

@@ -1,12 +1,13 @@
 ---
 id: F2
 name: Data Analyst
-model: sonnet
+category: data-analytics
+primary_model: sonnet
 fallbacks: [local-qwen-9b]
 capabilities: [statistics, insight, correlation, hypothesis]
-max_tools: 25
+max_tool_calls: 25
 effort: medium
-mode: analiz
+template: analiz
 status: pool
 related: [F3, F10]
 ---

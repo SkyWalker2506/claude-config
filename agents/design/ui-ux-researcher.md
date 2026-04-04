@@ -1,12 +1,13 @@
 ---
 id: D1
 name: UI/UX Researcher
-model: free-web
+category: design
+primary_model: free-web
 mcps: [fetch]
 capabilities: [ui-research, competitor-ui, trend, accessibility-audit, wcag, responsive-design, mobile-first]
-max_tools: 20
+max_tool_calls: 20
 effort: medium
-mode: analiz
+template: analiz
 status: pool
 related: [D2, D8]
 ---

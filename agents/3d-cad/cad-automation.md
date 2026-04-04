@@ -1,11 +1,12 @@
 ---
 id: E3
 name: CAD Automation
-model: local-qwen-9b
+category: 3d-cad
+primary_model: local-qwen-9b
 capabilities: [autocad, scripting, parametric-design, technical-drawing, stl-export]
-max_tools: 15
+max_tool_calls: 15
 effort: medium
-mode: autonomous
+template: autonomous
 status: pool
 related: [E2]
 ---

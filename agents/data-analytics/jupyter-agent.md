@@ -1,11 +1,12 @@
 ---
 id: F8
 name: Jupyter Agent
-model: local-qwen-9b
+category: data-analytics
+primary_model: local-qwen-9b
 capabilities: [jupyter, notebook, analysis]
-max_tools: 20
+max_tool_calls: 20
 effort: medium
-mode: autonomous
+template: autonomous
 status: pool
 related: [F2, F10]
 ---

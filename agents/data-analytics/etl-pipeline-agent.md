@@ -1,11 +1,12 @@
 ---
 id: F4
 name: ETL Pipeline Agent
-model: free-script
+category: data-analytics
+primary_model: free-script
 capabilities: [etl, pipeline, data-transfer]
-max_tools: 15
+max_tool_calls: 15
 effort: medium
-mode: autonomous
+template: autonomous
 status: pool
 related: [F1, F9]
 ---

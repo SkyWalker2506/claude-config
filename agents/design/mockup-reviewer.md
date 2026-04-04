@@ -1,12 +1,13 @@
 ---
 id: D8
 name: Mockup Reviewer
-model: haiku
+category: design
+primary_model: haiku
 fallbacks: [local-qwen-9b]
 capabilities: [design-review, ux-audit, accessibility, contrast-ratio, touch-target, responsive]
-max_tools: 10
+max_tool_calls: 10
 effort: medium
-mode: analiz
+template: analiz
 status: pool
 related: [D1, D2]
 ---

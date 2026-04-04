@@ -1,11 +1,12 @@
 ---
 id: E2
 name: Blender Script Agent
-model: local-qwen-9b
+category: 3d-cad
+primary_model: local-qwen-9b
 capabilities: [blender, python-scripting, geometry-nodes, shader-nodes, animation, rigging, fbx-export, gltf]
-max_tools: 20
+max_tool_calls: 20
 effort: medium
-mode: autonomous
+template: autonomous
 status: pool
 related: [E1, E4]
 ---

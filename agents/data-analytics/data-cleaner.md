@@ -1,12 +1,13 @@
 ---
 id: F1
 name: Data Cleaner
-model: local-qwen-9b
+category: data-analytics
+primary_model: local-qwen-9b
 fallbacks: [free-router]
 capabilities: [pandas, data-cleaning, normalization]
-max_tools: 20
+max_tool_calls: 20
 effort: medium
-mode: autonomous
+template: autonomous
 status: pool
 related: [F2, F9]
 ---

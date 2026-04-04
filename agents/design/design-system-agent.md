@@ -1,12 +1,13 @@
 ---
 id: D2
 name: Design System Agent
-model: haiku
+category: design
+primary_model: haiku
 fallbacks: [local-qwen-9b]
 capabilities: [color, typography, spacing, design-tokens, tailwind, shadcn, radix, css-variables, dark-mode]
-max_tools: 15
+max_tool_calls: 15
 effort: medium
-mode: autonomous
+template: autonomous
 status: pool
 related: [D3, B3]
 ---

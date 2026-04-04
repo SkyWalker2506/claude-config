@@ -1,11 +1,12 @@
 ---
 id: E4
 name: Render Pipeline
-model: free-script
+category: 3d-cad
+primary_model: free-script
 capabilities: [render-queue, batch-render]
-max_tools: 10
+max_tool_calls: 10
 effort: low
-mode: autonomous
+template: autonomous
 status: pool
 related: [E2, E5]
 ---
