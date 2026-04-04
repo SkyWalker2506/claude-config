@@ -1,0 +1,44 @@
+name: AI Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  ai-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get PR diff
+        id: diff
+        run: |
+          git fetch origin ${{ github.event.pull_request.base.ref }}
+          DIFF=$(git diff origin/${{ github.event.pull_request.base.ref }}...HEAD --stat)
+          echo "diff<<EOF" >> $GITHUB_OUTPUT
+          echo "$DIFF" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: AI Review with Claude
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          model: claude-sonnet-4-6
+          prompt: |
+            Review this PR. Focus on:
+            1. JSON validity (config/*.json files)
+            2. Agent registry completeness (all agent .md files have matching registry entries)
+            3. install.sh backward compatibility (existing phases untouched)
+            4. Security (no secrets, no dangerous commands)
+            5. Code quality and consistency
+
+            Be concise. Group findings as: 🔴 Must Fix | 🟡 Suggestion | 🟢 Good.
+
+            PR diff summary:
+            ${{ steps.diff.outputs.diff }}
