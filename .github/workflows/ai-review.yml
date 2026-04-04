@@ -50,8 +50,6 @@ jobs:
             -H "Content-Type: application/json" \
             -d "$PAYLOAD")
 
-          echo "API Response (debug): $(echo "$RESPONSE" | head -c 500)"
-
           REVIEW=$(echo "$RESPONSE" | python3 -c "
           import json, sys
           try:
@@ -67,7 +65,7 @@ jobs:
           ")
 
           # Post comment
-          gh pr comment "$PR_NUMBER" --body "## AI Code Review (Qwen 3.6 Free)
+          gh pr comment "$PR_NUMBER" --body "## AI Code Review (Gemma 3 27B Free)
 
           ${REVIEW}
 
