@@ -90,7 +90,7 @@
       }
     ]
   },
-  "effortLevel": "high",
+  "effortLevel": "low",
   "voiceEnabled": true,
   "skipDangerousModePermissionPrompt": true,
   "mcpServers": {
