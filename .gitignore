@@ -5,4 +5,5 @@
 .env
 secrets.env
 secrets/
+claude-secrets
 .yolo/

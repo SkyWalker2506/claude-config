@@ -187,6 +187,13 @@ if [ -L "$SECRETS_DIR" ] && [ ! -e "$SECRETS_DIR" ]; then
   rm -f "$SECRETS_DIR"
 fi
 
+# claude-secrets (repo içinde, gitignore'lu) → öncelikli kaynak
+if [ -f "$SCRIPT_DIR/claude-secrets" ]; then
+  mkdir -p "$SECRETS_DIR"
+  cp "$SCRIPT_DIR/claude-secrets" "$SECRETS_DIR/secrets.env"
+  echo "✅ Secrets: claude-secrets → ~/.claude/secrets/secrets.env"
+fi
+
 if [ "$SKIP_SECRETS" -eq 1 ]; then
   echo "Secrets atlandi (--skip-secrets)"
   mkdir -p "$SECRETS_DIR"
