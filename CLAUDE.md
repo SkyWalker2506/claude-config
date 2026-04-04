@@ -166,6 +166,7 @@ PLAN:
 3. [adim 3]
 Tahmin: quick | medium | long
 Model: Haiku/Sonnet/Opus | Effort: low/medium/high
+Agent: [registry'den uygun agent ID + isim] | Fallback: [fallback agent]
 ```
 
 **Otomatik model/effort onerisi:** Her planda gorev tipine gore model ve effort oner. Kullanici gecmezse hatırlat.
@@ -185,6 +186,20 @@ Model: Haiku/Sonnet/Opus | Effort: low/medium/high
 | `long` | >20 | >10 dk | high |
 
 **Effort level:** Skill/agent bazinda reasoning derinligini belirler. `quick` → hizli cevap, `long` → derin dusunme. Skill .md'lerde `effort` alani tanimlanabilir; tanimlanmamissa gorev tahmininden turetilir.
+
+**Agent routing (otomatik):** Her planda gorev tipine gore `config/agent-registry.json`'dan uygun agent sec. Agent'in `primary_model` ve `effort` degerleri plan'daki Model/Effort'u override eder. Agent bulunamazsa varsayilan model/effort tablosu kullanilir.
+
+| Gorev ornegi | Agent | Model (override) |
+|-------------|-------|-------------------|
+| REST API yaz | B2 Backend Coder | Sonnet, high |
+| Flutter widget | B15 Mobile Dev | Sonnet, high |
+| Bug fix, debug | B7 Bug Hunter | Sonnet, medium |
+| Security audit | B13 Security Auditor | Opus, high |
+| Jira sprint plan | I2 Sprint Planner | Sonnet, medium |
+| Web arastirmasi | K1 Web Researcher | Free, medium |
+| GitHub polish | H5 SEO + H6 GEO | Free/Haiku, medium |
+| Phaser/JS game | B16 Web Game Dev | Sonnet, high |
+| Unity gelistirme | B19 Unity Developer | Sonnet, high |
 
 - Plan cikarmak hizli — 10 saniyede bitir
 - "Hemen yap" denirse → 1 satirda ozetle, basla
@@ -315,3 +330,4 @@ Format: `§9e` ile ayni — `learnings` alani serbest metin.
 - Fallback oncelik: LOCAL (Ollama) → CLAUDE (paid) → FREE (OpenRouter)
 - Mevcut skill'ler aynen calisir — agent sistemi ust katman, degisiklik yok
 - Pool → Active gecis: `agent-registry.json`'da `status` degistir
+- Auto-dispatch: Her plan ciktiginda `agent-registry.json`'dan capability match ile uygun agent secer; model/effort/MCP o agent'in kurallarina gore atanir

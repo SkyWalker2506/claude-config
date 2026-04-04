@@ -1,21 +1,95 @@
 {
   "version": "1.0",
   "categories": {
-    "orchestrator": { "prefix": "A", "description": "Orchestrator & Sistem" },
-    "backend": { "prefix": "B", "description": "Kod / Backend" },
-    "code-review": { "prefix": "C", "description": "Code Review" },
-    "design": { "prefix": "D", "description": "Dizayn / 2D" },
-    "3d-cad": { "prefix": "E", "description": "3D / CAD" },
-    "data-analytics": { "prefix": "F", "description": "Veri & Analiz" },
-    "ai-ops": { "prefix": "G", "description": "AI Ops / Workflow" },
-    "market-research": { "prefix": "H", "description": "Pazar Arastirmasi" },
-    "jira-pm": { "prefix": "I", "description": "Jira & Proje Yonetimi" },
-    "devops": { "prefix": "J", "description": "DevOps & Altyapi" },
-    "research": { "prefix": "K", "description": "Arastirma & Ogrenme" },
-    "productivity": { "prefix": "L", "description": "Kisisel Verimlilik" },
-    "marketing-engine": { "prefix": "M", "description": "Pazarlama Motoru" }
+    "orchestrator": {
+      "prefix": "A",
+      "description": "Orchestrator & Sistem"
+    },
+    "backend": {
+      "prefix": "B",
+      "description": "Kod / Backend"
+    },
+    "code-review": {
+      "prefix": "C",
+      "description": "Code Review"
+    },
+    "design": {
+      "prefix": "D",
+      "description": "Dizayn / 2D"
+    },
+    "3d-cad": {
+      "prefix": "E",
+      "description": "3D / CAD"
+    },
+    "data-analytics": {
+      "prefix": "F",
+      "description": "Veri & Analiz"
+    },
+    "ai-ops": {
+      "prefix": "G",
+      "description": "AI Ops / Workflow"
+    },
+    "market-research": {
+      "prefix": "H",
+      "description": "Pazar Arastirmasi"
+    },
+    "jira-pm": {
+      "prefix": "I",
+      "description": "Jira & Proje Yonetimi"
+    },
+    "devops": {
+      "prefix": "J",
+      "description": "DevOps & Altyapi"
+    },
+    "research": {
+      "prefix": "K",
+      "description": "Arastirma & Ogrenme"
+    },
+    "productivity": {
+      "prefix": "L",
+      "description": "Kisisel Verimlilik"
+    },
+    "marketing-engine": {
+      "prefix": "M",
+      "description": "Pazarlama Motoru"
+    },
+    "prompt-engineering": {
+      "prefix": "N",
+      "description": "Prompt Engineering & Agent Design"
+    }
   },
-  "active_agents": ["A1","A2","A3","A4","A5","B1","B2","B3","B5","B7","B13","B15","C1","C2","C3","G1","G3","G7","I1","I2","I4","K1","K3","K4","H1","H5","H6","J2","J7","L1"],
+  "active_agents": [
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "B1",
+    "B2",
+    "B3",
+    "B5",
+    "B7",
+    "B13",
+    "B15",
+    "C1",
+    "C2",
+    "C3",
+    "G1",
+    "G3",
+    "G7",
+    "I1",
+    "I2",
+    "I4",
+    "K1",
+    "K3",
+    "K4",
+    "H1",
+    "H5",
+    "H6",
+    "J2",
+    "J7",
+    "L1"
+  ],
   "agents": {
     "A1": {
       "name": "Lead Orchestrator",
@@ -23,9 +97,19 @@
       "category": "orchestrator",
       "status": "active",
       "primary_model": "sonnet",
-      "fallbacks": ["local-qwen-9b", "qwen-3.6-free"],
-      "mcps": ["*"],
-      "capabilities": ["planning", "dispatch", "coordination", "escalation"],
+      "fallbacks": [
+        "local-qwen-9b",
+        "qwen-3.6-free"
+      ],
+      "mcps": [
+        "*"
+      ],
+      "capabilities": [
+        "planning",
+        "dispatch",
+        "coordination",
+        "escalation"
+      ],
       "max_tool_calls": 50,
       "effort": "medium",
       "template": "autonomous"
@@ -36,9 +120,16 @@
       "category": "orchestrator",
       "status": "active",
       "primary_model": "sonnet",
-      "fallbacks": ["haiku", "local-qwen-9b"],
+      "fallbacks": [
+        "haiku",
+        "local-qwen-9b"
+      ],
       "mcps": [],
-      "capabilities": ["classification", "routing", "capability-matching"],
+      "capabilities": [
+        "classification",
+        "routing",
+        "capability-matching"
+      ],
       "max_tool_calls": 10,
       "effort": "low",
       "template": "analiz",
@@ -53,7 +144,10 @@
       "primary_model": "free-script",
       "fallbacks": [],
       "mcps": [],
-      "capabilities": ["model-switching", "health-check"],
+      "capabilities": [
+        "model-switching",
+        "health-check"
+      ],
       "max_tool_calls": 5,
       "effort": "low",
       "template": "autonomous"
@@ -66,7 +160,11 @@
       "primary_model": "free-script",
       "fallbacks": [],
       "mcps": [],
-      "capabilities": ["quota-tracking", "mode-switching", "cost-control"],
+      "capabilities": [
+        "quota-tracking",
+        "mode-switching",
+        "cost-control"
+      ],
       "max_tool_calls": 5,
       "effort": "low",
       "template": "autonomous"
@@ -77,9 +175,15 @@
       "category": "orchestrator",
       "status": "active",
       "primary_model": "haiku",
-      "fallbacks": ["free-script"],
+      "fallbacks": [
+        "free-script"
+      ],
       "mcps": [],
-      "capabilities": ["summarization", "context-management", "state-transfer"],
+      "capabilities": [
+        "summarization",
+        "context-management",
+        "state-transfer"
+      ],
       "max_tool_calls": 10,
       "effort": "low",
       "template": "autonomous"
@@ -92,7 +196,10 @@
       "primary_model": "free-cron",
       "fallbacks": [],
       "mcps": [],
-      "capabilities": ["monitoring", "health-check"],
+      "capabilities": [
+        "monitoring",
+        "health-check"
+      ],
       "max_tool_calls": 5,
       "effort": "low",
       "template": "autonomous"
@@ -103,9 +210,18 @@
       "category": "orchestrator",
       "status": "pool",
       "primary_model": "sonnet",
-      "fallbacks": ["local-qwen-9b", "qwen-3.6-free"],
-      "mcps": ["fetch"],
-      "capabilities": ["web-search", "trend-analysis", "reporting"],
+      "fallbacks": [
+        "local-qwen-9b",
+        "qwen-3.6-free"
+      ],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "web-search",
+        "trend-analysis",
+        "reporting"
+      ],
       "max_tool_calls": 30,
       "effort": "medium",
       "template": "analiz"
@@ -118,7 +234,10 @@
       "primary_model": "none",
       "fallbacks": [],
       "mcps": [],
-      "capabilities": ["emergency-stop", "human-handoff"],
+      "capabilities": [
+        "emergency-stop",
+        "human-handoff"
+      ],
       "max_tool_calls": 1,
       "effort": "low",
       "template": "autonomous"
@@ -129,9 +248,22 @@
       "category": "backend",
       "status": "active",
       "primary_model": "opus",
-      "fallbacks": ["sonnet", "local-qwen-72b"],
-      "mcps": ["github", "git", "jcodemunch", "context7"],
-      "capabilities": ["architecture", "api-design", "database-design", "system-design"],
+      "fallbacks": [
+        "sonnet",
+        "local-qwen-72b"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch",
+        "context7"
+      ],
+      "capabilities": [
+        "architecture",
+        "api-design",
+        "database-design",
+        "system-design"
+      ],
       "max_tool_calls": 50,
       "effort": "high",
       "template": "autonomous"
@@ -142,10 +274,29 @@
       "category": "backend",
       "status": "active",
       "primary_model": "sonnet",
-      "fallbacks": ["local-qwen-9b", "qwen-3.6-free"],
-      "mcps": ["github", "git", "jcodemunch", "context7"],
-      "capabilities": ["api", "crud", "rest", "graphql", "migration", "dto"],
-      "languages": ["typescript", "python", "dart"],
+      "fallbacks": [
+        "local-qwen-9b",
+        "qwen-3.6-free"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch",
+        "context7"
+      ],
+      "capabilities": [
+        "api",
+        "crud",
+        "rest",
+        "graphql",
+        "migration",
+        "dto"
+      ],
+      "languages": [
+        "typescript",
+        "python",
+        "dart"
+      ],
       "max_tool_calls": 30,
       "effort": "high",
       "template": "autonomous"
@@ -156,10 +307,27 @@
       "category": "backend",
       "status": "active",
       "primary_model": "sonnet",
-      "fallbacks": ["local-qwen-9b", "qwen-3.6-free"],
-      "mcps": ["github", "git", "context7"],
-      "capabilities": ["react", "flutter", "ui", "components", "tailwind"],
-      "languages": ["typescript", "dart", "css"],
+      "fallbacks": [
+        "local-qwen-9b",
+        "qwen-3.6-free"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "context7"
+      ],
+      "capabilities": [
+        "react",
+        "flutter",
+        "ui",
+        "components",
+        "tailwind"
+      ],
+      "languages": [
+        "typescript",
+        "dart",
+        "css"
+      ],
       "max_tool_calls": 30,
       "effort": "medium",
       "template": "autonomous"
@@ -170,9 +338,21 @@
       "category": "backend",
       "status": "pool",
       "primary_model": "haiku",
-      "fallbacks": ["local-qwen-9b"],
-      "mcps": ["github", "git", "fetch", "context7"],
-      "capabilities": ["api-integration", "oauth", "webhook", "sdk"],
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "fetch",
+        "context7"
+      ],
+      "capabilities": [
+        "api-integration",
+        "oauth",
+        "webhook",
+        "sdk"
+      ],
       "max_tool_calls": 20,
       "effort": "medium",
       "template": "autonomous"
@@ -183,9 +363,22 @@
       "category": "backend",
       "status": "active",
       "primary_model": "sonnet",
-      "fallbacks": ["local-qwen-9b", "qwen-3.6-free"],
-      "mcps": ["github", "git", "jcodemunch"],
-      "capabilities": ["sql", "nosql", "migration", "query-optimization", "schema-design"],
+      "fallbacks": [
+        "local-qwen-9b",
+        "qwen-3.6-free"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "sql",
+        "nosql",
+        "migration",
+        "query-optimization",
+        "schema-design"
+      ],
       "max_tool_calls": 25,
       "effort": "medium",
       "template": "autonomous"
@@ -196,9 +389,20 @@
       "category": "backend",
       "status": "pool",
       "primary_model": "haiku",
-      "fallbacks": ["local-qwen-9b"],
-      "mcps": ["github", "git", "jcodemunch"],
-      "capabilities": ["unit-test", "integration-test", "e2e-test", "mocking"],
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "unit-test",
+        "integration-test",
+        "e2e-test",
+        "mocking"
+      ],
       "max_tool_calls": 25,
       "effort": "medium",
       "template": "autonomous"
@@ -209,139 +413,2029 @@
       "category": "backend",
       "status": "active",
       "primary_model": "sonnet",
-      "fallbacks": ["local-qwen-9b", "qwen-3.6-free"],
-      "mcps": ["github", "git", "jcodemunch"],
-      "capabilities": ["debugging", "root-cause-analysis", "error-tracing", "log-analysis"],
+      "fallbacks": [
+        "local-qwen-9b",
+        "qwen-3.6-free"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "debugging",
+        "root-cause-analysis",
+        "error-tracing",
+        "log-analysis"
+      ],
       "max_tool_calls": 30,
       "effort": "medium",
       "template": "autonomous"
     },
-    "B8": { "name": "Refactor Agent", "version": "1.0", "category": "backend", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": ["github","git","jcodemunch"], "capabilities": ["refactoring","dead-code","simplification"], "max_tool_calls": 25, "effort": "medium", "template": "autonomous" },
-    "B9": { "name": "CI/CD Agent", "version": "1.0", "category": "backend", "status": "pool", "primary_model": "free-script", "fallbacks": [], "mcps": ["github"], "capabilities": ["ci","cd","pipeline","deploy"], "max_tool_calls": 15, "effort": "low", "template": "autonomous" },
-    "B10": { "name": "Dependency Manager", "version": "1.0", "category": "backend", "status": "pool", "primary_model": "free-script", "fallbacks": [], "mcps": ["github"], "capabilities": ["dependency-update","vulnerability-check","version-management"], "max_tool_calls": 10, "effort": "low", "template": "autonomous" },
-    "B11": { "name": "Git Manager", "version": "1.0", "category": "backend", "status": "pool", "primary_model": "free-script", "fallbacks": [], "mcps": ["git","github"], "capabilities": ["branch","merge","conflict-resolution","rebase"], "max_tool_calls": 10, "effort": "low", "template": "autonomous" },
-    "B12": { "name": "Performance Optimizer", "version": "1.0", "category": "backend", "status": "pool", "primary_model": "sonnet", "fallbacks": ["haiku"], "mcps": ["github","git","jcodemunch"], "capabilities": ["profiling","bottleneck","caching","optimization"], "max_tool_calls": 25, "effort": "medium", "template": "analiz" },
+    "B8": {
+      "name": "Refactor Agent",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "refactoring",
+        "dead-code",
+        "simplification"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "B9": {
+      "name": "CI/CD Agent",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [
+        "github"
+      ],
+      "capabilities": [
+        "ci",
+        "cd",
+        "pipeline",
+        "deploy"
+      ],
+      "max_tool_calls": 15,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "B10": {
+      "name": "Dependency Manager",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [
+        "github"
+      ],
+      "capabilities": [
+        "dependency-update",
+        "vulnerability-check",
+        "version-management"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "B11": {
+      "name": "Git Manager",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [
+        "git",
+        "github"
+      ],
+      "capabilities": [
+        "branch",
+        "merge",
+        "conflict-resolution",
+        "rebase"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "B12": {
+      "name": "Performance Optimizer",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "haiku"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "profiling",
+        "bottleneck",
+        "caching",
+        "optimization"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "analiz"
+    },
     "B13": {
       "name": "Security Auditor",
       "version": "1.0",
       "category": "backend",
       "status": "active",
       "primary_model": "opus",
-      "fallbacks": ["sonnet", "local-qwen-72b"],
-      "mcps": ["github", "git", "jcodemunch"],
-      "capabilities": ["owasp", "sql-injection", "xss", "auth-audit", "secret-scan", "dependency-audit"],
+      "fallbacks": [
+        "sonnet",
+        "local-qwen-72b"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "owasp",
+        "sql-injection",
+        "xss",
+        "auth-audit",
+        "secret-scan",
+        "dependency-audit"
+      ],
       "max_tool_calls": 30,
       "effort": "high",
       "template": "analiz"
     },
-    "B14": { "name": "Scripting Agent", "version": "1.0", "category": "backend", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": ["free-router"], "mcps": [], "capabilities": ["bash","python","automation","cron"], "max_tool_calls": 20, "effort": "low", "template": "autonomous" },
+    "B14": {
+      "name": "Scripting Agent",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [
+        "free-router"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "bash",
+        "python",
+        "automation",
+        "cron"
+      ],
+      "max_tool_calls": 20,
+      "effort": "low",
+      "template": "autonomous"
+    },
     "B15": {
       "name": "Mobile Dev Agent",
       "version": "1.0",
       "category": "backend",
       "status": "active",
       "primary_model": "sonnet",
-      "fallbacks": ["local-qwen-9b", "qwen-3.6-free"],
-      "mcps": ["github", "git", "flutter-dev", "context7"],
-      "capabilities": ["flutter", "dart", "mobile-ui", "platform-channel", "firebase"],
-      "languages": ["dart"],
+      "fallbacks": [
+        "local-qwen-9b",
+        "qwen-3.6-free"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "flutter-dev",
+        "context7"
+      ],
+      "capabilities": [
+        "flutter",
+        "dart",
+        "mobile-ui",
+        "platform-channel",
+        "firebase"
+      ],
+      "languages": [
+        "dart"
+      ],
       "max_tool_calls": 30,
       "effort": "high",
       "template": "autonomous"
     },
-    "C1": { "name": "Lint & Format Hook", "version": "1.0", "category": "code-review", "status": "active", "primary_model": "free-deterministic", "fallbacks": [], "mcps": [], "capabilities": ["lint","format","type-check"], "max_tool_calls": 3, "effort": "low", "template": "code-review", "layer": "L1" },
-    "C2": { "name": "Security Scanner Hook", "version": "1.0", "category": "code-review", "status": "active", "primary_model": "free-deterministic", "fallbacks": [], "mcps": [], "capabilities": ["secret-scan","dependency-audit","sast"], "max_tool_calls": 3, "effort": "low", "template": "code-review", "layer": "L1" },
-    "C3": { "name": "Local AI Reviewer", "version": "1.0", "category": "code-review", "status": "active", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": ["github","git"], "capabilities": ["code-review","correctness","security","simplicity","concurrency"], "max_tool_calls": 15, "effort": "medium", "template": "code-review", "layer": "L2" },
-    "C4": { "name": "Code Rabbit Agent", "version": "1.0", "category": "code-review", "status": "pool", "primary_model": "free-coderabbit", "fallbacks": [], "mcps": [], "capabilities": ["deep-review","coderabbit"], "max_tool_calls": 5, "effort": "medium", "template": "code-review", "layer": "L2" },
-    "C5": { "name": "CI Review Agent", "version": "1.0", "category": "code-review", "status": "pool", "primary_model": "free-github-action", "fallbacks": [], "mcps": ["github"], "capabilities": ["pr-review","ci-review"], "max_tool_calls": 5, "effort": "low", "template": "code-review", "layer": "L3" },
-    "C6": { "name": "Human Review Coordinator", "version": "1.0", "category": "code-review", "status": "pool", "primary_model": "haiku", "fallbacks": [], "mcps": ["github"], "capabilities": ["review-routing","human-handoff"], "max_tool_calls": 5, "effort": "low", "template": "code-review", "layer": "L4" },
-    "D1": { "name": "UI/UX Researcher", "version": "1.0", "category": "design", "status": "pool", "primary_model": "free-web", "fallbacks": [], "mcps": ["fetch"], "capabilities": ["ui-research","competitor-ui","trend"], "max_tool_calls": 20, "effort": "medium", "template": "analiz" },
-    "D2": { "name": "Design System Agent", "version": "1.0", "category": "design", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": [], "capabilities": ["color","typography","spacing","design-tokens"], "max_tool_calls": 15, "effort": "medium", "template": "autonomous" },
-    "D3": { "name": "Stitch Coordinator", "version": "1.0", "category": "design", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": [], "capabilities": ["stitch","design-to-code","tailwind"], "max_tool_calls": 20, "effort": "medium", "template": "autonomous" },
-    "D4": { "name": "Figma Assistant", "version": "1.0", "category": "design", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": [], "capabilities": ["figma","component-extraction"], "max_tool_calls": 15, "effort": "medium", "template": "analiz" },
-    "D5": { "name": "Presentation Builder", "version": "1.0", "category": "design", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": [], "capabilities": ["slides","powerpoint","keynote"], "max_tool_calls": 15, "effort": "medium", "template": "autonomous" },
-    "D6": { "name": "Image Prompt Generator", "version": "1.0", "category": "design", "status": "pool", "primary_model": "free-router", "fallbacks": [], "mcps": [], "capabilities": ["midjourney","dalle","prompt-engineering"], "max_tool_calls": 10, "effort": "low", "template": "autonomous" },
-    "D7": { "name": "Icon & Asset Agent", "version": "1.0", "category": "design", "status": "pool", "primary_model": "free-router", "fallbacks": [], "mcps": [], "capabilities": ["svg","icon","asset-optimization"], "max_tool_calls": 10, "effort": "low", "template": "autonomous" },
-    "D8": { "name": "Mockup Reviewer", "version": "1.0", "category": "design", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": [], "capabilities": ["design-review","ux-audit"], "max_tool_calls": 10, "effort": "medium", "template": "analiz" },
-    "E1": { "name": "3D Concept Planner", "version": "1.0", "category": "3d-cad", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": [], "capabilities": ["3d-planning","reference"], "max_tool_calls": 15, "effort": "medium", "template": "analiz" },
-    "E2": { "name": "Blender Script Agent", "version": "1.0", "category": "3d-cad", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": [], "capabilities": ["blender","python-scripting"], "max_tool_calls": 20, "effort": "medium", "template": "autonomous" },
-    "E3": { "name": "CAD Automation", "version": "1.0", "category": "3d-cad", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": [], "capabilities": ["autocad","scripting"], "max_tool_calls": 15, "effort": "medium", "template": "autonomous" },
-    "E4": { "name": "Render Pipeline", "version": "1.0", "category": "3d-cad", "status": "pool", "primary_model": "free-script", "fallbacks": [], "mcps": [], "capabilities": ["render-queue","batch-render"], "max_tool_calls": 10, "effort": "low", "template": "autonomous" },
-    "E5": { "name": "3D Asset Optimizer", "version": "1.0", "category": "3d-cad", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": [], "capabilities": ["lod","polygon-reduction","texture-optimization"], "max_tool_calls": 15, "effort": "medium", "template": "autonomous" },
-    "F1": { "name": "Data Cleaner", "version": "1.0", "category": "data-analytics", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": ["free-router"], "mcps": [], "capabilities": ["pandas","data-cleaning","normalization"], "max_tool_calls": 20, "effort": "medium", "template": "autonomous" },
-    "F2": { "name": "Data Analyst", "version": "1.0", "category": "data-analytics", "status": "pool", "primary_model": "sonnet", "fallbacks": ["local-qwen-9b"], "mcps": [], "capabilities": ["statistics","insight","correlation","hypothesis"], "max_tool_calls": 25, "effort": "medium", "template": "analiz" },
-    "F3": { "name": "Visualization Agent", "version": "1.0", "category": "data-analytics", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": [], "capabilities": ["chart","graph","matplotlib","plotly"], "max_tool_calls": 15, "effort": "medium", "template": "autonomous" },
-    "F4": { "name": "ETL Pipeline Agent", "version": "1.0", "category": "data-analytics", "status": "pool", "primary_model": "free-script", "fallbacks": [], "mcps": [], "capabilities": ["etl","pipeline","data-transfer"], "max_tool_calls": 15, "effort": "medium", "template": "autonomous" },
-    "F5": { "name": "Report Generator", "version": "1.0", "category": "data-analytics", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": [], "capabilities": ["pdf","markdown","report"], "max_tool_calls": 15, "effort": "low", "template": "autonomous" },
-    "F6": { "name": "SQL Agent", "version": "1.0", "category": "data-analytics", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": [], "capabilities": ["sql","query-optimization"], "max_tool_calls": 15, "effort": "medium", "template": "autonomous" },
-    "F7": { "name": "Spreadsheet Agent", "version": "1.0", "category": "data-analytics", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": [], "capabilities": ["excel","sheets","formulas"], "max_tool_calls": 10, "effort": "low", "template": "autonomous" },
-    "F8": { "name": "Jupyter Agent", "version": "1.0", "category": "data-analytics", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": [], "capabilities": ["jupyter","notebook","analysis"], "max_tool_calls": 20, "effort": "medium", "template": "autonomous" },
-    "F9": { "name": "Data Quality Agent", "version": "1.0", "category": "data-analytics", "status": "pool", "primary_model": "free-script", "fallbacks": [], "mcps": [], "capabilities": ["data-validation","consistency"], "max_tool_calls": 10, "effort": "low", "template": "autonomous" },
-    "F10": { "name": "Statistics Agent", "version": "1.0", "category": "data-analytics", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": [], "capabilities": ["hypothesis-testing","regression","bayesian"], "max_tool_calls": 15, "effort": "medium", "template": "autonomous" },
-    "G1": { "name": "Agent Coordinator", "version": "1.0", "category": "ai-ops", "status": "active", "primary_model": "sonnet", "fallbacks": ["haiku"], "mcps": ["*"], "capabilities": ["multi-agent","orchestration","parallel-dispatch"], "max_tool_calls": 30, "effort": "medium", "template": "autonomous" },
-    "G2": { "name": "Model Monitor", "version": "1.0", "category": "ai-ops", "status": "pool", "primary_model": "free-cron", "fallbacks": [], "mcps": [], "capabilities": ["model-health","latency-check"], "max_tool_calls": 5, "effort": "low", "template": "autonomous" },
-    "G3": { "name": "MCP Health Agent", "version": "1.0", "category": "ai-ops", "status": "active", "primary_model": "free-script", "fallbacks": [], "mcps": ["*"], "capabilities": ["mcp-health","connectivity-check"], "max_tool_calls": 5, "effort": "low", "template": "autonomous" },
-    "G4": { "name": "Config Manager", "version": "1.0", "category": "ai-ops", "status": "pool", "primary_model": "free-script", "fallbacks": [], "mcps": [], "capabilities": ["config-sync","settings-management"], "max_tool_calls": 10, "effort": "low", "template": "autonomous" },
-    "G5": { "name": "Log Analyzer", "version": "1.0", "category": "ai-ops", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": [], "capabilities": ["log-analysis","pattern-detection"], "max_tool_calls": 15, "effort": "medium", "template": "analiz" },
-    "G6": { "name": "Backup Agent", "version": "1.0", "category": "ai-ops", "status": "pool", "primary_model": "free-script", "fallbacks": [], "mcps": [], "capabilities": ["backup","restore"], "max_tool_calls": 5, "effort": "low", "template": "autonomous" },
-    "G7": { "name": "Update Checker", "version": "1.0", "category": "ai-ops", "status": "active", "primary_model": "free-web", "fallbacks": [], "mcps": ["fetch"], "capabilities": ["version-check","update-notification"], "max_tool_calls": 10, "effort": "low", "template": "autonomous" },
-    "G8": { "name": "Cron Scheduler", "version": "1.0", "category": "ai-ops", "status": "pool", "primary_model": "free-script", "fallbacks": [], "mcps": [], "capabilities": ["cron","scheduling","launchd"], "max_tool_calls": 5, "effort": "low", "template": "autonomous" },
-    "G9": { "name": "Performance Monitor", "version": "1.0", "category": "ai-ops", "status": "pool", "primary_model": "free-script", "fallbacks": [], "mcps": [], "capabilities": ["token-tracking","response-time"], "max_tool_calls": 5, "effort": "low", "template": "autonomous" },
-    "G10": { "name": "Deployment Agent", "version": "1.0", "category": "ai-ops", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": ["github"], "capabilities": ["vercel","firebase-deploy","github-pages"], "max_tool_calls": 15, "effort": "medium", "template": "autonomous" },
-    "H1": { "name": "Market Researcher", "version": "1.0", "category": "market-research", "status": "active", "primary_model": "sonnet", "fallbacks": ["local-qwen-9b","qwen-3.6-free"], "mcps": ["fetch"], "capabilities": ["market-analysis","segmentation","trend"], "max_tool_calls": 30, "effort": "high", "template": "analiz" },
-    "H2": { "name": "Competitor Analyst", "version": "1.0", "category": "market-research", "status": "pool", "primary_model": "free-web", "fallbacks": [], "mcps": ["fetch"], "capabilities": ["competitor","swot","benchmark"], "max_tool_calls": 20, "effort": "medium", "template": "analiz" },
-    "H3": { "name": "Revenue Analyst", "version": "1.0", "category": "market-research", "status": "pool", "primary_model": "sonnet", "fallbacks": ["haiku"], "mcps": [], "capabilities": ["revenue-model","pricing","unit-economics"], "max_tool_calls": 20, "effort": "medium", "template": "analiz" },
-    "H4": { "name": "Pricing Strategist", "version": "1.0", "category": "market-research", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": [], "capabilities": ["pricing","ab-test","optimization"], "max_tool_calls": 15, "effort": "medium", "template": "analiz" },
-    "H5": { "name": "SEO Agent", "version": "1.0", "category": "market-research", "status": "active", "primary_model": "free-script", "fallbacks": [], "mcps": ["fetch"], "capabilities": ["programmatic-seo","keyword","content-generation"], "max_tool_calls": 25, "effort": "medium", "template": "autonomous" },
-    "H6": { "name": "GEO Agent", "version": "1.0", "category": "market-research", "status": "active", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": ["fetch"], "capabilities": ["ai-search-optimization","structured-data","schema"], "max_tool_calls": 20, "effort": "medium", "template": "autonomous" },
-    "H7": { "name": "Social Media Agent", "version": "1.0", "category": "market-research", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": [], "capabilities": ["post-generation","linkedin","twitter","scheduling"], "max_tool_calls": 15, "effort": "medium", "template": "autonomous" },
-    "H8": { "name": "Content Repurposer", "version": "1.0", "category": "market-research", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": [], "capabilities": ["content-splitting","repurpose","multi-channel"], "max_tool_calls": 20, "effort": "medium", "template": "autonomous" },
-    "H9": { "name": "Newsletter Agent", "version": "1.0", "category": "market-research", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": [], "capabilities": ["newsletter","email-copy","segmentation"], "max_tool_calls": 15, "effort": "medium", "template": "autonomous" },
-    "H10": { "name": "New Tool Scout", "version": "1.0", "category": "market-research", "status": "pool", "primary_model": "free-web", "fallbacks": [], "mcps": ["fetch"], "capabilities": ["tool-discovery","model-updates"], "max_tool_calls": 15, "effort": "low", "template": "analiz" },
-    "H11": { "name": "MCP Distribution Agent", "version": "1.0", "category": "market-research", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": ["github"], "capabilities": ["mcp-server-creation","npm-publish","directory-submission"], "max_tool_calls": 25, "effort": "high", "template": "autonomous" },
-    "H12": { "name": "Viral Output Agent", "version": "1.0", "category": "market-research", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": [], "capabilities": ["shareable-content","gamification","viral-design"], "max_tool_calls": 15, "effort": "medium", "template": "autonomous" },
-    "I1": { "name": "Jira Router", "version": "1.0", "category": "jira-pm", "status": "active", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": ["atlassian"], "capabilities": ["jira-routing","board-scan","task-assignment"], "max_tool_calls": 15, "effort": "medium", "template": "autonomous" },
-    "I2": { "name": "Sprint Planner", "version": "1.0", "category": "jira-pm", "status": "active", "primary_model": "sonnet", "fallbacks": ["haiku"], "mcps": ["atlassian"], "capabilities": ["sprint-planning","task-decomposition","estimation"], "max_tool_calls": 25, "effort": "medium", "template": "analiz" },
-    "I3": { "name": "Task Decomposer", "version": "1.0", "category": "jira-pm", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": ["atlassian"], "capabilities": ["task-splitting","subtask-creation"], "max_tool_calls": 15, "effort": "medium", "template": "autonomous" },
-    "I4": { "name": "Status Reporter", "version": "1.0", "category": "jira-pm", "status": "active", "primary_model": "free-script", "fallbacks": [], "mcps": ["atlassian"], "capabilities": ["dashboard","reporting","cache"], "max_tool_calls": 10, "effort": "low", "template": "autonomous" },
-    "I5": { "name": "WAITING Decision Agent", "version": "1.0", "category": "jira-pm", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": ["atlassian"], "capabilities": ["decision","triage","priority"], "max_tool_calls": 10, "effort": "low", "template": "autonomous" },
-    "I6": { "name": "Backlog Groomer", "version": "1.0", "category": "jira-pm", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": ["atlassian"], "capabilities": ["backlog-cleanup","prioritization"], "max_tool_calls": 15, "effort": "medium", "template": "autonomous" },
-    "I7": { "name": "Burndown Tracker", "version": "1.0", "category": "jira-pm", "status": "pool", "primary_model": "free-script", "fallbacks": [], "mcps": ["atlassian"], "capabilities": ["burndown","velocity","tracking"], "max_tool_calls": 5, "effort": "low", "template": "autonomous" },
-    "I8": { "name": "Standup Generator", "version": "1.0", "category": "jira-pm", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": ["atlassian"], "capabilities": ["standup","daily-summary"], "max_tool_calls": 10, "effort": "low", "template": "autonomous" },
-    "I9": { "name": "Retrospective Agent", "version": "1.0", "category": "jira-pm", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": ["atlassian"], "capabilities": ["retrospective","lessons-learned"], "max_tool_calls": 15, "effort": "medium", "template": "analiz" },
-    "I10": { "name": "Estimation Agent", "version": "1.0", "category": "jira-pm", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": ["atlassian"], "capabilities": ["story-points","estimation","complexity"], "max_tool_calls": 10, "effort": "low", "template": "analiz" },
-    "J1": { "name": "Docker Agent", "version": "1.0", "category": "devops", "status": "pool", "primary_model": "free-script", "fallbacks": [], "mcps": [], "capabilities": ["docker","compose","container"], "max_tool_calls": 15, "effort": "medium", "template": "autonomous" },
-    "J2": { "name": "Cloud Deploy Agent", "version": "1.0", "category": "devops", "status": "active", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": ["github"], "capabilities": ["vercel","firebase","gcp","aws"], "max_tool_calls": 20, "effort": "medium", "template": "autonomous" },
-    "J3": { "name": "SSL/DNS Agent", "version": "1.0", "category": "devops", "status": "pool", "primary_model": "free-script", "fallbacks": [], "mcps": [], "capabilities": ["ssl","dns","certificate"], "max_tool_calls": 10, "effort": "low", "template": "autonomous" },
-    "J4": { "name": "Server Monitor", "version": "1.0", "category": "devops", "status": "pool", "primary_model": "free-cron", "fallbacks": [], "mcps": [], "capabilities": ["uptime","health-check","alerting"], "max_tool_calls": 5, "effort": "low", "template": "autonomous" },
-    "J5": { "name": "Cost Optimizer", "version": "1.0", "category": "devops", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": [], "capabilities": ["cloud-cost","optimization","right-sizing"], "max_tool_calls": 15, "effort": "medium", "template": "analiz" },
-    "J6": { "name": "Firebase Agent", "version": "1.0", "category": "devops", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": ["firebase"], "capabilities": ["firestore","auth","functions","hosting"], "max_tool_calls": 20, "effort": "medium", "template": "autonomous" },
-    "J7": { "name": "Incident Responder", "version": "1.0", "category": "devops", "status": "active", "primary_model": "sonnet", "fallbacks": ["haiku"], "mcps": ["github","git"], "capabilities": ["incident","hotfix","rollback","postmortem"], "max_tool_calls": 30, "effort": "high", "template": "autonomous" },
-    "J8": { "name": "Infrastructure Planner", "version": "1.0", "category": "devops", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": [], "capabilities": ["capacity-planning","architecture"], "max_tool_calls": 15, "effort": "medium", "template": "analiz" },
-    "K1": { "name": "Web Researcher", "version": "1.0", "category": "research", "status": "active", "primary_model": "free-web", "fallbacks": [], "mcps": ["fetch"], "capabilities": ["web-search","scraping","summarization"], "max_tool_calls": 25, "effort": "medium", "template": "analiz" },
-    "K2": { "name": "Paper Summarizer", "version": "1.0", "category": "research", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": [], "capabilities": ["academic","paper-summary","abstract"], "max_tool_calls": 15, "effort": "medium", "template": "analiz" },
-    "K3": { "name": "Documentation Fetcher", "version": "1.0", "category": "research", "status": "active", "primary_model": "free-context7", "fallbacks": [], "mcps": ["context7"], "capabilities": ["api-docs","library-docs","sdk-docs"], "max_tool_calls": 15, "effort": "low", "template": "analiz" },
-    "K4": { "name": "Trend Analyzer", "version": "1.0", "category": "research", "status": "active", "primary_model": "free-web", "fallbacks": [], "mcps": ["fetch"], "capabilities": ["trend","market-signal","technology-radar"], "max_tool_calls": 20, "effort": "medium", "template": "analiz" },
-    "K5": { "name": "Video Summarizer", "version": "1.0", "category": "research", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": ["fetch"], "capabilities": ["youtube-transcript","video-summary"], "max_tool_calls": 15, "effort": "medium", "template": "analiz" },
-    "K6": { "name": "Tutorial Finder", "version": "1.0", "category": "research", "status": "pool", "primary_model": "free-web", "fallbacks": [], "mcps": ["fetch"], "capabilities": ["tutorial","howto","learning-resource"], "max_tool_calls": 15, "effort": "low", "template": "analiz" },
-    "K7": { "name": "Knowledge Base Agent", "version": "1.0", "category": "research", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": [], "capabilities": ["rag","memory-query","knowledge-retrieval"], "max_tool_calls": 15, "effort": "medium", "template": "analiz" },
-    "K8": { "name": "Skill Recommender", "version": "1.0", "category": "research", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": [], "capabilities": ["skill-gap","tool-recommendation"], "max_tool_calls": 10, "effort": "low", "template": "analiz" },
-    "L1": { "name": "Email Summarizer", "version": "1.0", "category": "productivity", "status": "active", "primary_model": "free-gmail-mcp", "fallbacks": [], "mcps": ["claude_ai_Gmail"], "capabilities": ["email-summary","priority","action-items"], "max_tool_calls": 15, "effort": "low", "template": "analiz" },
-    "L2": { "name": "Calendar Agent", "version": "1.0", "category": "productivity", "status": "pool", "primary_model": "free-script", "fallbacks": [], "mcps": [], "capabilities": ["calendar","scheduling","reminder"], "max_tool_calls": 10, "effort": "low", "template": "autonomous" },
-    "L3": { "name": "Daily Briefing Agent", "version": "1.0", "category": "productivity", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": ["fetch","claude_ai_Gmail"], "capabilities": ["briefing","news","tasks","calendar"], "max_tool_calls": 15, "effort": "low", "template": "analiz" },
-    "L4": { "name": "Note Organizer", "version": "1.0", "category": "productivity", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": [], "capabilities": ["note-classification","tagging","obsidian"], "max_tool_calls": 10, "effort": "low", "template": "autonomous" },
-    "L5": { "name": "File Organizer", "version": "1.0", "category": "productivity", "status": "pool", "primary_model": "free-script", "fallbacks": [], "mcps": [], "capabilities": ["file-cleanup","downloads","desktop"], "max_tool_calls": 10, "effort": "low", "template": "autonomous" },
-    "L6": { "name": "Meeting Notes Agent", "version": "1.0", "category": "productivity", "status": "pool", "primary_model": "local-qwen-9b", "fallbacks": [], "mcps": [], "capabilities": ["meeting-notes","action-items","transcript"], "max_tool_calls": 15, "effort": "medium", "template": "analiz" },
-    "M1": { "name": "Free Tool Builder", "version": "1.0", "category": "marketing-engine", "status": "pool", "primary_model": "sonnet", "fallbacks": ["local-qwen-9b"], "mcps": ["github","git","context7"], "capabilities": ["lead-gen","free-tool","calculator","analyzer"], "max_tool_calls": 30, "effort": "high", "template": "autonomous" },
-    "M2": { "name": "Landing Page Agent", "version": "1.0", "category": "marketing-engine", "status": "pool", "primary_model": "haiku", "fallbacks": ["local-qwen-9b"], "mcps": ["github","git"], "capabilities": ["landing-page","stitch","conversion"], "max_tool_calls": 25, "effort": "medium", "template": "autonomous" },
-    "M3": { "name": "A/B Test Agent", "version": "1.0", "category": "marketing-engine", "status": "pool", "primary_model": "free-script", "fallbacks": [], "mcps": [], "capabilities": ["ab-test","variant","analytics"], "max_tool_calls": 10, "effort": "low", "template": "autonomous" },
-    "M4": { "name": "Analytics Agent", "version": "1.0", "category": "marketing-engine", "status": "pool", "primary_model": "free-script", "fallbacks": [], "mcps": [], "capabilities": ["ga4","mixpanel","reporting"], "max_tool_calls": 10, "effort": "low", "template": "analiz" }
+    "C1": {
+      "name": "Lint & Format Hook",
+      "version": "1.0",
+      "category": "code-review",
+      "status": "active",
+      "primary_model": "free-deterministic",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "lint",
+        "format",
+        "type-check"
+      ],
+      "max_tool_calls": 3,
+      "effort": "low",
+      "template": "code-review",
+      "layer": "L1"
+    },
+    "C2": {
+      "name": "Security Scanner Hook",
+      "version": "1.0",
+      "category": "code-review",
+      "status": "active",
+      "primary_model": "free-deterministic",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "secret-scan",
+        "dependency-audit",
+        "sast"
+      ],
+      "max_tool_calls": 3,
+      "effort": "low",
+      "template": "code-review",
+      "layer": "L1"
+    },
+    "C3": {
+      "name": "Local AI Reviewer",
+      "version": "1.0",
+      "category": "code-review",
+      "status": "active",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "github",
+        "git"
+      ],
+      "capabilities": [
+        "code-review",
+        "correctness",
+        "security",
+        "simplicity",
+        "concurrency"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "code-review",
+      "layer": "L2"
+    },
+    "C4": {
+      "name": "Code Rabbit Agent",
+      "version": "1.0",
+      "category": "code-review",
+      "status": "pool",
+      "primary_model": "free-coderabbit",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "deep-review",
+        "coderabbit"
+      ],
+      "max_tool_calls": 5,
+      "effort": "medium",
+      "template": "code-review",
+      "layer": "L2"
+    },
+    "C5": {
+      "name": "CI Review Agent",
+      "version": "1.0",
+      "category": "code-review",
+      "status": "pool",
+      "primary_model": "free-github-action",
+      "fallbacks": [],
+      "mcps": [
+        "github"
+      ],
+      "capabilities": [
+        "pr-review",
+        "ci-review"
+      ],
+      "max_tool_calls": 5,
+      "effort": "low",
+      "template": "code-review",
+      "layer": "L3"
+    },
+    "C6": {
+      "name": "Human Review Coordinator",
+      "version": "1.0",
+      "category": "code-review",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [],
+      "mcps": [
+        "github"
+      ],
+      "capabilities": [
+        "review-routing",
+        "human-handoff"
+      ],
+      "max_tool_calls": 5,
+      "effort": "low",
+      "template": "code-review",
+      "layer": "L4"
+    },
+    "D1": {
+      "name": "UI/UX Researcher",
+      "version": "1.0",
+      "category": "design",
+      "status": "pool",
+      "primary_model": "free-web",
+      "fallbacks": [],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "ui-research",
+        "competitor-ui",
+        "trend"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "D2": {
+      "name": "Design System Agent",
+      "version": "1.0",
+      "category": "design",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "color",
+        "typography",
+        "spacing",
+        "design-tokens"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "D3": {
+      "name": "Stitch Coordinator",
+      "version": "1.0",
+      "category": "design",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "stitch",
+        "design-to-code",
+        "tailwind"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "D4": {
+      "name": "Figma Assistant",
+      "version": "1.0",
+      "category": "design",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "figma",
+        "component-extraction"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "D5": {
+      "name": "Presentation Builder",
+      "version": "1.0",
+      "category": "design",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "slides",
+        "powerpoint",
+        "keynote"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "D6": {
+      "name": "Image Prompt Generator",
+      "version": "1.0",
+      "category": "design",
+      "status": "pool",
+      "primary_model": "free-router",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "midjourney",
+        "dalle",
+        "prompt-engineering"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "D7": {
+      "name": "Icon & Asset Agent",
+      "version": "1.0",
+      "category": "design",
+      "status": "pool",
+      "primary_model": "free-router",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "svg",
+        "icon",
+        "asset-optimization"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "D8": {
+      "name": "Mockup Reviewer",
+      "version": "1.0",
+      "category": "design",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "design-review",
+        "ux-audit"
+      ],
+      "max_tool_calls": 10,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "E1": {
+      "name": "3D Concept Planner",
+      "version": "1.0",
+      "category": "3d-cad",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "3d-planning",
+        "reference"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "E2": {
+      "name": "Blender Script Agent",
+      "version": "1.0",
+      "category": "3d-cad",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "blender",
+        "python-scripting"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "E3": {
+      "name": "CAD Automation",
+      "version": "1.0",
+      "category": "3d-cad",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "autocad",
+        "scripting"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "E4": {
+      "name": "Render Pipeline",
+      "version": "1.0",
+      "category": "3d-cad",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "render-queue",
+        "batch-render"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "E5": {
+      "name": "3D Asset Optimizer",
+      "version": "1.0",
+      "category": "3d-cad",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "lod",
+        "polygon-reduction",
+        "texture-optimization"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "F1": {
+      "name": "Data Cleaner",
+      "version": "1.0",
+      "category": "data-analytics",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [
+        "free-router"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "pandas",
+        "data-cleaning",
+        "normalization"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "F2": {
+      "name": "Data Analyst",
+      "version": "1.0",
+      "category": "data-analytics",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "statistics",
+        "insight",
+        "correlation",
+        "hypothesis"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "F3": {
+      "name": "Visualization Agent",
+      "version": "1.0",
+      "category": "data-analytics",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "chart",
+        "graph",
+        "matplotlib",
+        "plotly"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "F4": {
+      "name": "ETL Pipeline Agent",
+      "version": "1.0",
+      "category": "data-analytics",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "etl",
+        "pipeline",
+        "data-transfer"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "F5": {
+      "name": "Report Generator",
+      "version": "1.0",
+      "category": "data-analytics",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "pdf",
+        "markdown",
+        "report"
+      ],
+      "max_tool_calls": 15,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "F6": {
+      "name": "SQL Agent",
+      "version": "1.0",
+      "category": "data-analytics",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "sql",
+        "query-optimization"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "F7": {
+      "name": "Spreadsheet Agent",
+      "version": "1.0",
+      "category": "data-analytics",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "excel",
+        "sheets",
+        "formulas"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "F8": {
+      "name": "Jupyter Agent",
+      "version": "1.0",
+      "category": "data-analytics",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "jupyter",
+        "notebook",
+        "analysis"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "F9": {
+      "name": "Data Quality Agent",
+      "version": "1.0",
+      "category": "data-analytics",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "data-validation",
+        "consistency"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "F10": {
+      "name": "Statistics Agent",
+      "version": "1.0",
+      "category": "data-analytics",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "hypothesis-testing",
+        "regression",
+        "bayesian"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "G1": {
+      "name": "Agent Coordinator",
+      "version": "1.0",
+      "category": "ai-ops",
+      "status": "active",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "haiku"
+      ],
+      "mcps": [
+        "*"
+      ],
+      "capabilities": [
+        "multi-agent",
+        "orchestration",
+        "parallel-dispatch"
+      ],
+      "max_tool_calls": 30,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "G2": {
+      "name": "Model Monitor",
+      "version": "1.0",
+      "category": "ai-ops",
+      "status": "pool",
+      "primary_model": "free-cron",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "model-health",
+        "latency-check"
+      ],
+      "max_tool_calls": 5,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "G3": {
+      "name": "MCP Health Agent",
+      "version": "1.0",
+      "category": "ai-ops",
+      "status": "active",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [
+        "*"
+      ],
+      "capabilities": [
+        "mcp-health",
+        "connectivity-check"
+      ],
+      "max_tool_calls": 5,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "G4": {
+      "name": "Config Manager",
+      "version": "1.0",
+      "category": "ai-ops",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "config-sync",
+        "settings-management"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "G5": {
+      "name": "Log Analyzer",
+      "version": "1.0",
+      "category": "ai-ops",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "log-analysis",
+        "pattern-detection"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "G6": {
+      "name": "Backup Agent",
+      "version": "1.0",
+      "category": "ai-ops",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "backup",
+        "restore"
+      ],
+      "max_tool_calls": 5,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "G7": {
+      "name": "Update Checker",
+      "version": "1.0",
+      "category": "ai-ops",
+      "status": "active",
+      "primary_model": "free-web",
+      "fallbacks": [],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "version-check",
+        "update-notification"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "G8": {
+      "name": "Cron Scheduler",
+      "version": "1.0",
+      "category": "ai-ops",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "cron",
+        "scheduling",
+        "launchd"
+      ],
+      "max_tool_calls": 5,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "G9": {
+      "name": "Performance Monitor",
+      "version": "1.0",
+      "category": "ai-ops",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "token-tracking",
+        "response-time"
+      ],
+      "max_tool_calls": 5,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "G10": {
+      "name": "Deployment Agent",
+      "version": "1.0",
+      "category": "ai-ops",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "github"
+      ],
+      "capabilities": [
+        "vercel",
+        "firebase-deploy",
+        "github-pages"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "H1": {
+      "name": "Market Researcher",
+      "version": "1.0",
+      "category": "market-research",
+      "status": "active",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "local-qwen-9b",
+        "qwen-3.6-free"
+      ],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "market-analysis",
+        "segmentation",
+        "trend"
+      ],
+      "max_tool_calls": 30,
+      "effort": "high",
+      "template": "analiz"
+    },
+    "H2": {
+      "name": "Competitor Analyst",
+      "version": "1.0",
+      "category": "market-research",
+      "status": "pool",
+      "primary_model": "free-web",
+      "fallbacks": [],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "competitor",
+        "swot",
+        "benchmark"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "H3": {
+      "name": "Revenue Analyst",
+      "version": "1.0",
+      "category": "market-research",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "haiku"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "revenue-model",
+        "pricing",
+        "unit-economics"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "H4": {
+      "name": "Pricing Strategist",
+      "version": "1.0",
+      "category": "market-research",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "pricing",
+        "ab-test",
+        "optimization"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "H5": {
+      "name": "SEO Agent",
+      "version": "1.0",
+      "category": "market-research",
+      "status": "active",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "programmatic-seo",
+        "keyword",
+        "content-generation"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "H6": {
+      "name": "GEO Agent",
+      "version": "1.0",
+      "category": "market-research",
+      "status": "active",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "ai-search-optimization",
+        "structured-data",
+        "schema"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "H7": {
+      "name": "Social Media Agent",
+      "version": "1.0",
+      "category": "market-research",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "post-generation",
+        "linkedin",
+        "twitter",
+        "scheduling"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "H8": {
+      "name": "Content Repurposer",
+      "version": "1.0",
+      "category": "market-research",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "content-splitting",
+        "repurpose",
+        "multi-channel"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "H9": {
+      "name": "Newsletter Agent",
+      "version": "1.0",
+      "category": "market-research",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "newsletter",
+        "email-copy",
+        "segmentation"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "H10": {
+      "name": "New Tool Scout",
+      "version": "1.0",
+      "category": "market-research",
+      "status": "pool",
+      "primary_model": "free-web",
+      "fallbacks": [],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "tool-discovery",
+        "model-updates"
+      ],
+      "max_tool_calls": 15,
+      "effort": "low",
+      "template": "analiz"
+    },
+    "H11": {
+      "name": "MCP Distribution Agent",
+      "version": "1.0",
+      "category": "market-research",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "github"
+      ],
+      "capabilities": [
+        "mcp-server-creation",
+        "npm-publish",
+        "directory-submission"
+      ],
+      "max_tool_calls": 25,
+      "effort": "high",
+      "template": "autonomous"
+    },
+    "H12": {
+      "name": "Viral Output Agent",
+      "version": "1.0",
+      "category": "market-research",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "shareable-content",
+        "gamification",
+        "viral-design"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "I1": {
+      "name": "Jira Router",
+      "version": "1.0",
+      "category": "jira-pm",
+      "status": "active",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "atlassian"
+      ],
+      "capabilities": [
+        "jira-routing",
+        "board-scan",
+        "task-assignment"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "I2": {
+      "name": "Sprint Planner",
+      "version": "1.0",
+      "category": "jira-pm",
+      "status": "active",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "haiku"
+      ],
+      "mcps": [
+        "atlassian"
+      ],
+      "capabilities": [
+        "sprint-planning",
+        "task-decomposition",
+        "estimation"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "I3": {
+      "name": "Task Decomposer",
+      "version": "1.0",
+      "category": "jira-pm",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "atlassian"
+      ],
+      "capabilities": [
+        "task-splitting",
+        "subtask-creation"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "I4": {
+      "name": "Status Reporter",
+      "version": "1.0",
+      "category": "jira-pm",
+      "status": "active",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [
+        "atlassian"
+      ],
+      "capabilities": [
+        "dashboard",
+        "reporting",
+        "cache"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "I5": {
+      "name": "WAITING Decision Agent",
+      "version": "1.0",
+      "category": "jira-pm",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "atlassian"
+      ],
+      "capabilities": [
+        "decision",
+        "triage",
+        "priority"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "I6": {
+      "name": "Backlog Groomer",
+      "version": "1.0",
+      "category": "jira-pm",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [
+        "atlassian"
+      ],
+      "capabilities": [
+        "backlog-cleanup",
+        "prioritization"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "I7": {
+      "name": "Burndown Tracker",
+      "version": "1.0",
+      "category": "jira-pm",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [
+        "atlassian"
+      ],
+      "capabilities": [
+        "burndown",
+        "velocity",
+        "tracking"
+      ],
+      "max_tool_calls": 5,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "I8": {
+      "name": "Standup Generator",
+      "version": "1.0",
+      "category": "jira-pm",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [
+        "atlassian"
+      ],
+      "capabilities": [
+        "standup",
+        "daily-summary"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "I9": {
+      "name": "Retrospective Agent",
+      "version": "1.0",
+      "category": "jira-pm",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "atlassian"
+      ],
+      "capabilities": [
+        "retrospective",
+        "lessons-learned"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "I10": {
+      "name": "Estimation Agent",
+      "version": "1.0",
+      "category": "jira-pm",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "atlassian"
+      ],
+      "capabilities": [
+        "story-points",
+        "estimation",
+        "complexity"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "analiz"
+    },
+    "J1": {
+      "name": "Docker Agent",
+      "version": "1.0",
+      "category": "devops",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "docker",
+        "compose",
+        "container"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "J2": {
+      "name": "Cloud Deploy Agent",
+      "version": "1.0",
+      "category": "devops",
+      "status": "active",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "github"
+      ],
+      "capabilities": [
+        "vercel",
+        "firebase",
+        "gcp",
+        "aws"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "J3": {
+      "name": "SSL/DNS Agent",
+      "version": "1.0",
+      "category": "devops",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "ssl",
+        "dns",
+        "certificate"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "J4": {
+      "name": "Server Monitor",
+      "version": "1.0",
+      "category": "devops",
+      "status": "pool",
+      "primary_model": "free-cron",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "uptime",
+        "health-check",
+        "alerting"
+      ],
+      "max_tool_calls": 5,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "J5": {
+      "name": "Cost Optimizer",
+      "version": "1.0",
+      "category": "devops",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "cloud-cost",
+        "optimization",
+        "right-sizing"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "J6": {
+      "name": "Firebase Agent",
+      "version": "1.0",
+      "category": "devops",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "firebase"
+      ],
+      "capabilities": [
+        "firestore",
+        "auth",
+        "functions",
+        "hosting"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "J7": {
+      "name": "Incident Responder",
+      "version": "1.0",
+      "category": "devops",
+      "status": "active",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "haiku"
+      ],
+      "mcps": [
+        "github",
+        "git"
+      ],
+      "capabilities": [
+        "incident",
+        "hotfix",
+        "rollback",
+        "postmortem"
+      ],
+      "max_tool_calls": 30,
+      "effort": "high",
+      "template": "autonomous"
+    },
+    "J8": {
+      "name": "Infrastructure Planner",
+      "version": "1.0",
+      "category": "devops",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "capacity-planning",
+        "architecture"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "K1": {
+      "name": "Web Researcher",
+      "version": "1.0",
+      "category": "research",
+      "status": "active",
+      "primary_model": "free-web",
+      "fallbacks": [],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "web-search",
+        "scraping",
+        "summarization"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "K2": {
+      "name": "Paper Summarizer",
+      "version": "1.0",
+      "category": "research",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "academic",
+        "paper-summary",
+        "abstract"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "K3": {
+      "name": "Documentation Fetcher",
+      "version": "1.0",
+      "category": "research",
+      "status": "active",
+      "primary_model": "free-context7",
+      "fallbacks": [],
+      "mcps": [
+        "context7"
+      ],
+      "capabilities": [
+        "api-docs",
+        "library-docs",
+        "sdk-docs"
+      ],
+      "max_tool_calls": 15,
+      "effort": "low",
+      "template": "analiz"
+    },
+    "K4": {
+      "name": "Trend Analyzer",
+      "version": "1.0",
+      "category": "research",
+      "status": "active",
+      "primary_model": "free-web",
+      "fallbacks": [],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "trend",
+        "market-signal",
+        "technology-radar"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "K5": {
+      "name": "Video Summarizer",
+      "version": "1.0",
+      "category": "research",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "youtube-transcript",
+        "video-summary"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "K6": {
+      "name": "Tutorial Finder",
+      "version": "1.0",
+      "category": "research",
+      "status": "pool",
+      "primary_model": "free-web",
+      "fallbacks": [],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "tutorial",
+        "howto",
+        "learning-resource"
+      ],
+      "max_tool_calls": 15,
+      "effort": "low",
+      "template": "analiz"
+    },
+    "K7": {
+      "name": "Knowledge Base Agent",
+      "version": "1.0",
+      "category": "research",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "rag",
+        "memory-query",
+        "knowledge-retrieval"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "K8": {
+      "name": "Skill Recommender",
+      "version": "1.0",
+      "category": "research",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "skill-gap",
+        "tool-recommendation"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "analiz"
+    },
+    "L1": {
+      "name": "Email Summarizer",
+      "version": "1.0",
+      "category": "productivity",
+      "status": "active",
+      "primary_model": "free-gmail-mcp",
+      "fallbacks": [],
+      "mcps": [
+        "claude_ai_Gmail"
+      ],
+      "capabilities": [
+        "email-summary",
+        "priority",
+        "action-items"
+      ],
+      "max_tool_calls": 15,
+      "effort": "low",
+      "template": "analiz"
+    },
+    "L2": {
+      "name": "Calendar Agent",
+      "version": "1.0",
+      "category": "productivity",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "calendar",
+        "scheduling",
+        "reminder"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "L3": {
+      "name": "Daily Briefing Agent",
+      "version": "1.0",
+      "category": "productivity",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [
+        "fetch",
+        "claude_ai_Gmail"
+      ],
+      "capabilities": [
+        "briefing",
+        "news",
+        "tasks",
+        "calendar"
+      ],
+      "max_tool_calls": 15,
+      "effort": "low",
+      "template": "analiz"
+    },
+    "L4": {
+      "name": "Note Organizer",
+      "version": "1.0",
+      "category": "productivity",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "note-classification",
+        "tagging",
+        "obsidian"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "L5": {
+      "name": "File Organizer",
+      "version": "1.0",
+      "category": "productivity",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "file-cleanup",
+        "downloads",
+        "desktop"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "L6": {
+      "name": "Meeting Notes Agent",
+      "version": "1.0",
+      "category": "productivity",
+      "status": "pool",
+      "primary_model": "local-qwen-9b",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "meeting-notes",
+        "action-items",
+        "transcript"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "M1": {
+      "name": "Free Tool Builder",
+      "version": "1.0",
+      "category": "marketing-engine",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "context7"
+      ],
+      "capabilities": [
+        "lead-gen",
+        "free-tool",
+        "calculator",
+        "analyzer"
+      ],
+      "max_tool_calls": 30,
+      "effort": "high",
+      "template": "autonomous"
+    },
+    "M2": {
+      "name": "Landing Page Agent",
+      "version": "1.0",
+      "category": "marketing-engine",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "github",
+        "git"
+      ],
+      "capabilities": [
+        "landing-page",
+        "stitch",
+        "conversion"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "M3": {
+      "name": "A/B Test Agent",
+      "version": "1.0",
+      "category": "marketing-engine",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "ab-test",
+        "variant",
+        "analytics"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "autonomous"
+    },
+    "M4": {
+      "name": "Analytics Agent",
+      "version": "1.0",
+      "category": "marketing-engine",
+      "status": "pool",
+      "primary_model": "free-script",
+      "fallbacks": [],
+      "mcps": [],
+      "capabilities": [
+        "ga4",
+        "mixpanel",
+        "reporting"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "analiz"
+    },
+    "B16": {
+      "name": "Web Game Dev Agent",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "local-qwen-9b",
+        "qwen-3.6-free"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "context7"
+      ],
+      "capabilities": [
+        "phaser",
+        "pixi",
+        "threejs",
+        "babylonjs",
+        "canvas",
+        "webgl",
+        "webgpu",
+        "javascript",
+        "typescript",
+        "game-loop"
+      ],
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "max_tool_calls": 30,
+      "effort": "high",
+      "template": "autonomous"
+    },
+    "B17": {
+      "name": "Full Stack Web Agent",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "local-qwen-9b",
+        "qwen-3.6-free"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "context7"
+      ],
+      "capabilities": [
+        "nextjs",
+        "react",
+        "nodejs",
+        "express",
+        "tailwind",
+        "prisma",
+        "supabase",
+        "vercel"
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "max_tool_calls": 30,
+      "effort": "high",
+      "template": "autonomous"
+    },
+    "B18": {
+      "name": "Python Specialist",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch",
+        "context7"
+      ],
+      "capabilities": [
+        "fastapi",
+        "django",
+        "flask",
+        "pandas",
+        "numpy",
+        "poetry",
+        "pip"
+      ],
+      "languages": [
+        "python"
+      ],
+      "max_tool_calls": 30,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "B19": {
+      "name": "Unity Developer",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "local-qwen-9b",
+        "qwen-3.6-free"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "unity",
+        "csharp",
+        "ecs",
+        "dots",
+        "shader",
+        "editor-tooling",
+        "upm"
+      ],
+      "languages": [
+        "csharp",
+        "hlsl"
+      ],
+      "max_tool_calls": 30,
+      "effort": "high",
+      "template": "autonomous"
+    },
+    "K9": {
+      "name": "AI Tool Evaluator",
+      "version": "1.0",
+      "category": "research",
+      "status": "pool",
+      "primary_model": "haiku",
+      "fallbacks": [
+        "local-qwen-9b"
+      ],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "tool-evaluation",
+        "benchmark",
+        "comparison",
+        "recommendation"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "analiz"
+    },
+    "N1": {
+      "name": "Prompt Engineer",
+      "version": "1.0",
+      "category": "prompt-engineering",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "haiku"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "system-prompt",
+        "few-shot",
+        "chain-of-thought",
+        "prompt-optimization"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "N2": {
+      "name": "Agent Builder",
+      "version": "1.0",
+      "category": "prompt-engineering",
+      "status": "pool",
+      "primary_model": "opus",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git"
+      ],
+      "capabilities": [
+        "agent-design",
+        "mcp-integration",
+        "skill-creation",
+        "workflow-design"
+      ],
+      "max_tool_calls": 30,
+      "effort": "high",
+      "template": "autonomous"
+    }
   },
   "retry_strategy": {
     "on_fail": {
-      "1st": { "action": "same_agent_different_model", "reason_log": true },
-      "2nd": { "action": "different_agent_same_capability", "reason_log": true },
-      "3rd": { "action": "escalate_to_A1", "include_failure_context": true }
+      "1st": {
+        "action": "same_agent_different_model",
+        "reason_log": true
+      },
+      "2nd": {
+        "action": "different_agent_same_capability",
+        "reason_log": true
+      },
+      "3rd": {
+        "action": "escalate_to_A1",
+        "include_failure_context": true
+      }
     }
   },
   "watchdog_defaults": {
