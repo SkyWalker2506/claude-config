@@ -50,13 +50,20 @@ jobs:
             -H "Content-Type: application/json" \
             -d "$PAYLOAD")
 
+          echo "API Response (debug): $(echo "$RESPONSE" | head -c 500)"
+
           REVIEW=$(echo "$RESPONSE" | python3 -c "
           import json, sys
           try:
             data = json.load(sys.stdin)
-            print(data['choices'][0]['message']['content'])
-          except:
-            print('Review failed — check OpenRouter API key or model availability')
+            content = data.get('choices', [{}])[0].get('message', {}).get('content', '')
+            if content:
+              print(content)
+            else:
+              err = data.get('error', {}).get('message', json.dumps(data)[:300])
+              print(f'API returned no content: {err}')
+          except Exception as e:
+            print(f'Parse error: {e}')
           ")
 
           # Post comment
