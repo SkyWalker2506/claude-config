@@ -23,5 +23,21 @@ for u in data.get("result", []):
     elif "message" in u:
         msg = u["message"]
         if str(msg.get("chat", {}).get("id", "")) == auth_chat:
-            text = msg.get("text", "")
-            print(f"MSG\t{uid}\t{text}")
+            caption = msg.get("caption", "")
+            if msg.get("text"):
+                print(f"MSG\t{uid}\t{msg['text']}")
+            elif msg.get("photo"):
+                # En yüksek çözünürlüklü fotoğraf
+                file_id = msg["photo"][-1]["file_id"]
+                print(f"PHOTO\t{uid}\t{file_id}\t{caption}")
+            elif msg.get("document"):
+                doc = msg["document"]
+                file_id = doc["file_id"]
+                fname = doc.get("file_name", "document")
+                print(f"DOC\t{uid}\t{file_id}\t{fname}|{caption}")
+            elif msg.get("voice"):
+                file_id = msg["voice"]["file_id"]
+                print(f"VOICE\t{uid}\t{file_id}\t{caption}")
+            elif msg.get("sticker"):
+                emoji = msg["sticker"].get("emoji", "?")
+                print(f"MSG\t{uid}\t{emoji}")

@@ -41,6 +41,18 @@ typing() {
     -d chat_id="$TELEGRAM_CHAT_ID" -d action="typing" -o /dev/null &
 }
 
+download_tg_file() {
+  local file_id="$1" dest="$2"
+  local file_path
+  file_path=$(curl -s "$API/getFile?file_id=$file_id" | python3 -c "
+import json,sys
+d=json.load(sys.stdin)
+print(d.get('result',{}).get('file_path',''))
+")
+  [ -z "$file_path" ] && return 1
+  curl -s "https://api.telegram.org/file/bot${TELEGRAM_BOT_TOKEN}/${file_path}" -o "$dest"
+}
+
 run_claude() {
   local task="$1"
   local out="$WORKDIR/out.txt"
@@ -90,6 +102,57 @@ while true; do
     if [ "$TYPE" = "CB" ]; then
       curl -s -X POST "$API/answerCallbackQuery" -d callback_query_id="$FIELD1" -o /dev/null
       TEXT="$FIELD2"
+    elif [ "$TYPE" = "PHOTO" ]; then
+      FILE_ID="$FIELD1"
+      CAPTION="$FIELD2"
+      log "[PHOTO] caption=$CAPTION"
+      IMGFILE="$WORKDIR/photo.jpg"
+      if download_tg_file "$FILE_ID" "$IMGFILE"; then
+        PROMPT="Bu resmi analiz et ve açıkla"
+        [ -n "$CAPTION" ] && PROMPT="$CAPTION"
+        typing
+        send "🖼️ _Resim alındı, analiz ediliyor..._"
+        OUT="$WORKDIR/out.txt"
+        (cd "$PROJECT_DIR" && timeout 120 claude -p "$PROMPT" --image "$IMGFILE" --output-format text 2>&1) > "$OUT" || \
+        (cd "$PROJECT_DIR" && timeout 120 claude -p "$(cat $IMGFILE | base64 | head -c 100)... [Resim alındı: $IMGFILE] $PROMPT" --output-format text 2>&1) > "$OUT"
+        RESULT=$(cat "$OUT")
+        [ ${#RESULT} -gt 3500 ] && send_file "$OUT" "Analiz" || send "✅ $RESULT" "$MAIN_KB"
+      else
+        send "❌ Resim indirilemedi."
+      fi
+      continue
+    elif [ "$TYPE" = "DOC" ]; then
+      FILE_ID="$FIELD1"
+      FNAME_CAP="$FIELD2"
+      FNAME="${FNAME_CAP%%|*}"
+      CAPTION="${FNAME_CAP##*|}"
+      log "[DOC] $FNAME"
+      DOCFILE="$WORKDIR/$FNAME"
+      if download_tg_file "$FILE_ID" "$DOCFILE"; then
+        send "📄 _Dosya alındı: \`$FNAME\` — işleniyor..._"
+        PROMPT="${CAPTION:-Bu dosyayı analiz et}"
+        OUT="$WORKDIR/out.txt"
+        # Metin dosyası ise içeriği Claude'a ver
+        if file "$DOCFILE" | grep -qiE "text|json|python|shell|csv"; then
+          CONTENT=$(head -c 8000 "$DOCFILE")
+          (cd "$PROJECT_DIR" && timeout 120 claude -p "$PROMPT
+
+Dosya içeriği:
+\`\`\`
+$CONTENT
+\`\`\`" --output-format text 2>&1) > "$OUT"
+        else
+          (cd "$PROJECT_DIR" && timeout 120 claude -p "$PROMPT (Dosya: $DOCFILE)" --output-format text 2>&1) > "$OUT"
+        fi
+        RESULT=$(cat "$OUT")
+        [ ${#RESULT} -gt 3500 ] && send_file "$OUT" "Analiz" || send "✅ $RESULT" "$MAIN_KB"
+      else
+        send "❌ Dosya indirilemedi."
+      fi
+      continue
+    elif [ "$TYPE" = "VOICE" ]; then
+      send "🎤 Ses mesajı alındı ama henüz desteklenmiyor." "$MAIN_KB"
+      continue
     else
       TEXT="$FIELD1"
     fi
