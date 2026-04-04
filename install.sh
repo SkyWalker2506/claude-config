@@ -180,6 +180,27 @@ echo "=== Secrets ==="
 IS_OWNER=0
 [ "$CURRENT_USER" = "$OWNER_GITHUB" ] && IS_OWNER=1
 
+_create_secrets_template() {
+  mkdir -p "$CLAUDE_SECRETS_DIR"
+  if [ ! -f "$CLAUDE_SECRETS_FILE" ]; then
+    cat > "$CLAUDE_SECRETS_FILE" <<'TMPL'
+# Claude Config Secrets — fill in and keep private
+GITHUB_TOKEN=
+JIRA_URL=
+JIRA_USERNAME=
+JIRA_API_TOKEN=
+FIREBASE_SERVICE_ACCOUNT_PATH=
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_CHAT_ID=
+OPENROUTER_API_KEY=
+CLAUDE_LOCAL_BASE_URL=http://127.0.0.1:11434
+CLAUDE_LOCAL_AUTH_TOKEN=ollama
+CLAUDE_LOCAL_MODEL=deepseek-coder:6.7b
+TMPL
+    echo "  ℹ  claude-secrets/secrets.env şablonu oluşturuldu — doldurun."
+  fi
+}
+
 # secrets yolu icin ~/.claude mutlaka olsun; kirik symlink (silinen/tasinan hedef) clone'i kirar
 mkdir -p "$(dirname "$SECRETS_DIR")"
 if [ -L "$SECRETS_DIR" ] && [ ! -e "$SECRETS_DIR" ]; then
@@ -187,54 +208,57 @@ if [ -L "$SECRETS_DIR" ] && [ ! -e "$SECRETS_DIR" ]; then
   rm -f "$SECRETS_DIR"
 fi
 
-# claude-secrets (repo içinde, gitignore'lu) → öncelikli kaynak
-if [ -f "$SCRIPT_DIR/claude-secrets" ]; then
-  mkdir -p "$SECRETS_DIR"
-  cp "$SCRIPT_DIR/claude-secrets" "$SECRETS_DIR/secrets.env"
-  echo "✅ Secrets: claude-secrets → ~/.claude/secrets/secrets.env"
+# Secrets kaynak: claude-secrets/ (gitignore'lu dizin, private repo clone'u)
+# Akış: private repo → claude-secrets/secrets.env → symlink ~/.claude/secrets/secrets.env
+CLAUDE_SECRETS_DIR="$SCRIPT_DIR/claude-secrets"
+CLAUDE_SECRETS_FILE="$CLAUDE_SECRETS_DIR/secrets.env"
+
+# Symlink'i kur (henüz yoksa veya bozuksa)
+mkdir -p "$SECRETS_DIR"
+if [ ! -L "$SECRETS_DIR/secrets.env" ] || [ "$(readlink "$SECRETS_DIR/secrets.env")" != "$CLAUDE_SECRETS_FILE" ]; then
+  rm -f "$SECRETS_DIR/secrets.env"
+  ln -sf "$CLAUDE_SECRETS_FILE" "$SECRETS_DIR/secrets.env"
+  echo "✅ Secrets symlink: ~/.claude/secrets/secrets.env → claude-secrets/secrets.env"
 fi
 
 if [ "$SKIP_SECRETS" -eq 1 ]; then
   echo "Secrets atlandi (--skip-secrets)"
-  mkdir -p "$SECRETS_DIR"
 
-elif [ -d "$SECRETS_DIR/.git" ]; then
-  echo "✅ Secrets reposu mevcut"
-  git -C "$SECRETS_DIR" pull --quiet 2>/dev/null && echo "   Guncellendi." || echo "   ⚠️ Pull basarisiz, mevcut kullanilacak."
+elif [ -d "$CLAUDE_SECRETS_DIR/.git" ]; then
+  # Mevcut repo → pull
+  git -C "$CLAUDE_SECRETS_DIR" pull --quiet 2>/dev/null && echo "✅ Secrets guncellendi (pull)" || echo "  ⚠️ Pull basarisiz, mevcut kullanilacak."
 
-elif [ -f "$SECRETS_DIR/secrets.env" ]; then
-  echo "✅ Lokal secrets.env mevcut"
+elif [ -f "$CLAUDE_SECRETS_FILE" ]; then
+  echo "✅ Secrets: claude-secrets/secrets.env mevcut"
 
 elif [ -n "$SECRETS_REPO_URL" ]; then
-  # --secrets-repo argumani verilmis → direkt clone
   echo "Secrets clone ediliyor..."
-  git clone --quiet "$SECRETS_REPO_URL" "$SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || { echo "❌ Clone basarisiz. (gh auth, repo erisimi, veya ~/.claude/secrets kirik symlink)"; mkdir -p "$SECRETS_DIR" 2>/dev/null || true; }
+  git clone --quiet "$SECRETS_REPO_URL" "$CLAUDE_SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || echo "❌ Clone basarisiz."
 
 elif [ -n "$CURRENT_USER" ] && [ "$IS_OWNER" -eq 1 ]; then
-  # Sahip → otomatik clone (sormadan)
   echo "Private secrets clone ediliyor..."
-  git clone --quiet "$OWNER_SECRETS_REPO" "$SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || { echo "❌ Clone basarisiz. (gh auth, repo erisimi, veya ~/.claude/secrets kirik symlink)"; mkdir -p "$SECRETS_DIR" 2>/dev/null || true; }
+  git clone --quiet "$OWNER_SECRETS_REPO" "$CLAUDE_SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || echo "❌ Clone basarisiz. (gh auth kontrolu)"
 
 elif [ -n "$CURRENT_USER" ] && [ "$AUTO" -eq 0 ]; then
   if confirm "Secrets reposunu indirmek ister misin?"; then
     ask "Private secrets repo URL'niz" "" SECRETS_REPO
     if [ -n "$SECRETS_REPO" ]; then
-      git clone --quiet "$SECRETS_REPO" "$SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || { echo "❌ Clone basarisiz. (gh auth, repo erisimi, veya ~/.claude/secrets kirik symlink)"; mkdir -p "$SECRETS_DIR" 2>/dev/null || true; }
+      git clone --quiet "$SECRETS_REPO" "$CLAUDE_SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || echo "❌ Clone basarisiz."
     else
-      mkdir -p "$SECRETS_DIR"
+      _create_secrets_template
     fi
   else
     echo "Atlandi. /download-secrets ile sonra indirebilirsin."
-    mkdir -p "$SECRETS_DIR"
+    _create_secrets_template
   fi
 
 else
   echo "Secrets atlandi. /download-secrets ile sonra indirebilirsin."
-  mkdir -p "$SECRETS_DIR"
+  _create_secrets_template
 fi
 
-# Source secrets
-SECRETS_ENV="$SECRETS_DIR/secrets.env"
+# Source secrets (symlink → claude-secrets/secrets.env)
+SECRETS_ENV="$CLAUDE_SECRETS_FILE"
 if [ -f "$SECRETS_ENV" ]; then
   set -a
   while IFS= read -r line; do
