@@ -103,6 +103,7 @@ Asagidaki kurallar `~/Projects/` altindaki **tum projeler** icin gecerlidir. Pro
 - **Paten → Kaykay → Bisiklet → Araba:** Her sprint sonunda deploy edilebilir, test edilebilir, kullanici tarafindan deneyimlenebilir bir butun teslim et
 - **Kapsam:** "Sunu da yapayim" yok; refactor gorursen ayri task ac
 - **Sirala:** IP'deki isi tamamla → commit → push → CI yesil → Done
+- **Tek gorev adami:** Her session/agent tek bir is bilir. Sohbete bildirim ekliyorsan sadece bildirim ekle — ustune dashboard, settings, review ekleme. Bitti → yeni session ac, yeni is ver
 
 #### 8b. Git ve CI
 
@@ -126,6 +127,7 @@ Asagidaki kurallar `~/Projects/` altindaki **tum projeler** icin gecerlidir. Pro
 - **Self-healing:** analiz → kok neden → duzelt → tekrar dene; **max 3 deneme**; sonra kullaniciya rapor
 - **Akilli tekrar:** ayni hatayi tekrarlama; farkli cozum dene
 - **Riskli is oncesi yedek:** `.backup/<timestamp>/` — buyuk refactor, toplu silme, config degisimi
+- **Dogrulama donguleri:** Yap → dogrula zinciri kur. Ornek: build et → loglari izle → hata olmadigini dogrula. Sadece "calisiyor" yetmez — log/test/lint ile dogrula
 
 #### 8e. Jira (kullanan projeler icin)
 
@@ -162,11 +164,13 @@ PLAN:
 Tahmin: quick | medium | long
 ```
 
-| Seviye | Tool call | Sure |
-|--------|-----------|------|
-| `quick` | ≤5 | <2 dk |
-| `medium` | 5-20 | 2-10 dk |
-| `long` | >20 | >10 dk |
+| Seviye | Tool call | Sure | Effort |
+|--------|-----------|------|--------|
+| `quick` | ≤5 | <2 dk | low |
+| `medium` | 5-20 | 2-10 dk | medium |
+| `long` | >20 | >10 dk | high |
+
+**Effort level:** Skill/agent bazinda reasoning derinligini belirler. `quick` → hizli cevap, `long` → derin dusunme. Skill .md'lerde `effort` alani tanimlanabilir; tanimlanmamissa gorev tahmininden turetilir.
 
 - Plan cikarmak hizli — 10 saniyede bitir
 - "Hemen yap" denirse → 1 satirda ozetle, basla
