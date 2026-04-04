@@ -1,4 +1,0 @@
-# Sadece secrets.env ve service account dosyalari izlenir
-# Geri kalan her sey ignore
-*.bak
-*.tmp
