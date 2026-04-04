@@ -82,9 +82,9 @@ while true; do
   echo "$RESPONSE" | python3 "$SCRIPT_DIR/tg_parse.py" "$TELEGRAM_CHAT_ID" > "$UPDATES" 2>/dev/null
   [ ! -s "$UPDATES" ] && sleep 1 && continue
 
-  while IFS=$'\t' read -r TYPE UID FIELD1 FIELD2; do
+  while IFS=$'\t' read -r TYPE UPD_ID FIELD1 FIELD2; do
     [ -z "$TYPE" ] && continue
-    OFFSET=$((UID + 1))
+    OFFSET=$((UPD_ID + 1))
     echo "$OFFSET" > "$OFFSET_FILE"
 
     if [ "$TYPE" = "CB" ]; then
