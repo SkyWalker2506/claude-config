@@ -20,25 +20,50 @@ jobs:
         id: diff
         run: |
           git fetch origin ${{ github.event.pull_request.base.ref }}
-          DIFF=$(git diff origin/${{ github.event.pull_request.base.ref }}...HEAD --stat)
-          echo "diff<<EOF" >> $GITHUB_OUTPUT
-          echo "$DIFF" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          DIFF=$(git diff origin/${{ github.event.pull_request.base.ref }}...HEAD -- . ':!*.json' --stat)
+          DIFF_DETAIL=$(git diff origin/${{ github.event.pull_request.base.ref }}...HEAD -- '*.md' '*.sh' '*.yml' | head -500)
+          {
+            echo "diff<<EOF"
+            echo "$DIFF"
+            echo "---"
+            echo "$DIFF_DETAIL"
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
 
-      - name: AI Review with Claude
-        uses: anthropics/claude-code-action@v1
-        with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          model: claude-sonnet-4-6
-          prompt: |
-            Review this PR. Focus on:
-            1. JSON validity (config/*.json files)
-            2. Agent registry completeness (all agent .md files have matching registry entries)
-            3. install.sh backward compatibility (existing phases untouched)
-            4. Security (no secrets, no dangerous commands)
-            5. Code quality and consistency
+      - name: AI Review via OpenRouter (Free)
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          PROMPT="Review this PR for a multi-agent OS config repo. Focus on:
+          1. JSON file validity (config/*.json)
+          2. Agent .md files have correct frontmatter (id, name, model, capabilities)
+          3. install.sh backward compatibility
+          4. Security (no secrets, no dangerous commands)
+          5. Code quality
 
-            Be concise. Group findings as: 🔴 Must Fix | 🟡 Suggestion | 🟢 Good.
+          Group findings as: RED Must Fix | YELLOW Suggestion | GREEN Good.
 
-            PR diff summary:
-            ${{ steps.diff.outputs.diff }}
+          PR diff:
+          ${{ steps.diff.outputs.diff }}"
+
+          RESPONSE=$(curl -s https://openrouter.ai/api/v1/chat/completions \
+            -H "Authorization: Bearer $OPENROUTER_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d "$(jq -n --arg prompt "$PROMPT" '{
+              "model": "qwen/qwen3.6-free",
+              "messages": [{"role": "user", "content": $prompt}],
+              "max_tokens": 2000
+            }')")
+
+          REVIEW=$(echo "$RESPONSE" | jq -r '.choices[0].message.content // "Review failed — check OpenRouter API key"')
+
+          # Post as PR comment
+          gh pr comment ${{ github.event.pull_request.number }} \
+            --body "## AI Code Review (Qwen 3.6 Free via OpenRouter)
+
+          $REVIEW
+
+          ---
+          *Cost: \$0.00 — free model via OpenRouter*"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
