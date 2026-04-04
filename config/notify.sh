@@ -1,11 +1,18 @@
 #!/bin/bash
-# notify.sh — Telegram bildirimi gönder
+# notify.sh — Sesli + Telegram bildirimi gönder
 # Kullanım: notify.sh "mesaj" [emoji] [inline_buttons_json]
 # Örnek:    notify.sh "Devam edeyim mi?" "🤔" '[["Evet","evet"],["Hayır","hayır"]]'
+# Ses aç/kapa: CLAUDE_SOUND=1 (açık) / CLAUDE_SOUND=0 (kapalı)
 
 MSG="${1:-Bildirim}"
 EMOJI="${2:-🤖}"
 BUTTONS="${3:-}"  # JSON: [["Label","data"],["Label2","data2"]]
+
+# Sesli bildirim (macOS)
+SOUND_ENABLED="${CLAUDE_SOUND:-1}"
+if [ "$SOUND_ENABLED" = "1" ] && command -v afplay &>/dev/null; then
+  afplay /System/Library/Sounds/Glass.aiff &
+fi
 
 SECRETS_FILE="$HOME/Projects/claude-config/claude-secrets/secrets.env"
 [ -f "$SECRETS_FILE" ] && source "$SECRETS_FILE"
