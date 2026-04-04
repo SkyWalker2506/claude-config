@@ -837,7 +837,51 @@ setup_telegram() {
   fi
 }
 
-# ── Run Phase 8-13 ──
+# ── Phase 14: Plugin Marketplace ──
+setup_plugins() {
+  echo ""
+  echo "── Phase 14: Plugin Marketplace ──"
+
+  # claude CLI var mi?
+  if ! command -v claude &>/dev/null; then
+    echo "  ⚠️  claude CLI bulunamadı — plugin kurulumu atlandı"
+    return
+  fi
+
+  # Bizim marketplace'i ekle
+  echo "  📦 SkyWalker2506/claude-plugins marketplace ekleniyor..."
+  if claude plugin marketplace add github:SkyWalker2506/claude-plugins 2>/dev/null; then
+    echo "  ✅ Marketplace eklendi"
+  else
+    echo "  ⚠️  Marketplace eklenemedi (zaten ekli veya ağ hatası)"
+  fi
+
+  # Önerilen resmi pluginler (en çok kullanılanlar, ücretsiz)
+  OFFICIAL_PLUGINS=(
+    "superpowers"         # sub-agent orchestration
+    "context7"            # live docs/API lookup
+    "code-review"         # automated PR review
+    "commit-commands"     # /commit, /push shortcuts
+    "skill-creator"       # new skill creation
+    "claude-md-management" # CLAUDE.md management
+    "security-guidance"   # security best practices
+    "hookify"             # pre/post tool hooks
+  )
+
+  echo "  📥 Önerilen resmi pluginler kuruluyor..."
+  for plugin in "${OFFICIAL_PLUGINS[@]}"; do
+    if claude plugin install "${plugin}@claude-plugins-official" 2>/dev/null; then
+      echo "    ✅ $plugin"
+    else
+      echo "    ○  $plugin (zaten kurulu veya atlandı)"
+    fi
+  done
+
+  echo "  ✅ Plugin kurulumu tamamlandı"
+  echo "  Tüm pluginler için: /plugin > Discover"
+}
+
+# ── Run Phase 8-14 ──
 if [ "$ONLY_AGENTS" -eq 1 ]; then
   install_agents
 else
@@ -847,6 +891,7 @@ else
   setup_cron
   setup_voice
   setup_telegram
+  setup_plugins
 fi
 
 # ── 9. Done ──
