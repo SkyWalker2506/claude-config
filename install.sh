@@ -801,14 +801,44 @@ setup_cron() {
 setup_voice() {
   echo ""
   echo "── Phase 12: Voice Config (Turkish) ──"
-  # Voice language is set via settings.json — just inform user
   echo "  ✅ Voice language: tr (Turkish) — configured in settings.json"
   echo "  ℹ  Usage: Hold Space → speak Turkish → release"
 }
 
-# ── Run Phase 8-12 ──
+# ── Phase 13: Telegram ──
+setup_telegram() {
+  echo ""
+  echo "── Phase 13: Telegram Notifications ──"
+
+  # notify.sh, telegram-ask.sh, telegram-wait.sh, telegram-poll.sh kopyala
+  for f in notify.sh telegram-ask.sh telegram-wait.sh telegram-poll.sh; do
+    if [ -f "$SCRIPT_DIR/config/$f" ]; then
+      cp "$SCRIPT_DIR/config/$f" "$HOME/.claude/config/$f"
+      chmod +x "$HOME/.claude/config/$f"
+    fi
+  done
+
+  # Secrets'tan token kontrol
+  TOKEN=$(grep "^TELEGRAM_BOT_TOKEN=" "$CLAUDE_SECRETS_FILE" 2>/dev/null | cut -d= -f2)
+  CHAT_ID=$(grep "^TELEGRAM_CHAT_ID=" "$CLAUDE_SECRETS_FILE" 2>/dev/null | cut -d= -f2)
+
+  if [ -n "$TOKEN" ] && [ -n "$CHAT_ID" ]; then
+    # Test bildirimi gönder
+    RESP=$(curl -s -X POST "https://api.telegram.org/bot${TOKEN}/sendMessage" \
+      -d chat_id="$CHAT_ID" \
+      -d text="✅ Claude Code kurulumu tamamlandı." -o /dev/null -w "%{http_code}")
+    if [ "$RESP" = "200" ]; then
+      echo "  ✅ Telegram bağlantısı doğrulandı"
+    else
+      echo "  ⚠️  Telegram token/chat_id hatalı (HTTP $RESP)"
+    fi
+  else
+    echo "  ℹ  TELEGRAM_BOT_TOKEN veya TELEGRAM_CHAT_ID eksik — claude-secrets güncelle"
+  fi
+}
+
+# ── Run Phase 8-13 ──
 if [ "$ONLY_AGENTS" -eq 1 ]; then
-  # Quick mode: only agent-related phases
   install_agents
 else
   setup_ollama
@@ -816,6 +846,7 @@ else
   install_agents
   setup_cron
   setup_voice
+  setup_telegram
 fi
 
 # ── 9. Done ──
