@@ -2775,6 +2775,73 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous"
+    },
+    "K11": {
+      "name": "Asset Scraper",
+      "version": "1.0",
+      "category": "research",
+      "status": "pool",
+      "primary_model": "free-web",
+      "fallbacks": [],
+      "mcps": [
+        "fetch",
+        "playwright"
+      ],
+      "capabilities": [
+        "3d-model-search",
+        "sketchfab",
+        "poly-haven",
+        "turbosquid-free",
+        "asset-download",
+        "license-check"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "K12": {
+      "name": "Resource Collector",
+      "version": "1.0",
+      "category": "research",
+      "status": "pool",
+      "primary_model": "free-web",
+      "fallbacks": [],
+      "mcps": [
+        "fetch",
+        "playwright"
+      ],
+      "capabilities": [
+        "font-search",
+        "texture-download",
+        "icon-pack",
+        "sound-effect",
+        "stock-photo",
+        "license-check"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous"
+    },
+    "K13": {
+      "name": "Dataset Finder",
+      "version": "1.0",
+      "category": "research",
+      "status": "pool",
+      "primary_model": "free-web",
+      "fallbacks": [],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "kaggle",
+        "huggingface",
+        "github-datasets",
+        "data-discovery",
+        "license-check"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "analiz"
     }
   },
   "retry_strategy": {
