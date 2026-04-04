@@ -849,36 +849,22 @@ setup_plugins() {
   fi
 
   # Bizim marketplace'i ekle
-  echo "  📦 SkyWalker2506/claude-plugins marketplace ekleniyor..."
-  if claude plugin marketplace add github:SkyWalker2506/claude-plugins 2>/dev/null; then
-    echo "  ✅ Marketplace eklendi"
+  # Resmi marketplace zaten varsayılan — sadece bizim kataloğu ekle
+  echo "  📦 SkyWalker2506/claude-plugins marketplace kaydediliyor..."
+  if claude plugin marketplace add SkyWalker2506/claude-plugins 2>/dev/null; then
+    echo "  ✅ Marketplace kaydedildi"
   else
-    echo "  ⚠️  Marketplace eklenemedi (zaten ekli veya ağ hatası)"
+    echo "  ○  Marketplace zaten kayıtlı"
   fi
 
-  # Önerilen resmi pluginler (en çok kullanılanlar, ücretsiz)
-  OFFICIAL_PLUGINS=(
-    "superpowers"         # sub-agent orchestration
-    "context7"            # live docs/API lookup
-    "code-review"         # automated PR review
-    "commit-commands"     # /commit, /push shortcuts
-    "skill-creator"       # new skill creation
-    "claude-md-management" # CLAUDE.md management
-    "security-guidance"   # security best practices
-    "hookify"             # pre/post tool hooks
-  )
-
-  echo "  📥 Önerilen resmi pluginler kuruluyor..."
-  for plugin in "${OFFICIAL_PLUGINS[@]}"; do
-    if claude plugin install "${plugin}@claude-plugins-official" 2>/dev/null; then
-      echo "    ✅ $plugin"
-    else
-      echo "    ○  $plugin (zaten kurulu veya atlandı)"
-    fi
-  done
-
-  echo "  ✅ Plugin kurulumu tamamlandı"
-  echo "  Tüm pluginler için: /plugin > Discover"
+  echo ""
+  echo "  Mevcut pluginler (keşfet ve kur):"
+  echo "    /plugin > Discover"
+  echo "  Veya doğrudan:"
+  echo "    claude plugin install telegram-bridge@SkyWalker2506-claude-plugins"
+  echo "    claude plugin install ai-review@SkyWalker2506-claude-plugins"
+  echo "    claude plugin install daily-check@SkyWalker2506-claude-plugins"
+  echo "    claude plugin install sync-agents@SkyWalker2506-claude-plugins"
 }
 
 # ── Run Phase 8-14 ──
