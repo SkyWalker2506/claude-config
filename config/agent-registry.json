@@ -745,7 +745,11 @@
       "capabilities": [
         "ui-research",
         "competitor-ui",
-        "trend"
+        "trend",
+        "accessibility-audit",
+        "wcag",
+        "responsive-design",
+        "mobile-first"
       ],
       "max_tool_calls": 20,
       "effort": "medium",
@@ -765,7 +769,12 @@
         "color",
         "typography",
         "spacing",
-        "design-tokens"
+        "design-tokens",
+        "tailwind",
+        "shadcn",
+        "radix",
+        "css-variables",
+        "dark-mode"
       ],
       "max_tool_calls": 15,
       "effort": "medium",
@@ -784,7 +793,11 @@
       "capabilities": [
         "stitch",
         "design-to-code",
-        "tailwind"
+        "tailwind",
+        "html-to-component",
+        "responsive-layout",
+        "css-grid",
+        "flexbox"
       ],
       "max_tool_calls": 20,
       "effort": "medium",
@@ -800,7 +813,10 @@
       "mcps": [],
       "capabilities": [
         "figma",
-        "component-extraction"
+        "component-extraction",
+        "figma-api",
+        "design-tokens-export",
+        "component-inventory"
       ],
       "max_tool_calls": 15,
       "effort": "medium",
@@ -834,7 +850,11 @@
       "capabilities": [
         "midjourney",
         "dalle",
-        "prompt-engineering"
+        "prompt-engineering",
+        "stable-diffusion",
+        "flux",
+        "comfyui",
+        "negative-prompt"
       ],
       "max_tool_calls": 10,
       "effort": "low",
@@ -851,7 +871,11 @@
       "capabilities": [
         "svg",
         "icon",
-        "asset-optimization"
+        "asset-optimization",
+        "sprite-sheet",
+        "webp-conversion",
+        "responsive-images",
+        "favicon"
       ],
       "max_tool_calls": 10,
       "effort": "low",
@@ -869,7 +893,11 @@
       "mcps": [],
       "capabilities": [
         "design-review",
-        "ux-audit"
+        "ux-audit",
+        "accessibility",
+        "contrast-ratio",
+        "touch-target",
+        "responsive"
       ],
       "max_tool_calls": 10,
       "effort": "medium",
@@ -887,7 +915,10 @@
       "mcps": [],
       "capabilities": [
         "3d-planning",
-        "reference"
+        "reference",
+        "scene-composition",
+        "lighting-setup",
+        "camera-angles"
       ],
       "max_tool_calls": 15,
       "effort": "medium",
@@ -903,7 +934,13 @@
       "mcps": [],
       "capabilities": [
         "blender",
-        "python-scripting"
+        "python-scripting",
+        "geometry-nodes",
+        "shader-nodes",
+        "animation",
+        "rigging",
+        "fbx-export",
+        "gltf"
       ],
       "max_tool_calls": 20,
       "effort": "medium",
@@ -919,7 +956,10 @@
       "mcps": [],
       "capabilities": [
         "autocad",
-        "scripting"
+        "scripting",
+        "parametric-design",
+        "technical-drawing",
+        "stl-export"
       ],
       "max_tool_calls": 15,
       "effort": "medium",
@@ -952,7 +992,11 @@
       "capabilities": [
         "lod",
         "polygon-reduction",
-        "texture-optimization"
+        "texture-optimization",
+        "gltf-optimization",
+        "draco-compression",
+        "texture-atlas",
+        "normal-maps"
       ],
       "max_tool_calls": 15,
       "effort": "medium",

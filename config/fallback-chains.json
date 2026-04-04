@@ -35,8 +35,8 @@
       "on_all_fail": "local-qwen-9b"
     },
     "script-cron": {
-      "default": "free-deterministic",
-      "on_error": "bash-script",
+      "default": "local-qwen-9b",
+      "on_error": "qwen-3.6-free",
       "on_all_fail": "alert_user"
     },
     "design": {

@@ -168,6 +168,20 @@
         "-y",
         "dbhub@latest"
       ]
+    },
+    "magic-ui": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@21st-dev/magic-mcp"
+      ]
+    },
+    "mermaid": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@narasimhaponnada/mermaid-mcp-server"
+      ]
     }
   },
   "model": "opus"

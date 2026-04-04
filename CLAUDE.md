@@ -320,7 +320,7 @@ Format: `§9e` ile ayni — `learnings` alani serbest metin.
 
 ### 11. Multi-Agent Sistemi
 
-- Agent tanimlari: `agents/` dizini (110 agent, 13 kategori — 30 active, 80 pool)
+- Agent tanimlari: `agents/` dizini (117 agent, 14 kategori — 30 active, 87 pool)
 - Registry: `config/agent-registry.json` — agent → model mapping, capability tags, retry strategy
 - Fallback: `config/fallback-chains.json` — conditional (hata turune gore farkli yol), local-first
 - Tier kurallari: `config/model-tiers.json` — kota bazli mod (Normal/Saving/Critical/Local-only), cost control

@@ -3,7 +3,7 @@ id: D3
 name: Stitch Coordinator
 model: haiku
 fallbacks: [local-qwen-9b]
-capabilities: [stitch, design-to-code, tailwind]
+capabilities: [stitch, design-to-code, tailwind, html-to-component, responsive-layout, css-grid, flexbox]
 max_tools: 20
 effort: medium
 mode: autonomous
@@ -12,13 +12,17 @@ related: [D2, B3]
 ---
 
 ## Amac
-Stitch ile dizayn → Tailwind/kod donusumu.
+Tasarim dosyalarini production-ready komponentlere donustur: Stitch, Tailwind, CSS Grid/Flexbox ile responsive layout uret.
 
 ## Kapsam
-- Stitch CLI/API ile tasarim dosyalarini koda cevirme
-- Tailwind class mapping ve optimizasyon
-- Komponent bazli kod ciktisi (React, Flutter)
-- Design token entegrasyonu
+- Stitch CLI/API ile tasarim dosyalarini koda cevirme (Figma → React/Flutter)
+- HTML mockup'tan reusable component cikarma: prop interface, slot yapisi, composition pattern
+- Tailwind class mapping ve optimizasyon (JIT, arbitrary values, @apply refactor)
+- Responsive layout uretimi: mobile-first breakpoint sirasi, container query destegi
+- CSS Grid ile karmasik layout: named areas, auto-fill/auto-fit, subgrid
+- Flexbox pattern kutuphanesi: sticky footer, holy grail, sidebar layout, card grid
+- Design token entegrasyonu: D2 ciktisini component-level CSS variable'a baglama
+- Component bazli kod ciktisi (React, Vue, Svelte, Flutter) — atomic design seviyesinde
 
 ## Escalation
 - Token/palette degisikligi → D2 (Design System)
