@@ -1,0 +1,24 @@
+{
+  "lang": "tr",
+  "name": "Türkçe",
+  "messages": {
+    "connected": "🟢 *Claude Code bağlandı*\nProje: `{project}`\nKomut ver veya mesaj yaz.",
+    "working": "⚙️ _Çalışıyor..._",
+    "done": "✅ *Tamamlandı*",
+    "stopped": "🔴 Durduruldu.",
+    "status": "🟢 *Durum*\nProje: `{project}`\nSaat: `{time}`",
+    "projects": "📁 *Projeler*",
+    "switch_project": "📁 Proje: `{project}`",
+    "not_found": "❌ Bulunamadı: `{name}`",
+    "photo_received": "🖼️ _Resim alındı, analiz ediliyor..._",
+    "doc_received": "📄 _Dosya alındı: `{filename}` — işleniyor..._",
+    "voice_received": "🎤 _Ses alındı, yazıya döndürülüyor..._",
+    "voice_transcribed": "🎤 *Transkripsiyon:*\n_{text}_\n\n⚙️ _İşleniyor..._",
+    "voice_failed": "⚠️ Ses transkripsiyon başarısız.",
+    "download_failed": "❌ Dosya indirilemedi.",
+    "help": "🤖 *Claude Code Bot*\n\n`/run <görev>` — Claude'a görev ver\n`/status` — Durum\n`/projects` — Projeler\n`/cd <proje>` — Proje değiştir\n`/log` — Loglar\n`/stop` — Durdur\n\nSerbest metin, resim, dosya, ses → Claude'a iletilir.",
+    "output_truncated": "Çıktı ({lines} satır)"
+  },
+  "voice_lang": "tr",
+  "whisper_lang": "tr"
+}

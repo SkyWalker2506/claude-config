@@ -192,12 +192,9 @@ $PLIST
           send "❌ Bulunamadı: \`$NEW\`" "$MAIN_KB"
         fi ;;
       /log)
-        LOG_OUT=$(tail -30 "$LOG_FILE" 2>/dev/null | sed 's/`/'"'"'/g')
-        send "📋 *Son 30 satır log:*
-
-\`\`\`
-$LOG_OUT
-\`\`\`" "$MAIN_KB" ;;
+        TMPF="$WORKDIR/log.txt"
+        tail -100 "$LOG_FILE" > "$TMPF"
+        send_file "$TMPF" "Son 100 satır" ;;
       /run\ *|/r\ *)
         TASK="${TEXT#/run }"; TASK="${TASK#/r }"
         run_claude "$TASK" ;;

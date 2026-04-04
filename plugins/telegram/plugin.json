@@ -1,0 +1,34 @@
+{
+  "id": "telegram",
+  "name": "Telegram Bridge",
+  "version": "1.1.0",
+  "description": "Telegram bot integration — text, photo, document, voice (Whisper). Bidirectional Claude Code bridge.",
+  "author": "SkyWalker2506",
+  "repo": "https://github.com/SkyWalker2506/ccplugin-telegram",
+  "category": "communication",
+  "complexity": "medium",
+  "languages": ["tr", "en"],
+  "default_lang": "tr",
+  "requires": {
+    "secrets": ["TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"],
+    "deps": ["curl", "python3"],
+    "optional_deps": ["whisper (pip install openai-whisper)"]
+  },
+  "files": [
+    "config/notify.sh",
+    "config/telegram-poll.sh",
+    "config/telegram-wait.sh",
+    "config/telegram-ask.sh",
+    "config/tg_parse.py",
+    "config/tg_send.py",
+    "config/tg_voice.py"
+  ],
+  "i18n_dir": "plugins/telegram/i18n",
+  "install_hook": "plugins/telegram/install.sh",
+  "uninstall_hook": "plugins/telegram/uninstall.sh",
+  "aliases": {
+    "tgbot-start": "nohup bash ~/.claude/config/telegram-poll.sh ${PWD} > ~/.watchdog/telegram.log 2>&1 &",
+    "tgbot-stop": "pkill -f telegram-poll.sh",
+    "tgbot-status": "ps aux | grep telegram-poll | grep -v grep; tail -3 ~/.watchdog/telegram.log"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "lang": "en",
+  "name": "English",
+  "messages": {
+    "connected": "🟢 *Claude Code connected*\nProject: `{project}`\nSend a command or message.",
+    "working": "⚙️ _Working..._",
+    "done": "✅ *Done*",
+    "stopped": "🔴 Stopped.",
+    "status": "🟢 *Status*\nProject: `{project}`\nTime: `{time}`",
+    "projects": "📁 *Projects*",
+    "switch_project": "📁 Project: `{project}`",
+    "not_found": "❌ Not found: `{name}`",
+    "photo_received": "🖼️ _Image received, analyzing..._",
+    "doc_received": "📄 _File received: `{filename}` — processing..._",
+    "voice_received": "🎤 _Voice received, transcribing..._",
+    "voice_transcribed": "🎤 *Transcript:*\n_{text}_\n\n⚙️ _Processing..._",
+    "voice_failed": "⚠️ Voice transcription failed.",
+    "download_failed": "❌ Could not download file.",
+    "help": "🤖 *Claude Code Bot*\n\n`/run <task>` — run Claude task\n`/status` — Status\n`/projects` — Projects\n`/cd <project>` — Switch project\n`/log` — Logs\n`/stop` — Stop\n\nFree text, images, files, voice → forwarded to Claude.",
+    "output_truncated": "Output ({lines} lines)"
+  },
+  "voice_lang": "en",
+  "whisper_lang": "en"
+}

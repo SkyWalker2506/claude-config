@@ -1,0 +1,42 @@
+{
+  "registry_version": "1.0.0",
+  "updated": "2026-04-04",
+  "plugins": {
+    "telegram": {
+      "name": "Telegram Bridge",
+      "version": "1.1.0",
+      "description": "Telegram bot — text, photo, document, voice (Whisper TR/EN)",
+      "category": "communication",
+      "complexity": "medium",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-telegram",
+      "local": "plugins/telegram"
+    },
+    "ai-review": {
+      "name": "AI PR Review",
+      "version": "1.0.0",
+      "description": "Auto PR review on GitHub via OpenRouter free models (Gemma 3 27B)",
+      "category": "code-review",
+      "complexity": "simple",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-ai-review",
+      "local": "plugins/ai-review"
+    },
+    "daily-check": {
+      "name": "Daily Health Check",
+      "version": "1.0.0",
+      "description": "Daily system health: Ollama, MCP, API keys, disk, RAM, token cost",
+      "category": "ai-ops",
+      "complexity": "simple",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-daily-check",
+      "local": "plugins/daily-check"
+    },
+    "sync-agents": {
+      "name": "Agent Sync",
+      "version": "1.0.0",
+      "description": "Validate and sync agent .md frontmatter ↔ agent-registry.json",
+      "category": "ai-ops",
+      "complexity": "simple",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-sync-agents",
+      "local": "plugins/sync-agents"
+    }
+  }
+}
