@@ -93,6 +93,8 @@ Hook ciktisindaki sinyaller:
 
 Tum skill'ler `global/skills/` altinda — her klasorde `SKILL.md` trigger ve aciklama icerir. Ayrintili konfigürasyon: `global/settings.json.template`.
 
+**Dinamik skill prompt'lari:** Skill .md icinde `$(komut)` ile shell ciktisi gomulur. Skill calistiginda komut calistirilir, sonuc prompt'a inline eklenir — model komutu degil sonucu gorur. Ornek: `$(git branch --show-current)`, `$(date +%F)`, `$(cat .env.example | head -5)`.
+
 ### 8. Proje gelistirme kurallari
 
 Asagidaki kurallar `~/Projects/` altindaki **tum projeler** icin gecerlidir. Projeye ozel detaylar her projenin kendi `CLAUDE.md` dosyasinda tanimlanir.
@@ -114,6 +116,7 @@ Asagidaki kurallar `~/Projects/` altindaki **tum projeler** icin gecerlidir. Pro
   - CI workflow degisikligi → her zaman PR
   - Mimari / buyuk refactor → feature branch + PR + review
 - **Force push → sor**
+- **Worktree / branch:** Riskli refactor veya deney oncesi `/branch` ile session fork'la veya `worktree` kullan. Sub-agent'lar izole worktree'de calisabilir — ana branch'i bozmaz
 
 #### 8c. Dosya sistemi ve guvenlik
 

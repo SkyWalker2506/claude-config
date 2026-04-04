@@ -569,6 +569,9 @@ fi
 cat >> "$SHELL_RC" << 'CLEOF'
 
 # __CLAUDE_CONFIG_SHELL_BLOCK_START__
+# Claude Code env — flicker fix (experimental renderer, mouse support)
+export CLAUDE_CODE_NO_FLICKER=1
+
 # cl: Claude Code proje secici | claude-free: OpenCode Zen (gpt-5-nano) | claude-local: Ollama
 function cl() {
   local projects_dir="$HOME/Projects"
