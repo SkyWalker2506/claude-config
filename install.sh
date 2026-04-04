@@ -49,6 +49,12 @@ SECRETS_REPO_URL=""
 STACKS=""
 WITH_OPENCODE=0
 REFRESH_OPENCODE_CONFIG=0
+WITH_LOCAL_MODELS=0
+SKIP_LOCAL_MODELS=0
+WITH_AGENTS=1
+SKIP_AGENTS=0
+SKIP_CRON=0
+ONLY_AGENTS=0
 
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -63,6 +69,11 @@ while [[ $# -gt 0 ]]; do
     --stacks=*) STACKS="${1#*=}"; shift ;;
     --opencode) WITH_OPENCODE=1; shift ;;
     --refresh-opencode-config) REFRESH_OPENCODE_CONFIG=1; shift ;;
+    --with-local-models) WITH_LOCAL_MODELS=1; shift ;;
+    --skip-local-models) SKIP_LOCAL_MODELS=1; shift ;;
+    --skip-agents) SKIP_AGENTS=1; WITH_AGENTS=0; shift ;;
+    --skip-cron) SKIP_CRON=1; shift ;;
+    --only-agents) ONLY_AGENTS=1; shift ;;
     *) shift ;;
   esac
 done
@@ -583,6 +594,188 @@ claude-local() {
 # __CLAUDE_CONFIG_SHELL_BLOCK_END__
 CLEOF
 echo "✅ Shell: cl, claude-free, claude-local → $SHELL_RC"
+
+# ── Phase 8: Local Models (Ollama) ──
+setup_ollama() {
+  echo ""
+  echo "── Phase 8: Local Models (Ollama) ──"
+
+  if [ "$SKIP_LOCAL_MODELS" -eq 1 ]; then
+    echo "⏭  Skipped (--skip-local-models)"
+    return 0
+  fi
+
+  # Detect RAM
+  local RAM_GB=0
+  if [ "$OS" = "mac" ]; then
+    RAM_GB=$(sysctl -n hw.memsize 2>/dev/null | awk '{print int($1/1073741824)}')
+  elif [ "$OS" = "linux" ]; then
+    RAM_GB=$(free -b 2>/dev/null | awk '/Mem:/{print int($2/1073741824)}')
+  fi
+  echo "  RAM detected: ${RAM_GB}GB"
+
+  local DEVICE_PROFILE="mac"
+  [ "$RAM_GB" -ge 64 ] && DEVICE_PROFILE="desktop"
+  echo "  Device profile: $DEVICE_PROFILE"
+
+  # Install Ollama if missing
+  if ! command -v ollama &>/dev/null; then
+    if [ "$AUTO" -eq 1 ] || [ "$WITH_LOCAL_MODELS" -eq 1 ]; then
+      echo "  Installing Ollama..."
+      if [ "$OS" = "mac" ]; then
+        brew install ollama 2>/dev/null || curl -fsSL https://ollama.com/install.sh | sh
+      else
+        curl -fsSL https://ollama.com/install.sh | sh
+      fi
+    else
+      echo "  Ollama not found. Install with: brew install ollama (Mac) or curl -fsSL https://ollama.com/install.sh | sh"
+      return 0
+    fi
+  fi
+
+  # Pull models based on hardware
+  if [ "$WITH_LOCAL_MODELS" -eq 1 ] || [ "$AUTO" -eq 1 ]; then
+    echo "  Pulling base models..."
+    ollama pull qwen3.5:9b 2>/dev/null || echo "  ⚠ qwen3.5:9b pull failed (retry manually)"
+    ollama pull gemma4:9b 2>/dev/null || echo "  ⚠ gemma4:9b pull failed (retry manually)"
+
+    if [ "$DEVICE_PROFILE" = "desktop" ]; then
+      echo "  Desktop detected — pulling 72B model..."
+      ollama pull qwen3.6:72b 2>/dev/null || echo "  ⚠ qwen3.6:72b pull failed (retry manually)"
+    fi
+
+    echo "  ✅ Local models ready (profile: $DEVICE_PROFILE)"
+  else
+    echo "  ℹ  Ollama found. Use --with-local-models to pull models."
+  fi
+}
+
+# ── Phase 9: Free Cloud Models (OpenRouter) ──
+setup_openrouter() {
+  echo ""
+  echo "── Phase 9: Free Cloud Models (OpenRouter) ──"
+
+  # Check API key in secrets
+  local OR_KEY=""
+  if [ -f "$SECRETS_DIR/secrets.env" ]; then
+    OR_KEY=$(grep -E '^OPENROUTER_API_KEY=' "$SECRETS_DIR/secrets.env" 2>/dev/null | cut -d= -f2- || true)
+  fi
+
+  if [ -n "$OR_KEY" ]; then
+    echo "  ✅ OpenRouter API key found"
+    # Quick connectivity test
+    if curl -s --max-time 5 "https://openrouter.ai/api/v1/models" >/dev/null 2>&1; then
+      echo "  ✅ OpenRouter API reachable"
+    else
+      echo "  ⚠ OpenRouter API unreachable — free models will use local fallback"
+    fi
+  else
+    echo "  ℹ  No OPENROUTER_API_KEY in secrets.env — free cloud models disabled"
+    echo "     Add to ~/.claude/secrets/secrets.env: OPENROUTER_API_KEY=sk-or-..."
+  fi
+
+  # Copy free models list
+  mkdir -p "$HOME/.claude/config"
+  cp "$SCRIPT_DIR/config/openrouter-free-models.json" "$HOME/.claude/config/" 2>/dev/null || true
+  echo "  ✅ Free models list copied"
+}
+
+# ── Phase 10: Agent Definitions ──
+install_agents() {
+  echo ""
+  echo "── Phase 10: Agent Definitions ──"
+
+  if [ "$SKIP_AGENTS" -eq 1 ]; then
+    echo "  ⏭  Skipped (--skip-agents)"
+    return 0
+  fi
+
+  mkdir -p "$HOME/.claude/agents"
+  mkdir -p "$HOME/.claude/config"
+
+  # Copy agent definitions
+  if [ -d "$SCRIPT_DIR/agents" ]; then
+    cp -r "$SCRIPT_DIR/agents/"* "$HOME/.claude/agents/" 2>/dev/null || true
+    local AGENT_COUNT
+    AGENT_COUNT=$(find "$HOME/.claude/agents" -name "*.md" -not -name "README.md" 2>/dev/null | wc -l | tr -d ' ')
+    echo "  ✅ Agent definitions: $AGENT_COUNT agents installed"
+  fi
+
+  # Copy config files
+  for f in agent-registry.json fallback-chains.json model-tiers.json layer-contracts.json; do
+    if [ -f "$SCRIPT_DIR/config/$f" ]; then
+      cp "$SCRIPT_DIR/config/$f" "$HOME/.claude/config/" 2>/dev/null || true
+    fi
+  done
+  echo "  ✅ Config files copied (registry, fallback, tiers, contracts)"
+
+  # Validate registry
+  if command -v python3 &>/dev/null && [ -f "$HOME/.claude/config/agent-registry.json" ]; then
+    if python3 -c "import json; json.load(open('$HOME/.claude/config/agent-registry.json'))" 2>/dev/null; then
+      local ACTIVE
+      ACTIVE=$(python3 -c "import json; d=json.load(open('$HOME/.claude/config/agent-registry.json')); print(len([a for a in d['agents'].values() if a.get('status')=='active']))" 2>/dev/null || echo "?")
+      echo "  ✅ Registry valid — $ACTIVE active agents"
+    else
+      echo "  ⚠ Registry JSON invalid — check config/agent-registry.json"
+      ERRORS=$((ERRORS + 1))
+    fi
+  fi
+}
+
+# ── Phase 11: Cron / Health Checks ──
+setup_cron() {
+  echo ""
+  echo "── Phase 11: Health Checks ──"
+
+  if [ "$SKIP_CRON" -eq 1 ]; then
+    echo "  ⏭  Skipped (--skip-cron)"
+    return 0
+  fi
+
+  # Copy daily-check.sh
+  mkdir -p "$HOME/.claude/config"
+  if [ -f "$SCRIPT_DIR/config/daily-check.sh" ]; then
+    cp "$SCRIPT_DIR/config/daily-check.sh" "$HOME/.claude/config/daily-check.sh"
+    chmod +x "$HOME/.claude/config/daily-check.sh"
+    echo "  ✅ daily-check.sh installed"
+  fi
+
+  # Create watchdog directory
+  mkdir -p "$HOME/.watchdog"
+  echo "  ✅ Watchdog directory ready"
+
+  # Create agent-memory directory
+  mkdir -p "$HOME/.claude/agent-memory"
+  echo "  ✅ Agent memory directory ready"
+
+  echo "  ℹ  Optional: set up daily cron with:"
+  if [ "$OS" = "mac" ]; then
+    echo "     launchctl (see docs) or: crontab -e → 0 9 * * * bash ~/.claude/config/daily-check.sh"
+  else
+    echo "     crontab -e → 0 9 * * * bash ~/.claude/config/daily-check.sh"
+  fi
+}
+
+# ── Phase 12: Voice (Turkish) ──
+setup_voice() {
+  echo ""
+  echo "── Phase 12: Voice Config (Turkish) ──"
+  # Voice language is set via settings.json — just inform user
+  echo "  ✅ Voice language: tr (Turkish) — configured in settings.json"
+  echo "  ℹ  Usage: Hold Space → speak Turkish → release"
+}
+
+# ── Run Phase 8-12 ──
+if [ "$ONLY_AGENTS" -eq 1 ]; then
+  # Quick mode: only agent-related phases
+  install_agents
+else
+  setup_ollama
+  setup_openrouter
+  install_agents
+  setup_cron
+  setup_voice
+fi
 
 # ── 9. Done ──
 echo ""
