@@ -851,15 +851,32 @@ setup_plugins() {
   echo ""
   echo "── Phase 14: Plugin Marketplace ──"
 
+  # Companion repos — clone if missing
+  for repo_info in "claude-marketplace:SkyWalker2506/claude-marketplace" "claude-agent-catalog:SkyWalker2506/claude-agent-catalog"; do
+    dir_name="${repo_info%%:*}"
+    repo="${repo_info##*:}"
+    target="$PROJECTS_ROOT/$dir_name"
+    if [ ! -d "$target/.git" ]; then
+      echo "  📥 $dir_name clone ediliyor..."
+      if gh repo clone "$repo" "$target" 2>/dev/null; then
+        echo "  ✅ $dir_name klonlandı"
+      else
+        echo "  ⚠️  $dir_name klonlanamadı (gh auth gerekebilir)"
+      fi
+    else
+      echo "  ○  $dir_name zaten mevcut — güncelleniyor..."
+      git -C "$target" pull --rebase --quiet 2>/dev/null || true
+    fi
+  done
+
   # claude CLI var mi?
   if ! command -v claude &>/dev/null; then
     echo "  ⚠️  claude CLI bulunamadı — plugin kurulumu atlandı"
     return
   fi
 
-  # Bizim marketplace'i ekle
-  # Resmi marketplace zaten varsayılan — sadece bizim kataloğu ekle
-  echo "  📦 SkyWalker2506/claude-marketplace marketplace kaydediliyor..."
+  # Marketplace kaydı
+  echo "  📦 SkyWalker2506/claude-marketplace kaydediliyor..."
   if claude plugin marketplace add SkyWalker2506/claude-marketplace 2>/dev/null; then
     echo "  ✅ Marketplace kaydedildi"
   else
