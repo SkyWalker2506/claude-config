@@ -182,6 +182,16 @@
         "-y",
         "@narasimhaponnada/mermaid-mcp-server"
       ]
+    },
+    "meshy": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "meshy-ai-mcp-server"
+      ],
+      "env": {
+        "MESHY_API_KEY": "${MESHY_API_KEY}"
+      }
     }
   },
   "model": "opus"

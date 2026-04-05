@@ -736,12 +736,18 @@ install_agents() {
   fi
 
   # Copy config files
-  for f in agent-registry.json fallback-chains.json model-tiers.json layer-contracts.json; do
+  for f in agent-registry.json fallback-chains.json model-tiers.json layer-contracts.json model-requirements.json openrouter-free-models.json; do
     if [ -f "$SCRIPT_DIR/config/$f" ]; then
       cp "$SCRIPT_DIR/config/$f" "$HOME/.claude/config/" 2>/dev/null || true
     fi
   done
-  echo "  ✅ Config files copied (registry, fallback, tiers, contracts)"
+
+  # Copy dependency checker
+  if [ -f "$SCRIPT_DIR/config/check-agent-deps.sh" ]; then
+    cp "$SCRIPT_DIR/config/check-agent-deps.sh" "$HOME/.claude/config/" 2>/dev/null || true
+    chmod +x "$HOME/.claude/config/check-agent-deps.sh" 2>/dev/null || true
+  fi
+  echo "  ✅ Config files copied (registry, fallback, tiers, contracts, deps, models)"
 
   # Validate registry
   if command -v python3 &>/dev/null && [ -f "$HOME/.claude/config/agent-registry.json" ]; then
