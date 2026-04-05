@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-telegram-agent.py — Persistent Claude ↔ Telegram bridge agent.
+telegram-agent.py — Telegram relay: mesajları inbox'a yazar, Jarvis işler.
 
-Claude'u stream-json modunda açar, Telegram mesajlarını direkt session'a
-yazar, cevabı Telegram'a gönderir. Tek process, kesintisiz session context.
+Telegram polling yapar, gelen mesajları ~/.watchdog/telegram-inbox.jsonl
+dosyasına yazar. Aktif Claude Code session'ındaki Jarvis /telegram-watch
+skill'i ile inbox'ı okur, işler ve tg_send.py ile cevap gönderir.
 
 Kullanım:
     python3 config/telegram-agent.py [proje_dizini]
@@ -13,7 +14,7 @@ Aliases:
     tgbot-stop     → durdurur
 """
 
-import json, os, sys, subprocess, time, signal, threading, urllib.request, urllib.parse
+import json, os, sys, time, signal, urllib.request, urllib.parse
 from pathlib import Path
 from datetime import datetime
 
@@ -139,85 +140,23 @@ KEYBOARD = json.dumps({
     "resize_keyboard": True, "persistent": True
 })
 
-# ── Claude per-message invocation ──────────────────────────────────────────
+# ── Inbox relay ─────────────────────────────────────────────────────────────
 
-# Session ID file — persistent across messages for conversation continuity
-SESSION_ID_FILE = os.path.expanduser("~/.watchdog/telegram-claude-session")
+INBOX_FILE = os.path.expanduser("~/.watchdog/telegram-inbox.jsonl")
 
-def get_session_id():
-    try:
-        sid = open(SESSION_ID_FILE).read().strip()
-        return sid if sid else None
-    except:
-        return None
-
-def save_session_id(sid):
-    try:
-        with open(SESSION_ID_FILE, "w") as f:
-            f.write(sid)
-    except:
-        pass
-
-def start_claude():
-    """No-op: we use per-message invocations instead of a persistent process."""
-    log("Claude per-message mode hazır")
-
-def send_to_claude(text):
-    """Send a user message to claude via per-message -p invocation."""
-    model = os.environ.get("CLAUDE_TG_MODEL", "haiku")
-    session_id = get_session_id()
-
-    cmd = ["claude", "-p",
-           "--model", model,
-           "--output-format", "text"]
-
-    if session_id:
-        cmd += ["--resume", session_id]
-
-    log(f"Claude çağrılıyor (model={model}, session={'resume' if session_id else 'new'})")
-
-    try:
-        result = subprocess.run(
-            cmd,
-            input=text,
-            capture_output=True,
-            text=True,
-            cwd=PROJECT_DIR,
-            timeout=120,
-        )
-    except subprocess.TimeoutExpired:
-        log("Claude timeout (120s)")
-        return "(Yanıt alınamadı — timeout)"
-    except Exception as e:
-        log(f"Claude çalıştırma hatası: {e}")
-        return f"(Hata: {e})"
-
-    stderr = result.stderr.strip()
-    stdout = result.stdout.strip()
-
-    # Extract session ID from stderr if present
-    for line in stderr.splitlines():
-        if '"session_id"' in line:
-            try:
-                data = json.loads(line)
-                sid = data.get("session_id") or data.get("sessionId")
-                if sid:
-                    save_session_id(sid)
-                    break
-            except:
-                pass
-
-    if stderr:
-        # Log only errors, not info lines
-        for line in stderr.splitlines():
-            if '"type"' not in line:
-                log(f"[claude stderr] {line}")
-
-    if result.returncode != 0 and not stdout:
-        log(f"Claude exit code {result.returncode}: {stderr[:200]}")
-        return f"(Claude hatası — exit {result.returncode})"
-
-    return stdout if stdout else "(Boş yanıt)"
+def write_to_inbox(text, chat_id, message_id):
+    """Mesajı inbox'a yaz. Jarvis /telegram-watch ile işleyecek."""
+    entry = {
+        "id": message_id,
+        "text": text,
+        "chat_id": chat_id,
+        "ts": datetime.now().isoformat(),
+        "status": "pending",
+    }
+    os.makedirs(os.path.dirname(INBOX_FILE), exist_ok=True)
+    with open(INBOX_FILE, "a") as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+    log(f"[INBOX] {text[:50]}")
 
 # ── Telegram polling ────────────────────────────────────────────────────────
 
@@ -253,27 +192,30 @@ def parse_update(update):
     if chat_id != CHAT_ID:
         return None, None, {}
 
+    message_id = msg.get("message_id", 0)
+
     if msg.get("photo"):
         photos = msg["photo"]
         file_id = photos[-1]["file_id"]  # largest
         caption = msg.get("caption", "")
-        return "PHOTO", caption or "Bu resmi analiz et", {"file_id": file_id}
+        return "PHOTO", caption or "Bu resmi analiz et", {"file_id": file_id, "message_id": message_id}
 
     if msg.get("document"):
         doc = msg["document"]
         return "DOC", msg.get("caption", "Bu dosyayı analiz et"), {
             "file_id": doc["file_id"],
             "file_name": doc.get("file_name", "file"),
+            "message_id": message_id,
         }
 
     if msg.get("voice") or msg.get("audio"):
-        return "VOICE", "", {"file_id": (msg.get("voice") or msg.get("audio", {})).get("file_id", "")}
+        return "VOICE", "", {"file_id": (msg.get("voice") or msg.get("audio", {})).get("file_id", ""), "message_id": message_id}
 
     text = msg.get("text", "")
-    return "TEXT", text, {}
+    return "TEXT", text, {"message_id": message_id}
 
 def handle_message(msg_type, text, extras):
-    """Handle a parsed message."""
+    """Handle a parsed message — route to inbox for Jarvis to process."""
     global PROJECT_DIR
 
     if not text and msg_type == "TEXT":
@@ -292,20 +234,18 @@ def handle_message(msg_type, text, extras):
     elif "Log" in text:
         text = "/log"
 
-    # Built-in commands
+    # Built-in relay commands (handled locally — no Jarvis needed)
     if text == "/stop":
         tg_send("🔴 Agent durduruluyor.")
         cleanup()
         sys.exit(0)
 
     elif text == "/status":
-        model = os.environ.get("CLAUDE_TG_MODEL", "haiku")
-        session_id = get_session_id()
-        tg_send(f"🟢 *Agent Aktif*\n"
+        tg_send(f"🟢 *Relay Aktif*\n"
                 f"Proje: `{os.path.basename(PROJECT_DIR)}`\n"
                 f"Saat: `{datetime.now().strftime('%H:%M:%S')}`\n"
-                f"Model: `{model}`\n"
-                f"Session: `{'devam' if session_id else 'yeni'}`",
+                f"Mod: Jarvis relay (inbox)\n"
+                f"Inbox: `{INBOX_FILE}`",
                 KEYBOARD)
         return
 
@@ -321,11 +261,6 @@ def handle_message(msg_type, text, extras):
         full = os.path.expanduser(f"~/Projects/{new}")
         if os.path.isdir(full):
             PROJECT_DIR = full
-            # Clear session so next message starts fresh in new dir
-            try:
-                open(SESSION_ID_FILE, "w").close()
-            except:
-                pass
             tg_send(f"📁 Proje değişti: `{new}`", KEYBOARD)
         else:
             tg_send(f"❌ Bulunamadı: `{new}`", KEYBOARD)
@@ -340,56 +275,35 @@ def handle_message(msg_type, text, extras):
         return
 
     elif text in ("/help", "/start"):
-        tg_send("🤖 *Claude Agent Bot*\n\n"
-                "Serbest metin → Claude'a iletilir (aynı session)\n"
-                "`/status` — Durum\n"
+        tg_send("🤖 *Jarvis Relay Bot*\n\n"
+                "Mesajlar aktif Claude Code session'ındaki Jarvis'e iletilir.\n"
+                "`/status` — Relay durumu\n"
                 "`/projects` — Projeler\n"
                 "`/cd <proje>` — Proje değiştir\n"
                 "`/log` — Loglar\n"
-                "`/stop` — Durdur", KEYBOARD)
+                "`/stop` — Durdur\n\n"
+                "_Jarvis'in aktif olması için Claude Code session'ında `/telegram-watch` çalışmalı._",
+                KEYBOARD)
         return
 
-    # Photo handling
+    # Photo handling — enrich text with context, route to inbox
     if msg_type == "PHOTO":
-        file_id = extras.get("file_id", "")
-        tg_typing()
-        tg_send("🖼️ _Resim alındı, analiz ediliyor..._")
-        # Download and describe
-        prompt = f"[Kullanıcı bir resim gönderdi] {text}"
-        result = send_to_claude(prompt)
-        send_result(result)
-        return
+        text = f"[Kullanıcı bir resim gönderdi, file_id={extras.get('file_id','')}] {text}"
 
-    # Document handling
-    if msg_type == "DOC":
-        tg_typing()
+    # Document handling — enrich text with context, route to inbox
+    elif msg_type == "DOC":
         fname = extras.get("file_name", "dosya")
-        tg_send(f"📄 _Dosya alındı: `{fname}` — işleniyor..._")
-        prompt = f"[Kullanıcı '{fname}' dosyası gönderdi] {text}"
-        result = send_to_claude(prompt)
-        send_result(result)
-        return
+        text = f"[Kullanıcı '{fname}' dosyası gönderdi, file_id={extras.get('file_id','')}] {text}"
 
     # Voice
-    if msg_type == "VOICE":
+    elif msg_type == "VOICE":
         tg_send("🎤 _Ses mesajı alındı ama henüz desteklenmiyor._", KEYBOARD)
         return
 
-    # Free text → Claude
-    tg_typing()
-    result = send_to_claude(text)
-    send_result(result)
-
-def send_result(result):
-    """Send claude result back to Telegram."""
-    if len(result) > 3500:
-        # Write to temp file and send as document
-        tmp = "/tmp/claude-tg-output.txt"
-        with open(tmp, "w") as f:
-            f.write(result)
-        tg_send_file(tmp, f"Çıktı ({len(result)} karakter)")
-    else:
-        tg_send(f"✅ *Tamamlandı*\n\n```\n{result}\n```", KEYBOARD)
+    # All messages → inbox, Jarvis will process
+    message_id = extras.get("message_id") or int(time.time())
+    write_to_inbox(text, CHAT_ID, message_id)
+    tg_send("⏳ _İşleniyor..._")
 
 # ── Main loop ───────────────────────────────────────────────────────────────
 
@@ -401,18 +315,16 @@ signal.signal(signal.SIGTERM, lambda *a: (cleanup(), sys.exit(0)))
 signal.signal(signal.SIGINT, lambda *a: (cleanup(), sys.exit(0)))
 
 def main():
-    log(f"Telegram Agent başlatılıyor → {PROJECT_DIR}")
-
-    # Start Claude
-    start_claude()
+    log(f"Telegram Relay başlatılıyor → {PROJECT_DIR}")
 
     # Skip old messages
     offset = skip_old_messages()
 
     # Send startup message
-    tg_send(f"🟢 *Claude Agent bağlandı*\n"
+    tg_send(f"🟢 *Jarvis Relay bağlandı*\n"
             f"Proje: `{os.path.basename(PROJECT_DIR)}`\n"
-            f"Mesaj yaz → direkt Claude'a gider (aynı session).", KEYBOARD)
+            f"Mesajlar Jarvis'e yönlendirilir.\n"
+            f"_Jarvis için Claude Code session'ında `/telegram-watch` çalıştır._", KEYBOARD)
 
     log(f"Polling başladı (offset={offset})")
     heartbeat("running", "polling")
