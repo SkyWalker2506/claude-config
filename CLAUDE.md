@@ -254,7 +254,7 @@ echo '{"task":"TASK","step":"...","progress":"3/7","status":"running","ts":"..."
 {"id":"ID","task":"...","project":"...","model":"...","started":"T","ended":"T","tool_calls":N,"outcome":"success|recovered|failed","stuck_reason":null,"learnings":"..."}
 ```
 
-`learnings` alani: otonom gorevlerde VE her interaktif session sonunda yazilir (bkz §11).
+`learnings` alani: otonom gorevlerde VE her interaktif session sonunda yazilir (bkz §10).
 
 Stale alert: >10dk guncellenmemis → uyari. Kisa gorevlerde (<10 dk) watchdog baslatma.
 
