@@ -354,7 +354,12 @@ WATCHDOG: {quick|medium|long} — max {N} tool call
 
 **Tamamlanma:** Gorev bittiginde outcome (success/failed) + sure + tool call sayisi log'a yazilir.
 
-**Chain ornegi:** `user → Jarvis → A2 (route) → B7 (implement) → C1 (review) → Jarvis (rapor)`
+**Chain ornegi:** `user → Jarvis → A2 (route) → B7 (implement) → C3 (review) → Jarvis (rapor)`
+
+**Review pipeline (zorunlu):**
+- **Kucuk is (tek task):** B/D/K agent implement eder → biter bitmez C3 (Local AI Reviewer) otomatik tetiklenir → skor ≥8 → Jira Done; skor <8 → revize
+- **Buyuk is (A1 batch):** A1 tum task'lari bitirince → `/review-ops` skill'i tetiklenir → batch skorlama, PR audit, eksik task acma
+- Kucuk isler icin C1 (Opus) **sadece** guvenlik/mimari eskalasyonunda devreye girer
 
 #### Sen Kimsin: Jarvis (A0)
 
