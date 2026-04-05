@@ -652,6 +652,7 @@ claude-free() {
 
 alias claude-bypass='claude --dangerously-skip-permissions'
 alias clb='cl_bypass'
+alias plugin-update='bash ~/Projects/claude-config/config/plugin-update.sh'
 
 claude-local() {
   if ! command -v opencode &>/dev/null; then
