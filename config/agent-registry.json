@@ -92,7 +92,23 @@
     "H6",
     "J2",
     "J7",
-    "L1"
+    "L1",
+    "B8",
+    "B12",
+    "F2",
+    "F4",
+    "H2",
+    "H3",
+    "H4",
+    "H7",
+    "H8",
+    "H9",
+    "M4",
+    "A9",
+    "A10",
+    "A11",
+    "A12",
+    "A13"
   ],
   "agents": {
     "A1": {
@@ -450,7 +466,7 @@
       "name": "Refactor Agent",
       "version": "1.0",
       "category": "backend",
-      "status": "pool",
+      "status": "active",
       "primary_model": "haiku",
       "fallbacks": [
         "local-qwen-9b"
@@ -533,7 +549,7 @@
       "name": "Performance Optimizer",
       "version": "1.0",
       "category": "backend",
-      "status": "pool",
+      "status": "active",
       "primary_model": "sonnet",
       "fallbacks": [
         "haiku"
@@ -1040,7 +1056,7 @@
       "name": "Data Analyst",
       "version": "1.0",
       "category": "data-analytics",
-      "status": "pool",
+      "status": "active",
       "primary_model": "sonnet",
       "fallbacks": [
         "local-qwen-9b"
@@ -1080,7 +1096,7 @@
       "name": "ETL Pipeline Agent",
       "version": "1.0",
       "category": "data-analytics",
-      "status": "pool",
+      "status": "active",
       "primary_model": "free-script",
       "fallbacks": [],
       "mcps": [],
@@ -1396,7 +1412,7 @@
       "name": "Competitor Analyst",
       "version": "1.0",
       "category": "market-research",
-      "status": "pool",
+      "status": "active",
       "primary_model": "free-web",
       "fallbacks": [],
       "mcps": [
@@ -1415,7 +1431,7 @@
       "name": "Revenue Analyst",
       "version": "1.0",
       "category": "market-research",
-      "status": "pool",
+      "status": "active",
       "primary_model": "sonnet",
       "fallbacks": [
         "haiku"
@@ -1434,7 +1450,7 @@
       "name": "Pricing Strategist",
       "version": "1.0",
       "category": "market-research",
-      "status": "pool",
+      "status": "active",
       "primary_model": "haiku",
       "fallbacks": [
         "local-qwen-9b"
@@ -1493,7 +1509,7 @@
       "name": "Social Media Agent",
       "version": "1.0",
       "category": "market-research",
-      "status": "pool",
+      "status": "active",
       "primary_model": "local-qwen-9b",
       "fallbacks": [],
       "mcps": [],
@@ -1511,7 +1527,7 @@
       "name": "Content Repurposer",
       "version": "1.0",
       "category": "market-research",
-      "status": "pool",
+      "status": "active",
       "primary_model": "local-qwen-9b",
       "fallbacks": [],
       "mcps": [],
@@ -1528,7 +1544,7 @@
       "name": "Newsletter Agent",
       "version": "1.0",
       "category": "market-research",
-      "status": "pool",
+      "status": "active",
       "primary_model": "local-qwen-9b",
       "fallbacks": [],
       "mcps": [],
@@ -2280,7 +2296,7 @@
       "name": "Analytics Agent",
       "version": "1.0",
       "category": "marketing-engine",
-      "status": "pool",
+      "status": "active",
       "primary_model": "free-script",
       "fallbacks": [],
       "mcps": [],
@@ -2862,6 +2878,175 @@
       "max_tool_calls": 20,
       "effort": "medium",
       "template": "analiz"
+    },
+    "A9": {
+      "name": "ArtLead",
+      "version": "1.0",
+      "category": "orchestrator",
+      "status": "active",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "haiku"
+      ],
+      "mcps": [
+        "*"
+      ],
+      "capabilities": [
+        "ui-analysis",
+        "content-review",
+        "accessibility-audit",
+        "visual-quality",
+        "lead-coordination"
+      ],
+      "max_tool_calls": 45,
+      "effort": "medium",
+      "template": "autonomous",
+      "dispatches": [
+        "B3",
+        "H8"
+      ],
+      "reports_to": "A1",
+      "categories": [
+        1,
+        8,
+        11
+      ]
+    },
+    "A10": {
+      "name": "CodeLead",
+      "version": "1.0",
+      "category": "orchestrator",
+      "status": "active",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "haiku"
+      ],
+      "mcps": [
+        "*"
+      ],
+      "capabilities": [
+        "architecture-review",
+        "performance-audit",
+        "data-pipeline-analysis",
+        "tech-debt",
+        "lead-coordination"
+      ],
+      "max_tool_calls": 50,
+      "effort": "medium",
+      "template": "autonomous",
+      "dispatches": [
+        "B1",
+        "B8",
+        "B12",
+        "F2",
+        "F4"
+      ],
+      "reports_to": "A1",
+      "categories": [
+        2,
+        4,
+        10
+      ]
+    },
+    "A11": {
+      "name": "GrowthLead",
+      "version": "1.0",
+      "category": "orchestrator",
+      "status": "active",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "haiku"
+      ],
+      "mcps": [
+        "*"
+      ],
+      "capabilities": [
+        "seo-analysis",
+        "growth-strategy",
+        "analytics-audit",
+        "engagement-review",
+        "lead-coordination"
+      ],
+      "max_tool_calls": 45,
+      "effort": "medium",
+      "template": "autonomous",
+      "dispatches": [
+        "H5",
+        "H7",
+        "H9",
+        "M4",
+        "F2"
+      ],
+      "reports_to": "A1",
+      "categories": [
+        3,
+        6,
+        9
+      ]
+    },
+    "A12": {
+      "name": "BizLead",
+      "version": "1.0",
+      "category": "orchestrator",
+      "status": "active",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "haiku"
+      ],
+      "mcps": [
+        "*"
+      ],
+      "capabilities": [
+        "monetization-strategy",
+        "competitive-analysis",
+        "pricing-review",
+        "market-positioning",
+        "lead-coordination"
+      ],
+      "max_tool_calls": 40,
+      "effort": "medium",
+      "template": "autonomous",
+      "dispatches": [
+        "H2",
+        "H3",
+        "H4"
+      ],
+      "reports_to": "A1",
+      "categories": [
+        5,
+        12
+      ]
+    },
+    "A13": {
+      "name": "SecLead",
+      "version": "1.0",
+      "category": "orchestrator",
+      "status": "active",
+      "primary_model": "opus",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "*"
+      ],
+      "capabilities": [
+        "security-audit",
+        "owasp-review",
+        "auth-analysis",
+        "infra-hardening",
+        "lead-coordination"
+      ],
+      "max_tool_calls": 40,
+      "effort": "high",
+      "template": "autonomous",
+      "dispatches": [
+        "B13"
+      ],
+      "reports_to": "A1",
+      "categories": [
+        7
+      ],
+      "tier_override": "always_high"
     }
   },
   "retry_strategy": {
