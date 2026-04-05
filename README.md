@@ -1,6 +1,6 @@
 # claude-config
 
-**Multi-Agent OS for Claude Code** — 134 agents, 14 plugins, local-first routing, Telegram bridge, plugin marketplace.
+**Multi-Agent OS for Claude Code** — 134 agents, 15 plugins, local-first routing, Telegram bridge, plugin marketplace.
 
 by [Musab Kara](https://linkedin.com/in/musab-kara-85580612a) · [GitHub](https://github.com/SkyWalker2506)
 
@@ -10,10 +10,10 @@ by [Musab Kara](https://linkedin.com/in/musab-kara-85580612a) · [GitHub](https:
 
 A portable, self-installing configuration system that turns Claude Code into a multi-agent operating system. Clone → `./install.sh` → done.
 
-- **134 AI agents** across 15 categories (30 active, 80 pool — activate on demand)
-- **14 custom plugins** published on our own [marketplace](https://github.com/SkyWalker2506/claude-marketplace)
+- **134 AI agents** across 15 categories (30 active, 104 pool — activate on demand)
+- **15 plugins** published on our own [marketplace](https://github.com/SkyWalker2506/claude-marketplace)
 - **8 MCP servers** integrated (GitHub, Atlassian/Jira, Firebase, Flutter, jCodeMunch, Git, Fetch, Context7)
-- **31 slash commands** (/yolo, /team-build, /jira-run, /audit, /web-research, /sprint-plan, and more)
+- **34 slash commands** (/yolo, /team-build, /jira-run, /audit, /web-research, /sprint-plan, and more)
 - **Telegram bot** with persistent Haiku agent — control Claude from your phone
 - **Local-first model routing** — Ollama → Claude → OpenRouter free (saves tokens)
 - **Cost control** — automatic model tier switching based on quota remaining
@@ -54,7 +54,7 @@ The installer sets up everything: CLAUDE.md hierarchy, skills, MCP servers, hook
 
 ## Plugin Marketplace
 
-14 plugins, each in its own repo. Add the marketplace:
+15 plugins, each in its own repo. Add the marketplace:
 
 ```bash
 claude plugin marketplace add SkyWalker2506/claude-marketplace
@@ -78,6 +78,7 @@ Then browse with `/plugin > Discover` or install directly:
 | [ai-review](https://github.com/SkyWalker2506/ccplugin-ai-review) | GitHub PR review via OpenRouter ($0) |
 | [daily-check](https://github.com/SkyWalker2506/ccplugin-daily-check) | Daily system health check |
 | [sync-agents](https://github.com/SkyWalker2506/ccplugin-sync-agents) | Agent registry validator |
+| [notifications](https://github.com/SkyWalker2506/ccplugin-notifications) | Multi-channel notifications — Telegram, macOS, sound |
 
 ## Agent System
 
@@ -86,11 +87,11 @@ Then browse with `/plugin > Discover` or install directly:
 | Category | Agents | Examples |
 |----------|--------|---------|
 | Orchestrator | A1–A8 | Lead Orchestrator, Task Router, Fallback Manager |
-| Backend | B1–B15 | Architect (Opus), Coder (Sonnet), Bug Hunter, Security Auditor (Opus) |
+| Backend | B1–B19 | Architect (Opus), Coder (Sonnet), Bug Hunter, Security Auditor (Opus) |
 | Code Review | C1–C6 | Lint Hook, Security Scanner, AI Reviewer |
 | AI Ops | G1–G10 | Agent Coordinator, MCP Health, Update Checker |
 | Jira & PM | I1–I10 | Jira Router, Sprint Planner, Status Reporter |
-| Research | K1–K8 | Web Researcher, Doc Fetcher, Trend Analyzer |
+| Research | K1–K9 | Web Researcher, Doc Fetcher, AI Tool Evaluator |
 | Market Research | H1–H12 | Competitor Analyst, SEO, GEO |
 | DevOps | J1–J8 | Cloud Deploy, Incident Responder |
 | And more... | D, E, F, L, M, N, O | Design, 3D/CAD, Data, Productivity, Marketing, Prompt Eng, Sales |
@@ -144,10 +145,10 @@ claude-config/
 ├── global/
 │   ├── CLAUDE.md           # → ~/.claude/CLAUDE.md
 │   ├── settings.json.template  # MCP servers, hooks, permissions
-│   └── skills/             # 31 slash commands
+│   └── skills/             # 34 slash commands
 ├── agents/                 # 134 agent definitions
 │   ├── orchestrator/       # A1–A8
-│   ├── backend/            # B1–B15
+│   ├── backend/            # B1–B19
 │   ├── code-review/        # C1–C6
 │   └── ...                 # 15 categories
 ├── config/
@@ -181,7 +182,7 @@ cd ~/Projects/claude-config
 
 ## Related
 
-- [Plugin Marketplace](https://github.com/SkyWalker2506/claude-marketplace) — 14 plugins for Claude Code, browse & install
+- [Plugin Marketplace](https://github.com/SkyWalker2506/claude-marketplace) — 15 plugins for Claude Code, browse & install
 - [Agent Catalog](https://github.com/SkyWalker2506/claude-agent-catalog) — 134 agents across 15 categories
 - [OpenCode](https://opencode.ai/) — Free/local models via Zen + Ollama
 
