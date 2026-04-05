@@ -7,7 +7,7 @@ status: active
 primary_model: sonnet
 fallbacks: [haiku]
 reports_to: A1
-dispatches: [H1, H2, H3, H4, K1]
+dispatches: [H1, H2, H3, H4, K1, K4]
 categories: [5, 12]
 capabilities:
   - monetization-strategy
@@ -49,3 +49,4 @@ Kritik bulgular: [en önemli 2-3 madde]
 
 - Pre-revenue / MVP proje → Monetization için "henüz erken" notu ekle, temel öneriler sun
 - Rakip araştırması için WebSearch ağırlıklı çalış (kod taraması minimal)
+- K4 Trend Analyzer ile pazar trendleri ve technology adoption curve'ü değerlendir

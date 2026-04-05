@@ -7,7 +7,7 @@ status: active
 primary_model: opus
 fallbacks: [sonnet]
 reports_to: A1
-dispatches: [B13]
+dispatches: [B13, C2]
 categories: [7]
 capabilities:
   - security-audit
@@ -54,3 +54,4 @@ En acil: [1 madde]
 
 - Kritik güvenlik açığı (auth bypass, SQL injection, secret leak) → A1'e IMMEDIATE flag ekle
 - Bağımlılık audit için `package.json` / `pubspec.yaml` / `requirements.txt` öncelikli oku
+- C2 Security Scanner Hook ile secret-scan ve SAST taraması tamamlayıcı olarak kullanılır

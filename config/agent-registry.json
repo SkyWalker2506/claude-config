@@ -110,7 +110,10 @@
     "A12",
     "A13",
     "D1",
-    "D2"
+    "D2",
+    "D8",
+    "B10",
+    "M3"
   ],
   "agents": {
     "A1": {
@@ -511,7 +514,7 @@
       "name": "Dependency Manager",
       "version": "1.0",
       "category": "backend",
-      "status": "pool",
+      "status": "active",
       "primary_model": "free-script",
       "fallbacks": [],
       "mcps": [
@@ -918,7 +921,7 @@
       "name": "Mockup Reviewer",
       "version": "1.0",
       "category": "design",
-      "status": "pool",
+      "status": "active",
       "primary_model": "haiku",
       "fallbacks": [
         "local-qwen-9b"
@@ -2281,7 +2284,7 @@
       "name": "A/B Test Agent",
       "version": "1.0",
       "category": "marketing-engine",
-      "status": "pool",
+      "status": "active",
       "primary_model": "free-script",
       "fallbacks": [],
       "mcps": [],
@@ -2907,7 +2910,8 @@
         "B3",
         "D1",
         "D2",
-        "H8"
+        "H8",
+        "D8"
       ],
       "reports_to": "A1",
       "categories": [
@@ -2943,7 +2947,8 @@
         "B8",
         "B12",
         "F2",
-        "F4"
+        "F4",
+        "B10"
       ],
       "reports_to": "A1",
       "categories": [
@@ -2979,7 +2984,8 @@
         "H7",
         "H9",
         "M4",
-        "F2"
+        "F2",
+        "M3"
       ],
       "reports_to": "A1",
       "categories": [
@@ -3015,7 +3021,8 @@
         "H2",
         "H3",
         "H4",
-        "K1"
+        "K1",
+        "K4"
       ],
       "reports_to": "A1",
       "categories": [
@@ -3046,7 +3053,8 @@
       "effort": "high",
       "template": "autonomous",
       "dispatches": [
-        "B13"
+        "B13",
+        "C2"
       ],
       "reports_to": "A1",
       "categories": [

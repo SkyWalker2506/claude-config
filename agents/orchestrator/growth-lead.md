@@ -7,7 +7,7 @@ status: active
 primary_model: sonnet
 fallbacks: [haiku]
 reports_to: A1
-dispatches: [H5, H7, H9, M4, F2]
+dispatches: [H5, H7, H9, M3, M4, F2]
 categories: [3, 6, 9]
 capabilities:
   - seo-analysis
@@ -29,7 +29,7 @@ GrowthLead, büyüme ve keşfedilebilirlik departmanının sorumlusudur. Proje a
 **Sorumlu kategoriler:**
 - **#3 SEO & Discoverability** — Meta tags, OG, JSON-LD, sitemap, robots.txt, canonical, semantic HTML, mobile-friendliness
 - **#6 Growth & User Engagement** — Viral loop, gamification, retention, onboarding, referral, push notification
-- **#9 Analytics & Tracking** — Event tracking, conversion, funnel analizi, A/B test altyapısı, KPI tanımlar
+- **#9 Analytics & Tracking** — Event tracking, conversion, funnel analizi, A/B test altyapısı, KPI tanımlar → M3 A/B Test Agent (ab-test, variant, analytics) A/B test altyapı auditi için
 
 **Çalışma akışı (her kategori için):**
 1. Proje taraması — Read/Grep/Glob, max 15 tool call

@@ -1,16 +1,16 @@
 # Multi-Agent OS v6 — Agent Definitions
 
 ## Overview
-139 agents across 15 categories. 48 active agents, 91 in pool (activate on demand). All agents have .md definitions.
+139 agents across 15 categories. 51 active agents, 88 in pool (activate on demand). All agents have .md definitions.
 
 ### Lead Agents (Project Analysis)
 | ID | Lead | Categories | Dispatches |
 |----|------|-----------|-----------|
-| A9 | ArtLead | #1 UI/UX, #8 Content, #11 a11y | B3, D1, D2, H8 |
-| A10 | CodeLead | #2 Perf, #4 Data, #10 Arch | B1, B8, B12, F2, F4 |
-| A11 | GrowthLead | #3 SEO, #6 Growth, #9 Analytics | H5, H7, H9, M4, F2 |
-| A12 | BizLead | #5 Monetization, #12 Competitive | H1, H2, H3, H4, K1 |
-| A13 | SecLead | #7 Security | B13 |
+| A9 | ArtLead | #1 UI/UX, #8 Content, #11 a11y | B3, D1, D2, D8, H8 |
+| A10 | CodeLead | #2 Perf, #4 Data, #10 Arch | B1, B8, B10, B12, F2, F4 |
+| A11 | GrowthLead | #3 SEO, #6 Growth, #9 Analytics | H5, H7, H9, M3, M4, F2 |
+| A12 | BizLead | #5 Monetization, #12 Competitive | H1, H2, H3, H4, K1, K4 |
+| A13 | SecLead | #7 Security | B13, C2 |
 
 ## Categories
 | Prefix | Category | Active | Pool | Total |

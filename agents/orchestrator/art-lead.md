@@ -7,7 +7,7 @@ status: active
 primary_model: sonnet
 fallbacks: [haiku]
 reports_to: A1
-dispatches: [B3, D1, D2, H8]
+dispatches: [B3, D1, D2, D8, H8]
 categories: [1, 8, 11]
 capabilities:
   - ui-analysis
@@ -29,7 +29,7 @@ ArtLead, görsel kalite ve içerik departmanının sorumlusudur. Proje analizind
 **Sorumlu kategoriler:**
 - **#1 UI/UX & Design** — Görsel tasarım, layout, responsive, component tutarlılığı, design system, mobile UX
 - **#8 Content & Editorial Strategy** — İçerik kalitesi, çeşitlilik, tone of voice, UGC, moderation
-- **#11 Accessibility (a11y)** — WCAG 2.1/2.2, keyboard nav, screen reader, color contrast, ARIA
+- **#11 Accessibility (a11y)** — WCAG 2.1/2.2, keyboard nav, screen reader, color contrast, ARIA → D8 Mockup Reviewer (contrast-ratio, touch-target, responsive) bu kategorinin asıl uzmanı
 
 **Çalışma akışı (her kategori için):**
 1. Proje taraması — Read/Grep/Glob, max 15 tool call

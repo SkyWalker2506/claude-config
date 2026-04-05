@@ -7,7 +7,7 @@ status: active
 primary_model: sonnet
 fallbacks: [haiku]
 reports_to: A1
-dispatches: [B1, B8, B12, F2, F4]
+dispatches: [B1, B8, B10, B12, F2, F4]
 categories: [2, 4, 10]
 capabilities:
   - architecture-review
@@ -29,7 +29,7 @@ CodeLead, teknik kalite departmanının sorumlusudur. Proje analizinde Performan
 **Sorumlu kategoriler:**
 - **#2 Performance & Core Web Vitals** — LCP, FID, CLS, bundle size, lazy loading, caching, SSR/SSG/ISR, DB sorgu, API response
 - **#4 Data & Scraping Infrastructure** — Veri kaynakları, scraper mimarisi, pipeline robustness, error handling, veri modeli
-- **#10 Architecture & Code Quality** — Kod yapısı, modülerlik, test coverage, CI/CD, tech debt, scalability, type safety
+- **#10 Architecture & Code Quality** — Kod yapısı, modülerlik, test coverage, CI/CD, tech debt, scalability, type safety → B10 Dependency Manager (vulnerability-check, version-management) dependency health için
 
 **Çalışma akışı (her kategori için):**
 1. Proje taraması — Read/Grep/Glob, max 15 tool call
