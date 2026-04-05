@@ -947,6 +947,20 @@ setup_plugins() {
     claude plugin install "jira-suite@musabkara-claude-marketplace" 2>/dev/null && echo "✅ jira-suite" || true
     claude plugin install "sprint-planner@musabkara-claude-marketplace" 2>/dev/null && echo "✅ sprint-planner" || true
   fi
+
+  # Plugin auto-update — kurulu pluginleri güncelle
+  echo ""
+  echo "── Plugin güncelleme ──"
+  if claude plugin list 2>/dev/null | grep -q .; then
+    claude plugin update --all 2>/dev/null && echo "✅ Plugin'ler güncellendi" || {
+      echo "  ↻ Plugin'ler tek tek güncelleniyor..."
+      claude plugin list 2>/dev/null | awk '{print $1}' | while read -r plugin_id; do
+        [ -n "$plugin_id" ] && claude plugin update "$plugin_id" 2>/dev/null && echo "  ✅ $plugin_id" || echo "  ○  $plugin_id (atlandı)"
+      done
+    }
+  else
+    echo "  ○  Güncellenecek plugin bulunamadı"
+  fi
 }
 
 # ── Run Phase 8-14 ──
