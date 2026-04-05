@@ -123,6 +123,21 @@ name = best.get('name', 'Unknown')
 
 print(f'{best_id} {name} ({model}, {effort})')
 
+# Log dispatch decision
+import os, datetime
+log_path = os.path.expanduser('~/Projects/.watchdog/dispatch-log.jsonl')
+os.makedirs(os.path.dirname(log_path), exist_ok=True)
+top3 = [{'id': aid, 'name': agent['name'], 'score': round(score,2)} for score, aid, agent in results[:3]]
+log_entry = {
+    'ts': datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
+    'query': query,
+    'selected': {'id': best_id, 'name': name, 'model': model, 'effort': effort, 'score': round(best_score,2)},
+    'top3': top3,
+    'total_candidates': len(results)
+}
+with open(log_path, 'a') as lf:
+    lf.write(json.dumps(log_entry, ensure_ascii=False) + '\n')
+
 if verbose:
     print(f'\nQuery words: {sorted(query_words)}')
     print(f'Weighted terms: {dict(sorted(weighted.items(), key=lambda x: -x[1]))}')

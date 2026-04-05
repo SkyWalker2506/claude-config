@@ -85,6 +85,10 @@
           {
             "type": "command",
             "command": "bash ~/Projects/claude-config/config/notify.sh \"Görev tamamlandı ✅\" \"✅\" 2>/dev/null || true"
+          },
+          {
+            "type": "command",
+            "command": "bash ~/Projects/claude-config/config/dispatch-reflect.sh --last 20 --apply >> ~/Projects/.watchdog/reflect-output.log 2>&1 &"
           }
         ]
       }
