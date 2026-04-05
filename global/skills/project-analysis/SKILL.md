@@ -1,8 +1,17 @@
 # /project-analysis
 
 > **ÖNEMLİ — skill başlamadan önce:**
-> Kullanıcıya şunu söyle: "Analiz başlamadan önce `/compact` çalıştırmanı öneririm — agent'lar çok token tüketir, mevcut context dolu olursa sorun yaşayabiliriz."
-> Kullanıcı onayladıktan (veya geçmek istediğini söyledikten) sonra devam et.
+> Kullanıcıya şunu göster:
+>
+> ```
+> Analiz başlamadan önce /compact önerilir (agent'lar çok token tüketir).
+>
+>   1) /compact çalıştır, sonra devam et
+>   2) Geç ve devam et
+> ```
+>
+> Kullanıcı "1" yazarsa → `/compact` çalıştırmasını hatırlat, çalıştırdıktan sonra devam et.
+> Kullanıcı "2" veya sadece Enter basarsa → direkt devam et.
 
 Bu skill tetiklendiğinde aşağıdaki adımları izle:
 
@@ -18,13 +27,19 @@ O dosyayı oku ve içindeki talimatlara **harfiyen** uy. Özetle:
 
 ```
 Analiz için agent model tipini seç:
-  1) Opus — en detaylı, en pahalı
+  1) Opus   — en detaylı, en pahalı
   2) Sonnet — dengeli
-  3) Haiku — hızlı, ekonomik
+  3) Haiku  — hızlı, ekonomik
   4) Karışık — her kategori için ayrı sorarım
+  5) Lead Orchestrator — A1 kategori karmaşıklığına göre model seçer
 
-Seçiminiz (1/2/3/4):
+Seçiminiz (1/2/3/4/5):
 ```
+
+**5 seçilirse:** Her kategori için A1 (Lead Orchestrator) şu kurala göre model atar:
+- Mimari, güvenlik, rekabet analizi → Opus
+- Performans, SEO, büyüme, analitik → Sonnet
+- UI tarama, içerik, erişilebilirlik → Haiku
 
 ## Adım 2 — Kategori seçimi (tek tek sor)
 

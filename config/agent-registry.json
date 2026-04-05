@@ -100,26 +100,28 @@
       "version": "1.0",
       "category": "orchestrator",
       "status": "active",
-      "primary_model": "sonnet",
+      "primary_model": "opus",
       "fallbacks": [
-        "local-qwen-9b",
-        "qwen-3.6-free"
+        "sonnet"
       ],
       "mcps": [
         "*"
       ],
       "capabilities": [
-        "planning",
-        "dispatch",
-        "coordination",
-        "escalation"
+        "strategy",
+        "vision",
+        "architecture",
+        "escalation",
+        "project-direction",
+        "risk-assessment",
+        "prioritization"
       ],
-      "max_tool_calls": 50,
+      "max_tool_calls": 80,
       "effort": "medium",
       "template": "autonomous"
     },
     "A2": {
-      "name": "Task Router",
+      "name": "Task Router & Dispatcher",
       "version": "1.0",
       "category": "orchestrator",
       "status": "active",
@@ -128,13 +130,19 @@
         "haiku",
         "local-qwen-9b"
       ],
-      "mcps": [],
+      "mcps": [
+        "*"
+      ],
       "capabilities": [
         "classification",
         "routing",
-        "capability-matching"
+        "capability-matching",
+        "dispatch",
+        "coordination",
+        "dag",
+        "planning"
       ],
-      "max_tool_calls": 10,
+      "max_tool_calls": 50,
       "effort": "low",
       "template": "analiz",
       "escalate_to": "opus",

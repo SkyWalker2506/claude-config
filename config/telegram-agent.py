@@ -164,7 +164,7 @@ def send_to_claude(text):
     try:
         result = subprocess.run(
             ["claude", "-p", "--model", "claude-haiku-4-5-20251001",
-             "--system", system],
+             "--system-prompt", system],
             input=text,
             capture_output=True,
             text=True,
