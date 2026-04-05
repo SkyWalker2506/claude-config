@@ -82,7 +82,7 @@ def tg_request(method, data=None):
         data = urllib.parse.urlencode(data).encode()
     try:
         req = urllib.request.Request(url, data=data)
-        with urllib.request.urlopen(req, timeout=10) as resp:
+        with urllib.request.urlopen(req, timeout=35) as resp:
             return json.loads(resp.read())
     except Exception as e:
         log(f"TG API error ({method}): {e}")
@@ -139,113 +139,85 @@ KEYBOARD = json.dumps({
     "resize_keyboard": True, "persistent": True
 })
 
-# ── Claude stream-json process ──────────────────────────────────────────────
+# ── Claude per-message invocation ──────────────────────────────────────────
 
-claude_proc = None
-claude_lock = threading.Lock()
-response_buffer = []
-response_event = threading.Event()
+# Session ID file — persistent across messages for conversation continuity
+SESSION_ID_FILE = os.path.expanduser("~/.watchdog/telegram-claude-session")
+
+def get_session_id():
+    try:
+        sid = open(SESSION_ID_FILE).read().strip()
+        return sid if sid else None
+    except:
+        return None
+
+def save_session_id(sid):
+    try:
+        with open(SESSION_ID_FILE, "w") as f:
+            f.write(sid)
+    except:
+        pass
 
 def start_claude():
-    """Start claude in streaming JSON mode."""
-    global claude_proc
-    model = os.environ.get("CLAUDE_TG_MODEL", "haiku")
-    log(f"Claude agent başlatılıyor → {PROJECT_DIR} (model: {model})")
-    claude_proc = subprocess.Popen(
-        ["claude", "-p", "--continue",
-         "--model", model,
-         "--input-format", "stream-json",
-         "--output-format", "stream-json",
-         "--verbose",
-         "--no-session-persistence"],
-        stdin=subprocess.PIPE,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        cwd=PROJECT_DIR,
-        text=False,
-    )
-    # Start output reader thread
-    threading.Thread(target=read_claude_output, daemon=True).start()
-    threading.Thread(target=read_claude_stderr, daemon=True).start()
-    log("Claude agent hazır")
-
-def read_claude_output():
-    """Read claude stdout (stream-json) and collect assistant messages."""
-    global claude_proc
-    for line in claude_proc.stdout:
-        try:
-            data = json.loads(line.decode("utf-8", errors="replace"))
-            msg_type = data.get("type", "")
-
-            if msg_type == "assistant":
-                # Full assistant message
-                content = data.get("message", {}).get("content", [])
-                text_parts = []
-                for block in content:
-                    if isinstance(block, dict) and block.get("type") == "text":
-                        text_parts.append(block["text"])
-                    elif isinstance(block, str):
-                        text_parts.append(block)
-                if text_parts:
-                    response_buffer.append("\n".join(text_parts))
-                    response_event.set()
-
-            elif msg_type == "content_block_delta":
-                # Streaming delta
-                delta = data.get("delta", {})
-                if delta.get("type") == "text_delta":
-                    pass  # We wait for full message
-
-            elif msg_type == "result":
-                # Final result
-                result_text = data.get("result", "")
-                if result_text and not response_buffer:
-                    response_buffer.append(result_text)
-                response_event.set()
-
-        except (json.JSONDecodeError, UnicodeDecodeError):
-            pass
-
-def read_claude_stderr():
-    """Read claude stderr for errors."""
-    global claude_proc
-    for line in claude_proc.stderr:
-        msg = line.decode("utf-8", errors="replace").strip()
-        if msg:
-            log(f"[claude stderr] {msg}")
+    """No-op: we use per-message invocations instead of a persistent process."""
+    log("Claude per-message mode hazır")
 
 def send_to_claude(text):
-    """Send a user message to claude via stream-json."""
-    global claude_proc, response_buffer
+    """Send a user message to claude via per-message -p invocation."""
+    model = os.environ.get("CLAUDE_TG_MODEL", "haiku")
+    session_id = get_session_id()
 
-    if claude_proc is None or claude_proc.poll() is not None:
-        log("Claude process yok veya öldü, yeniden başlatılıyor...")
-        start_claude()
+    cmd = ["claude", "-p",
+           "--model", model,
+           "--output-format", "text"]
 
-    response_buffer.clear()
-    response_event.clear()
+    if session_id:
+        cmd += ["--resume", session_id]
 
-    msg = json.dumps({
-        "type": "user",
-        "message": {"role": "user", "content": text}
-    }) + "\n"
+    log(f"Claude çağrılıyor (model={model}, session={'resume' if session_id else 'new'})")
 
-    with claude_lock:
-        try:
-            claude_proc.stdin.write(msg.encode("utf-8"))
-            claude_proc.stdin.flush()
-        except (BrokenPipeError, OSError) as e:
-            log(f"Claude stdin error: {e}, restarting...")
-            start_claude()
-            claude_proc.stdin.write(msg.encode("utf-8"))
-            claude_proc.stdin.flush()
+    try:
+        result = subprocess.run(
+            cmd,
+            input=text,
+            capture_output=True,
+            text=True,
+            cwd=PROJECT_DIR,
+            timeout=120,
+        )
+    except subprocess.TimeoutExpired:
+        log("Claude timeout (120s)")
+        return "(Yanıt alınamadı — timeout)"
+    except Exception as e:
+        log(f"Claude çalıştırma hatası: {e}")
+        return f"(Hata: {e})"
 
-    # Wait for response (max 5 min)
-    response_event.wait(timeout=300)
+    stderr = result.stderr.strip()
+    stdout = result.stdout.strip()
 
-    if response_buffer:
-        return "\n".join(response_buffer)
-    return "(Yanıt alınamadı — timeout veya hata)"
+    # Extract session ID from stderr if present
+    for line in stderr.splitlines():
+        if '"session_id"' in line:
+            try:
+                data = json.loads(line)
+                sid = data.get("session_id") or data.get("sessionId")
+                if sid:
+                    save_session_id(sid)
+                    break
+            except:
+                pass
+
+    if stderr:
+        # Log only errors, not info lines
+        for line in stderr.splitlines():
+            if '"type"' not in line:
+                log(f"[claude stderr] {line}")
+
+    if result.returncode != 0 and not stdout:
+        log(f"Claude exit code {result.returncode}: {stderr[:200]}")
+        return f"(Claude hatası — exit {result.returncode})"
+
+    return stdout if stdout else "(Boş yanıt)"
 
 # ── Telegram polling ────────────────────────────────────────────────────────
 
@@ -327,10 +299,13 @@ def handle_message(msg_type, text, extras):
         sys.exit(0)
 
     elif text == "/status":
+        model = os.environ.get("CLAUDE_TG_MODEL", "haiku")
+        session_id = get_session_id()
         tg_send(f"🟢 *Agent Aktif*\n"
                 f"Proje: `{os.path.basename(PROJECT_DIR)}`\n"
                 f"Saat: `{datetime.now().strftime('%H:%M:%S')}`\n"
-                f"Claude PID: `{claude_proc.pid if claude_proc else 'yok'}`",
+                f"Model: `{model}`\n"
+                f"Session: `{'devam' if session_id else 'yeni'}`",
                 KEYBOARD)
         return
 
@@ -346,10 +321,11 @@ def handle_message(msg_type, text, extras):
         full = os.path.expanduser(f"~/Projects/{new}")
         if os.path.isdir(full):
             PROJECT_DIR = full
-            # Restart claude in new dir
-            if claude_proc and claude_proc.poll() is None:
-                claude_proc.terminate()
-            start_claude()
+            # Clear session so next message starts fresh in new dir
+            try:
+                open(SESSION_ID_FILE, "w").close()
+            except:
+                pass
             tg_send(f"📁 Proje değişti: `{new}`", KEYBOARD)
         else:
             tg_send(f"❌ Bulunamadı: `{new}`", KEYBOARD)
@@ -418,14 +394,7 @@ def send_result(result):
 # ── Main loop ───────────────────────────────────────────────────────────────
 
 def cleanup(*args):
-    global claude_proc
     log("Kapanıyor...")
-    if claude_proc and claude_proc.poll() is None:
-        claude_proc.terminate()
-        try:
-            claude_proc.wait(timeout=5)
-        except:
-            claude_proc.kill()
     heartbeat("stopped")
 
 signal.signal(signal.SIGTERM, lambda *a: (cleanup(), sys.exit(0)))
@@ -452,7 +421,7 @@ def main():
         try:
             resp = tg_request("getUpdates", {
                 "offset": offset,
-                "timeout": 5,
+                "timeout": 30,
                 "allowed_updates": "message,callback_query",
             })
 
