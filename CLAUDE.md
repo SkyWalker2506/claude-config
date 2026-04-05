@@ -49,6 +49,15 @@ Hesaplama: `(kalan all-models %) / (reset'e kalan gun)` — ortukte uyar, mod de
 - Sub-agent: prompt basinda `(Model Adi)`, limit belirt, max 2-3 paralel
 - Buyuk dosya okuma+yazma (>20KB): Sonnet'te yap
 - Is hafiflediyse model gecisi oner
+- **Alt ajanlarda varsayilan model Haiku** — sadece ozetlenmiş sonuc dondur, ham cikti degil
+- Terminal komutlari (git log, arama vb.) genis cikti uretirse `head -N` ile sinirla
+
+**Context hijyeni:**
+- Konu degisince `/clear` — ayni konusmayi sisirme
+- Context **%60** dolduğunda `/compact` yap; neyi korumak istedigini belirt (bekleme: %95 oto-compact)
+- Mola vermeden once `/compact` veya `/clear` yap — 5 dk+ molada prompt cache sifirlanir, geri donunce her sey yeniden okunur
+- Buyuk / cok-agent oturumlarini **sakin saatlere** planla (TS: ögleden sonra, aksam, hafta sonu)
+- `/mcp` ile her oturum basinda acik MCP listesini kontrol et; kullanilmayacak MCP'leri kapat
 
 ### 4. jCodeMunch MCP
 
