@@ -582,7 +582,7 @@ function cl() {
   fi
   selected=$(
     for d in "$projects_dir"/*/; do
-      [ -d "$d/.claude" ] || continue
+      { [ -d "$d/.claude" ] || [ -f "$d/CLAUDE.md" ] || [ -d "$d/.claude-plugin" ]; } || continue
       local name=$(basename "${d%/}")
       local tag=""
       if [ -f "$d/pubspec.yaml" ]; then tag="Flutter"
