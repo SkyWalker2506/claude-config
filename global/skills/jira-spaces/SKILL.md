@@ -1,6 +1,6 @@
 ---
-name: spaces
-description: "Jira'daki tüm projeleri + Confluence space'leri listele, açık task sayısıyla birlikte. Triggers: spaces, jira spaces, jira projeleri, proje listesi, hangi projeler var."
+name: jira-spaces
+description: "Jira'daki tüm projeleri + Confluence space'leri listele, açık task sayısıyla birlikte. Triggers: jira-spaces, spaces, jira projeleri, proje listesi, hangi projeler var."
 argument-hint: "[jira | confluence | all]"
 ---
 
