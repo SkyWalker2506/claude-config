@@ -1,217 +1,224 @@
 # Project Analysis — Multi-Agent Deep Audit
 
-Bu dosya herhangi bir projede `/project-analysis` komutuyla tetiklenir. Birden fazla uzman agent paralel olarak projeyi analiz eder, sonuclari tek bir master raporda birlestirir.
+Bu dosya herhangi bir projede `/project-analysis` komutuyla tetiklenir. Lead hiyerarşisi içinde uzman agent'lar paralel olarak projeyi analiz eder, sonuçları tek bir master raporda birleştirir.
 
 ---
 
-## Analiz Kategorileri
+## §1 — Analiz Kategorileri
 
-| # | Kategori | Odak | Agent gorevi |
-|---|----------|------|-------------|
-| 1 | **UI/UX & Design** | Gorsel tasarim, layout, renk paleti, tipografi, responsive, dark mode, animasyon, component tutarliligi, design system, erisilebilirlik (a11y), mobile UX | Projeyi tarayip UI/UX kalitesini degerlendir, eksikleri ve iyilestirmeleri listele |
-| 2 | **Performance & Core Web Vitals** | LCP, FID, CLS, bundle size, lazy loading, image optimization, caching, SSR/SSG/ISR stratejisi, DB sorgu performansi, API response time | Performans darbogazlarini bul, olcum onerileri sun |
-| 3 | **SEO & Discoverability** | Meta tags, Open Graph, structured data (JSON-LD), sitemap, robots.txt, canonical URL, semantic HTML, page speed, mobile-friendliness, internal linking | SEO eksiklerini tespit et, arama motoru gorunurlugunu artir |
-| 4 | **Data & Scraping Infrastructure** | Veri kaynaklari, scraper mimarisi, veri kalitesi, veri guncelligi, pipeline robustness, error handling, rate limiting, veri modeli, Prisma schema | Veri altyapisini degerlendir, yeni kaynaklar ve iyilestirmeler oner |
-| 5 | **Monetization & Business Model** | Gelir modelleri (premium, ads, sponsorship, API), pricing stratejisi, conversion funnel, paywall, freemium vs premium, affiliate | Monetizasyon firsatlarini analiz et, uygulanabilir modeller oner |
-| 6 | **Growth & User Engagement** | Viral loop, gamification, social sharing, notification, retention, onboarding, community, user journey, referral, push notification | Kullanici kazanimi ve tutma stratejilerini degerlendir |
-| 7 | **Security & Infrastructure** | Auth, OWASP top 10, env/secret yonetimi, CORS, rate limiting, input validation, dependency audit, error handling, logging, monitoring | Guvenlik aciklari ve altyapi eksiklerini tespit et |
-| 8 | **Content & Editorial Strategy** | Icerik kalitesi, icerik cesitliligi, editorial flow, UGC (user-generated content), moderation, icerik guncelligi, tone of voice | Icerik stratejisini degerlendir, yeni icerik turleri oner |
-| 9 | **Analytics & Tracking** | Event tracking, conversion tracking, funnel analizi, heatmap, A/B test altyapisi, user behavior, dashboard, KPI tanimlar | Analitik altyapisini degerlendir, olcum stratejisi oner |
-| 10 | **Architecture & Code Quality** | Kod yapisi, modulerlik, test coverage, CI/CD, dependency management, tech debt, scalability, error boundaries, type safety | Kod kalitesini ve mimariyi degerlendir, refactor onerileri sun |
-| 11 | **Accessibility (a11y)** | WCAG 2.1/2.2, keyboard navigation, screen reader, color contrast, focus management, ARIA, alt text, form labels | Erisilebilirlik standartlarina uyumu degerlendir |
-| 12 | **Competitive Analysis** | Rakip platformlar, feature gap, pazar konumlandirma, diferansiasyon, SWOT, benchmark | Rakipleri arastir, projenin pazar konumunu degerlendir |
+| # | Kategori | Odak | Varsayılan Agent |
+|---|----------|------|-----------------|
+| 1 | **UI/UX & Design** | Görsel tasarım, layout, renk, tipografi, responsive, dark mode, animasyon, component tutarlılığı, design system, mobile UX | B3 Frontend Coder (Sonnet) |
+| 2 | **Performance & Core Web Vitals** | LCP, FID, CLS, bundle size, lazy loading, image optimization, caching, SSR/SSG/ISR, DB sorgu, API response time | B12 Performance Optimizer (Sonnet) |
+| 3 | **SEO & Discoverability** | Meta tags, Open Graph, JSON-LD, sitemap, robots.txt, canonical URL, semantic HTML, mobile-friendliness, internal linking | H2 SEO Agent (Haiku) |
+| 4 | **Data & Scraping Infrastructure** | Veri kaynakları, scraper mimarisi, veri kalitesi, pipeline robustness, error handling, rate limiting, veri modeli | F1 Data Analyst + F4 ETL Pipeline (Sonnet) |
+| 5 | **Monetization & Business Model** | Gelir modelleri, pricing stratejisi, conversion funnel, paywall, freemium vs premium, affiliate | H5 Revenue Analyst + H6 Pricing Strategist (Opus) |
+| 6 | **Growth & User Engagement** | Viral loop, gamification, social sharing, retention, onboarding, referral, push notification | H4 Social Media Agent + H8 Newsletter Agent (Sonnet) |
+| 7 | **Security & Infrastructure** | Auth, OWASP top 10, env/secret yönetimi, CORS, rate limiting, input validation, dependency audit | B13 Security Auditor (Opus) |
+| 8 | **Content & Editorial Strategy** | İçerik kalitesi, çeşitlilik, editorial flow, UGC, moderation, tone of voice | H7 Content Repurposer (Haiku) |
+| 9 | **Analytics & Tracking** | Event tracking, conversion, funnel analizi, A/B test altyapısı, KPI tanımlar | M4 Analytics Agent + F1 Data Analyst (Sonnet) |
+| 10 | **Architecture & Code Quality** | Kod yapısı, modülerlik, test coverage, CI/CD, tech debt, scalability, type safety | B1 Backend Architect + B10 Refactor Agent (Opus) |
+| 11 | **Accessibility (a11y)** | WCAG 2.1/2.2, keyboard navigation, screen reader, color contrast, focus, ARIA, form labels | B3 Frontend Coder (Haiku) |
+| 12 | **Competitive Analysis** | Rakip platformlar, feature gap, pazar konumlandırma, diferansiasyon, SWOT, benchmark | H3 Competitor Analyst (Sonnet) |
 
 ---
 
-## Kullanim
-
-### 1. Skill tetikleme
-
-Kullanici `/project-analysis` yazdiginda:
-
-### 2. Model secimi sor
+## §2 — Lead Hiyerarşisi
 
 ```
-Analiz icin agent model tipini sec:
-  1) Opus    — en detayli, en pahali
-  2) Sonnet  — dengeli
-  3) Haiku   — hizli, ekonomik
-  4) Karisik — her kategori icin ayri sorarim
-  5) Otomatik — Opus her kategori icin en uygun modeli secer
-
-Seciminiz (1/2/3/4/5):
+A1 Lead Orchestrator (Opus)
+├── ArtLead    → #1 UI/UX, #8 Content, #11 Accessibility
+├── CodeLead   → #2 Performance, #4 Data, #10 Architecture
+├── GrowthLead → #3 SEO, #6 Growth, #9 Analytics
+├── BizLead    → #5 Monetization, #12 Competitive
+└── SecLead    → #7 Security
 ```
 
-- 1/2/3 secilirse tum agentlar o modeli kullanir
-- 4 secilirse her kategori icin ayri model sorulur
-- 5 secilirse: **kategori secimi adimi atlanir.** Bir Opus agent direkt projeyi tarayarak her kategori icin iki karar verir:
-  1. **Gerekli mi?** — Bu projeye uygun mu, atlansın mı? (ornegin yeni bir proje icin SEO erken olabilir, scraping altyapisi yoksa kategori 4 anlamsiz olabilir)
-  2. **Hangi model?** — Karmasik/kritik → Opus, orta → Sonnet, yuzeysel/hizli → Haiku
-  Sonucta her kategori icin `{ include: true/false, model: opus/sonnet/haiku, reason: "..." }` cikarir, kullaniciya ozetler ve onay alir, sonra ana analiz o atamayla baslar
+### Lead sorumlulukları
 
-### 3. Kategori secimi sor (tek tek)
+Her Lead agent:
+1. Atanan kategorileri **paralel** olarak çalıştırır (her kategori için ayrı sub-task)
+2. Kendi departman kategorilerini analiz eder (worker agent rolünü de üstlenir)
+3. Tamamlanan kategori raporlarını `analysis/` klasörüne yazar
+4. Lead Orchestrator'a kısa bir departman özeti döner
 
-Her kategoriyi tek tek sor. Kullanici 1, 2 veya 3 ile yanit verir.
+---
+
+## §3 — Agent Atama Modları
+
+### Mod 1: Lead Orchestrator (Önerilen)
+
+A1 Lead Orchestrator şu adımları izler:
+1. `__PROJECT_ROOT__` dizinini tarar (max 10 tool call)
+2. Her Lead için atama kararı verir:
+   ```json
+   {
+     "ArtLead": {
+       "categories": [1, 8, 11],
+       "agents": { "1": "B3/Sonnet", "8": "H7/Haiku", "11": "B3/Haiku" },
+       "skip": []
+     },
+     "CodeLead": { ... },
+     "GrowthLead": { ... },
+     "BizLead": { ... },
+     "SecLead": { ... }
+   }
+   ```
+3. Kullanıcıya haritayı göster, onay al
+4. Lead'leri paralel başlat
+
+**Karar kriterleri:**
+- Yeni/küçük proje → SEO, Competitive, Monetization'ı atla veya Haiku'ya düşür
+- Scraper/veri altyapısı yoksa → #4 atla
+- Frontend-only proje → #4, #7 backend parçalarını kısalt
+- Mimari/güvenlik/rekabet → Opus; orta → Sonnet; UI tarama/içerik → Haiku
+
+### Mod 2: Manuel
+
+Her kategori için kullanıcıya sırayla sor:
+```
+[KATEGORİ_ADI] — [kısa açıklama]
+1) Evet (tam analiz)  2) Hayır (atla)  3) Kısmen (hızlı tarama)
+```
+Kabul edilen her kategori için önerilen agent'ı göster, kullanıcı değiştirebilir.
+
+### Mod 3: Hızlı
+
+Tüm 12 kategori, §1'deki varsayılan agent'lar ile başlatılır. Kullanıcıdan onay gerekmez.
+
+---
+
+## §4 — Agent Registry (Proje Analizi Kapsamı)
+
+Kullanılabilir agent'lar ve rolleri:
+
+| Agent ID | İsim | Model | Kategori |
+|----------|------|-------|----------|
+| B1 | Backend Architect | Opus | Architecture (#10) |
+| B3 | Frontend Coder | Sonnet | UI/UX (#1), Accessibility (#11) |
+| B10 | Refactor Agent | Sonnet | Architecture (#10) |
+| B12 | Performance Optimizer | Sonnet | Performance (#2) |
+| B13 | Security Auditor | Opus | Security (#7) |
+| F1 | Data Analyst | Sonnet | Data (#4), Analytics (#9) |
+| F4 | ETL Pipeline Agent | Sonnet | Data (#4) |
+| H2 | SEO Agent | Haiku | SEO (#3) |
+| H3 | Competitor Analyst | Sonnet | Competitive (#12) |
+| H4 | Social Media Agent | Sonnet | Growth (#6) |
+| H5 | Revenue Analyst | Opus | Monetization (#5) |
+| H6 | Pricing Strategist | Sonnet | Monetization (#5) |
+| H7 | Content Repurposer | Haiku | Content (#8) |
+| H8 | Newsletter Agent | Haiku | Growth (#6) |
+| M4 | Analytics Agent | Sonnet | Analytics (#9) |
+
+---
+
+## §5 — Lead Agent Prompt Şablonu
 
 ```
-[KATEGORI_ADI] — [kisa aciklama]
-1) Evet  2) Hayir  3) Kismen
-```
+(Model Adı)
+Sen [LEAD_ROLE]'sın. Aşağıdaki projeyi sorumlu olduğun kategorilerde analiz et.
 
-- **1 (Evet):** Tam derinlikte analiz — max tool call, detayli rapor
-- **2 (Hayir):** Bu kategori atlanir
-- **3 (Kismen):** Hafif analiz — sadece proje taramasi (web arastirmasi yok), kisa rapor, yarisina yakin tool call limiti. "Baksın ama cok onemli degil" seviyesi. Master raporda ayri isaretlenir.
+Proje kökü: [PROJE_YOLU]
+Sorumlu kategoriler: [KATEGORİ_LİSTESİ]
+Atanan agent'lar: [AGENT_ATAMALARI]
 
-Tum kategoriler sorulduktan sonra secilenleri ozetle ve onayla.
+## GÖREV
 
-### 4. Agent'lari baslat
-
-Her kabul edilen kategori icin ayri bir Agent baslat (`run_in_background=true`, paralel).
-
-Her agent su siralamayla calisir:
-1. **Proje taramasi** — Read, Grep, Glob ile projeyi incele (max 15 tool call)
-2. **Dis dunya arastirmasi** — WebSearch, WebFetch ile guncel bilgi topla (max 10 tool call)
-3. **Rapor olustur** — Markdown formatinda detayli rapor yaz
-
-#### Watchdog
-
-Tum agentlar baslatildiktan sonra ana oturum **watchdog** gorevi ustlenir:
-
-- Agentlar tamamlandikca bildirim gelir (background agent completion)
-- Her 3 dakikada bir tamamlanan vs bekleyen kategori listesini goster:
-  ```
-  Analiz durumu (X/Y tamamlandi):
-  ✅ UI/UX Design
-  ✅ Security
-  ⏳ Performance (calisıyor...)
-  ⏳ SEO (calisıyor...)
-  ```
-- Bir agent 8 dakika icinde tamamlanmazsa **takili kabul et**:
-  1. Kullaniciya bildir: `⚠️ [KATEGORİ] agent takıldı görünüyor. Yeniden başlatayım mı? (e/h)`
-  2. Onay gelirse o kategoriyi ayni parametrelerle tek basina yeniden baslat
-  3. Onceki agent'in ciktisi yoksa temiz baslat; kismi cikti varsa devam et
-- Tum agentlar bitince (veya maksimum 20 dk sonra) master rapor asamasina gec
-
-Her agent'in prompt'u asagidaki sablonu kullanir:
-
-```
-(Model Adi)
-Sen bir [KATEGORI] uzmanissin. Asagidaki projeyi [KATEGORI] perspektifinden analiz et.
-
-Proje koku: [PROJE_YOLU]
-
-## ADIMLAR
+Her kategori için sırayla şu adımları uygula:
 
 ### 1. PROJE TARAMASI (Read, Grep, Glob — max 15 tool call)
-- Proje yapisini incele
-- [KATEGORI] ile ilgili dosyalari bul ve oku
-- Mevcut durumu degerlendir
+- Proje yapısını incele
+- Kategoriye ilgili dosyaları bul ve oku
+- Mevcut durumu değerlendir
 
-### 2. DIS DUNYA ARASTIRMASI (WebSearch, WebFetch — max 10 tool call)
-- Guncel best practice'leri arastir
-- Rakip/benchmark orneklerini bul
-- Sektordeki trendleri incele
+### 2. DIŞ DÜNYA ARAŞTIRMASI (WebSearch, WebFetch — max 10 tool call)
+- Güncel best practice'leri araştır
+- Rakip/benchmark örneklerini bul
 
-### 3. RAPOR OLUSTUR
+### 3. RAPOR OLUŞTUR → [PROJE_YOLU]/analysis/[NN_kategori].md
 
-## [KATEGORI] Analiz Raporu
+Rapor formatı:
+
+## [KATEGORİ] Analiz Raporu
+> Lead: [LEAD_ROLE] | Agent: [AGENT_ID] | Model: [MODEL]
 
 ### Mevcut Durum
-- Ne yapilmis (guclu yanlar)
+- Ne yapılmış (güçlü yanlar)
 - Puan: X/10
 
-### Kritik Eksikler (hemen yapilmali)
-| # | Sorun | Etki | Cozum | Efor |
+### Kritik Eksikler (hemen yapılmalı)
+| # | Sorun | Etki | Çözüm | Efor |
 (tablo)
 
-### Iyilestirme Onerileri (planli)
-| # | Oneri | Etki | Cozum | Efor |
+### İyileştirme Önerileri (planlı)
+| # | Öneri | Etki | Çözüm | Efor |
 (tablo)
 
-### Kesin Olmali (industry standard)
-- ...
-
-### Kesin Degismeli (mevcut sorunlar)
-- ...
-
+### Kesin Olmalı (industry standard)
+### Kesin Değişmeli (mevcut sorunlar)
 ### Nice-to-Have (diferansiasyon)
-- ...
-
 ### Referanslar
-- Arastirma kaynaklari
 
 ## KURALLAR
-- Kod yazma, dosya duzenleme YAPMA — sadece oku ve raporla
-- Somut, actionable oneriler sun
-- Her oneri icin etki (High/Med/Low) ve efor (S/M/L/XL) belirt
-- Raporu Turkce yaz
-- Max 25 toplam tool call
+- Kod yazma, dosya düzenleme YAPMA — sadece oku ve raporla
+- Somut, actionable öneriler sun
+- Her öneri için etki (High/Med/Low) ve efor (S/M/L/XL) belirt
+- Raporu Türkçe yaz
+- Tüm kategorileri bitirdikten sonra Lead Orchestrator'a departman özeti döndür
 ```
 
-### 5. Master rapor olustur
+---
 
-Tum agent'lar tamamlandiginda bir **Opus agent** baslat:
-- Tum kategori raporlarini oku
-- Tek bir master dosyada birlestir: `[PROJE]/analysis/MASTER_ANALYSIS.md`
-- Kategori raporlarini ayri dosyalarda sakla: `[PROJE]/analysis/[kategori].md`
-- Cross-cutting insights (kategoriler arasi baglantilar) ekle
-- Oncelikli eylem plani olustur (top 20 item, kategoriler arasi)
-- Genel puan karti olustur
+## §6 — Master Rapor Yapısı
 
-Master dosya yapisi:
+Tüm Lead'ler tamamlandığında bir **Opus agent** başlatılır:
 
 ```markdown
-# [Proje Adi] — Master Analysis Report
-> Generated: [tarih] | Categories: [N] | Model: [model]
+# [Proje Adı] — Master Analysis Report
+> Generated: [tarih] | Leads: 5 | Categories: [N] | Mode: [mod]
 
 ## Executive Summary
 - Genel puan: X/10
-- En guclu alan: ...
-- En zayif alan: ...
-- Acil aksiyon sayisi: N
+- En güçlü alan: ...
+- En zayıf alan: ...
+- Acil aksiyon sayısı: N
 
-## Puan Karti
-| Kategori | Puan | Kritik | Iyilestirme | Nice-to-Have |
+## Puan Kartı
+| Kategori | Lead | Agent | Model | Puan | Kritik | İyileştirme |
 (tablo)
 
-## Top 20 Oncelikli Aksiyonlar
-| # | Aksiyon | Kategori | Etki | Efor | Oncelik |
-(tablo — kategoriler arasi, etki/efor matrisine gore siralanmis)
+## Departman Özetleri
+### ArtLead (UI/UX, Content, Accessibility)
+### CodeLead (Performance, Data, Architecture)
+### GrowthLead (SEO, Growth, Analytics)
+### BizLead (Monetization, Competitive)
+### SecLead (Security)
+
+## Top 20 Öncelikli Aksiyonlar
+| # | Aksiyon | Kategori | Lead | Etki | Efor | Öncelik |
+(tablo — kategoriler arası, etki/efor matrisine göre sıralanmış)
 
 ## Cross-Cutting Insights
-- Kategoriler arasi baglanti ve sinerjiler
-
-## Kategori Detaylari
-→ Her kategori icin ozet + link
+- Kategoriler arası bağlantı ve sinerjiler
 
 ## Methodology & Cost Report
-| Kategori | Model | Baslangic | Bitis | Sure (dk) | Tool Call | Input Token | Output Token | Toplam Token | Maliyet ($) | Toplama Orani (%) |
-|----------|-------|-----------|-------|-----------|-----------|-------------|--------------|--------------|-------------|-------------------|
-(her agent bir satir)
+| Kategori | Lead | Agent | Model | Süre (dk) | Tool Call | Token | Maliyet ($) |
+(her kategori bir satır)
 
-- **Toplam sure:** X dk
-- **Toplam token:** X (input: X, output: X)
+- **Toplam süre:** X dk
 - **Toplam tahmini maliyet:** $X
-- **En pahali kategori:** ...
+- **En pahalı kategori:** ...
 - **En verimli kategori (puan/token):** ...
-- **Notlar:** Gelecek analizler icin hangi kategoriler Sonnet'e dusurulebilir, hangilerinde Opus fark yaratti
 ```
-
-### 6. Cikti
-
-Kullaniciya goster:
-1. Master rapor ozeti
-2. Dosya konumlari
-3. En kritik 5 aksiyon
 
 ---
 
-## Dosya Yapisi
+## §7 — Dosya Yapısı
 
 ```
 [PROJE]/
   analysis/
-    MASTER_ANALYSIS.md          ← Birlestirilmis master rapor
+    MASTER_ANALYSIS.md
     01_ui_ux_design.md
     02_performance.md
     03_seo.md
@@ -230,10 +237,8 @@ Kullaniciya goster:
 
 ## Notlar
 
-- Her agent bagimsiz calisir, birbirini beklemez
-- Agent sayisi secilen kategori sayisina esittir (max 12)
-- Master rapor icin ayri bir Opus agent kullanilir (birlesim + cross-cutting)
-- Toplam sure: ~2-5 dakika (paralel agent'lar)
-- Projeye ozel icerik otomatik tespit edilir (framework, dil, stack)
-- Bu dosya (`PROJECT_ANALYSIS.md`) parent folder'da durur, tum projeler icin gecerlidir
-- Analiz ciktilari her zaman projenin kendi `analysis/` folder'inda olusturulur
+- Lead'ler paralel çalışır; her Lead kendi kategorilerini sırayla işler
+- Master rapor için ayrı bir Opus agent kullanılır
+- Toplam süre: ~3-7 dakika (5 paralel Lead)
+- Projeye özgü içerik otomatik tespit edilir (framework, dil, stack)
+- Bu dosya tüm projeler için geçerlidir; analiz çıktıları her projenin `analysis/` klasörüne yazılır

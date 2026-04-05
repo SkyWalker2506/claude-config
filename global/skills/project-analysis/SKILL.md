@@ -19,69 +19,71 @@ Bu skill tetiklendiğinde aşağıdaki adımları izle:
 
 Tam protokol: `__PROJECTS_ROOT__/PROJECT_ANALYSIS.md`
 
-O dosyayı oku ve içindeki talimatlara **harfiyen** uy. Özetle:
+O dosyayı oku ve içindeki talimatlara **harfiyen** uy.
 
 ---
 
-## Adım 1 — Model seçimi sor
+## Adım 1 — Agent atama modunu sor
 
 ```
-Analiz için agent model tipini seç:
-  1) Opus   — en detaylı, en pahalı
-  2) Sonnet — dengeli
-  3) Haiku  — hızlı, ekonomik
-  4) Karışık — her kategori için ayrı sorarım
-  5) Lead Orchestrator — A1 kategori karmaşıklığına göre model seçer
+Analiz için ajan atama modunu seç:
+  1) Lead Orchestrator — A1 projeyi inceler, her departman için Lead + ajan atar
+  2) Manuel            — her kategori için ajan ve modeli kendim seçerim
+  3) Hızlı             — tüm kategoriler Sonnet ile, standart agent'lar
 
-Seçiminiz (1/2/3/4/5):
+Seçiminiz (1/2/3):
 ```
 
-**5 seçilirse:** Her kategori için A1 (Lead Orchestrator) şu kurala göre model atar:
-- Mimari, güvenlik, rekabet analizi → Opus
-- Performans, SEO, büyüme, analitik → Sonnet
-- UI tarama, içerik, erişilebilirlik → Haiku
+**1 seçilirse (Lead Orchestrator):**
+- A1 (Lead Orchestrator) kısa bir proje taraması yapar
+- Her Lead departmanı için: hangi kategoriler, hangi worker agent'lar, hangi modeller → bir atama haritası çıkarır
+- Kullanıcıya haritayı göster, onay al
+- Leads'leri paralel başlat (`run_in_background=true`)
 
-## Adım 2 — Kategori seçimi (tek tek sor)
+**2 seçilirse (Manuel):**
+- Her kategori için sırayla sor: `Evet / Hayır / Kısmen`
+- Kabul edilen her kategori için: hangi agent ID? hangi model?
+- `PROJECT_ANALYSIS.md` §3'teki kategori + agent eşleşme tablosuna bak, öner
 
-Her kategoriyi tek tek sor, kullanıcı 1/2/3 ile yanıt verir:
+**3 seçilirse (Hızlı):**
+- Tüm 12 kategoriyi Sonnet modeli + varsayılan agent'larla başlat (kategori seçimi yok)
 
-```
-[KATEGORİ_ADI] — [kısa açıklama]
-1) Evet (tam analiz)  2) Hayır (atla)  3) Kısmen (hızlı tarama)
-```
+## Adım 2 — Lead'leri başlat (paralel, background)
 
-Kategoriler:
-1. UI/UX & Design
-2. Performance & Core Web Vitals
-3. SEO & Discoverability
-4. Data & Scraping Infrastructure
-5. Monetization & Business Model
-6. Growth & User Engagement
-7. Security & Infrastructure
-8. Content & Editorial Strategy
-9. Analytics & Tracking
-10. Architecture & Code Quality
-11. Accessibility (a11y)
-12. Competitive Analysis
+Her Lead departmanı için bir Agent başlat (`run_in_background=true`).
 
-Tüm kategoriler sorulduktan sonra seçilenleri özetle ve onayla.
-
-## Adım 3 — Agent'ları başlat (paralel, background)
-
-Her seçilen kategori için ayrı bir Agent başlat (`run_in_background=true`).
-
-Agent prompt şablonu (`PROJECT_ANALYSIS.md` §4'teki şablonu kullan):
-- Proje kökünü otomatik tespit et (mevcut çalışma dizini)
-- Model: kullanıcının seçtiği model
-- Max 25 tool call (tarama: 15, araştırma: 10)
+Lead agent prompt şablonu (`PROJECT_ANALYSIS.md` §5'teki şablonu kullan):
+- Lead rolü ve sorumlu kategoriler
+- Her kategori için atanan worker agent ve model
+- Proje kökü
 - Çıktı: `[PROJE]/analysis/[NN_kategori].md`
+
+Lead yapısı:
+- **ArtLead**    → UI/UX (#1), Content (#8), Accessibility (#11)
+- **CodeLead**   → Performance (#2), Data (#4), Architecture (#10)
+- **GrowthLead** → SEO (#3), Growth (#6), Analytics (#9)
+- **BizLead**    → Monetization (#5), Competitive (#12)
+- **SecLead**    → Security (#7)
+
+## Adım 3 — Watchdog
+
+Her 3 dakikada bir durum göster:
+```
+Analiz durumu (X/Y tamamlandı):
+✅ ArtLead  (UI/UX, Content, Accessibility)
+✅ SecLead  (Security)
+⏳ CodeLead (Performance ✅, Data ✅, Architecture ⏳)
+⏳ GrowthLead (SEO ✅, Growth ⏳, Analytics ⏳)
+⏳ BizLead  (Monetization ⏳, Competitive ⏳)
+```
+8 dakika geçen lead → kullanıcıya sor, onay gelirse yeniden başlat.
 
 ## Adım 4 — Master rapor
 
-Tüm agent'lar tamamlanınca bir **Opus agent** başlat:
-- Kategori raporlarını oku
+Tüm Lead'ler tamamlanınca bir **Opus agent** başlat:
+- Tüm kategori raporlarını oku
 - `[PROJE]/analysis/MASTER_ANALYSIS.md` oluştur
-- `PROJECT_ANALYSIS.md` §5'teki master rapor yapısını kullan
+- `PROJECT_ANALYSIS.md` §6'daki master rapor yapısını kullan
 - Cross-cutting insights + top 20 aksiyon listesi + maliyet tablosu
 
 ## Adım 5 — Kullanıcıya göster
