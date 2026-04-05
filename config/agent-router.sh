@@ -5,63 +5,88 @@
 
 set -euo pipefail
 
-QUERY="${1:?Kullanim: $0 \"gorev aciklamasi\"}"
+VERBOSE=false
+QUERY=""
 REGISTRY="${REGISTRY_PATH:-$HOME/Projects/claude-config/config/agent-registry.json}"
+
+for arg in "$@"; do
+  case "$arg" in
+    --verbose|-v) VERBOSE=true ;;
+    *) [ -z "$QUERY" ] && QUERY="$arg" ;;
+  esac
+done
+
+[ -z "$QUERY" ] && { echo "Kullanim: $0 \"gorev aciklamasi\" [--verbose]" >&2; exit 1; }
 
 if [ ! -f "$REGISTRY" ]; then
   echo "HATA: Registry bulunamadi: $REGISTRY" >&2
   exit 1
 fi
 
-python3 -c "
+python3 - "$QUERY" "$REGISTRY" "$VERBOSE" << 'PYEOF'
 import json, sys, re
 
 query = sys.argv[1].lower()
+registry_path = sys.argv[2]
+verbose = sys.argv[3] == "true"
+
 query_words = set(re.findall(r'[a-z0-9]+', query))
 
-# Keyword aliases — yaygın görev terimlerini capability terimlerine eşle
-ALIASES = {
-    'bug': ['debugging', 'root-cause-analysis', 'error-tracing'],
-    'fix': ['debugging', 'root-cause-analysis'],
-    'debug': ['debugging', 'error-tracing', 'log-analysis'],
-    'security': ['security-audit', 'vulnerability-scan', 'penetration-test'],
-    'audit': ['security-audit', 'code-review'],
-    'review': ['code-review', 'pr-review'],
-    'deploy': ['deployment', 'ci-cd', 'cloud-deploy'],
-    'test': ['testing', 'unit-test', 'integration-test', 'tdd'],
-    'flutter': ['flutter', 'dart', 'mobile', 'ui', 'components'],
-    'react': ['react', 'ui', 'components', 'frontend'],
-    'api': ['api', 'rest', 'graphql', 'api-design', 'api-integration'],
-    'jira': ['jira', 'sprint', 'backlog', 'task-management'],
-    'sprint': ['sprint', 'planning', 'estimation'],
-    'plan': ['planning', 'sprint', 'architecture'],
-    'research': ['web-search', 'trend-analysis', 'documentation'],
-    'web': ['web-search', 'scraping', 'fetch'],
-    'docker': ['docker', 'container', 'orchestration'],
-    'database': ['database-design', 'migration', 'sql'],
-    'refactor': ['refactoring', 'code-quality', 'clean-code'],
-    'performance': ['performance', 'optimization', 'profiling'],
-    'architecture': ['architecture', 'system-design', 'api-design'],
-    'mobile': ['flutter', 'mobile', 'dart', 'ios', 'android'],
-    'unity': ['unity', 'csharp', 'game-dev', '3d'],
-    'game': ['game-dev', 'phaser', 'unity'],
-    'error': ['debugging', 'error-tracing', 'log-analysis'],
-    'css': ['css', 'tailwind', 'ui', 'styling'],
-    'ci': ['ci-cd', 'pipeline', 'github-actions'],
-    'monitor': ['monitoring', 'health-check', 'alerting'],
-    'data': ['data-analysis', 'etl', 'visualization'],
-    'seo': ['seo', 'metadata', 'search-optimization'],
-    'prompt': ['prompt-engineering', 'agent-design'],
+# Intent signals — yüksek ağırlıklı görev türleri
+INTENT = {
+    'bug':         ('debugging',    3.0),
+    'fix':         ('debugging',    2.5),
+    'error':       ('debugging',    2.5),
+    'crash':       ('debugging',    3.0),
+    'debug':       ('debugging',    3.0),
+    'security':    ('security-audit', 3.0),
+    'audit':       ('security-audit', 2.5),
+    'review':      ('code-review',  2.5),
+    'deploy':      ('deployment',   2.5),
+    'ci':          ('ci-cd',        2.5),
+    'pipeline':    ('ci-cd',        2.0),
+    'refactor':    ('refactoring',  2.5),
+    'architecture':('system-design',3.0),
+    'sprint':      ('sprint',       3.0),
+    'jira':        ('jira',         2.5),
+    'plan':        ('planning',     2.0),
+    'research':    ('web-search',   2.5),
+    'performance': ('performance',  2.5),
+    'test':        ('testing',      2.0),
+    'monitor':     ('monitoring',   2.5),
+    'data':        ('data-analysis',2.0),
+    'seo':         ('seo',          3.0),
+    'prompt':      ('prompt-engineering', 3.0),
 }
 
-# Expand query words with aliases
-expanded = set()
-for w in query_words:
-    expanded.add(w)
-    if w in ALIASES:
-        expanded.update(ALIASES[w])
+# Capability aliases — düz keyword → capability listesi (normal ağırlık: 1.0)
+ALIASES = {
+    'flutter': ['flutter', 'dart', 'mobile'],
+    'react':   ['react', 'frontend', 'ui'],
+    'api':     ['api', 'rest', 'graphql', 'api-design'],
+    'docker':  ['docker', 'container', 'orchestration'],
+    'database':['database-design', 'migration', 'sql'],
+    'mobile':  ['flutter', 'mobile', 'ios', 'android'],
+    'unity':   ['unity', 'csharp', 'game-dev'],
+    'game':    ['game-dev', 'phaser', 'unity'],
+    'css':     ['css', 'tailwind', 'styling'],
+    'web':     ['web-search', 'scraping', 'frontend'],
+    'vercel':  ['deployment', 'ci-cd', 'cloud-deploy'],
+    'github':  ['ci-cd', 'github-actions', 'version-control'],
+}
 
-with open(sys.argv[2]) as f:
+# Build weighted query: term → weight
+weighted = {}
+for w in query_words:
+    weighted[w] = 1.0
+    if w in INTENT:
+        cap, wt = INTENT[w]
+        weighted[cap] = max(weighted.get(cap, 0), wt)
+    if w in ALIASES:
+        for alias in ALIASES[w]:
+            weighted[alias] = max(weighted.get(alias, 0), 1.0)
+
+with open(registry_path) as f:
     reg = json.load(f)
 
 results = []
@@ -72,8 +97,7 @@ for aid, agent in reg.get('agents', {}).items():
     langs = set(l.lower() for l in agent.get('languages', []))
     all_tags = caps | langs
 
-    # Score: how many expanded query terms match agent tags
-    score = len(expanded & all_tags)
+    score = sum(wt for term, wt in weighted.items() if term in all_tags)
 
     # Bonus: direct word match in agent name
     name_words = set(re.findall(r'[a-z0-9]+', agent.get('name', '').lower()))
@@ -99,9 +123,11 @@ name = best.get('name', 'Unknown')
 
 print(f'{best_id} {name} ({model}, {effort})')
 
-# Show top 3 if verbose
-if '--verbose' in sys.argv or '-v' in sys.argv:
-    print('---')
+if verbose:
+    print(f'\nQuery words: {sorted(query_words)}')
+    print(f'Weighted terms: {dict(sorted(weighted.items(), key=lambda x: -x[1]))}')
+    print(f'\nTop 5 candidates:')
     for score, aid, agent in results[:5]:
-        print(f'  {score:.1f}  {aid} {agent[\"name\"]} [{\" \".join(agent.get(\"capabilities\",[])[:4])}]')
-" "$QUERY" "$REGISTRY" "${@:2}"
+        matched = [t for t in weighted if t in set(c.lower() for c in agent.get('capabilities',[]))]
+        print(f'  {score:5.1f}  {aid:4s} {agent["name"]:<30} matched={matched}')
+PYEOF

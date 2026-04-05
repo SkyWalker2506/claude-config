@@ -430,6 +430,8 @@
         "debugging",
         "root-cause-analysis",
         "error-tracing",
+        "bug",
+        "fix",
         "log-analysis"
       ],
       "max_tool_calls": 30,
@@ -609,9 +611,10 @@
       "capabilities": [
         "flutter",
         "dart",
-        "mobile-ui",
-        "platform-channel",
-        "firebase"
+        "mobile",
+        "ios",
+        "android",
+        "ui"
       ],
       "languages": [
         "dart"
@@ -1601,7 +1604,9 @@
       "capabilities": [
         "jira-routing",
         "board-scan",
-        "task-assignment"
+        "task-assignment",
+        "jira",
+        "routing"
       ],
       "max_tool_calls": 15,
       "effort": "medium",
@@ -1622,7 +1627,10 @@
       "capabilities": [
         "sprint-planning",
         "task-decomposition",
-        "estimation"
+        "estimation",
+        "sprint",
+        "jira",
+        "planning"
       ],
       "max_tool_calls": 25,
       "effort": "medium",
@@ -1661,7 +1669,9 @@
       "capabilities": [
         "dashboard",
         "reporting",
-        "cache"
+        "cache",
+        "status",
+        "monitor"
       ],
       "max_tool_calls": 10,
       "effort": "low",
@@ -1814,10 +1824,12 @@
         "github"
       ],
       "capabilities": [
+        "deployment",
+        "ci-cd",
+        "cloud-deploy",
         "vercel",
         "firebase",
-        "gcp",
-        "aws"
+        "pipeline"
       ],
       "max_tool_calls": 20,
       "effort": "medium",
