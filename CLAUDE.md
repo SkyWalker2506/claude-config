@@ -95,6 +95,8 @@ Tum skill'ler `global/skills/` altinda — her klasorde `SKILL.md` trigger ve ac
 
 **Dinamik skill prompt'lari:** Skill .md icinde `$(komut)` ile shell ciktisi gomulur. Skill calistiginda komut calistirilir, sonuc prompt'a inline eklenir — model komutu degil sonucu gorur. Ornek: `$(git branch --show-current)`, `$(date +%F)`, `$(cat .env.example | head -5)`.
 
+**Lazy-load ilkesi (zorunlu):** Skill ve agent yapilari proje acilisinda yuklenip token tuketmez. Trigger aninda devreye girer. SKILL.md trigger'larini dar tut; buyuk context gerektiren isleri on-demand calistir, startup'ta degil.
+
 ### 8. Proje gelistirme kurallari
 
 Asagidaki kurallar `~/Projects/` altindaki **tum projeler** icin gecerlidir. Projeye ozel detaylar her projenin kendi `CLAUDE.md` dosyasinda tanimlanir.
@@ -141,7 +143,15 @@ Asagidaki kurallar `~/Projects/` altindaki **tum projeler** icin gecerlidir. Pro
 - **WAITING (7):** onay, credential, ucretli servis, urun karari gereken isler
 - IP'de "bekletme" yok — ya tamamla ya WAITING'e tasi
 
-#### 8f. Bootstrap (setup eksikse)
+#### 8f. Plugin ekleme (zorunlu checklist)
+
+Yeni bir ccplugin eklendiginde **hepsi** guncellenmeli — tek dosya yetmez:
+
+1. `config/plugin-registry.json` — plugin kaydi
+2. `README.md` (claude-config) — plugin tablosu + sayi
+3. `github.com/SkyWalker2506/claude-marketplace` README — plugin tablosu + sayi (GitHub MCP ile)
+
+#### 8g. Bootstrap (setup eksikse)
 
 ```
 repo yapisi → paket yoneticisi → bagimliliklar → .env.example → calistir/build
