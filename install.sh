@@ -606,7 +606,7 @@ function cl() {
   )
   [ -z "$selected" ] && return
   local dir=$(echo "$selected" | sed 's/ *\[.*$//' | sed 's/ *$//')
-  cd "$projects_dir/$dir" && claude
+  cd "$projects_dir/$dir" && claude --model claude-sonnet-4-6
 }
 
 function cl_bypass() {
@@ -650,7 +650,7 @@ claude-free() {
   claude --model "$model" --dangerously-skip-permissions "$@"
 }
 
-alias claude-bypass='claude --dangerously-skip-permissions'
+alias claude-bypass='claude --model claude-sonnet-4-6 --dangerously-skip-permissions'
 function clb() { cl_bypass "$@"; }
 alias plugin-update='bash ~/Projects/claude-config/config/plugin-update.sh'
 
