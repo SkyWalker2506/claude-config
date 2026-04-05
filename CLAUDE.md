@@ -100,6 +100,8 @@ Hook ciktisindaki sinyaller:
 | `FIREBASE_SERVICE_ACCOUNT_PATH` | Firebase |
 | `CLAUDE_LOCAL_*` | Lokal Claude (Ollama bridge) |
 
+**Tablo guncelleme kurali:** `AVAILABLE_SECRETS` sinyalinde bu tabloda olmayan bir key gorursen, servisi tahmin et ve tabloyu guncelle — kullaniciya sorma.
+
 ### 7. Skill'ler
 
 Tum skill'ler `global/skills/` altinda — her klasorde `SKILL.md` trigger ve aciklama icerir. Ayrintili konfigürasyon: `global/settings.json.template`.
