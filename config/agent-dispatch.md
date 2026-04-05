@@ -83,3 +83,62 @@ Agent secimi icin:
 Cikti: `{ID} {Name} ({model}, {effort})`
 
 Bu cikti dispatch header'in `AGENT`, `MODEL`, `EFFORT` alanlarini doldurur.
+
+---
+
+## Agent Index Sistemi
+
+### Session basinda (zorunlu)
+
+Her session/orchestrator basinda kurulu agent'lari tara ve indexle:
+
+```bash
+# Kac agent kurulu?
+INSTALLED=$(ls ~/.claude/agents/*/*.md 2>/dev/null | wc -l | tr -d ' ')
+echo "[Agent Index] $INSTALLED agent kurulu: ~/.claude/agents/"
+
+# Registry ile karsilastir
+REGISTRY_TOTAL=$(python3 -c "
+import json
+with open('$HOME/Projects/claude-config/config/agent-registry.json') as f:
+    d = json.load(f)
+print(len(d.get('agents', {})))
+" 2>/dev/null || echo "?")
+
+echo "[Agent Index] Registry: $REGISTRY_TOTAL | Kurulu: $INSTALLED"
+```
+
+Sonucu her session basinda 1 satirda raporla:
+```
+[Agent Index] 40/134 agent kurulu. Eksik: 94 (marketplace'den indirilebilir)
+```
+
+### Marketplace awareness
+
+Bir gorev icin gereken agent kurulu degilse:
+1. `agent-registry.json`'dan agent ID'sini bul
+2. Kullaniciya bildir: `"[B7 Bug Hunter] kurulu degil — indirmek ister misin?"`
+3. Onay gelirse:
+```bash
+cd ~/Projects/claude-agent-catalog && bash install.sh {CATEGORY}
+# veya spesifik agent icin kategori klasorunden kopyala
+```
+
+Marketplace repo yoksa once clone et:
+```bash
+[ -d ~/Projects/claude-agent-catalog ] || git clone https://github.com/SkyWalker2506/claude-agent-catalog ~/Projects/claude-agent-catalog
+```
+
+### Periyodik index refresh
+
+- Session basinda: tam tarama
+- Her 10 tool call'da: sadece `ls ~/.claude/agents/*/*.md | wc -l` — sayi degistiyse raporla
+- Yeni agent algılanirsa: `[Agent Index] +3 yeni agent tespit edildi, index guncellendi`
+
+### Dinamik kapasite — hardcode etme
+
+`agent-registry.json`'daki toplami runtime'da say. "134 agent var" yazma — her zaman:
+```python
+len(registry['agents'])  # toplam
+len([a for a in registry['agents'].values() if a.get('status') == 'active'])  # aktif
+```
