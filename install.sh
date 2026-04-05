@@ -830,15 +830,15 @@ setup_cron() {
   echo "  ✅ Agent memory structure ready (sessions/, feedback/, session_state.json)"
 
   # Cron registration (duplicate-safe)
-  CRON_LINE="0 9 * * * bash $HOME/.claude/config/daily-check.sh >> $HOME/.watchdog/cron.log 2>&1"
+  CRON_LINE="0 9 * * * cd $HOME/Projects/claude-config && bash config/daily-check.sh >> $HOME/.watchdog/daily.log 2>&1"
   if [ "$OS" = "windows" ]; then
     echo "  ℹ  Windows: Task Scheduler ile daily-check.sh zamanla"
   else
     if crontab -l 2>/dev/null | grep -qF "daily-check.sh"; then
-      echo "  ✅ Cron zaten kayıtlı"
+      echo "  ✅ Daily check cron zaten kayıtlı"
     else
       (crontab -l 2>/dev/null; echo "$CRON_LINE") | crontab -
-      echo "  ✅ Cron eklendi: günlük 09:00 → daily-check.sh"
+      echo "  ✅ Daily check cron kuruldu (09:00)"
     fi
   fi
 }
@@ -856,8 +856,8 @@ setup_telegram() {
   echo ""
   echo "── Phase 13: Telegram Notifications ──"
 
-  # notify.sh, telegram-ask.sh, telegram-wait.sh, telegram-poll.sh kopyala
-  for f in notify.sh telegram-ask.sh telegram-wait.sh telegram-poll.sh; do
+  # notify.sh, telegram-ask.sh, telegram-wait.sh, telegram-poll.sh, telegram-notify.sh kopyala
+  for f in notify.sh telegram-ask.sh telegram-wait.sh telegram-poll.sh telegram-notify.sh; do
     if [ -f "$SCRIPT_DIR/config/$f" ]; then
       cp "$SCRIPT_DIR/config/$f" "$HOME/.claude/config/$f"
       chmod +x "$HOME/.claude/config/$f"

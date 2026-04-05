@@ -159,3 +159,14 @@ cat > "$REPORT_FILE" << REPORT_EOF
 REPORT_EOF
 
 echo "Report saved: $REPORT_FILE"
+
+# Telegram alert — only on errors
+if [ "${#ERRORS[@]}" -gt 0 ]; then
+  TELEGRAM_NOTIFY="$(dirname "$0")/telegram-notify.sh"
+  # Fallback: look in claude-config
+  [ ! -f "$TELEGRAM_NOTIFY" ] && TELEGRAM_NOTIFY="$HOME/Projects/claude-config/config/telegram-notify.sh"
+  if [ -f "$TELEGRAM_NOTIFY" ]; then
+    ERROR_MSG=$(printf '%s\n' "${ERRORS[@]}" | head -3 | paste -sd '; ')
+    bash "$TELEGRAM_NOTIFY" "🔴 Daily Check Uyarı: $ERROR_MSG" 2>/dev/null || true
+  fi
+fi
