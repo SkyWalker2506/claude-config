@@ -2,7 +2,7 @@
 # Claude wrapper — supports 'bypass' as first arg
 REAL="$HOME/.local/bin/claude"
 if [ "${1}" = "bypass" ]; then
-  shift; exec "$REAL" --dangerously-skip-permissions "$@"
+  shift; exec "$REAL" --dangerously-skip-permissions --model claude-sonnet-4-6 "$@"
 else
   exec "$REAL" "$@"
 fi
