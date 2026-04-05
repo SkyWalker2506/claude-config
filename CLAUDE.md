@@ -89,6 +89,17 @@ Hook ciktisindaki sinyaller:
 - `.git` varsa → private repo, push hatırlat
 - `.git` yoksa → lokal, sadece o PC
 
+**Secrets awareness (otomatik):** Her session basinda `AVAILABLE_SECRETS: KEY1,KEY2,...` sinyali gelir. Bu sinyal hangi servislerin konfigureli oldugunu gosterir — deger degil, key adi. Bunu okuyarak hangi API'lere erisim oldugunu bil; kullaniciya "X var mi?" diye sorma.
+
+| Key | Servis |
+|-----|--------|
+| `JIRA_API_TOKEN` + `JIRA_URL` | Jira — dogrudan API cagrisi yapilabilir |
+| `GITHUB_TOKEN` | GitHub — gh CLI + MCP |
+| `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID` | Telegram bot |
+| `OPENROUTER_API_KEY` | OpenRouter — ucretsiz modeller |
+| `FIREBASE_SERVICE_ACCOUNT_PATH` | Firebase |
+| `CLAUDE_LOCAL_*` | Lokal Claude (Ollama bridge) |
+
 ### 7. Skill'ler
 
 Tum skill'ler `global/skills/` altinda — her klasorde `SKILL.md` trigger ve aciklama icerir. Ayrintili konfigürasyon: `global/settings.json.template`.

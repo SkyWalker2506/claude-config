@@ -41,6 +41,10 @@
           {
             "type": "command",
             "command": "echo 'AUTOPLAN: Oturum basliyor. Ilk kullanici mesajini almadan ONCE EnterPlanMode tool ile plan moduna gir.'"
+          },
+          {
+            "type": "command",
+            "command": "SFILE=\"$HOME/.claude/secrets/secrets.env\"; if [ -f \"$SFILE\" ]; then KEYS=$(grep -v '^#' \"$SFILE\" | grep '=' | cut -d= -f1 | paste -sd ',' -); echo \"AVAILABLE_SECRETS: $KEYS\"; else echo 'AVAILABLE_SECRETS: none — secrets.env bulunamadi'; fi"
           }
         ]
       }
