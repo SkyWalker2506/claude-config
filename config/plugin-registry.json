@@ -37,6 +37,96 @@
       "complexity": "simple",
       "repo": "https://github.com/SkyWalker2506/ccplugin-sync-agents",
       "local": "plugins/sync-agents"
+    },
+    "jira-suite": {
+      "name": "Jira Suite",
+      "version": "1.0.0",
+      "description": "Complete Jira management — /jira-run loops, sprint dashboard, task routing, decision workflow, Atlassian MCP included.",
+      "category": "productivity",
+      "complexity": "medium",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-jira-suite",
+      "local": "plugins/jira-suite"
+    },
+    "code-quality": {
+      "name": "Code Quality",
+      "version": "1.0.0",
+      "description": "Code audit, CLAUDE.md refinement, jCodeMunch indexing — security, performance, cost, cleanup scanning.",
+      "category": "code-review",
+      "complexity": "medium",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-code-quality",
+      "local": "plugins/code-quality"
+    },
+    "research-tools": {
+      "name": "Research Tools",
+      "version": "1.0.0",
+      "description": "Web research, 12-category project analysis, PRD generation, autonomous Ralph execution. Fetch MCP included.",
+      "category": "productivity",
+      "complexity": "medium",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-research-tools",
+      "local": "plugins/research-tools"
+    },
+    "autonomous-ops": {
+      "name": "Autonomous Ops",
+      "version": "1.0.0",
+      "description": "Autonomous execution modes — /yolo (zero questions), /team-build (multi-agent loop), /rbg (background), /yolo-log.",
+      "category": "ai-ops",
+      "complexity": "medium",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-autonomous-ops",
+      "local": "plugins/autonomous-ops"
+    },
+    "devtools-setup": {
+      "name": "DevTools Setup",
+      "version": "1.0.0",
+      "description": "Setup, migration, MCP config, secrets management, GitHub auth — /install, /bind, /migration, /add-mcp.",
+      "category": "productivity",
+      "complexity": "simple",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-devtools-setup",
+      "local": "plugins/devtools-setup"
+    },
+    "flutter-firebase": {
+      "name": "Flutter + Firebase",
+      "version": "1.0.0",
+      "description": "Flutter + Firebase MCP integration — build, test, hot reload, Firestore CRUD, Storage, Auth.",
+      "category": "development",
+      "complexity": "medium",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-flutter-firebase",
+      "local": "plugins/flutter-firebase"
+    },
+    "git-github": {
+      "name": "Git + GitHub",
+      "version": "1.0.0",
+      "description": "Git + GitHub MCP integration — PR creation, issue management, branch ops, code search, reviews.",
+      "category": "development",
+      "complexity": "simple",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-git-github",
+      "local": "plugins/git-github"
+    },
+    "sprint-planner": {
+      "name": "Sprint Planner",
+      "version": "1.0.0",
+      "description": "Sprint planning from PRD/analysis — epic/story generation, estimation, Jira task creation.",
+      "category": "productivity",
+      "complexity": "medium",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-sprint-planner",
+      "local": "plugins/sprint-planner"
+    },
+    "agent-browser": {
+      "name": "Agent Browser",
+      "version": "1.0.0",
+      "description": "Headless browser automation for AI agents — navigate, fill forms, click, screenshot, scrape, e2e test.",
+      "category": "development",
+      "complexity": "medium",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-agent-browser",
+      "local": "plugins/agent-browser"
+    },
+    "opencode-bridge": {
+      "name": "OpenCode Bridge",
+      "version": "1.0.0",
+      "description": "OpenCode (Zen) + Ollama local model bridge — free/local LLM switching, model management.",
+      "category": "development",
+      "complexity": "simple",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-opencode-bridge",
+      "local": "plugins/opencode-bridge"
     }
   }
 }
