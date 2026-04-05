@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """
-telegram-agent.py — Telegram relay: mesajları inbox'a yazar, Jarvis işler.
+telegram-agent.py — Telegram relay: her mesaj için bağlam enjekte edilmiş Haiku subprocess.
 
-Telegram polling yapar, gelen mesajları ~/.watchdog/telegram-inbox.jsonl
-dosyasına yazar. Aktif Claude Code session'ındaki Jarvis /telegram-watch
-skill'i ile inbox'ı okur, işler ve tg_send.py ile cevap gönderir.
+Her Telegram mesajı için tek seferlik `claude -p --model haiku` subprocess başlatılır.
+Opsiyonel ~/.watchdog/jarvis-context.md ile aktif bağlam enjekte edilir.
 
 Kullanım:
     python3 config/telegram-agent.py [proje_dizini]
@@ -14,7 +13,7 @@ Aliases:
     tgbot-stop     → durdurur
 """
 
-import json, os, sys, time, signal, urllib.request, urllib.parse
+import json, os, sys, time, signal, subprocess, urllib.request, urllib.parse
 from pathlib import Path
 from datetime import datetime
 
@@ -140,23 +139,42 @@ KEYBOARD = json.dumps({
     "resize_keyboard": True, "persistent": True
 })
 
-# ── Inbox relay ─────────────────────────────────────────────────────────────
+# ── Claude subprocess ────────────────────────────────────────────────────────
 
-INBOX_FILE = os.path.expanduser("~/.watchdog/telegram-inbox.jsonl")
+JARVIS_SYSTEM_PROMPT = """Sen Jarvis — kullanıcının kişisel AI asistanı.
+Türkçe konuş. Kullanıcıya "Efendim" diye hitap et.
+Kısa, net, dry wit ile cevap ver.
+Telegram üzerinden gelen kısa mesajlara yanıt veriyorsun.
+Eğer ~/.watchdog/jarvis-context.md varsa onu da bağlam olarak kullan."""
 
-def write_to_inbox(text, chat_id, message_id):
-    """Mesajı inbox'a yaz. Jarvis /telegram-watch ile işleyecek."""
-    entry = {
-        "id": message_id,
-        "text": text,
-        "chat_id": chat_id,
-        "ts": datetime.now().isoformat(),
-        "status": "pending",
-    }
-    os.makedirs(os.path.dirname(INBOX_FILE), exist_ok=True)
-    with open(INBOX_FILE, "a") as f:
-        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
-    log(f"[INBOX] {text[:50]}")
+def send_to_claude(text):
+    """Her mesaj için bağlam enjekte edilmiş tek seferlik Haiku subprocess."""
+    context_file = os.path.expanduser("~/.watchdog/jarvis-context.md")
+    context = ""
+    if os.path.exists(context_file):
+        try:
+            context = open(context_file).read()[:2000]  # max 2000 char
+        except:
+            pass
+
+    system = JARVIS_SYSTEM_PROMPT
+    if context:
+        system += f"\n\n## Aktif Bağlam:\n{context}"
+
+    try:
+        result = subprocess.run(
+            ["claude", "-p", "--model", "claude-haiku-4-5-20251001",
+             "--system", system],
+            input=text,
+            capture_output=True,
+            text=True,
+            timeout=60
+        )
+        return result.stdout.strip() or "❌ Cevap alınamadı."
+    except subprocess.TimeoutExpired:
+        return "⏰ Zaman aşımı."
+    except Exception as e:
+        return f"❌ Hata: {e}"
 
 # ── Telegram polling ────────────────────────────────────────────────────────
 
@@ -215,7 +233,7 @@ def parse_update(update):
     return "TEXT", text, {"message_id": message_id}
 
 def handle_message(msg_type, text, extras):
-    """Handle a parsed message — route to inbox for Jarvis to process."""
+    """Handle a parsed message — route to Haiku subprocess."""
     global PROJECT_DIR
 
     if not text and msg_type == "TEXT":
@@ -234,18 +252,17 @@ def handle_message(msg_type, text, extras):
     elif "Log" in text:
         text = "/log"
 
-    # Built-in relay commands (handled locally — no Jarvis needed)
+    # Built-in commands (handled locally — no Claude needed)
     if text == "/stop":
         tg_send("🔴 Agent durduruluyor.")
         cleanup()
         sys.exit(0)
 
     elif text == "/status":
-        tg_send(f"🟢 *Relay Aktif*\n"
+        tg_send(f"🟢 *Jarvis Aktif*\n"
                 f"Proje: `{os.path.basename(PROJECT_DIR)}`\n"
                 f"Saat: `{datetime.now().strftime('%H:%M:%S')}`\n"
-                f"Mod: Jarvis relay (inbox)\n"
-                f"Inbox: `{INBOX_FILE}`",
+                f"Mod: Haiku subprocess",
                 KEYBOARD)
         return
 
@@ -275,22 +292,21 @@ def handle_message(msg_type, text, extras):
         return
 
     elif text in ("/help", "/start"):
-        tg_send("🤖 *Jarvis Relay Bot*\n\n"
-                "Mesajlar aktif Claude Code session'ındaki Jarvis'e iletilir.\n"
-                "`/status` — Relay durumu\n"
+        tg_send("🤖 *Jarvis Bot*\n\n"
+                "Her mesaj Haiku subprocess ile işlenir.\n"
+                "`/status` — Durum\n"
                 "`/projects` — Projeler\n"
                 "`/cd <proje>` — Proje değiştir\n"
                 "`/log` — Loglar\n"
-                "`/stop` — Durdur\n\n"
-                "_Jarvis'in aktif olması için Claude Code session'ında `/telegram-watch` çalışmalı._",
+                "`/stop` — Durdur",
                 KEYBOARD)
         return
 
-    # Photo handling — enrich text with context, route to inbox
+    # Photo handling — enrich text with context
     if msg_type == "PHOTO":
         text = f"[Kullanıcı bir resim gönderdi, file_id={extras.get('file_id','')}] {text}"
 
-    # Document handling — enrich text with context, route to inbox
+    # Document handling — enrich text with context
     elif msg_type == "DOC":
         fname = extras.get("file_name", "dosya")
         text = f"[Kullanıcı '{fname}' dosyası gönderdi, file_id={extras.get('file_id','')}] {text}"
@@ -300,10 +316,12 @@ def handle_message(msg_type, text, extras):
         tg_send("🎤 _Ses mesajı alındı ama henüz desteklenmiyor._", KEYBOARD)
         return
 
-    # All messages → inbox, Jarvis will process
-    message_id = extras.get("message_id") or int(time.time())
-    write_to_inbox(text, CHAT_ID, message_id)
-    tg_send("⏳ _İşleniyor..._")
+    # Send to Claude Haiku
+    tg_typing()
+    log(f"[CLAUDE] → subprocess başlatılıyor")
+    reply = send_to_claude(text)
+    log(f"[CLAUDE] ← {reply[:80]}")
+    tg_send(reply, KEYBOARD)
 
 # ── Main loop ───────────────────────────────────────────────────────────────
 
@@ -315,16 +333,15 @@ signal.signal(signal.SIGTERM, lambda *a: (cleanup(), sys.exit(0)))
 signal.signal(signal.SIGINT, lambda *a: (cleanup(), sys.exit(0)))
 
 def main():
-    log(f"Telegram Relay başlatılıyor → {PROJECT_DIR}")
+    log(f"Telegram Agent başlatılıyor → {PROJECT_DIR}")
 
     # Skip old messages
     offset = skip_old_messages()
 
     # Send startup message
-    tg_send(f"🟢 *Jarvis Relay bağlandı*\n"
+    tg_send(f"🟢 *Jarvis bağlandı*\n"
             f"Proje: `{os.path.basename(PROJECT_DIR)}`\n"
-            f"Mesajlar Jarvis'e yönlendirilir.\n"
-            f"_Jarvis için Claude Code session'ında `/telegram-watch` çalıştır._", KEYBOARD)
+            f"Her mesaj Haiku subprocess ile işlenecek.", KEYBOARD)
 
     log(f"Polling başladı (offset={offset})")
     heartbeat("running", "polling")
