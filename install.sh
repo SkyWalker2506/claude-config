@@ -574,6 +574,7 @@ export CLAUDE_CODE_NO_FLICKER=1
 
 # cl: Claude Code proje secici | claude-free: OpenCode Zen (gpt-5-nano) | claude-local: Ollama
 function cl() {
+  if [ "${1}" = "bypass" ]; then shift; cl_bypass "$@"; return; fi
   local projects_dir="$HOME/Projects"
   local selected
   if ! command -v fzf &>/dev/null; then
@@ -650,6 +651,7 @@ claude-free() {
 }
 
 alias claude-bypass='claude --dangerously-skip-permissions'
+alias clb='cl_bypass'
 
 claude-local() {
   if ! command -v opencode &>/dev/null; then
