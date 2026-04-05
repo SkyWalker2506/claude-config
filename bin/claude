@@ -1,0 +1,8 @@
+#!/bin/bash
+# Claude wrapper — supports 'bypass' as first arg
+REAL="$HOME/.local/bin/claude"
+if [ "${1}" = "bypass" ]; then
+  shift; exec "$REAL" --dangerously-skip-permissions "$@"
+else
+  exec "$REAL" "$@"
+fi

@@ -1,4 +1,7 @@
 #!/bin/bash
-# Claude Code with local Ollama model
 MODEL="${CLAUDE_LOCAL_MODEL:-ollama/qwen2.5-coder:7b}"
-exec claude --model "$MODEL" "$@"
+if [ "${1}" = "bypass" ]; then
+  shift; exec claude --model "$MODEL" --dangerously-skip-permissions "$@"
+else
+  exec claude --model "$MODEL" "$@"
+fi

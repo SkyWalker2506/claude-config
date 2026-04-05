@@ -1,4 +1,7 @@
 #!/bin/bash
-# Claude Code with free OpenRouter model — bypass permissions
 MODEL="${CLAUDE_FREE_MODEL:-openrouter/qwen/qwen3.6-free}"
-exec claude --model "$MODEL" --dangerously-skip-permissions "$@"
+if [ "${1}" = "bypass" ]; then
+  shift; exec claude --model "$MODEL" --dangerously-skip-permissions "$@"
+else
+  exec claude --model "$MODEL" --dangerously-skip-permissions "$@"
+fi
