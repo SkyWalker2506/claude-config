@@ -331,3 +331,27 @@ Format: `§9e` ile ayni — `learnings` alani serbest metin.
 - Mevcut skill'ler aynen calisir — agent sistemi ust katman, degisiklik yok
 - Pool → Active gecis: `agent-registry.json`'da `status` degistir
 - Auto-dispatch: Her plan ciktiginda `agent-registry.json`'dan capability match ile uygun agent secer; model/effort/MCP o agent'in kurallarina gore atanir
+
+#### Agent Dispatch Protokolu
+
+**Routing:** Her `Agent tool` cagrisindan once `config/agent-router.sh "{gorev}"` ile uygun agent bul. Cikti: `{ID} {Name} ({model}, {effort})`.
+
+**Dispatch header:** Sub-agent prompt'unun basina ekle (format: `config/agent-dispatch.md`):
+```
+---
+AGENT: {id} — {name}
+ROLE: {description}
+MODEL: {primary_model} | EFFORT: {effort}
+TASK: {gorev ozeti}
+CALLER: {cagiran agent id veya "user"}
+WATCHDOG: {quick|medium|long} — max {N} tool call
+---
+```
+
+**Ana thread bildirimi:** Agent baslatildiginda `[{id}] {name} → {gorev}` satiri yaz.
+
+**Heartbeat:** Background agent her 5 tool call'da `~/Projects/.watchdog/agent-log.jsonl`'e durum yazar.
+
+**Tamamlanma:** Gorev bittiginde outcome (success/failed) + sure + tool call sayisi log'a yazilir.
+
+**Chain ornegi:** `user → A1 → A2 (route) → B7 (implement) → C1 (review) → A1 (rapor)`
