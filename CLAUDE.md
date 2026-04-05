@@ -100,7 +100,9 @@ Hook ciktisindaki sinyaller:
 | `FIREBASE_SERVICE_ACCOUNT_PATH` | Firebase |
 | `CLAUDE_LOCAL_*` | Lokal Claude (Ollama bridge) |
 
-**Tablo guncelleme kurali:** `AVAILABLE_SECRETS` sinyalinde bu tabloda olmayan bir key gorursen, servisi tahmin et ve tabloyu guncelle — kullaniciya sorma.
+**Tablo guncelleme kurali:** `AVAILABLE_SECRETS` sinyalini her session basinda tabloya karsilastir:
+- Tabloda olmayan key gelirse → servisi tahmin et, tabloya ekle, commit et
+- Tabloda olup sinyalde gelmeyen key varsa → tablodan sil, commit et
 
 ### 7. Skill'ler
 
