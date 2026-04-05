@@ -644,13 +644,12 @@ function cl_bypass() {
 }
 
 claude-free() {
-  if ! command -v opencode &>/dev/null; then
-    echo "opencode bulunamadi. Kur: npm install -g opencode-ai veya ~/Projects/claude-config/./install.sh --opencode"
-    return 1
-  fi
-  (( $# )) || set -- .
-  opencode -m opencode/gpt-5-nano "$@"
+  # Claude Code with free OpenRouter model — bypass permissions
+  local model="${CLAUDE_FREE_MODEL:-openrouter/qwen/qwen3.6-free}"
+  claude --model "$model" --dangerously-skip-permissions "$@"
 }
+
+alias claude-bypass='claude --dangerously-skip-permissions'
 
 claude-local() {
   if ! command -v opencode &>/dev/null; then
