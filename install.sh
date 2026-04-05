@@ -608,6 +608,41 @@ function cl() {
   cd "$projects_dir/$dir" && claude
 }
 
+function cl_bypass() {
+  local projects_dir="$HOME/Projects"
+  local selected
+  if ! command -v fzf &>/dev/null; then
+    echo "fzf bulunamadi."
+    return 1
+  fi
+  selected=$(
+    for d in "$projects_dir"/*/; do
+      { [ -d "$d/.claude" ] || [ -f "$d/CLAUDE.md" ] || [ -d "$d/.claude-plugin" ]; } || continue
+      local name=$(basename "${d%/}")
+      local tag=""
+      if [ -f "$d/pubspec.yaml" ]; then tag="Flutter"
+      elif [ -d "$d/Assets" ] || [ -d "$d/ProjectSettings" ]; then tag="Unity"
+      elif [ -f "$d/package.json" ]; then
+        if [ -d "$d/app" ] || grep -q "next" "$d/package.json" 2>/dev/null; then tag="Next.js"
+        else tag="Node.js"; fi
+      elif [ -f "$d/pyproject.toml" ] || [ -f "$d/requirements.txt" ]; then tag="Python"
+      elif [ -f "$d/Cargo.toml" ]; then tag="Rust"
+      elif [ -f "$d/go.mod" ]; then tag="Go"
+      else tag="—"; fi
+      printf "%-30s [%s]\n" "$name" "$tag"
+    done | sort | fzf \
+      --height=60% \
+      --border=rounded \
+      --prompt="▶ Proje (bypass): " \
+      --header="Claude Projeleri — Bypass Modu  [Enter: aç, Esc: çık]" \
+      --cycle \
+      --nth=1
+  )
+  [ -z "$selected" ] && return
+  local dir=$(echo "$selected" | sed 's/ *\[.*$//' | sed 's/ *$//')
+  cd "$projects_dir/$dir" && claude --dangerously-skip-permissions
+}
+
 claude-free() {
   if ! command -v opencode &>/dev/null; then
     echo "opencode bulunamadi. Kur: npm install -g opencode-ai veya ~/Projects/claude-config/./install.sh --opencode"
