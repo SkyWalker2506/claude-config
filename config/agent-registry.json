@@ -108,7 +108,9 @@
     "A10",
     "A11",
     "A12",
-    "A13"
+    "A13",
+    "D1",
+    "D2"
   ],
   "agents": {
     "A1": {
@@ -767,7 +769,7 @@
       "name": "UI/UX Researcher",
       "version": "1.0",
       "category": "design",
-      "status": "pool",
+      "status": "active",
       "primary_model": "free-web",
       "fallbacks": [],
       "mcps": [
@@ -790,7 +792,7 @@
       "name": "Design System Agent",
       "version": "1.0",
       "category": "design",
-      "status": "pool",
+      "status": "active",
       "primary_model": "haiku",
       "fallbacks": [
         "local-qwen-9b"
@@ -2903,6 +2905,8 @@
       "template": "autonomous",
       "dispatches": [
         "B3",
+        "D1",
+        "D2",
         "H8"
       ],
       "reports_to": "A1",
@@ -3007,9 +3011,11 @@
       "effort": "medium",
       "template": "autonomous",
       "dispatches": [
+        "H1",
         "H2",
         "H3",
-        "H4"
+        "H4",
+        "K1"
       ],
       "reports_to": "A1",
       "categories": [

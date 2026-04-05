@@ -7,7 +7,7 @@ status: active
 primary_model: sonnet
 fallbacks: [haiku]
 reports_to: A1
-dispatches: [B3, H8]
+dispatches: [B3, D1, D2, H8]
 categories: [1, 8, 11]
 capabilities:
   - ui-analysis

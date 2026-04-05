@@ -7,7 +7,7 @@ status: active
 primary_model: sonnet
 fallbacks: [haiku]
 reports_to: A1
-dispatches: [H2, H3, H4]
+dispatches: [H1, H2, H3, H4, K1]
 categories: [5, 12]
 capabilities:
   - monetization-strategy

@@ -6,20 +6,22 @@ Bu dosya herhangi bir projede `/project-analysis` komutuyla tetiklenir. Lead hiy
 
 ## §1 — Analiz Kategorileri
 
-| # | Kategori | Odak | Varsayılan Agent |
-|---|----------|------|-----------------|
-| 1 | **UI/UX & Design** | Görsel tasarım, layout, renk, tipografi, responsive, dark mode, animasyon, component tutarlılığı, design system, mobile UX | B3 Frontend Coder (Sonnet) |
-| 2 | **Performance & Core Web Vitals** | LCP, FID, CLS, bundle size, lazy loading, image optimization, caching, SSR/SSG/ISR, DB sorgu, API response time | B12 Performance Optimizer (Sonnet) |
-| 3 | **SEO & Discoverability** | Meta tags, Open Graph, JSON-LD, sitemap, robots.txt, canonical URL, semantic HTML, mobile-friendliness, internal linking | H2 SEO Agent (Haiku) |
-| 4 | **Data & Scraping Infrastructure** | Veri kaynakları, scraper mimarisi, veri kalitesi, pipeline robustness, error handling, rate limiting, veri modeli | F1 Data Analyst + F4 ETL Pipeline (Sonnet) |
-| 5 | **Monetization & Business Model** | Gelir modelleri, pricing stratejisi, conversion funnel, paywall, freemium vs premium, affiliate | H5 Revenue Analyst + H6 Pricing Strategist (Opus) |
-| 6 | **Growth & User Engagement** | Viral loop, gamification, social sharing, retention, onboarding, referral, push notification | H4 Social Media Agent + H8 Newsletter Agent (Sonnet) |
-| 7 | **Security & Infrastructure** | Auth, OWASP top 10, env/secret yönetimi, CORS, rate limiting, input validation, dependency audit | B13 Security Auditor (Opus) |
-| 8 | **Content & Editorial Strategy** | İçerik kalitesi, çeşitlilik, editorial flow, UGC, moderation, tone of voice | H7 Content Repurposer (Haiku) |
-| 9 | **Analytics & Tracking** | Event tracking, conversion, funnel analizi, A/B test altyapısı, KPI tanımlar | M4 Analytics Agent + F1 Data Analyst (Sonnet) |
-| 10 | **Architecture & Code Quality** | Kod yapısı, modülerlik, test coverage, CI/CD, tech debt, scalability, type safety | B1 Backend Architect + B10 Refactor Agent (Opus) |
-| 11 | **Accessibility (a11y)** | WCAG 2.1/2.2, keyboard navigation, screen reader, color contrast, focus, ARIA, form labels | B3 Frontend Coder (Haiku) |
-| 12 | **Competitive Analysis** | Rakip platformlar, feature gap, pazar konumlandırma, diferansiasyon, SWOT, benchmark | H3 Competitor Analyst (Sonnet) |
+> **Model notu:** Aşağıdaki "Analiz Modeli" kolonu, `/project-analysis` bağlamında kullanılacak minimum modeli gösterir. Agent'ların kendi `primary_model`'i farklı olabilir (free-script, local-qwen vb.) — analiz sırasında Lead Orchestrator bu modelleri aşağıdaki minimuma yükseltir.
+
+| # | Kategori | Odak | Worker Agent(lar) | Analiz Modeli |
+|---|----------|------|-------------------|---------------|
+| 1 | **UI/UX & Design** | Görsel tasarım, layout, renk, tipografi, responsive, dark mode, animasyon, component tutarlılığı, design system, mobile UX | B3 Frontend Coder, D1 UI/UX Researcher, D2 Design System Agent | Sonnet |
+| 2 | **Performance & Core Web Vitals** | LCP, FID, CLS, bundle size, lazy loading, image optimization, caching, SSR/SSG/ISR, DB sorgu, API response time | B12 Performance Optimizer | Sonnet |
+| 3 | **SEO & Discoverability** | Meta tags, Open Graph, JSON-LD, sitemap, robots.txt, canonical URL, semantic HTML, mobile-friendliness, internal linking | H5 SEO Agent | Haiku |
+| 4 | **Data & Scraping Infrastructure** | Veri kaynakları, scraper mimarisi, veri kalitesi, pipeline robustness, error handling, rate limiting, veri modeli | F2 Data Analyst, F4 ETL Pipeline Agent | Sonnet |
+| 5 | **Monetization & Business Model** | Gelir modelleri, pricing stratejisi, conversion funnel, paywall, freemium vs premium, affiliate | H3 Revenue Analyst, H4 Pricing Strategist | Sonnet |
+| 6 | **Growth & User Engagement** | Viral loop, gamification, social sharing, retention, onboarding, referral, push notification | H7 Social Media Agent, H9 Newsletter Agent | Sonnet |
+| 7 | **Security & Infrastructure** | Auth, OWASP top 10, env/secret yönetimi, CORS, rate limiting, input validation, dependency audit | B13 Security Auditor | Opus |
+| 8 | **Content & Editorial Strategy** | İçerik kalitesi, çeşitlilik, editorial flow, UGC, moderation, tone of voice | H8 Content Repurposer | Haiku |
+| 9 | **Analytics & Tracking** | Event tracking, conversion, funnel analizi, A/B test altyapısı, KPI tanımlar | M4 Analytics Agent, F2 Data Analyst | Sonnet |
+| 10 | **Architecture & Code Quality** | Kod yapısı, modülerlik, test coverage, CI/CD, tech debt, scalability, type safety | B1 Backend Architect, B8 Refactor Agent | Opus |
+| 11 | **Accessibility (a11y)** | WCAG 2.1/2.2, keyboard navigation, screen reader, color contrast, focus, ARIA, form labels | B3 Frontend Coder | Haiku |
+| 12 | **Competitive Analysis** | Rakip platformlar, feature gap, pazar konumlandırma, diferansiasyon, SWOT, benchmark | H2 Competitor Analyst, K1 Web Researcher | Sonnet |
 
 ---
 
@@ -27,20 +29,34 @@ Bu dosya herhangi bir projede `/project-analysis` komutuyla tetiklenir. Lead hiy
 
 ```
 A1 Lead Orchestrator (Opus)
-├── ArtLead    → #1 UI/UX, #8 Content, #11 Accessibility
-├── CodeLead   → #2 Performance, #4 Data, #10 Architecture
-├── GrowthLead → #3 SEO, #6 Growth, #9 Analytics
-├── BizLead    → #5 Monetization, #12 Competitive
-└── SecLead    → #7 Security
+│
+├── A9  ArtLead    → #1 UI/UX, #8 Content, #11 Accessibility
+│   └── dispatches: B3, D1, D2, H8
+│
+├── A10 CodeLead   → #2 Performance, #4 Data, #10 Architecture
+│   └── dispatches: B1, B8, B12, F2, F4
+│
+├── A11 GrowthLead → #3 SEO, #6 Growth, #9 Analytics
+│   └── dispatches: H5, H7, H9, M4, F2
+│
+├── A12 BizLead    → #5 Monetization, #12 Competitive
+│   └── dispatches: H1, H2, H3, H4, K1
+│
+└── A13 SecLead    → #7 Security
+    └── dispatches: B13
 ```
 
 ### Lead sorumlulukları
 
 Her Lead agent:
-1. Atanan kategorileri **paralel** olarak çalıştırır (her kategori için ayrı sub-task)
-2. Kendi departman kategorilerini analiz eder (worker agent rolünü de üstlenir)
+1. Atanan kategorileri **sırayla** analiz eder (her kategori için ayrı sub-task)
+2. Kendi departman kategorilerini worker agent rolünde çalıştırır
 3. Tamamlanan kategori raporlarını `analysis/` klasörüne yazar
-4. Lead Orchestrator'a kısa bir departman özeti döner
+4. Lead Orchestrator'a kısa bir departman özeti döndürür
+
+### Model override kuralı
+
+Agent'ların kendi `primary_model`'i analiz bağlamında geçersizdir. Lead Orchestrator (veya kullanıcı seçimi), her kategori için §1'deki "Analiz Modeli" kolonundaki minimum modeli atar. Kota modu `Tasarruf` ise Opus → Sonnet'e düşebilir; `Kritik` ise Opus → yalnızca SecLead için kalır (tier_override).
 
 ---
 
@@ -55,13 +71,16 @@ A1 Lead Orchestrator şu adımları izler:
    {
      "ArtLead": {
        "categories": [1, 8, 11],
-       "agents": { "1": "B3/Sonnet", "8": "H7/Haiku", "11": "B3/Haiku" },
-       "skip": []
+       "workers": { "1": "B3+D1/Sonnet", "8": "H8/Haiku", "11": "B3/Haiku" },
+       "skip": [],
+       "reason": "Frontend ağırlıklı proje, UI/UX tam analiz gerekli"
      },
-     "CodeLead": { ... },
-     "GrowthLead": { ... },
-     "BizLead": { ... },
-     "SecLead": { ... }
+     "CodeLead": {
+       "categories": [2, 10],
+       "workers": { "2": "B12/Sonnet", "10": "B1+B8/Opus" },
+       "skip": [4],
+       "reason": "#4 atlandı: scraper/veri altyapısı yok"
+     }
    }
    ```
 3. Kullanıcıya haritayı göster, onay al
@@ -71,7 +90,7 @@ A1 Lead Orchestrator şu adımları izler:
 - Yeni/küçük proje → SEO, Competitive, Monetization'ı atla veya Haiku'ya düşür
 - Scraper/veri altyapısı yoksa → #4 atla
 - Frontend-only proje → #4, #7 backend parçalarını kısalt
-- Mimari/güvenlik/rekabet → Opus; orta → Sonnet; UI tarama/içerik → Haiku
+- Mimari/güvenlik → Opus; orta → Sonnet; tarama/içerik → Haiku
 
 ### Mod 2: Manuel
 
@@ -80,35 +99,42 @@ Her kategori için kullanıcıya sırayla sor:
 [KATEGORİ_ADI] — [kısa açıklama]
 1) Evet (tam analiz)  2) Hayır (atla)  3) Kısmen (hızlı tarama)
 ```
-Kabul edilen her kategori için önerilen agent'ı göster, kullanıcı değiştirebilir.
+Kabul edilen her kategori için §1'deki varsayılan agent'ı göster, kullanıcı değiştirebilir:
+```
+#1 UI/UX → Varsayılan: B3 + D1 (Sonnet). Değiştir? (enter=varsayılan)
+```
 
 ### Mod 3: Hızlı
 
-Tüm 12 kategori, §1'deki varsayılan agent'lar ile başlatılır. Kullanıcıdan onay gerekmez.
+Tüm 12 kategori, §1'deki varsayılan agent'lar ve analiz modelleriyle başlatılır. Kullanıcıdan onay gerekmez.
 
 ---
 
 ## §4 — Agent Registry (Proje Analizi Kapsamı)
 
-Kullanılabilir agent'lar ve rolleri:
+| Agent ID | İsim | Kendi Modeli | Analiz Modeli | Kategori |
+|----------|------|-------------|---------------|----------|
+| B1 | Backend Architect | opus | Opus | #10 Architecture |
+| B3 | Frontend Coder | sonnet | Sonnet / Haiku | #1 UI/UX, #11 Accessibility |
+| B8 | Refactor Agent | haiku | Opus | #10 Architecture |
+| B12 | Performance Optimizer | sonnet | Sonnet | #2 Performance |
+| B13 | Security Auditor | opus | Opus | #7 Security |
+| D1 | UI/UX Researcher | free-web | Sonnet | #1 UI/UX |
+| D2 | Design System Agent | haiku | Sonnet | #1 UI/UX |
+| F2 | Data Analyst | sonnet | Sonnet | #4 Data, #9 Analytics |
+| F4 | ETL Pipeline Agent | free-script | Sonnet | #4 Data |
+| H1 | Market Researcher | sonnet | Sonnet | #12 Competitive |
+| H2 | Competitor Analyst | free-web | Sonnet | #12 Competitive |
+| H3 | Revenue Analyst | sonnet | Sonnet | #5 Monetization |
+| H4 | Pricing Strategist | haiku | Sonnet | #5 Monetization |
+| H5 | SEO Agent | free-script | Haiku | #3 SEO |
+| H7 | Social Media Agent | local-qwen-9b | Sonnet | #6 Growth |
+| H8 | Content Repurposer | local-qwen-9b | Haiku | #8 Content |
+| H9 | Newsletter Agent | local-qwen-9b | Sonnet | #6 Growth |
+| K1 | Web Researcher | free-web | Sonnet | #12 Competitive |
+| M4 | Analytics Agent | free-script | Sonnet | #9 Analytics |
 
-| Agent ID | İsim | Model | Kategori |
-|----------|------|-------|----------|
-| B1 | Backend Architect | Opus | Architecture (#10) |
-| B3 | Frontend Coder | Sonnet | UI/UX (#1), Accessibility (#11) |
-| B10 | Refactor Agent | Sonnet | Architecture (#10) |
-| B12 | Performance Optimizer | Sonnet | Performance (#2) |
-| B13 | Security Auditor | Opus | Security (#7) |
-| F1 | Data Analyst | Sonnet | Data (#4), Analytics (#9) |
-| F4 | ETL Pipeline Agent | Sonnet | Data (#4) |
-| H2 | SEO Agent | Haiku | SEO (#3) |
-| H3 | Competitor Analyst | Sonnet | Competitive (#12) |
-| H4 | Social Media Agent | Sonnet | Growth (#6) |
-| H5 | Revenue Analyst | Opus | Monetization (#5) |
-| H6 | Pricing Strategist | Sonnet | Monetization (#5) |
-| H7 | Content Repurposer | Haiku | Content (#8) |
-| H8 | Newsletter Agent | Haiku | Growth (#6) |
-| M4 | Analytics Agent | Sonnet | Analytics (#9) |
+> **"Analiz Modeli"** = project-analysis çalışırken bu agent'a atanacak minimum model. Lead veya Lead Orchestrator tarafından yükseltilir.
 
 ---
 
@@ -120,18 +146,18 @@ Sen [LEAD_ROLE]'sın. Aşağıdaki projeyi sorumlu olduğun kategorilerde analiz
 
 Proje kökü: [PROJE_YOLU]
 Sorumlu kategoriler: [KATEGORİ_LİSTESİ]
-Atanan agent'lar: [AGENT_ATAMALARI]
+Atanan worker agent'lar: [AGENT_ATAMALARI]
 
 ## GÖREV
 
 Her kategori için sırayla şu adımları uygula:
 
-### 1. PROJE TARAMASI (Read, Grep, Glob — max 15 tool call)
+### 1. PROJE TARAMASI (Read, Grep, Glob — max 15 tool call / kategori)
 - Proje yapısını incele
 - Kategoriye ilgili dosyaları bul ve oku
 - Mevcut durumu değerlendir
 
-### 2. DIŞ DÜNYA ARAŞTIRMASI (WebSearch, WebFetch — max 10 tool call)
+### 2. DIŞ DÜNYA ARAŞTIRMASI (WebSearch, WebFetch — max 10 tool call / kategori)
 - Güncel best practice'leri araştır
 - Rakip/benchmark örneklerini bul
 
@@ -140,7 +166,7 @@ Her kategori için sırayla şu adımları uygula:
 Rapor formatı:
 
 ## [KATEGORİ] Analiz Raporu
-> Lead: [LEAD_ROLE] | Agent: [AGENT_ID] | Model: [MODEL]
+> Lead: [LEAD_ROLE] | Worker: [AGENT_ID] [AGENT_NAME] | Model: [MODEL]
 
 ### Mevcut Durum
 - Ne yapılmış (güçlü yanlar)
@@ -165,6 +191,14 @@ Rapor formatı:
 - Her öneri için etki (High/Med/Low) ve efor (S/M/L/XL) belirt
 - Raporu Türkçe yaz
 - Tüm kategorileri bitirdikten sonra Lead Orchestrator'a departman özeti döndür
+
+## DEPARTMAN ÖZETİ FORMATI
+Tüm kategorilerin tamamlanınca döndür:
+[LEAD_ROLE] Departman Özeti:
+- #[N] [Kategori]: X/10 — [1 cümle]
+- ...
+Kritik bulgular: [en önemli 2-3 madde]
+Cross-departman not: [başka Lead'in ilgi alanına giren tespit varsa belirt]
 ```
 
 ---
@@ -184,31 +218,33 @@ Tüm Lead'ler tamamlandığında bir **Opus agent** başlatılır:
 - Acil aksiyon sayısı: N
 
 ## Puan Kartı
-| Kategori | Lead | Agent | Model | Puan | Kritik | İyileştirme |
+| Kategori | Lead | Worker Agent | Model | Puan | Kritik | İyileştirme |
 (tablo)
 
 ## Departman Özetleri
-### ArtLead (UI/UX, Content, Accessibility)
-### CodeLead (Performance, Data, Architecture)
-### GrowthLead (SEO, Growth, Analytics)
-### BizLead (Monetization, Competitive)
-### SecLead (Security)
+### A9 ArtLead (UI/UX, Content, Accessibility)
+### A10 CodeLead (Performance, Data, Architecture)
+### A11 GrowthLead (SEO, Growth, Analytics)
+### A12 BizLead (Monetization, Competitive)
+### A13 SecLead (Security)
 
 ## Top 20 Öncelikli Aksiyonlar
 | # | Aksiyon | Kategori | Lead | Etki | Efor | Öncelik |
 (tablo — kategoriler arası, etki/efor matrisine göre sıralanmış)
 
 ## Cross-Cutting Insights
-- Kategoriler arası bağlantı ve sinerjiler
+- Cross-departman notlardan derlenen kategoriler arası bağlantılar
+- Lead'lerin birbirlerine eskalasyon notları
 
 ## Methodology & Cost Report
-| Kategori | Lead | Agent | Model | Süre (dk) | Tool Call | Token | Maliyet ($) |
+| Kategori | Lead | Worker | Model | Süre (dk) | Tool Call | Token | Maliyet ($) |
 (her kategori bir satır)
 
 - **Toplam süre:** X dk
 - **Toplam tahmini maliyet:** $X
 - **En pahalı kategori:** ...
 - **En verimli kategori (puan/token):** ...
+- **Model override notları:** Hangi agent'lar yükseltildi, neden
 ```
 
 ---
@@ -242,3 +278,4 @@ Tüm Lead'ler tamamlandığında bir **Opus agent** başlatılır:
 - Toplam süre: ~3-7 dakika (5 paralel Lead)
 - Projeye özgü içerik otomatik tespit edilir (framework, dil, stack)
 - Bu dosya tüm projeler için geçerlidir; analiz çıktıları her projenin `analysis/` klasörüne yazılır
+- Agent'ların "Kendi Modeli" ile "Analiz Modeli" farklıdır — §4'teki tabloya bak
