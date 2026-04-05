@@ -1,6 +1,6 @@
 {
   "registry_version": "1.0.0",
-  "updated": "2026-04-04",
+  "updated": "2026-04-05",
   "plugins": {
     "telegram": {
       "name": "Telegram Bridge",
@@ -127,6 +127,42 @@
       "complexity": "simple",
       "repo": "https://github.com/SkyWalker2506/ccplugin-opencode-bridge",
       "local": "plugins/opencode-bridge"
+    },
+    "notifications": {
+      "name": "Notifications",
+      "version": "1.0.0",
+      "description": "Multi-channel notifications — Telegram, macOS, sound. DevFocus build error & AI question triggers.",
+      "category": "communication",
+      "complexity": "simple",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-notifications",
+      "local": "plugins/notifications"
+    },
+    "improve": {
+      "name": "System Improver",
+      "version": "1.0.0",
+      "description": "Analyzes videos, articles, ideas — extracts actionable improvements for your claude-config setup.",
+      "category": "ai-ops",
+      "complexity": "simple",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-improve",
+      "local": "plugins/improve"
+    },
+    "clipboard": {
+      "name": "Clipboard Manager",
+      "version": "1.0.0",
+      "description": "Cross-platform clipboard manager for Claude Code — macOS, Linux (X11/Wayland), Windows.",
+      "category": "tools",
+      "complexity": "simple",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-clipboard",
+      "local": "plugins/clipboard"
+    },
+    "voice-input": {
+      "name": "Voice Input",
+      "version": "1.0.0",
+      "description": "macOS mic + Whisper transcript — Türkçe destekli, result copied to clipboard.",
+      "category": "tools",
+      "complexity": "simple",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-voice-input",
+      "local": "plugins/voice-input"
     }
   }
 }

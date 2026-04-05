@@ -54,7 +54,7 @@ The installer sets up everything: CLAUDE.md hierarchy, skills, MCP servers, hook
 
 ## Plugin Marketplace
 
-15 plugins, each in its own repo. Add the marketplace:
+18 plugins, each in its own repo. Add the marketplace:
 
 ```bash
 claude plugin marketplace add SkyWalker2506/claude-marketplace
@@ -79,6 +79,9 @@ Then browse with `/plugin > Discover` or install directly:
 | [daily-check](https://github.com/SkyWalker2506/ccplugin-daily-check) | Daily system health check |
 | [sync-agents](https://github.com/SkyWalker2506/ccplugin-sync-agents) | Agent registry validator |
 | [notifications](https://github.com/SkyWalker2506/ccplugin-notifications) | Multi-channel notifications — Telegram, macOS, sound |
+| [improve](https://github.com/SkyWalker2506/ccplugin-improve) | Analyzes content (videos, articles) → extracts claude-config improvements |
+| [clipboard](https://github.com/SkyWalker2506/ccplugin-clipboard) | Cross-platform clipboard manager — macOS, Linux, Windows |
+| [voice-input](https://github.com/SkyWalker2506/ccplugin-voice-input) | macOS mic + Whisper transcript, Türkçe destekli |
 
 ## Agent System
 
