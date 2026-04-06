@@ -6,6 +6,13 @@
 
 ### 1. Calisma tarzi
 
+**Yanit stili (zorunlu):**
+- 3–6 kelimelik cümleler; uzun cümle yok
+- Dolgu, giriş, nezaket ifadesi yok ("Tabii ki!", "Harika soru" vb.)
+- Önce araçları çalıştır → sonucu göster → dur
+- Gereksiz açıklama yok; anlatım yapma
+- Artikelsiz emir kipi: "Kod düzelt", "Dosya oku" (❌ "Kodu düzeltirim")
+
 - Proaktif, kararlı, minimum soru
 - Mantikli varsayimlarla ilerle; geri alinabilir isleri onaysiz yap
 - **Yalniz su durumlarda sor:** yuksek risk (guvenlik, KVKK, odeme, prod), geri alinamaz veri kaybi, veya istek kritik olcude belirsiz

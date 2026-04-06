@@ -6,61 +6,28 @@ Bu dosya herhangi bir projede `/project-analysis` komutuyla tetiklenir. Lead hiy
 
 ## §0 — Discovery Mode (Boş / Yeni Proje)
 
-Bu mod, proje dizininde kaynak kod bulunmadığında otomatik tetiklenir. **A14 DiscoveryAgent** kullanıcıya yapılandırılmış sorular sorar ve `project-brief.md` oluşturur.
+Bu mod, proje dizininde kaynak kod bulunmadığında otomatik tetiklenir. **A14 DiscoveryAgent** bilgi eksikliklerini tespit edip yalnızca eksik olanları sorar, `project-brief.md` oluşturur.
 
-### A14 DiscoveryAgent Soru Akışı
+### A14 DiscoveryAgent — Adaptif Soru Akışı
 
-Sorular şıklı ve kısa tutulur. Kullanıcı numara girerek hızla yanıtlar.
+**Önce kaynaklardan topla:** README, CLAUDE.md, project-brief.md, sohbet geçmişi, mevcut dosyalar.
 
-```
-─────────────────────────────────────────
-  RefinUp Proje Keşfi — 8 Soru
-  (her soruya numara veya kısa cevap yeterli)
-─────────────────────────────────────────
+Aşağıdaki 8 alanı kontrol et. Her alan için: bilgi varsa atla, yoksa sor.
 
-1. Platform
-   1) Sadece Web
-   2) Mobil (iOS + Android)
-   3) Cross-platform (Web + Mobil + Desktop)
-   4) Sadece API / Backend
-   5) Desktop
+| # | Alan | Kontrol et |
+|---|------|-----------|
+| 1 | Platform | Web/mobil/desktop/API |
+| 2 | Kullanıcı tipi | B2C/B2B/internal/open source |
+| 3 | Tek cümlelik tanım | Ne yapıyor? |
+| 4 | Hedef kitle | Kim, kaç kişi? |
+| 5 | Monetizasyon | Freemium/subscription/ücretsiz |
+| 6 | Auth | Login var mı, nasıl? |
+| 7 | Ölçek | Kullanıcı sayısı hedefi |
+| 8 | Tech stack tercihi | Var mı, yoksa tavsiye mi? |
 
-2. Kullanıcı tipi
-   1) B2C — bireysel son kullanıcı
-   2) B2B — şirket / takım
-   3) Internal tool — sadece kendi kullanımım
-   4) Open source / topluluk
-
-3. Projenin tek cümlelik tanımı
-   → (serbest metin)
-
-4. Hedef kitle
-   → Kim kullanacak? Kaç kişi hedefliyorsun?
-
-5. Monetizasyon
-   1) Tamamen ücretsiz
-   2) Freemium (ücretsiz + ücretli katman)
-   3) Subscription (aylık/yıllık)
-   4) One-time satın alma
-   5) Henüz bilmiyorum
-
-6. Kullanıcı girişi / kimlik doğrulama gerekiyor mu?
-   1) Evet — Google/email login olacak
-   2) Evet — kurumsal SSO / LDAP
-   3) Hayır — anonim kullanım
-   4) Henüz bilmiyorum
-
-7. Ölçek beklentisi
-   1) Kişisel / hobi proje (< 100 kullanıcı)
-   2) Startup (1K – 10K kullanıcı)
-   3) Büyüme hedefi (100K+)
-   4) Bilmiyorum
-
-8. Tech stack tercihi var mı?
-   1) Evet → (belirt)
-   2) Hayır — tavsiye et
-   3) Kısmen — [belirt], gerisini tavsiye et
-```
+**Kural:** Bilinen alanlar için soru sorma. Sadece eksik/belirsiz alanları sor.
+Tüm bilgi mevcutsa → direkt `project-brief.md` yaz, soru sorma.
+Sorular varsa → hepsini tek mesajda, şıklı, numara ile sor.
 
 ### project-brief.md Çıktı Formatı
 
