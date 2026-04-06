@@ -1,6 +1,6 @@
 ---
 name: download-repos
-description: "Git'ten repoları indir — DownloadEssentials, DownloadClaude, DownloadSDK, DownloadAll. Triggers: download repos, repo indir, repoları çek, clone repos, git clone all."
+description: "Git'ten repoları indir — DownloadEssentials, DownloadClaude, DownloadSDK, DownloadAll. Triggers: download, download_, /download, download repos, repo indir, repoları çek, clone repos, git clone all, indir, repoları indir."
 argument-hint: "[DownloadEssentials|DownloadClaude|DownloadSDK|DownloadAll]"
 user-invocable: true
 ---
