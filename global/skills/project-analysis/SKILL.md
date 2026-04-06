@@ -10,7 +10,9 @@
 >   2) Geç ve devam et
 > ```
 >
-> Kullanıcı "1" yazarsa → `/compact` çalıştırmasını hatırlat, çalıştırdıktan sonra devam et.
+> Kullanıcı "1" yazarsa → yanıt olarak **sadece şunu yaz, başka hiçbir şey ekleme:**
+>
+> /compact
 > Kullanıcı "2" veya sadece Enter basarsa → direkt devam et.
 
 Bu skill tetiklendiğinde aşağıdaki adımları izle:
