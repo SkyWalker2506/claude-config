@@ -23,6 +23,44 @@ O dosyayı oku ve içindeki talimatlara **harfiyen** uy.
 
 ---
 
+## Adım 0 — Proje Tespiti (YENİ — HER ZAMAN İLK ÇALIŞIR)
+
+Mevcut proje dizinini tara:
+```
+Glob: **/* (max depth 2)
+Kontrol et: kaynak kod var mı? (lib/, src/, app/, pubspec.yaml, package.json, vb.)
+```
+
+### Senaryo A — Boş / Yeni Proje (kod yok, sadece README veya hiçbir şey yok)
+
+```
+Bu proje henüz kurulmamış. Analiz yapabilmem için önce projeyi anlamam gerekiyor.
+
+Sana birkaç soru soracağım — cevaplarından bir proje brief'i oluşturacağım.
+Sonra istersen tech stack tavsiyesi de verebilirim.
+
+Devam edelim mi? (enter = evet)
+```
+
+**A14 DiscoveryAgent** başlat — `PROJECT_ANALYSIS.md §0`'daki soruları kullanır.
+Discovery tamamlanınca kullanıcıya sor:
+```
+Brief hazır. Şimdi ne yapalım?
+  1) Tech stack tavsiyesi al (A15 TechLead)
+  2) Direkt projeyi kur (kurulum adımlarına geç)
+  3) İkisi de — önce stack karar ver, sonra kur
+```
+
+### Senaryo B — Mevcut Proje (kod var)
+
+`project-brief.md` var mı kontrol et:
+- Varsa → brief'i oku, analiz moduna geç
+- Yoksa → "Proje hakkında kısa bir brief oluşturalım mı? (Y/N)" sor
+  - Y → A14 çalıştır (hızlı mod, 3 soru), sonra analiz moduna geç
+  - N → direkt analiz moduna geç
+
+---
+
 ## Adım 1 — Agent atama modunu sor
 
 ```

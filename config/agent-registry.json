@@ -113,7 +113,9 @@
     "D2",
     "D8",
     "B10",
-    "M3"
+    "M3",
+    "A14",
+    "A15"
   ],
   "agents": {
     "A1": {
@@ -3061,6 +3063,41 @@
         7
       ],
       "tier_override": "always_high"
+    },
+    "A14": {
+      "name": "Discovery Agent",
+      "role": "Yeni/boş projelerde yapılandırılmış sorularla proje brief'i çıkarır. project-brief.md oluşturur.",
+      "primary_model": "sonnet",
+      "status": "active",
+      "capabilities": [
+        "project-discovery",
+        "requirements-gathering",
+        "brief-writing"
+      ],
+      "triggers": [
+        "empty project detected",
+        "no source code",
+        "new project setup"
+      ],
+      "output": "project-brief.md"
+    },
+    "A15": {
+      "name": "TechLead",
+      "role": "project-brief.md okuyarak tech stack araştırır, ücretsiz tier'ları değerlendirir, tech-decision.md oluşturur.",
+      "primary_model": "sonnet",
+      "status": "active",
+      "capabilities": [
+        "tech-stack-research",
+        "architecture-decision",
+        "cost-analysis",
+        "free-tier-mapping"
+      ],
+      "triggers": [
+        "post-discovery",
+        "stack recommendation requested",
+        "new project"
+      ],
+      "output": "tech-decision.md"
     }
   },
   "retry_strategy": {
