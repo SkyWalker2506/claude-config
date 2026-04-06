@@ -185,8 +185,10 @@ cd ~/Projects/claude-config
 
 ## Related
 
-- [Plugin Marketplace](https://github.com/SkyWalker2506/claude-marketplace) — 15 plugins for Claude Code, browse & install
+- [ClaudeHQ](https://github.com/SkyWalker2506/ClaudeHQ) — Claude ecosystem HQ, cross-project workspace
+- [Plugin Marketplace](https://github.com/SkyWalker2506/claude-marketplace) — 18 plugins for Claude Code, browse & install
 - [Agent Catalog](https://github.com/SkyWalker2506/claude-agent-catalog) — 134 agents across 15 categories
+- [SDK Market](https://github.com/SkyWalker2506/sdk-market) — production-ready SDKs and kits
 - [OpenCode](https://opencode.ai/) — Free/local models via Zen + Ollama
 
 ## Author
