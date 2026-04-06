@@ -1,0 +1,10 @@
+---
+project: <proje-adi>
+stack: <dil/framework, virgülle>
+jira: <JIRA-KEY>
+git: SkyWalker2506/<repo>
+focus: <aktif sprint/odak — kisa>
+---
+<tek satir proje ozeti>
+Deps: <kritik bagimliliklar, opsiyonel>
+Key: <onemli dizinler/dosyalar, opsiyonel>

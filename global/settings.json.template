@@ -49,6 +49,10 @@
           {
             "type": "command",
             "command": "MCPS=$(jq -r '.mcpServers | keys | join(\", \")' ~/.claude/settings.json 2>/dev/null); echo \"🔌 MCP_ACTIVE: $MCPS — Kullanmayacaklarini /mcp ile kapat\""
+          },
+          {
+            "type": "command",
+            "command": "bash ~/Projects/claude-config/projects/scripts/project_index.sh 2>/dev/null || true"
           }
         ]
       }
