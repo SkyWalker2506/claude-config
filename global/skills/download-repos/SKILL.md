@@ -28,6 +28,7 @@ Hangi set indirilsin?
 Çalışmak için gereken minimum set:
 - `SkyWalker2506/claude-config`
 - `SkyWalker2506/ClaudeHQ`
+- `SkyWalker2506/claude-secrets` → `~/.claude/secrets/` altına indir (private repo)
 
 ### DownloadClaude
 Claude ekosistemi:
@@ -99,5 +100,5 @@ Evet → `cd ~/Projects/claude-config && ./install.sh`
 
 - `gh repo clone` kullan — SSH key gerekmez, token yeterli
 - Hata olursa atla, listeye `❌ (hata mesajı)` yaz, devam et
-- `~/Projects/` dışına indirme
+- `claude-secrets` reposu **istisnası**: `~/Projects/` değil `~/.claude/secrets/` altına indir
 - Secret değerlerini terminale yazma
