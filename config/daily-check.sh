@@ -3,6 +3,16 @@
 # Run: bash config/daily-check.sh
 # Cron: launchd (Mac) or crontab (Linux), daily at 09:00
 
+# Portable timeout — macOS has no coreutils timeout
+_timeout() {
+  local secs="$1"; shift
+  if command -v timeout &>/dev/null; then
+    timeout "$secs" "$@"
+  else
+    perl -e 'alarm shift; exec @ARGV' -- "$secs" "$@"
+  fi
+}
+
 set -euo pipefail
 
 REPORT_DIR="$HOME/.watchdog"
@@ -44,7 +54,7 @@ OLLAMA_LATENCY="N/A"
 if command -v ollama &>/dev/null && ollama list &>/dev/null 2>&1; then
   if ollama list 2>/dev/null | grep -q "qwen"; then
     START=$(date +%s%N 2>/dev/null || echo 0)
-    echo "hi" | timeout 30 ollama run qwen3.5:9b --nowordwrap 2>/dev/null | head -1 >/dev/null 2>&1 || true
+    echo "hi" | _timeout 30 ollama run qwen3.5:9b --nowordwrap 2>/dev/null | head -1 >/dev/null 2>&1 || true
     END=$(date +%s%N 2>/dev/null || echo 0)
     if [ "$START" != "0" ] && [ "$END" != "0" ]; then
       OLLAMA_LATENCY=$(( (END - START) / 1000000 ))
