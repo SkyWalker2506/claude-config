@@ -42,7 +42,14 @@ SDK, API ve entegrasyon repoları:
 - `SkyWalker2506/ar-research`
 
 ### DownloadAll
-`~/Projects/ClaudeHQ/projects.json` içindeki tüm `git` alanına sahip repolar.
+`projects.json` içindeki tüm `git` alanına sahip repolar.
+
+`projects.json` arama sırası (ilk bulunan kullanılır):
+1. `~/Projects/ClaudeHQ/projects.json`
+2. `~/Projects/claude-config/projects.json`
+3. Mevcut dizin (`$PWD/projects.json`)
+
+Hiçbiri yoksa → DownloadEssentials setini çalıştır ve kullanıcıya bildir.
 
 ## Akış
 
@@ -62,7 +69,21 @@ gh auth status
 GH_USER=$(gh api user -q .login)
 ```
 
-### 3. Her repo için — clone veya pull
+### 3. projects.json bul (DownloadAll için)
+
+```bash
+PROJECTS_JSON=""
+for candidate in \
+  "$HOME/Projects/ClaudeHQ/projects.json" \
+  "$HOME/Projects/claude-config/projects.json" \
+  "$PWD/projects.json"; do
+  [ -f "$candidate" ] && PROJECTS_JSON="$candidate" && break
+done
+```
+
+Bulunamazsa → DownloadEssentials setini çalıştır, kullanıcıya bildir.
+
+### 4. Her repo için — clone veya pull
 
 ```bash
 PROJECTS="$HOME/Projects"
