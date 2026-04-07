@@ -214,8 +214,9 @@
       "version": "1.0",
       "category": "orchestrator",
       "status": "active",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -229,7 +230,8 @@
       "effort": "low",
       "template": "autonomous",
       "tier": "junior",
-      "model_source": "groq"
+      "model_source": "groq",
+      "on_source_unavailable": "use_fallbacks"
     },
     "A6": {
       "name": "Daily Health Check",
@@ -412,7 +414,8 @@
       "effort": "medium",
       "template": "autonomous",
       "model_source": "groq",
-      "tier": "mid"
+      "tier": "mid",
+      "on_source_unavailable": "use_fallbacks"
     },
     "B5": {
       "name": "Database Agent",
@@ -447,8 +450,9 @@
       "version": "1.0",
       "category": "backend",
       "status": "pool",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -467,7 +471,8 @@
       "effort": "medium",
       "template": "autonomous",
       "model_source": "groq",
-      "tier": "junior"
+      "tier": "junior",
+      "on_source_unavailable": "use_fallbacks"
     },
     "B7": {
       "name": "Bug Hunter",
@@ -506,7 +511,7 @@
       "status": "active",
       "primary_model": "nvidia/nemotron-3-nano-30b-a3b:free",
       "fallbacks": [
-        "gemma2-9b-it",
+        "llama-3.1-8b-instant",
         "haiku"
       ],
       "mcps": [
@@ -649,8 +654,9 @@
       "version": "1.0",
       "category": "backend",
       "status": "pool",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -665,7 +671,8 @@
       "effort": "low",
       "template": "autonomous",
       "tier": "junior",
-      "model_source": "groq"
+      "model_source": "groq",
+      "on_source_unavailable": "use_fallbacks"
     },
     "B15": {
       "name": "Mobile Dev Agent",
@@ -744,8 +751,9 @@
       "version": "1.0",
       "category": "code-review",
       "status": "active",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -765,7 +773,8 @@
       "template": "code-review",
       "layer": "L2",
       "tier": "junior",
-      "model_source": "groq"
+      "model_source": "groq",
+      "on_source_unavailable": "use_fallbacks"
     },
     "C4": {
       "name": "Code Rabbit Agent",
@@ -810,8 +819,9 @@
       "version": "1.0",
       "category": "code-review",
       "status": "pool",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -827,7 +837,8 @@
       "template": "code-review",
       "layer": "L4",
       "tier": "junior",
-      "model_source": "groq"
+      "model_source": "groq",
+      "on_source_unavailable": "use_fallbacks"
     },
     "D1": {
       "name": "UI/UX Researcher",
@@ -863,8 +874,9 @@
       "version": "1.0",
       "category": "design",
       "status": "active",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -884,15 +896,17 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "junior",
-      "model_source": "groq"
+      "model_source": "groq",
+      "on_source_unavailable": "use_fallbacks"
     },
     "D3": {
       "name": "Stitch Coordinator",
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -910,7 +924,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "junior",
-      "model_source": "groq"
+      "model_source": "groq",
+      "on_source_unavailable": "use_fallbacks"
     },
     "D4": {
       "name": "Figma Assistant",
@@ -999,8 +1014,9 @@
       "version": "1.0",
       "category": "design",
       "status": "active",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -1017,15 +1033,17 @@
       "effort": "medium",
       "template": "analiz",
       "tier": "junior",
-      "model_source": "groq"
+      "model_source": "groq",
+      "on_source_unavailable": "use_fallbacks"
     },
     "E1": {
       "name": "3D Concept Planner",
       "version": "1.0",
       "category": "3d-cad",
       "status": "pool",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -1041,7 +1059,8 @@
       "effort": "medium",
       "template": "analiz",
       "tier": "junior",
-      "model_source": "groq"
+      "model_source": "groq",
+      "on_source_unavailable": "use_fallbacks"
     },
     "E2": {
       "name": "Blender Script Agent",
@@ -1179,8 +1198,9 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -1195,7 +1215,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "junior",
-      "model_source": "groq"
+      "model_source": "groq",
+      "on_source_unavailable": "use_fallbacks"
     },
     "F4": {
       "name": "ETL Pipeline Agent",
@@ -1238,8 +1259,9 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -1252,7 +1274,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "junior",
-      "model_source": "groq"
+      "model_source": "groq",
+      "on_source_unavailable": "use_fallbacks"
     },
     "F7": {
       "name": "Spreadsheet Agent",
@@ -1583,8 +1606,9 @@
       "version": "1.0",
       "category": "market-research",
       "status": "active",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -1598,7 +1622,8 @@
       "effort": "medium",
       "template": "analiz",
       "tier": "junior",
-      "model_source": "groq"
+      "model_source": "groq",
+      "on_source_unavailable": "use_fallbacks"
     },
     "H5": {
       "name": "SEO Agent",
@@ -1813,8 +1838,9 @@
       "version": "1.0",
       "category": "jira-pm",
       "status": "pool",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -1829,7 +1855,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "junior",
-      "model_source": "groq"
+      "model_source": "groq",
+      "on_source_unavailable": "use_fallbacks"
     },
     "I4": {
       "name": "Status Reporter",
@@ -1858,8 +1885,9 @@
       "version": "1.0",
       "category": "jira-pm",
       "status": "pool",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -1875,7 +1903,8 @@
       "effort": "low",
       "template": "autonomous",
       "tier": "junior",
-      "model_source": "groq"
+      "model_source": "groq",
+      "on_source_unavailable": "use_fallbacks"
     },
     "I6": {
       "name": "Backlog Groomer",
@@ -1940,8 +1969,9 @@
       "version": "1.0",
       "category": "jira-pm",
       "status": "pool",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -1956,15 +1986,17 @@
       "effort": "medium",
       "template": "analiz",
       "tier": "junior",
-      "model_source": "groq"
+      "model_source": "groq",
+      "on_source_unavailable": "use_fallbacks"
     },
     "I10": {
       "name": "Estimation Agent",
       "version": "1.0",
       "category": "jira-pm",
       "status": "pool",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -1980,7 +2012,8 @@
       "effort": "low",
       "template": "analiz",
       "tier": "junior",
-      "model_source": "groq"
+      "model_source": "groq",
+      "on_source_unavailable": "use_fallbacks"
     },
     "J1": {
       "name": "Docker Agent",
@@ -2025,7 +2058,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "groq"
+      "model_source": "groq",
+      "on_source_unavailable": "use_fallbacks"
     },
     "J3": {
       "name": "SSL/DNS Agent",
@@ -2068,8 +2102,9 @@
       "version": "1.0",
       "category": "devops",
       "status": "pool",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -2083,7 +2118,8 @@
       "effort": "medium",
       "template": "analiz",
       "tier": "junior",
-      "model_source": "groq"
+      "model_source": "groq",
+      "on_source_unavailable": "use_fallbacks"
     },
     "J6": {
       "name": "Firebase Agent",
@@ -2306,8 +2342,9 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -2320,7 +2357,8 @@
       "effort": "low",
       "template": "analiz",
       "tier": "junior",
-      "model_source": "groq"
+      "model_source": "groq",
+      "on_source_unavailable": "use_fallbacks"
     },
     "L1": {
       "name": "Email Summarizer",
@@ -3407,16 +3445,18 @@
       "effort": "medium",
       "template": "autonomous",
       "notes": "Scraping/parsing uzmanı. Groq Llama 70B ile hızlı + ücretsiz.",
-      "tier": "mid"
+      "tier": "mid",
+      "on_source_unavailable": "use_fallbacks"
     },
     "Z1": {
       "name": "Lightweight Triage Agent",
       "version": "1.0",
       "category": "meta",
       "status": "active",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "model_source": "groq",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -3432,16 +3472,18 @@
       "effort": "low",
       "template": "minimal",
       "notes": "Basit/trivial işler için. Ücretli kota yemesin diye. Groq Gemma2 9B — sıfır maliyet.",
-      "tier": "junior"
+      "tier": "junior",
+      "on_source_unavailable": "use_fallbacks"
     },
     "N3": {
       "name": "Prompt Engineer",
       "version": "1.0",
       "category": "ai-ml",
       "status": "active",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "model_source": "groq",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -3456,7 +3498,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "minimal",
-      "tier": "junior"
+      "tier": "junior",
+      "on_source_unavailable": "use_fallbacks"
     },
     "N4": {
       "name": "Fine-tuning Agent",
@@ -3495,7 +3538,8 @@
       "primary_model": "llama-3.3-70b-versatile",
       "model_source": "groq",
       "fallbacks": [
-        "gemma2-9b-it",
+        "qwen/qwen3.6-plus:free",
+        "llama-3.1-8b-instant",
         "haiku"
       ],
       "mcps": [],
@@ -3510,7 +3554,8 @@
       "max_tool_calls": 20,
       "effort": "medium",
       "template": "minimal",
-      "tier": "junior"
+      "tier": "junior",
+      "on_source_unavailable": "use_fallbacks"
     },
     "P1": {
       "name": "Technical Writer",
@@ -3547,6 +3592,7 @@
       "primary_model": "llama-3.3-70b-versatile",
       "model_source": "groq",
       "fallbacks": [
+        "qwen/qwen3.6-plus:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -3563,7 +3609,8 @@
       "max_tool_calls": 15,
       "effort": "low",
       "template": "minimal",
-      "tier": "junior"
+      "tier": "junior",
+      "on_source_unavailable": "use_fallbacks"
     },
     "P3": {
       "name": "Localization Agent",
@@ -3632,6 +3679,7 @@
       "primary_model": "llama-3.3-70b-versatile",
       "model_source": "groq",
       "fallbacks": [
+        "qwen/qwen3.6-plus:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -3651,16 +3699,18 @@
       "max_tool_calls": 20,
       "effort": "medium",
       "template": "minimal",
-      "tier": "junior"
+      "tier": "junior",
+      "on_source_unavailable": "use_fallbacks"
     },
     "Q3": {
       "name": "Load & Stress Tester",
       "version": "1.0",
       "category": "qa",
       "status": "active",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "model_source": "groq",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -3681,7 +3731,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "minimal",
-      "tier": "junior"
+      "tier": "junior",
+      "on_source_unavailable": "use_fallbacks"
     },
     "R1": {
       "name": "Audio Processing Agent",
@@ -3866,6 +3917,7 @@
       "primary_model": "llama-3.3-70b-versatile",
       "model_source": "groq",
       "fallbacks": [
+        "qwen/qwen3.6-plus:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -3879,16 +3931,18 @@
       "max_tool_calls": 10,
       "effort": "low",
       "template": "minimal",
-      "tier": "junior"
+      "tier": "junior",
+      "on_source_unavailable": "use_fallbacks"
     },
     "T3": {
       "name": "Support Ticket Analyzer",
       "version": "1.0",
       "category": "chatbot",
       "status": "active",
-      "primary_model": "gemma2-9b-it",
+      "primary_model": "llama-3.1-8b-instant",
       "model_source": "groq",
       "fallbacks": [
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
         "haiku"
       ],
@@ -3903,7 +3957,8 @@
       "effort": "low",
       "template": "minimal",
       "notes": "Trivial sınıflandırma — kota yemesin.",
-      "tier": "junior"
+      "tier": "junior",
+      "on_source_unavailable": "use_fallbacks"
     },
     "U1": {
       "name": "AR/VR Developer",
@@ -4162,5 +4217,74 @@
     "max_no_progress": 8,
     "max_loop": 5
   },
-  "last_updated": "2026-04-07"
+  "last_updated": "2026-04-07",
+  "source_requirements": {
+    "openrouter": {
+      "secret_key": "OPENROUTER_API_KEY",
+      "status": "available",
+      "test_result": "✅ tested 2026-04-07",
+      "working_models": [
+        "qwen/qwen3.6-plus:free",
+        "nvidia/nemotron-3-super-120b-a12b:free",
+        "minimax/minimax-m2.5:free",
+        "arcee-ai/trinity-large-preview:free",
+        "nvidia/nemotron-3-nano-30b-a3b:free"
+      ],
+      "notes": {
+        "stepfun/step-3.5-flash:free": "⚠️ content=null (reasoning mode leak) — use only for non-tool tasks",
+        "openrouter/free": "⚠️ router may return null content — use as last resort"
+      }
+    },
+    "groq": {
+      "secret_key": "GROQ_API_KEY",
+      "status": "available",
+      "test_result": "✅ tested 2026-04-07",
+      "on_missing": "fallback_to_openrouter",
+      "setup_url": "https://console.groq.com/keys",
+      "notes": "Free tier. Fast inference. Get key at console.groq.com",
+      "working_models": [
+        "llama-3.3-70b-versatile",
+        "llama-3.1-8b-instant",
+        "qwen/qwen3-32b",
+        "meta-llama/llama-4-scout-17b-16e-instruct",
+        "openai/gpt-oss-120b",
+        "openai/gpt-oss-20b",
+        "moonshotai/kimi-k2-instruct"
+      ],
+      "decommissioned": [
+        "gemma2-9b-it"
+      ],
+      "whisper": "whisper-large-v3-turbo"
+    },
+    "anthropic": {
+      "secret_key": "ANTHROPIC_API_KEY",
+      "status": "available_via_claude_code",
+      "notes": "Used via Claude Code session directly"
+    },
+    "huggingface": {
+      "secret_key": "HF_TOKEN",
+      "status": "available",
+      "on_missing": "skip",
+      "notes": "Optional. HF Inference API free tier.",
+      "test_result": "✅ token set 2026-04-07"
+    }
+  },
+  "jarvis_session": {
+    "label_format": "[{agent_id} {name} | {model} {cost_emoji} {cost_label} | Tier: {tier}]",
+    "main_session": {
+      "agent_id": "Jarvis",
+      "name": "Claude Code Main Session",
+      "model": "claude-sonnet-4-6",
+      "cost_emoji": "🔶",
+      "cost_label": "mid",
+      "tier": "session"
+    },
+    "cost_labels": {
+      "🆓 free": "OpenRouter/Groq ücretsiz tier",
+      "💻 local": "Ollama lokal model",
+      "💛 cheap": "Haiku — düşük ücretli",
+      "🔶 mid": "Sonnet — orta ücretli",
+      "🔴 paid": "Opus — yüksek ücretli"
+    }
+  }
 }

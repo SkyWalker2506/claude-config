@@ -8,6 +8,26 @@ argument-hint: "[gorev aciklamasi]"
 
 Gelen gorevi analiz edip `config/agent-registry.json`'dan uygun agent'i secer ve o agent'in kurallariyla sub-agent baslatir.
 
+## Source Availability Kontrolü
+
+Her dispatch öncesi `source_requirements` tablosunu oku:
+
+| Source | Secret Key | Durum |
+|--------|-----------|-------|
+| openrouter | OPENROUTER_API_KEY | ✅ available |
+| groq | GROQ_API_KEY | ❌ missing_key |
+| anthropic | (session) | ✅ available |
+| huggingface | HF_TOKEN | ? not_tested |
+
+**Ulaşılamayan source ile karşılaşılırsa:**
+1. `on_source_unavailable == "use_fallbacks"` → sessizce fallback'e geç, loglа: `[FALLBACK] {agent_id} {primary} → {fallback}`
+2. `on_source_unavailable == "ask_user"` → kullanıcıya sor: "X servisi için key gerekiyor, kurmak ister misiniz? [E/H]"
+   - E → setup_url ver ve bekle
+   - H → bir sonraki fallback'e geç
+3. Tüm fallback'ler tükendiyse → farklı capability'li alternatif agent sec
+
+**Şu an bilinen durum:** Groq key yok → Groq primary'li agentlar otomatik OpenRouter fallback'e düşer.
+
 ## Akis
 
 ### 1. Gorev analizi (max 3 tool call)

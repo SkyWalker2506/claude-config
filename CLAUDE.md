@@ -13,6 +13,23 @@
 - Gereksiz açıklama yok; anlatım yapma
 - Artikelsiz emir kipi: "Kod düzelt", "Dosya oku" (❌ "Kodu düzeltirim")
 
+**Her görev başında agent + model etiketi (zorunlu):**
+
+```
+[AgentID: B3 Frontend Coder | Model: qwen/qwen3.6-plus:free 🆓 | Tier: mid]
+```
+
+Etiket formatı: `[AgentID: {id} {name} | Model: {model} {cost_label} | Tier: {tier}]`
+
+Cost label:
+- `🆓 free` — OpenRouter/Groq ücretsiz tier
+- `💻 local` — Ollama lokal model
+- `💛 cheap` — Haiku (düşük ücretli)
+- `🔶 mid` — Sonnet (orta ücretli)
+- `🔴 paid` — Opus (yüksek ücretli)
+
+Sub-agent başlatılırken de aynı etiket prompt başına eklenir.
+
 - Proaktif, kararlı, minimum soru
 - Mantikli varsayimlarla ilerle; geri alinabilir isleri onaysiz yap
 - **Yalniz su durumlarda sor:** yuksek risk (guvenlik, KVKK, odeme, prod), geri alinamaz veri kaybi, veya istek kritik olcude belirsiz
@@ -141,17 +158,27 @@ Hook ciktisindaki sinyaller:
 | `MCP_SETUP_NEEDED` | `cd ~/Projects/claude-config && ./install.sh` |
 | `MIGRATION_NEEDED` | `/migration` calistir veya `MIGRATION_GUIDE.md` Bolum 0 |
 | `MIGRATION_UPDATE` | Changelog'dan delta uygula, versiyon guncelle |
-| `SECRETS_MISSING` | `~/.claude/secrets/secrets.env` duzenle, git varsa push hatırlat |
-| `SECRETS_NONE` | `install.sh` calistir veya secrets.env olustur |
+| `SECRETS_MISSING` | `~/Projects/claude-config/claude-secrets/secrets.env` duzenle, commit + push |
+| `SECRETS_NONE` | `install.sh` calistir veya `claude-secrets/secrets.env` olustur |
 | `CONFIG_UPDATE` | Kullaniciya sor: git pull + install.sh + restart |
 | `BIND_NEEDED` | `/bind` calistir — global CLAUDE.md'yi claude-config'e bagla |
 
 ### 6. Secrets guvenligi
 
+**Kanonik kaynak (tek doğru yer):**
+```
+~/Projects/claude-config/claude-secrets/secrets.env
+```
+`~/.claude/secrets/secrets.env` → bu dosyaya symlink (install.sh kurar). Scriptler symlink üzerinden okur — bu OK.
+
+**ASLA başka yere secrets yazma:**
+- `~/.claude/` altındaki diğer dosyalar ❌
+- Herhangi bir proje dizini ❌
+- Commit/log/output ❌
+
 - Secret degerleri **ASLA** konusma ciktisina, commit'e, public dosyaya veya log'a yazilmaz
-- Secret'lar yalnizca `~/.claude/secrets/` altinda
-- `.git` varsa → private repo, push hatırlat
-- `.git` yoksa → lokal, sadece o PC
+- Yeni key eklemek → `claude-secrets/secrets.env` düzenle → commit → push (private repo)
+- Symlink yoksa → `install.sh` yeniden çalıştır
 
 **Secrets awareness (otomatik):** Her session basinda `AVAILABLE_SECRETS: KEY1,KEY2,...` sinyali gelir. Bu sinyal hangi servislerin konfigureli oldugunu gosterir — deger degil, key adi. Bunu okuyarak hangi API'lere erisim oldugunu bil; kullaniciya "X var mi?" diye sorma.
 

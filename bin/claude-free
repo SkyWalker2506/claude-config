@@ -1,5 +1,7 @@
 #!/bin/bash
-MODEL="${CLAUDE_FREE_MODEL:-openrouter/qwen/qwen3.6-free}"
+# Primary: Qwen3.6 Plus Free — 1M context, tool calling, very-high strength
+# Fallback override: CLAUDE_FREE_MODEL=openrouter/nvidia/nemotron-3-super-120b-a12b:free
+MODEL="${CLAUDE_FREE_MODEL:-openrouter/qwen/qwen3.6-plus:free}"
 REAL="$HOME/.local/bin/claude"
 
 pending="$(bash "$HOME/Projects/claude-config/config/reports-pending-arg.sh" 2>/dev/null)"
