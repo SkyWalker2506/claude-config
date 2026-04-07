@@ -15,6 +15,17 @@
 > /compact
 > Kullanıcı "2" veya sadece Enter basarsa → direkt devam et.
 
+## Başlamadan Önce ZORUNLU Oku
+
+`PROJECT_ANALYSIS.md` dosyasını oku — özellikle şu bölümler:
+- **§2** — Lead hiyerarşisi ve "dispatches" ne anlama geldiği (Lead ayrı process başlatmaz, bizzat analiz eder)
+- **§4** — Agent registry ve model mapping tablosu (Claude Code Model kolonu dahil)
+- **§5** — Lead prompt şablonu (birebir uygula, kendi yorumunu katma)
+
+Bu okuma yapılmadan Lead prompt'ları yazılmaz.
+
+---
+
 Bu skill tetiklendiğinde aşağıdaki adımları izle:
 
 ## Referans
@@ -22,6 +33,32 @@ Bu skill tetiklendiğinde aşağıdaki adımları izle:
 Tam protokol: `__PROJECTS_ROOT__/PROJECT_ANALYSIS.md`
 
 O dosyayı oku ve içindeki talimatlara **harfiyen** uy.
+
+---
+
+## Adım -1 — Agent Erişilebilirlik Kontrolü (HER ZAMAN İLK ÇALIŞIR)
+
+`scripts/check-agent-availability.sh` çalıştır (Bash tool ile).
+
+Çıktıdaki her `UNAVAILABLE:` satırı için formatı parse et:
+```
+UNAVAILABLE: <model_tipi> | <neden> | <kurulum_talimatı> | <fallback>
+```
+
+Her ulaşılamayan agent için kullanıcıya sor:
+```
+⚠️  [MODEL_TIPI] ulaşılamıyor — [NEDEN]
+
+Ne yapalım?
+  1) Kurulum yap   — [KURULUM_TALİMATI]
+  2) Alternatif kullan — [FALLBACK] modeli ile devam et
+  3) Bu agent'ı atla
+  4) Tüm ulaşılamazlara alternatif uygula (bu oturum)
+```
+
+Tam protokol: `PROJECT_ANALYSIS.md §7`
+
+Tüm seçimler alındıktan sonra → **Adım 0'a geç**
 
 ---
 

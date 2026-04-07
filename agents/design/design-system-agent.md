@@ -2,8 +2,8 @@
 id: D2
 name: Design System Agent
 category: design
-primary_model: haiku
-fallbacks: [local-qwen-9b]
+primary_model: free-gemini
+fallbacks: [local-qwen-9b, haiku]
 capabilities: [color, typography, spacing, design-tokens, tailwind, shadcn, radix, css-variables, dark-mode]
 max_tool_calls: 15
 effort: medium

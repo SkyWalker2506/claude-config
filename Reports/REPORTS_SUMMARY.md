@@ -35,3 +35,4 @@ Her oturum başında:
 
 | # | Dosya | Tarih | Öncelik | Özet |
 |---|-------|-------|---------|------|
+| 1 | 001_project_analysis_system_gaps.md | 2026-04-07 | HIGH | Lead "dispatches" belirsizliği giderildi; §4'e model mapping eklendi; D1 → free-gemini; gemini-call.sh wrapper oluşturuldu; SKILL.md'ye §2/§4/§5 okuma zorunluluğu eklendi |

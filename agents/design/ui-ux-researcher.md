@@ -2,7 +2,7 @@
 id: D1
 name: UI/UX Researcher
 category: design
-primary_model: free-web
+primary_model: free-gemini
 mcps: [fetch]
 capabilities: [ui-research, competitor-ui, trend, accessibility-audit, wcag, responsive-design, mobile-first]
 max_tool_calls: 20

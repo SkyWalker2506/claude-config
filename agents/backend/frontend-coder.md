@@ -2,8 +2,8 @@
 id: B3
 name: Frontend Coder
 category: backend
-primary_model: sonnet
-fallbacks: [local-qwen-9b, qwen-3.6-free]
+primary_model: free-gemini
+fallbacks: [local-qwen-9b, sonnet]
 mcps: [github, git, context7]
 capabilities: [react, flutter, ui, components, tailwind]
 languages: [typescript, dart, css]

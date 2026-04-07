@@ -2,8 +2,8 @@
 id: D8
 name: Mockup Reviewer
 category: design
-primary_model: haiku
-fallbacks: [local-qwen-9b]
+primary_model: free-gemini
+fallbacks: [local-qwen-9b, haiku]
 capabilities: [design-review, ux-audit, accessibility, contrast-ratio, touch-target, responsive]
 max_tool_calls: 10
 effort: medium
