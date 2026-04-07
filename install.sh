@@ -683,9 +683,10 @@ claude-free() {
   _claude_bin --model "$_free_model" --dangerously-skip-permissions "$@"
 }
 
-# claude-bypass → sonnet ile aç (bilinçli ücretli model seçimi)
+# claude-bypass → free model + bypass permissions
 function claude-bypass() {
-  _claude_bin --model claude-sonnet-4-6 --dangerously-skip-permissions "$@"
+  local _free_model="${CLAUDE_FREE_MODEL:-openrouter/qwen/qwen3.6-plus:free}"
+  _claude_bin --model "$_free_model" --dangerously-skip-permissions "$@"
 }
 function clb() { cl_bypass "$@"; }
 function clhq() { cd ~/Projects/ClaudeHQ && claude --dangerously-skip-permissions "$@"; }
