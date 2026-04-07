@@ -569,6 +569,14 @@ fi
 cat >> "$SHELL_RC" << 'CLEOF'
 
 # __CLAUDE_CONFIG_SHELL_BLOCK_START__
+# Secrets — canonical: ~/Projects/claude-config/claude-secrets/secrets.env
+# ~/.claude/secrets/secrets.env symlink'ten de erişilir (install.sh tarafından kurulur)
+_SECRETS="$HOME/.claude/secrets/secrets.env"
+if [ -f "$_SECRETS" ]; then
+  set -a; source "$_SECRETS"; set +a
+fi
+unset _SECRETS
+
 # Claude Code env — flicker fix (experimental renderer, mouse support)
 export CLAUDE_CODE_NO_FLICKER=1
 
@@ -606,7 +614,8 @@ function cl() {
   )
   [ -z "$selected" ] && return
   local dir=$(echo "$selected" | sed 's/ *\[.*$//' | sed 's/ *$//')
-  cd "$projects_dir/$dir" && claude --model claude-sonnet-4-6
+  # cl → free model ile aç (settings.json'daki default)
+  cd "$projects_dir/$dir" && _claude_bin
 }
 
 function cl_bypass() {
@@ -641,18 +650,45 @@ function cl_bypass() {
   )
   [ -z "$selected" ] && return
   local dir=$(echo "$selected" | sed 's/ *\[.*$//' | sed 's/ *$//')
-  cd "$projects_dir/$dir" && claude --model claude-sonnet-4-6 --dangerously-skip-permissions
+  # cl bypass → free model + skip permissions
+  cd "$projects_dir/$dir" && _claude_bin --dangerously-skip-permissions
 }
 
+# Gerçek claude binary'sine doğrudan erişim (fonksiyon döngüsünü önler)
+function _claude_bin() {
+  local _real="$HOME/.local/bin/claude"
+  [ -x "$_real" ] || _real="$(command -v claude 2>/dev/null || echo claude)"
+  "$_real" "$@"
+}
+
+# claude → her zaman free model (settings.json override + API key env'den gelir)
+function claude() {
+  local _free_model="${CLAUDE_FREE_MODEL:-openrouter/qwen/qwen3.6-plus:free}"
+  # Eğer kullanıcı --model geçmişse ona dokunma; geçmemişse free model ekle
+  local _has_model=0
+  for _arg in "$@"; do
+    [ "$_arg" = "--model" ] && _has_model=1 && break
+    [[ "$_arg" == --model=* ]] && _has_model=1 && break
+  done
+  if [ "$_has_model" = "0" ]; then
+    _claude_bin --model "$_free_model" "$@"
+  else
+    _claude_bin "$@"
+  fi
+}
+
+# claude-free → free model + bypass permissions (explicit)
 claude-free() {
-  # Claude Code with free OpenRouter model — bypass permissions
-  local model="${CLAUDE_FREE_MODEL:-openrouter/qwen/qwen3.6-free}"
-  claude --model "$model" --dangerously-skip-permissions "$@"
+  local _free_model="${CLAUDE_FREE_MODEL:-openrouter/qwen/qwen3.6-plus:free}"
+  _claude_bin --model "$_free_model" --dangerously-skip-permissions "$@"
 }
 
-alias claude-bypass='claude --model claude-sonnet-4-6 --dangerously-skip-permissions'
+# claude-bypass → sonnet ile aç (bilinçli ücretli model seçimi)
+function claude-bypass() {
+  _claude_bin --model claude-sonnet-4-6 --dangerously-skip-permissions "$@"
+}
 function clb() { cl_bypass "$@"; }
-function clhq() { cd ~/Projects/ClaudeHQ && claude --model claude-sonnet-4-6 --dangerously-skip-permissions "$@"; }
+function clhq() { cd ~/Projects/ClaudeHQ && claude --dangerously-skip-permissions "$@"; }
 alias plugin-update='bash ~/Projects/claude-config/config/plugin-update.sh'
 
 claude-local() {
