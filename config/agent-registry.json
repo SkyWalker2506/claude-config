@@ -152,7 +152,8 @@
       "status": "active",
       "primary_model": "sonnet",
       "fallbacks": [
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "*"
@@ -180,7 +181,9 @@
       "category": "orchestrator",
       "status": "active",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "model-switching",
@@ -197,7 +200,9 @@
       "category": "orchestrator",
       "status": "active",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "quota-tracking",
@@ -218,7 +223,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -239,7 +245,9 @@
       "category": "orchestrator",
       "status": "pool",
       "primary_model": "free-cron",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "monitoring",
@@ -259,7 +267,8 @@
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
         "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "fetch"
@@ -281,7 +290,9 @@
       "category": "orchestrator",
       "status": "pool",
       "primary_model": "none",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "emergency-stop",
@@ -363,7 +374,8 @@
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
         "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -396,7 +408,8 @@
       "primary_model": "llama-3.3-70b-versatile",
       "fallbacks": [
         "qwen/qwen3.6-plus:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -454,7 +467,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -483,7 +497,8 @@
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
         "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -512,7 +527,8 @@
       "primary_model": "nvidia/nemotron-3-nano-30b-a3b:free",
       "fallbacks": [
         "llama-3.1-8b-instant",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -536,7 +552,9 @@
       "category": "backend",
       "status": "pool",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "github"
       ],
@@ -557,7 +575,9 @@
       "category": "backend",
       "status": "active",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "github"
       ],
@@ -577,7 +597,9 @@
       "category": "backend",
       "status": "pool",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "git",
         "github"
@@ -602,7 +624,8 @@
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
         "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -658,7 +681,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -683,7 +707,8 @@
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
         "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -714,7 +739,9 @@
       "category": "code-review",
       "status": "active",
       "primary_model": "free-deterministic",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "lint",
@@ -733,7 +760,9 @@
       "category": "code-review",
       "status": "active",
       "primary_model": "free-deterministic",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "secret-scan",
@@ -755,7 +784,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -782,7 +812,9 @@
       "category": "code-review",
       "status": "pool",
       "primary_model": "free-coderabbit",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "deep-review",
@@ -800,7 +832,9 @@
       "category": "code-review",
       "status": "pool",
       "primary_model": "free-github-action",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "github"
       ],
@@ -823,7 +857,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github"
@@ -849,7 +884,8 @@
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
         "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "fetch"
@@ -878,7 +914,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -908,7 +945,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -933,7 +971,9 @@
       "category": "design",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "figma",
@@ -953,7 +993,9 @@
       "category": "design",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "slides",
@@ -971,7 +1013,9 @@
       "category": "design",
       "status": "pool",
       "primary_model": "free-router",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "midjourney",
@@ -993,7 +1037,9 @@
       "category": "design",
       "status": "pool",
       "primary_model": "free-router",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "svg",
@@ -1018,7 +1064,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1045,7 +1092,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1071,7 +1119,8 @@
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
         "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1096,7 +1145,9 @@
       "category": "3d-cad",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "autocad",
@@ -1116,7 +1167,9 @@
       "category": "3d-cad",
       "status": "pool",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "render-queue",
@@ -1133,7 +1186,9 @@
       "category": "3d-cad",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "lod",
@@ -1156,7 +1211,8 @@
       "status": "pool",
       "primary_model": "local-qwen-9b",
       "fallbacks": [
-        "free-router"
+        "free-router",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1178,7 +1234,8 @@
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
         "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1202,7 +1259,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1224,7 +1282,9 @@
       "category": "data-analytics",
       "status": "active",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "etl",
@@ -1242,7 +1302,9 @@
       "category": "data-analytics",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "pdf",
@@ -1263,7 +1325,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1283,7 +1346,9 @@
       "category": "data-analytics",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "excel",
@@ -1301,7 +1366,9 @@
       "category": "data-analytics",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "jupyter",
@@ -1319,7 +1386,9 @@
       "category": "data-analytics",
       "status": "pool",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "data-validation",
@@ -1336,7 +1405,9 @@
       "category": "data-analytics",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "hypothesis-testing",
@@ -1355,7 +1426,8 @@
       "status": "active",
       "primary_model": "sonnet",
       "fallbacks": [
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "*"
@@ -1376,7 +1448,9 @@
       "category": "ai-ops",
       "status": "pool",
       "primary_model": "free-cron",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "model-health",
@@ -1393,7 +1467,9 @@
       "category": "ai-ops",
       "status": "active",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "*"
       ],
@@ -1412,7 +1488,9 @@
       "category": "ai-ops",
       "status": "pool",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "config-sync",
@@ -1429,7 +1507,9 @@
       "category": "ai-ops",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "log-analysis",
@@ -1446,7 +1526,9 @@
       "category": "ai-ops",
       "status": "pool",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "backup",
@@ -1463,7 +1545,9 @@
       "category": "ai-ops",
       "status": "active",
       "primary_model": "free-web",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "fetch"
       ],
@@ -1482,7 +1566,9 @@
       "category": "ai-ops",
       "status": "pool",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "cron",
@@ -1500,7 +1586,9 @@
       "category": "ai-ops",
       "status": "pool",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "token-tracking",
@@ -1518,7 +1606,8 @@
       "status": "pool",
       "primary_model": "haiku",
       "fallbacks": [
-        "local-qwen-9b"
+        "local-qwen-9b",
+        "sonnet"
       ],
       "mcps": [
         "github"
@@ -1542,7 +1631,8 @@
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
         "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "fetch"
@@ -1564,7 +1654,9 @@
       "category": "market-research",
       "status": "active",
       "primary_model": "free-web",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "fetch"
       ],
@@ -1587,7 +1679,8 @@
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
         "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1610,7 +1703,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1631,7 +1725,9 @@
       "category": "market-research",
       "status": "active",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "fetch"
       ],
@@ -1652,7 +1748,8 @@
       "status": "active",
       "primary_model": "haiku",
       "fallbacks": [
-        "local-qwen-9b"
+        "local-qwen-9b",
+        "sonnet"
       ],
       "mcps": [
         "fetch"
@@ -1673,7 +1770,9 @@
       "category": "market-research",
       "status": "active",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "post-generation",
@@ -1692,7 +1791,9 @@
       "category": "market-research",
       "status": "active",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "content-splitting",
@@ -1710,7 +1811,9 @@
       "category": "market-research",
       "status": "active",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "newsletter",
@@ -1728,7 +1831,9 @@
       "category": "market-research",
       "status": "pool",
       "primary_model": "free-web",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "fetch"
       ],
@@ -1748,7 +1853,8 @@
       "status": "pool",
       "primary_model": "haiku",
       "fallbacks": [
-        "local-qwen-9b"
+        "local-qwen-9b",
+        "sonnet"
       ],
       "mcps": [
         "github"
@@ -1769,7 +1875,9 @@
       "category": "market-research",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "shareable-content",
@@ -1788,7 +1896,8 @@
       "status": "active",
       "primary_model": "haiku",
       "fallbacks": [
-        "local-qwen-9b"
+        "local-qwen-9b",
+        "sonnet"
       ],
       "mcps": [
         "atlassian"
@@ -1814,7 +1923,8 @@
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
         "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "atlassian"
@@ -1842,7 +1952,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "atlassian"
@@ -1864,7 +1975,9 @@
       "category": "jira-pm",
       "status": "active",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "atlassian"
       ],
@@ -1889,7 +2002,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "atlassian"
@@ -1912,7 +2026,9 @@
       "category": "jira-pm",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "atlassian"
       ],
@@ -1931,7 +2047,9 @@
       "category": "jira-pm",
       "status": "pool",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "atlassian"
       ],
@@ -1951,7 +2069,9 @@
       "category": "jira-pm",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "atlassian"
       ],
@@ -1973,7 +2093,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "atlassian"
@@ -1998,7 +2119,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "atlassian"
@@ -2021,7 +2143,9 @@
       "category": "devops",
       "status": "pool",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "docker",
@@ -2041,7 +2165,8 @@
       "primary_model": "llama-3.3-70b-versatile",
       "fallbacks": [
         "qwen/qwen3.6-plus:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github"
@@ -2067,7 +2192,9 @@
       "category": "devops",
       "status": "pool",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "ssl",
@@ -2085,7 +2212,9 @@
       "category": "devops",
       "status": "pool",
       "primary_model": "free-cron",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "uptime",
@@ -2106,7 +2235,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -2128,7 +2258,8 @@
       "status": "pool",
       "primary_model": "haiku",
       "fallbacks": [
-        "local-qwen-9b"
+        "local-qwen-9b",
+        "sonnet"
       ],
       "mcps": [
         "firebase"
@@ -2179,7 +2310,8 @@
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
         "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -2201,7 +2333,8 @@
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
         "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "fetch"
@@ -2223,7 +2356,9 @@
       "category": "research",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "academic",
@@ -2241,7 +2376,9 @@
       "category": "research",
       "status": "active",
       "primary_model": "free-context7",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "context7"
       ],
@@ -2264,7 +2401,8 @@
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
         "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "fetch"
@@ -2286,7 +2424,9 @@
       "category": "research",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "fetch"
       ],
@@ -2305,7 +2445,9 @@
       "category": "research",
       "status": "pool",
       "primary_model": "free-web",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "fetch"
       ],
@@ -2325,7 +2467,9 @@
       "category": "research",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "rag",
@@ -2346,7 +2490,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -2366,7 +2511,9 @@
       "category": "productivity",
       "status": "active",
       "primary_model": "free-gmail-mcp",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "claude_ai_Gmail"
       ],
@@ -2386,7 +2533,9 @@
       "category": "productivity",
       "status": "pool",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "calendar",
@@ -2404,7 +2553,9 @@
       "category": "productivity",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "fetch",
         "claude_ai_Gmail"
@@ -2426,7 +2577,9 @@
       "category": "productivity",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "note-classification",
@@ -2444,7 +2597,9 @@
       "category": "productivity",
       "status": "pool",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "file-cleanup",
@@ -2462,7 +2617,9 @@
       "category": "productivity",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "meeting-notes",
@@ -2481,7 +2638,8 @@
       "status": "pool",
       "primary_model": "sonnet",
       "fallbacks": [
-        "local-qwen-9b"
+        "local-qwen-9b",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -2506,7 +2664,8 @@
       "status": "pool",
       "primary_model": "haiku",
       "fallbacks": [
-        "local-qwen-9b"
+        "local-qwen-9b",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -2528,7 +2687,9 @@
       "category": "marketing-engine",
       "status": "active",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "ab-test",
@@ -2546,7 +2707,9 @@
       "category": "marketing-engine",
       "status": "active",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "ga4",
@@ -2601,7 +2764,8 @@
       "primary_model": "sonnet",
       "model_source": "anthropic",
       "fallbacks": [
-        "nvidia/nemotron-3-super-120b-a12b:free"
+        "nvidia/nemotron-3-super-120b-a12b:free",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -2630,7 +2794,8 @@
       "status": "pool",
       "primary_model": "sonnet",
       "fallbacks": [
-        "local-qwen-9b"
+        "local-qwen-9b",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -2663,7 +2828,8 @@
       "primary_model": "sonnet",
       "fallbacks": [
         "local-qwen-9b",
-        "qwen-3.6-free"
+        "qwen-3.6-free",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -2695,7 +2861,8 @@
       "status": "pool",
       "primary_model": "haiku",
       "fallbacks": [
-        "local-qwen-9b"
+        "local-qwen-9b",
+        "sonnet"
       ],
       "mcps": [
         "fetch"
@@ -2872,7 +3039,9 @@
       "category": "sales-bizdev",
       "status": "pool",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "cost-estimation",
@@ -2892,7 +3061,8 @@
       "status": "pool",
       "primary_model": "haiku",
       "fallbacks": [
-        "local-qwen-9b"
+        "local-qwen-9b",
+        "sonnet"
       ],
       "mcps": [
         "atlassian"
@@ -2915,7 +3085,8 @@
       "status": "pool",
       "primary_model": "sonnet",
       "fallbacks": [
-        "local-qwen-9b"
+        "local-qwen-9b",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -2941,7 +3112,8 @@
       "status": "pool",
       "primary_model": "sonnet",
       "fallbacks": [
-        "local-qwen-9b"
+        "local-qwen-9b",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -2967,7 +3139,8 @@
       "status": "pool",
       "primary_model": "haiku",
       "fallbacks": [
-        "local-qwen-9b"
+        "local-qwen-9b",
+        "sonnet"
       ],
       "mcps": [
         "fetch"
@@ -2990,7 +3163,9 @@
       "category": "market-research",
       "status": "pool",
       "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "fetch"
       ],
@@ -3012,7 +3187,9 @@
       "category": "market-research",
       "status": "pool",
       "primary_model": "free-web",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "fetch"
       ],
@@ -3034,7 +3211,8 @@
       "status": "pool",
       "primary_model": "haiku",
       "fallbacks": [
-        "local-qwen-9b"
+        "local-qwen-9b",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -3056,7 +3234,8 @@
       "status": "pool",
       "primary_model": "haiku",
       "fallbacks": [
-        "local-qwen-9b"
+        "local-qwen-9b",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -3078,7 +3257,8 @@
       "status": "pool",
       "primary_model": "sonnet",
       "fallbacks": [
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "fetch"
@@ -3102,7 +3282,9 @@
       "category": "devops",
       "status": "pool",
       "primary_model": "free-script",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [],
       "capabilities": [
         "load-test",
@@ -3123,7 +3305,9 @@
       "category": "research",
       "status": "pool",
       "primary_model": "free-web",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "fetch",
         "playwright"
@@ -3147,7 +3331,9 @@
       "category": "research",
       "status": "pool",
       "primary_model": "free-web",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "fetch",
         "playwright"
@@ -3171,7 +3357,9 @@
       "category": "research",
       "status": "pool",
       "primary_model": "free-web",
-      "fallbacks": [],
+      "fallbacks": [
+        "sonnet"
+      ],
       "mcps": [
         "fetch"
       ],
@@ -3194,7 +3382,8 @@
       "status": "active",
       "primary_model": "sonnet",
       "fallbacks": [
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "*"
@@ -3231,7 +3420,8 @@
       "status": "active",
       "primary_model": "sonnet",
       "fallbacks": [
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "*"
@@ -3269,7 +3459,8 @@
       "status": "active",
       "primary_model": "sonnet",
       "fallbacks": [
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "*"
@@ -3307,7 +3498,8 @@
       "status": "active",
       "primary_model": "sonnet",
       "fallbacks": [
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "*"
@@ -3388,7 +3580,8 @@
       "output": "project-brief.md",
       "tier": "senior",
       "fallbacks": [
-        "haiku"
+        "haiku",
+        "sonnet"
       ]
     },
     "A15": {
@@ -3410,7 +3603,8 @@
       "output": "tech-decision.md",
       "tier": "senior",
       "fallbacks": [
-        "haiku"
+        "haiku",
+        "sonnet"
       ]
     },
     "F11": {
@@ -3422,7 +3616,8 @@
       "model_source": "groq",
       "fallbacks": [
         "qwen/qwen3.6-plus:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "fetch",
@@ -3458,7 +3653,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -3485,7 +3681,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -3540,7 +3737,8 @@
       "fallbacks": [
         "qwen/qwen3.6-plus:free",
         "llama-3.1-8b-instant",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -3566,7 +3764,8 @@
       "model_source": "openrouter",
       "fallbacks": [
         "llama-3.3-70b-versatile",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github"
@@ -3594,7 +3793,8 @@
       "fallbacks": [
         "qwen/qwen3.6-plus:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "context7"
@@ -3621,7 +3821,8 @@
       "model_source": "openrouter",
       "fallbacks": [
         "llama-3.3-70b-versatile",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github"
@@ -3649,7 +3850,8 @@
       "primary_model": "qwen/qwen3.6-plus:free",
       "model_source": "openrouter",
       "fallbacks": [
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -3681,7 +3883,8 @@
       "fallbacks": [
         "qwen/qwen3.6-plus:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "fetch",
@@ -3712,7 +3915,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github"
@@ -3742,7 +3946,8 @@
       "primary_model": "nvidia/nemotron-3-nano-30b-a3b:free",
       "model_source": "openrouter",
       "fallbacks": [
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github"
@@ -3771,7 +3976,8 @@
       "primary_model": "nvidia/nemotron-3-nano-30b-a3b:free",
       "model_source": "openrouter",
       "fallbacks": [
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github"
@@ -3801,7 +4007,8 @@
       "primary_model": "nvidia/nemotron-nano-12b-v2-vl:free",
       "model_source": "openrouter",
       "fallbacks": [
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github"
@@ -3859,7 +4066,8 @@
       "primary_model": "minimax/minimax-m2.5:free",
       "model_source": "openrouter",
       "fallbacks": [
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github"
@@ -3919,7 +4127,8 @@
       "fallbacks": [
         "qwen/qwen3.6-plus:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -3944,7 +4153,8 @@
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
         "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -4003,7 +4213,8 @@
       "model_source": "openrouter",
       "fallbacks": [
         "qwen/qwen3.6-plus:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github"
@@ -4035,7 +4246,8 @@
       "primary_model": "qwen/qwen3.6-plus:free",
       "model_source": "openrouter",
       "fallbacks": [
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github"
@@ -4131,7 +4343,8 @@
       "model_source": "anthropic",
       "fallbacks": [
         "nvidia/nemotron-3-super-120b-a12b:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -4168,7 +4381,8 @@
       "model_source": "anthropic",
       "fallbacks": [
         "qwen/qwen3.6-plus:free",
-        "haiku"
+        "haiku",
+        "sonnet"
       ],
       "mcps": [
         "github",
