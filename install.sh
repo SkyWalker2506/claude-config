@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-# claude-config installer — cross-platform (macOS + Windows/Git Bash)
+# claude-config installer — cross-platform (macOS + Windows/Git Bash)dev
 # Usage:
 #   ./install.sh                    # interactive (asks questions)
 #   ./install.sh --auto             # non-interactive (defaults, no prompts)
@@ -652,6 +652,7 @@ claude-free() {
 
 alias claude-bypass='claude --model claude-sonnet-4-6 --dangerously-skip-permissions'
 function clb() { cl_bypass "$@"; }
+function clhq() { cd ~/Projects/ClaudeHQ && claude --model claude-sonnet-4-6 --dangerously-skip-permissions "$@"; }
 alias plugin-update='bash ~/Projects/claude-config/config/plugin-update.sh'
 
 claude-local() {

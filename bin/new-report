@@ -1,0 +1,84 @@
+#!/bin/bash
+# new-report — Create a new report from template
+# Usage: new-report "Title" [--priority high|medium|low|critical] [--source "description"]
+# Creates: Reports/NNN_slugified_title.md
+
+set -euo pipefail
+
+REPORTS_DIR="$HOME/Projects/claude-config/Reports"
+PROCESSED_DIR="$REPORTS_DIR/Processed"
+TEMPLATE="$REPORTS_DIR/TEMPLATE.md"
+
+# ── Parse args ──
+TITLE=""
+PRIORITY="Medium"
+SOURCE="manual"
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --priority|-p)
+      shift
+      PRIORITY="${1:-Medium}"
+      # Capitalize first letter
+      PRIORITY="$(echo "$PRIORITY" | awk '{print toupper(substr($0,1,1)) tolower(substr($0,2))}')"
+      ;;
+    --source|-s)
+      shift
+      SOURCE="${1:-manual}"
+      ;;
+    -*)
+      echo "Unknown flag: $1" >&2
+      echo "Usage: new-report \"Title\" [--priority high|medium|low|critical] [--source \"description\"]" >&2
+      exit 1
+      ;;
+    *)
+      TITLE="$1"
+      ;;
+  esac
+  shift
+done
+
+if [ -z "$TITLE" ]; then
+  echo "Usage: new-report \"Title\" [--priority high|medium|low|critical] [--source \"description\"]" >&2
+  exit 1
+fi
+
+# ── Calculate next NNN ──
+max_num=0
+for dir in "$REPORTS_DIR" "$PROCESSED_DIR"; do
+  [ -d "$dir" ] || continue
+  for f in "$dir"/*.md; do
+    [ -f "$f" ] || continue
+    fname="$(basename "$f")"
+    num="$(echo "$fname" | grep -oE '^[0-9]+' || true)"
+    if [ -n "$num" ] && [ "$num" -gt "$max_num" ] 2>/dev/null; then
+      max_num="$num"
+    fi
+  done
+done
+next_num=$(( max_num + 1 ))
+nnn="$(printf '%03d' "$next_num")"
+
+# ── Slugify title ──
+slug="$(echo "$TITLE" | tr '[:upper:]' '[:lower:]' | tr ' ' '_' | tr -cd 'a-z0-9_-')"
+filename="${nnn}_${slug}.md"
+filepath="$REPORTS_DIR/$filename"
+
+# ── Check template exists ──
+if [ ! -f "$TEMPLATE" ]; then
+  echo "Error: Template not found at $TEMPLATE" >&2
+  exit 1
+fi
+
+# ── Generate report ──
+TODAY="$(date +%Y-%m-%d)"
+
+sed -e "s/NNN/$nnn/g" \
+    -e "s/\[Title\]/$TITLE/g" \
+    -e "s/YYYY-MM-DD/$TODAY/g" \
+    -e "s/\[Critical | High | Medium | Low\]/$PRIORITY/g" \
+    -e "s|\[Where this report came from.*\]|$SOURCE|g" \
+    "$TEMPLATE" > "$filepath"
+
+echo "✅ Report created: $filepath"
+echo "   Edit it, then start a new Claude session to trigger processing."

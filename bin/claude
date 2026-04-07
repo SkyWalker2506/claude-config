@@ -1,8 +1,33 @@
 #!/bin/bash
-# Claude wrapper — supports 'bypass' as first arg
+# Claude wrapper
+# - 'bypass' arg: skip permissions
+# - No user args + pending reports → inject report processing prompt
 REAL="$HOME/.local/bin/claude"
+
+_inject_if_pending() {
+  # Only inject when called with no positional args (interactive open)
+  local pending
+  pending="$(bash "$HOME/Projects/claude-config/config/reports-pending-arg.sh" 2>/dev/null)"
+  if [ -n "$pending" ]; then
+    echo "$pending"
+  fi
+}
+
 if [ "${1}" = "bypass" ]; then
-  shift; exec "$REAL" --dangerously-skip-permissions --model claude-sonnet-4-6 "$@"
+  shift
+  pending="$(_inject_if_pending)"
+  if [ -n "$pending" ]; then
+    exec "$REAL" --dangerously-skip-permissions --model claude-sonnet-4-6 "$pending" "$@"
+  else
+    exec "$REAL" --dangerously-skip-permissions --model claude-sonnet-4-6 "$@"
+  fi
+elif [ $# -eq 0 ]; then
+  pending="$(_inject_if_pending)"
+  if [ -n "$pending" ]; then
+    exec "$REAL" "$pending"
+  else
+    exec "$REAL"
+  fi
 else
   exec "$REAL" "$@"
 fi

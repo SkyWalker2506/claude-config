@@ -192,6 +192,63 @@ repo yapisi → paket yoneticisi → bagimliliklar → .env.example → calistir
 - Mantikli varsayimlarla ilerle; her adimda sorma
 - `.claudeignore` yoksa → `~/Projects/claude-config/templates/claudeignore.template` kopyala
 
+#### 8h. Rapor işleme protokolü
+
+> Raporlar `~/Projects/claude-config/Reports/` altinda `.md` dosyalari olarak bulunur.
+> Hook: `config/reports_check.sh` → SessionStart'ta `REPORTS_PENDING` sinyali uretir.
+
+**Rapor yasam dongusu:** `UNPROCESSED → IN_PROGRESS → DONE → Processed/`
+
+**REPORTS_PENDING sinyali geldiginde — ZORUNLU ilk yanit akisi:**
+
+**Adim 0 — Proaktif bildirim (kullanicinin ilk mesajina verilen yanit basinda):**
+Kullanici ne yazarsa yazsin, yanit basina ekle:
+
+```
+📋 N rapor bekliyor:
+  • [HIGH] 001_dosya_adi.md — [raporu okuyup 1 cumle ozet yaz]
+  Aksiyonlar: [Required Actions tablosundaki madde sayisi] degisiklik
+
+Uygulayayim mi? (Evet / Hayir / Sonraki oturuma birak)
+```
+
+Kullanici "evet" / "uygula" / "hayata gecir" → Adim 1'e gec.
+Kullanici "hayir" / "atlat" / "sonra" → UNPROCESSED birak, konuya devam et.
+Kullanici baska bir konudan devam ederse → sormadan sor, asla otomatik isleme.
+
+**Adim 1 — Raporu oku ve onizleme goster:**
+```
+Rapor: 001_dosya_adi.md ([HIGH], [tarih])
+Yapilacaklar:
+  1. projects/XXX.md §2 — [ne degisecek]
+  2. agents/YYY.md — [ne degisecek]
+  3. config/ZZZ.sh — [ne degisecek]
+Hayata gecireyim mi?
+```
+
+**Adim 2 — Onay geldikten sonra isle:**
+1. `Status: IN_PROGRESS` olarak guncelle
+2. Her aksiyonu sirayla uygula:
+   - Hedef dosya var mi kontrol et
+   - Degisikligi yap
+   - Basarisizsa notu rapor altina ekle, sonraki aksiyona gec
+3. Tum aksiyonlar bittikten sonra:
+   - `Status: DONE` olarak guncelle
+   - `REPORTS_SUMMARY.md` tablosuna yeni satir ekle: `| N | dosya.md | tarih | oncelik | 1 cumle ozet |`
+   - Dosyayi `Reports/Processed/` klasorune tasi
+4. Kullaniciya bildir: "X rapor islendi, Y dosya degisti. [Degistirilen dosyalar listesi]"
+
+**Ozel durumlar:**
+
+| Durum | Aksiyon |
+|-------|---------|
+| `REPORTS_STALE` sinyali | Crash recovery — raporu oku, hangi aksiyonlar uygulanmis kontrol et, kalindan devam et |
+| Hedef dosya bulunamadi | Aksiyonu atla, nota yaz, sonrakine gec |
+| Kullanici "isleme" / "atla" derse | UNPROCESSED birak |
+| 5+ rapor bekliyor | Once Critical/High — token butcesi asarsa geri kalanini sonraki oturuma birak |
+
+**Rapor olusturma:** `Reports/TEMPLATE.md` sablonunu kullan. Dosya adi: `NNN_kisa_baslik.md` (NNN = siradaki numara).
+
 ### 9. Task Discipline & Watchdog
 
 #### 9a. Gorev basinda — Plan (zorunlu)
@@ -329,14 +386,30 @@ Sıradan soru-cevap, trivial değişiklikler → ders çıkarmaya gerek yok.
 1. Oturumda öğrenilen 1-3 şeyi belirle
 2. Her ders için memory sistemine `feedback` tipi dosya yaz
 3. `~/Projects/.watchdog/feedback.jsonl`'e JSON satırı ekle
-4. Kullanıcıya kısa blok göster:
+4. **Ders claude-config'de bir degisiklik gerektiriyorsa** → otomatik rapor olustur:
+   - `bin/new-report "Ders konusu" --priority medium --source "session learning"` calistir
+   - Olusturulan raporu doldur: Context = ne oldu, Required Actions = neyin degismesi gerekiyor
+   - Bu rapor sonraki oturumda `REPORTS_PENDING` sinyaliyle gorunecek
+5. Kullanıcıya kısa blok göster:
 
 ```
 📋 Bu oturumdan dersler:
 - [ders 1]
 - [ders 2]
 Kaydedildi → memory/feedback_xxx.md
+[varsa: 📝 Rapor olusturuldu → Reports/NNN_konu.md]
 ```
+
+**Hangi dersler rapor uretir:**
+- CLAUDE.md, skill, agent taniminda duzeltme gereken bir sey kesfedildi
+- Hook veya script'te bug/eksiklik bulundu
+- Kullanici bir sistematik sorunu bildirdi (tek seferlik hata degil, yapisal sorun)
+- Yeni bir otomasyon firsati gorundu (tekrar eden manuel is)
+
+**Hangi dersler sadece memory'ye gider:**
+- Proje-spesifik teknik bilgi
+- Kullanici tercihleri
+- Gecici/tek seferlik cozumler
 
 #### Memory dosyasi formati
 

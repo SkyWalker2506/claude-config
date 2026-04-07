@@ -1,7 +1,20 @@
 #!/bin/bash
 MODEL="${CLAUDE_FREE_MODEL:-openrouter/qwen/qwen3.6-free}"
+REAL="$HOME/.local/bin/claude"
+
+pending="$(bash "$HOME/Projects/claude-config/config/reports-pending-arg.sh" 2>/dev/null)"
+
 if [ "${1}" = "bypass" ]; then
-  shift; exec claude --model "$MODEL" --dangerously-skip-permissions "$@"
+  shift
+  if [ -n "$pending" ] && [ $# -eq 0 ]; then
+    exec "$REAL" --model "$MODEL" --dangerously-skip-permissions "$pending" "$@"
+  else
+    exec "$REAL" --model "$MODEL" --dangerously-skip-permissions "$@"
+  fi
 else
-  exec claude --model "$MODEL" --dangerously-skip-permissions "$@"
+  if [ -n "$pending" ] && [ $# -eq 0 ]; then
+    exec "$REAL" --model "$MODEL" --dangerously-skip-permissions "$pending"
+  else
+    exec "$REAL" --model "$MODEL" --dangerously-skip-permissions "$@"
+  fi
 fi
