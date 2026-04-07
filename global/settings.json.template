@@ -40,7 +40,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo 'AUTOPLAN: Oturum basliyor. Ilk kullanici mesajini almadan ONCE EnterPlanMode tool ile plan moduna gir.'"
+            "command": "MODEL=$(jq -r '.model // \"claude-sonnet-4-6\"' ~/.claude/settings.json 2>/dev/null); if echo \"$MODEL\" | grep -q 'free\\|qwen\\|nemotron\\|groq\\|llama\\|minimax'; then EMOJI='🆓'; elif echo \"$MODEL\" | grep -q 'haiku'; then EMOJI='💛'; elif echo \"$MODEL\" | grep -q 'opus'; then EMOJI='🔴'; else EMOJI='🔶'; fi; echo \"JARVIS_MODEL: $MODEL $EMOJI\""
           },
           {
             "type": "command",
@@ -214,5 +214,5 @@
       }
     }
   },
-  "model": "claude-sonnet-4-6"
+  "model": "openrouter/qwen/qwen3.6-plus:free"
 }
