@@ -40,7 +40,21 @@
 free/local → haiku → sonnet → opus
 ```
 
-Kolay/orta task'larda ücretli modele geçme — önce free/local dene.
+**⚡ Varsayılan: HER ZAMAN free model ile başla.**
+
+| Durum | Kural |
+|-------|-------|
+| Yeni session başı | Free model ile çalış — sormadan ücretli başlatma |
+| Free model yetersiz kalırsa | Kullanıcıya sor: "Bu iş için [Sonnet/Opus] gerekiyor, geçelim mi?" |
+| Kullanıcı açıkça isterse | O modele geç (onay alındı sayılır) |
+| Task açıkça çok karmaşıksa | "Bu task [Sonnet] gerektiriyor — onaylıyor musun?" diye sor |
+| Sub-agent dispatch | Tier = junior/mid → free; tier = senior/lead → kullanıcıya sor |
+
+**Ücretli modele geçiş kriterleri (sormadan ASLA geçme):**
+- 1000+ satır kod üretimi / büyük refactor
+- Güvenlik/mimari karar
+- Karmaşık multi-step ajan işi (3+ bağımlı adım)
+- Kullanıcı "daha iyi model" / "opus" / "sonnet" derse
 
 | Model | Maliyet | Ne zaman |
 |-------|---------|----------|
