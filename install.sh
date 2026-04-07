@@ -580,7 +580,7 @@ unset _SECRETS
 # Claude Code env — flicker fix (experimental renderer, mouse support)
 export CLAUDE_CODE_NO_FLICKER=1
 
-# cl: Claude Code proje secici | claude-free: OpenCode Zen (gpt-5-nano) | claude-local: Ollama
+# cl: Claude Code proje secici | claude-free: free model + bypass | claude-local: Ollama
 function cl() {
   if [ "${1}" = "bypass" ]; then shift; cl_bypass "$@"; return; fi
   local projects_dir="$HOME/Projects"
@@ -650,59 +650,31 @@ function cl_bypass() {
   )
   [ -z "$selected" ] && return
   local dir=$(echo "$selected" | sed 's/ *\[.*$//' | sed 's/ *$//')
-  # cl bypass → free model + skip permissions
+  # cl bypass → settings.json modeli + skip permissions
   cd "$projects_dir/$dir" && _claude_bin --dangerously-skip-permissions
 }
 
 # Gerçek claude binary'sine doğrudan erişim (fonksiyon döngüsünü önler)
 function _claude_bin() {
+  # Secrets henüz export edilmemişse yükle (yeni terminal olmadan çağrıldığında)
+  if [ -z "$OPENROUTER_API_KEY" ]; then
+    local _s="$HOME/.claude/secrets/secrets.env"
+    [ -f "$_s" ] && set -a && source "$_s" && set +a
+  fi
   local _real="$HOME/.local/bin/claude"
   [ -x "$_real" ] || _real="$(command -v claude 2>/dev/null || echo claude)"
   "$_real" "$@"
 }
 
-# claude → her zaman free model (settings.json override + API key env'den gelir)
-function claude() {
-  local _free_model="${CLAUDE_FREE_MODEL:-openrouter/qwen/qwen3.6-plus:free}"
-  # Eğer kullanıcı --model geçmişse ona dokunma; geçmemişse free model ekle
-  local _has_model=0
-  for _arg in "$@"; do
-    [ "$_arg" = "--model" ] && _has_model=1 && break
-    [[ "$_arg" == --model=* ]] && _has_model=1 && break
-  done
-  if [ "$_has_model" = "0" ]; then
-    _claude_bin --model "$_free_model" "$@"
-  else
-    _claude_bin "$@"
-  fi
-}
+# claude → her zaman settings.json modeli
+function claude() { _claude_bin "$@"; }
 
-# claude-free → free model + bypass permissions (explicit)
-claude-free() {
-  local _free_model="${CLAUDE_FREE_MODEL:-openrouter/qwen/qwen3.6-plus:free}"
-  _claude_bin --model "$_free_model" --dangerously-skip-permissions "$@"
-}
-
-# claude-bypass → free model + bypass permissions
-function claude-bypass() {
-  local _free_model="${CLAUDE_FREE_MODEL:-openrouter/qwen/qwen3.6-plus:free}"
-  _claude_bin --model "$_free_model" --dangerously-skip-permissions "$@"
-}
-function clb() { cl_bypass "$@"; }
-function clhq() { cd ~/Projects/ClaudeHQ && claude --dangerously-skip-permissions "$@"; }
+# cl bypass zaten var — kısayollar
+function clhq() { cd ~/Projects/ClaudeHQ && _claude_bin --dangerously-skip-permissions "$@"; }
 alias plugin-update='bash ~/Projects/claude-config/config/plugin-update.sh'
-
-claude-local() {
-  if ! command -v opencode &>/dev/null; then
-    echo "opencode bulunamadi. Kur: npm install -g opencode-ai veya ~/Projects/claude-config/./install.sh --opencode"
-    return 1
-  fi
-  (( $# )) || set -- .
-  opencode -m ollama/qwen2.5-coder:7b "$@"
-}
 # __CLAUDE_CONFIG_SHELL_BLOCK_END__
 CLEOF
-echo "✅ Shell: cl, claude-free, claude-local → $SHELL_RC"
+echo "✅ Shell: cl, claude, clhq → $SHELL_RC"
 
 # ── Phase 8: Local Models (Ollama) ──
 setup_ollama() {

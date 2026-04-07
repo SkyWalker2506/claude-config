@@ -18,25 +18,25 @@
       "default": "sonnet",
       "on_error": "local-qwen-9b",
       "on_timeout_5s": "local-qwen-9b",
-      "on_rate_limit": "nemotron-120b-free",
+      "on_rate_limit": "gpt-oss-20b-free",
       "on_low_quality": "qwen-3.6-plus-free",
       "on_all_fail": "local-qwen-9b"
     },
     "light-work": {
       "default": "haiku",
-      "on_error": "local-gemma-9b",
-      "on_timeout_3s": "local-gemma-9b",
-      "on_rate_limit": "local-qwen-9b",
+      "on_error": "gpt-oss-20b-free",
+      "on_timeout_3s": "local-qwen-9b",
+      "on_rate_limit": "groq-llama-70b",
       "on_low_quality": "haiku",
-      "on_all_fail": "local-gemma-9b"
+      "on_all_fail": "local-qwen-9b"
     },
     "research": {
       "default": "local-qwen-9b",
       "on_error": "qwen-3.6-plus-free",
-      "on_timeout_5s": "local-gemma-9b",
+      "on_timeout_5s": "groq-llama-70b",
       "on_rate_limit": "gpt-oss-120b-free",
-      "on_low_quality": "nemotron-120b-free",
-      "on_all_fail": "local-qwen-9b"
+      "on_low_quality": "gpt-oss-120b-free",
+      "on_all_fail": "gpt-oss-20b-free"
     },
     "script-cron": {
       "default": "local-qwen-9b",
@@ -52,15 +52,15 @@
     },
     "marketing": {
       "default": "local-qwen-9b",
-      "on_error": "qwen-3.6-free",
-      "on_low_quality": "haiku",
-      "on_rate_limit": "local-gemma-9b",
+      "on_error": "qwen-3.6-plus-free",
+      "on_low_quality": "groq-llama-70b",
+      "on_rate_limit": "gpt-oss-20b-free",
       "on_all_fail": "haiku"
     },
     "emergency": {
       "default": "sonnet",
       "on_error": "local-qwen-9b",
-      "on_timeout_3s": "local-gemma-9b",
+      "on_timeout_3s": "gpt-oss-20b-free",
       "on_all_fail": "alert_user"
     },
     "sales": {
@@ -89,13 +89,15 @@
     },
     "qwen-3.6-free": {
       "type": "openrouter",
-      "id": "qwen/qwen3.6-free",
-      "tier": "free"
+      "id": "qwen/qwen3.6-plus:free",
+      "tier": "free",
+      "note": "alias for qwen-3.6-plus-free"
     },
     "free-router": {
       "type": "openrouter",
-      "id": "openrouter/auto",
-      "tier": "free"
+      "id": "qwen/qwen3.6-plus:free",
+      "tier": "free",
+      "note": "default free OpenRouter — qwen3.6-plus"
     },
     "local-qwen-9b": {
       "type": "ollama",
@@ -111,7 +113,20 @@
     },
     "local-gemma-9b": {
       "type": "ollama",
-      "id": "gemma4:9b",
+      "id": "qwen2.5-coder:7b",
+      "tier": "local",
+      "device": "mac",
+      "note": "gemma4:9b yüklü değil — qwen2.5-coder:7b ile değiştirildi"
+    },
+    "local-qwen-coder-7b": {
+      "type": "ollama",
+      "id": "qwen2.5-coder:7b",
+      "tier": "local",
+      "device": "mac"
+    },
+    "local-deepseek-coder": {
+      "type": "ollama",
+      "id": "deepseek-coder:6.7b",
       "tier": "local",
       "device": "mac"
     },
@@ -120,15 +135,45 @@
       "id": "qwen/qwen3.6-plus:free",
       "tier": "free"
     },
-    "nemotron-120b-free": {
-      "type": "openrouter",
-      "id": "nvidia/nemotron-3-super-120b-a12b:free",
-      "tier": "free"
-    },
     "gpt-oss-120b-free": {
       "type": "openrouter",
       "id": "openai/gpt-oss-120b:free",
       "tier": "free"
+    },
+    "gpt-oss-20b-free": {
+      "type": "openrouter",
+      "id": "openai/gpt-oss-20b:free",
+      "tier": "free",
+      "note": "hızlı, hafif görevler için"
+    },
+    "groq-llama-70b": {
+      "type": "groq",
+      "id": "llama-3.3-70b-versatile",
+      "tier": "free"
+    },
+    "hf-llama-8b": {
+      "type": "huggingface",
+      "id": "meta-llama/Llama-3.1-8B-Instruct",
+      "tier": "free",
+      "endpoint": "https://router.huggingface.co/v1/chat/completions"
+    },
+    "gemini-flash": {
+      "type": "google",
+      "id": "gemini-2.0-flash",
+      "tier": "free"
+    },
+    "free-gemini": {
+      "type": "google",
+      "id": "gemini-2.0-flash",
+      "tier": "free",
+      "note": "alias for gemini-flash"
+    },
+    "nemotron-120b-free": {
+      "type": "openrouter",
+      "id": "nvidia/nemotron-3-super-120b-a12b:free",
+      "tier": "free",
+      "status": "degraded",
+      "note": "instruction following bozuk — kullanma"
     }
   },
   "on_exhausted": "alert",

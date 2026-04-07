@@ -1,0 +1,69 @@
+#!/bin/bash
+# Free Model Proxy — LiteLLM based
+# Starts a local proxy that translates Anthropic API → OpenRouter free models
+# Usage: free-proxy start|stop|status|restart
+
+PORT=4123
+PID_FILE="/tmp/claude-free-proxy.pid"
+LOG_FILE="/tmp/claude-free-proxy.log"
+CONFIG="$HOME/Projects/claude-config/config/litellm-config.yaml"
+SECRETS="$HOME/.claude/secrets/secrets.env"
+
+_load_secrets() {
+  [ -f "$SECRETS" ] && set -a && source "$SECRETS" && set +a
+}
+
+_is_running() {
+  [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null
+}
+
+start() {
+  if _is_running; then
+    echo "Proxy already running (PID $(cat "$PID_FILE")) on port $PORT"
+    return 0
+  fi
+  _load_secrets
+  if [ -z "$OPENROUTER_API_KEY" ]; then
+    echo "ERROR: OPENROUTER_API_KEY not set. Check $SECRETS"
+    return 1
+  fi
+  echo "Starting free-proxy on port $PORT..."
+  nohup litellm --config "$CONFIG" --port "$PORT" > "$LOG_FILE" 2>&1 &
+  echo $! > "$PID_FILE"
+  # Wait for proxy to be ready
+  for i in $(seq 1 15); do
+    if curl -s "http://localhost:$PORT/health" >/dev/null 2>&1; then
+      echo "Proxy ready (PID $(cat "$PID_FILE"))"
+      return 0
+    fi
+    sleep 1
+  done
+  echo "WARNING: Proxy started but health check timed out. Check $LOG_FILE"
+}
+
+stop() {
+  if _is_running; then
+    kill "$(cat "$PID_FILE")" 2>/dev/null
+    rm -f "$PID_FILE"
+    echo "Proxy stopped"
+  else
+    echo "Proxy not running"
+    rm -f "$PID_FILE"
+  fi
+}
+
+status() {
+  if _is_running; then
+    echo "Running (PID $(cat "$PID_FILE")) on port $PORT"
+  else
+    echo "Not running"
+  fi
+}
+
+case "${1:-start}" in
+  start)   start ;;
+  stop)    stop ;;
+  status)  status ;;
+  restart) stop; sleep 1; start ;;
+  *)       echo "Usage: free-proxy [start|stop|status|restart]" ;;
+esac

@@ -1,0 +1,167 @@
+{
+  "_info": {
+    "description": "Model sağlık ve performans skorları. /hi-test her çalıştığında güncellenir.",
+    "scoring": {
+      "method": "rolling average — toplam tests_passed / tests_run",
+      "scale": "0-100",
+      "skip_rule": "skip_reason varsa skora dahil edilmez"
+    },
+    "thresholds": {
+      "retire": 30,
+      "warn": 60,
+      "healthy": 80
+    }
+  },
+  "models": {
+    "openrouter/qwen/qwen3.6-plus:free": {
+      "score": 100, "tests_run": 3, "tests_passed": 3,
+      "last_tested": "2026-04-07", "last_status": "ok",
+      "provider": "openrouter", "category": "llm-general"
+    },
+    "openrouter/openai/gpt-oss-120b:free": {
+      "score": 67, "tests_run": 3, "tests_passed": 2,
+      "last_tested": "2026-04-07", "last_status": "ok",
+      "provider": "openrouter", "category": "llm-general",
+      "notes": "Tutarsız — bazen rate limit"
+    },
+    "openrouter/openai/gpt-oss-20b:free": {
+      "score": 33, "tests_run": 3, "tests_passed": 1,
+      "last_tested": "2026-04-07", "last_status": "fail",
+      "provider": "openrouter", "category": "llm-general",
+      "notes": "Sık rate limit — upstream provider sorunu"
+    },
+    "openrouter/nvidia/nemotron-3-super-120b-a12b:free": {
+      "score": 20, "tests_run": 3, "tests_passed": 1,
+      "last_tested": "2026-04-07", "last_status": "fail",
+      "provider": "openrouter", "category": "llm-general",
+      "notes": "Instruction following bozuk — system prompt ile de düzelmiyor, kendi iç monologunu döndürüyor"
+    },
+    "openrouter/meta-llama/llama-3.3-70b-instruct:free": {
+      "score": 0, "tests_run": 3, "tests_passed": 0,
+      "last_tested": "2026-04-07", "last_status": "fail",
+      "provider": "openrouter", "category": "llm-general",
+      "notes": "Upstream rate-limited — kalıcı sorun"
+    },
+    "openrouter/google/gemma-3-27b-it:free": {
+      "score": 67, "tests_run": 3, "tests_passed": 2,
+      "last_tested": "2026-04-07", "last_status": "ok",
+      "provider": "openrouter", "category": "llm-general",
+      "notes": "Tutarsız — bazen rate limit"
+    },
+    "openrouter/qwen/qwen3-coder:free": {
+      "score": 0, "tests_run": 3, "tests_passed": 0,
+      "last_tested": "2026-04-07", "last_status": "fail",
+      "provider": "openrouter", "category": "llm-code",
+      "notes": "Upstream rate-limited — kalıcı sorun"
+    },
+    "groq/llama-3.3-70b-versatile": {
+      "score": 100, "tests_run": 3, "tests_passed": 3,
+      "last_tested": "2026-04-07", "last_status": "ok",
+      "provider": "groq", "category": "llm-general"
+    },
+    "groq/qwen/qwen3-32b": {
+      "score": 100, "tests_run": 2, "tests_passed": 2,
+      "last_tested": "2026-04-07", "last_status": "ok",
+      "provider": "groq", "category": "llm-general",
+      "notes": "<think> bloğu ekliyor — reasoning modu"
+    },
+    "groq/moonshotai/kimi-k2-instruct": {
+      "score": 100, "tests_run": 1, "tests_passed": 1,
+      "last_tested": "2026-04-07", "last_status": "ok",
+      "provider": "groq", "category": "llm-general",
+      "notes": "1M context — uzun belge analizi için güçlü"
+    },
+    "groq/meta-llama/llama-4-scout-17b-16e-instruct": {
+      "score": 100, "tests_run": 1, "tests_passed": 1,
+      "last_tested": "2026-04-07", "last_status": "ok",
+      "provider": "groq", "category": "llm-multimodal"
+    },
+    "groq/whisper-large-v3": {
+      "score": null, "tests_run": 0, "tests_passed": 0,
+      "last_tested": null, "last_status": "skip",
+      "provider": "groq", "category": "speech-to-text",
+      "notes": "Audio transkripsiyon — farklı test gerekir"
+    },
+    "groq/canopylabs/orpheus-v1-english": {
+      "score": null, "tests_run": 0, "tests_passed": 0,
+      "last_tested": null, "last_status": "skip",
+      "provider": "groq", "category": "text-to-speech",
+      "notes": "TTS — farklı test gerekir"
+    },
+    "google/gemini-2.0-flash": {
+      "score": 90, "tests_run": 3, "tests_passed": 3,
+      "last_tested": "2026-04-07", "last_status": "ok",
+      "provider": "google", "category": "llm-general",
+      "notes": "429 quota — key geçerli, free tier rate limit"
+    },
+    "hf/meta-llama/Llama-3.1-8B-Instruct": {
+      "score": 100, "tests_run": 3, "tests_passed": 3,
+      "last_tested": "2026-04-07", "last_status": "ok",
+      "provider": "huggingface", "category": "llm-general"
+    },
+    "hf/deepseek-ai/DeepSeek-R1": {
+      "score": 30, "tests_run": 2, "tests_passed": 1,
+      "last_tested": "2026-04-07", "last_status": "fail",
+      "provider": "huggingface", "category": "llm-reasoning",
+      "notes": "API yanıt veriyor ama content boş — reasoning sadece 'reasoning' alanında, content değil. Farklı parse gerekir."
+    },
+    "hf/google/gemma-4-31B-it": {
+      "score": 100, "tests_run": 2, "tests_passed": 2,
+      "last_tested": "2026-04-07", "last_status": "ok",
+      "provider": "huggingface", "category": "llm-general"
+    },
+    "cerebras/llama3.1-8b": {
+      "score": 100, "tests_run": 1, "tests_passed": 1,
+      "last_tested": "2026-04-07", "last_status": "ok",
+      "provider": "cerebras", "category": "llm-general",
+      "notes": "Ultra hızlı inference"
+    },
+    "cerebras/qwen-3-235b-a22b-instruct-2507": {
+      "score": 100, "tests_run": 1, "tests_passed": 1,
+      "last_tested": "2026-04-07", "last_status": "ok",
+      "provider": "cerebras", "category": "llm-general",
+      "notes": "235B Qwen3 — en güçlü free model"
+    },
+    "together/inference": {
+      "score": null, "tests_run": 0, "tests_passed": 0,
+      "last_tested": "2026-04-07", "last_status": "skip",
+      "skip_reason": "invalid_key",
+      "provider": "together", "category": "llm-general",
+      "notes": "Key geçersiz — https://api.together.ai/settings/api-keys'den yenile"
+    },
+    "local/qwen3.5:9b": {
+      "score": 100, "tests_run": 3, "tests_passed": 3,
+      "last_tested": "2026-04-07", "last_status": "ok",
+      "provider": "ollama", "category": "llm-general",
+      "notes": "İlk yüklenme ~4s"
+    },
+    "local/qwen2.5-coder:7b": {
+      "score": 100, "tests_run": 3, "tests_passed": 3,
+      "last_tested": "2026-04-07", "last_status": "ok",
+      "provider": "ollama", "category": "llm-code",
+      "notes": "İlk yüklenme ~4s"
+    },
+    "local/deepseek-coder:6.7b": {
+      "score": 100, "tests_run": 3, "tests_passed": 3,
+      "last_tested": "2026-04-07", "last_status": "ok",
+      "provider": "ollama", "category": "llm-code"
+    },
+    "tavily/search": {
+      "score": 100, "tests_run": 1, "tests_passed": 1,
+      "last_tested": "2026-04-07", "last_status": "ok",
+      "provider": "tavily", "category": "web-search"
+    },
+    "serper/search": {
+      "score": null, "tests_run": 0, "tests_passed": 0,
+      "last_tested": null, "last_status": "skip",
+      "skip_reason": "no_api_key",
+      "provider": "serper", "category": "web-search"
+    },
+    "firecrawl/scrape": {
+      "score": null, "tests_run": 0, "tests_passed": 0,
+      "last_tested": null, "last_status": "skip",
+      "skip_reason": "no_api_key",
+      "provider": "firecrawl", "category": "web-scraping"
+    }
+  }
+}

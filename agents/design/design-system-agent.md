@@ -2,7 +2,7 @@
 id: D2
 name: Design System Agent
 category: design
-primary_model: free-gemini
+primary_model: gemini-flash
 fallbacks: [local-qwen-9b, haiku]
 capabilities: [color, typography, spacing, design-tokens, tailwind, shadcn, radix, css-variables, dark-mode]
 max_tool_calls: 15

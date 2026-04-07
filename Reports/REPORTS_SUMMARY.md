@@ -36,3 +36,4 @@ Her oturum başında:
 | # | Dosya | Tarih | Öncelik | Özet |
 |---|-------|-------|---------|------|
 | 1 | 001_project_analysis_system_gaps.md | 2026-04-07 | HIGH | Lead "dispatches" belirsizliği giderildi; §4'e model mapping eklendi; D1 → free-gemini; gemini-call.sh wrapper oluşturuldu; SKILL.md'ye §2/§4/§5 okuma zorunluluğu eklendi |
+| 2 | 002_free_model_openrouter_routing.md | 2026-04-07 | CRITICAL | Claude Code artık custom model ID kabul ediyor — rapordaki sorun çözülmüş. `_claude-env` zaten silinmiş, `bin/claude` temiz, `.zshrc` routing düzgün çalışıyor. Ek aksiyon gerekmedi. |

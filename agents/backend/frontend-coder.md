@@ -2,7 +2,7 @@
 id: B3
 name: Frontend Coder
 category: backend
-primary_model: free-gemini
+primary_model: gemini-flash
 fallbacks: [local-qwen-9b, sonnet]
 mcps: [github, git, context7]
 capabilities: [react, flutter, ui, components, tailwind]

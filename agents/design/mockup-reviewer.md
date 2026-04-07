@@ -2,7 +2,7 @@
 id: D8
 name: Mockup Reviewer
 category: design
-primary_model: free-gemini
+primary_model: gemini-flash
 fallbacks: [local-qwen-9b, haiku]
 capabilities: [design-review, ux-audit, accessibility, contrast-ratio, touch-target, responsive]
 max_tool_calls: 10
