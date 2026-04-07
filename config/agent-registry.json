@@ -141,7 +141,9 @@
       ],
       "max_tool_calls": 80,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "lead",
+      "model_source": "openrouter"
     },
     "A2": {
       "name": "Task Router & Dispatcher",
@@ -150,8 +152,7 @@
       "status": "active",
       "primary_model": "sonnet",
       "fallbacks": [
-        "haiku",
-        "local-qwen-9b"
+        "haiku"
       ],
       "mcps": [
         "*"
@@ -169,7 +170,9 @@
       "effort": "low",
       "template": "analiz",
       "escalate_to": "opus",
-      "escalate_when": "multi_category >= 4 OR confidence < 0.6"
+      "escalate_when": "multi_category >= 4 OR confidence < 0.6",
+      "tier": "lead",
+      "model_source": "openrouter"
     },
     "A3": {
       "name": "Fallback Manager",
@@ -185,7 +188,8 @@
       ],
       "max_tool_calls": 5,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "A4": {
       "name": "Token Budget Manager",
@@ -202,16 +206,18 @@
       ],
       "max_tool_calls": 5,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "A5": {
       "name": "Context Pruner",
       "version": "1.0",
       "category": "orchestrator",
       "status": "active",
-      "primary_model": "haiku",
+      "primary_model": "gemma2-9b-it",
       "fallbacks": [
-        "free-script"
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
       ],
       "mcps": [],
       "capabilities": [
@@ -221,7 +227,9 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior",
+      "model_source": "groq"
     },
     "A6": {
       "name": "Daily Health Check",
@@ -237,17 +245,19 @@
       ],
       "max_tool_calls": 5,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "A7": {
       "name": "Weekly Analyst",
       "version": "1.0",
       "category": "orchestrator",
       "status": "pool",
-      "primary_model": "sonnet",
+      "primary_model": "qwen/qwen3.6-plus:free",
       "fallbacks": [
-        "local-qwen-9b",
-        "qwen-3.6-free"
+        "stepfun/step-3.5-flash:free",
+        "nvidia/nemotron-3-nano-30b-a3b:free",
+        "haiku"
       ],
       "mcps": [
         "fetch"
@@ -259,7 +269,9 @@
       ],
       "max_tool_calls": 30,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "mid",
+      "model_source": "openrouter"
     },
     "A8": {
       "name": "Manual Control",
@@ -275,7 +287,8 @@
       ],
       "max_tool_calls": 1,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "mid"
     },
     "B1": {
       "name": "Backend Architect",
@@ -284,8 +297,7 @@
       "status": "active",
       "primary_model": "opus",
       "fallbacks": [
-        "sonnet",
-        "local-qwen-72b"
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -301,17 +313,19 @@
       ],
       "max_tool_calls": 50,
       "effort": "high",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "lead",
+      "model_source": "openrouter"
     },
     "B2": {
       "name": "Backend Coder",
       "version": "1.0",
       "category": "backend",
       "status": "active",
-      "primary_model": "sonnet",
+      "primary_model": "nvidia/nemotron-3-super-120b-a12b:free",
       "fallbacks": [
-        "local-qwen-9b",
-        "qwen-3.6-free"
+        "qwen/qwen3.6-plus:free",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -334,17 +348,20 @@
       ],
       "max_tool_calls": 30,
       "effort": "high",
-      "template": "autonomous"
+      "template": "autonomous",
+      "model_source": "openrouter",
+      "tier": "senior"
     },
     "B3": {
       "name": "Frontend Coder",
       "version": "1.0",
       "category": "backend",
       "status": "active",
-      "primary_model": "sonnet",
+      "primary_model": "qwen/qwen3.6-plus:free",
       "fallbacks": [
-        "local-qwen-9b",
-        "qwen-3.6-free"
+        "stepfun/step-3.5-flash:free",
+        "nvidia/nemotron-3-nano-30b-a3b:free",
+        "haiku"
       ],
       "mcps": [
         "github",
@@ -365,16 +382,19 @@
       ],
       "max_tool_calls": 30,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "model_source": "openrouter",
+      "tier": "mid"
     },
     "B4": {
       "name": "API Integrator",
       "version": "1.0",
       "category": "backend",
       "status": "pool",
-      "primary_model": "haiku",
+      "primary_model": "llama-3.3-70b-versatile",
       "fallbacks": [
-        "local-qwen-9b"
+        "qwen/qwen3.6-plus:free",
+        "haiku"
       ],
       "mcps": [
         "github",
@@ -390,17 +410,19 @@
       ],
       "max_tool_calls": 20,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "model_source": "groq",
+      "tier": "mid"
     },
     "B5": {
       "name": "Database Agent",
       "version": "1.0",
       "category": "backend",
       "status": "active",
-      "primary_model": "sonnet",
+      "primary_model": "nvidia/nemotron-3-super-120b-a12b:free",
       "fallbacks": [
-        "local-qwen-9b",
-        "qwen-3.6-free"
+        "qwen/qwen3.6-plus:free",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -416,16 +438,19 @@
       ],
       "max_tool_calls": 25,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "senior",
+      "model_source": "openrouter"
     },
     "B6": {
       "name": "Test Writer",
       "version": "1.0",
       "category": "backend",
       "status": "pool",
-      "primary_model": "haiku",
+      "primary_model": "gemma2-9b-it",
       "fallbacks": [
-        "local-qwen-9b"
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
       ],
       "mcps": [
         "github",
@@ -440,17 +465,20 @@
       ],
       "max_tool_calls": 25,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "model_source": "groq",
+      "tier": "junior"
     },
     "B7": {
       "name": "Bug Hunter",
       "version": "1.0",
       "category": "backend",
       "status": "active",
-      "primary_model": "sonnet",
+      "primary_model": "qwen/qwen3.6-plus:free",
       "fallbacks": [
-        "local-qwen-9b",
-        "qwen-3.6-free"
+        "stepfun/step-3.5-flash:free",
+        "nvidia/nemotron-3-nano-30b-a3b:free",
+        "haiku"
       ],
       "mcps": [
         "github",
@@ -467,16 +495,19 @@
       ],
       "max_tool_calls": 30,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
     },
     "B8": {
       "name": "Refactor Agent",
       "version": "1.0",
       "category": "backend",
       "status": "active",
-      "primary_model": "haiku",
+      "primary_model": "nvidia/nemotron-3-nano-30b-a3b:free",
       "fallbacks": [
-        "local-qwen-9b"
+        "gemma2-9b-it",
+        "haiku"
       ],
       "mcps": [
         "github",
@@ -490,7 +521,9 @@
       ],
       "max_tool_calls": 25,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "model_source": "openrouter",
+      "tier": "junior"
     },
     "B9": {
       "name": "CI/CD Agent",
@@ -510,7 +543,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "B10": {
       "name": "Dependency Manager",
@@ -529,7 +563,8 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "B11": {
       "name": "Git Manager",
@@ -550,15 +585,18 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "B12": {
       "name": "Performance Optimizer",
       "version": "1.0",
       "category": "backend",
       "status": "active",
-      "primary_model": "sonnet",
+      "primary_model": "qwen/qwen3.6-plus:free",
       "fallbacks": [
+        "stepfun/step-3.5-flash:free",
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "haiku"
       ],
       "mcps": [
@@ -574,7 +612,9 @@
       ],
       "max_tool_calls": 25,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "mid",
+      "model_source": "openrouter"
     },
     "B13": {
       "name": "Security Auditor",
@@ -583,8 +623,7 @@
       "status": "active",
       "primary_model": "opus",
       "fallbacks": [
-        "sonnet",
-        "local-qwen-72b"
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -601,16 +640,19 @@
       ],
       "max_tool_calls": 30,
       "effort": "high",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "lead",
+      "model_source": "openrouter"
     },
     "B14": {
       "name": "Scripting Agent",
       "version": "1.0",
       "category": "backend",
       "status": "pool",
-      "primary_model": "local-qwen-9b",
+      "primary_model": "gemma2-9b-it",
       "fallbacks": [
-        "free-router"
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
       ],
       "mcps": [],
       "capabilities": [
@@ -621,17 +663,20 @@
       ],
       "max_tool_calls": 20,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior",
+      "model_source": "groq"
     },
     "B15": {
       "name": "Mobile Dev Agent",
       "version": "1.0",
       "category": "backend",
       "status": "active",
-      "primary_model": "sonnet",
+      "primary_model": "qwen/qwen3.6-plus:free",
       "fallbacks": [
-        "local-qwen-9b",
-        "qwen-3.6-free"
+        "stepfun/step-3.5-flash:free",
+        "nvidia/nemotron-3-nano-30b-a3b:free",
+        "haiku"
       ],
       "mcps": [
         "github",
@@ -652,7 +697,9 @@
       ],
       "max_tool_calls": 30,
       "effort": "high",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
     },
     "C1": {
       "name": "Lint & Format Hook",
@@ -670,7 +717,8 @@
       "max_tool_calls": 3,
       "effort": "low",
       "template": "code-review",
-      "layer": "L1"
+      "layer": "L1",
+      "tier": "junior"
     },
     "C2": {
       "name": "Security Scanner Hook",
@@ -688,16 +736,18 @@
       "max_tool_calls": 3,
       "effort": "low",
       "template": "code-review",
-      "layer": "L1"
+      "layer": "L1",
+      "tier": "junior"
     },
     "C3": {
       "name": "Local AI Reviewer",
       "version": "1.0",
       "category": "code-review",
       "status": "active",
-      "primary_model": "haiku",
+      "primary_model": "gemma2-9b-it",
       "fallbacks": [
-        "local-qwen-9b"
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
       ],
       "mcps": [
         "github",
@@ -713,7 +763,9 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "code-review",
-      "layer": "L2"
+      "layer": "L2",
+      "tier": "junior",
+      "model_source": "groq"
     },
     "C4": {
       "name": "Code Rabbit Agent",
@@ -730,7 +782,8 @@
       "max_tool_calls": 5,
       "effort": "medium",
       "template": "code-review",
-      "layer": "L2"
+      "layer": "L2",
+      "tier": "junior"
     },
     "C5": {
       "name": "CI Review Agent",
@@ -749,15 +802,19 @@
       "max_tool_calls": 5,
       "effort": "low",
       "template": "code-review",
-      "layer": "L3"
+      "layer": "L3",
+      "tier": "junior"
     },
     "C6": {
       "name": "Human Review Coordinator",
       "version": "1.0",
       "category": "code-review",
       "status": "pool",
-      "primary_model": "haiku",
-      "fallbacks": [],
+      "primary_model": "gemma2-9b-it",
+      "fallbacks": [
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
+      ],
       "mcps": [
         "github"
       ],
@@ -768,15 +825,21 @@
       "max_tool_calls": 5,
       "effort": "low",
       "template": "code-review",
-      "layer": "L4"
+      "layer": "L4",
+      "tier": "junior",
+      "model_source": "groq"
     },
     "D1": {
       "name": "UI/UX Researcher",
       "version": "1.0",
       "category": "design",
       "status": "active",
-      "primary_model": "free-web",
-      "fallbacks": [],
+      "primary_model": "qwen/qwen3.6-plus:free",
+      "fallbacks": [
+        "stepfun/step-3.5-flash:free",
+        "nvidia/nemotron-3-nano-30b-a3b:free",
+        "haiku"
+      ],
       "mcps": [
         "fetch"
       ],
@@ -791,16 +854,19 @@
       ],
       "max_tool_calls": 20,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "mid",
+      "model_source": "openrouter"
     },
     "D2": {
       "name": "Design System Agent",
       "version": "1.0",
       "category": "design",
       "status": "active",
-      "primary_model": "haiku",
+      "primary_model": "gemma2-9b-it",
       "fallbacks": [
-        "local-qwen-9b"
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
       ],
       "mcps": [],
       "capabilities": [
@@ -816,16 +882,19 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior",
+      "model_source": "groq"
     },
     "D3": {
       "name": "Stitch Coordinator",
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "haiku",
+      "primary_model": "gemma2-9b-it",
       "fallbacks": [
-        "local-qwen-9b"
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
       ],
       "mcps": [],
       "capabilities": [
@@ -839,7 +908,9 @@
       ],
       "max_tool_calls": 20,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior",
+      "model_source": "groq"
     },
     "D4": {
       "name": "Figma Assistant",
@@ -858,7 +929,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior"
     },
     "D5": {
       "name": "Presentation Builder",
@@ -875,7 +947,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "D6": {
       "name": "Image Prompt Generator",
@@ -896,7 +969,8 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "D7": {
       "name": "Icon & Asset Agent",
@@ -917,16 +991,18 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "D8": {
       "name": "Mockup Reviewer",
       "version": "1.0",
       "category": "design",
       "status": "active",
-      "primary_model": "haiku",
+      "primary_model": "gemma2-9b-it",
       "fallbacks": [
-        "local-qwen-9b"
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
       ],
       "mcps": [],
       "capabilities": [
@@ -939,16 +1015,19 @@
       ],
       "max_tool_calls": 10,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior",
+      "model_source": "groq"
     },
     "E1": {
       "name": "3D Concept Planner",
       "version": "1.0",
       "category": "3d-cad",
       "status": "pool",
-      "primary_model": "haiku",
+      "primary_model": "gemma2-9b-it",
       "fallbacks": [
-        "local-qwen-9b"
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
       ],
       "mcps": [],
       "capabilities": [
@@ -960,15 +1039,21 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior",
+      "model_source": "groq"
     },
     "E2": {
       "name": "Blender Script Agent",
       "version": "1.0",
       "category": "3d-cad",
       "status": "pool",
-      "primary_model": "local-qwen-9b",
-      "fallbacks": [],
+      "primary_model": "qwen/qwen3.6-plus:free",
+      "fallbacks": [
+        "stepfun/step-3.5-flash:free",
+        "nvidia/nemotron-3-nano-30b-a3b:free",
+        "haiku"
+      ],
       "mcps": [],
       "capabilities": [
         "blender",
@@ -982,7 +1067,9 @@
       ],
       "max_tool_calls": 20,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
     },
     "E3": {
       "name": "CAD Automation",
@@ -1001,7 +1088,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "E4": {
       "name": "Render Pipeline",
@@ -1017,7 +1105,8 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "E5": {
       "name": "3D Asset Optimizer",
@@ -1038,7 +1127,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "F1": {
       "name": "Data Cleaner",
@@ -1057,16 +1147,19 @@
       ],
       "max_tool_calls": 20,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "F2": {
       "name": "Data Analyst",
       "version": "1.0",
       "category": "data-analytics",
       "status": "active",
-      "primary_model": "sonnet",
+      "primary_model": "qwen/qwen3.6-plus:free",
       "fallbacks": [
-        "local-qwen-9b"
+        "stepfun/step-3.5-flash:free",
+        "nvidia/nemotron-3-nano-30b-a3b:free",
+        "haiku"
       ],
       "mcps": [],
       "capabilities": [
@@ -1077,16 +1170,19 @@
       ],
       "max_tool_calls": 25,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "mid",
+      "model_source": "openrouter"
     },
     "F3": {
       "name": "Visualization Agent",
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "haiku",
+      "primary_model": "gemma2-9b-it",
       "fallbacks": [
-        "local-qwen-9b"
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
       ],
       "mcps": [],
       "capabilities": [
@@ -1097,7 +1193,9 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior",
+      "model_source": "groq"
     },
     "F4": {
       "name": "ETL Pipeline Agent",
@@ -1114,7 +1212,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "F5": {
       "name": "Report Generator",
@@ -1131,16 +1230,18 @@
       ],
       "max_tool_calls": 15,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "F6": {
       "name": "SQL Agent",
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "haiku",
+      "primary_model": "gemma2-9b-it",
       "fallbacks": [
-        "local-qwen-9b"
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
       ],
       "mcps": [],
       "capabilities": [
@@ -1149,7 +1250,9 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior",
+      "model_source": "groq"
     },
     "F7": {
       "name": "Spreadsheet Agent",
@@ -1166,7 +1269,8 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "F8": {
       "name": "Jupyter Agent",
@@ -1183,7 +1287,8 @@
       ],
       "max_tool_calls": 20,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "F9": {
       "name": "Data Quality Agent",
@@ -1199,7 +1304,8 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "F10": {
       "name": "Statistics Agent",
@@ -1216,7 +1322,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "G1": {
       "name": "Agent Coordinator",
@@ -1237,7 +1344,8 @@
       ],
       "max_tool_calls": 30,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "senior"
     },
     "G2": {
       "name": "Model Monitor",
@@ -1253,7 +1361,8 @@
       ],
       "max_tool_calls": 5,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "G3": {
       "name": "MCP Health Agent",
@@ -1271,7 +1380,8 @@
       ],
       "max_tool_calls": 5,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "G4": {
       "name": "Config Manager",
@@ -1287,7 +1397,8 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "G5": {
       "name": "Log Analyzer",
@@ -1303,7 +1414,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior"
     },
     "G6": {
       "name": "Backup Agent",
@@ -1319,7 +1431,8 @@
       ],
       "max_tool_calls": 5,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "G7": {
       "name": "Update Checker",
@@ -1337,7 +1450,8 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "G8": {
       "name": "Cron Scheduler",
@@ -1354,7 +1468,8 @@
       ],
       "max_tool_calls": 5,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "G9": {
       "name": "Performance Monitor",
@@ -1370,7 +1485,8 @@
       ],
       "max_tool_calls": 5,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "G10": {
       "name": "Deployment Agent",
@@ -1391,17 +1507,19 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "H1": {
       "name": "Market Researcher",
       "version": "1.0",
       "category": "market-research",
       "status": "active",
-      "primary_model": "sonnet",
+      "primary_model": "qwen/qwen3.6-plus:free",
       "fallbacks": [
-        "local-qwen-9b",
-        "qwen-3.6-free"
+        "stepfun/step-3.5-flash:free",
+        "nvidia/nemotron-3-nano-30b-a3b:free",
+        "haiku"
       ],
       "mcps": [
         "fetch"
@@ -1413,7 +1531,9 @@
       ],
       "max_tool_calls": 30,
       "effort": "high",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "mid",
+      "model_source": "openrouter"
     },
     "H2": {
       "name": "Competitor Analyst",
@@ -1432,15 +1552,18 @@
       ],
       "max_tool_calls": 20,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior"
     },
     "H3": {
       "name": "Revenue Analyst",
       "version": "1.0",
       "category": "market-research",
       "status": "active",
-      "primary_model": "sonnet",
+      "primary_model": "qwen/qwen3.6-plus:free",
       "fallbacks": [
+        "stepfun/step-3.5-flash:free",
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "haiku"
       ],
       "mcps": [],
@@ -1451,16 +1574,19 @@
       ],
       "max_tool_calls": 20,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "mid",
+      "model_source": "openrouter"
     },
     "H4": {
       "name": "Pricing Strategist",
       "version": "1.0",
       "category": "market-research",
       "status": "active",
-      "primary_model": "haiku",
+      "primary_model": "gemma2-9b-it",
       "fallbacks": [
-        "local-qwen-9b"
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
       ],
       "mcps": [],
       "capabilities": [
@@ -1470,7 +1596,9 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior",
+      "model_source": "groq"
     },
     "H5": {
       "name": "SEO Agent",
@@ -1489,7 +1617,8 @@
       ],
       "max_tool_calls": 25,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "H6": {
       "name": "GEO Agent",
@@ -1510,7 +1639,8 @@
       ],
       "max_tool_calls": 20,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "H7": {
       "name": "Social Media Agent",
@@ -1528,7 +1658,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "H8": {
       "name": "Content Repurposer",
@@ -1545,7 +1676,8 @@
       ],
       "max_tool_calls": 20,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "H9": {
       "name": "Newsletter Agent",
@@ -1562,7 +1694,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "H10": {
       "name": "New Tool Scout",
@@ -1580,7 +1713,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "low",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior"
     },
     "H11": {
       "name": "MCP Distribution Agent",
@@ -1601,7 +1735,8 @@
       ],
       "max_tool_calls": 25,
       "effort": "high",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "H12": {
       "name": "Viral Output Agent",
@@ -1618,7 +1753,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "I1": {
       "name": "Jira Router",
@@ -1641,15 +1777,18 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "I2": {
       "name": "Sprint Planner",
       "version": "1.0",
       "category": "jira-pm",
       "status": "active",
-      "primary_model": "sonnet",
+      "primary_model": "qwen/qwen3.6-plus:free",
       "fallbacks": [
+        "stepfun/step-3.5-flash:free",
+        "nvidia/nemotron-3-nano-30b-a3b:free",
         "haiku"
       ],
       "mcps": [
@@ -1665,16 +1804,19 @@
       ],
       "max_tool_calls": 25,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "mid",
+      "model_source": "openrouter"
     },
     "I3": {
       "name": "Task Decomposer",
       "version": "1.0",
       "category": "jira-pm",
       "status": "pool",
-      "primary_model": "haiku",
+      "primary_model": "gemma2-9b-it",
       "fallbacks": [
-        "local-qwen-9b"
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
       ],
       "mcps": [
         "atlassian"
@@ -1685,7 +1827,9 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior",
+      "model_source": "groq"
     },
     "I4": {
       "name": "Status Reporter",
@@ -1706,16 +1850,18 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "I5": {
       "name": "WAITING Decision Agent",
       "version": "1.0",
       "category": "jira-pm",
       "status": "pool",
-      "primary_model": "haiku",
+      "primary_model": "gemma2-9b-it",
       "fallbacks": [
-        "local-qwen-9b"
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
       ],
       "mcps": [
         "atlassian"
@@ -1727,7 +1873,9 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior",
+      "model_source": "groq"
     },
     "I6": {
       "name": "Backlog Groomer",
@@ -1745,7 +1893,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "I7": {
       "name": "Burndown Tracker",
@@ -1764,7 +1913,8 @@
       ],
       "max_tool_calls": 5,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "I8": {
       "name": "Standup Generator",
@@ -1782,16 +1932,18 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "I9": {
       "name": "Retrospective Agent",
       "version": "1.0",
       "category": "jira-pm",
       "status": "pool",
-      "primary_model": "haiku",
+      "primary_model": "gemma2-9b-it",
       "fallbacks": [
-        "local-qwen-9b"
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
       ],
       "mcps": [
         "atlassian"
@@ -1802,16 +1954,19 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior",
+      "model_source": "groq"
     },
     "I10": {
       "name": "Estimation Agent",
       "version": "1.0",
       "category": "jira-pm",
       "status": "pool",
-      "primary_model": "haiku",
+      "primary_model": "gemma2-9b-it",
       "fallbacks": [
-        "local-qwen-9b"
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
       ],
       "mcps": [
         "atlassian"
@@ -1823,7 +1978,9 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior",
+      "model_source": "groq"
     },
     "J1": {
       "name": "Docker Agent",
@@ -1840,16 +1997,18 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "J2": {
       "name": "Cloud Deploy Agent",
       "version": "1.0",
       "category": "devops",
       "status": "active",
-      "primary_model": "haiku",
+      "primary_model": "llama-3.3-70b-versatile",
       "fallbacks": [
-        "local-qwen-9b"
+        "qwen/qwen3.6-plus:free",
+        "haiku"
       ],
       "mcps": [
         "github"
@@ -1864,7 +2023,9 @@
       ],
       "max_tool_calls": 20,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "groq"
     },
     "J3": {
       "name": "SSL/DNS Agent",
@@ -1881,7 +2042,8 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "J4": {
       "name": "Server Monitor",
@@ -1898,16 +2060,18 @@
       ],
       "max_tool_calls": 5,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "J5": {
       "name": "Cost Optimizer",
       "version": "1.0",
       "category": "devops",
       "status": "pool",
-      "primary_model": "haiku",
+      "primary_model": "gemma2-9b-it",
       "fallbacks": [
-        "local-qwen-9b"
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
       ],
       "mcps": [],
       "capabilities": [
@@ -1917,7 +2081,9 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior",
+      "model_source": "groq"
     },
     "J6": {
       "name": "Firebase Agent",
@@ -1939,16 +2105,18 @@
       ],
       "max_tool_calls": 20,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "J7": {
       "name": "Incident Responder",
       "version": "1.0",
       "category": "devops",
       "status": "active",
-      "primary_model": "sonnet",
+      "primary_model": "nvidia/nemotron-3-super-120b-a12b:free",
       "fallbacks": [
-        "haiku"
+        "qwen/qwen3.6-plus:free",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -1962,16 +2130,20 @@
       ],
       "max_tool_calls": 30,
       "effort": "high",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "senior",
+      "model_source": "openrouter"
     },
     "J8": {
       "name": "Infrastructure Planner",
       "version": "1.0",
       "category": "devops",
       "status": "pool",
-      "primary_model": "haiku",
+      "primary_model": "qwen/qwen3.6-plus:free",
       "fallbacks": [
-        "local-qwen-9b"
+        "stepfun/step-3.5-flash:free",
+        "nvidia/nemotron-3-nano-30b-a3b:free",
+        "haiku"
       ],
       "mcps": [],
       "capabilities": [
@@ -1980,15 +2152,21 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "mid",
+      "model_source": "openrouter"
     },
     "K1": {
       "name": "Web Researcher",
       "version": "1.0",
       "category": "research",
       "status": "active",
-      "primary_model": "free-web",
-      "fallbacks": [],
+      "primary_model": "qwen/qwen3.6-plus:free",
+      "fallbacks": [
+        "stepfun/step-3.5-flash:free",
+        "nvidia/nemotron-3-nano-30b-a3b:free",
+        "haiku"
+      ],
       "mcps": [
         "fetch"
       ],
@@ -1999,7 +2177,9 @@
       ],
       "max_tool_calls": 25,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "model_source": "openrouter",
+      "tier": "mid"
     },
     "K2": {
       "name": "Paper Summarizer",
@@ -2016,7 +2196,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior"
     },
     "K3": {
       "name": "Documentation Fetcher",
@@ -2035,15 +2216,20 @@
       ],
       "max_tool_calls": 15,
       "effort": "low",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior"
     },
     "K4": {
       "name": "Trend Analyzer",
       "version": "1.0",
       "category": "research",
       "status": "active",
-      "primary_model": "free-web",
-      "fallbacks": [],
+      "primary_model": "qwen/qwen3.6-plus:free",
+      "fallbacks": [
+        "stepfun/step-3.5-flash:free",
+        "nvidia/nemotron-3-nano-30b-a3b:free",
+        "haiku"
+      ],
       "mcps": [
         "fetch"
       ],
@@ -2054,7 +2240,9 @@
       ],
       "max_tool_calls": 20,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "mid",
+      "model_source": "openrouter"
     },
     "K5": {
       "name": "Video Summarizer",
@@ -2072,7 +2260,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior"
     },
     "K6": {
       "name": "Tutorial Finder",
@@ -2091,7 +2280,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "low",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior"
     },
     "K7": {
       "name": "Knowledge Base Agent",
@@ -2108,16 +2298,18 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior"
     },
     "K8": {
       "name": "Skill Recommender",
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "haiku",
+      "primary_model": "gemma2-9b-it",
       "fallbacks": [
-        "local-qwen-9b"
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
       ],
       "mcps": [],
       "capabilities": [
@@ -2126,7 +2318,9 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior",
+      "model_source": "groq"
     },
     "L1": {
       "name": "Email Summarizer",
@@ -2145,7 +2339,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "low",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior"
     },
     "L2": {
       "name": "Calendar Agent",
@@ -2162,7 +2357,8 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "L3": {
       "name": "Daily Briefing Agent",
@@ -2183,7 +2379,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "low",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior"
     },
     "L4": {
       "name": "Note Organizer",
@@ -2200,7 +2397,8 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "L5": {
       "name": "File Organizer",
@@ -2217,7 +2415,8 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "L6": {
       "name": "Meeting Notes Agent",
@@ -2234,7 +2433,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior"
     },
     "M1": {
       "name": "Free Tool Builder",
@@ -2258,7 +2458,8 @@
       ],
       "max_tool_calls": 30,
       "effort": "high",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "senior"
     },
     "M2": {
       "name": "Landing Page Agent",
@@ -2280,7 +2481,8 @@
       ],
       "max_tool_calls": 25,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "M3": {
       "name": "A/B Test Agent",
@@ -2297,7 +2499,8 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "M4": {
       "name": "Analytics Agent",
@@ -2314,17 +2517,19 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior"
     },
     "B16": {
-      "name": "Web Game Dev Agent",
+      "name": "Unity/Game Dev Agent",
       "version": "1.0",
       "category": "backend",
-      "status": "pool",
-      "primary_model": "sonnet",
+      "status": "active",
+      "primary_model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "model_source": "openrouter",
       "fallbacks": [
-        "local-qwen-9b",
-        "qwen-3.6-free"
+        "qwen/qwen3.6-plus:free",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -2332,57 +2537,53 @@
         "context7"
       ],
       "capabilities": [
-        "phaser",
-        "pixi",
-        "threejs",
-        "babylonjs",
-        "canvas",
-        "webgl",
-        "webgpu",
-        "javascript",
-        "typescript",
-        "game-loop"
+        "unity",
+        "csharp",
+        "game-dev",
+        "physics",
+        "animation",
+        "unity-editor",
+        "shader"
       ],
       "languages": [
-        "javascript",
-        "typescript"
+        "csharp"
       ],
-      "max_tool_calls": 30,
+      "max_tool_calls": 35,
       "effort": "high",
-      "template": "autonomous"
+      "template": "autonomous",
+      "notes": "Unity C# specialist. Free via Nemotron 120B (OpenRouter).",
+      "tier": "mid"
     },
     "B17": {
-      "name": "Full Stack Web Agent",
+      "name": "Unity Senior Dev",
       "version": "1.0",
       "category": "backend",
-      "status": "pool",
+      "status": "active",
+      "tier": "senior",
       "primary_model": "sonnet",
+      "model_source": "anthropic",
       "fallbacks": [
-        "local-qwen-9b",
-        "qwen-3.6-free"
+        "nvidia/nemotron-3-super-120b-a12b:free"
       ],
       "mcps": [
         "github",
-        "git",
         "context7"
       ],
       "capabilities": [
-        "nextjs",
-        "react",
-        "nodejs",
-        "express",
-        "tailwind",
-        "prisma",
-        "supabase",
-        "vercel"
+        "unity",
+        "csharp",
+        "game-architecture",
+        "performance-profiling",
+        "shader-graph",
+        "networking"
       ],
       "languages": [
-        "typescript",
-        "javascript"
+        "csharp"
       ],
-      "max_tool_calls": 30,
+      "max_tool_calls": 50,
       "effort": "high",
-      "template": "autonomous"
+      "template": "autonomous",
+      "notes": "Ücretli. B16 (free) yetersiz kalırsa."
     },
     "B18": {
       "name": "Python Specialist",
@@ -2413,7 +2614,8 @@
       ],
       "max_tool_calls": 30,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "senior"
     },
     "B19": {
       "name": "Unity Developer",
@@ -2445,7 +2647,8 @@
       ],
       "max_tool_calls": 30,
       "effort": "high",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "senior"
     },
     "K9": {
       "name": "AI Tool Evaluator",
@@ -2467,35 +2670,144 @@
       ],
       "max_tool_calls": 20,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior"
     },
     "N1": {
-      "name": "Prompt Engineer",
+      "name": "ML Model Trainer",
       "version": "1.0",
-      "category": "prompt-engineering",
-      "status": "pool",
-      "primary_model": "sonnet",
+      "category": "ai-ml",
+      "status": "active",
+      "primary_model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "model_source": "openrouter",
       "fallbacks": [
-        "haiku"
+        "qwen/qwen3.6-plus:free",
+        "sonnet"
       ],
-      "mcps": [],
+      "mcps": [
+        "github",
+        "context7"
+      ],
       "capabilities": [
-        "system-prompt",
-        "few-shot",
-        "chain-of-thought",
-        "prompt-optimization"
+        "ml-training",
+        "pytorch",
+        "tensorflow",
+        "scikit-learn",
+        "model-evaluation",
+        "hyperparameter-tuning"
       ],
-      "max_tool_calls": 20,
-      "effort": "medium",
-      "template": "autonomous"
+      "languages": [
+        "python"
+      ],
+      "max_tool_calls": 30,
+      "effort": "high",
+      "template": "autonomous",
+      "tier": "junior"
     },
     "N2": {
-      "name": "Agent Builder",
+      "name": "RAG Pipeline Builder",
       "version": "1.0",
-      "category": "prompt-engineering",
-      "status": "pool",
-      "primary_model": "opus",
+      "category": "ai-ml",
+      "status": "active",
+      "primary_model": "qwen/qwen3.6-plus:free",
+      "model_source": "openrouter",
       "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "context7"
+      ],
+      "capabilities": [
+        "rag",
+        "vector-db",
+        "embeddings",
+        "langchain",
+        "llama-index",
+        "pinecone",
+        "chroma"
+      ],
+      "languages": [
+        "python",
+        "typescript"
+      ],
+      "max_tool_calls": 25,
+      "effort": "high",
+      "template": "autonomous",
+      "tier": "junior"
+    },
+    "O1": {
+      "name": "iOS Swift Agent",
+      "version": "1.0",
+      "category": "mobile",
+      "status": "active",
+      "primary_model": "qwen/qwen3.6-plus:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "context7"
+      ],
+      "capabilities": [
+        "swift",
+        "swiftui",
+        "xcode",
+        "ios",
+        "uikit",
+        "combine",
+        "app-store"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "max_tool_calls": 30,
+      "effort": "high",
+      "template": "autonomous",
+      "tier": "junior"
+    },
+    "O2": {
+      "name": "Android Kotlin Agent",
+      "version": "1.0",
+      "category": "mobile",
+      "status": "active",
+      "primary_model": "qwen/qwen3.6-plus:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "context7"
+      ],
+      "capabilities": [
+        "kotlin",
+        "android",
+        "jetpack-compose",
+        "coroutines",
+        "room",
+        "google-play"
+      ],
+      "languages": [
+        "kotlin"
+      ],
+      "max_tool_calls": 30,
+      "effort": "high",
+      "template": "autonomous",
+      "tier": "junior"
+    },
+    "O3": {
+      "name": "React Native Agent",
+      "version": "1.0",
+      "category": "mobile",
+      "status": "active",
+      "primary_model": "qwen/qwen3.6-plus:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "stepfun/step-3.5-flash:free",
         "sonnet"
       ],
       "mcps": [
@@ -2503,81 +2815,18 @@
         "git"
       ],
       "capabilities": [
-        "agent-design",
-        "mcp-integration",
-        "skill-creation",
-        "workflow-design"
+        "react-native",
+        "expo",
+        "navigation",
+        "native-modules"
       ],
-      "max_tool_calls": 30,
-      "effort": "high",
-      "template": "autonomous"
-    },
-    "O1": {
-      "name": "Sales Proposal Agent",
-      "version": "1.0",
-      "category": "sales-bizdev",
-      "status": "pool",
-      "primary_model": "sonnet",
-      "fallbacks": [
-        "haiku"
-      ],
-      "mcps": [
-        "github",
-        "fetch"
-      ],
-      "capabilities": [
-        "proposal",
-        "rfp",
-        "pricing",
-        "presentation",
-        "pitch-deck"
+      "languages": [
+        "typescript"
       ],
       "max_tool_calls": 25,
-      "effort": "high",
-      "template": "autonomous"
-    },
-    "O2": {
-      "name": "CRM Agent",
-      "version": "1.0",
-      "category": "sales-bizdev",
-      "status": "pool",
-      "primary_model": "haiku",
-      "fallbacks": [
-        "local-qwen-9b"
-      ],
-      "mcps": [
-        "fetch"
-      ],
-      "capabilities": [
-        "hubspot",
-        "pipedrive",
-        "lead-management",
-        "pipeline",
-        "follow-up"
-      ],
-      "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
-    },
-    "O3": {
-      "name": "Outreach Agent",
-      "version": "1.0",
-      "category": "sales-bizdev",
-      "status": "pool",
-      "primary_model": "local-qwen-9b",
-      "fallbacks": [],
-      "mcps": [
-        "fetch"
-      ],
-      "capabilities": [
-        "cold-email",
-        "linkedin-outreach",
-        "personalization",
-        "sequence"
-      ],
-      "max_tool_calls": 15,
-      "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "O4": {
       "name": "Pricing Calculator",
@@ -2595,7 +2844,8 @@
       ],
       "max_tool_calls": 10,
       "effort": "low",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "O5": {
       "name": "Client Onboarding Agent",
@@ -2617,7 +2867,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "B20": {
       "name": "API Gateway Agent",
@@ -2642,7 +2893,8 @@
       ],
       "max_tool_calls": 25,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "senior"
     },
     "B21": {
       "name": "WebSocket Agent",
@@ -2667,7 +2919,8 @@
       ],
       "max_tool_calls": 25,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "senior"
     },
     "H13": {
       "name": "Social Media Strategist",
@@ -2690,7 +2943,8 @@
       ],
       "max_tool_calls": 20,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior"
     },
     "H14": {
       "name": "Community Manager Agent",
@@ -2711,7 +2965,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "H15": {
       "name": "Influencer Research Agent",
@@ -2731,7 +2986,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "low",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior"
     },
     "D9": {
       "name": "Brand Identity Agent",
@@ -2752,7 +3008,8 @@
       ],
       "max_tool_calls": 20,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "D10": {
       "name": "Motion Graphics Agent",
@@ -2773,7 +3030,8 @@
       ],
       "max_tool_calls": 20,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "K10": {
       "name": "Regulatory Compliance Agent",
@@ -2797,7 +3055,8 @@
       ],
       "max_tool_calls": 25,
       "effort": "high",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "senior"
     },
     "J9": {
       "name": "Performance Load Tester",
@@ -2817,7 +3076,8 @@
       ],
       "max_tool_calls": 15,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "K11": {
       "name": "Asset Scraper",
@@ -2840,7 +3100,8 @@
       ],
       "max_tool_calls": 25,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "K12": {
       "name": "Resource Collector",
@@ -2863,7 +3124,8 @@
       ],
       "max_tool_calls": 25,
       "effort": "medium",
-      "template": "autonomous"
+      "template": "autonomous",
+      "tier": "junior"
     },
     "K13": {
       "name": "Dataset Finder",
@@ -2884,7 +3146,8 @@
       ],
       "max_tool_calls": 20,
       "effort": "medium",
-      "template": "analiz"
+      "template": "analiz",
+      "tier": "junior"
     },
     "A9": {
       "name": "ArtLead",
@@ -2920,7 +3183,8 @@
         1,
         8,
         11
-      ]
+      ],
+      "tier": "senior"
     },
     "A10": {
       "name": "CodeLead",
@@ -2957,7 +3221,8 @@
         2,
         4,
         10
-      ]
+      ],
+      "tier": "senior"
     },
     "A11": {
       "name": "GrowthLead",
@@ -2994,7 +3259,8 @@
         3,
         6,
         9
-      ]
+      ],
+      "tier": "senior"
     },
     "A12": {
       "name": "BizLead",
@@ -3030,7 +3296,8 @@
       "categories": [
         5,
         12
-      ]
+      ],
+      "tier": "senior"
     },
     "A13": {
       "name": "SecLead",
@@ -3062,7 +3329,8 @@
       "categories": [
         7
       ],
-      "tier_override": "always_high"
+      "tier_override": "always_high",
+      "tier": "lead"
     },
     "A14": {
       "name": "Discovery Agent",
@@ -3079,7 +3347,11 @@
         "no source code",
         "new project setup"
       ],
-      "output": "project-brief.md"
+      "output": "project-brief.md",
+      "tier": "senior",
+      "fallbacks": [
+        "haiku"
+      ]
     },
     "A15": {
       "name": "TechLead",
@@ -3097,7 +3369,774 @@
         "stack recommendation requested",
         "new project"
       ],
-      "output": "tech-decision.md"
+      "output": "tech-decision.md",
+      "tier": "senior",
+      "fallbacks": [
+        "haiku"
+      ]
+    },
+    "F11": {
+      "name": "Data Scraper Agent",
+      "version": "1.0",
+      "category": "data",
+      "status": "active",
+      "primary_model": "llama-3.3-70b-versatile",
+      "model_source": "groq",
+      "fallbacks": [
+        "qwen/qwen3.6-plus:free",
+        "haiku"
+      ],
+      "mcps": [
+        "fetch",
+        "github"
+      ],
+      "capabilities": [
+        "web-scraping",
+        "data-extraction",
+        "html-parsing",
+        "json-extraction",
+        "playwright",
+        "regex",
+        "xpath"
+      ],
+      "languages": [
+        "python",
+        "typescript"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "notes": "Scraping/parsing uzmanı. Groq Llama 70B ile hızlı + ücretsiz.",
+      "tier": "mid"
+    },
+    "Z1": {
+      "name": "Lightweight Triage Agent",
+      "version": "1.0",
+      "category": "meta",
+      "status": "active",
+      "primary_model": "gemma2-9b-it",
+      "model_source": "groq",
+      "fallbacks": [
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "simple-qa",
+        "text-summary",
+        "label",
+        "classification",
+        "trivial-task"
+      ],
+      "max_tool_calls": 5,
+      "effort": "low",
+      "template": "minimal",
+      "notes": "Basit/trivial işler için. Ücretli kota yemesin diye. Groq Gemma2 9B — sıfır maliyet.",
+      "tier": "junior"
+    },
+    "N3": {
+      "name": "Prompt Engineer",
+      "version": "1.0",
+      "category": "ai-ml",
+      "status": "active",
+      "primary_model": "gemma2-9b-it",
+      "model_source": "groq",
+      "fallbacks": [
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "prompt-design",
+        "few-shot",
+        "chain-of-thought",
+        "system-prompt",
+        "eval-prompts"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "minimal",
+      "tier": "junior"
+    },
+    "N4": {
+      "name": "Fine-tuning Agent",
+      "version": "1.0",
+      "category": "ai-ml",
+      "status": "active",
+      "primary_model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github"
+      ],
+      "capabilities": [
+        "fine-tuning",
+        "lora",
+        "qlora",
+        "dataset-prep",
+        "huggingface-trainer",
+        "axolotl"
+      ],
+      "languages": [
+        "python"
+      ],
+      "max_tool_calls": 30,
+      "effort": "high",
+      "template": "autonomous",
+      "tier": "junior"
+    },
+    "N5": {
+      "name": "AI Evaluation Agent",
+      "version": "1.0",
+      "category": "ai-ml",
+      "status": "active",
+      "primary_model": "llama-3.3-70b-versatile",
+      "model_source": "groq",
+      "fallbacks": [
+        "gemma2-9b-it",
+        "haiku"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "llm-eval",
+        "benchmark",
+        "accuracy",
+        "hallucination-check",
+        "ragas",
+        "deepeval"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "minimal",
+      "tier": "junior"
+    },
+    "P1": {
+      "name": "Technical Writer",
+      "version": "1.0",
+      "category": "docs",
+      "status": "active",
+      "primary_model": "minimax/minimax-m2.5:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "llama-3.3-70b-versatile",
+        "haiku"
+      ],
+      "mcps": [
+        "github"
+      ],
+      "capabilities": [
+        "readme",
+        "api-docs",
+        "changelog",
+        "docstring",
+        "mkdocs",
+        "docusaurus"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "minimal",
+      "tier": "junior"
+    },
+    "P2": {
+      "name": "API Docs Agent",
+      "version": "1.0",
+      "category": "docs",
+      "status": "active",
+      "primary_model": "llama-3.3-70b-versatile",
+      "model_source": "groq",
+      "fallbacks": [
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
+      ],
+      "mcps": [
+        "context7"
+      ],
+      "capabilities": [
+        "openapi",
+        "swagger",
+        "postman",
+        "api-reference",
+        "schema-docs"
+      ],
+      "max_tool_calls": 15,
+      "effort": "low",
+      "template": "minimal",
+      "tier": "junior"
+    },
+    "P3": {
+      "name": "Localization Agent",
+      "version": "1.0",
+      "category": "docs",
+      "status": "active",
+      "primary_model": "minimax/minimax-m2.5:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "llama-3.3-70b-versatile",
+        "haiku"
+      ],
+      "mcps": [
+        "github"
+      ],
+      "capabilities": [
+        "i18n",
+        "l10n",
+        "translation",
+        "arb",
+        "json-i18n",
+        "rtl",
+        "pluralization"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "minimal",
+      "notes": "Flutter ARB, React i18next, iOS strings vb.",
+      "tier": "junior"
+    },
+    "Q1": {
+      "name": "E2E Test Agent",
+      "version": "1.0",
+      "category": "qa",
+      "status": "active",
+      "primary_model": "qwen/qwen3.6-plus:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "haiku"
+      ],
+      "mcps": [
+        "github",
+        "playwright"
+      ],
+      "capabilities": [
+        "playwright",
+        "cypress",
+        "selenium",
+        "e2e",
+        "ui-testing",
+        "visual-regression"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "junior"
+    },
+    "Q2": {
+      "name": "Accessibility Auditor",
+      "version": "1.0",
+      "category": "qa",
+      "status": "active",
+      "primary_model": "llama-3.3-70b-versatile",
+      "model_source": "groq",
+      "fallbacks": [
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
+      ],
+      "mcps": [
+        "fetch",
+        "playwright"
+      ],
+      "capabilities": [
+        "wcag",
+        "a11y",
+        "axe",
+        "aria",
+        "screen-reader",
+        "contrast",
+        "keyboard-nav"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "minimal",
+      "tier": "junior"
+    },
+    "Q3": {
+      "name": "Load & Stress Tester",
+      "version": "1.0",
+      "category": "qa",
+      "status": "active",
+      "primary_model": "gemma2-9b-it",
+      "model_source": "groq",
+      "fallbacks": [
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
+      ],
+      "mcps": [
+        "github"
+      ],
+      "capabilities": [
+        "k6",
+        "artillery",
+        "jmeter",
+        "stress-test",
+        "load-test",
+        "benchmark"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "minimal",
+      "tier": "junior"
+    },
+    "R1": {
+      "name": "Audio Processing Agent",
+      "version": "1.0",
+      "category": "media",
+      "status": "active",
+      "primary_model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "haiku"
+      ],
+      "mcps": [
+        "github"
+      ],
+      "capabilities": [
+        "audio-processing",
+        "ffmpeg",
+        "whisper",
+        "tts",
+        "speech-to-text",
+        "audio-edit"
+      ],
+      "languages": [
+        "python"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "minimal",
+      "tier": "junior"
+    },
+    "R2": {
+      "name": "Video Pipeline Agent",
+      "version": "1.0",
+      "category": "media",
+      "status": "active",
+      "primary_model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "haiku"
+      ],
+      "mcps": [
+        "github"
+      ],
+      "capabilities": [
+        "ffmpeg",
+        "video-processing",
+        "transcoding",
+        "subtitle",
+        "thumbnail-gen",
+        "hls"
+      ],
+      "languages": [
+        "python",
+        "bash"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "minimal",
+      "tier": "junior"
+    },
+    "R3": {
+      "name": "Image Processing Agent",
+      "version": "1.0",
+      "category": "media",
+      "status": "active",
+      "primary_model": "nvidia/nemotron-nano-12b-v2-vl:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "haiku"
+      ],
+      "mcps": [
+        "github"
+      ],
+      "capabilities": [
+        "image-processing",
+        "pillow",
+        "sharp",
+        "resize",
+        "compression",
+        "watermark",
+        "ocr"
+      ],
+      "languages": [
+        "python",
+        "typescript"
+      ],
+      "max_tool_calls": 15,
+      "effort": "low",
+      "template": "minimal",
+      "notes": "Multimodal — görsel analiz de yapabilir.",
+      "tier": "junior"
+    },
+    "S1": {
+      "name": "Legal Doc Reviewer",
+      "version": "1.0",
+      "category": "legal",
+      "status": "active",
+      "primary_model": "arcee-ai/trinity-large-preview:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "qwen/qwen3.6-plus:free",
+        "sonnet"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "tos-review",
+        "privacy-policy",
+        "gdpr",
+        "kvkk",
+        "contract-review",
+        "risk-flag"
+      ],
+      "max_tool_calls": 15,
+      "effort": "high",
+      "template": "minimal",
+      "notes": "Hukuki metin analizi. Karar vermez — flag eder.",
+      "tier": "junior"
+    },
+    "S2": {
+      "name": "GDPR/KVKK Agent",
+      "version": "1.0",
+      "category": "legal",
+      "status": "active",
+      "primary_model": "minimax/minimax-m2.5:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "haiku"
+      ],
+      "mcps": [
+        "github"
+      ],
+      "capabilities": [
+        "gdpr",
+        "kvkk",
+        "data-mapping",
+        "consent-management",
+        "dpia",
+        "breach-response"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "minimal",
+      "tier": "junior"
+    },
+    "T1": {
+      "name": "Chatbot Builder",
+      "version": "1.0",
+      "category": "chatbot",
+      "status": "active",
+      "primary_model": "qwen/qwen3.6-plus:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "context7"
+      ],
+      "capabilities": [
+        "chatbot-design",
+        "dialog-flow",
+        "intent",
+        "nlu",
+        "rasa",
+        "bot-framework",
+        "telegram-bot"
+      ],
+      "languages": [
+        "python",
+        "typescript"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "junior"
+    },
+    "T2": {
+      "name": "FAQ Generator",
+      "version": "1.0",
+      "category": "chatbot",
+      "status": "active",
+      "primary_model": "llama-3.3-70b-versatile",
+      "model_source": "groq",
+      "fallbacks": [
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "faq-generation",
+        "knowledge-base",
+        "qa-pairs",
+        "support-content"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "minimal",
+      "tier": "junior"
+    },
+    "T3": {
+      "name": "Support Ticket Analyzer",
+      "version": "1.0",
+      "category": "chatbot",
+      "status": "active",
+      "primary_model": "gemma2-9b-it",
+      "model_source": "groq",
+      "fallbacks": [
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "haiku"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "ticket-classification",
+        "sentiment",
+        "priority-detection",
+        "jira-link"
+      ],
+      "max_tool_calls": 10,
+      "effort": "low",
+      "template": "minimal",
+      "notes": "Trivial sınıflandırma — kota yemesin.",
+      "tier": "junior"
+    },
+    "U1": {
+      "name": "AR/VR Developer",
+      "version": "1.0",
+      "category": "xr",
+      "status": "active",
+      "primary_model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "qwen/qwen3.6-plus:free",
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "context7"
+      ],
+      "capabilities": [
+        "unity-xr",
+        "arkit",
+        "arcore",
+        "webxr",
+        "three-js",
+        "babylon-js",
+        "openxr"
+      ],
+      "languages": [
+        "csharp",
+        "javascript",
+        "typescript"
+      ],
+      "max_tool_calls": 30,
+      "effort": "high",
+      "template": "autonomous",
+      "tier": "junior"
+    },
+    "V1": {
+      "name": "IoT/Embedded Agent",
+      "version": "1.0",
+      "category": "iot",
+      "status": "active",
+      "primary_model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "qwen/qwen3.6-plus:free",
+        "haiku"
+      ],
+      "mcps": [
+        "github"
+      ],
+      "capabilities": [
+        "arduino",
+        "raspberry-pi",
+        "mqtt",
+        "esp32",
+        "micropython",
+        "firmware",
+        "iot-cloud"
+      ],
+      "languages": [
+        "c",
+        "python",
+        "cpp"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "junior"
+    },
+    "W1": {
+      "name": "CLI Tool Builder",
+      "version": "1.0",
+      "category": "devtools",
+      "status": "active",
+      "primary_model": "qwen/qwen3.6-plus:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "haiku"
+      ],
+      "mcps": [
+        "github"
+      ],
+      "capabilities": [
+        "cli",
+        "cobra",
+        "click",
+        "argparse",
+        "oclif",
+        "ink",
+        "terminal-ui"
+      ],
+      "languages": [
+        "go",
+        "python",
+        "typescript"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "junior"
+    },
+    "W2": {
+      "name": "VSCode Extension Builder",
+      "version": "1.0",
+      "category": "devtools",
+      "status": "active",
+      "primary_model": "qwen/qwen3.6-plus:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "context7"
+      ],
+      "capabilities": [
+        "vscode-extension",
+        "language-server",
+        "lsp",
+        "tree-sitter",
+        "webview"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "max_tool_calls": 25,
+      "effort": "high",
+      "template": "autonomous",
+      "tier": "junior"
+    },
+    "X1": {
+      "name": "Smart Contract Agent",
+      "version": "1.0",
+      "category": "web3",
+      "status": "active",
+      "primary_model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "qwen/qwen3.6-plus:free",
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "context7"
+      ],
+      "capabilities": [
+        "solidity",
+        "smart-contract",
+        "hardhat",
+        "foundry",
+        "audit",
+        "erc20",
+        "nft"
+      ],
+      "languages": [
+        "solidity",
+        "typescript"
+      ],
+      "max_tool_calls": 25,
+      "effort": "high",
+      "template": "autonomous",
+      "tier": "junior"
+    },
+    "B2S": {
+      "name": "Backend Coder Senior",
+      "version": "1.0",
+      "category": "backend",
+      "status": "active",
+      "tier": "senior",
+      "primary_model": "sonnet",
+      "model_source": "anthropic",
+      "fallbacks": [
+        "nvidia/nemotron-3-super-120b-a12b:free",
+        "haiku"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch",
+        "context7"
+      ],
+      "capabilities": [
+        "api",
+        "crud",
+        "rest",
+        "graphql",
+        "migration",
+        "complex-architecture",
+        "microservices"
+      ],
+      "languages": [
+        "typescript",
+        "python",
+        "dart"
+      ],
+      "max_tool_calls": 50,
+      "effort": "high",
+      "template": "autonomous",
+      "notes": "Ücretli. Sadece B2 (free) yetersiz kalırsa dispatch eder."
+    },
+    "B3S": {
+      "name": "Frontend Coder Senior",
+      "version": "1.0",
+      "category": "backend",
+      "status": "active",
+      "tier": "senior",
+      "primary_model": "sonnet",
+      "model_source": "anthropic",
+      "fallbacks": [
+        "qwen/qwen3.6-plus:free",
+        "haiku"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "context7"
+      ],
+      "capabilities": [
+        "react",
+        "flutter",
+        "complex-ui",
+        "state-management",
+        "performance-optimization",
+        "animations"
+      ],
+      "languages": [
+        "typescript",
+        "dart",
+        "css"
+      ],
+      "max_tool_calls": 40,
+      "effort": "high",
+      "template": "autonomous",
+      "notes": "Ücretli. Sadece B3 (free) yetersiz kalırsa."
     }
   },
   "retry_strategy": {
@@ -3122,5 +4161,6 @@
     "max_same_error": 2,
     "max_no_progress": 8,
     "max_loop": 5
-  }
+  },
+  "last_updated": "2026-04-07"
 }

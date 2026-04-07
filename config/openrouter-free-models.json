@@ -1,16 +1,130 @@
 {
-  "version": "1.0",
-  "last_updated": "2026-04-04",
+  "version": "2.0",
+  "last_updated": "2026-04-07",
   "update_frequency": "weekly",
-  "note": "Free models change frequently. Run daily-check.sh or manually verify at openrouter.ai",
+  "note": "Free models change frequently. Run /free-models update to refresh. Verify at openrouter.ai/models?order=newest&supported_parameters=free",
   "models": [
+    {
+      "id": "qwen/qwen3.6-plus:free",
+      "name": "Qwen 3.6 Plus Free",
+      "context": 1000000,
+      "strength": "very-high",
+      "tool_calling": true,
+      "multimodal": true,
+      "recommended_for": ["coding", "analysis", "long-context", "frontend", "backend", "general"],
+      "notes": "Best all-around free model. 1M context. Vision+video."
+    },
+    {
+      "id": "nvidia/nemotron-3-super-120b-a12b:free",
+      "name": "NVIDIA Nemotron 3 Super 120B (free)",
+      "context": 262144,
+      "strength": "very-high",
+      "tool_calling": true,
+      "multimodal": false,
+      "recommended_for": ["coding", "reasoning", "analysis", "backend", "unity"],
+      "notes": "120B MoE, 12B active. Hybrid Mamba-Transformer. Strong for complex agent tasks."
+    },
+    {
+      "id": "stepfun/step-3.5-flash:free",
+      "name": "StepFun Step 3.5 Flash (free)",
+      "context": 256000,
+      "strength": "high",
+      "tool_calling": true,
+      "multimodal": false,
+      "recommended_for": ["coding", "general", "frontend"],
+      "notes": "196B MoE sparse, 11B active. Fast inference."
+    },
+    {
+      "id": "minimax/minimax-m2.5:free",
+      "name": "MiniMax M2.5 (free)",
+      "context": 196608,
+      "strength": "high",
+      "tool_calling": true,
+      "multimodal": false,
+      "recommended_for": ["coding", "tool-calling", "research", "backend"],
+      "notes": "Strong real-world productivity model. tool_choice not supported, only tools."
+    },
+    {
+      "id": "arcee-ai/trinity-large-preview:free",
+      "name": "Arcee AI Trinity Large Preview (free)",
+      "context": 131000,
+      "strength": "high",
+      "tool_calling": true,
+      "multimodal": false,
+      "recommended_for": ["creative-writing", "general", "long-context"],
+      "notes": "400B MoE sparse, 13B active. Strong creative + reasoning."
+    },
+    {
+      "id": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "name": "NVIDIA Nemotron 3 Nano 30B A3B (free)",
+      "context": 256000,
+      "strength": "high",
+      "tool_calling": true,
+      "multimodal": false,
+      "recommended_for": ["coding", "agent-tasks", "small-tasks"],
+      "notes": "MoE 30B/3B active. Efficient for agentic tasks."
+    },
+    {
+      "id": "nvidia/nemotron-nano-12b-v2-vl:free",
+      "name": "NVIDIA Nemotron Nano 12B VL (free)",
+      "context": 128000,
+      "strength": "medium",
+      "tool_calling": true,
+      "multimodal": true,
+      "recommended_for": ["vision", "video-understanding", "document-analysis"],
+      "notes": "12B multimodal. Image+video input. Hybrid Transformer-Mamba."
+    },
+    {
+      "id": "arcee-ai/trinity-mini:free",
+      "name": "Arcee AI Trinity Mini (free)",
+      "context": 131072,
+      "strength": "medium",
+      "tool_calling": true,
+      "multimodal": false,
+      "recommended_for": ["coding", "small-tasks"],
+      "notes": "26B MoE, 3B active. ⚠️ EXPIRES 2026-04-10 — may disappear soon.",
+      "expiration_date": "2026-04-10"
+    },
+    {
+      "id": "openrouter/free",
+      "name": "OpenRouter Free Router",
+      "context": 200000,
+      "strength": "variable",
+      "tool_calling": true,
+      "multimodal": true,
+      "recommended_for": ["rate-limit-bypass", "fallback", "general"],
+      "notes": "Routes randomly to available free models. Use as last-resort fallback."
+    },
+    {
+      "id": "liquid/lfm-2.5-1.2b-thinking:free",
+      "name": "LiquidAI LFM2.5 1.2B Thinking (free)",
+      "context": 32768,
+      "strength": "low",
+      "tool_calling": false,
+      "multimodal": false,
+      "recommended_for": ["edge", "lightweight-reasoning"],
+      "notes": "1.2B edge model. No tool calling. Only for very lightweight tasks."
+    },
+    {
+      "id": "liquid/lfm-2.5-1.2b-instruct:free",
+      "name": "LiquidAI LFM2.5 1.2B Instruct (free)",
+      "context": 32768,
+      "strength": "low",
+      "tool_calling": false,
+      "multimodal": false,
+      "recommended_for": ["edge", "simple-chat"],
+      "notes": "1.2B edge model. No tool calling."
+    },
     {
       "id": "qwen/qwen3.6-free",
       "name": "Qwen 3.6 Free",
       "context": 1000000,
       "strength": "high",
       "tool_calling": true,
-      "recommended_for": ["coding", "analysis", "general"]
+      "multimodal": false,
+      "recommended_for": ["coding", "analysis", "general"],
+      "notes": "Previous Qwen free tier. Still active.",
+      "deprecated": false
     },
     {
       "id": "minimax/minimax-m2.1-free",
@@ -18,7 +132,10 @@
       "context": 200000,
       "strength": "medium",
       "tool_calling": true,
-      "recommended_for": ["tool-calling", "research"]
+      "multimodal": false,
+      "recommended_for": ["tool-calling", "research"],
+      "notes": "Older free tier — M2.5 preferred.",
+      "deprecated": true
     },
     {
       "id": "zhipu/glm-4.7-free",
@@ -26,24 +143,10 @@
       "context": 128000,
       "strength": "medium",
       "tool_calling": false,
-      "recommended_for": ["documentation", "translation"]
-    },
-    {
-      "id": "moonshot/kimi-k2.5-free",
-      "name": "Kimi K2.5 Free",
-      "context": 128000,
-      "strength": "medium",
-      "tool_calling": false,
-      "recommended_for": ["reasoning", "math"]
-    },
-    {
-      "id": "openrouter/auto",
-      "name": "OpenRouter Free Router",
-      "context": "variable",
-      "strength": "variable",
-      "tool_calling": true,
-      "recommended_for": ["rate-limit-bypass", "general"],
-      "note": "Routes to least-busy free model"
+      "multimodal": false,
+      "recommended_for": ["documentation", "translation"],
+      "notes": "No tool calling. Use for text-only tasks.",
+      "deprecated": true
     },
     {
       "id": "google/gemma-4-12b-it:free",
@@ -51,41 +154,42 @@
       "context": 128000,
       "strength": "high",
       "tool_calling": true,
-      "recommended_for": ["coding", "small-tasks"]
-    },
-    {
-      "id": "qwen/qwen3.6-plus:free",
-      "name": "Qwen 3.6 Plus Free",
-      "context": 1000000,
-      "strength": "very-high",
-      "tool_calling": true,
-      "recommended_for": ["coding", "analysis", "long-context"]
-    },
-    {
-      "id": "nvidia/nemotron-3-super-120b-a12b:free",
-      "name": "Nemotron 3 Super 120B",
-      "context": 262000,
-      "strength": "high",
-      "tool_calling": true,
-      "recommended_for": ["coding", "reasoning", "analysis"]
+      "multimodal": false,
+      "recommended_for": ["coding", "small-tasks"],
+      "notes": "Not seen in latest API scan — may have expired.",
+      "deprecated": true
     },
     {
       "id": "openai/gpt-oss-120b:free",
-      "name": "GPT OSS 120B",
+      "name": "GPT OSS 120B (free)",
       "context": 131000,
       "strength": "high",
       "tool_calling": true,
-      "recommended_for": ["coding", "general", "reasoning"]
+      "multimodal": false,
+      "recommended_for": ["coding", "general", "reasoning"],
+      "notes": "Not seen in latest API scan — may have expired.",
+      "deprecated": true
     },
     {
       "id": "nousresearch/hermes-3-llama-3.1-405b:free",
-      "name": "Hermes 3 405B",
+      "name": "Hermes 3 405B (free)",
       "context": 131000,
       "strength": "very-high",
       "tool_calling": true,
-      "recommended_for": ["complex-reasoning", "coding", "analysis"]
+      "multimodal": false,
+      "recommended_for": ["complex-reasoning", "coding", "analysis"],
+      "notes": "Not seen in latest API scan — may have expired.",
+      "deprecated": true
     }
   ],
+  "agent_mapping": {
+    "frontend": ["qwen/qwen3.6-plus:free", "stepfun/step-3.5-flash:free"],
+    "backend": ["nvidia/nemotron-3-super-120b-a12b:free", "minimax/minimax-m2.5:free"],
+    "unity": ["nvidia/nemotron-3-super-120b-a12b:free", "qwen/qwen3.6-plus:free"],
+    "research": ["qwen/qwen3.6-plus:free", "arcee-ai/trinity-large-preview:free"],
+    "vision": ["nvidia/nemotron-nano-12b-v2-vl:free"],
+    "fallback": ["openrouter/free"]
+  },
   "rate_limits": {
     "no_credit": { "requests_per_day": 50, "note": "Very limited, fallback only" },
     "with_credit_5usd": { "requests_per_day": 1000, "note": "Recommended minimum" },

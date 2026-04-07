@@ -34,11 +34,45 @@
 - **Dil:** kullaniciya Turkce; kod/commit Ingilizce
 - Basit/orta is + Opus aktifken → daha ucuz modele gecmeyi **oner**
 
+**Model seçim önceliği (ucuzdan pahalıya):**
+
+```
+free/local → haiku → sonnet → opus
+```
+
+Kolay/orta task'larda ücretli modele geçme — önce free/local dene.
+
 | Model | Maliyet | Ne zaman |
 |-------|---------|----------|
-| Haiku 4.5 | En dusuk | Label, kucuk duzenleme, basit soru |
-| Sonnet 4.6 | Orta | Kod, orta karmasiklik |
-| Opus 4.6 | En yuksek | Mimari, buyuk feature, zor debug |
+| `free-gemini` | Ücretsiz | UI/UX, design, frontend kod, araştırma, kolay analiz |
+| `free-qwen3.6` | Ücretsiz | Coding, frontend, backend, uzun context (1M) — OpenRouter |
+| `free-nemotron` | Ücretsiz | Backend, Unity/C#, reasoning, 120B güç — OpenRouter |
+| `free-stepfun` | Ücretsiz | Frontend kod, genel coding — OpenRouter |
+| `free-groq` | Ücretsiz | Hızlı inference: Llama 3.1/3.3, Gemma (Groq free tier) |
+| `free-hf` | Ücretsiz | HuggingFace Inference API free modeller |
+| `local-qwen-9b` | Ücretsiz | İçerik, metin, orta analiz (Ollama gerekir) |
+| `free-script` | Ücretsiz | Bash/script tabanlı işler |
+| `free-web` | Ücretsiz | Web fetch/arama — MCP fetch ile |
+| `free-gpt` | Ücretsiz tier | Basit soru-cevap, kısa görev (OpenRouter GPT-4o-mini) |
+| Haiku 4.5 | En düşük | Label, küçük düzenleme, basit soru — free yoksa |
+| Sonnet 4.6 | Orta | Kod, orta karmaşıklık — free yetmiyorsa |
+| Opus 4.6 | En yüksek | Mimari, büyük feature, zor debug — zorunlu ise |
+
+**Hangi task hangi model:**
+
+| Task tipi | Model |
+|-----------|-------|
+| UI bileşen kodu (React/Flutter) | `free-qwen3.6` → `free-gemini` → Sonnet fallback |
+| Design system / token | `free-gemini` → Haiku fallback |
+| UX araştırma / rakip analizi | `free-gemini` |
+| Unity / C# / game dev | `free-nemotron` → `free-qwen3.6` → Sonnet fallback |
+| Backend API, veritabanı | `free-nemotron` → `free-qwen3.6` → Sonnet fallback |
+| Data scraping / parsing | `free-groq` → `free-qwen3.6` → Haiku fallback |
+| SEO tarama, script | `free-script` |
+| Web fetch / araştırma | `free-web` |
+| İçerik, metin, repurpose | `local-qwen-9b` → Haiku fallback |
+| Mimari karar, güvenlik | Opus |
+| Genel orta kod | Sonnet |
 
 **Haftalik kota yonetimi** (reset gunu: /usage'dan oku):
 
