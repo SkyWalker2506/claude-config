@@ -221,6 +221,16 @@ if [ ! -L "$SECRETS_DIR/secrets.env" ] || [ "$(readlink "$SECRETS_DIR/secrets.en
   echo "✅ Secrets symlink: ~/.claude/secrets/secrets.env → claude-secrets/secrets.env"
 fi
 
+# Projects klasoru symlink
+CLAUDE_SECRETS_PROJECTS="$CLAUDE_SECRETS_DIR/projects"
+if [ -d "$CLAUDE_SECRETS_PROJECTS" ]; then
+  if [ ! -L "$SECRETS_DIR/projects" ] || [ "$(readlink "$SECRETS_DIR/projects")" != "$CLAUDE_SECRETS_PROJECTS" ]; then
+    rm -rf "$SECRETS_DIR/projects"
+    ln -sf "$CLAUDE_SECRETS_PROJECTS" "$SECRETS_DIR/projects"
+    echo "✅ Secrets symlink: ~/.claude/secrets/projects → claude-secrets/projects"
+  fi
+fi
+
 if [ "$SKIP_SECRETS" -eq 1 ]; then
   echo "Secrets atlandi (--skip-secrets)"
 
