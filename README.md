@@ -1,6 +1,6 @@
 # claude-config
 
-**Multi-Agent OS for Claude Code** — 134 agents, 15 plugins, local-first routing, Telegram bridge, plugin marketplace.
+**Multi-Agent OS for Claude Code** — 139 agents, 21 plugins, local-first routing, Telegram bridge, plugin marketplace.
 
 by [Musab Kara](https://linkedin.com/in/musab-kara-85580612a) · [GitHub](https://github.com/SkyWalker2506)
 
@@ -10,8 +10,8 @@ by [Musab Kara](https://linkedin.com/in/musab-kara-85580612a) · [GitHub](https:
 
 A portable, self-installing configuration system that turns Claude Code into a multi-agent operating system. Clone → `./install.sh` → done.
 
-- **134 AI agents** across 15 categories (30 active, 104 pool — activate on demand)
-- **15 plugins** published on our own [marketplace](https://github.com/SkyWalker2506/claude-marketplace)
+- **139 AI agents** across 15 categories (30 active, 104 pool — activate on demand)
+- **21 plugins** published on our own [marketplace](https://github.com/SkyWalker2506/claude-marketplace)
 - **8 MCP servers** integrated (GitHub, Atlassian/Jira, Firebase, Flutter, jCodeMunch, Git, Fetch, Context7)
 - **34 slash commands** (/yolo, /team-build, /jira-run, /audit, /web-research, /sprint-plan, and more)
 - **Telegram bot** with persistent Haiku agent — control Claude from your phone
@@ -54,7 +54,7 @@ The installer sets up everything: CLAUDE.md hierarchy, skills, MCP servers, hook
 
 ## Plugin Marketplace
 
-18 plugins, each in its own repo. Add the marketplace:
+21 plugins, each in its own repo. Add the marketplace:
 
 ```bash
 claude plugin marketplace add SkyWalker2506/claude-marketplace
@@ -85,7 +85,7 @@ Then browse with `/plugin > Discover` or install directly:
 
 ## Agent System
 
-134 agents across 15 categories. Each agent has a `.md` file with model assignment, capabilities, and fallback chain.
+139 agents across 15 categories. Each agent has a `.md` file with model assignment, capabilities, and fallback chain.
 
 | Category | Agents | Examples |
 |----------|--------|---------|
@@ -186,8 +186,8 @@ cd ~/Projects/claude-config
 ## Related
 
 - [ClaudeHQ](https://github.com/SkyWalker2506/ClaudeHQ) — Claude ecosystem HQ, cross-project workspace
-- [Plugin Marketplace](https://github.com/SkyWalker2506/claude-marketplace) — 18 plugins for Claude Code, browse & install
-- [Agent Catalog](https://github.com/SkyWalker2506/claude-agent-catalog) — 134 agents across 15 categories
+- [Plugin Marketplace](https://github.com/SkyWalker2506/claude-marketplace) — 21 plugins for Claude Code, browse & install
+- [Agent Catalog](https://github.com/SkyWalker2506/claude-agent-catalog) — 139 agents across 15 categories
 - [SDK Market](https://github.com/SkyWalker2506/sdk-market) — production-ready SDKs and kits
 - [OpenCode](https://opencode.ai/) — Free/local models via Zen + Ollama
 
