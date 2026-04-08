@@ -189,8 +189,18 @@ $CONTENT
       fi
       continue
     elif [ "$TYPE" = "VOICE" ]; then
-      send "🎤 Ses mesajı alındı ama henüz desteklenmiyor." "$MAIN_KB"
-      continue
+      FILE_ID="$FIELD1"
+      log "[VOICE] file_id=$FILE_ID"
+      send "🎤 _Ses mesajı alındı, transkript ediliyor..._"
+      TRANSCRIPT=$(python3 "$SCRIPT_DIR/tg_voice.py" "$TELEGRAM_BOT_TOKEN" "$FILE_ID" "tr" 2>/dev/null)
+      if [ -n "$TRANSCRIPT" ]; then
+        log "[VOICE] transcript: $TRANSCRIPT"
+        TEXT="$TRANSCRIPT"
+        # Fall through to handle as text command/message
+      else
+        send "❌ Ses transkripti başarısız. OPENAI_API_KEY veya openai-whisper gerekli." "$MAIN_KB"
+        continue
+      fi
     else
       TEXT="$FIELD1"
     fi
