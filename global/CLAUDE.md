@@ -1,6 +1,60 @@
-# Global Claude — Yonlendirici
+# Global Claude — Yonlendirici + Bootstrap
 
 > **Bu dosya sadece yonlendiricidir.** Tum kurallar, skill tanimlari ve konfigürasyon detaylari `~/Projects/claude-config/CLAUDE.md` dosyasindadir.
+
+---
+
+## Bootstrap (ILKLEME — claude-config yoksa)
+
+Asagidaki kontrolleri **her oturum basinda sirayla** yap. Herhangi biri basarisizsa o adimi calistir, sonraki adimlara gec.
+
+### Adim 1: claude-config repo
+
+```bash
+# Kontrol
+ls ~/Projects/claude-config/install.sh 2>/dev/null
+```
+
+**Yoksa:**
+```bash
+mkdir -p ~/Projects
+cd ~/Projects
+gh auth status 2>/dev/null || git clone https://github.com/SkyWalker2506/claude-config.git
+gh auth status 2>/dev/null && gh repo clone SkyWalker2506/claude-config 2>/dev/null || git clone https://github.com/SkyWalker2506/claude-config.git
+```
+
+### Adim 2: Secrets
+
+```bash
+# Kontrol
+ls ~/Projects/claude-config/claude-secrets/secrets.env 2>/dev/null
+```
+
+**Yoksa:**
+```bash
+cd ~/Projects/claude-config
+gh auth status 2>/dev/null && gh repo clone SkyWalker2506/claude-secrets claude-secrets 2>/dev/null
+```
+
+gh auth yoksa kullaniciya bildir: "Secrets icin GitHub login gerekli. `! gh auth login --web -p https` calistir."
+
+### Adim 3: install.sh
+
+```bash
+# Kontrol — settings.json ve skill'ler mevcut mu
+ls ~/.claude/settings.json 2>/dev/null && ls ~/.claude/skills/ 2>/dev/null
+```
+
+**Yoksa veya eksikse:**
+```bash
+cd ~/Projects/claude-config && bash ./install.sh --auto --skip-login --stacks general
+```
+
+Kullaniciya stack sorusu sormadan `general` ile basla. Kurulum sonrasi `/restart` hatırlat.
+
+### Adim 4: Normal akis
+
+Bootstrap tamamsa asagidaki "Her oturum basinda" bolumune gec.
 
 ---
 

@@ -686,6 +686,32 @@ alias plugin-update='bash ~/Projects/claude-config/config/plugin-update.sh'
 CLEOF
 echo "✅ Shell: cl, claude, clhq → $SHELL_RC"
 
+# ── 8b. PowerShell profile (Windows only) ──
+if [ "$OS" = "windows" ]; then
+  echo ""
+  echo "=== PowerShell Profile ==="
+  PS_PROFILE_DIR="$HOME/Documents/WindowsPowerShell"
+  PS_PROFILE="$PS_PROFILE_DIR/Microsoft.PowerShell_profile.ps1"
+  PS_TEMPLATE="$SCRIPT_DIR/global/powershell_profile.ps1"
+  PS_BLOCK_BEGIN="# __CLAUDE_CONFIG_PS_BLOCK_START__"
+  PS_BLOCK_END="# __CLAUDE_CONFIG_PS_BLOCK_END__"
+
+  if [ -f "$PS_TEMPLATE" ]; then
+    mkdir -p "$PS_PROFILE_DIR"
+    touch "$PS_PROFILE"
+    # Remove old block if exists
+    if grep -q "$PS_BLOCK_BEGIN" "$PS_PROFILE" 2>/dev/null; then
+      sed -i.bak "/$PS_BLOCK_BEGIN/,/$PS_BLOCK_END/d" "$PS_PROFILE" 2>/dev/null || true
+    fi
+    # Append template — replace placeholder with actual root (Windows path)
+    PROJECTS_ROOT_WIN=$(cygpath -w "$PROJECTS_ROOT" 2>/dev/null || echo "$PROJECTS_ROOT" | sed 's|^/c/|C:\\\\|;s|/|\\\\|g')
+    sed "s|__PROJECTS_DIR__|$PROJECTS_ROOT_WIN|g" "$PS_TEMPLATE" >> "$PS_PROFILE"
+    echo "✅ PowerShell: cl, claude, clhq → $PS_PROFILE"
+  else
+    echo "⚠️  PowerShell template bulunamadi: $PS_TEMPLATE"
+  fi
+fi
+
 # ── Phase 8: Local Models (Ollama) ──
 setup_ollama() {
   echo ""
