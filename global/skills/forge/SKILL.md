@@ -76,6 +76,7 @@ Projeyi analiz et, sprint plan, paralel task'lari calistir, PR/review/merge dong
 **`all` modu:**
 - `~/Projects/ClaudeHQ/projects.json`'dan aktif projeleri oku
 - Her projeyi sirayla forge et (proje arasi paralel degil — kaynak yonetimi icin)
+- **Aktif session tespiti yapilir** — kullanicinin baska terminalde calistigi projeler atlanir (bkz. "Aktif Session Tespiti" bolumu)
 
 ## Forge Run Akisi
 
@@ -99,6 +100,8 @@ Her run 7 fazdan olusur:
 ### Phase 0 — Pre-flight Checks
 
 Run baslamadan once tum bagimliliklari kontrol et. Biri bile fail ederse **durur ve kullaniciya bildirir**.
+
+**`all` modunda ilk is: Aktif Session Tespiti** — forge baslamadan once hangi projelerin atlanacagini belirle (detay asagida).
 
 ```
 ━━ Pre-flight Checks ━━━━━━━━━━━━━━━━━━
@@ -378,6 +381,97 @@ Akis:
 
 ---
 
+---
+
+## Aktif Session Tespiti (`all` modu)
+
+`forge all` calistiginda her projeyi forge etmeden once **kullanicinin o anda o projede calisip calismadigi** kontrol edilir. Aktif projeler forge'dan cikarilir — o projede hata yapmaktan kacilir, cakisma olmaz.
+
+### Tespit Yontemi
+
+Bir proje "aktif" sayilir eger asagidaki sinyallerden **en az ikisi** positif:
+
+| Sinyal | Kontrol | Komut |
+|--------|---------|-------|
+| **Claude session** | Son 30 dakikada `.jsonl` aktivitesi var mi | `find ~/.claude/projects/{proje-slug}/ -name "*.jsonl" -newer /tmp/forge-check-ts 2>/dev/null` |
+| **Git dirty** | Uncommitted degisiklik var mi | `git -C {path} status --porcelain` |
+| **Git lock** | `.git/index.lock` mevcut mu | `test -f {path}/.git/index.lock` |
+| **Forge lock** | `.jira-state/forge.lock` mevcut mu (baska forge calisiyor) | `test -f {path}/.jira-state/forge.lock` |
+| **Recent file change** | Son 15 dakikada kaynak dosya degisti mi | `find {path}/lib {path}/src -newer /tmp/forge-check-ts -name "*.dart" -o -name "*.ts" -o -name "*.py" 2>/dev/null | head -1` |
+
+**Proje slug** cikarsimi:
+- `/Users/musabkara/Projects/CoinHQ` → `-Users-musabkara-Projects-CoinHQ`
+- `~/.claude/projects/-Users-musabkara-Projects-CoinHQ/` dizini kontrol edilir
+
+**Ozel kural — Forge'u calistiran proje:** `forge all` hangi CWD'den calisiyorsa o projeyi aktif tespitinden **muaf tut** — o session forge'un kendisidir, false positive olusur. (Ornek: ClaudeHQ'dan `forge all` calistirilinca ClaudeHQ kendini atlamamali.)
+
+### Kontrol Adımlari
+
+```bash
+# 1. Timestamp olustur
+touch /tmp/forge-check-ts  # 30dk gecmisini simule etmek icin: touch -t $(date -v-30M +%Y%m%d%H%M) /tmp/forge-check-ts
+
+# 2. Her proje icin skor hesapla (0-5 arasi)
+for proje in projects.json'daki aktif projeler:
+  skor = 0
+  skor += 1 if claude session aktif (son 30dk jsonl)
+  skor += 1 if git dirty
+  skor += 1 if git lock
+  skor += 1 if forge lock
+  skor += 1 if recent file change (son 15dk)
+  
+  if skor >= 2:
+    → SKIP (aktif proje)
+  elif skor == 1:
+    → WARN (muhtemelen aktif, kullaniciya sor)
+  else:
+    → FORGE (guvenli)
+```
+
+### Cikti Formati
+
+```
+━━ Forge All — Aktif Session Tespiti ━━━━━━━━━━━━━━━━━━━━━━━
+  CoinHQ       → ✅ Guvenli    (session: 3sa once, git: clean)
+  ArtLift      → ⏭  Atlaniyor  (session: 2dk once + git dirty)
+  Gardirop     → ⏭  Atlaniyor  (forge.lock mevcut)
+  Viralyze     → ⚠️  Belirsiz   (session: 18dk once)
+    → Viralyze'i forge etsek mi? [Y/n]:
+  RefinUp      → ✅ Guvenli    (session: 45dk once, git: clean)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Forge edilecek: CoinHQ, Viralyze (onay bekleniyor), RefinUp
+Atlanan: ArtLift, Gardirop
+```
+
+**"Belirsiz" projeler (skor=1):** Kullaniciya sor. Cevap:
+- Y → forge et
+- N → atla
+- `--force` flag verilmisse → sor, direkt forge et
+
+### `--force` ve `--skip` Flags
+
+```
+/forge all --force          # Aktif tespiti atla, hepsini forge et
+/forge all --skip ArtLift   # Belirli projeyi manuel atla
+/forge all --only CoinHQ,Viralyze  # Sadece bu projeleri forge et
+```
+
+### Forge Lock
+
+Her forge baslayinca o projeye lock koy, bitince kaldir:
+
+```bash
+# Forge baslangicinda:
+mkdir -p {path}/.jira-state && touch {path}/.jira-state/forge.lock
+
+# Forge bitince (Phase 7 sonunda):
+rm -f {path}/.jira-state/forge.lock
+```
+
+Bu sayede iki ayri `forge all` ayni projeye cakismaz.
+
+---
+
 ## Kurallar
 
 1. **Lead kararlari otomatik kabul** — forge sifir soru sorar (analysis haric: orada sadece oto-cevap)
@@ -391,3 +485,5 @@ Akis:
 9. **Baska projeden cagirilabilir** — proje adi veya `all` ile herhangi bir dizinden calistir
 10. **Phase 7 atlanamazz** — her forge run'inda `/forge-analysis` otomatik calisir, skip edilemez
 11. **Verimlilik skoru < 50 ise dur** — kullaniciya bildir, sonraki run'i baslatma
+12. **`all` modunda aktif session tespiti zorunlu** — skor ≥ 2 projeyi forge etme, kullaniciya bildir
+13. **Forge lock** — her forge baslayinca `.jira-state/forge.lock` yaz, bitince sil
