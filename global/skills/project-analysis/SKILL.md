@@ -142,16 +142,35 @@ Lead yapısı:
 - **BizLead**    → Monetization (#5), Competitive (#12)
 - **SecLead**    → Security (#7)
 
+### Agent Dispatch Tablosu
+
+Lead'ler başlatılmadan önce kullanıcıya dispatch tablosunu göster:
+
+```
+━━ Agent Dispatch ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Agent        Model          Kategoriler
+  ─────────    ───────────    ──────────────────────────
+  ArtLead      Sonnet 4.6     UI/UX, Content, A11y
+  CodeLead     Sonnet 4.6     Perf, Data, Arch
+  GrowthLead   Sonnet 4.6     SEO, Growth, Analytics
+  BizLead      Sonnet 4.6     Monetization, Competitive
+  SecLead      Opus 4.6       Security
+  Master       Opus 4.6       Final report (Phase 4)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+Bu tablo her zaman gösterilir — kullanıcı hangi agent'ın hangi modelle çalıştığını bilmeli.
+
 ## Adım 3 — Watchdog
 
-Her 3 dakikada bir durum göster:
+Her 3 dakikada bir durum göster (model bilgisi dahil):
 ```
 Analiz durumu (X/Y tamamlandı):
-✅ ArtLead  (UI/UX, Content, Accessibility)
-✅ SecLead  (Security)
-⏳ CodeLead (Performance ✅, Data ✅, Architecture ⏳)
-⏳ GrowthLead (SEO ✅, Growth ⏳, Analytics ⏳)
-⏳ BizLead  (Monetization ⏳, Competitive ⏳)
+✅ ArtLead   [Sonnet 4.6]  3m 12s — UI/UX ✅, Content ✅, A11y ✅
+✅ SecLead   [Opus 4.6]    2m 30s — Security ✅
+⏳ CodeLead  [Sonnet 4.6]  4m 45s — Perf ✅, Data ✅, Arch ⏳
+⏳ GrowthLead[Sonnet 4.6]  3m 50s — SEO ✅, Growth ⏳, Analytics ⏳
+⏳ BizLead   [Sonnet 4.6]  2m 10s — Monetization ⏳, Competitive ⏳
 ```
 8 dakika geçen lead → kullanıcıya sor, onay gelirse yeniden başlat.
 
@@ -165,6 +184,22 @@ Tüm Lead'ler tamamlanınca bir **Opus agent** başlat:
 
 ## Adım 5 — Kullanıcıya göster
 
-1. Master rapor özeti
-2. Dosya konumları
-3. En kritik 5 aksiyon
+1. Agent execution özeti (her agent: model, süre, çıktı sayısı)
+2. Master rapor özeti
+3. Dosya konumları
+4. En kritik 5 aksiyon
+
+```
+━━ Execution Summary ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Agent        Model          Süre      Çıktı
+  ─────────    ───────────    ──────    ─────
+  ArtLead      Sonnet 4.6     3m 12s    3 reports
+  CodeLead     Sonnet 4.6     4m 45s    3 reports
+  GrowthLead   Sonnet 4.6     3m 50s    3 reports
+  BizLead      Sonnet 4.6     2m 10s    2 reports
+  SecLead      Opus 4.6       2m 30s    1 report
+  Master       Opus 4.6       1m 45s    MASTER_ANALYSIS.md
+  ─────────    ───────────    ──────    ─────
+  Total        6 agents       18m 12s   13 files
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```

@@ -151,6 +151,20 @@ Sprint sprint ilerle (Sprint 1 bitince Sprint 2, vs.):
 ━━ Sprint 1 Complete ━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
+Sprint baslamadan once dispatch tablosu goster:
+
+```
+━━ Sprint 1 — Task Pipeline ━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Task         Agent     Model          Gorev
+  ──────────   ──────    ───────────    ──────────
+  KEY-101      Coder     Sonnet 4.6     Branch + code + PR
+  KEY-101      Reviewer  Opus 4.6       Review + merge
+  KEY-102      Coder     Sonnet 4.6     Branch + code + PR
+  KEY-102      Reviewer  Opus 4.6       Review + merge
+  ...
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
 Her task icin `/jira-start-new-task` pipeline'ini kullan:
 
 1. **Branch olustur** — `feat/{key}-xxx`
@@ -188,6 +202,12 @@ Tum sprint'ler tamamlaninca:
    - Tasks failed: 2 (manual review needed)
    - Total commits: 34
    - PRs merged: 12
+
+   ## Agent Execution
+   - Coder agents: Sonnet 4.6 (12 tasks)
+   - Reviewer agents: Opus 4.6 (12 reviews, 3 fix loops)
+   - Analysis: Sonnet 4.6 (5 leads) + Opus 4.6 (master)
+   - Total agent time: 45m
 
    ## Completed Tasks
    - [KEY-101] Add rate limiting to API endpoints ✓
