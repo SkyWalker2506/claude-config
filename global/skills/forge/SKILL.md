@@ -1,7 +1,7 @@
 ---
 name: forge
-description: "Tam otonom gelistirme dongusu — analysis, sprint, parallel tasks, PR/review loop, merge, summary. Kendi repeat'i dahil. Triggers: forge, forge all, tam dongü, full cycle."
-argument-hint: "[N=1] [proje]"
+description: "Tam otonom gelistirme dongusu — analysis, sprint, parallel tasks, PR/review loop, merge, summary. Focus mode ile belirli alanlara odaklanir. Kendi repeat'i dahil. Triggers: forge, forge all, tam dongü, full cycle."
+argument-hint: "[N=1] [proje] [-focus]"
 ---
 
 # /forge — Full Development Cycle
@@ -11,24 +11,62 @@ Projeyi analiz et, sprint plan, paralel task'lari calistir, PR/review/merge dong
 ## Kullanim
 
 ```
-/forge                     # tek run, CWD projesi
-/forge 3                   # 3 run, CWD projesi
-/forge CoinHQ              # tek run, CoinHQ
-/forge 5 CoinHQ            # 5 run, CoinHQ
-/forge all                 # tek run, tum projeler (projects.json)
-/forge 2 all               # 2 run, tum projeler
+/forge                          # tek run, CWD projesi, tüm kategoriler
+/forge 3                        # 3 run, CWD projesi
+/forge CoinHQ                   # tek run, CoinHQ
+/forge 5 CoinHQ                 # 5 run, CoinHQ
+/forge all                      # tek run, tum projeler (projects.json)
+/forge 2 all                    # 2 run, tum projeler
+
+# Focus modları (-ile ayrilir, birden fazla verilebilir):
+/forge -optimize                # Performans ve teknik borç
+/forge -feature                 # Yeni özellik geliştirme
+/forge -backend                 # Sadece backend/API
+/forge -frontend                # Sadece UI/UX
+/forge -security                # Güvenlik açıkları ve hardening
+/forge -test                    # Test coverage artırma
+/forge -refactor                # Kod temizliği ve yeniden yapılandırma
+/forge -docs                    # Dokümantasyon
+/forge 3 CoinHQ -backend -security    # Kombinasyon: 3 run, iki focus
+/forge all -frontend            # Tüm projeler, sadece frontend
 ```
 
 ## Arguman cozumu
 
-| Input | N | Proje |
-|-------|---|-------|
-| `/forge` | 1 | CWD |
-| `/forge 3` | 3 | CWD |
-| `/forge CoinHQ` | 1 | CoinHQ |
-| `/forge 5 CoinHQ` | 5 | CoinHQ |
-| `/forge all` | 1 | tum projeler |
-| `/forge 2 all` | 2 | tum projeler |
+| Input | N | Proje | Focus |
+|-------|---|-------|-------|
+| `/forge` | 1 | CWD | tümü |
+| `/forge 3` | 3 | CWD | tümü |
+| `/forge CoinHQ` | 1 | CoinHQ | tümü |
+| `/forge 5 CoinHQ` | 5 | CoinHQ | tümü |
+| `/forge all` | 1 | tüm projeler | tümü |
+| `/forge 2 all` | 2 | tüm projeler | tümü |
+| `/forge -backend` | 1 | CWD | backend |
+| `/forge 3 CoinHQ -frontend -test` | 3 | CoinHQ | frontend + test |
+
+**Focus parsing:** `-` ile başlayan her token focus flag'idir. Sayı token → N, bilinen proje adı → proje, geri kalan `-xxx` → focus listesi.
+
+## Focus Modları
+
+| Flag | Kapsam | Phase 1'e etki | Phase 2'ye etki |
+|------|--------|---------------|-----------------|
+| `-optimize` | Performans, cache, DB query, bundle size | Perf + Arch analizi | Task önceliği: hız metrikleri |
+| `-feature` | Yeni özellik, PRD'deki backlog | Growth + Biz analizi | Yeni feature task'ları |
+| `-backend` | API, DB, server logic, auth | Data + Arch + Sec analizi | Backend-only task'lar |
+| `-frontend` | UI, UX, responsive, animasyon | UI/UX + A11y + Content analizi | Frontend-only task'lar |
+| `-security` | Auth güvenliği, injection, secrets, deps | Sec analizi (Opus ile) | Security task'ları önce |
+| `-test` | Unit, widget, integration, e2e testler | Tüm kategorilerde test gaps | Test task'ları |
+| `-refactor` | Dead code, duplication, complexity | Arch + Perf analizi | Refactor task'ları |
+| `-docs` | README, API docs, in-code comments | Content analizi | Docs task'ları |
+
+**Kombinasyon:** Birden fazla focus verilirse sadece o alanların kesişim task'ları seçilir.
+
+**Focus yok:** Tüm kategoriler analiz edilir, öncelik metriklere göre doğal sıralanır.
+
+**Focus başlığı:**
+```
+━━ Forge Run [1/3] — CoinHQ [-backend -security] ━━━━━━━━
+```
 
 **Proje tespiti (CWD):**
 1. CLAUDE.md veya .claude/index.md oku → proje adi
@@ -51,6 +89,7 @@ Her run 7 fazdan olusur:
   Phase 3: Sprint Creation
   Phase 4: Parallel Task Execution
   Phase 5: Summary & Lessons
+  Phase 7: Forge Analysis (otomatik — metrik + optimizasyon)
   Phase 6: Handoff to next run
 ━━ Forge Run [1/N] Complete ✓ ━━━━━━━━━━━━━━━
 ```
@@ -94,7 +133,7 @@ Tum kontroller gecerse:
 
 ### Phase 1 — Project Analysis
 
-`/project-analysis` skill'ini calistir. Ancak interaktif sorulari otomatik cevapla:
+Focus varsa `/project-analysis {focus_flags}` olarak calistir (ornek: `/project-analysis -backend -security`). Focus yoksa sadece `/project-analysis`. Interaktif sorulari otomatik cevapla:
 
 | Soru | Otomatik cevap |
 |------|----------------|
@@ -245,6 +284,25 @@ Tum sprint'ler tamamlaninca:
 
 ---
 
+### Phase 7 — Forge Analysis (Otomatik)
+
+Phase 5 tamamlanır tamamlanmaz `/forge-analysis` skill'ini çalıştır. Argüman olarak mevcut run'ın summary dosya yolunu geç:
+
+```
+/forge-analysis forge/run-{N}-summary.md {proje}
+```
+
+Bu phase:
+- Run metriklerini ölçer (task success rate, fix loop ratio, vb.)
+- Cross-run trend analizi yapar (birden fazla run varsa)
+- Bottleneck'leri tespit eder
+- Memory ve skill dosyalarını otomatik optimize eder
+- `forge/analysis-{tarih}-run-{N}.md` raporunu oluşturur
+
+**Forge Analysis sonucu Phase 6'ya feed edilir** — handoff önerileri analysis raporundan gelir.
+
+---
+
 ### Phase 6 — Handoff (N > 1 ise)
 
 Sonraki run icin:
@@ -258,6 +316,17 @@ Sonraki run icin:
   Lessons saved → forge/run-1-lessons.md
   Starting Run 2 with lessons fed back...
 ━━ Forge Run [2/3] Starting ━━━━━━━━━━━━━
+```
+
+**Son run tamamlaninca (run N = toplam):**
+
+`/forge-analysis --final {N} {proje}` calistir — tum run'lari kapsayan Final Meta-Analiz baslatilir.
+
+```
+━━ All Runs Complete — Final Meta-Analysis ━━━━━━━━━
+  /forge-analysis --final 5 CoinHQ
+  → forge/meta-analysis-2026-04-08-runs-1-to-5.md
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 ---
@@ -292,15 +361,17 @@ Akis:
 ```
 {proje}/
 ├── analysis/
-│   ├── MASTER_ANALYSIS.md       # Phase 1 ciktisi
-│   └── SPRINT_PLAN.md           # Phase 2 ciktisi
+│   ├── MASTER_ANALYSIS.md                  # Phase 1 ciktisi
+│   └── SPRINT_PLAN.md                      # Phase 2 ciktisi
 ├── forge/
-│   ├── run-1-summary.md         # Run ozeti
-│   ├── run-1-lessons.md         # Cikarilan dersler
+│   ├── run-1-summary.md                    # Run ozeti (Phase 5)
+│   ├── run-1-lessons.md                    # Cikarilan dersler (Phase 5)
+│   ├── analysis-2026-04-08-run-1.md        # Verimlilik analizi (Phase 7)
 │   ├── run-2-summary.md
 │   ├── run-2-lessons.md
+│   ├── analysis-2026-04-09-run-2.md
 │   └── ...
-└── .jira-state/                 # Lock dosyalari
+└── .jira-state/                            # Lock dosyalari
 ```
 
 `forge/` klasorunu `.gitignore`'a ekle.
@@ -318,3 +389,5 @@ Akis:
 7. **Her task worktree'de calisir** — main branch'e direkt commit yok
 8. **Sprint sirasi korunur** — Sprint 1 bitmeden Sprint 2 baslamaz
 9. **Baska projeden cagirilabilir** — proje adi veya `all` ile herhangi bir dizinden calistir
+10. **Phase 7 atlanamazz** — her forge run'inda `/forge-analysis` otomatik calisir, skip edilemez
+11. **Verimlilik skoru < 50 ise dur** — kullaniciya bildir, sonraki run'i baslatma

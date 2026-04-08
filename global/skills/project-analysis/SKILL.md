@@ -1,4 +1,35 @@
-# /project-analysis
+# /project-analysis [-focus]
+
+**Focus modları** (isteğe bağlı, `-` ile):
+```
+/project-analysis                   # Tüm kategoriler (12 lead)
+/project-analysis -backend          # API, DB, Arch, Security
+/project-analysis -frontend         # UI/UX, Content, A11y
+/project-analysis -security         # Sadece Security (SecLead/Opus)
+/project-analysis -optimize         # Perf, Arch, Data
+/project-analysis -feature          # Growth, Biz, Content
+/project-analysis -test             # Tüm kategorilerde test boşlukları
+/project-analysis -refactor         # Arch, Perf — teknik borç
+/project-analysis -backend -security  # Kombinasyon
+```
+
+**Focus → Lead mapping:**
+
+| Focus | Çalışan Lead'ler | Atlanan Lead'ler |
+|-------|-----------------|-----------------|
+| `-backend` | CodeLead, SecLead | ArtLead, GrowthLead, BizLead |
+| `-frontend` | ArtLead | CodeLead, GrowthLead, BizLead, SecLead |
+| `-security` | SecLead | ArtLead, CodeLead, GrowthLead, BizLead |
+| `-optimize` | CodeLead (Perf+Arch+Data) | ArtLead, GrowthLead, BizLead, SecLead |
+| `-feature` | GrowthLead, BizLead | ArtLead, CodeLead, SecLead |
+| `-test` | Tüm Lead'ler (test gaps modu) | — |
+| `-refactor` | CodeLead (Arch+Perf) | ArtLead, GrowthLead, BizLead, SecLead |
+| `-docs` | ArtLead (Content) | CodeLead, GrowthLead, BizLead, SecLead |
+
+Focus varsa dispatch tablosunda atlanan lead'ler `(atlandı)` olarak gösterilir.
+Focus flag'leri forge'dan geçilebilir — forge Phase 1'de `/project-analysis -backend` gibi çağırır.
+
+---
 
 > **ÖNEMLİ — skill başlamadan önce:**
 > Kullanıcıya şunu göster:
