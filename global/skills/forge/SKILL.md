@@ -17,6 +17,7 @@ Projeyi analiz et, sprint plan, paralel task'lari calistir, PR/review/merge dong
 /forge 5 CoinHQ                 # 5 run, CoinHQ
 /forge all                      # tek run, tum projeler (projects.json)
 /forge 2 all                    # 2 run, tum projeler
+/forge choose                   # proje seçim menüsü — listeden seç, müsaitlik göster, forge et
 
 # Focus modları (-ile ayrilir, birden fazla verilebilir):
 /forge -optimize                # Performans ve teknik borç
@@ -43,6 +44,8 @@ Projeyi analiz et, sprint plan, paralel task'lari calistir, PR/review/merge dong
 | `/forge 2 all` | 2 | tüm projeler | tümü |
 | `/forge -backend` | 1 | CWD | backend |
 | `/forge 3 CoinHQ -frontend -test` | 3 | CoinHQ | frontend + test |
+| `/forge choose` | — | seçilen projeler | tümü |
+| `/forge choose -backend` | — | seçilen projeler | backend |
 
 **Focus parsing:** `-` ile başlayan her token focus flag'idir. Sayı token → N, bilinen proje adı → proje, geri kalan `-xxx` → focus listesi.
 
@@ -77,6 +80,61 @@ Projeyi analiz et, sprint plan, paralel task'lari calistir, PR/review/merge dong
 - `~/Projects/ClaudeHQ/projects.json`'dan aktif projeleri oku
 - Her projeyi **paralel** forge et — her proje bağımsız background agent olarak başlatılır (max 12 concurrent)
 - **Aktif session tespiti yapilir** — kullanicinin baska terminalde calistigi projeler atlanir (bkz. "Aktif Session Tespiti" bolumu)
+
+## `forge choose` — Proje Seçim Modu
+
+`/forge choose` çalıştırıldığında:
+
+**Adım 1 — Proje Listesi:**  
+`projects.json`'dan projeleri oku, numaralı liste olarak göster:
+
+```
+━━ Forge — Proje Seç ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   #   Proje               Durum
+  ───  ──────────────────  ──────────────────────────────
+   1   ar-research         ✅ boşta  (session: 4sa önce)
+   2   ByteCraftHQ         ✅ boşta  (git: clean)
+   3   CoinHQ              ⚠️  belirsiz (session: 18dk önce)
+   4   Gardirop            ⏭  meşgul  (forge.lock + dirty)
+   5   KnightOnlineAI      ✅ boşta
+   6   ProjeBirlik         ✅ boşta
+   7   trading-bot         ✅ boşta
+   8   transcriptr         ✅ boşta
+   9   VocabLearningApp    ✅ boşta
+  10   Viralyze            ✅ boşta
+  ...
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Seçim (örn: 1,3,5-8 veya hepsi için "all", iptal "0"):
+```
+
+**Durum sütunu** Aktif Session Tespiti'nden gelir — proje listesi gösterilmeden önce tüm projeler için müsaitlik skorları hesaplanır:
+- `✅ boşta` — skor 0  
+- `⚠️ belirsiz` — skor 1 (seçilebilir ama uyarı gösterilir)
+- `⏭ meşgul` — skor ≥ 2 (seçilemez, gri gösterilir)
+
+**Adım 2 — Seçim Parse:**
+
+| Giriş | Anlamı |
+|-------|--------|
+| `1,3,5` | 1, 3, 5 numaralı projeler |
+| `2-6` | 2'den 6'ya kadar |
+| `1,4-7,9` | Kombine |
+| `all` | Tüm boşta projeler (meşgullar hariç) |
+| `0` | İptal |
+
+**Adım 3 — Onay:**
+
+```
+Seçilen projeler: ar-research, CoinHQ, transcriptr
+  ⚠️  CoinHQ belirsiz durumda — dahil et? [Y/n]:
+Forge edilecek: ar-research, CoinHQ (onaylandı), transcriptr
+Focus? (boş bırak = tümü, ya da -backend -security gibi gir):
+```
+
+**Adım 4 — Forge:**  
+Seçilen projeleri `forge all --only` ile paralel olarak forge et. Bundan sonra normal `forge all` akışı geçerlidir.
+
+---
 
 ## Preset Menüsü
 
@@ -161,6 +219,15 @@ Tum kontroller gecerse:
 ✅ Pre-flight OK — forge basliyor
 ```
 
+**Project Index (Pre-flight sonu):**  
+Pre-flight geçtikten hemen sonra, Phase 1 başlamadan projeyi jCodeMunch ile indexle:
+
+```
+[CoinHQ] indexing…
+```
+
+`mcp__jcodemunch__index_repo` çağır — path: `{proje_path}`. Bu sayede Phase 1 analizinde ve task agentlarında sembol araması hızlı olur. Index zaten güncel bile olsa yenile (değişmiş dosyaları yakalar).
+
 ---
 
 ### Phase 1 — Project Analysis
@@ -225,16 +292,42 @@ Sprint sprint ilerle (Sprint 1 bitince Sprint 2, vs.):
 Sprint baslamadan once dispatch tablosu goster:
 
 ```
-━━ Sprint 1 — Task Pipeline ━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Task         Agent     Model          Gorev
-  ──────────   ──────    ───────────    ──────────
-  KEY-101      Coder     Sonnet 4.6     Branch + code + PR
-  KEY-101      Reviewer  Opus 4.6       Review + merge
-  KEY-102      Coder     Sonnet 4.6     Branch + code + PR
-  KEY-102      Reviewer  Opus 4.6       Review + merge
+━━ Sprint 1 — Task Pipeline ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Task         Agent     Model          Gorev              Durum
+  ──────────   ──────    ───────────    ──────────         ───────
+  KEY-101      Coder     Sonnet 4.6     Branch + code + PR  ⏳
+  KEY-101      Reviewer  Opus 4.6       Review + merge       ⏳
+  KEY-102      Coder     Sonnet 4.6     Branch + code + PR  ⏳
+  KEY-102      Reviewer  Opus 4.6       Review + merge       ⏳
   ...
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
+
+**Agent 1-Kelime Durum Etiketi:**  
+Her agent (Coder ve Reviewer) aktif olarak çalışırken her adım başında tek satır durum etiketi yazar:
+
+```
+[KEY-101] branching
+[KEY-101] coding
+[KEY-101] testing
+[KEY-101] pr
+[KEY-101] reviewing
+[KEY-101] fixing
+[KEY-101] merging
+[KEY-101] done ✓
+```
+
+Format: `[{JIRA_KEY}] {eylem}` — eylem tam olarak 1 kelime. Proje forge agentı için:
+```
+[CoinHQ] indexing
+[CoinHQ] analyzing
+[CoinHQ] planning
+[CoinHQ] coding
+[CoinHQ] reviewing
+[CoinHQ] done ✓
+```
+
+Bu etiketler her adım **başında** yazılır (bitmeden önce) — bu sayede paralel çalışan agentların durumu gerçek zamanlı izlenebilir.
 
 Her task icin `/jira-start-new-task` pipeline'ini kullan:
 
@@ -521,6 +614,9 @@ Bu sayede iki ayri `forge all` ayni projeye cakismaz.
 11. **Verimlilik skoru < 50 ise dur** — kullaniciya bildir, sonraki run'i baslatma
 12. **`all` modunda aktif session tespiti zorunlu** — skor ≥ 2 projeyi forge etme, kullaniciya bildir
 13. **Forge lock** — her forge baslayinca `.jira-state/forge.lock` yaz, bitince sil
+15. **forge choose** — `choose` argümanı verilince önce müsaitlik kontrolü yap, sonra kullanıcı proje seçsin, seçilenleri paralel forge et
+16. **Project index zorunlu** — Phase 0 sonunda `mcp__jcodemunch__index_repo` ile projeyi indexle; bu adım atlanamaz
+17. **Agent 1-kelime durum etiketi** — her agent her adım başında `[PROJE/KEY] eylem` formatında tek satır yazar (branching, coding, reviewing, merging, done); sessiz çalışma yasak
 14. **9+ puan eşiği — başta sor, 9'da dur:**
     - Forge **başlamadan önce** (Phase 0 sonrası, Phase 1 öncesi) şunu sor:
       ```
