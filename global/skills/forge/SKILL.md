@@ -75,7 +75,7 @@ Projeyi analiz et, sprint plan, paralel task'lari calistir, PR/review/merge dong
 
 **`all` modu:**
 - `~/Projects/ClaudeHQ/projects.json`'dan aktif projeleri oku
-- Her projeyi sirayla forge et (proje arasi paralel degil — kaynak yonetimi icin)
+- Her projeyi **paralel** forge et — her proje bağımsız background agent olarak başlatılır (max 12 concurrent)
 - **Aktif session tespiti yapilir** — kullanicinin baska terminalde calistigi projeler atlanir (bkz. "Aktif Session Tespiti" bolumu)
 
 ## Preset Menüsü
@@ -365,17 +365,21 @@ Sonraki run icin:
 
 ## `forge all` modu
 
-Tum projeleri sirayla forge et:
+Tum projeleri **paralel** forge et — her proje bağımsız background agent:
 
 ```
-/forge all        # her proje 1 run
-/forge 2 all      # her proje 2 run
+/forge all        # her proje 1 run, hepsi paralel
+/forge 2 all      # her proje 2 run, paralel
 ```
 
 Akis:
 1. `~/Projects/ClaudeHQ/projects.json` oku
-2. Her aktif proje icin sirayla forge calistir
-3. Proje arasi ozet goster:
+2. Aktif session tespiti yap — atlanacakları belirle
+3. Kalan projelerin hepsini tek seferde paralel background agent olarak başlat:
+   - Her agent kendi projesini tam forge eder (analysis → tasks → PR → merge → Jira)
+   - Agent'lar birbirini beklemez
+   - Max 12 concurrent agent
+4. Tüm agent'lar tamamlanınca özet göster:
 
 ```
 ━━ Forge All Summary ━━━━━━━━━━━━━━━━━
@@ -504,7 +508,8 @@ Bu sayede iki ayri `forge all` ayni projeye cakismaz.
 ## Kurallar
 
 1. **Lead kararlari otomatik kabul** — forge sifir soru sorar (analysis haric: orada sadece oto-cevap)
-2. **Max 5 concurrent task** — bellek ve CPU yonetimi
+2. **`all` modunda projeler paralel** — her proje bağımsız background agent, max 12 concurrent proje
+2a. **Tek projede max 5 concurrent task** — sprint içi paralel task limiti
 3. **Max 5 fix retry per PR** — sonsuz dongu onlemi
 4. **Max 10 run** — `/forge 10` max, daha fazlasi icin uyari
 5. **Secret'lar koda yazilmaz** — `.env.example` + fallback
@@ -516,3 +521,19 @@ Bu sayede iki ayri `forge all` ayni projeye cakismaz.
 11. **Verimlilik skoru < 50 ise dur** — kullaniciya bildir, sonraki run'i baslatma
 12. **`all` modunda aktif session tespiti zorunlu** — skor ≥ 2 projeyi forge etme, kullaniciya bildir
 13. **Forge lock** — her forge baslayinca `.jira-state/forge.lock` yaz, bitince sil
+14. **9+ puan eşiği — başta sor, 9'da dur:**
+    - Forge **başlamadan önce** (Phase 0 sonrası, Phase 1 öncesi) şunu sor:
+      ```
+      Proje skoru tahmini ≥9/10 görünüyor. Seçenek:
+        1) 9.0 puana ulaşınca dur  (verimli, polish değil gerçek iş)
+        2) Sonuna kadar git        (küçük kazanımlar da olsa devam)
+      Seçim (1/2):
+      ```
+    - Bu soru sadece önceki run summary'de skor **≥ 8.5** ise veya analysis'te "diminishing returns" / "polish" ifadeleri geçiyorsa gösterilir. İlk run'da veya skor belli değilse gösterilmez.
+    - Kullanıcı **1** seçerse: her run sonunda Phase 5'te skor **≥ 9.0** ise loop'u durdur, kullanıcıya bildir:
+      ```
+      ⏹ Forge durdu — proje skoru 9.2/10 eşiği aştı.
+      Kalan açıklar polish/OSS formality kategorisinde — gerçek kullanıcı değeri düşük.
+      Devam etmek için: /forge 1 --force-continue
+      ```
+    - Kullanıcı **2** seçerse veya `--force-continue` flag'i varsa: normal akış, skor limiti yok.
