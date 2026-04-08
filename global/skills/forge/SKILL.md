@@ -78,6 +78,35 @@ Projeyi analiz et, sprint plan, paralel task'lari calistir, PR/review/merge dong
 - Her projeyi sirayla forge et (proje arasi paralel degil — kaynak yonetimi icin)
 - **Aktif session tespiti yapilir** — kullanicinin baska terminalde calistigi projeler atlanir (bkz. "Aktif Session Tespiti" bolumu)
 
+## Preset Menüsü
+
+Argüman verilmeden `/forge` çalıştırıldığında aşağıdaki menüyü göster ve kullanıcının seçim yapmasını bekle:
+
+```
+━━ Forge — Focus Seç ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  1) Quick Fix         -security -optimize
+  2) Feature Sprint    -feature
+  3) Full Cycle        (tüm kategoriler)
+  4) Deep Clean        -refactor -test
+  5) Backend Hardening -backend -security
+  6) Frontend Polish   -frontend -docs
+  7) Custom…           argüman gir (örn: -backend -test)
+  0) İptal
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Seçim (1-7, 0=iptal):
+```
+
+Kullanıcı seçim yapınca:
+- **1-6**: Focus flag'lerini uygula, proje = CWD, N = 1, Phase 0'a geç
+- **7**: "Focus flag'leri gir:" diye sor, parse et, Phase 0'a geç
+- **0**: İptal et, dur
+
+> Not: `all` modu ve run sayısı argümanla verilir — `/forge all`, `/forge 3`, `/forge 2 all -backend` gibi. Menü sadece focus seçimi içindir.
+
+Argüman **verilmişse** (`/forge 3 CoinHQ -backend` gibi) menü **gösterilmez**, direkt Phase 0'a geç.
+
+---
+
 ## Forge Run Akisi
 
 Her run 7 fazdan olusur:
