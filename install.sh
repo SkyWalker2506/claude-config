@@ -676,8 +676,11 @@ function _claude_bin() {
   "$_real" "$@"
 }
 
-# claude → her zaman settings.json modeli
-function claude() { _claude_bin "$@"; }
+# claude → settings.json modeli | claude bypass → bypass modda ac
+function claude() {
+  if [ "${1}" = "bypass" ]; then shift; _claude_bin --dangerously-skip-permissions "$@"; return; fi
+  _claude_bin "$@"
+}
 
 # cl bypass zaten var — kısayollar
 function clhq() { cd ~/Projects/ClaudeHQ && _claude_bin --dangerously-skip-permissions "$@"; }

@@ -29,8 +29,15 @@ function _claude_bin {
     & $bin @args
 }
 
-# claude → settings.json modeli
-function claude { _claude_bin @args }
+# claude → settings.json modeli | claude bypass → bypass modda ac
+function claude {
+    if ($args.Count -gt 0 -and $args[0] -eq "bypass") {
+        $rest = @(); if ($args.Count -gt 1) { $rest = $args[1..($args.Count-1)] }
+        _claude_bin --dangerously-skip-permissions @rest
+        return
+    }
+    _claude_bin @args
+}
 
 # cl → fzf ile proje sec, claude ac
 function cl {
