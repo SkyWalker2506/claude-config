@@ -105,6 +105,20 @@ free/local → haiku → sonnet → opus
 | Sonnet 4.6 | Orta | Kod, orta karmaşıklık — free yetmiyorsa |
 | Opus 4.6 | En yüksek | Mimari, büyük feature, zor debug — zorunlu ise |
 
+**Local Model System Requirements:**
+
+| Model | Parametre | Quantization | Min RAM | Min VRAM/Unified | Disk | Ollama Tag |
+|-------|-----------|-------------|---------|-----------------|------|------------|
+| Qwen 2.5 Coder 7B | 7B | Q4_K_M | 8 GB | 6 GB | 4 GB | `qwen2.5-coder:7b` |
+| Llama 3.1 8B | 8B | Q4_K_M | 8 GB | 6 GB | 5 GB | `llama3.1:8b` |
+| Gemma 2 9B | 9B | Q4_K_M | 12 GB | 8 GB | 6 GB | `gemma2:9b` |
+| Phi-3 Medium 14B | 14B | Q4_K_M | 16 GB | 10 GB | 8 GB | `phi3:14b` |
+| Qwen 2.5 32B | 32B | Q4_K_M | 24 GB | 20 GB | 18 GB | `qwen2.5:32b` |
+| Llama 3.1 70B | 70B | Q4_K_M | 48 GB | 40 GB | 40 GB | `llama3.1:70b` |
+| Qwen 2.5 72B | 72B | Q4_K_M | 48 GB | 40 GB | 42 GB | `qwen2.5:72b` |
+
+> **Kural:** Model'in "Min RAM" degeri makinenin toplam RAM'ini asiyorsa o modeli KULLANMA — swap'a duser, cok yavaslar. Makinenin RAM'ini `sysctl -n hw.memsize` ile kontrol et.
+
 **Hangi task hangi model:**
 
 | Task tipi | Model |
@@ -282,6 +296,26 @@ repo yapisi → paket yoneticisi → bagimliliklar → .env.example → calistir
 - Self-healing: §9d kurali gecerli
 - Mantikli varsayimlarla ilerle; her adimda sorma
 - `.claudeignore` yoksa → `~/Projects/claude-config/templates/claudeignore.template` kopyala
+
+#### 8g-1. Versiyon yönetimi (tüm uygulamalar)
+
+- Her projede `version` sabiti veya `pubspec.yaml` / `package.json` versiyonu bulunmalı
+- **Her deploy/build öncesi versiyonu artır** — kullanıcı değişikliğin yansıyıp yansımadığını görebilsin
+- Versiyon formatı: `vMAJOR.MINOR.PATCH` (örn. `v2.5.0`)
+- Küçük fix/tweak → PATCH artır (`v2.5.0` → `v2.5.1`)
+- Yeni özellik → MINOR artır (`v2.5.0` → `v2.6.0`)
+- Büyük değişiklik → MAJOR artır
+
+#### 8g-2. Oyun / kural arastirma protokolu
+
+Herhangi bir oyun veya kural sistemi gelistiriliyorsa:
+
+1. **Min. 5 kaynak** bul (Wikipedia tek basina yeterli degil)
+2. **En guvenilir tek kaynagi sec** (resmi yayinci, koklu oyun sitesi, basili kural PDF)
+3. O kaynaktaki kurallari **eksiksiz ve tam olarak** uygula — birden fazla kaynaktan karma yapma
+4. **Varyasyon / ev kurallari (house rules)** varsayilan olarak uygulanmaz; dosyada acikca isaretlenir
+5. Kural dosyasina (ornegin `LUDO_RULES.md`) tum kaynak linklerini ekle
+6. Kural kontrolu gerektiginde dosyayi oku — web'e gidip token harcama
 
 #### 8h. Rapor işleme protokolü
 
