@@ -8,7 +8,8 @@ cmd="${1:-status}"
 
 count_placeholder() {
   local pat="$1"
-  grep -rl "$pat" "$AGENTS" --include="AGENT.md" 2>/dev/null | wc -l | tr -d ' '
+  # Şablon klasörü gerçek agent sayımına dahil edilmez
+  grep -rl "$pat" "$AGENTS" --include="AGENT.md" --exclude-dir=_template 2>/dev/null | wc -l | tr -d ' '
 }
 
 knowledge_count() {

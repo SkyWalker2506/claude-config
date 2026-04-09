@@ -1,10 +1,15 @@
 ---
 last_updated: 2026-04-09
-total_topics: 3
+knowledge_filled: true
+mega_prompt_aligned: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-- [SecLead Core Patterns](orchestrator-core-patterns.md) — Core patterns for SecLead
-- [SecLead Anti-Patterns](orchestrator-anti-patterns.md) — Common mistakes and anti-patterns
-- [SecLead Verification Checklist](orchestrator-verification.md) — Verification and delivery checklist
+> Mega-prompt orchestrator tablosu ile hizali konular. Gorev oncesi buradan lazy-load.
+
+- [Pm Dispatch Rules](pm-dispatch-rules.md) — `knowledge/pm-dispatch-rules.md`
+- [Sprint Health Metrics](sprint-health-metrics.md) — `knowledge/sprint-health-metrics.md`
+- [Stakeholder Communication](stakeholder-communication.md) — `knowledge/stakeholder-communication.md`
+- [Scope Management](scope-management.md) — `knowledge/scope-management.md`

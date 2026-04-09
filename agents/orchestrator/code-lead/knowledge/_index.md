@@ -1,10 +1,15 @@
 ---
 last_updated: 2026-04-09
-total_topics: 3
+knowledge_filled: true
+mega_prompt_aligned: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-- [CodeLead Core Patterns](orchestrator-core-patterns.md) — Core patterns for CodeLead
-- [CodeLead Anti-Patterns](orchestrator-anti-patterns.md) — Common mistakes and anti-patterns
-- [CodeLead Verification Checklist](orchestrator-verification.md) — Verification and delivery checklist
+> Mega-prompt orchestrator tablosu ile hizali konular. Gorev oncesi buradan lazy-load.
+
+- [Design Dispatch Rules](design-dispatch-rules.md) — `knowledge/design-dispatch-rules.md`
+- [Design Review Gates](design-review-gates.md) — `knowledge/design-review-gates.md`
+- [Brand Consistency](brand-consistency.md) — `knowledge/brand-consistency.md`
+- [Ux Metrics](ux-metrics.md) — `knowledge/ux-metrics.md`

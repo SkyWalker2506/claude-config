@@ -41,7 +41,7 @@ Gorsel AI icin optimize prompt uretimi: Midjourney, DALL-E, Stable Diffusion, Fl
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+D7 asset ciktisi; D5 sunum gorseli; D4 Figma mood; K1 kaynak stil.
 
 ## Process
 
@@ -60,7 +60,7 @@ Gorsel AI icin optimize prompt uretimi: Midjourney, DALL-E, Stable Diffusion, Fl
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Model ve arac basligi, ana prompt bloklari (positive/negative), parametre tablo (CFG, aspect), varyasyon listesi, ComfyUI icin kisa node ozeti.
 
 ## When to Use
 - Midjourney prompt yazma: stil parametreleri (--style, --chaos, --weird), aspect ratio, versiyon farklari (v6.1, niji)

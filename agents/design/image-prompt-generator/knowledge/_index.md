@@ -1,19 +1,15 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+knowledge_filled: true
+mega_prompt_aligned: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+> Mega-prompt orchestrator tablosu ile hizali konular. Gorev oncesi buradan lazy-load.
 
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) midjourney — midjourney.md
-- (planned) dalle — dalle.md
-- (planned) prompt-engineering — prompt-engineering.md
-- (planned) stable-diffusion — stable-diffusion.md
-- (planned) flux — flux.md
+- [Midjourney Prompt Syntax](midjourney-prompt-syntax.md) — `knowledge/midjourney-prompt-syntax.md`
+- [Stable Diffusion Parameters](stable-diffusion-parameters.md) — `knowledge/stable-diffusion-parameters.md`
+- [Negative Prompt Patterns](negative-prompt-patterns.md) — `knowledge/negative-prompt-patterns.md`
+- [Style Reference Guide](style-reference-guide.md) — `knowledge/style-reference-guide.md`

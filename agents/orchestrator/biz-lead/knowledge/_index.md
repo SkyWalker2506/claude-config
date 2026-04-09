@@ -1,10 +1,15 @@
 ---
 last_updated: 2026-04-09
-total_topics: 3
+knowledge_filled: true
+mega_prompt_aligned: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-- [BizLead Core Patterns](orchestrator-core-patterns.md) — Core patterns for BizLead
-- [BizLead Anti-Patterns](orchestrator-anti-patterns.md) — Common mistakes and anti-patterns
-- [BizLead Verification Checklist](orchestrator-verification.md) — Verification and delivery checklist
+> Mega-prompt orchestrator tablosu ile hizali konular. Gorev oncesi buradan lazy-load.
+
+- [Devops Dispatch Rules](devops-dispatch-rules.md) — `knowledge/devops-dispatch-rules.md`
+- [Incident Severity Matrix](incident-severity-matrix.md) — `knowledge/incident-severity-matrix.md`
+- [Deployment Gates](deployment-gates.md) — `knowledge/deployment-gates.md`
+- [Infrastructure Standards](infrastructure-standards.md) — `knowledge/infrastructure-standards.md`

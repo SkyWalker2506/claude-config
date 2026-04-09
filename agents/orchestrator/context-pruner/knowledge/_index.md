@@ -1,10 +1,15 @@
 ---
 last_updated: 2026-04-09
-total_topics: 3
+knowledge_filled: true
+mega_prompt_aligned: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-- [Context Pruner Core Patterns](summarization-core-patterns.md) — Core patterns for Context Pruner
-- [Context Pruner Anti-Patterns](summarization-anti-patterns.md) — Common mistakes and anti-patterns
-- [Context Pruner Verification Checklist](summarization-verification.md) — Verification and delivery checklist
+> Mega-prompt orchestrator tablosu ile hizali konular. Gorev oncesi buradan lazy-load.
+
+- [Summarization Techniques](summarization-techniques.md) — `knowledge/summarization-techniques.md`
+- [Context Compression](context-compression.md) — `knowledge/context-compression.md`
+- [State Transfer Patterns](state-transfer-patterns.md) — `knowledge/state-transfer-patterns.md`
+- [Memory Hierarchy](memory-hierarchy.md) — `knowledge/memory-hierarchy.md`

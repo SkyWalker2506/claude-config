@@ -1,10 +1,15 @@
 ---
 last_updated: 2026-04-09
-total_topics: 3
+knowledge_filled: true
+mega_prompt_aligned: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-- [Fallback Manager Core Patterns](model-switching-core-patterns.md) — Core patterns for Fallback Manager
-- [Fallback Manager Anti-Patterns](model-switching-anti-patterns.md) — Common mistakes and anti-patterns
-- [Fallback Manager Verification Checklist](model-switching-verification.md) — Verification and delivery checklist
+> Mega-prompt orchestrator tablosu ile hizali konular. Gorev oncesi buradan lazy-load.
+
+- [Model Health Monitoring](model-health-monitoring.md) — `knowledge/model-health-monitoring.md`
+- [Fallback Chains](fallback-chains.md) — `knowledge/fallback-chains.md`
+- [Graceful Degradation](graceful-degradation.md) — `knowledge/graceful-degradation.md`
+- [Circuit Breaker Patterns](circuit-breaker-patterns.md) — `knowledge/circuit-breaker-patterns.md`

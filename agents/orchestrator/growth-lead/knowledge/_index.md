@@ -1,10 +1,15 @@
 ---
 last_updated: 2026-04-09
-total_topics: 3
+knowledge_filled: true
+mega_prompt_aligned: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-- [GrowthLead Core Patterns](orchestrator-core-patterns.md) — Core patterns for GrowthLead
-- [GrowthLead Anti-Patterns](orchestrator-anti-patterns.md) — Common mistakes and anti-patterns
-- [GrowthLead Verification Checklist](orchestrator-verification.md) — Verification and delivery checklist
+> Mega-prompt orchestrator tablosu ile hizali konular. Gorev oncesi buradan lazy-load.
+
+- [Research Dispatch Rules](research-dispatch-rules.md) — `knowledge/research-dispatch-rules.md`
+- [Source Quality Criteria](source-quality-criteria.md) — `knowledge/source-quality-criteria.md`
+- [Research Methodology](research-methodology.md) — `knowledge/research-methodology.md`
+- [Knowledge Freshness](knowledge-freshness.md) — `knowledge/knowledge-freshness.md`

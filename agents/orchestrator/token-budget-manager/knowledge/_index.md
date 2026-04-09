@@ -1,10 +1,15 @@
 ---
 last_updated: 2026-04-09
-total_topics: 3
+knowledge_filled: true
+mega_prompt_aligned: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-- [Token Budget Manager Core Patterns](quota-tracking-core-patterns.md) — Core patterns for Token Budget Manager
-- [Token Budget Manager Anti-Patterns](quota-tracking-anti-patterns.md) — Common mistakes and anti-patterns
-- [Token Budget Manager Verification Checklist](quota-tracking-verification.md) — Verification and delivery checklist
+> Mega-prompt orchestrator tablosu ile hizali konular. Gorev oncesi buradan lazy-load.
+
+- [Token Counting Methods](token-counting-methods.md) — `knowledge/token-counting-methods.md`
+- [Cost Optimization Strategies](cost-optimization-strategies.md) — `knowledge/cost-optimization-strategies.md`
+- [Context Window Management](context-window-management.md) — `knowledge/context-window-management.md`
+- [Model Pricing Comparison](model-pricing-comparison.md) — `knowledge/model-pricing-comparison.md`
