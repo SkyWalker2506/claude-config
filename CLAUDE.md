@@ -119,19 +119,33 @@ free/local → haiku → sonnet → opus
 | Llama 3.1 70B | 70B | Q4_K_M | 40 GB | 48 GB | `llama3.1:70b` |
 
 > **Kural:** Sistem icin sabit 8GB ayir, kalan = model icin kullanilabilir RAM.
-> Hesaplama: `kullanilabilir = toplam RAM - 8GB`. Model boyutu bunu asiyorsa KULLANMA.
-> RAM kontrol: `sysctl -n hw.memsize | awk '{print $1/1024/1024/1024}'`
+> Formula: `max_model_gb = toplam_ram - 8`
+> RAM kontrol: macOS `sysctl -n hw.memsize | awk '{print $1/1024/1024/1024}'` | Linux `free -g | awk '/Mem:/{print $2}'` | Windows `(Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory/1GB`
 >
-> | Toplam RAM | Sistem payi | Model icin | Max model |
-> |-----------|-------------|-----------|-----------|
-> | 8 GB | 8 GB | 0 GB | ❌ Local model kullanma |
-> | 16 GB | 8 GB | 8 GB | 7B (Q4) |
-> | 18 GB | 8 GB | 10 GB | 9B (Q4) |
-> | 24 GB | 8 GB | 16 GB | 14B (Q4) |
-> | 32 GB | 8 GB | 24 GB | 32B (Q4) |
-> | 48 GB | 8 GB | 40 GB | 70B (Q4) |
-> | 64 GB | 8 GB | 56 GB | 72B (Q4) + headroom |
-> | 96 GB | 8 GB | 88 GB | 72B (Q8) veya 2x 32B paralel |
+> **Otomatik hesaplama:** Agent/skill model secerken su formulu kullan:
+> ```
+> toplam_ram = (sysctl veya free ile oku)
+> kullanilabilir = toplam_ram - 8
+> if model_boyutu > kullanilabilir:
+>   → KULLANMA, bir alt model sec
+> if model_boyutu > kullanilabilir * 0.8:
+>   → UYAR: "Model RAM sinirinda, diger uygulamalari kapat"
+> ```
+>
+> **Referans tablo (Q4_K_M quantization):**
+>
+> | Parametre | Model Boyutu | Min RAM |
+> |-----------|-------------|---------|
+> | 3B | ~2 GB | 10 GB |
+> | 7B | ~4-5 GB | 12 GB |
+> | 9B | ~6-7 GB | 14 GB |
+> | 14B | ~8-9 GB | 16 GB |
+> | 32B | ~18-20 GB | 28 GB |
+> | 70-72B | ~40-42 GB | 48 GB |
+>
+> **Q8 quantization** (daha yuksek kalite, daha fazla RAM): model boyutu ~2x. Sadece `kullanilabilir > model_q4 * 2` ise kullan.
+>
+> **Paralel model:** 2 model ayni anda calistirmak icin her ikisinin toplami `kullanilabilir`'i asmamali.
 
 **Hangi task hangi model:**
 
