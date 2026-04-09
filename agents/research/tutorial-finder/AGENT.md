@@ -37,7 +37,8 @@ Ogretici kaynak ve tutorial bulma.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+- **K3 Documentation Fetcher:** Resmi “getting started” K3’te; K6 bunu öğrenme yoluna yerleştirir ve üçüncü parti tutorial ile karşılaştırır.
+- **K5 Video Summarizer:** Video kurslar K5’te özetlenir; K6 sıra ve önkoşul ataması yapar — tersine K6’nın seçtiği modül K5’te önizlenir.
 
 ## Process
 
@@ -56,7 +57,9 @@ Ogretici kaynak ve tutorial bulma.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+- **Liste:** Sıralı kaynak tablosu — başlık, seviye, güncellik, kalite notu, doğrulama (repro denendi mi).
+- **Yol haritası:** Numaralı adımlar + her adımda `verify:` maddesi.
+- **Özet:** `[CURATE]` + `[LEVEL]` blokları; reddedilenler kısa gerekçe ile ayrı bölümde.
 
 ## When to Use
 - Belirli teknoloji icin tutorial arama

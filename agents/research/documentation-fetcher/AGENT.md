@@ -38,7 +38,8 @@ Kutuphane, framework, API ve SDK dokumantasyonunu getirir. Kod yazarken B2/B3/B4
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+- **B2 / B3 / B4 (Backend):** Kod yazarken API sözleşmesi ve sürüm K3’ten gelir; tersine implementasyon sırasında bulunan doc tutarsızlığı K3’e geri beslenir.
+- **K1 Web Researcher:** Resmi doc bulunamazsa veya 404 ise K1 alternatif kanıt arar; bulgu gelince K3 tekrar hedef URL’yi doğrular.
 
 ## Process
 
@@ -57,7 +58,9 @@ Kutuphane, framework, API ve SDK dokumantasyonunu getirir. Kod yazarken B2/B3/B4
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+- **Minimal:** `[DOC FETCH]` + ilgili snippet veya endpoint tablosu + kullanılan doc URL (sürüm segmenti ile).
+- **Upgrade:** `[CHANGELOG digest]` + `[VERSION]` + tüketici için numaralı aksiyon listesi.
+- **Stale riski:** `verdict: stale_suspect` ve kanıt (issue, kaynak kod satırı).
 
 ## When to Use
 - context7 ile guncel dokumantasyon fetch

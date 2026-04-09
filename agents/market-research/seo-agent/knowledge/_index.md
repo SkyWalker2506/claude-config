@@ -1,18 +1,11 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) seo-audit — seo-audit.md
-- (planned) keyword-research — keyword-research.md
-- (planned) meta-optimization — meta-optimization.md
-- (planned) sitemap — sitemap.md
+- [SEO audit checklist](seo-audit-checklist.md) — Tarama, indeks, CWV
+- [Keyword research tools](keyword-research-tools.md) — Intent, kümeleme, GSC
+- [Meta tag optimization](meta-tag-optimization.md) — Title, description, OG
+- [Technical SEO guide](technical-seo-guide.md) — Crawl, JS, hreflang

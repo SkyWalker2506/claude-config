@@ -37,7 +37,9 @@ Rakip analizi — SWOT, benchmark, fiyat karsilastirmasi.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+- **H1 Market Researcher:** Pazar ve segment varsayımları — SWOT/matri öncesi bağlam
+- **H4 Pricing Strategist:** Fiyat konumu ve tier — özellik matrisiyle hizalı benchmark
+- **K1 Web Researcher:** Rakip kanıtı ve haber derinliği — birincil kaynak toplama
 
 ## Process
 
@@ -56,7 +58,9 @@ Rakip analizi — SWOT, benchmark, fiyat karsilastirmasi.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+- **Rakip seti** tanımı (direkt / dolaylı) + veri tarihi
+- **SWOT veya özellik matrisi** (tablo) + kanıt sütunu / URL
+- **Konumlandırma özeti** — 1 positioning statement + 3 aksiyon maddesi
 
 ## When to Use
 - Rakip urun/ozellik karsilastirmasi

@@ -1,17 +1,11 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) pricing — pricing.md
-- (planned) ab-test — ab-test.md
-- (planned) optimization — optimization.md
+- [Pricing psychology](pricing-psychology.md) — Çapa, çerçeve, B2B uyumu
+- [A/B test pricing](ab-test-pricing.md) — Metrik, güç, etik
+- [Tier pricing design](tier-pricing-design.md) — GBB ve limitler
+- [Value-based pricing](value-based-pricing.md) — Değer kanıtı ve pay alma

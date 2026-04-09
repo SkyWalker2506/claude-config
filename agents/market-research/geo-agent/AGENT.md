@@ -38,7 +38,9 @@ Generative Engine Optimization — ChatGPT, Gemini, Perplexity gibi AI arama mot
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+- **H5 SEO Agent:** Teknik ve on-page SEO — GEO ile çakışmadan şema ve içerik
+- **H1 Market Researcher:** Mesaj ve kanıt — AI’de görünen “özet gerçek” ile uyum
+- **B3 Frontend Coder:** JSON-LD ve sayfa performansı — işaretleme uygulaması
 
 ## Process
 
@@ -57,7 +59,9 @@ Generative Engine Optimization — ChatGPT, Gemini, Perplexity gibi AI arama mot
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+- **GEO / AI görünürlük özeti** — hedef yüzeyler (overview, copilot, asistan)
+- **Şema ve içerik önerileri** — örnek JSON-LD ve sayfa bölümleri
+- **İzleme planı** — örnek prompt listesi ve doğruluk kontrol ritmi
 
 ## When to Use
 - AI arama motoru indexleme analizi

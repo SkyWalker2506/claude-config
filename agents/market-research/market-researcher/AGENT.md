@@ -38,7 +38,9 @@ Pazar analizi, rakip arastirmasi, fiyatlandirma stratejisi ve sektorel trend tes
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+- **H2 Competitor Analyst:** Rakip seti ve özellik matrisi — pazar büyüklüğü öncesi/sonrası hizalama
+- **H3/H4 Revenue & Pricing:** SOM ve segment varsayımları — fiyatlandırma ve birim ekonomi girdisi
+- **K1 Web Researcher:** Birincil kaynak toplama ve doğrulama — derin tarama gerektiğinde
 
 ## Process
 
@@ -57,7 +59,9 @@ Pazar analizi, rakip arastirmasi, fiyatlandirma stratejisi ve sektorel trend tes
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+- **Executive summary** (5–8 madde) + **varsayımlar tablosu**
+- **TAM/SAM/SOM** veya eşdeğer çerçeve; kaynak URL + tarih
+- **Rakip/peyzaj** kısa liste; önerilen sonraki adımlar (H2/H3 yönlendirmesi)
 
 ## When to Use
 - Rakip urun/fiyat analizi

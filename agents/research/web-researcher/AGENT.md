@@ -38,7 +38,9 @@ URL fetch, web arama, icerik ozetleme ve gercek dogrulama. Diger agent'larin bil
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+- **K3 Documentation Fetcher:** Resmi API davranışı doğrulanırken K1 önce genel bağlamı toplar; K3 doğrudan doc path ve sürüm notuna iner.
+- **K4 Trend Analyzer:** K1 ham sinyal (haber, repo, indirme) toplar; K4 adoption ve zamanlama modeline çevirir.
+- **H1 / H2:** Pazar ve rakip iddiaları K1’de kaynaklı; H1/H2 sentez ve boyutlandırmada kullanır — tersine H1 hipotezleri K1’e arama görevi olarak döner.
 
 ## Process
 
@@ -57,7 +59,9 @@ URL fetch, web arama, icerik ozetleme ve gercek dogrulama. Diger agent'larin bil
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+- **Kısa:** `[SEARCH]` blokları (sorgular, üst domainler, boşluklar) + her ana iddia için `[FACT]` veya `VERIFIED/PARTIAL/UNKNOWN`.
+- **Orta:** Bölümler: Soru → Bulgular (kaynak kartı) → Çelişkiler → Önerilen sonraki adım.
+- **Dosya teslimi istenirse:** `research/<topic_slug>.md` — başlıklar sentez şablonuna uygun; linkler tam URL.
 
 ## When to Use
 - URL icerik okuma ve ozetleme

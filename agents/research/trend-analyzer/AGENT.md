@@ -38,7 +38,9 @@ Teknoloji ve pazar trendlerini tespit eder, adoption egrisini degerlendirir, zam
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+- **K1 Web Researcher:** Haber, forum ve repo sinyali K1’de toplanır; K4 bunları adoption ve faz modeline çevirir.
+- **H1 Market Researcher / H10:** Pazar büyüklüğü ve rakip hamlesi H1/H10’da; K4 teknoloji zamanlamasını bu özetle hizalar — tersine K4’ün “NOW/WAIT” çıktısı H1 senaryolarına girdi olur.
+- **A7:** Portföy önceliği için trend özeti A7’ye kısa karar özeti olarak gider.
 
 ## Process
 
@@ -57,7 +59,9 @@ Teknoloji ve pazar trendlerini tespit eder, adoption egrisini degerlendirir, zam
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+- **Tek teknoloji:** `[ADOPTION]` + `[HYPE]` + `[TIMING]` blokları; her iddia için sinyal ve güven.
+- **Radar:** Tablo veya liste — halka, sahip, son inceleme tarihi, kanıt linki.
+- **Executive:** 5 madde — özet öneri, riskler, izleme metrikleri, tekrar bakılacak tarih.
 
 ## When to Use
 - GitHub star growth / fork trendi

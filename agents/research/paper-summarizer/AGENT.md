@@ -37,7 +37,8 @@ Akademik makale ve teknik paper ozetleme.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+- **K1 Web Researcher:** Preprint ve blog özetleri K1’de bulunur; K2 makale gövdesi ve atıf disiplinine indirger.
+- **K7 Knowledge Base Agent:** Özetlenmiş bulgular hafızaya veya RAG’e işlenirken K2’nin yapılandırılmış çıktısı K7’nin chunk stratejisini besler; K7 eksik bağlam dönerse K2 yeniden okuma yapar.
 
 ## Process
 
@@ -56,7 +57,9 @@ Akademik makale ve teknik paper ozetleme.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+- **TL;DR:** 3–5 cümle — tez, yöntem, ana sayısal sonuç, sınırlılık.
+- **Yapılandırılmış:** `[PAPER MAP]` + `[ABSTRACT PARSE]` + istenirse karşılaştırma tablosu.
+- **Atıf çıktısı:** BibTeX veya düz liste; her ana bulgu için `evidence: section § / fig` notu.
 
 ## When to Use
 - Abstract analizi ve anahtar bulgular

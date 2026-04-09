@@ -1,17 +1,11 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) competitor — competitor.md
-- (planned) swot — swot.md
-- (planned) benchmark — benchmark.md
+- [Competitor SWOT template](competitor-swot-template.md) — SWOT çerçevesi ve kanıt kuralı
+- [Benchmark methodology](benchmark-methodology.md) — Karşılaştırılabilir KPI ve normalizasyon
+- [Feature comparison matrix](feature-comparison-matrix.md) — Özellik matrisi ve ağırlıklandırma
+- [Competitive positioning](competitive-positioning.md) — Konumlandırma cümlesi ve perceptual map

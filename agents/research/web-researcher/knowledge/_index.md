@@ -1,18 +1,14 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+knowledge_filled: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+> Bu dosya agent'in bilgi haritasidir. Gorev alirken once bunu oku; sadece ilgili dosyalari yukle.
 
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) web-search — web-search.md
-- (planned) content-fetch — content-fetch.md
-- (planned) summarization — summarization.md
-- (planned) fact-checking — fact-checking.md
+- [Web search strategies](web-search-strategies.md) — sorgu varyantlari, operatorler, tarih ve site filtreleri
+- [Source credibility](source-credibility.md) — tier skoru, otorite sinyalleri, cikar catismasi
+- [Fact-checking methods](fact-checking-methods.md) — lateral read, birincil iz, durum etiketleri
+- [Research synthesis](research-synthesis.md) — sentez yapisi, guven bandi, rapor turleri

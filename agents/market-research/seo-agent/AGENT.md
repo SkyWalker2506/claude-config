@@ -38,7 +38,9 @@ SEO denetimi, anahtar kelime arastirmasi, meta tag optimizasyonu ve teknik SEO k
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+- **H6 GEO Agent:** Yapılandırılmış veri ve AI görünürlüğü — klasik SEO ile çakışan alanları koordine et
+- **H1 Market Researcher:** İçerik ve arama intent — anahtar kelime stratejisi girdisi
+- **B3 Frontend Coder:** Core Web Vitals ve teknik uygulama — audit çıktısını kodda düzeltme
 
 ## Process
 
@@ -57,7 +59,9 @@ SEO denetimi, anahtar kelime arastirmasi, meta tag optimizasyonu ve teknik SEO k
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+- **Öncelikli bulgular** (P0/P1/P2) + etkilenen örnek URL’ler
+- **Anahtar kelime / intent haritası** (tablo veya küme özeti)
+- **Uygulanabilir checklist** — teknik ve on-page ayrı bölüm
 
 ## When to Use
 - On-page SEO analizi (baslik, meta, header hiyerarsisi)

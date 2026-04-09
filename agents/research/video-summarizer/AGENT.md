@@ -37,7 +37,8 @@ YouTube ve video transkript ozetleme.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+- **K1 Web Researcher:** Transkript veya player erişilemezse K1 alternatif özet (blog, slayt) arar.
+- **K6 Tutorial Finder:** Video eğitim yolu K5’te özetlenir; K6 aynı konuda yazılı öğrenme yolunu ve sıralamayı kurar — tersine K6’nın seçtiği kurslar K5’te önizleme için işaretlenir.
 
 ## Process
 
@@ -56,7 +57,9 @@ YouTube ve video transkript ozetleme.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+- **Standart:** `[TRANSCRIPT]` meta + `[VIDEO SUMMARY]` bölümlü + `[TAKEAWAYS]` (zaman damgalı maddeler).
+- **Sadece metin:** Transkript yoksa durum kodu ve alternatif kanıt (K1’e yönlendirme notu).
+- **Dosya:** `summaries/<video_id_or_slug>.md` — başlık, süre, dil, kaynak URL.
 
 ## When to Use
 - Transkript indirme (fetch MCP)

@@ -1,18 +1,14 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+knowledge_filled: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+> Bu dosya agent'in bilgi haritasidir. Gorev alirken once bunu oku; sadece ilgili dosyalari yukle.
 
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) trend-detection — trend-detection.md
-- (planned) technology-radar — technology-radar.md
-- (planned) market-timing — market-timing.md
-- (planned) adoption-curve — adoption-curve.md
+- [Technology radar method](technology-radar-method.md) — adopt/trial/assess/hold, kanit gereksinimi
+- [Adoption curve analysis](adoption-curve-analysis.md) — Rogers evreleri, sinyal karisimlari
+- [Hype cycle assessment](hype-cycle-assessment.md) — faz tahmini, vendor riski
+- [Market timing](market-timing.md) — NOW/WAIT/NO-GO, regülasyon penceresi

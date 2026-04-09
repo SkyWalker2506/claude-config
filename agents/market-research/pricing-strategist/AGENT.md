@@ -37,7 +37,9 @@ Fiyatlandirma stratejisi, A/B test planlamasi.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+- **H3 Revenue Analyst:** Birim ekonomi ve hedef marj — fiyat seviyesi üst/alt sınır
+- **H2 Competitor Analyst:** Rakip list / konum — relatif fiyatlandırma
+- **M3 Analytics Agent:** Deney ölçümü ve funnel — A/B sonuç yorumu
 
 ## Process
 
@@ -56,7 +58,9 @@ Fiyatlandirma stratejisi, A/B test planlamasi.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+- **Tier / paket önerisi** (tablo: limit, hedef müşteri, fiyat sinyali)
+- **A/B veya pilot planı** — hipotez, metrik, süre, risk notu
+- **Değer / psikoloji gerekçesi** — kısa, kanıt veya test ile bağlantılı
 
 ## When to Use
 - Fiyat katmani tasarimi (tier/plan yapisi)

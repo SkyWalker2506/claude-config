@@ -37,7 +37,9 @@ Icerigi farkli kanallara uyarlama (blog -> tweet, video -> post).
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+- **H7 Social Media Agent:** Kesilmiş içerikleri günlük gönderilere dönüştürme
+- **H9 Newsletter Agent:** Uzun içeriği özet ve bülten bloklarına ayırma
+- **H5/H6 SEO/GEO:** Tekrarlayan içerik riski — canonical ve snippet stratejisi
 
 ## Process
 
@@ -56,7 +58,9 @@ Icerigi farkli kanallara uyarlama (blog -> tweet, video -> post).
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+- **Atom listesi** — her biri için kaynak atfı ve önerilen kanal
+- **Kanal haritası** tablosu (içerik × format × tarih)
+- **Dönüşüm notları** — telif, erişilebilirlik, UTM
 
 ## When to Use
 - Blog yazisindan sosyal medya postlari cikarma

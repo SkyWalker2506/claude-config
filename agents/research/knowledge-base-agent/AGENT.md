@@ -37,7 +37,8 @@ Bilgi tabani sorgulama ve retrieval.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+- **K2 Paper Summarizer / K3 Documentation Fetcher:** Ham bilgi K2/K3’te üretilir; K7 bunu chunk’lar, indeksler ve sorgulanabilir hale getirir — güncelleme ihtiyacı K7’den K2/K3’e geri döner.
+- **jCodeMunch / index:** Kod sembolü ile doküman bağlantısı kurulurken K7’nin retrieval kuralları proje indeksiyle uyumlu tutulur.
 
 ## Process
 
@@ -56,7 +57,9 @@ Bilgi tabani sorgulama ve retrieval.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+- **Sorgu yanıtı:** Alıntılı pasajlar + `sources:` listesi + güven notu; bilgi yoksa açık “no hit”.
+- **İndeks / RAG:** `[RAG]` veya `[RETRIEVE]` meta + kullanılan parametreler (top_k, filtre).
+- **Graf:** Küçük diyagram veya `[GRAPH]` yol tanımı — şema değişikliği ayrı not.
 
 ## When to Use
 - Memory sistemi sorgulama

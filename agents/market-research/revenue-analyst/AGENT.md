@@ -37,7 +37,9 @@ Gelir modeli analizi, birim ekonomi hesaplama.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+- **H4 Pricing Strategist:** Fiyat seviyesi ve test — gelir projeksiyonu girdileri
+- **H1 Market Researcher:** SOM ve segment — ARPA ve adreslenebilir müşteri sayısı
+- **M3 A/B Test Agent:** Fiyat deneyleri — istatistiksel tasarım (birlikte)
 
 ## Process
 
@@ -56,7 +58,9 @@ Gelir modeli analizi, birim ekonomi hesaplama.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+- **Varsayımlar tablosu** (CAC, churn, ARPA, marj) + kaynak
+- **3 senaryolu** gelir / birim ekonomi özeti (base/upside/downside)
+- **Hassasiyet:** 1–2 kritik dümen (ör. churn ±X%) ve etkisi
 
 ## When to Use
 - Gelir modeli tasarimi (SaaS, marketplace, freemium)

@@ -1,17 +1,11 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) content-splitting — content-splitting.md
-- (planned) repurpose — repurpose.md
-- (planned) multi-channel — multi-channel.md
+- [Content atomization](content-atomization.md) — Pillar’dan atomlara bölme
+- [Multi-channel adaptation](multi-channel-adaptation.md) — Kanal başına ton ve CTA
+- [Repurpose workflow](repurpose-workflow.md) — Envanterden takvime süreç
+- [Format conversion](format-conversion.md) — Metin, video, tablo dönüşümü

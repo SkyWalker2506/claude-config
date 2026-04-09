@@ -1,17 +1,11 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) revenue-model — revenue-model.md
-- (planned) pricing — pricing.md
-- (planned) unit-economics — unit-economics.md
+- [Revenue model patterns](revenue-model-patterns.md) — SaaS, marketplace, freemium
+- [Unit economics](unit-economics.md) — CAC, LTV, payback
+- [Pricing strategy framework](pricing-strategy-framework.md) — Değer, rekabet, maliyet
+- [Financial projection](financial-projection.md) — Senaryo ve MRR ramp

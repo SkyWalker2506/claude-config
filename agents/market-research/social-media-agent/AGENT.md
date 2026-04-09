@@ -37,7 +37,9 @@ Sosyal medya icerik uretimi ve zamanlama.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+- **H13 Social Media Strategist:** Takvim ve kampanya — günlük gönderi üretimi ile hizalı
+- **H8 Content Repurposer:** Ana içeriği platform kesimlerine bölme
+- **H12 Viral Output Agent:** Hook ve format testleri — kısa ömürlü deneyler
 
 ## Process
 
@@ -56,7 +58,9 @@ Sosyal medya icerik uretimi ve zamanlama.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+- **Gönderi seti** — platform başına (metin + önerilen görsel notu + CTA)
+- **Hashtag / mention politikası** — tek blok
+- **Yayın sırası** — tarih/saat önerisi ve varyant A/B notu (varsa)
 
 ## When to Use
 - LinkedIn / Twitter post uretimi
