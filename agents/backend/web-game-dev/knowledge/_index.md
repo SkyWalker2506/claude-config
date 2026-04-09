@@ -1,19 +1,12 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 5
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) phaser — phaser.md
-- (planned) pixi — pixi.md
-- (planned) threejs — threejs.md
-- (planned) babylonjs — babylonjs.md
-- (planned) canvas — canvas.md
+- [Phaser Game Architecture](phaser-game-architecture.md) — scenes, preload/create/update
+- [Three.js Scene Management](threejs-scene-management.md) — scene, camera, dispose
+- [Game Loop Patterns](game-loop-patterns.md) — fixed timestep, rAF
+- [WebGL Performance Optimization](webgl-performance-optimization.md) — draw calls, instancing
+- [Asset Loading Strategies](asset-loading-strategies.md) — preload, compression

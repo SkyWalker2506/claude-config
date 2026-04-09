@@ -1,18 +1,12 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 5
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) unit-test — unit-test.md
-- (planned) integration-test — integration-test.md
-- (planned) e2e-test — e2e-test.md
-- (planned) mocking — mocking.md
+- [Testing Pyramid Strategy](testing-pyramid-strategy.md) — unit vs integration vs E2E balance
+- [Mocking vs Integration](mocking-vs-integration.md) — mocks, fakes, Testcontainers
+- [Flutter Widget Testing](flutter-widget-testing.md) — testWidgets, finders, golden notes
+- [Test Coverage Strategies](test-coverage-strategies.md) — metrics, mutation testing, CI
+- [TDD Red-Green-Refactor](tdd-red-green-refactor.md) — workflow and when to use

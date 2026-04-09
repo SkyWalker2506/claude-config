@@ -1,19 +1,11 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) websocket — websocket.md
-- (planned) socket-io — socket-io.md
-- (planned) real-time — real-time.md
-- (planned) event-streaming — event-streaming.md
-- (planned) pub-sub — pub-sub.md
+- [WebSocket Architecture Patterns](websocket-architecture-patterns.md) — sticky, heartbeat
+- [Socket.IO Scaling Strategies](socketio-scaling-strategies.md) — Redis adapter
+- [Pub-Sub Message Patterns](pub-sub-message-patterns.md) — rooms, fan-out
+- [Connection Lifecycle Management](connection-lifecycle-management.md) — auth, idle timeout

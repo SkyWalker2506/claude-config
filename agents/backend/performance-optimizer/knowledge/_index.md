@@ -1,18 +1,12 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 5
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) profiling — profiling.md
-- (planned) bottleneck — bottleneck.md
-- (planned) caching — caching.md
-- (planned) optimization — optimization.md
+- [Profiling Tools Guide](profiling-tools-guide.md) — CPU, flame graphs, runtimes
+- [Caching Strategies and Layers](caching-strategies-layers.md) — HTTP, CDN, Redis
+- [Database Query Optimization](database-query-optimization.md) — pool, statements, B5 handoff
+- [Frontend Performance Metrics](frontend-performance-metrics.md) — Core Web Vitals, INP
+- [Load Testing Methodology](load-testing-methodology.md) — k6, SLO, staging

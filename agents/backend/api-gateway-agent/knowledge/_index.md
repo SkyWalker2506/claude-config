@@ -1,19 +1,11 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) api-gateway — api-gateway.md
-- (planned) rate-limiting — rate-limiting.md
-- (planned) auth-middleware — auth-middleware.md
-- (planned) cors — cors.md
-- (planned) request-validation — request-validation.md
+- [API Gateway Patterns](api-gateway-patterns.md) — routing, TLS, Kong/Envoy
+- [Rate Limiting Algorithms Compared](rate-limiting-algorithms-compared.md) — token bucket, windows
+- [Auth Middleware JWT OAuth](auth-middleware-jwt-oauth.md) — edge validation
+- [Request Validation Schemas](request-validation-schemas.md) — OpenAPI at edge

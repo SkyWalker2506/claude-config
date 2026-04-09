@@ -1,19 +1,12 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 5
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) owasp — owasp.md
-- (planned) sql-injection — sql-injection.md
-- (planned) xss — xss.md
-- (planned) auth-audit — auth-audit.md
-- (planned) secret-scan — secret-scan.md
+- [OWASP Top 10 (Web) — Risk-Focused View](owasp-top10-2025.md) — OWASP 2021 mapping, emerging risks
+- [JWT Security Best Practices](jwt-security-best-practices.md) — RFC 8725, storage, rotation
+- [Dependency Vulnerability Management](dependency-vulnerability-management.md) — SCA, triage, VEX
+- [Secret Detection and Prevention](secret-detection-prevention.md) — gitleaks, rotation
+- [CORS, CSP, and Security Headers](cors-csp-security-headers.md) — browser defenses

@@ -1,19 +1,12 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 5
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) sql — sql.md
-- (planned) nosql — nosql.md
-- (planned) migration — migration.md
-- (planned) query-optimization — query-optimization.md
-- (planned) schema-design — schema-design.md
+- [PostgreSQL Indexing Guide](postgresql-indexing-guide.md) — B-tree, partial, composite order
+- [Zero-Downtime Migrations](zero-downtime-migrations.md) — expand/contract, backfill, locks
+- [Query EXPLAIN Analysis](query-explain-analysis.md) — plans, buffers, joins
+- [NoSQL: When to Use](nosql-when-to-use.md) — Firestore, Mongo, Dynamo trade-offs
+- [Schema Versioning Patterns](schema-versioning-patterns.md) — Flyway, Prisma, migration discipline

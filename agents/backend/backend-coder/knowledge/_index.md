@@ -1,19 +1,12 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 5
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) api — api.md
-- (planned) crud — crud.md
-- (planned) rest — rest.md
-- (planned) graphql — graphql.md
-- (planned) migration — migration.md
+- [REST API Conventions](rest-api-conventions.md) — HTTP verbs, status codes, pagination, problem+json
+- [GraphQL Schema Design](graphql-schema-design.md) — types, DataLoader, pagination, federation notes
+- [DTO Mapping Patterns](dto-mapping-patterns.md) — entity vs wire model, explicit mappers
+- [Error Handling Strategies](error-handling-strategies.md) — RFC 9457, mapping exceptions to HTTP
+- [Service Layer Patterns](service-layer-patterns.md) — application services, transactions, repositories

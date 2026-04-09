@@ -1,18 +1,11 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) bash — bash.md
-- (planned) python — python.md
-- (planned) automation — automation.md
-- (planned) cron — cron.md
+- [Bash Scripting Best Practices](bash-scripting-best-practices.md) — set -euo pipefail, ShellCheck
+- [Python Automation Patterns](python-automation-patterns.md) — CLI, httpx, packaging
+- [Cron and launchd Scheduling](cron-launchd-scheduling.md) — cron, systemd, macOS
+- [Idempotent Script Design](idempotent-script-design.md) — locks, safe retries
