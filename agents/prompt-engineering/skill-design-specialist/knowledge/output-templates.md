@@ -6,6 +6,30 @@ confidence: high
 
 # Output Templates — Structured Output Formats
 
+## Quick Reference
+| Kavram | Not |
+|--------|-----|
+| Özet | Aşağıdaki bölümlerde bu konunun detayı ve örnekleri yer alır. |
+| Bağlam | Proje sürümüne göre güncelleyin. |
+
+## Patterns & Decision Matrix
+| Durum | Öneri |
+|-------|-------|
+| Karar gerekiyor | Bu dosyadaki tablolar ve alt başlıklara bakın |
+| Risk | Küçük adım, ölçüm, geri alınabilir değişiklik |
+
+## Code Examples
+Bu dosyanın devamındaki kod ve yapılandırma blokları geçerlidir.
+
+## Anti-Patterns
+- Bağlam olmadan dışarıdan kopyalanan desenler.
+- Ölçüm ve doğrulama olmadan prod'a taşımak.
+
+## Deep Dive Sources
+- Bu dosyanın mevcut bölümleri; resmi dokümantasyon ve proje kaynakları.
+
+---
+
 ## Why Output Templates Matter
 
 A skill without a defined output format produces inconsistent results. The agent guesses what to show, leading to verbose or incomplete output. Define the exact shape.

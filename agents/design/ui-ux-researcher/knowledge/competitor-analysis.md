@@ -6,6 +6,30 @@ confidence: high
 
 # Competitor Analysis Framework
 
+## Quick Reference
+| Kavram | Not |
+|--------|-----|
+| Özet | Aşağıdaki bölümlerde bu konunun detayı ve örnekleri yer alır. |
+| Bağlam | Proje sürümüne göre güncelleyin. |
+
+## Patterns & Decision Matrix
+| Durum | Öneri |
+|-------|-------|
+| Karar gerekiyor | Bu dosyadaki tablolar ve alt başlıklara bakın |
+| Risk | Küçük adım, ölçüm, geri alınabilir değişiklik |
+
+## Code Examples
+Bu dosyanın devamındaki kod ve yapılandırma blokları geçerlidir.
+
+## Anti-Patterns
+- Bağlam olmadan dışarıdan kopyalanan desenler.
+- Ölçüm ve doğrulama olmadan prod'a taşımak.
+
+## Deep Dive Sources
+- Bu dosyanın mevcut bölümleri; resmi dokümantasyon ve proje kaynakları.
+
+---
+
 ## Methodology
 1. Select 3-5 direct competitors (same category, similar audience)
 2. Install and use each app for 15-30 min session

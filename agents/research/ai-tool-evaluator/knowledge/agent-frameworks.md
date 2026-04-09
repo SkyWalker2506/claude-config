@@ -6,6 +6,30 @@ confidence: high
 
 # Agent Frameworks Comparison
 
+## Quick Reference
+| Kavram | Not |
+|--------|-----|
+| Özet | Aşağıdaki bölümlerde bu konunun detayı ve örnekleri yer alır. |
+| Bağlam | Proje sürümüne göre güncelleyin. |
+
+## Patterns & Decision Matrix
+| Durum | Öneri |
+|-------|-------|
+| Karar gerekiyor | Bu dosyadaki tablolar ve alt başlıklara bakın |
+| Risk | Küçük adım, ölçüm, geri alınabilir değişiklik |
+
+## Code Examples
+Bu dosyanın devamındaki kod ve yapılandırma blokları geçerlidir.
+
+## Anti-Patterns
+- Bağlam olmadan dışarıdan kopyalanan desenler.
+- Ölçüm ve doğrulama olmadan prod'a taşımak.
+
+## Deep Dive Sources
+- Bu dosyanın mevcut bölümleri; resmi dokümantasyon ve proje kaynakları.
+
+---
+
 ## Top Frameworks (April 2026)
 
 | Framework | Approach | Best For | Maturity |
