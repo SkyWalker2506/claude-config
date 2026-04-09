@@ -37,7 +37,7 @@ Render kuyrugu yonetimi, batch render.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+E2 sahneler; E5 cikti cozunurlugu; farm zamanlamasi.
 
 ## Process
 
@@ -56,7 +56,7 @@ Render kuyrugu yonetimi, batch render.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Render kuyrugu konfigi, frame araligi, cikti formatlari ve yollar, hata log ozeti.
 
 ## When to Use
 - Render job kuyrugu olusturma ve yonetimi

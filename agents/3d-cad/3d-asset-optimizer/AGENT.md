@@ -41,7 +41,7 @@ status: pool
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+E1 butce; E4 hedef cozunurluk; gercek zaman B19 performans.
 
 ## Process
 
@@ -60,7 +60,7 @@ status: pool
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+LOD/draco ayarlari, before/after metrik, dosya boyutlari, platform hedefi.
 
 ## When to Use
 - LOD (Level of Detail) zinciri olusturma: LOD0-LOD3 polygon hedefleri, gecis mesafesi onerisi

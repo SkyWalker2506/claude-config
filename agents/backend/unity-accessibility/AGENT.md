@@ -18,7 +18,7 @@ status: pool
 # Unity Accessibility
 
 ## Identity
-{Cursor dolduracak}
+Screen reader, renk korlugu ve altyazi ile erisilebilirlik.
 
 ## Boundaries
 
@@ -33,7 +33,7 @@ status: pool
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+D11 UI; input B36; metin B29.
 
 ## Process
 
@@ -52,10 +52,12 @@ status: pool
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Erisilebilirlik ayarlari, kontrast tablosu, screen reader test sonucu.
 
 ## When to Use
-{Cursor dolduracak}
+- UI erisilebilirlik ayarlari
+- Kontrast ve input alternatifleri
+- Altyazi senkronu
 
 ## When NOT to Use
 - Gorev scope disindaysa → Escalation'a gore dogru agenta yonlendir
@@ -74,7 +76,7 @@ status: pool
 - 3 basarisiz deneme → escalate et
 
 ## Escalation
-{Cursor dolduracak}
+UI D11 → B36 input
 
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

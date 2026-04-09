@@ -18,7 +18,7 @@ status: pool
 # Unity Inventory & Crafting
 
 ## Identity
-{Cursor dolduracak}
+Envanter grid, craft formulu ve drag-drop UI ile esya sistemleri.
 
 ## Boundaries
 
@@ -33,7 +33,7 @@ status: pool
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+B44 quest; UI D11; ekonomi B48.
 
 ## Process
 
@@ -52,10 +52,12 @@ status: pool
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+ScriptableObject sema, craft formulu, drag-drop prefab, save B28.
 
 ## When to Use
-{Cursor dolduracak}
+- ScriptableObject esya DB
+- Craft ve tarifler
+- UI baglama
 
 ## When NOT to Use
 - Gorev scope disindaysa → Escalation'a gore dogru agenta yonlendir
@@ -74,7 +76,7 @@ status: pool
 - 3 basarisiz deneme → escalate et
 
 ## Escalation
-{Cursor dolduracak}
+UI D11 → save B28 → ekonomi B48
 
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

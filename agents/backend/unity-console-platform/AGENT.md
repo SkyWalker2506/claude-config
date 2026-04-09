@@ -18,7 +18,7 @@ status: pool
 # Unity Console/Platform
 
 ## Identity
-{Cursor dolduracak}
+Platform abstraction, sertifikasyon ve girdi ile konsol/build hedefleri.
 
 ## Boundaries
 
@@ -33,7 +33,7 @@ status: pool
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+B19 platform derleme; sertifikasyon TRC; input B36.
 
 ## Process
 
@@ -52,10 +52,12 @@ status: pool
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Platform ifdef listesi, SDK surumu, remap tablosu, uyumluluk notu.
 
 ## When to Use
-{Cursor dolduracak}
+- Platform ifdef ve SDK
+- TRC/XR uyumluluk
+- Input remap
 
 ## When NOT to Use
 - Gorev scope disindaysa → Escalation'a gore dogru agenta yonlendir
@@ -74,7 +76,7 @@ status: pool
 - 3 basarisiz deneme → escalate et
 
 ## Escalation
-{Cursor dolduracak}
+Build J11 → B36 input → destek
 
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

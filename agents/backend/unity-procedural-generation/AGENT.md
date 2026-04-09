@@ -18,7 +18,7 @@ status: pool
 # Unity Procedural Generation
 
 ## Identity
-{Cursor dolduracak}
+Gurultu, WFC ve dungeon uretimi ile prosedurel icerik.
 
 ## Boundaries
 
@@ -33,7 +33,7 @@ status: pool
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+B19 dunya icerik; seed determinizm; E11 arazi.
 
 ## Process
 
@@ -52,10 +52,12 @@ status: pool
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Algoritma secimi, seed degeri, tile/komsuluk kurallari, performans olcumu.
 
 ## When to Use
-{Cursor dolduracak}
+- Seed ve deterministik dunya
+- Tile/komsu kurallari
+- Icerik olcekleme
 
 ## When NOT to Use
 - Gorev scope disindaysa → Escalation'a gore dogru agenta yonlendir
@@ -74,7 +76,7 @@ status: pool
 - 3 basarisiz deneme → escalate et
 
 ## Escalation
-{Cursor dolduracak}
+Sahne E8 → performans B32
 
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

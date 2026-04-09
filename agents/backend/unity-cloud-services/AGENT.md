@@ -18,7 +18,7 @@ status: pool
 # Unity Cloud Services
 
 ## Identity
-{Cursor dolduracak}
+Remote Config, Cloud Save ve Economy ile Unity Gaming Services entegrasyonu.
 
 ## Boundaries
 
@@ -33,7 +33,7 @@ status: pool
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+B28 save; remote config; ekonomi B48.
 
 ## Process
 
@@ -52,10 +52,12 @@ status: pool
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Servis konfig anahtarlari, economy leaderboard entegrasyonu, sandbox test.
 
 ## When to Use
-{Cursor dolduracak}
+- RC anahtarlari ve varyant
+- Leaderboard ve cloud save
+- Economy paketi
 
 ## When NOT to Use
 - Gorev scope disindaysa → Escalation'a gore dogru agenta yonlendir
@@ -74,7 +76,7 @@ status: pool
 - 3 basarisiz deneme → escalate et
 
 ## Escalation
-{Cursor dolduracak}
+Backend B2 → B48 ekonomi
 
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

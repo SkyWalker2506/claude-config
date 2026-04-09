@@ -43,7 +43,7 @@ Blender Python scripting: geometry nodes, shader, animation, rigging, export pip
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+E1 konsept; E5 mesh cikti; E4 render pipeline.
 
 ## Process
 
@@ -62,7 +62,7 @@ Blender Python scripting: geometry nodes, shader, animation, rigging, export pip
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Blend dosyasi veya script ozeti, export ayarlari, vertex sayisi, bilinen modifier uyari.
 
 ## When to Use
 - bpy API ile Blender otomasyon scriptleri (2.8+ / 4.x uyumlu)

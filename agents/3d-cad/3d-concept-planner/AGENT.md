@@ -40,7 +40,7 @@ status: pool
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+E2 model/Blender; E5 optimizasyon butcesi; referans K11/K12.
 
 ## Process
 
@@ -59,7 +59,7 @@ status: pool
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Konsept dokuman: mood board listesi, kamera/lens plani, polygon/texture butcesi tablosu, risk notu.
 
 ## When to Use
 - 3D proje brief ve konsept dokumani olusturma (hedef platform, stil, teknik kisitlar)

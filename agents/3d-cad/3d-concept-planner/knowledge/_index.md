@@ -1,19 +1,14 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+knowledge_filled: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+> Bu dosya agent'in bilgi haritasidir. Gorev alirken once bunu oku; sadece ilgili dosyalari yukle.
 
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) 3d-planning — 3d-planning.md
-- (planned) reference — reference.md
-- (planned) scene-composition — scene-composition.md
-- (planned) lighting-setup — lighting-setup.md
-- (planned) camera-angles — camera-angles.md
+- [3D Scene Composition](3d-scene-composition.md) — kısa özet `knowledge/3d-scene-composition.md`
+- [Reference Gathering](reference-gathering.md) — kısa özet `knowledge/reference-gathering.md`
+- [Lighting Setup Guide](lighting-setup-guide.md) — kısa özet `knowledge/lighting-setup-guide.md`
+- [Camera Angle Patterns](camera-angle-patterns.md) — kısa özet `knowledge/camera-angle-patterns.md`

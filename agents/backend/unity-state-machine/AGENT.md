@@ -18,7 +18,7 @@ status: pool
 # Unity State Machine
 
 ## Identity
-{Cursor dolduracak}
+FSM, hierarchical state ve ScriptableObject durumlari ile oyun durumu.
 
 ## Boundaries
 
@@ -33,7 +33,7 @@ status: pool
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+B46 combat; B47 quest; animasyon.
 
 ## Process
 
@@ -52,10 +52,12 @@ status: pool
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+FSM diyagrami, SO state listesi, hierarchical gecisler, kayit formati.
 
 ## When to Use
-{Cursor dolduracak}
+- Menu/oyun durumu
+- Hierarchical ve SO tabanli state
+- Gecis kurallari
 
 ## When NOT to Use
 - Gorev scope disindaysa → Escalation'a gore dogru agenta yonlendir
@@ -74,7 +76,7 @@ status: pool
 - 3 basarisiz deneme → escalate et
 
 ## Escalation
-{Cursor dolduracak}
+B46 combat → B47 quest
 
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

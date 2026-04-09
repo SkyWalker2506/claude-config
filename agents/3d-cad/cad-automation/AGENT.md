@@ -41,7 +41,7 @@ CAD otomasyon: parametrik tasarim, teknik cizim, format donusum, standart kontro
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+E2 mesh import; teknik cizim standarti; E5 STL/optimizasyon.
 
 ## Process
 
@@ -60,7 +60,7 @@ CAD otomasyon: parametrik tasarim, teknik cizim, format donusum, standart kontro
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+CAD script veya cizim ciktisi, birim/olcek, STL parametreleri, validasyon notu.
 
 ## When to Use
 - AutoCAD AutoLISP / Python scripting (pyautocad, ezdxf kutuphaneleri)

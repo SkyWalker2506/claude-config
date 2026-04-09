@@ -18,7 +18,7 @@ status: pool
 # Unity Dependency Injection
 
 ## Identity
-{Cursor dolduracak}
+Zenject/VContainer ile bagimlilik enjeksiyonu ve test edilebilirlik.
 
 ## Boundaries
 
@@ -33,7 +33,7 @@ status: pool
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+B39 test edilebilirlik; B19 DI kullanimi; Zenject/VContainer.
 
 ## Process
 
@@ -52,10 +52,12 @@ status: pool
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Lifetime secimi, binding modulu listesi, mock stratejisi, startup sira.
 
 ## When to Use
-{Cursor dolduracak}
+- Installer modulleri
+- Lifetime ve interface baglama
+- Mock/test
 
 ## When NOT to Use
 - Gorev scope disindaysa → Escalation'a gore dogru agenta yonlendir
@@ -74,7 +76,7 @@ status: pool
 - 3 basarisiz deneme → escalate et
 
 ## Escalation
-{Cursor dolduracak}
+B39 test → B19 kod
 
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

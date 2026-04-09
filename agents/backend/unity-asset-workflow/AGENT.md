@@ -18,7 +18,7 @@ status: pool
 # Unity Asset Workflow
 
 ## Identity
-{Cursor dolduracak}
+Addressables, bundle ve import pipeline ile asset is akisi.
 
 ## Boundaries
 
@@ -33,7 +33,7 @@ status: pool
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+J11 CI; Addressables build; E5 optimizasyon.
 
 ## Process
 
@@ -52,10 +52,12 @@ status: pool
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Addressables gruplari, bundle stratejisi, postprocessor kurallari, import preset.
 
 ## When to Use
-{Cursor dolduracak}
+- Addressables gruplari
+- Bundle stratejisi
+- Postprocessor
 
 ## When NOT to Use
 - Gorev scope disindaysa → Escalation'a gore dogru agenta yonlendir
@@ -74,7 +76,7 @@ status: pool
 - 3 basarisiz deneme → escalate et
 
 ## Escalation
-{Cursor dolduracak}
+J11 CI → E5 optimizasyon
 
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

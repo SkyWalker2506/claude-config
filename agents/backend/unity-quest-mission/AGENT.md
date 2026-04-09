@@ -18,7 +18,7 @@ status: pool
 # Unity Quest & Mission System
 
 ## Identity
-{Cursor dolduracak}
+Gorev grafigi, hedefler ve oduller ile quest/mission sistemi.
 
 ## Boundaries
 
@@ -33,7 +33,7 @@ status: pool
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+B44 diyalog; B46 odul; UI D11.
 
 ## Process
 
@@ -52,10 +52,12 @@ status: pool
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Quest graph ozeti, objective id'leri, odul dagitim kurali, editor araci notu.
 
 ## When to Use
-{Cursor dolduracak}
+- Quest editor ve runtime
+- Objective takip
+- Odul dagitimi
 
 ## When NOT to Use
 - Gorev scope disindaysa → Escalation'a gore dogru agenta yonlendir
@@ -74,7 +76,7 @@ status: pool
 - 3 basarisiz deneme → escalate et
 
 ## Escalation
-{Cursor dolduracak}
+B44 hikaye → B46 combat → UI D11
 
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

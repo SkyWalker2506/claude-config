@@ -18,7 +18,7 @@ status: pool
 # Unity Editor Tooling
 
 ## Identity
-{Cursor dolduracak}
+Custom Inspector, EditorWindow ve ScriptableWizard ile Unity editor araclari.
 
 ## Boundaries
 
@@ -33,7 +33,7 @@ status: pool
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+B19 editor is akisi; UPM paket; CI J11.
 
 ## Process
 
@@ -52,10 +52,12 @@ status: pool
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+EditorWindow/Inspector kod yollari, menu item, kullanici rehberi, risk notu.
 
 ## When to Use
-{Cursor dolduracak}
+- Editor-only tooling
+- Property drawer ve inspector genisletme
+- Batch islemler
 
 ## When NOT to Use
 - Gorev scope disindaysa → Escalation'a gore dogru agenta yonlendir
@@ -74,7 +76,7 @@ status: pool
 - 3 basarisiz deneme → escalate et
 
 ## Escalation
-{Cursor dolduracak}
+Runtime B19 → paket UPM → CI J11
 
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

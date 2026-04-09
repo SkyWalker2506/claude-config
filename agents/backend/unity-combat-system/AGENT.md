@@ -18,7 +18,7 @@ status: pool
 # Unity Combat System
 
 ## Identity
-{Cursor dolduracak}
+Hitbox, hasar, combo ve status efekt ile savas sistemleri.
 
 ## Boundaries
 
@@ -33,7 +33,7 @@ status: pool
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+B45 esya; animasyon B19; multiplayer B23 (ayri).
 
 ## Process
 
@@ -52,10 +52,12 @@ status: pool
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Hitbox katmanlari, hasar formulu, combo state makinesi, status efekt tablosu.
 
 ## When to Use
-{Cursor dolduracak}
+- Carpisma katmanlari
+- Hasar formulu ve state
+- Combo zinciri
 
 ## When NOT to Use
 - Gorev scope disindaysa → Escalation'a gore dogru agenta yonlendir
@@ -74,7 +76,7 @@ status: pool
 - 3 basarisiz deneme → escalate et
 
 ## Escalation
-{Cursor dolduracak}
+Animasyon B19 → B49 state
 
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

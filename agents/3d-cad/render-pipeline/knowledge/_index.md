@@ -1,16 +1,14 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+knowledge_filled: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+> Bu dosya agent'in bilgi haritasidir. Gorev alirken once bunu oku; sadece ilgili dosyalari yukle.
 
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) render-queue — render-queue.md
-- (planned) batch-render — batch-render.md
+- [Render Queue Management](render-queue-management.md) — kısa özet `knowledge/render-queue-management.md`
+- [Batch Render Setup](batch-render-setup.md) — kısa özet `knowledge/batch-render-setup.md`
+- [Render Farm Patterns](render-farm-patterns.md) — kısa özet `knowledge/render-farm-patterns.md`
+- [Output Format Guide](output-format-guide.md) — kısa özet `knowledge/output-format-guide.md`
