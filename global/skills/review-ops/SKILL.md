@@ -105,3 +105,23 @@ Toplam: N task incelendi
 - Retroaktif PR açmadan önce kullanıcıya sor — sadece açıkça kötüyse direkt aç
 - Revize task'ı orijinal task'a "blocks" ile bağla Jira'da
 - Skor 10 üzerinden, yarım puan hassasiyetle
+
+## When NOT to Use
+- Tek satirlik basit soru/cevap ise
+- Skill'in scope'u disindaysa
+- Riskli/destructive is ise (ayri onay gerekir)
+
+## Red Flags
+- Belirsiz hedef/kabul kriteri
+- Gerekli dosya/izin/secret eksik
+- Ayni adim 2+ kez tekrarlandi
+
+## Error Handling
+- Gerekli kaynak yoksa → dur, blocker'i raporla
+- Komut/akıs hatasi → en yakin guvenli noktadan devam et
+- 3 basarisiz deneme → daha uygun skill/agent'a yonlendir
+
+## Verification
+- [ ] Beklenen cikti uretildi
+- [ ] Yan etki yok (dosya/ayar)
+- [ ] Gerekli log/rapor paylasildi

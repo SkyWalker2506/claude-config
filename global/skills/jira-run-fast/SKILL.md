@@ -62,3 +62,23 @@ Ham girdi notu: `jira-run-fast` / `jira_run_fast` + çözülen `N`.
 - **Tur asla boş geçmez:** Her turda **en az bir** Jira yazımı (transition, create, edit, veya **§3/§4** kapsamı). Routing yoksa [Tur kapanışı — boş tur yok](../../../docs/CLAUDE_JIRA.md#tur-kapanisi-bos-tur-yok): **§3** yalnız **bu turda yeni fikir** varsa (aynı §3 fikir kartına her tur Run append **yok**); **§4** yalnız **fikir yoksa** — meta kart veya düşünülmüş append (robotik şablon tekrarı **yok**). Normal iş kartına rutin “izleme / poll” **yok**.
 - **IP ilerletilemiyorsa:** Onay/credential → **daima WAITING (7)**; teknik bağımlılık → **BLOCKED**; [IP’de takılmama](../../../docs/CLAUDE_JIRA.md#ip-takilmama-ilerleme) — bitir / parçala / taşı, **aynı turda** sonraki To Do → IP; aynı kartta takılı kalma.
 - **Yeni fikir:** [`§3`](../../../docs/CLAUDE_JIRA.md#bos-is-hatti-jira) — kart **WAITING FOR APPROVAL** (`voc-await-idea`) + [## Run](../../../docs/CLAUDE_JIRA.md#fikir-ve-meta-kart-run) **yalnız yeni kayıt için**. **Fikir yok:** [`§4`](../../../docs/CLAUDE_JIRA.md#4-erken-çıkış--fikir-yok) — *fikir bulunamadı* + Run; ardışık turlarda aynı meta’da **anlamlı** append.
+
+## When NOT to Use
+- Tek satirlik basit soru/cevap ise
+- Skill'in scope'u disindaysa
+- Riskli/destructive is ise (ayri onay gerekir)
+
+## Red Flags
+- Belirsiz hedef/kabul kriteri
+- Gerekli dosya/izin/secret eksik
+- Ayni adim 2+ kez tekrarlandi
+
+## Error Handling
+- Gerekli kaynak yoksa → dur, blocker'i raporla
+- Komut/akıs hatasi → en yakin guvenli noktadan devam et
+- 3 basarisiz deneme → daha uygun skill/agent'a yonlendir
+
+## Verification
+- [ ] Beklenen cikti uretildi
+- [ ] Yan etki yok (dosya/ayar)
+- [ ] Gerekli log/rapor paylasildi

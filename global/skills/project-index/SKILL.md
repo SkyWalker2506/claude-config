@@ -36,3 +36,23 @@ Mevcut `.claude/index.md` dosyasını güncelle (focus alanı genellikle değiş
 ## INDEX_CREATE sinyali
 
 `CLAUDE.md` veya herhangi bir hook `INDEX_CREATE` sinyali üretirse → mevcut proje için `/project-index init` çalıştır.
+
+## When NOT to Use
+- Tek satirlik basit soru/cevap ise
+- Skill'in scope'u disindaysa
+- Riskli/destructive is ise (ayri onay gerekir)
+
+## Red Flags
+- Belirsiz hedef/kabul kriteri
+- Gerekli dosya/izin/secret eksik
+- Ayni adim 2+ kez tekrarlandi
+
+## Error Handling
+- Gerekli kaynak yoksa → dur, blocker'i raporla
+- Komut/akıs hatasi → en yakin guvenli noktadan devam et
+- 3 basarisiz deneme → daha uygun skill/agent'a yonlendir
+
+## Verification
+- [ ] Beklenen cikti uretildi
+- [ ] Yan etki yok (dosya/ayar)
+- [ ] Gerekli log/rapor paylasildi
