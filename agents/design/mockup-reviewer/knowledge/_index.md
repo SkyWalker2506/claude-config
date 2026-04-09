@@ -1,19 +1,10 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 3
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) design-review — design-review.md
-- (planned) ux-audit — ux-audit.md
-- (planned) accessibility — accessibility.md
-- (planned) contrast-ratio — contrast-ratio.md
-- (planned) touch-target — touch-target.md
+- [Mockup Reviewer Core Patterns](design-review-core-patterns.md) — Core patterns for Mockup Reviewer
+- [Mockup Reviewer Anti-Patterns](design-review-anti-patterns.md) — Common mistakes and anti-patterns
+- [Mockup Reviewer Verification Checklist](design-review-verification.md) — Verification and delivery checklist
