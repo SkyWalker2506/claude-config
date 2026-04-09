@@ -509,6 +509,11 @@ else
   echo "⚠️  JSON dogrulama atlandi (python/node bulunamadi)"
 fi
 
+# Sync MCP servers to .claude.json
+if [ -f "$SCRIPT_DIR/config/sync-mcp.sh" ]; then
+  bash "$SCRIPT_DIR/config/sync-mcp.sh" 2>/dev/null && echo "✅ MCP sync (.claude.json)" || echo "⚠️  MCP sync atlandi"
+fi
+
 # File existence
 for f in "$HOME/.claude/CLAUDE.md" "$PROJECTS_ROOT/CLAUDE.md" "$SCRIPT_DIR/projects/scripts/migration_check.sh" "$SCRIPT_DIR/projects/MIGRATION_VERSION"; do
   if [ -f "$f" ]; then
