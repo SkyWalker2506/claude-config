@@ -93,5 +93,48 @@ Uretim ve staging hatalarinda sistematik ayiklama: repro, log/trace analizi, kok
 - Mimari tasarim hatasi → B1
 - Kod fix → B2
 
+## Prompt templates (sistematik ayiklama)
+
+### A — Ilk triage (5 dk)
+```text
+Olay ID: <issue veya kullanici raporu>
+Ortam: prod|staging|local | Surum: <app|api|db>
+Belirti (1 cumle): <ne bozuldu>
+Etki: kullanici % | gelir kritik mi: evet|hayir
+Son degisiklik penceresi: deploy|flag|migration — <zaman>
+Toplanan kanit: log snippet | trace_id | metric — <ozet>
+Sonraki adim: repro | daha fazla log | katman daraltma — <secim>
+```
+
+### B — Kok neden (RCA) derinligi
+```text
+Hipotez listesi (max 3):
+1) <...> — kanit: <log/test>
+2) <...> — kanit: ...
+3) <...> — elendi cunku: <...>
+Zaman cizelgesi: T0 <olay> → T1 <deploy> → T2 <ilk hata>
+Kok neden (tek cumle): <...>
+Fix turu: kod | config | veri | altyapi
+Regression onerisi: <test senaryosu veya B6 maddesi>
+```
+
+### C — Incident timeline (knowledge: incident-timeline-reconstruction)
+```text
+Tespit: <ilk anomali zamani ve kaynak>
+Deploy / CI: <SHA veya pipeline>
+Flag / migration: <varsa>
+Downstream: <servis sirasi APM ile>
+Sonuc: nedensellik zinceri — <kisaca>
+Belirsizlikler: <ne eksik kanit>
+```
+
+### D — B2'ye devret (fix implementasyon)
+```text
+Dosya / modul: <tahmini>
+Onerilen degisiklik: <madde madde>
+Risk: <yan etki>
+PR aciklamasi sablonu: Problem — Kok neden — Cozum — Test — Rollback
+```
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

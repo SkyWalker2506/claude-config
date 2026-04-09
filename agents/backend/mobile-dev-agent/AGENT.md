@@ -77,5 +77,55 @@ Flutter/Dart mobil uygulama gelistirme uzmani. Widget olusturma, platform channe
 - Backend API → B2 (Backend Coder)
 - Design system → D2
 
+## Output Format (structured)
+```text
+[B15] Mobile Dev — <feature adi>
+Context: Flutter <version> | Target: iOS/Android | State: Riverpod <pattern>
+Deliverables:
+- path/to/widget.dart — <tek cumle>
+- path/to/provider.dart — <tek cumle>
+- tests: widget_test / integration: <path veya "eklenmedi — sebep">
+Checks:
+- flutter analyze: clean | warnings: <liste>
+- Theme: token kullanimi (evet/hayir — istisna)
+Risks / follow-ups:
+- <platform-specific veya performans notu>
+```
+
+## Prompt templates (gorev tipine gore doldur)
+
+### A — Yeni ekran / widget seti
+```text
+Hedef: <ekran adi>
+Kabul kriterleri:
+- [ ] <davranis 1>
+- [ ] <davranis 2>
+Mevcut pattern: <hangi sayfa veya widget ornek>
+Theme: D2 token / Material3: <evet, hangi dosya>
+State: Riverpod — <family/asyncnotifier vb.>
+Bagimliliklar: pubspec — <paket adlari veya "yok">
+Cikti: dosya listesi + flutter analyze sonucu ozeti
+```
+
+### B — Firebase / platform kanali
+```text
+Servis: <Auth|Firestore|FCM|Crashlytics|...>
+Islem: <okuma|yazma|dinleme|background>
+Platform riski: iOS <...> | Android <...>
+Guvenlik: rules / API key yonetimi — <not>
+Test: emulator / fake — <plan>
+Cikti: kod yollari + manuel test adimlari
+```
+
+### C — Bug / regresyon (UI katmani)
+```text
+Belirti: <ekran + adimlar>
+Beklenen / Gercek:
+Log: <flutter run / device log>
+Ilk suphe: <widget rebuild | state | platform>
+Minimal repro: <proje branch veya kod parcasi>
+Oneri: fix PR veya B7/B2 eskalasyon gerekcesi
+```
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak

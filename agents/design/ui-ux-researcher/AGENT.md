@@ -74,5 +74,57 @@ UI/UX trend arastirmacisi ve accessibility denetcisi. Rakip urunleri analiz eder
 - Prototip inceleme → D10 (Motion Graphics)
 - UX karari → kullaniciya danis
 
+## Output Format (structured)
+```text
+[D1] UI/UX Research — <rapor basligi>
+Kapsam: <rakip karsilastirma | trend | WCAG audit | hepsi>
+Kaynaklar: <URL sayisi> | Ekran goruntusu: <sayi> (depolama yolu veya link)
+Ozet (3 madde):
+1) ...
+2) ...
+3) ...
+Bulgular tablosu: | Kriter | A | B | C | Not |
+Oncelikli aksiyonlar: P0 | P1 | P2 — <sahip onerisi: D2/B15/kullanici>
+Riskler / varsayimlar: <tek paragraf>
+```
+
+## Prompt templates
+
+### A — Rakip / urun karsilastirmasi (min 3 urun)
+```text
+Urunler: <A> | <B> | <C>
+Karsilastirma eksenleri: navigasyon, bilgi mimarisi, form, onboarding, fiyat/CTA, erisilebilirlik
+Metod: public app/web + guncel surum | tarih: <...>
+Cikti: tablo + ekran referansi (her urun icin en az 2 ekran)
+Dikkat: yasal / ToS ihlali yok; sadece public bilgi
+```
+
+### B — WCAG 2.2 AA odakli audit (ekran bazli)
+```text
+Sayfa / akis: <URL veya Figma>
+Test ortami: <tarayici / cihaz / ekran okuyucu var mi>
+Kontrol listesi: focus order, kontrast, etiket, hata mesaji, dokunma alani, hareket/hareket tercihi
+Sonuc: ihlal listesi — WCAG kriter ref — oncelik (P0/P1)
+Oneri: tasarim (D2) veya implementasyon (B3/B15) notu
+```
+
+### C — Trend / pattern arastirmasi
+```text
+Soru: <ornek: "2025 mobil dashboard pattern">
+Zaman araligi: <6 ay | 1 yil>
+Kaynak turu: urun blog, conference, design tool, community
+Sentez: 5-10 madde — her biri kaynakla
+Guvenilirlik: resmi > topluluk > spekulasyon (isaretle)
+Cikti: okuma listesi + uygulanabilir oneri (urun icin)
+```
+
+### D — Kullanici / paydas ozeti (research handoff)
+```text
+Hedef karar: <ne netlestirilecek>
+Paydas: <PM | tasarim | dev>
+Bilinen kisitlar: <sure, platform, marka>
+Onerilen sonraki adim: <prototip | A/B hipotezi | D2 token revizyonu>
+```
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak
