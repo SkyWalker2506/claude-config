@@ -107,17 +107,20 @@ free/local → haiku → sonnet → opus
 
 **Local Model System Requirements:**
 
-| Model | Parametre | Quantization | Min RAM | Min VRAM/Unified | Disk | Ollama Tag |
-|-------|-----------|-------------|---------|-----------------|------|------------|
-| Qwen 2.5 Coder 7B | 7B | Q4_K_M | 8 GB | 6 GB | 4 GB | `qwen2.5-coder:7b` |
-| Llama 3.1 8B | 8B | Q4_K_M | 8 GB | 6 GB | 5 GB | `llama3.1:8b` |
-| Gemma 2 9B | 9B | Q4_K_M | 12 GB | 8 GB | 6 GB | `gemma2:9b` |
-| Phi-3 Medium 14B | 14B | Q4_K_M | 16 GB | 10 GB | 8 GB | `phi3:14b` |
-| Qwen 2.5 32B | 32B | Q4_K_M | 24 GB | 20 GB | 18 GB | `qwen2.5:32b` |
-| Llama 3.1 70B | 70B | Q4_K_M | 48 GB | 40 GB | 40 GB | `llama3.1:70b` |
-| Qwen 2.5 72B | 72B | Q4_K_M | 48 GB | 40 GB | 42 GB | `qwen2.5:72b` |
+| Model | Parametre | Quantization | Model Boyutu | Min RAM | Ollama Tag |
+|-------|-----------|-------------|-------------|---------|------------|
+| Qwen 2.5 Coder 7B | 7B | Q4_K_M | 4.7 GB | 10 GB | `qwen2.5-coder:7b` |
+| DeepSeek Coder 6.7B | 6.7B | Q4_K_M | 3.8 GB | 8 GB | `deepseek-coder:6.7b` |
+| Qwen 3.5 9B | 9B | Q4_K_M | 6.6 GB | 12 GB | `qwen3.5:9b` |
+| Llama 3.1 8B | 8B | Q4_K_M | 4.9 GB | 10 GB | `llama3.1:8b` |
+| Gemma 2 9B | 9B | Q4_K_M | 5.4 GB | 12 GB | `gemma2:9b` |
+| Phi-3 Medium 14B | 14B | Q4_K_M | 8.0 GB | 16 GB | `phi3:14b` |
+| Qwen 2.5 32B | 32B | Q4_K_M | 18 GB | 24 GB | `qwen2.5:32b` |
+| Llama 3.1 70B | 70B | Q4_K_M | 40 GB | 48 GB | `llama3.1:70b` |
 
-> **Kural:** Model'in "Min RAM" degeri makinenin toplam RAM'ini asiyorsa o modeli KULLANMA — swap'a duser, cok yavaslar. Makinenin RAM'ini `sysctl -n hw.memsize` ile kontrol et.
+> **Kural:** Makinenin RAM'inin **yarisi** sistem ve uygulamalar icin ayrilir. Model boyutu kalan yaridan buyukse KULLANMA.
+> Hesaplama: `(toplam RAM / 2) >= model boyutu` olmali. Ornek: 18GB Mac → max 9GB model → 9B'ye kadar OK, 14B+ yasak.
+> RAM kontrol: `sysctl -n hw.memsize | awk '{print $1/1024/1024/1024}'`
 
 **Hangi task hangi model:**
 
