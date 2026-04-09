@@ -1,18 +1,10 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 3
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) web-search — web-search.md
-- (planned) content-fetch — content-fetch.md
-- (planned) summarization — summarization.md
-- (planned) fact-checking — fact-checking.md
+- [Web Researcher Core Patterns](web-search-core-patterns.md) — Core patterns for Web Researcher
+- [Web Researcher Anti-Patterns](web-search-anti-patterns.md) — Common mistakes and anti-patterns
+- [Web Researcher Verification Checklist](web-search-verification.md) — Verification and delivery checklist
