@@ -1,16 +1,10 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 3
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) log-analysis — log-analysis.md
-- (planned) pattern-detection — pattern-detection.md
+- [Log Analyzer Core Patterns](log-analysis-core-patterns.md) — Core patterns for Log Analyzer
+- [Log Analyzer Anti-Patterns](log-analysis-anti-patterns.md) — Common mistakes and anti-patterns
+- [Log Analyzer Verification Checklist](log-analysis-verification.md) — Verification and delivery checklist

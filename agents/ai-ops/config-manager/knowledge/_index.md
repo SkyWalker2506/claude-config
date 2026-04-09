@@ -1,16 +1,10 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 3
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) config-sync — config-sync.md
-- (planned) settings-management — settings-management.md
+- [Config Manager Core Patterns](config-sync-core-patterns.md) — Core patterns for Config Manager
+- [Config Manager Anti-Patterns](config-sync-anti-patterns.md) — Common mistakes and anti-patterns
+- [Config Manager Verification Checklist](config-sync-verification.md) — Verification and delivery checklist
