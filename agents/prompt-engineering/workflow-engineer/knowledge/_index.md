@@ -1,5 +1,6 @@
 ---
 last_updated: 2026-04-09
+knowledge_filled: true
 total_topics: 6
 ---
 
