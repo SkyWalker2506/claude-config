@@ -37,7 +37,7 @@ Sunum olusturma — slayt icerik ve layout tasarimi.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+H5/H6 icerik; D9 marka sesi; veri gorsellestirme F3 ile.
 
 ## Process
 
@@ -56,7 +56,7 @@ Sunum olusturma — slayt icerik ve layout tasarimi.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Slayt plani veya storyboard, sunum dosyasi yolu veya link, konusmaci notlari.
 
 ## When to Use
 - Markdown/PPTX/Keynote sunum olusturma

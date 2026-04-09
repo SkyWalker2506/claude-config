@@ -39,7 +39,7 @@ Cloud servislerine (Firebase, Vercel, GCP, AWS) deployment yapar, CI/CD pipeline
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+J1 container; J8 kapasite; IaC state ve ortam.
 
 ## Process
 
@@ -58,7 +58,7 @@ Cloud servislerine (Firebase, Vercel, GCP, AWS) deployment yapar, CI/CD pipeline
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Deploy plan, terraform/helm ozeti, hedef URL ve surum, smoke test sonucu.
 
 ## When to Use
 - Firebase Hosting / Functions deploy

@@ -1,17 +1,14 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+knowledge_filled: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+> Bu dosya agent'in bilgi haritasidir. Gorev alirken once bunu oku; sadece ilgili dosyalari yukle.
 
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) ssl — ssl.md
-- (planned) dns — dns.md
-- (planned) certificate — certificate.md
+- [Ssl Certificate Management](ssl-certificate-management.md) — kısa özet `knowledge/ssl-certificate-management.md`
+- [Dns Configuration Patterns](dns-configuration-patterns.md) — kısa özet `knowledge/dns-configuration-patterns.md`
+- [Lets Encrypt Automation](lets-encrypt-automation.md) — kısa özet `knowledge/lets-encrypt-automation.md`
+- [Cdn Dns Setup](cdn-dns-setup.md) — kısa özet `knowledge/cdn-dns-setup.md`

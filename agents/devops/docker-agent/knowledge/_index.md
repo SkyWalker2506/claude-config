@@ -1,17 +1,14 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+knowledge_filled: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+> Bu dosya agent'in bilgi haritasidir. Gorev alirken once bunu oku; sadece ilgili dosyalari yukle.
 
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) docker — docker.md
-- (planned) compose — compose.md
-- (planned) container — container.md
+- [Dockerfile Best Practices](dockerfile-best-practices.md) — kısa özet `knowledge/dockerfile-best-practices.md`
+- [Docker Compose Patterns](docker-compose-patterns.md) — kısa özet `knowledge/docker-compose-patterns.md`
+- [Multi Stage Builds](multi-stage-builds.md) — kısa özet `knowledge/multi-stage-builds.md`
+- [Container Security](container-security.md) — kısa özet `knowledge/container-security.md`

@@ -37,7 +37,7 @@ SSL sertifika ve DNS yapilandirmasi.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+J2 edge/CDN; sertifika yenileme otomasyonu; DNS provider.
 
 ## Process
 
@@ -56,7 +56,7 @@ SSL sertifika ve DNS yapilandirmasi.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+DNS kayit ozeti, sertifika serial/yenileme tarihi, CDN/proxy notu.
 
 ## When to Use
 - Let's Encrypt sertifika olusturma ve yenileme

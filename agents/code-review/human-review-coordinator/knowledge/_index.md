@@ -1,16 +1,14 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+knowledge_filled: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+> Bu dosya agent'in bilgi haritasidir. Gorev alirken once bunu oku; sadece ilgili dosyalari yukle.
 
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) review-routing — review-routing.md
-- (planned) human-handoff — human-handoff.md
+- [Review Routing Rules](review-routing-rules.md) — kısa özet `knowledge/review-routing-rules.md`
+- [Reviewer Expertise Matching](reviewer-expertise-matching.md) — kısa özet `knowledge/reviewer-expertise-matching.md`
+- [Review Sla Tracking](review-sla-tracking.md) — kısa özet `knowledge/review-sla-tracking.md`
+- [Escalation Criteria](escalation-criteria.md) — kısa özet `knowledge/escalation-criteria.md`

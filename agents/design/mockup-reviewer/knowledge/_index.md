@@ -1,19 +1,14 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+knowledge_filled: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+> Bu dosya agent'in bilgi haritasidir. Gorev alirken once bunu oku; sadece ilgili dosyalari yukle.
 
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) design-review — design-review.md
-- (planned) ux-audit — ux-audit.md
-- (planned) accessibility — accessibility.md
-- (planned) contrast-ratio — contrast-ratio.md
-- (planned) touch-target — touch-target.md
+- [Ux Audit Checklist](ux-audit-checklist.md) — kısa özet `knowledge/ux-audit-checklist.md`
+- [Accessibility Wcag Guide](accessibility-wcag-guide.md) — kısa özet `knowledge/accessibility-wcag-guide.md`
+- [Contrast Ratio Tools](contrast-ratio-tools.md) — kısa özet `knowledge/contrast-ratio-tools.md`
+- [Touch Target Guidelines](touch-target-guidelines.md) — kısa özet `knowledge/touch-target-guidelines.md`

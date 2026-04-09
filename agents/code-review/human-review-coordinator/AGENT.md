@@ -38,7 +38,7 @@ Human review atama ve takip.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+C3 AI review; uzman B* agentlari; I4/I8 SLA ve raporlama.
 
 ## Process
 
@@ -57,7 +57,7 @@ Human review atama ve takip.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Reviewer atama tablosu, SLA durumu, escalation nedeni ve hedef kisi/ekip.
 
 ## When to Use
 - Uygun reviewer belirleme ve atama

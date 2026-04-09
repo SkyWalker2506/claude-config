@@ -41,7 +41,7 @@ SVG icon optimizasyonu, sprite sheet uretimi, responsive image pipeline, favicon
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+D9 marka renk/font; web build; sprite atlas pipeline.
 
 ## Process
 
@@ -60,7 +60,7 @@ SVG icon optimizasyonu, sprite sheet uretimi, responsive image pipeline, favicon
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+SVG/sprite cikti yolu, boyut ve format tablosu, favicon/manifest paket listesi.
 
 ## When to Use
 - SVG temizleme ve optimize etme (SVGO config: viewBox fix, path simplify, attribute cleanup)

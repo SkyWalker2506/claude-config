@@ -1,17 +1,14 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+knowledge_filled: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+> Bu dosya agent'in bilgi haritasidir. Gorev alirken once bunu oku; sadece ilgili dosyalari yukle.
 
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) secret-scan — secret-scan.md
-- (planned) dependency-audit — dependency-audit.md
-- (planned) sast — sast.md
+- [Secret Scanning Tools](secret-scanning-tools.md) — kısa özet `knowledge/secret-scanning-tools.md`
+- [Sast Integration](sast-integration.md) — kısa özet `knowledge/sast-integration.md`
+- [Dependency Audit Automation](dependency-audit-automation.md) — kısa özet `knowledge/dependency-audit-automation.md`
+- [Trivy Snyk Comparison](trivy-snyk-comparison.md) — kısa özet `knowledge/trivy-snyk-comparison.md`

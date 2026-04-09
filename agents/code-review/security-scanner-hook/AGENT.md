@@ -36,7 +36,7 @@ Pre-commit hook: secret scan, dependency audit. Deterministic — AI model kulla
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+C1 oncesi secret tarama; B13 guvenlik audit; bagimlilik C1 ile ayni PR'da.
 
 ## Process
 
@@ -55,7 +55,7 @@ Pre-commit hook: secret scan, dependency audit. Deterministic — AI model kulla
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Tarama raporu: arac adi, bulgu listesi (dosya: satir maskeli), severity, suppress gerekcesi.
 
 ## When to Use
 - Secret/credential pattern tarama (API key, token, password)

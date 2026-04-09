@@ -40,7 +40,7 @@ Figma API ile komponent cikarma, design token export, envanter analizi.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+D3 kod entegrasyonu; D2 design system token; export/build pipeline.
 
 ## Process
 
@@ -59,7 +59,7 @@ Figma API ile komponent cikarma, design token export, envanter analizi.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Figma link veya dosya, cikarilan token ozeti, component envanteri tablosu.
 
 ## When to Use
 - Figma REST API ile frame/komponent listeleme, node traversal, metadata okuma

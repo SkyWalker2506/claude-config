@@ -38,7 +38,7 @@ GitHub Action tabanli PR incelemesi.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+GitHub Actions / PR API; C4 bot; branch protection kurallari.
 
 ## Process
 
@@ -57,7 +57,7 @@ GitHub Action tabanli PR incelemesi.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+PR numarasi, check durumu tablosu, merge blok nedeni, gerekli onay listesi.
 
 ## When to Use
 - GitHub Actions uzerinden otomatik PR review

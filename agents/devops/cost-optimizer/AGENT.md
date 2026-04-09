@@ -37,7 +37,7 @@ Cloud maliyet analizi ve tasarruf onerisi.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+J4 kullanim metrikleri; reserved/spot karari; finans onay.
 
 ## Process
 
@@ -56,7 +56,7 @@ Cloud maliyet analizi ve tasarruf onerisi.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Maliyet kirilimi, tasarruf onerileri, uygulama sirasi ve risk notu.
 
 ## When to Use
 - Firebase/GCP/AWS maliyet raporu

@@ -37,7 +37,7 @@ Dockerfile ve docker-compose olusturma, container yonetimi.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+J2 deploy artefakti; J7 incident rollback; registry ve imza.
 
 ## Process
 
@@ -56,7 +56,7 @@ Dockerfile ve docker-compose olusturma, container yonetimi.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Dockerfile ve compose diff ozeti, image tag ve boyut, guvenlik tarama sonucu.
 
 ## When to Use
 - Multi-stage build olusturma ve optimizasyon

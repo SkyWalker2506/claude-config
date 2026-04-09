@@ -37,7 +37,7 @@ Pre-commit hook: lint, format, type check. Deterministic — AI model kullanmaz.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+C2/C3/C5 ile — hook ciktisi review ve CI gate'e beslenir; formatter config repo kokunde.
 
 ## Process
 
@@ -56,7 +56,7 @@ Pre-commit hook: lint, format, type check. Deterministic — AI model kullanmaz.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Hook log ozeti, fail satirlari (kisa), auto-fix uygulandiysa diff ozeti, tekrar calistirma komutu.
 
 ## When to Use
 - ESLint / Dart analyze / Ruff calistirma

@@ -41,7 +41,7 @@ Tasarim dosyalarini production-ready komponentlere donustur: Stitch, Tailwind, C
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+D4 tasarim cikti; B3 frontend implement; Tailwind/design token knowledge.
 
 ## Process
 
@@ -60,7 +60,7 @@ Tasarim dosyalarini production-ready komponentlere donustur: Stitch, Tailwind, C
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Bilesen listesi, breakpoint kararlari, dosya yollari, acik TODO ve bagimlilik notu.
 
 ## When to Use
 - Stitch CLI/API ile tasarim dosyalarini koda cevirme (Figma → React/Flutter)

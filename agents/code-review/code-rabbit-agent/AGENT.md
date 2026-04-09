@@ -38,7 +38,7 @@ CodeRabbit CLI ile derin kod incelemesi.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+GitHub PR ve checks; C5 merge politikasi; kod standardi A9/B agentlari.
 
 ## Process
 
@@ -57,7 +57,7 @@ CodeRabbit CLI ile derin kod incelemesi.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+CodeRabbit config veya kural diff'i, ornek yorum formati, CI entegrasyon adimlari.
 
 ## When to Use
 - CodeRabbit CLI calistirma ve sonuc yorumlama

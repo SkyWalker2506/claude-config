@@ -37,7 +37,7 @@ Sunucu uptime ve saglik izleme.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+J7 olay esigi; J5 maliyet dashboard; SLO tanimlari.
 
 ## Process
 
@@ -56,7 +56,7 @@ Sunucu uptime ve saglik izleme.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Uptime/health ozeti, alert kural listesi, dashboard veya panel linki.
 
 ## When to Use
 - HTTP endpoint check

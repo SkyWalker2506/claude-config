@@ -37,7 +37,7 @@ Firebase servisleri -- Firestore, Auth, Functions, Hosting.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+G10 Firebase deploy; B15 mobil; guvenlik rules B13.
 
 ## Process
 
@@ -56,7 +56,7 @@ Firebase servisleri -- Firestore, Auth, Functions, Hosting.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Hedef servisler, rules/index diff ozeti, emulator veya staging test sonucu.
 
 ## When to Use
 - Firestore rules yazma ve test

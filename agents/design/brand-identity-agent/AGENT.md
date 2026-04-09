@@ -37,7 +37,7 @@ Marka kimligi olusturma — logo konsept, renk paleti, ses tonu, marka rehberi.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+D4 gorsel dil; D5 sunum; D2 token ile hizalama.
 
 ## Process
 
@@ -56,7 +56,7 @@ Marka kimligi olusturma — logo konsept, renk paleti, ses tonu, marka rehberi.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Marka kilavuzu ozeti, palet ve tipografi tablosu, voice/tone ornek cumleler.
 
 ## When to Use
 - Brand style guide dokumani

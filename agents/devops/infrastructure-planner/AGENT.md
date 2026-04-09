@@ -37,7 +37,7 @@ Altyapi planlama -- kapasite, mimari, olcekleme.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+J2/J6 hedef mimari; DR ve yedek G6; kapasite plani.
 
 ## Process
 
@@ -56,7 +56,7 @@ Altyapi planlama -- kapasite, mimari, olcekleme.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Taslak diyagram notu, IaC modul listesi, olcekleme ve DR onerisi.
 
 ## When to Use
 - Load estimation ve kapasite hesabi

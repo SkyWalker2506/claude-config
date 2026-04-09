@@ -1,19 +1,14 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+knowledge_filled: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+> Bu dosya agent'in bilgi haritasidir. Gorev alirken once bunu oku; sadece ilgili dosyalari yukle.
 
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) svg — svg.md
-- (planned) icon — icon.md
-- (planned) asset-optimization — asset-optimization.md
-- (planned) sprite-sheet — sprite-sheet.md
-- (planned) webp-conversion — webp-conversion.md
+- [Svg Optimization](svg-optimization.md) — kısa özet `knowledge/svg-optimization.md`
+- [Sprite Sheet Generation](sprite-sheet-generation.md) — kısa özet `knowledge/sprite-sheet-generation.md`
+- [Responsive Image Formats](responsive-image-formats.md) — kısa özet `knowledge/responsive-image-formats.md`
+- [Favicon Manifest Setup](favicon-manifest-setup.md) — kısa özet `knowledge/favicon-manifest-setup.md`

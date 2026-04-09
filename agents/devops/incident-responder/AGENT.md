@@ -38,7 +38,7 @@ Uretim ortami olaylarina anlik mudahale: teshis, rollback, duzeltme, post-mortem
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+J4 alarm; J2 rollback; I4/I8 iletişim.
 
 ## Process
 
@@ -57,7 +57,7 @@ Uretim ortami olaylarina anlik mudahale: teshis, rollback, duzeltme, post-mortem
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Olay zaman cizelgesi, RCA ozeti, aksiyon maddeleri ve sahip.
 
 ## When to Use
 - Hata log analizi ve kok neden tespiti

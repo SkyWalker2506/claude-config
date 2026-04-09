@@ -37,7 +37,7 @@ Yuk testi ve performans benchmark — Artillery, k6, stress test, latency olcumu
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+J4 SLO; staging ortami; performans baseline.
 
 ## Process
 
@@ -56,7 +56,7 @@ Yuk testi ve performans benchmark — Artillery, k6, stress test, latency olcumu
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Load test araci ve senaryo, throughput/latency tablosu, bottleneck ve oneri.
 
 ## When to Use
 - Artillery/k6 test senaryosu olusturma

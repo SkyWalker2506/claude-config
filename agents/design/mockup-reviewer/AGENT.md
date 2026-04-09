@@ -40,7 +40,7 @@ Mockup ve prototip incelemesi: UX heuristik, accessibility, responsive uyumluluk
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+D1 UX arastirma; WCAG erisilebilirlik; K1 kaynak dogrulama.
 
 ## Process
 
@@ -59,7 +59,7 @@ Mockup ve prototip incelemesi: UX heuristik, accessibility, responsive uyumluluk
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Audit checklist sonucu, oncelikli bulgular, mockup ve ekran referansi.
 
 ## When to Use
 - Tasarim tutarliligi kontrolu (spacing grid, renk token uyumu, font hiyerarsisi)

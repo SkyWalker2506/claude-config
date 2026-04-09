@@ -1,19 +1,14 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+knowledge_filled: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+> Bu dosya agent'in bilgi haritasidir. Gorev alirken once bunu oku; sadece ilgili dosyalari yukle.
 
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) stitch — stitch.md
-- (planned) design-to-code — design-to-code.md
-- (planned) tailwind — tailwind.md
-- (planned) html-to-component — html-to-component.md
-- (planned) responsive-layout — responsive-layout.md
+- [Design To Code Workflow](design-to-code-workflow.md) — kısa özet `knowledge/design-to-code-workflow.md`
+- [Tailwind Component Patterns](tailwind-component-patterns.md) — kısa özet `knowledge/tailwind-component-patterns.md`
+- [Responsive Breakpoints](responsive-breakpoints.md) — kısa özet `knowledge/responsive-breakpoints.md`
+- [Css Grid Flexbox Decision](css-grid-flexbox-decision.md) — kısa özet `knowledge/css-grid-flexbox-decision.md`

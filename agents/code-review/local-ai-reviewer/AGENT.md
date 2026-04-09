@@ -39,7 +39,7 @@ Staged diff'i AI ile incele: dogruluk, guvenlik, basitlik, concurrency.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+C1/C5 PR kalitesi; C6 insan review SLA; C4 harici bot ile karsilastirma.
 
 ## Process
 
@@ -58,7 +58,7 @@ Staged diff'i AI ile incele: dogruluk, guvenlik, basitlik, concurrency.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Skor veya ozet, bulgu listesi, oneri snippet'leri, false positive isaretleme notu.
 
 ## When to Use
 - Staged git diff analizi
