@@ -85,7 +85,10 @@ Then browse with `/plugin > Discover` or install directly:
 
 ## Agent System
 
-139 agents across 15 categories. Each agent has a `.md` file with model assignment, capabilities, and fallback chain.
+144 Knowledge-First agents across 15 categories. Each agent lives in a folder with:
+- `AGENT.md` (identity, boundaries, process)
+- `knowledge/` (lazy-loaded domain notes)
+- `memory/` (sessions + learnings)
 
 | Category | Agents | Examples |
 |----------|--------|---------|
@@ -148,8 +151,8 @@ claude-config/
 ├── global/
 │   ├── CLAUDE.md           # → ~/.claude/CLAUDE.md
 │   ├── settings.json.template  # MCP servers, hooks, permissions
-│   └── skills/             # 34 slash commands
-├── agents/                 # 134 agent definitions
+│   └── skills/             # 52 slash commands
+├── agents/                 # 144 Knowledge-First agents
 │   ├── orchestrator/       # A1–A8
 │   ├── backend/            # B1–B19
 │   ├── code-review/        # C1–C6
@@ -187,7 +190,7 @@ cd ~/Projects/claude-config
 
 - [ClaudeHQ](https://github.com/SkyWalker2506/ClaudeHQ) — Claude ecosystem HQ, cross-project workspace
 - [Plugin Marketplace](https://github.com/SkyWalker2506/claude-marketplace) — 21 plugins for Claude Code, browse & install
-- [Agent Catalog](https://github.com/SkyWalker2506/claude-agent-catalog) — 139 agents across 15 categories
+- [Agent Catalog](https://github.com/SkyWalker2506/claude-agent-catalog) — agent inventory + templates
 - [SDK Market](https://github.com/SkyWalker2506/sdk-market) — production-ready SDKs and kits
 - [OpenCode](https://opencode.ai/) — Free/local models via Zen + Ollama
 
