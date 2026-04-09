@@ -118,9 +118,19 @@ free/local → haiku → sonnet → opus
 | Qwen 2.5 32B | 32B | Q4_K_M | 18 GB | 24 GB | `qwen2.5:32b` |
 | Llama 3.1 70B | 70B | Q4_K_M | 40 GB | 48 GB | `llama3.1:70b` |
 
-> **Kural:** Makinenin RAM'inin **yarisi** sistem ve uygulamalar icin ayrilir. Model boyutu kalan yaridan buyukse KULLANMA.
-> Hesaplama: `(toplam RAM / 2) >= model boyutu` olmali. Ornek: 18GB Mac → max 9GB model → 9B'ye kadar OK, 14B+ yasak.
+> **Kural:** Sistem icin sabit 8GB ayir, kalan = model icin kullanilabilir RAM.
+> Hesaplama: `kullanilabilir = toplam RAM - 8GB`. Model boyutu bunu asiyorsa KULLANMA.
 > RAM kontrol: `sysctl -n hw.memsize | awk '{print $1/1024/1024/1024}'`
+>
+> | Toplam RAM | Sistem payi | Model icin | Max model |
+> |-----------|-------------|-----------|-----------|
+> | 8 GB | 8 GB | 0 GB | ❌ Local model kullanma |
+> | 16 GB | 8 GB | 8 GB | 7B (Q4) |
+> | 18 GB | 8 GB | 10 GB | 9B (Q4) |
+> | 24 GB | 8 GB | 16 GB | 14B (Q4) |
+> | 32 GB | 8 GB | 24 GB | 32B (Q4) |
+> | 48 GB | 8 GB | 40 GB | 70B (Q4) |
+> | 64 GB | 8 GB | 56 GB | 72B (Q4) + headroom |
 
 **Hangi task hangi model:**
 
