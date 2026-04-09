@@ -1,7 +1,7 @@
 ---
 last_updated: 2026-04-09
 knowledge_filled: true
-total_topics: 5
+total_topics: 6
 ---
 
 # Knowledge Index
@@ -11,3 +11,4 @@ total_topics: 5
 - [Memory Systems](memory-systems.md) — MemPalace, Mem0, Zep, LangMem karsilastirmasi
 - [Free Models](free-models.md) — OpenRouter, Groq, HuggingFace free tier degerlendirme
 - [Evaluation Methods](evaluation-methods.md) — benchmark metodolojisi, scoring rubric, bias onleme
+- [Competing Agent Systems](competing-agent-systems.md) — GitAgent, Codex, CrewAI, Cursor, Devin, LangGraph, MATE agent architecture karsilastirmasi
