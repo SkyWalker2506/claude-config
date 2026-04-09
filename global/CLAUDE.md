@@ -85,4 +85,5 @@ Degisiklik yapmak icin `~/Projects/claude-config/` reposunda duzenle → `./inst
 ## Secrets
 
 - Secret degerleri **ASLA** konusma ciktisina, commit'e, public dosyaya veya log'a yazilmaz
-- Secret'lar yalnizca `~/.claude/secrets/` altinda
+- Kanonik kaynak: `~/Projects/claude-config/claude-secrets/secrets.env`
+- `~/.claude/secrets/secrets.env` bu dosyaya symlink (install.sh kurar)
