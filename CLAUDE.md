@@ -131,6 +131,7 @@ free/local → haiku → sonnet → opus
 > | 32 GB | 8 GB | 24 GB | 32B (Q4) |
 > | 48 GB | 8 GB | 40 GB | 70B (Q4) |
 > | 64 GB | 8 GB | 56 GB | 72B (Q4) + headroom |
+> | 96 GB | 8 GB | 88 GB | 72B (Q8) veya 2x 32B paralel |
 
 **Hangi task hangi model:**
 
