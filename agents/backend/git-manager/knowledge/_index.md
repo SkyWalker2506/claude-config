@@ -1,18 +1,10 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 3
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) branch — branch.md
-- (planned) merge — merge.md
-- (planned) conflict-resolution — conflict-resolution.md
-- (planned) rebase — rebase.md
+- [Git Manager Core Patterns](branch-core-patterns.md) — Core patterns for Git Manager
+- [Git Manager Anti-Patterns](branch-anti-patterns.md) — Common mistakes and anti-patterns
+- [Git Manager Verification Checklist](branch-verification.md) — Verification and delivery checklist
