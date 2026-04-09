@@ -284,12 +284,20 @@ if [ -d "$HOME/.claude" ]; then
   echo ""
   echo "Yedek: $BACKUP"
   if command -v rsync &>/dev/null; then
-    rsync -a --exclude='secrets/' "$HOME/.claude/" "$BACKUP/"
+    # Keep backups small: exclude large runtime caches/artifacts.
+    rsync -a \
+      --exclude='secrets/' \
+      --exclude='projects/' \
+      --exclude='plugins/cache/' \
+      --exclude='**/subagents/**' \
+      "$HOME/.claude/" "$BACKUP/"
   else
     # Windows: rsync yok, cp kullan
     mkdir -p "$BACKUP"
     cp -r "$HOME/.claude/"* "$BACKUP/" 2>/dev/null || true
     rm -rf "$BACKUP/secrets" 2>/dev/null || true
+    rm -rf "$BACKUP/projects" 2>/dev/null || true
+    rm -rf "$BACKUP/plugins/cache" 2>/dev/null || true
   fi
 fi
 

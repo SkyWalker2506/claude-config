@@ -32,6 +32,7 @@ Sub-agent veya dispatch yapılırken prompt başına:
 ```
 
 Format: `[{AgentID} {Name} | {model} {cost_emoji} | Tier: {tier}]`
+- `{Name}` zorunlu; atlanmaz.
 
 Cost emoji:
 - `🆓` — OpenRouter/Groq ücretsiz
@@ -614,6 +615,7 @@ CALLER: {cagiran agent id veya "user"}
 WATCHDOG: {quick|medium|long} — max {N} tool call
 ---
 ```
+- `AGENT: {id} — {name}` satirinda `{name}` zorunlu.
 
 **Ana thread bildirimi:** Agent baslatildiginda `[{id}] {name} → {gorev}` satiri yaz.
 
