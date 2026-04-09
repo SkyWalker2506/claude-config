@@ -10,15 +10,22 @@ Agent'in tum dosyalarini opus ile review eder, kaliteyi artir.
 
 ## Process
 
+### Phase 0 — Pre-flight
+- Agent dizini mevcut ve knowledge dosyalari dolu mu kontrol et
+- Knowledge bos ise → `/agent-sharpen` once calistir, refine'i iptal et
+
+### Phase 1-5 — Execution
+
 1. **Agent dizinini oku**: AGENT.md + knowledge/*.md + memory/*.md
 2. **Kalite audit** (opus ile):
-   - AGENT.md: Identity net mi? Boundaries keskin mi? Process adim adim mi?
-   - knowledge/*.md: Bilgi guncel mi? Kaynakli mi? Tekrar var mi? Fazla genel mi?
+   - AGENT.md: Identity 1-3 cumle mi? Boundaries keskin mi? Process gate'li mi? Output Format var mi?
+   - knowledge/*.md: Bilgi guncel mi? Kaynakli mi? Tekrar var mi? Belirsiz ifade var mi ("best practices", "uygun sekilde" gibi)?
    - memory/learnings.md: Knowledge'a tasinmasi gereken learning var mi?
+   - **Anti-pattern kontrolu**: Vague imperatives, missing boundaries, placeholder outputs, silent assumptions (bkz. anti-patterns.md)
 3. **Aksiyonlar**:
    - Gereksiz/tekrar bilgiyi sil
-   - Eksik section'lari tamamla
-   - Belirsiz ifadeleri netlestir
+   - Eksik section'lari tamamla (ozellikle: Output Format, When NOT to Use, Error Handling)
+   - Belirsiz ifadeleri somut talimatlara cevir
    - Learnings → knowledge promosyonu yap (yeterli birikimde)
    - Boundary disina tasmis bilgiyi kaldir
 4. **Refinement log**: `memory/refinements.md`'ye ne degisti, neden, kim (model) yapti
@@ -43,6 +50,10 @@ Bu dosyalar surekli kullanilacak — kalite kritik. Tier ne olursa olsun refine 
 - `--scope agent`: Sadece AGENT.md refine
 - `--scope knowledge`: Sadece knowledge/*.md refine
 - `--scope all` (default): Her sey
+
+## Error Handling
+- Dosya okunamazsa → atla, raporla, diger dosyalarla devam et
+- Refine sonrasi %50+ degisim varsa → kullaniciya bildir, onay al, otomatik merge etme
 
 ## Red Flags
 - Refine sonrasi knowledge dosyasi %50'den fazla degistiyse — buyuk sorun, onceki sharpen kalitesiz

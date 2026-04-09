@@ -10,6 +10,13 @@ Agent'in kendi alaninda bilgi toplamasini ve knowledge dosyalarini doldurmasini 
 
 ## Process
 
+### Phase 0 — Pre-flight
+- Agent dizini mevcut mu kontrol et (AGENT.md, knowledge/_index.md)
+- Yoksa → `/agent-setup` once calistir
+- Agent'in Boundaries section'ini oku — arastirma sinirlarini belirle
+
+### Phase 1-7 — Execution
+
 1. **Agent'i yukle**: `agents/{category}/{agent-name}/AGENT.md` oku
 2. **Index oku**: `knowledge/_index.md` — hangi konular var, hangisi bos/eksik
 3. **Arastirma plani olustur**: Bos veya eksik konulari listele, oncelik sir
@@ -45,6 +52,11 @@ Agent'in kendi alaninda bilgi toplamasini ve knowledge dosyalarini doldurmasini 
 - Kaynak belirsiz veya dogrulanamaz — yazma
 - Bilgi baska agent'in alaniyla %80+ cakisiyor — bridge mi gercek cakisma mi kontrol et
 - Cok fazla genel bilgi, az spesifik — daha dar odaklan
+
+## Error Handling
+- Web arastirma basarisizsa (rate limit, timeout) → mevcut kod/config'den pattern cikar, web'i atla
+- Kaynak dogrulanamiyorsa → `confidence: low` ile yaz, sonraki refine'da tekrar degerlendir
+- Boundary disina cikildiysa → yazilan bilgiyi sil, uyar
 
 ## Verification
 - [ ] En az 1 knowledge dosyasi olusturuldu/guncellendi

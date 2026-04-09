@@ -24,6 +24,13 @@ agents/{category}/{agent-name}/
 
 ## Process
 
+### Phase 0 — Pre-flight
+- `agents/_template/AGENT.md` mevcut mu kontrol et
+- Hedef dizin zaten var mi kontrol et — varsa ustune yazma, kullaniciya sor
+- Agent ID cakismasi var mi `config/agent-registry.json`'da kontrol et
+
+### Phase 1-7 — Execution
+
 1. **Agent'i bul**: ID veya isimle `agents/` altinda mevcut .md dosyasini bul
 2. **Mevcut bilgiyi oku**: Eski .md'deki frontmatter + Amac + Kapsam + Escalation'i parse et
 3. **Dizin olustur**: `agents/{category}/{agent-name}/` + `knowledge/` + `memory/`
@@ -54,6 +61,11 @@ agents/{category}/{agent-name}/
 - Eski .md'deki bilgi kayboluyorsa — dur, kontrol et
 - Agent ID cakismasi varsa — dur, registry'yi kontrol et
 - Dizin zaten varsa — ustune yazma, kullaniciya sor
+
+## Error Handling
+- Eski .md parse edilemiyorsa → varsayilan template ile olustur, kullaniciyi bildir
+- Dizin olusturma basarisizsa → path/izin kontrol et, raporla
+- Registry guncelleme basarisizsa → AGENT.md'yi yine de olustur, registry'yi sonra guncelle
 
 ## Verification
 - [ ] Dizin yapisi dogru olusturuldu (AGENT.md, knowledge/_index.md, memory/*.md)
