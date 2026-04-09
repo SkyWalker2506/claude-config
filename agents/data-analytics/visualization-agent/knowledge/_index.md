@@ -1,10 +1,18 @@
 ---
 last_updated: 2026-04-09
-total_topics: 3
+total_topics: 0
 ---
 
 # Knowledge Index
 
-- [Visualization Agent Core Patterns](chart-core-patterns.md) — Core patterns for Visualization Agent
-- [Visualization Agent Anti-Patterns](chart-anti-patterns.md) — Common mistakes and anti-patterns
-- [Visualization Agent Verification Checklist](chart-verification.md) — Verification and delivery checklist
+> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
+> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
+> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+
+<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
+
+<!-- Planned topics -->
+- (planned) chart — chart.md
+- (planned) graph — graph.md
+- (planned) matplotlib — matplotlib.md
+- (planned) plotly — plotly.md

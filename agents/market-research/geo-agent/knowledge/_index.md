@@ -1,10 +1,18 @@
 ---
 last_updated: 2026-04-09
-total_topics: 3
+total_topics: 0
 ---
 
 # Knowledge Index
 
-- [GEO Agent Core Patterns](geo-optimization-core-patterns.md) — Core patterns for GEO Agent
-- [GEO Agent Anti-Patterns](geo-optimization-anti-patterns.md) — Common mistakes and anti-patterns
-- [GEO Agent Verification Checklist](geo-optimization-verification.md) — Verification and delivery checklist
+> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
+> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
+> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+
+<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
+
+<!-- Planned topics -->
+- (planned) geo-optimization — geo-optimization.md
+- (planned) ai-visibility — ai-visibility.md
+- (planned) llm-seo — llm-seo.md
+- (planned) structured-data — structured-data.md

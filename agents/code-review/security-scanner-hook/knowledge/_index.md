@@ -1,10 +1,17 @@
 ---
 last_updated: 2026-04-09
-total_topics: 3
+total_topics: 0
 ---
 
 # Knowledge Index
 
-- [Security Scanner Hook Core Patterns](secret-scan-core-patterns.md) — Core patterns for Security Scanner Hook
-- [Security Scanner Hook Anti-Patterns](secret-scan-anti-patterns.md) — Common mistakes and anti-patterns
-- [Security Scanner Hook Verification Checklist](secret-scan-verification.md) — Verification and delivery checklist
+> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
+> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
+> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+
+<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
+
+<!-- Planned topics -->
+- (planned) secret-scan — secret-scan.md
+- (planned) dependency-audit — dependency-audit.md
+- (planned) sast — sast.md

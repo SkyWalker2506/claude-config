@@ -1,10 +1,19 @@
 ---
 last_updated: 2026-04-09
-total_topics: 3
+total_topics: 0
 ---
 
 # Knowledge Index
 
-- [WebSocket Agent Core Patterns](websocket-core-patterns.md) — Core patterns for WebSocket Agent
-- [WebSocket Agent Anti-Patterns](websocket-anti-patterns.md) — Common mistakes and anti-patterns
-- [WebSocket Agent Verification Checklist](websocket-verification.md) — Verification and delivery checklist
+> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
+> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
+> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+
+<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
+
+<!-- Planned topics -->
+- (planned) websocket — websocket.md
+- (planned) socket-io — socket-io.md
+- (planned) real-time — real-time.md
+- (planned) event-streaming — event-streaming.md
+- (planned) pub-sub — pub-sub.md

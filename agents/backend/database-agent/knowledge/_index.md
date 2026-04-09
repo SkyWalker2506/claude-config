@@ -1,10 +1,19 @@
 ---
 last_updated: 2026-04-09
-total_topics: 3
+total_topics: 0
 ---
 
 # Knowledge Index
 
-- [Database Agent Core Patterns](sql-core-patterns.md) — Core patterns for Database Agent
-- [Database Agent Anti-Patterns](sql-anti-patterns.md) — Common mistakes and anti-patterns
-- [Database Agent Verification Checklist](sql-verification.md) — Verification and delivery checklist
+> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
+> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
+> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+
+<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
+
+<!-- Planned topics -->
+- (planned) sql — sql.md
+- (planned) nosql — nosql.md
+- (planned) migration — migration.md
+- (planned) query-optimization — query-optimization.md
+- (planned) schema-design — schema-design.md

@@ -1,10 +1,17 @@
 ---
 last_updated: 2026-04-09
-total_topics: 3
+total_topics: 0
 ---
 
 # Knowledge Index
 
-- [Dependency Manager Core Patterns](dependency-update-core-patterns.md) — Core patterns for Dependency Manager
-- [Dependency Manager Anti-Patterns](dependency-update-anti-patterns.md) — Common mistakes and anti-patterns
-- [Dependency Manager Verification Checklist](dependency-update-verification.md) — Verification and delivery checklist
+> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
+> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
+> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+
+<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
+
+<!-- Planned topics -->
+- (planned) dependency-update — dependency-update.md
+- (planned) vulnerability-check — vulnerability-check.md
+- (planned) version-management — version-management.md

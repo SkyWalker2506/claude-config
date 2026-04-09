@@ -1,10 +1,16 @@
 ---
 last_updated: 2026-04-09
-total_topics: 3
+total_topics: 0
 ---
 
 # Knowledge Index
 
-- [Infrastructure Planner Core Patterns](capacity-planning-core-patterns.md) — Core patterns for Infrastructure Planner
-- [Infrastructure Planner Anti-Patterns](capacity-planning-anti-patterns.md) — Common mistakes and anti-patterns
-- [Infrastructure Planner Verification Checklist](capacity-planning-verification.md) — Verification and delivery checklist
+> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
+> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
+> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+
+<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
+
+<!-- Planned topics -->
+- (planned) capacity-planning — capacity-planning.md
+- (planned) architecture — architecture.md

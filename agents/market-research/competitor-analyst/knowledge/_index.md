@@ -1,10 +1,17 @@
 ---
 last_updated: 2026-04-09
-total_topics: 3
+total_topics: 0
 ---
 
 # Knowledge Index
 
-- [Competitor Analyst Core Patterns](competitor-core-patterns.md) — Core patterns for Competitor Analyst
-- [Competitor Analyst Anti-Patterns](competitor-anti-patterns.md) — Common mistakes and anti-patterns
-- [Competitor Analyst Verification Checklist](competitor-verification.md) — Verification and delivery checklist
+> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
+> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
+> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+
+<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
+
+<!-- Planned topics -->
+- (planned) competitor — competitor.md
+- (planned) swot — swot.md
+- (planned) benchmark — benchmark.md

@@ -1,10 +1,17 @@
 ---
 last_updated: 2026-04-09
-total_topics: 3
+total_topics: 0
 ---
 
 # Knowledge Index
 
-- [Jupyter Agent Core Patterns](jupyter-core-patterns.md) — Core patterns for Jupyter Agent
-- [Jupyter Agent Anti-Patterns](jupyter-anti-patterns.md) — Common mistakes and anti-patterns
-- [Jupyter Agent Verification Checklist](jupyter-verification.md) — Verification and delivery checklist
+> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
+> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
+> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+
+<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
+
+<!-- Planned topics -->
+- (planned) jupyter — jupyter.md
+- (planned) notebook — notebook.md
+- (planned) analysis — analysis.md

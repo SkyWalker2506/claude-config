@@ -1,10 +1,19 @@
 ---
 last_updated: 2026-04-09
-total_topics: 3
+total_topics: 0
 ---
 
 # Knowledge Index
 
-- [Social Media Strategist Core Patterns](content-calendar-core-patterns.md) — Core patterns for Social Media Strategist
-- [Social Media Strategist Anti-Patterns](content-calendar-anti-patterns.md) — Common mistakes and anti-patterns
-- [Social Media Strategist Verification Checklist](content-calendar-verification.md) — Verification and delivery checklist
+> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
+> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
+> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+
+<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
+
+<!-- Planned topics -->
+- (planned) content-calendar — content-calendar.md
+- (planned) platform-strategy — platform-strategy.md
+- (planned) engagement — engagement.md
+- (planned) analytics — analytics.md
+- (planned) hashtag — hashtag.md

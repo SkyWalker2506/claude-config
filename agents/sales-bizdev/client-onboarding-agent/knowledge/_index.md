@@ -1,10 +1,18 @@
 ---
 last_updated: 2026-04-09
-total_topics: 3
+total_topics: 0
 ---
 
 # Knowledge Index
 
-- [Client Onboarding Agent Core Patterns](onboarding-checklist-core-patterns.md) — Core patterns for Client Onboarding Agent
-- [Client Onboarding Agent Anti-Patterns](onboarding-checklist-anti-patterns.md) — Common mistakes and anti-patterns
-- [Client Onboarding Agent Verification Checklist](onboarding-checklist-verification.md) — Verification and delivery checklist
+> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
+> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
+> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+
+<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
+
+<!-- Planned topics -->
+- (planned) onboarding-checklist — onboarding-checklist.md
+- (planned) welcome-sequence — welcome-sequence.md
+- (planned) handoff — handoff.md
+- (planned) documentation — documentation.md
