@@ -1,18 +1,10 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 3
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) briefing — briefing.md
-- (planned) news — news.md
-- (planned) tasks — tasks.md
-- (planned) calendar — calendar.md
+- [Daily Briefing Agent Core Patterns](briefing-core-patterns.md) — Core patterns for Daily Briefing Agent
+- [Daily Briefing Agent Anti-Patterns](briefing-anti-patterns.md) — Common mistakes and anti-patterns
+- [Daily Briefing Agent Verification Checklist](briefing-verification.md) — Verification and delivery checklist

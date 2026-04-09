@@ -1,18 +1,10 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 3
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) email-summary — email-summary.md
-- (planned) inbox-triage — inbox-triage.md
-- (planned) action-item-extraction — action-item-extraction.md
-- (planned) draft-reply — draft-reply.md
+- [Email Summarizer Core Patterns](email-summary-core-patterns.md) — Core patterns for Email Summarizer
+- [Email Summarizer Anti-Patterns](email-summary-anti-patterns.md) — Common mistakes and anti-patterns
+- [Email Summarizer Verification Checklist](email-summary-verification.md) — Verification and delivery checklist
