@@ -63,59 +63,43 @@
     }
   },
   "active_agents": [
+    "A0",
     "A1",
+    "A10",
+    "A11",
+    "A12",
+    "A13",
     "A2",
     "A3",
     "A4",
     "A5",
+    "A9",
     "B1",
+    "B13",
+    "B15",
     "B2",
     "B3",
     "B5",
     "B7",
-    "B13",
-    "B15",
     "C1",
     "C2",
     "C3",
     "G1",
     "G3",
     "G7",
-    "I1",
-    "I2",
-    "I4",
-    "K1",
-    "K3",
-    "K4",
     "H1",
     "H5",
     "H6",
+    "I1",
+    "I2",
+    "I4",
+    "J10",
     "J2",
     "J7",
-    "L1",
-    "B8",
-    "B12",
-    "F2",
-    "F4",
-    "H2",
-    "H3",
-    "H4",
-    "H7",
-    "H8",
-    "H9",
-    "M4",
-    "A9",
-    "A10",
-    "A11",
-    "A12",
-    "A13",
-    "D1",
-    "D2",
-    "D8",
-    "B10",
-    "M3",
-    "A14",
-    "A15"
+    "K1",
+    "K3",
+    "K4",
+    "L1"
   ],
   "agents": {
     "A1": {
@@ -387,14 +371,15 @@
         "flutter",
         "ui",
         "components",
-        "tailwind"
+        "state-management",
+        "responsive"
       ],
       "languages": [
         "typescript",
         "dart",
         "css"
       ],
-      "max_tool_calls": 30,
+      "max_tool_calls": 40,
       "effort": "medium",
       "template": "autonomous",
       "model_source": "openrouter",
@@ -509,8 +494,6 @@
         "debugging",
         "root-cause-analysis",
         "error-tracing",
-        "bug",
-        "fix",
         "log-analysis"
       ],
       "max_tool_calls": 30,
@@ -523,7 +506,7 @@
       "name": "Refactor Agent",
       "version": "1.0",
       "category": "backend",
-      "status": "active",
+      "status": "pool",
       "primary_model": "nvidia/nemotron-3-nano-30b-a3b:free",
       "fallbacks": [
         "llama-3.1-8b-instant",
@@ -573,7 +556,7 @@
       "name": "Dependency Manager",
       "version": "1.0",
       "category": "backend",
-      "status": "active",
+      "status": "pool",
       "primary_model": "free-script",
       "fallbacks": [
         "sonnet"
@@ -619,7 +602,7 @@
       "name": "Performance Optimizer",
       "version": "1.0",
       "category": "backend",
-      "status": "active",
+      "status": "pool",
       "primary_model": "qwen/qwen3.6-plus:free",
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
@@ -719,15 +702,15 @@
       "capabilities": [
         "flutter",
         "dart",
-        "mobile",
-        "ios",
-        "android",
-        "ui"
+        "mobile-ui",
+        "platform-channel",
+        "firebase",
+        "riverpod"
       ],
       "languages": [
         "dart"
       ],
-      "max_tool_calls": 30,
+      "max_tool_calls": 40,
       "effort": "high",
       "template": "autonomous",
       "tier": "mid",
@@ -879,7 +862,7 @@
       "name": "UI/UX Researcher",
       "version": "1.0",
       "category": "design",
-      "status": "active",
+      "status": "pool",
       "primary_model": "qwen/qwen3.6-plus:free",
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
@@ -888,7 +871,8 @@
         "sonnet"
       ],
       "mcps": [
-        "fetch"
+        "fetch",
+        "github"
       ],
       "capabilities": [
         "ui-research",
@@ -899,7 +883,7 @@
         "responsive-design",
         "mobile-first"
       ],
-      "max_tool_calls": 20,
+      "max_tool_calls": 30,
       "effort": "medium",
       "template": "analiz",
       "tier": "mid",
@@ -909,7 +893,7 @@
       "name": "Design System Agent",
       "version": "1.0",
       "category": "design",
-      "status": "active",
+      "status": "pool",
       "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
@@ -917,19 +901,20 @@
         "haiku",
         "sonnet"
       ],
-      "mcps": [],
+      "mcps": [
+        "github",
+        "git"
+      ],
       "capabilities": [
         "color",
         "typography",
         "spacing",
         "design-tokens",
-        "tailwind",
-        "shadcn",
-        "radix",
-        "css-variables",
+        "material3",
+        "flutter-theme",
         "dark-mode"
       ],
-      "max_tool_calls": 15,
+      "max_tool_calls": 25,
       "effort": "medium",
       "template": "autonomous",
       "tier": "junior",
@@ -1059,7 +1044,7 @@
       "name": "Mockup Reviewer",
       "version": "1.0",
       "category": "design",
-      "status": "active",
+      "status": "pool",
       "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
@@ -1229,7 +1214,7 @@
       "name": "Data Analyst",
       "version": "1.0",
       "category": "data-analytics",
-      "status": "active",
+      "status": "pool",
       "primary_model": "qwen/qwen3.6-plus:free",
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
@@ -1280,7 +1265,7 @@
       "name": "ETL Pipeline Agent",
       "version": "1.0",
       "category": "data-analytics",
-      "status": "active",
+      "status": "pool",
       "primary_model": "free-script",
       "fallbacks": [
         "sonnet"
@@ -1470,12 +1455,11 @@
       "fallbacks": [
         "sonnet"
       ],
-      "mcps": [
-        "*"
-      ],
+      "mcps": [],
       "capabilities": [
-        "mcp-health",
-        "connectivity-check"
+        "health-check",
+        "mcp-monitoring",
+        "connectivity-test"
       ],
       "max_tool_calls": 5,
       "effort": "low",
@@ -1553,9 +1537,10 @@
       ],
       "capabilities": [
         "version-check",
-        "update-notification"
+        "update-detection",
+        "changelog-parse"
       ],
-      "max_tool_calls": 10,
+      "max_tool_calls": 8,
       "effort": "low",
       "template": "autonomous",
       "tier": "junior"
@@ -1635,14 +1620,16 @@
         "sonnet"
       ],
       "mcps": [
-        "fetch"
+        "fetch",
+        "context7"
       ],
       "capabilities": [
         "market-analysis",
-        "segmentation",
-        "trend"
+        "competitor-research",
+        "trend-analysis",
+        "pricing-research"
       ],
-      "max_tool_calls": 30,
+      "max_tool_calls": 25,
       "effort": "high",
       "template": "analiz",
       "tier": "mid",
@@ -1652,7 +1639,7 @@
       "name": "Competitor Analyst",
       "version": "1.0",
       "category": "market-research",
-      "status": "active",
+      "status": "pool",
       "primary_model": "free-web",
       "fallbacks": [
         "sonnet"
@@ -1674,7 +1661,7 @@
       "name": "Revenue Analyst",
       "version": "1.0",
       "category": "market-research",
-      "status": "active",
+      "status": "pool",
       "primary_model": "qwen/qwen3.6-plus:free",
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
@@ -1698,7 +1685,7 @@
       "name": "Pricing Strategist",
       "version": "1.0",
       "category": "market-research",
-      "status": "active",
+      "status": "pool",
       "primary_model": "llama-3.1-8b-instant",
       "fallbacks": [
         "nvidia/nemotron-3-nano-30b-a3b:free",
@@ -1732,11 +1719,12 @@
         "fetch"
       ],
       "capabilities": [
-        "programmatic-seo",
-        "keyword",
-        "content-generation"
+        "seo-audit",
+        "keyword-research",
+        "meta-optimization",
+        "sitemap"
       ],
-      "max_tool_calls": 25,
+      "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
       "tier": "junior"
@@ -1752,12 +1740,14 @@
         "sonnet"
       ],
       "mcps": [
-        "fetch"
+        "fetch",
+        "context7"
       ],
       "capabilities": [
-        "ai-search-optimization",
-        "structured-data",
-        "schema"
+        "geo-optimization",
+        "ai-visibility",
+        "llm-seo",
+        "structured-data"
       ],
       "max_tool_calls": 20,
       "effort": "medium",
@@ -1768,7 +1758,7 @@
       "name": "Social Media Agent",
       "version": "1.0",
       "category": "market-research",
-      "status": "active",
+      "status": "pool",
       "primary_model": "local-qwen-9b",
       "fallbacks": [
         "sonnet"
@@ -1789,7 +1779,7 @@
       "name": "Content Repurposer",
       "version": "1.0",
       "category": "market-research",
-      "status": "active",
+      "status": "pool",
       "primary_model": "local-qwen-9b",
       "fallbacks": [
         "sonnet"
@@ -1809,7 +1799,7 @@
       "name": "Newsletter Agent",
       "version": "1.0",
       "category": "market-research",
-      "status": "active",
+      "status": "pool",
       "primary_model": "local-qwen-9b",
       "fallbacks": [
         "sonnet"
@@ -1904,10 +1894,9 @@
       ],
       "capabilities": [
         "jira-routing",
-        "board-scan",
-        "task-assignment",
-        "jira",
-        "routing"
+        "issue-triage",
+        "sprint-assignment",
+        "status-transition"
       ],
       "max_tool_calls": 15,
       "effort": "medium",
@@ -1931,13 +1920,11 @@
       ],
       "capabilities": [
         "sprint-planning",
-        "task-decomposition",
-        "estimation",
-        "sprint",
-        "jira",
-        "planning"
+        "capacity-planning",
+        "backlog-prioritization",
+        "estimation"
       ],
-      "max_tool_calls": 25,
+      "max_tool_calls": 20,
       "effort": "medium",
       "template": "analiz",
       "tier": "mid",
@@ -1982,13 +1969,12 @@
         "atlassian"
       ],
       "capabilities": [
-        "dashboard",
-        "reporting",
-        "cache",
-        "status",
-        "monitor"
+        "status-report",
+        "burndown",
+        "sprint-progress",
+        "dashboard"
       ],
-      "max_tool_calls": 10,
+      "max_tool_calls": 8,
       "effort": "low",
       "template": "autonomous",
       "tier": "junior"
@@ -2169,15 +2155,14 @@
         "sonnet"
       ],
       "mcps": [
-        "github"
+        "github",
+        "git"
       ],
       "capabilities": [
         "deployment",
+        "cloud-config",
         "ci-cd",
-        "cloud-deploy",
-        "vercel",
-        "firebase",
-        "pipeline"
+        "release-management"
       ],
       "max_tool_calls": 20,
       "effort": "medium",
@@ -2287,13 +2272,14 @@
       ],
       "mcps": [
         "github",
-        "git"
+        "git",
+        "fetch"
       ],
       "capabilities": [
-        "incident",
-        "hotfix",
+        "incident-response",
+        "root-cause-analysis",
         "rollback",
-        "postmortem"
+        "post-mortem"
       ],
       "max_tool_calls": 30,
       "effort": "high",
@@ -2337,14 +2323,16 @@
         "sonnet"
       ],
       "mcps": [
-        "fetch"
+        "fetch",
+        "context7"
       ],
       "capabilities": [
         "web-search",
-        "scraping",
-        "summarization"
+        "content-fetch",
+        "summarization",
+        "fact-checking"
       ],
-      "max_tool_calls": 25,
+      "max_tool_calls": 20,
       "effort": "medium",
       "template": "analiz",
       "model_source": "openrouter",
@@ -2380,12 +2368,14 @@
         "sonnet"
       ],
       "mcps": [
-        "context7"
+        "context7",
+        "fetch"
       ],
       "capabilities": [
-        "api-docs",
-        "library-docs",
-        "sdk-docs"
+        "docs-fetch",
+        "api-reference",
+        "library-lookup",
+        "version-check"
       ],
       "max_tool_calls": 15,
       "effort": "low",
@@ -2408,9 +2398,10 @@
         "fetch"
       ],
       "capabilities": [
-        "trend",
-        "market-signal",
-        "technology-radar"
+        "trend-detection",
+        "technology-radar",
+        "market-timing",
+        "adoption-curve"
       ],
       "max_tool_calls": 20,
       "effort": "medium",
@@ -2515,12 +2506,13 @@
         "sonnet"
       ],
       "mcps": [
-        "claude_ai_Gmail"
+        "gmail"
       ],
       "capabilities": [
         "email-summary",
-        "priority",
-        "action-items"
+        "inbox-triage",
+        "action-item-extraction",
+        "draft-reply"
       ],
       "max_tool_calls": 15,
       "effort": "low",
@@ -2685,7 +2677,7 @@
       "name": "A/B Test Agent",
       "version": "1.0",
       "category": "marketing-engine",
-      "status": "active",
+      "status": "pool",
       "primary_model": "free-script",
       "fallbacks": [
         "sonnet"
@@ -2705,7 +2697,7 @@
       "name": "Analytics Agent",
       "version": "1.0",
       "category": "marketing-engine",
-      "status": "active",
+      "status": "pool",
       "primary_model": "free-script",
       "fallbacks": [
         "sonnet"
@@ -2722,10 +2714,10 @@
       "tier": "junior"
     },
     "B16": {
-      "name": "Unity/Game Dev Agent",
+      "name": "Web Game Dev Agent",
       "version": "1.0",
       "category": "backend",
-      "status": "active",
+      "status": "pool",
       "primary_model": "nvidia/nemotron-3-super-120b-a12b:free",
       "model_source": "openrouter",
       "fallbacks": [
@@ -2738,28 +2730,31 @@
         "context7"
       ],
       "capabilities": [
-        "unity",
-        "csharp",
-        "game-dev",
-        "physics",
-        "animation",
-        "unity-editor",
-        "shader"
+        "phaser",
+        "pixi",
+        "threejs",
+        "babylonjs",
+        "canvas",
+        "webgl",
+        "webgpu",
+        "javascript",
+        "typescript",
+        "game-loop"
       ],
       "languages": [
         "csharp"
       ],
-      "max_tool_calls": 35,
+      "max_tool_calls": 30,
       "effort": "high",
       "template": "autonomous",
       "notes": "Unity C# specialist. Free via Nemotron 120B (OpenRouter).",
       "tier": "mid"
     },
     "B17": {
-      "name": "Unity Senior Dev",
+      "name": "Full Stack Web Agent",
       "version": "1.0",
       "category": "backend",
-      "status": "active",
+      "status": "pool",
       "tier": "senior",
       "primary_model": "sonnet",
       "model_source": "anthropic",
@@ -2769,20 +2764,23 @@
       ],
       "mcps": [
         "github",
+        "git",
         "context7"
       ],
       "capabilities": [
-        "unity",
-        "csharp",
-        "game-architecture",
-        "performance-profiling",
-        "shader-graph",
-        "networking"
+        "nextjs",
+        "react",
+        "nodejs",
+        "express",
+        "tailwind",
+        "prisma",
+        "supabase",
+        "vercel"
       ],
       "languages": [
         "csharp"
       ],
-      "max_tool_calls": 50,
+      "max_tool_calls": 30,
       "effort": "high",
       "template": "autonomous",
       "notes": "Ücretli. B16 (free) yetersiz kalırsa."
@@ -2865,24 +2863,26 @@
         "sonnet"
       ],
       "mcps": [
-        "fetch"
+        "fetch",
+        "github"
       ],
       "capabilities": [
         "tool-evaluation",
         "benchmark",
         "comparison",
-        "recommendation"
+        "recommendation",
+        "market-analysis"
       ],
-      "max_tool_calls": 20,
+      "max_tool_calls": 30,
       "effort": "medium",
       "template": "analiz",
       "tier": "junior"
     },
     "N1": {
-      "name": "ML Model Trainer",
+      "name": "Prompt Engineer",
       "version": "1.0",
-      "category": "ai-ml",
-      "status": "active",
+      "category": "prompt-engineering",
+      "status": "pool",
       "primary_model": "nvidia/nemotron-3-super-120b-a12b:free",
       "model_source": "openrouter",
       "fallbacks": [
@@ -2890,16 +2890,16 @@
         "sonnet"
       ],
       "mcps": [
-        "github",
+        "fetch",
         "context7"
       ],
       "capabilities": [
-        "ml-training",
-        "pytorch",
-        "tensorflow",
-        "scikit-learn",
-        "model-evaluation",
-        "hyperparameter-tuning"
+        "system-prompt",
+        "few-shot",
+        "chain-of-thought",
+        "prompt-optimization",
+        "context-engineering",
+        "token-optimization"
       ],
       "languages": [
         "python"
@@ -2910,109 +2910,13 @@
       "tier": "junior"
     },
     "N2": {
-      "name": "RAG Pipeline Builder",
+      "name": "Agent Builder",
       "version": "1.0",
-      "category": "ai-ml",
-      "status": "active",
+      "category": "prompt-engineering",
+      "status": "pool",
       "primary_model": "qwen/qwen3.6-plus:free",
       "model_source": "openrouter",
       "fallbacks": [
-        "sonnet"
-      ],
-      "mcps": [
-        "github",
-        "context7"
-      ],
-      "capabilities": [
-        "rag",
-        "vector-db",
-        "embeddings",
-        "langchain",
-        "llama-index",
-        "pinecone",
-        "chroma"
-      ],
-      "languages": [
-        "python",
-        "typescript"
-      ],
-      "max_tool_calls": 25,
-      "effort": "high",
-      "template": "autonomous",
-      "tier": "junior"
-    },
-    "O1": {
-      "name": "iOS Swift Agent",
-      "version": "1.0",
-      "category": "mobile",
-      "status": "active",
-      "primary_model": "qwen/qwen3.6-plus:free",
-      "model_source": "openrouter",
-      "fallbacks": [
-        "sonnet"
-      ],
-      "mcps": [
-        "github",
-        "git",
-        "context7"
-      ],
-      "capabilities": [
-        "swift",
-        "swiftui",
-        "xcode",
-        "ios",
-        "uikit",
-        "combine",
-        "app-store"
-      ],
-      "languages": [
-        "swift"
-      ],
-      "max_tool_calls": 30,
-      "effort": "high",
-      "template": "autonomous",
-      "tier": "junior"
-    },
-    "O2": {
-      "name": "Android Kotlin Agent",
-      "version": "1.0",
-      "category": "mobile",
-      "status": "active",
-      "primary_model": "qwen/qwen3.6-plus:free",
-      "model_source": "openrouter",
-      "fallbacks": [
-        "sonnet"
-      ],
-      "mcps": [
-        "github",
-        "git",
-        "context7"
-      ],
-      "capabilities": [
-        "kotlin",
-        "android",
-        "jetpack-compose",
-        "coroutines",
-        "room",
-        "google-play"
-      ],
-      "languages": [
-        "kotlin"
-      ],
-      "max_tool_calls": 30,
-      "effort": "high",
-      "template": "autonomous",
-      "tier": "junior"
-    },
-    "O3": {
-      "name": "React Native Agent",
-      "version": "1.0",
-      "category": "mobile",
-      "status": "active",
-      "primary_model": "qwen/qwen3.6-plus:free",
-      "model_source": "openrouter",
-      "fallbacks": [
-        "stepfun/step-3.5-flash:free",
         "sonnet"
       ],
       "mcps": [
@@ -3020,15 +2924,101 @@
         "git"
       ],
       "capabilities": [
-        "react-native",
-        "expo",
-        "navigation",
-        "native-modules"
+        "agent-design",
+        "mcp-integration",
+        "skill-creation",
+        "workflow-design"
+      ],
+      "languages": [
+        "python",
+        "typescript"
+      ],
+      "max_tool_calls": 30,
+      "effort": "high",
+      "template": "autonomous",
+      "tier": "junior"
+    },
+    "O1": {
+      "name": "Sales Proposal Agent",
+      "version": "1.0",
+      "category": "sales-bizdev",
+      "status": "pool",
+      "primary_model": "qwen/qwen3.6-plus:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "fetch"
+      ],
+      "capabilities": [
+        "proposal",
+        "rfp",
+        "pricing",
+        "presentation",
+        "pitch-deck"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "max_tool_calls": 25,
+      "effort": "high",
+      "template": "autonomous",
+      "tier": "junior"
+    },
+    "O2": {
+      "name": "CRM Agent",
+      "version": "1.0",
+      "category": "sales-bizdev",
+      "status": "pool",
+      "primary_model": "qwen/qwen3.6-plus:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "hubspot",
+        "pipedrive",
+        "lead-management",
+        "pipeline",
+        "follow-up"
+      ],
+      "languages": [
+        "kotlin"
+      ],
+      "max_tool_calls": 15,
+      "effort": "high",
+      "template": "autonomous",
+      "tier": "junior"
+    },
+    "O3": {
+      "name": "Outreach Agent",
+      "version": "1.0",
+      "category": "sales-bizdev",
+      "status": "pool",
+      "primary_model": "qwen/qwen3.6-plus:free",
+      "model_source": "openrouter",
+      "fallbacks": [
+        "stepfun/step-3.5-flash:free",
+        "sonnet"
+      ],
+      "mcps": [
+        "fetch"
+      ],
+      "capabilities": [
+        "cold-email",
+        "linkedin-outreach",
+        "personalization",
+        "sequence"
       ],
       "languages": [
         "typescript"
       ],
-      "max_tool_calls": 25,
+      "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
       "tier": "junior"
@@ -3239,11 +3229,11 @@
       ],
       "mcps": [],
       "capabilities": [
-        "animation-script",
-        "lottie",
-        "css-animation",
-        "ffmpeg",
-        "after-effects-script"
+        "animation-design",
+        "flutter-animation",
+        "page-transitions",
+        "micro-interactions",
+        "lottie"
       ],
       "max_tool_calls": 20,
       "effort": "medium",
@@ -3385,16 +3375,8 @@
         "haiku",
         "sonnet"
       ],
-      "mcps": [
-        "*"
-      ],
-      "capabilities": [
-        "ui-analysis",
-        "content-review",
-        "accessibility-audit",
-        "visual-quality",
-        "lead-coordination"
-      ],
+      "mcps": [],
+      "capabilities": [],
       "max_tool_calls": 45,
       "effort": "medium",
       "template": "autonomous",
@@ -3423,16 +3405,8 @@
         "haiku",
         "sonnet"
       ],
-      "mcps": [
-        "*"
-      ],
-      "capabilities": [
-        "architecture-review",
-        "performance-audit",
-        "data-pipeline-analysis",
-        "tech-debt",
-        "lead-coordination"
-      ],
+      "mcps": [],
+      "capabilities": [],
       "max_tool_calls": 50,
       "effort": "medium",
       "template": "autonomous",
@@ -3462,16 +3436,8 @@
         "haiku",
         "sonnet"
       ],
-      "mcps": [
-        "*"
-      ],
-      "capabilities": [
-        "seo-analysis",
-        "growth-strategy",
-        "analytics-audit",
-        "engagement-review",
-        "lead-coordination"
-      ],
+      "mcps": [],
+      "capabilities": [],
       "max_tool_calls": 45,
       "effort": "medium",
       "template": "autonomous",
@@ -3501,16 +3467,8 @@
         "haiku",
         "sonnet"
       ],
-      "mcps": [
-        "*"
-      ],
-      "capabilities": [
-        "monetization-strategy",
-        "competitive-analysis",
-        "pricing-review",
-        "market-positioning",
-        "lead-coordination"
-      ],
+      "mcps": [],
+      "capabilities": [],
       "max_tool_calls": 40,
       "effort": "medium",
       "template": "autonomous",
@@ -3538,16 +3496,8 @@
       "fallbacks": [
         "sonnet"
       ],
-      "mcps": [
-        "*"
-      ],
-      "capabilities": [
-        "security-audit",
-        "owasp-review",
-        "auth-analysis",
-        "infra-hardening",
-        "lead-coordination"
-      ],
+      "mcps": [],
+      "capabilities": [],
       "max_tool_calls": 40,
       "effort": "high",
       "template": "autonomous",
@@ -3562,850 +3512,141 @@
       "tier_override": "always_high",
       "tier": "lead"
     },
-    "A14": {
-      "name": "Discovery Agent",
-      "role": "Yeni/boş projelerde yapılandırılmış sorularla proje brief'i çıkarır. project-brief.md oluşturur.",
+    "J10": {
+      "name": "GitHub Manager",
+      "version": "1.0",
+      "category": "devops",
+      "status": "active",
       "primary_model": "sonnet",
-      "status": "active",
-      "capabilities": [
-        "project-discovery",
-        "requirements-gathering",
-        "brief-writing"
-      ],
-      "triggers": [
-        "empty project detected",
-        "no source code",
-        "new project setup"
-      ],
-      "output": "project-brief.md",
-      "tier": "senior",
-      "fallbacks": [
-        "haiku",
-        "sonnet"
-      ]
-    },
-    "A15": {
-      "name": "TechLead",
-      "role": "project-brief.md okuyarak tech stack araştırır, ücretsiz tier'ları değerlendirir, tech-decision.md oluşturur.",
-      "primary_model": "sonnet",
-      "status": "active",
-      "capabilities": [
-        "tech-stack-research",
-        "architecture-decision",
-        "cost-analysis",
-        "free-tier-mapping"
-      ],
-      "triggers": [
-        "post-discovery",
-        "stack recommendation requested",
-        "new project"
-      ],
-      "output": "tech-decision.md",
-      "tier": "senior",
-      "fallbacks": [
-        "haiku",
-        "sonnet"
-      ]
-    },
-    "F11": {
-      "name": "Data Scraper Agent",
-      "version": "1.0",
-      "category": "data",
-      "status": "active",
-      "primary_model": "llama-3.3-70b-versatile",
-      "model_source": "groq",
-      "fallbacks": [
-        "qwen/qwen3.6-plus:free",
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [
-        "fetch",
-        "github"
-      ],
-      "capabilities": [
-        "web-scraping",
-        "data-extraction",
-        "html-parsing",
-        "json-extraction",
-        "playwright",
-        "regex",
-        "xpath"
-      ],
-      "languages": [
-        "python",
-        "typescript"
-      ],
-      "max_tool_calls": 25,
-      "effort": "medium",
-      "template": "autonomous",
-      "notes": "Scraping/parsing uzmanı. Groq Llama 70B ile hızlı + ücretsiz.",
-      "tier": "mid",
-      "on_source_unavailable": "use_fallbacks"
-    },
-    "Z1": {
-      "name": "Lightweight Triage Agent",
-      "version": "1.0",
-      "category": "meta",
-      "status": "active",
-      "primary_model": "llama-3.1-8b-instant",
-      "model_source": "groq",
-      "fallbacks": [
-        "nvidia/nemotron-3-nano-30b-a3b:free",
-        "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [],
-      "capabilities": [
-        "simple-qa",
-        "text-summary",
-        "label",
-        "classification",
-        "trivial-task"
-      ],
-      "max_tool_calls": 5,
-      "effort": "low",
-      "template": "minimal",
-      "notes": "Basit/trivial işler için. Ücretli kota yemesin diye. Groq Gemma2 9B — sıfır maliyet.",
-      "tier": "junior",
-      "on_source_unavailable": "use_fallbacks"
-    },
-    "N3": {
-      "name": "Prompt Engineer",
-      "version": "1.0",
-      "category": "ai-ml",
-      "status": "active",
-      "primary_model": "llama-3.1-8b-instant",
-      "model_source": "groq",
-      "fallbacks": [
-        "nvidia/nemotron-3-nano-30b-a3b:free",
-        "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [],
-      "capabilities": [
-        "prompt-design",
-        "few-shot",
-        "chain-of-thought",
-        "system-prompt",
-        "eval-prompts"
-      ],
-      "max_tool_calls": 15,
-      "effort": "medium",
-      "template": "minimal",
-      "tier": "junior",
-      "on_source_unavailable": "use_fallbacks"
-    },
-    "N4": {
-      "name": "Fine-tuning Agent",
-      "version": "1.0",
-      "category": "ai-ml",
-      "status": "active",
-      "primary_model": "nvidia/nemotron-3-super-120b-a12b:free",
-      "model_source": "openrouter",
-      "fallbacks": [
-        "sonnet"
-      ],
-      "mcps": [
-        "github"
-      ],
-      "capabilities": [
-        "fine-tuning",
-        "lora",
-        "qlora",
-        "dataset-prep",
-        "huggingface-trainer",
-        "axolotl"
-      ],
-      "languages": [
-        "python"
-      ],
-      "max_tool_calls": 30,
-      "effort": "high",
-      "template": "autonomous",
-      "tier": "junior"
-    },
-    "N5": {
-      "name": "AI Evaluation Agent",
-      "version": "1.0",
-      "category": "ai-ml",
-      "status": "active",
-      "primary_model": "llama-3.3-70b-versatile",
-      "model_source": "groq",
-      "fallbacks": [
-        "qwen/qwen3.6-plus:free",
-        "llama-3.1-8b-instant",
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [],
-      "capabilities": [
-        "llm-eval",
-        "benchmark",
-        "accuracy",
-        "hallucination-check",
-        "ragas",
-        "deepeval"
-      ],
-      "max_tool_calls": 20,
-      "effort": "medium",
-      "template": "minimal",
-      "tier": "junior",
-      "on_source_unavailable": "use_fallbacks"
-    },
-    "P1": {
-      "name": "Technical Writer",
-      "version": "1.0",
-      "category": "docs",
-      "status": "active",
-      "primary_model": "minimax/minimax-m2.5:free",
-      "model_source": "openrouter",
-      "fallbacks": [
-        "llama-3.3-70b-versatile",
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [
-        "github"
-      ],
-      "capabilities": [
-        "readme",
-        "api-docs",
-        "changelog",
-        "docstring",
-        "mkdocs",
-        "docusaurus"
-      ],
-      "max_tool_calls": 20,
-      "effort": "medium",
-      "template": "minimal",
-      "tier": "junior"
-    },
-    "P2": {
-      "name": "API Docs Agent",
-      "version": "1.0",
-      "category": "docs",
-      "status": "active",
-      "primary_model": "llama-3.3-70b-versatile",
-      "model_source": "groq",
-      "fallbacks": [
-        "qwen/qwen3.6-plus:free",
-        "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [
-        "context7"
-      ],
-      "capabilities": [
-        "openapi",
-        "swagger",
-        "postman",
-        "api-reference",
-        "schema-docs"
-      ],
-      "max_tool_calls": 15,
-      "effort": "low",
-      "template": "minimal",
-      "tier": "junior",
-      "on_source_unavailable": "use_fallbacks"
-    },
-    "P3": {
-      "name": "Localization Agent",
-      "version": "1.0",
-      "category": "docs",
-      "status": "active",
-      "primary_model": "minimax/minimax-m2.5:free",
-      "model_source": "openrouter",
-      "fallbacks": [
-        "llama-3.3-70b-versatile",
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [
-        "github"
-      ],
-      "capabilities": [
-        "i18n",
-        "l10n",
-        "translation",
-        "arb",
-        "json-i18n",
-        "rtl",
-        "pluralization"
-      ],
-      "max_tool_calls": 20,
-      "effort": "medium",
-      "template": "minimal",
-      "notes": "Flutter ARB, React i18next, iOS strings vb.",
-      "tier": "junior"
-    },
-    "Q1": {
-      "name": "E2E Test Agent",
-      "version": "1.0",
-      "category": "qa",
-      "status": "active",
-      "primary_model": "qwen/qwen3.6-plus:free",
-      "model_source": "openrouter",
-      "fallbacks": [
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [
-        "github",
-        "playwright"
-      ],
-      "capabilities": [
-        "playwright",
-        "cypress",
-        "selenium",
-        "e2e",
-        "ui-testing",
-        "visual-regression"
-      ],
-      "languages": [
-        "typescript"
-      ],
-      "max_tool_calls": 25,
-      "effort": "medium",
-      "template": "autonomous",
-      "tier": "junior"
-    },
-    "Q2": {
-      "name": "Accessibility Auditor",
-      "version": "1.0",
-      "category": "qa",
-      "status": "active",
-      "primary_model": "llama-3.3-70b-versatile",
-      "model_source": "groq",
-      "fallbacks": [
-        "qwen/qwen3.6-plus:free",
-        "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [
-        "fetch",
-        "playwright"
-      ],
-      "capabilities": [
-        "wcag",
-        "a11y",
-        "axe",
-        "aria",
-        "screen-reader",
-        "contrast",
-        "keyboard-nav"
-      ],
-      "max_tool_calls": 20,
-      "effort": "medium",
-      "template": "minimal",
-      "tier": "junior",
-      "on_source_unavailable": "use_fallbacks"
-    },
-    "Q3": {
-      "name": "Load & Stress Tester",
-      "version": "1.0",
-      "category": "qa",
-      "status": "active",
-      "primary_model": "llama-3.1-8b-instant",
-      "model_source": "groq",
-      "fallbacks": [
-        "nvidia/nemotron-3-nano-30b-a3b:free",
-        "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [
-        "github"
-      ],
-      "capabilities": [
-        "k6",
-        "artillery",
-        "jmeter",
-        "stress-test",
-        "load-test",
-        "benchmark"
-      ],
-      "languages": [
-        "javascript"
-      ],
-      "max_tool_calls": 15,
-      "effort": "medium",
-      "template": "minimal",
-      "tier": "junior",
-      "on_source_unavailable": "use_fallbacks"
-    },
-    "R1": {
-      "name": "Audio Processing Agent",
-      "version": "1.0",
-      "category": "media",
-      "status": "active",
-      "primary_model": "nvidia/nemotron-3-nano-30b-a3b:free",
-      "model_source": "openrouter",
-      "fallbacks": [
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [
-        "github"
-      ],
-      "capabilities": [
-        "audio-processing",
-        "ffmpeg",
-        "whisper",
-        "tts",
-        "speech-to-text",
-        "audio-edit"
-      ],
-      "languages": [
-        "python"
-      ],
-      "max_tool_calls": 20,
-      "effort": "medium",
-      "template": "minimal",
-      "tier": "junior"
-    },
-    "R2": {
-      "name": "Video Pipeline Agent",
-      "version": "1.0",
-      "category": "media",
-      "status": "active",
-      "primary_model": "nvidia/nemotron-3-nano-30b-a3b:free",
-      "model_source": "openrouter",
-      "fallbacks": [
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [
-        "github"
-      ],
-      "capabilities": [
-        "ffmpeg",
-        "video-processing",
-        "transcoding",
-        "subtitle",
-        "thumbnail-gen",
-        "hls"
-      ],
-      "languages": [
-        "python",
-        "bash"
-      ],
-      "max_tool_calls": 20,
-      "effort": "medium",
-      "template": "minimal",
-      "tier": "junior"
-    },
-    "R3": {
-      "name": "Image Processing Agent",
-      "version": "1.0",
-      "category": "media",
-      "status": "active",
-      "primary_model": "nvidia/nemotron-nano-12b-v2-vl:free",
-      "model_source": "openrouter",
-      "fallbacks": [
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [
-        "github"
-      ],
-      "capabilities": [
-        "image-processing",
-        "pillow",
-        "sharp",
-        "resize",
-        "compression",
-        "watermark",
-        "ocr"
-      ],
-      "languages": [
-        "python",
-        "typescript"
-      ],
-      "max_tool_calls": 15,
-      "effort": "low",
-      "template": "minimal",
-      "notes": "Multimodal — görsel analiz de yapabilir.",
-      "tier": "junior"
-    },
-    "S1": {
-      "name": "Legal Doc Reviewer",
-      "version": "1.0",
-      "category": "legal",
-      "status": "active",
-      "primary_model": "arcee-ai/trinity-large-preview:free",
-      "model_source": "openrouter",
-      "fallbacks": [
-        "qwen/qwen3.6-plus:free",
-        "sonnet"
-      ],
-      "mcps": [],
-      "capabilities": [
-        "tos-review",
-        "privacy-policy",
-        "gdpr",
-        "kvkk",
-        "contract-review",
-        "risk-flag"
-      ],
-      "max_tool_calls": 15,
-      "effort": "high",
-      "template": "minimal",
-      "notes": "Hukuki metin analizi. Karar vermez — flag eder.",
-      "tier": "junior"
-    },
-    "S2": {
-      "name": "GDPR/KVKK Agent",
-      "version": "1.0",
-      "category": "legal",
-      "status": "active",
-      "primary_model": "minimax/minimax-m2.5:free",
-      "model_source": "openrouter",
-      "fallbacks": [
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [
-        "github"
-      ],
-      "capabilities": [
-        "gdpr",
-        "kvkk",
-        "data-mapping",
-        "consent-management",
-        "dpia",
-        "breach-response"
-      ],
-      "max_tool_calls": 15,
-      "effort": "medium",
-      "template": "minimal",
-      "tier": "junior"
-    },
-    "T1": {
-      "name": "Chatbot Builder",
-      "version": "1.0",
-      "category": "chatbot",
-      "status": "active",
-      "primary_model": "qwen/qwen3.6-plus:free",
-      "model_source": "openrouter",
       "fallbacks": [
         "sonnet"
       ],
       "mcps": [
         "github",
-        "context7"
+        "git"
       ],
       "capabilities": [
-        "chatbot-design",
-        "dialog-flow",
-        "intent",
-        "nlu",
-        "rasa",
-        "bot-framework",
-        "telegram-bot"
-      ],
-      "languages": [
-        "python",
-        "typescript"
-      ],
-      "max_tool_calls": 25,
-      "effort": "medium",
-      "template": "autonomous",
-      "tier": "junior"
-    },
-    "T2": {
-      "name": "FAQ Generator",
-      "version": "1.0",
-      "category": "chatbot",
-      "status": "active",
-      "primary_model": "llama-3.3-70b-versatile",
-      "model_source": "groq",
-      "fallbacks": [
-        "qwen/qwen3.6-plus:free",
-        "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [],
-      "capabilities": [
-        "faq-generation",
-        "knowledge-base",
-        "qa-pairs",
-        "support-content"
-      ],
-      "max_tool_calls": 10,
-      "effort": "low",
-      "template": "minimal",
-      "tier": "junior",
-      "on_source_unavailable": "use_fallbacks"
-    },
-    "T3": {
-      "name": "Support Ticket Analyzer",
-      "version": "1.0",
-      "category": "chatbot",
-      "status": "active",
-      "primary_model": "llama-3.1-8b-instant",
-      "model_source": "groq",
-      "fallbacks": [
-        "nvidia/nemotron-3-nano-30b-a3b:free",
-        "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [],
-      "capabilities": [
-        "ticket-classification",
-        "sentiment",
-        "priority-detection",
-        "jira-link"
-      ],
-      "max_tool_calls": 10,
-      "effort": "low",
-      "template": "minimal",
-      "notes": "Trivial sınıflandırma — kota yemesin.",
-      "tier": "junior",
-      "on_source_unavailable": "use_fallbacks"
-    },
-    "U1": {
-      "name": "AR/VR Developer",
-      "version": "1.0",
-      "category": "xr",
-      "status": "active",
-      "primary_model": "nvidia/nemotron-3-super-120b-a12b:free",
-      "model_source": "openrouter",
-      "fallbacks": [
-        "qwen/qwen3.6-plus:free",
-        "sonnet"
-      ],
-      "mcps": [
-        "github",
-        "context7"
-      ],
-      "capabilities": [
-        "unity-xr",
-        "arkit",
-        "arcore",
-        "webxr",
-        "three-js",
-        "babylon-js",
-        "openxr"
-      ],
-      "languages": [
-        "csharp",
-        "javascript",
-        "typescript"
-      ],
-      "max_tool_calls": 30,
-      "effort": "high",
-      "template": "autonomous",
-      "tier": "junior"
-    },
-    "V1": {
-      "name": "IoT/Embedded Agent",
-      "version": "1.0",
-      "category": "iot",
-      "status": "active",
-      "primary_model": "nvidia/nemotron-3-nano-30b-a3b:free",
-      "model_source": "openrouter",
-      "fallbacks": [
-        "qwen/qwen3.6-plus:free",
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [
-        "github"
-      ],
-      "capabilities": [
-        "arduino",
-        "raspberry-pi",
-        "mqtt",
-        "esp32",
-        "micropython",
-        "firmware",
-        "iot-cloud"
-      ],
-      "languages": [
-        "c",
-        "python",
-        "cpp"
-      ],
-      "max_tool_calls": 20,
-      "effort": "medium",
-      "template": "autonomous",
-      "tier": "junior"
-    },
-    "W1": {
-      "name": "CLI Tool Builder",
-      "version": "1.0",
-      "category": "devtools",
-      "status": "active",
-      "primary_model": "qwen/qwen3.6-plus:free",
-      "model_source": "openrouter",
-      "fallbacks": [
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [
-        "github"
-      ],
-      "capabilities": [
-        "cli",
-        "cobra",
-        "click",
-        "argparse",
-        "oclif",
-        "ink",
-        "terminal-ui"
-      ],
-      "languages": [
-        "go",
-        "python",
-        "typescript"
-      ],
-      "max_tool_calls": 20,
-      "effort": "medium",
-      "template": "autonomous",
-      "tier": "junior"
-    },
-    "W2": {
-      "name": "VSCode Extension Builder",
-      "version": "1.0",
-      "category": "devtools",
-      "status": "active",
-      "primary_model": "qwen/qwen3.6-plus:free",
-      "model_source": "openrouter",
-      "fallbacks": [
-        "sonnet"
-      ],
-      "mcps": [
-        "github",
-        "context7"
-      ],
-      "capabilities": [
-        "vscode-extension",
-        "language-server",
-        "lsp",
-        "tree-sitter",
-        "webview"
-      ],
-      "languages": [
-        "typescript"
-      ],
-      "max_tool_calls": 25,
-      "effort": "high",
-      "template": "autonomous",
-      "tier": "junior"
-    },
-    "X1": {
-      "name": "Smart Contract Agent",
-      "version": "1.0",
-      "category": "web3",
-      "status": "active",
-      "primary_model": "nvidia/nemotron-3-super-120b-a12b:free",
-      "model_source": "openrouter",
-      "fallbacks": [
-        "qwen/qwen3.6-plus:free",
-        "sonnet"
-      ],
-      "mcps": [
-        "github",
-        "context7"
-      ],
-      "capabilities": [
-        "solidity",
-        "smart-contract",
-        "hardhat",
-        "foundry",
-        "audit",
-        "erc20",
-        "nft"
-      ],
-      "languages": [
-        "solidity",
-        "typescript"
-      ],
-      "max_tool_calls": 25,
-      "effort": "high",
-      "template": "autonomous",
-      "tier": "junior"
-    },
-    "B2S": {
-      "name": "Backend Coder Senior",
-      "version": "1.0",
-      "category": "backend",
-      "status": "active",
-      "tier": "senior",
-      "primary_model": "sonnet",
-      "model_source": "anthropic",
-      "fallbacks": [
-        "nvidia/nemotron-3-super-120b-a12b:free",
-        "haiku",
-        "sonnet"
-      ],
-      "mcps": [
-        "github",
-        "git",
-        "jcodemunch",
-        "context7"
-      ],
-      "capabilities": [
-        "api",
-        "crud",
-        "rest",
-        "graphql",
-        "migration",
-        "complex-architecture",
-        "microservices"
-      ],
-      "languages": [
-        "typescript",
-        "python",
-        "dart"
+        "repo-management",
+        "readme-quality",
+        "branch-strategy",
+        "github-actions",
+        "repo-visibility",
+        "description",
+        "topics",
+        "social-preview"
       ],
       "max_tool_calls": 50,
-      "effort": "high",
+      "effort": "medium",
       "template": "autonomous",
-      "notes": "Ücretli. Sadece B2 (free) yetersiz kalırsa dispatch eder."
+      "tier": "mid",
+      "model_source": "openrouter"
     },
-    "B3S": {
-      "name": "Frontend Coder Senior",
+    "N7": {
+      "name": "Skill Design Specialist",
       "version": "1.0",
-      "category": "backend",
-      "status": "active",
-      "tier": "senior",
+      "category": "prompt-engineering",
+      "status": "pool",
       "primary_model": "sonnet",
-      "model_source": "anthropic",
       "fallbacks": [
-        "qwen/qwen3.6-plus:free",
-        "haiku",
         "sonnet"
       ],
       "mcps": [
+        "fetch",
+        "github"
+      ],
+      "capabilities": [
+        "skill-anatomy",
+        "process-design",
+        "quality-standards",
+        "output-templates",
+        "documentation-patterns"
+      ],
+      "max_tool_calls": 40,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "N8": {
+      "name": "Workflow Engineer",
+      "version": "1.0",
+      "category": "prompt-engineering",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "fetch",
+        "github"
+      ],
+      "capabilities": [
+        "workflow-design",
+        "decision-trees",
+        "gated-processes",
+        "state-machines",
+        "pipeline-orchestration"
+      ],
+      "max_tool_calls": 40,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "N6": {
+      "name": "AI Systems Architect",
+      "version": "1.0",
+      "category": "prompt-engineering",
+      "status": "pool",
+      "primary_model": "opus",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "fetch",
         "github",
-        "git",
         "context7"
       ],
       "capabilities": [
-        "react",
-        "flutter",
-        "complex-ui",
-        "state-management",
-        "performance-optimization",
-        "animations"
+        "agent-architecture",
+        "framework-analysis",
+        "orchestration-design",
+        "multi-agent-systems",
+        "context-engineering"
       ],
-      "languages": [
-        "typescript",
-        "dart",
-        "css"
-      ],
-      "max_tool_calls": 40,
-      "effort": "high",
+      "max_tool_calls": 60,
+      "effort": "medium",
       "template": "autonomous",
-      "notes": "Ücretli. Sadece B3 (free) yetersiz kalırsa."
+      "tier": "senior",
+      "model_source": "openrouter"
+    },
+    "A0": {
+      "name": "Jarvis",
+      "version": "1.0",
+      "category": "orchestrator",
+      "status": "active",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "*"
+      ],
+      "capabilities": [
+        "session-management",
+        "dispatch",
+        "routing",
+        "user-interface",
+        "cross-project",
+        "orchestration",
+        "self-improvement",
+        "agent-sharpening"
+      ],
+      "max_tool_calls": 80,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
     }
   },
   "retry_strategy": {
