@@ -6,6 +6,8 @@ Tarih: 2026-04-09
 
 - 132 eski format agent, Knowledge-First yapıya tasindi.
 - Toplam agent sayisi: **144** (15 kategori).
+- 133 incomplete agent icin AGENT.md overhaul + knowledge set olusturuldu.
+- Knowledge dosya sayisi: **461** (hedef >= 400).
 - `config/agent-registry.json` disk ile senkronlandi.
 - `global/skills/` altindaki tum `SKILL.md` dosyalarina standart bolumler eklendi.
 - `global/settings.json.template` icinde hook aciklamalari eklendi, kullanilmayan MCP tanimlari ayiklandi.
@@ -48,6 +50,7 @@ agents/{category}/{agent}/
 
 Yeni araclar:
 - `tools/migrate_agents_knowledge_first.py`: kategori bazli agent migrasyonu
+- `tools/overhaul_agents_knowledge_first.py`: kategori bazli AGENT.md overhaul + 3 knowledge dosyasi + _index.md update
 
 Not:
 - Migrasyon **bilgi kaybini engeller** (frontmatter + Amac/Kapsam/Escalation tasinir).
