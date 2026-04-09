@@ -60,11 +60,11 @@
           },
           {
             "type": "command",
-            "command": "mkdir -p ~/.claude/logs && python3 -m mempalace mine ~/Projects >> ~/.claude/logs/mempalace-mine.log 2>&1 &"
+            "command": "mkdir -p ~/.claude/logs && $HOME/.mempalace-venv/bin/python3 -m mempalace mine ~/Projects >> ~/.claude/logs/mempalace-mine.log 2>&1 &"
           },
           {
             "type": "command",
-            "command": "python3 -m mempalace wake-up 2>/dev/null || true"
+            "command": "$HOME/.mempalace-venv/bin/python3 -m mempalace wake-up 2>/dev/null || true"
           }
         ]
       }
