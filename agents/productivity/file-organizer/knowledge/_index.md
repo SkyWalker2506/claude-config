@@ -1,17 +1,14 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+knowledge_filled: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+> Bu dosya agent'in bilgi haritasidir. Gorev alirken once bunu oku; sadece ilgili dosyalari yukle.
 
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) file-cleanup — file-cleanup.md
-- (planned) downloads — downloads.md
-- (planned) desktop — desktop.md
+- [File naming conventions](file-naming-conventions.md) — tarih-once, slug, guvenli karakterler
+- [Folder structure patterns](folder-structure-patterns.md) — XDG, projeler, derinlik
+- [Automated cleanup](automated-cleanup.md) — karantina, launchd, disk esigi
+- [Duplicate detection](duplicate-detection.md) — hash, fdupes, near-dup
