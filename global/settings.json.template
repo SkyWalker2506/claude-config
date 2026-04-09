@@ -40,22 +40,27 @@
         "hooks": [
           {
             "type": "command",
+            "description": "Print active Jarvis model label + emoji",
             "command": "MODEL=$(jq -r '.model // \"sonnet\"' ~/.claude/settings.json 2>/dev/null); if echo \"$MODEL\" | grep -qE 'openrouter|groq/|hf/|cerebras|local/|google/'; then EMOJI='🆓'; elif echo \"$MODEL\" | grep -q 'haiku'; then EMOJI='💛'; elif echo \"$MODEL\" | grep -q 'opus'; then EMOJI='🔴'; else EMOJI='🔶'; fi; echo \"JARVIS_MODEL: $MODEL $EMOJI\""
           },
           {
             "type": "command",
+            "description": "List available secret keys (names only)",
             "command": "SFILE=\"$HOME/.claude/secrets/secrets.env\"; if [ -f \"$SFILE\" ]; then KEYS=$(grep -v '^#' \"$SFILE\" | grep '=' | cut -d= -f1 | paste -sd ',' -); echo \"AVAILABLE_SECRETS: $KEYS\"; else echo 'AVAILABLE_SECRETS: none — secrets.env bulunamadi'; fi"
           },
           {
             "type": "command",
+            "description": "Show currently enabled MCP servers",
             "command": "MCPS=$(jq -r '.mcpServers | keys | join(\", \")' ~/.claude/settings.json 2>/dev/null); echo \"🔌 MCP_ACTIVE: $MCPS — Kullanmayacaklarini /mcp ile kapat\""
           },
           {
             "type": "command",
+            "description": "Update projects index cache (best-effort)",
             "command": "bash ~/Projects/claude-config/projects/scripts/project_index.sh 2>/dev/null || true"
           },
           {
             "type": "command",
+            "description": "Check pending Reports (best-effort)",
             "command": "bash ~/Projects/claude-config/config/reports_check.sh 2>/dev/null || true"
           }
         ]
@@ -67,6 +72,7 @@
         "hooks": [
           {
             "type": "command",
+            "description": "Auto migration check on prompt submit",
             "command": "bash /Users/musabkara/Projects/claude-config/projects/scripts/migration_check.sh 2>/dev/null || true"
           }
         ]
@@ -78,6 +84,7 @@
         "hooks": [
           {
             "type": "command",
+            "description": "Block editing secrets files via tool input",
             "command": "f=$(echo \"$CLAUDE_TOOL_INPUT\" | python3 -c \"import sys,json;print(json.load(sys.stdin).get('file_path',''))\" 2>/dev/null); case \"$f\" in *.env*|*/secrets/*) echo \"BLOCKED: $f is a secrets file — edit ~/.claude/secrets/ directly\"; exit 2;; esac"
           }
         ]
@@ -89,6 +96,7 @@
         "hooks": [
           {
             "type": "command",
+            "description": "Fire notification script (best-effort)",
             "command": "bash ~/Projects/claude-config/config/notify.sh \"\" \"🔔\" 2>/dev/null || true"
           }
         ]
@@ -100,10 +108,12 @@
         "hooks": [
           {
             "type": "command",
+            "description": "Notify task completion (best-effort)",
             "command": "bash ~/Projects/claude-config/config/notify.sh \"Görev tamamlandı ✅\" \"✅\" 2>/dev/null || true"
           },
           {
             "type": "command",
+            "description": "Post-run reflection + apply (background)",
             "command": "bash ~/Projects/claude-config/config/dispatch-reflect.sh --last 20 --apply >> ~/Projects/.watchdog/reflect-output.log 2>&1 &"
           }
         ]
@@ -183,37 +193,6 @@
         "-y",
         "@playwright/mcp@latest"
       ]
-    },
-    "dbhub": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "dbhub@latest"
-      ]
-    },
-    "magic-ui": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@21st-dev/magic-mcp"
-      ]
-    },
-    "mermaid": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@narasimhaponnada/mermaid-mcp-server"
-      ]
-    },
-    "meshy": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "meshy-ai-mcp-server"
-      ],
-      "env": {
-        "MESHY_API_KEY": "${MESHY_API_KEY}"
-      }
     }
   },
   "model": "claude-sonnet-4-6"
