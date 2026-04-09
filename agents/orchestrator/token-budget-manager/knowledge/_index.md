@@ -1,17 +1,10 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 3
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) quota-tracking — quota-tracking.md
-- (planned) mode-switching — mode-switching.md
-- (planned) cost-control — cost-control.md
+- [Token Budget Manager Core Patterns](quota-tracking-core-patterns.md) — Core patterns for Token Budget Manager
+- [Token Budget Manager Anti-Patterns](quota-tracking-anti-patterns.md) — Common mistakes and anti-patterns
+- [Token Budget Manager Verification Checklist](quota-tracking-verification.md) — Verification and delivery checklist
