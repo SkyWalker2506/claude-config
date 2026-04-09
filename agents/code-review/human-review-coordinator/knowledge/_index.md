@@ -1,16 +1,10 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 3
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) review-routing — review-routing.md
-- (planned) human-handoff — human-handoff.md
+- [Human Review Coordinator Core Patterns](review-routing-core-patterns.md) — Core patterns for Human Review Coordinator
+- [Human Review Coordinator Anti-Patterns](review-routing-anti-patterns.md) — Common mistakes and anti-patterns
+- [Human Review Coordinator Verification Checklist](review-routing-verification.md) — Verification and delivery checklist

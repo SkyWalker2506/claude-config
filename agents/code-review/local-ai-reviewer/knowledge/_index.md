@@ -1,19 +1,10 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 3
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) code-review — code-review.md
-- (planned) correctness — correctness.md
-- (planned) security — security.md
-- (planned) simplicity — simplicity.md
-- (planned) concurrency — concurrency.md
+- [Local AI Reviewer Core Patterns](code-review-core-patterns.md) — Core patterns for Local AI Reviewer
+- [Local AI Reviewer Anti-Patterns](code-review-anti-patterns.md) — Common mistakes and anti-patterns
+- [Local AI Reviewer Verification Checklist](code-review-verification.md) — Verification and delivery checklist
