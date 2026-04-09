@@ -1,16 +1,14 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+knowledge_filled: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+> Bu dosya agent'in bilgi haritasidir. Gorev alirken once bunu oku; sadece ilgili dosyalari yukle.
 
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) log-analysis — log-analysis.md
-- (planned) pattern-detection — pattern-detection.md
+- [Log Pattern Detection](log-pattern-detection.md) — kısa özet `knowledge/log-pattern-detection.md`
+- [Structured Logging](structured-logging.md) — kısa özet `knowledge/structured-logging.md`
+- [Log Aggregation Tools](log-aggregation-tools.md) — kısa özet `knowledge/log-aggregation-tools.md`
+- [Anomaly Detection](anomaly-detection.md) — kısa özet `knowledge/anomaly-detection.md`

@@ -37,7 +37,7 @@ Veri kalite kontrolu, tutarlilik dogrulama.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+F1 temizlik oncesi/sonrasi; F4 pipeline gate; F6 constraint kontrolu.
 
 ## Process
 
@@ -56,7 +56,7 @@ Veri kalite kontrolu, tutarlilik dogrulama.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Kural seti, ihlal ornekleri, lineage ozeti, oneri listesi ve sahiplik.
 
 ## When to Use
 - Veri butunluk ve tutarlilik kontrolu

@@ -37,7 +37,7 @@ Zamanlanmis gorevleri yonetme — cron/launchd.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+G6 yedek; G9 izleme; macOS launchd.
 
 ## Process
 
@@ -56,7 +56,7 @@ Zamanlanmis gorevleri yonetme — cron/launchd.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Cron/launchd tanimi, son calisma zamani, stdout/stderr ozeti, idempotent id notu.
 
 ## When to Use
 - Cron job olusturma ve duzenleme

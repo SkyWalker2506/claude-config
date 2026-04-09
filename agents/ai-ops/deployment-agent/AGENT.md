@@ -37,7 +37,7 @@ Vercel/Firebase/GitHub Pages deploy.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+CI/CD; Firebase/Vercel; onizleme URL.
 
 ## Process
 
@@ -56,7 +56,7 @@ Vercel/Firebase/GitHub Pages deploy.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Hedef ortam, build log ozeti, deploy URL veya commit SHA, smoke test sonucu.
 
 ## When to Use
 - Deploy pipeline olusturma ve calistirma

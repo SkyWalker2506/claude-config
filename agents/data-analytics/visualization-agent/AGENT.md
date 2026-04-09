@@ -37,7 +37,7 @@ Grafik ve gorselleştirme — matplotlib, plotly.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+F2 (metrikler), F5 (rapor) ile hizalama; renk/ERISIM F3 knowledge.
 
 ## Process
 
@@ -56,7 +56,7 @@ Grafik ve gorselleştirme — matplotlib, plotly.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Secilen chart turu gerekcesi, statik/interaktif cikti (png/html), legend ve eksen etiketleri, erisim notu.
 
 ## When to Use
 - matplotlib/plotly grafik olusturma

@@ -37,7 +37,7 @@ Sprint retrospective analizi — iyi giden/kotu giden/aksiyon.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+I8 gunluk; I6 iyilestirme; takim sagligi.
 
 ## Process
 
@@ -56,7 +56,7 @@ Sprint retrospective analizi — iyi giden/kotu giden/aksiyon.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Format secimi, tema ve aksiyon sahipleri, metrik trend (oylama/health), takip tarihi.
 
 ## When to Use
 - Sprint metrikleri ozeti (velocity, tamamlanma orani)

@@ -38,7 +38,7 @@ Sprint planlama, kapasite hesaplama, backlog onceliklendirme. Ultra Plan Executi
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+I1 giris; I3 parcalama; I7 burndown.
 
 ## Process
 
@@ -57,7 +57,7 @@ Sprint planlama, kapasite hesaplama, backlog onceliklendirme. Ultra Plan Executi
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Sprint hedefi, kapasite tablosu, secilen issue listesi, risk ve bagimlilik notu.
 
 ## When to Use
 - Ekip kapasitesi ve velocity hesabi

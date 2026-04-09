@@ -37,7 +37,7 @@ PDF/markdown rapor olusturma.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+F2/F3 icerik beslemesi; PDF/otomasyon knowledge; paydas I4 raporu ile.
 
 ## Process
 
@@ -56,7 +56,7 @@ PDF/markdown rapor olusturma.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Rapor basligi, ozet, tablo/ekler listesi, uretilen dosya yolu veya CI artefakti, versiyon/tarih.
 
 ## When to Use
 - Markdown rapor sablonu ve icerik olusturma

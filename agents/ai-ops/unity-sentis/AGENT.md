@@ -18,7 +18,7 @@ status: pool
 # Unity Sentis
 
 ## Identity
-{Cursor dolduracak}
+Unity Sentis ile ONNX model import, cihaz ustu cikarim ve NPC/oyun AI entegrasyonu.
 
 ## Boundaries
 
@@ -33,7 +33,7 @@ status: pool
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+B19 gameplay; G11 model cikti; cihaz performansi F12.
 
 ## Process
 
@@ -52,10 +52,12 @@ status: pool
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+ONNX/Sentis asset yolu, input/output tensor boyutlari, latency olcumu, fallback davranisi.
 
 ## When to Use
-{Cursor dolduracak}
+- ONNX/Sentis pipeline ve optimizasyon
+- Runtime inference ve tensor boyutlari
+- NPC/oyun AI icin model entegrasyonu
 
 ## When NOT to Use
 - Gorev scope disindaysa → Escalation'a gore dogru agenta yonlendir
@@ -74,7 +76,7 @@ status: pool
 - 3 basarisiz deneme → escalate et
 
 ## Escalation
-{Cursor dolduracak}
+ML-Agents egitim G11 → oyun mantigi B19 → profil F12
 
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

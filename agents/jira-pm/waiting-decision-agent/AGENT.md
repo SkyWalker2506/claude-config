@@ -37,7 +37,7 @@ WAITING durumundaki issue'lari triaj, karar dongusu.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+I2 oncelik; B13 risk; kullanici onayi WAITING.
 
 ## Process
 
@@ -56,7 +56,7 @@ WAITING durumundaki issue'lari triaj, karar dongusu.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Karar ozeti, secenekler ve skor, escalation gereksinimi, kayit linki veya yorum.
 
 ## When to Use
 - WAITING issue listesi cikarma

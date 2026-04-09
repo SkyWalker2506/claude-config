@@ -37,7 +37,7 @@ MCP sunucularinin baglanti durumunu kontrol eder, hata sayilarini raporlar, ceva
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+MCP registry; plugin kurulum; saglik G2 ile.
 
 ## Process
 
@@ -56,7 +56,7 @@ MCP sunucularinin baglanti durumunu kontrol eder, hata sayilarini raporlar, ceva
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Sunucu listesi, son ping sonucu, basarisiz tool ve kok neden, oneri fix veya disable.
 
 ## When to Use
 - MCP sunucu ping / baglanti testi

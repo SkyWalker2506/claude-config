@@ -37,7 +37,7 @@ SQL sorgu yazma ve optimizasyon.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+F4 veri modeli; F9 dogrulama kurallari; performans G9 token ile karistirma.
 
 ## Process
 
@@ -56,7 +56,7 @@ SQL sorgu yazma ve optimizasyon.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+SQL dosyalari veya migration notu, explain ozeti, indeks onerileri, test sorgusu sonuclari.
 
 ## When to Use
 - SELECT/INSERT/UPDATE/DELETE sorgu yazma

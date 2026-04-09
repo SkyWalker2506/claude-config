@@ -37,7 +37,7 @@ Veri analizi, insight cikarma, korelasyon/hipotez testi.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+F1 (temiz veri), F3 (gorsel), F10 (istatistik) ile kesinlestirme; rapor F5 ile.
 
 ## Process
 
@@ -56,7 +56,7 @@ Veri analizi, insight cikarma, korelasyon/hipotez testi.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Bulgu ozeti, hipotez/sonuc tablosu, grafik onerisi (F3'e gecis), metrik tanimlari ve sinirliliklar.
 
 ## When to Use
 - Kesfedici veri analizi (EDA)

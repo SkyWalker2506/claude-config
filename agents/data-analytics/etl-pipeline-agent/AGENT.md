@@ -37,7 +37,7 @@ ETL pipeline olusturma, veri aktarim.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+F1/F9 giris kalitesi; dagitim F8 (deployment) ile; izleme G4 ile.
 
 ## Process
 
@@ -56,7 +56,7 @@ ETL pipeline olusturma, veri aktarim.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+DAG veya pipeline tanimi, schedule, SLI/alert listesi, idempotent load stratejisi, rollback adimlari.
 
 ## When to Use
 - Extract-Transform-Load pipeline scripti

@@ -37,7 +37,7 @@ Backlog temizligi, onceliklendirme, stale issue tespiti.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+I2 backlog; I3 detay; I9 retro aksiyonlari.
 
 ## Process
 
@@ -56,7 +56,7 @@ Backlog temizligi, onceliklendirme, stale issue tespiti.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Oncelik sirasi, story map ozeti, silinen/ertelenen maddeler ve gerekce.
 
 ## When to Use
 - Stale issue tespiti (30+ gun hareketsiz)

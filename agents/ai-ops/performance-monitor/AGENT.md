@@ -37,7 +37,7 @@ Token kullanimi ve response time takibi.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+G2 kalite; kota yonetimi CLAUDE.md; maliyet raporu.
 
 ## Process
 
@@ -56,7 +56,7 @@ Token kullanimi ve response time takibi.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Token/latency ozeti, budget karsilastirmasi, trend notu, tasarruf onerisi.
 
 ## When to Use
 - Gunluk token raporu (model bazli)

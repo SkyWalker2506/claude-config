@@ -37,7 +37,7 @@ Jupyter notebook olusturma, analiz.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+F4 prototip; production CI G8; reproducibility F9 ile.
 
 ## Process
 
@@ -56,7 +56,7 @@ Jupyter notebook olusturma, analiz.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Notebook veya script listesi, kernel/env, cikti hucresi ozeti, `requirements`/`environment` notu.
 
 ## When to Use
 - Jupyter notebook hucresi olusturma ve duzenleme

@@ -37,7 +37,7 @@ Log analizi ve hata pattern tespiti.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+G3 hata ayiklama; G9 maliyet; guvenlik B13.
 
 ## Process
 
@@ -56,7 +56,7 @@ Log analizi ve hata pattern tespiti.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Pattern ozeti, ornek log satirlari (maskeli), korelasyon notu, oneri kurali.
 
 ## When to Use
 - Watchdog loglarini analiz (`~/.watchdog/`)

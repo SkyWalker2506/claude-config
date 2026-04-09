@@ -37,7 +37,7 @@ Istatistiksel analiz — hipotez testi, regresyon, Bayesian.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+F2 hipotez; A/B F12 oyun; raporlama F5.
 
 ## Process
 
@@ -56,7 +56,7 @@ Istatistiksel analiz — hipotez testi, regresyon, Bayesian.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Model varsayimlari, p-degeri/guven araligi tablosu, etki buyuklugu, alternatif model notu.
 
 ## When to Use
 - Hipotez testi (t-test, chi-square, ANOVA)

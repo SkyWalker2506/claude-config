@@ -37,7 +37,7 @@ Buyuk gorevi alt gorevlere bolme, Jira subtask olusturma.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+I2 scope; B* implement; DoD knowledge.
 
 ## Process
 
@@ -56,7 +56,7 @@ Buyuk gorevi alt gorevlere bolme, Jira subtask olusturma.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Epic alt task listesi, tahmin ve bagimlilik, tanimlanan DoD, siraya konan sira.
 
 ## When to Use
 - Epic/story'yi subtask'lara ayirma

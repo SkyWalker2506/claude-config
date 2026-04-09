@@ -38,7 +38,7 @@ Gelen gorevi dogru Jira projesine ve sprint'e yonlendirir, durum gecislerini yon
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+A2 gorev analizi; I2/I4 kapasite; lock docs.
 
 ## Process
 
@@ -57,7 +57,7 @@ Gelen gorevi dogru Jira projesine ve sprint'e yonlendirir, durum gecislerini yon
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Hedef proje/board, issue key listesi, transition ozeti, atanan sprint ve sahip.
 
 ## When to Use
 - Issue tipi tespiti (bug, feature, task, spike)

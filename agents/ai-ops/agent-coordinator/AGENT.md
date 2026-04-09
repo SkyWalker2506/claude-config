@@ -38,7 +38,7 @@ Coklu agent orkestrasyonu, paralel dispatch yonetimi, concurrency control.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+A2 routing; B* implement; watchdog ve heartbeat kurallari.
 
 ## Process
 
@@ -57,7 +57,7 @@ Coklu agent orkestrasyonu, paralel dispatch yonetimi, concurrency control.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Gorev dagitim ozeti, agent listesi ve sira, bagimlilik grafigi (metin), basarisiz adim ve retry.
 
 ## When to Use
 - Paralel agent calistirma (Mac: max 3, Desktop: max 5)

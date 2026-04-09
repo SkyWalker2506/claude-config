@@ -38,7 +38,7 @@ Claude Code, Ollama, MCP sunuculari ve proje bagimliliklar icin yeni surum varsa
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+G4 semver; marketplace plugin; breaking change.
 
 ## Process
 
@@ -57,7 +57,7 @@ Claude Code, Ollama, MCP sunuculari ve proje bagimliliklar icin yeni surum varsa
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Surum karsilastirmasi, changelog ozeti, risk seviyesi, guncelleme onerisi ve zamanlama.
 
 ## When to Use
 - Claude Code CLI surum kontrolu

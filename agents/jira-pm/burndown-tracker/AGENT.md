@@ -37,7 +37,7 @@ Sprint burndown ve velocity takibi.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+I2 plan; I4 rapor; scope degisimi tespiti.
 
 ## Process
 
@@ -56,7 +56,7 @@ Sprint burndown ve velocity takibi.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Burn/burnup degerleri, velocity, sapma analizi, duzeltici oneri.
 
 ## When to Use
 - Sprint burndown grafik verisi

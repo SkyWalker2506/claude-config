@@ -37,7 +37,7 @@ Config ve agent-memory yedekleme/geri yukleme.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+G4 config; disaster recovery; veri G9.
 
 ## Process
 
@@ -56,7 +56,7 @@ Config ve agent-memory yedekleme/geri yukleme.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Yedek konumu, boyut, restore test sonucu, schedule ve retention, basarisiz job notu.
 
 ## When to Use
 - `~/.claude/` dizini yedekleme

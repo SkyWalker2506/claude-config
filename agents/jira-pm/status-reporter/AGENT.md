@@ -38,7 +38,7 @@ Sprint ilerleme durumu, burndown ozeti ve team dashboard'u olusturur. `/dashboar
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+I2 ilerleme; I7 metrik; paydas raporu sablonu.
 
 ## Process
 
@@ -57,7 +57,7 @@ Sprint ilerleme durumu, burndown ozeti ve team dashboard'u olusturur. `/dashboar
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Dashboard ozeti, trend cumleleri, blokaj listesi, sonraki adimlar.
 
 ## When to Use
 - Sprint burndown hesabi (tamamlanan / kalan SP)

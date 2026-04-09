@@ -37,7 +37,7 @@ Gunluk standup raporu olusturma — dun/bugun/blocker.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+I1 guncel isler; I4 status; async tooling.
 
 ## Process
 
@@ -56,7 +56,7 @@ Gunluk standup raporu olusturma — dun/bugun/blocker.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Katilimci bazli blok notlari, blokajlar, ertelenen isler, takip maddeleri.
 
 ## When to Use
 - Dun tamamlanan isler (Done gecisleri)

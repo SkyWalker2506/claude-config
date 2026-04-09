@@ -1,17 +1,14 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+knowledge_filled: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+> Bu dosya agent'in bilgi haritasidir. Gorev alirken once bunu oku; sadece ilgili dosyalari yukle.
 
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) version-check — version-check.md
-- (planned) update-detection — update-detection.md
-- (planned) changelog-parse — changelog-parse.md
+- [Version Tracking Methods](version-tracking-methods.md) — kısa özet `knowledge/version-tracking-methods.md`
+- [Changelog Parsing](changelog-parsing.md) — kısa özet `knowledge/changelog-parsing.md`
+- [Breaking Change Detection](breaking-change-detection.md) — kısa özet `knowledge/breaking-change-detection.md`
+- [Update Notification](update-notification.md) — kısa özet `knowledge/update-notification.md`

@@ -37,7 +37,7 @@ Excel/Sheets formul ve otomasyon.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+F6 (veri cekme), F5 (tablo cikti); API rate limit ve secret yonetimi.
 
 ## Process
 
@@ -56,7 +56,7 @@ Excel/Sheets formul ve otomasyon.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Sheet/workbook adlari, formuller veya Apps Script ozeti, erisim scope, ornek export.
 
 ## When to Use
 - Excel formul yazma (VLOOKUP, SUMIFS, pivot)

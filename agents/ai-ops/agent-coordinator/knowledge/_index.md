@@ -1,17 +1,14 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+knowledge_filled: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+> Bu dosya agent'in bilgi haritasidir. Gorev alirken once bunu oku; sadece ilgili dosyalari yukle.
 
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) multi-agent — multi-agent.md
-- (planned) orchestration — orchestration.md
-- (planned) parallel-dispatch — parallel-dispatch.md
+- [Multi Agent Orchestration](multi-agent-orchestration.md) — kısa özet `knowledge/multi-agent-orchestration.md`
+- [Parallel Dispatch Patterns](parallel-dispatch-patterns.md) — kısa özet `knowledge/parallel-dispatch-patterns.md`
+- [Agent Communication](agent-communication.md) — kısa özet `knowledge/agent-communication.md`
+- [Task Dependency Graph](task-dependency-graph.md) — kısa özet `knowledge/task-dependency-graph.md`

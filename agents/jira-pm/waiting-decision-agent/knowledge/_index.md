@@ -1,17 +1,14 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+knowledge_filled: true
+total_topics: 4
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
+> Bu dosya agent'in bilgi haritasidir. Gorev alirken once bunu oku; sadece ilgili dosyalari yukle.
 
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) decision — decision.md
-- (planned) triage — triage.md
-- (planned) priority — priority.md
+- [Decision Framework](decision-framework.md) — kısa özet `knowledge/decision-framework.md`
+- [Priority Matrix](priority-matrix.md) — kısa özet `knowledge/priority-matrix.md`
+- [Blocker Escalation](blocker-escalation.md) — kısa özet `knowledge/blocker-escalation.md`
+- [Decision Log Format](decision-log-format.md) — kısa özet `knowledge/decision-log-format.md`

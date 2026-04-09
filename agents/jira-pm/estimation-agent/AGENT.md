@@ -37,7 +37,7 @@ Story point tahmini, complexity analizi.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+I2 planlama; I3 parca buyuklugu; I7 gerceklesen.
 
 ## Process
 
@@ -56,7 +56,7 @@ Story point tahmini, complexity analizi.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Tahmin yontemi, story point dagilimi, sapma analizi, bir sonraki sprint icin ogrenilenler.
 
 ## When to Use
 - Story point tahmini (Fibonacci: 1/2/3/5/8/13)

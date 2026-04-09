@@ -37,7 +37,7 @@ Veri temizleme, normalizasyon, pandas isleme.
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+F2 (analiz), F9 (kalite), ETL (F4) ile veri akisi; cikti temiz DataFrame/CSV.
 
 ## Process
 
@@ -56,7 +56,7 @@ Veri temizleme, normalizasyon, pandas isleme.
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Temizlenmis veri ozeti (satir/sutun sayisi), uygulanan kurallar listesi, ornek kod veya notebook parcasi, risk notu.
 
 ## When to Use
 - Eksik/hatali veri tespiti ve duzeltme

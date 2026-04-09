@@ -37,7 +37,7 @@ Model sagligi ve latency kontrolu. Ollama model durumu, response time olcumu, mo
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 
 ### Bridge
-{Hangi alanlarla, hangi noktada kesisim var}
+G9 performans; model registry; uretim G10.
 
 ## Process
 
@@ -56,7 +56,7 @@ Model sagligi ve latency kontrolu. Ollama model durumu, response time olcumu, mo
 7. Onemli kararlari/ogrenimleri memory'ye kaydet
 
 ## Output Format
-{Ciktinin formati — dosya/commit/PR/test raporu.}
+Metrik paneli ozeti (latency/quality), alarm esikleri, karsilastirma tablosu, oneri aksiyonu.
 
 ## When to Use
 - Ollama model durumu sorgusu
