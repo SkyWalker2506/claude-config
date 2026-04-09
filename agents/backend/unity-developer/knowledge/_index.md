@@ -1,19 +1,12 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 5
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) unity — unity.md
-- (planned) csharp — csharp.md
-- (planned) ecs — ecs.md
-- (planned) dots — dots.md
-- (planned) shader — shader.md
+- [Unity ECS and DOTS Guide](unity-ecs-dots-guide.md) — entities, systems
+- [Shader Programming Basics](shader-programming-basics.md) — URP, Shader Graph
+- [Unity Editor Tooling](unity-editor-tooling.md) — EditorWindow, inspectors
+- [Unity Performance Profiling](unity-performance-profiling.md) — Profiler, GC
+- [UPM Package Development](upm-package-development.md) — package.json, embedded
