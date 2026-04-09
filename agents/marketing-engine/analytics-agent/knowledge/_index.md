@@ -1,17 +1,10 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 3
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) ga4 — ga4.md
-- (planned) mixpanel — mixpanel.md
-- (planned) reporting — reporting.md
+- [Analytics Agent Core Patterns](ga4-core-patterns.md) — Core patterns for Analytics Agent
+- [Analytics Agent Anti-Patterns](ga4-anti-patterns.md) — Common mistakes and anti-patterns
+- [Analytics Agent Verification Checklist](ga4-verification.md) — Verification and delivery checklist

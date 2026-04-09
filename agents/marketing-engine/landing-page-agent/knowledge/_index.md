@@ -1,17 +1,10 @@
 ---
 last_updated: 2026-04-09
-total_topics: 0
+total_topics: 3
 ---
 
 # Knowledge Index
 
-> Bu dosya agent'in bilgi haritasidir. Her satir bir bilgi dosyasina isaret eder.
-> Agent gorev aldiginda bu index'i okur ve ilgili dosyalari yukler.
-> Bos satirlar henuz olusturulmamis (setup ile doldurulacak) konulari gosterir.
-
-<!-- Format: - [Konu Adi](dosya.md) — tek satirlik aciklama -->
-
-<!-- Planned topics -->
-- (planned) landing-page — landing-page.md
-- (planned) stitch — stitch.md
-- (planned) conversion — conversion.md
+- [Landing Page Agent Core Patterns](landing-page-core-patterns.md) — Core patterns for Landing Page Agent
+- [Landing Page Agent Anti-Patterns](landing-page-anti-patterns.md) — Common mistakes and anti-patterns
+- [Landing Page Agent Verification Checklist](landing-page-verification.md) — Verification and delivery checklist
