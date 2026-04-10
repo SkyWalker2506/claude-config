@@ -35,6 +35,13 @@ routes:
     service: orders-svc
 ```
 
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| Gateway’de iş mantığı | Dağıtık monolit |
+| Sınırsız body | DoS yüzeyi |
+
 ## Deep Dive Sources
 
 - [Microservices.io — API Gateway pattern](https://microservices.io/patterns/apigateway.html)

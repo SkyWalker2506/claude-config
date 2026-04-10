@@ -18,12 +18,27 @@ sources: 4
 
 **Storage:** Redis with atomic INCR + TTL.
 
+## Patterns & Decision Matrix
+
+| Algoritma | Ne zaman |
+|-----------|----------|
+| Token bucket | Burst toleransı gerekirse |
+| Sliding window | Adil dakika başına limit |
+| Fixed window | Basit sayaç; köşe spike riski |
+
 ## Code Examples
 
 ```lua
 -- Pseudocode: token bucket
 if tokens >= 1 then tokens -= 1; allow else deny
 ```
+
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| IP-only limit (CGNAT) | Yanlış kısıtlama |
+| Limit yanıtında veri sızıntısı | Enumeration |
 
 ## Deep Dive Sources
 

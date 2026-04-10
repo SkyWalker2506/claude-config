@@ -37,6 +37,13 @@ export default async function Page() {
 }
 ```
 
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| Her şeyi client component | Bundle şişer |
+| `fetch` önbelleği varsayılanına körü güven | Stale veri |
+
 ## Deep Dive Sources
 
 - [Next.js — App Router](https://nextjs.org/docs/app)

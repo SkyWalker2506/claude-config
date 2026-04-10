@@ -29,6 +29,13 @@ sources: 3
 const { data } = await supabase.from('posts').select('*').eq('published', true);
 ```
 
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| RLS test etmeden prod | Veri sızıntısı |
+| Service role key istemcide | Tam yetki |
+
 ## Deep Dive Sources
 
 - [Supabase — Row Level Security](https://supabase.com/docs/guides/auth/row-level-security)

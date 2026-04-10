@@ -16,6 +16,13 @@ sources: 3
 
 **2025–2026:** `socket.io` v4+; match client/server major versions.
 
+## Patterns & Decision Matrix
+
+| Ölçek | Mekanizma |
+|-------|-----------|
+| Tek node | Memory adapter |
+| Çok node | Redis adapter + sticky veya mesaj odası |
+
 ## Code Examples
 
 ```javascript
@@ -23,6 +30,13 @@ const io = require('socket.io')(server);
 const { createAdapter } = require('@socket.io/redis-adapter');
 io.adapter(createAdapter(pubClient, subClient));
 ```
+
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| Redis yokken çok node | Oda tutarsızlığı |
+| Sticky olmadan yanlış yönlendirme | Bağlantı kopması |
 
 ## Deep Dive Sources
 

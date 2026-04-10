@@ -17,12 +17,26 @@ sources: 3
 
 **GC:** Avoid per-frame `new` in hot paths; object pools.
 
+## Patterns & Decision Matrix
+
+| Sorun | İlk bakış |
+|-------|-----------|
+| CPU spike | Profiler Timeline + deep profile |
+| GC | Memory Profiler allocations |
+
 ## Code Examples
 
 ```text
 Unity Profiler → CPU Usage → search Update() cost
 Memory Profiler → capture → compare snapshots
 ```
+
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| Editor’da ölçüp build iddiası | Yanıltıcı |
+| Tek frame’e güven | Spike kaçırma |
 
 ## Deep Dive Sources
 

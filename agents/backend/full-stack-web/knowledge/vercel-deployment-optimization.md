@@ -18,11 +18,25 @@ sources: 3
 
 **2025–2026:** Fluid compute / concurrency settings per plan — check dashboard.
 
+## Patterns & Decision Matrix
+
+| Metrik | Önce bak |
+|--------|-----------|
+| TTFB yüksek | data fetch edge vs node runtime |
+| Cold start | function size + region |
+
 ## Code Examples
 
 ```tsx
 export const revalidate = 3600; // ISR seconds — segment config
 ```
+
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| Edge’de ağır Node API | Timeout |
+| env secret’ı loglama | Sızıntı |
 
 ## Deep Dive Sources
 

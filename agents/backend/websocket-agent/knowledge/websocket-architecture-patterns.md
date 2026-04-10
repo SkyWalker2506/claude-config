@@ -17,12 +17,26 @@ sources: 3
 
 **2025–2026:** Prefer managed gateways (API GW WebSocket) or dedicated WS service behind LB.
 
+## Patterns & Decision Matrix
+
+| Mimari | Seçim |
+|--------|--------|
+| İnce gateway | Sadece WS terminate |
+| BFF | Auth + rate limit edge |
+
 ## Code Examples
 
 ```javascript
 const ws = new WebSocket('wss://api.example.com/stream');
 ws.onmessage = (ev) => handle(JSON.parse(ev.data));
 ```
+
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| WSS’siz prod | MITM |
+| Heartbeat yok | Ölü bağlantı birikimi |
 
 ## Deep Dive Sources
 

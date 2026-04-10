@@ -17,6 +17,14 @@ sources: 3
 
 **Migrations:** `prisma migrate dev` — never edit applied SQL by hand in team settings.
 
+## Patterns & Decision Matrix
+
+| Durum | Şema kararı |
+|-------|-------------|
+| Çok-tenant | `tenantId` + composite unique |
+| Soft delete | `deletedAt` + filtreli unique index |
+| Büyük metin | Ayrı tablo veya depolama pointer |
+
 ## Code Examples
 
 ```prisma
@@ -26,6 +34,13 @@ model User {
   posts Post[]
 }
 ```
+
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| İlişkisiz cascade | Veri kaybı |
+| Index’siz sık filtre | Full scan |
 
 ## Deep Dive Sources
 

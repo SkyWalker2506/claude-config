@@ -38,3 +38,5 @@ python3 scripts/knowledge_quality_audit.py
 One-shot batch (historical / rerun only if restoring from git):
 
 - `batch_mr_code_examples.py` — inserts `## Code Examples` into listed `market-research/**/knowledge/*.md` files (already applied on main when present).
+
+- `batch_backend_patterns_anti.py` — inserts `## Patterns & Decision Matrix` / `## Anti-Patterns` for backend gap list; can reorder Anti after Code when needed.

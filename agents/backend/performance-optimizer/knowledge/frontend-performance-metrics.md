@@ -34,6 +34,13 @@ new PerformanceObserver((list) => {
 }).observe({ type: 'largest-contentful-paint', buffered: true });
 ```
 
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| Sadece lab Lighthouse | Field farkı |
+| CLS ölçmeden font swap | Layout shift |
+
 ## Deep Dive Sources
 
 - [web.dev — Core Web Vitals](https://web.dev/vitals/)

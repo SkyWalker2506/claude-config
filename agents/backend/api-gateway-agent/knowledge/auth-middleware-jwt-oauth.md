@@ -16,11 +16,26 @@ sources: 3
 
 **Pass claims:** Downstream via headers only if trusted network or re-sign.
 
+## Patterns & Decision Matrix
+
+| Senaryo | Seçim |
+|---------|--------|
+| Public SPA + API | JWT access short TTL + refresh cookie httpOnly |
+| S2S | mTLS veya client credentials + audience claim |
+| Mobile | PKCE OAuth; no embedded secrets |
+
 ## Code Examples
 
 ```nginx
 # Kong JWT plugin — claims validated before upstream
 ```
+
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| Uzun ömürlü JWT | Çalınırsa geniş pencere |
+| Claims’e güvenip authZ atlama | IDOR |
 
 ## Deep Dive Sources
 

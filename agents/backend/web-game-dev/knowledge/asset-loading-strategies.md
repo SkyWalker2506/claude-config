@@ -18,17 +18,24 @@ sources: 3
 
 **2025–2026:** HTTP/2 multiplexing; service worker cache for PWA games.
 
-## Anti-Patterns
+## Patterns & Decision Matrix
 
-| Bad | Why |
-|-----|-----|
-| Block main thread decode | Use workers where possible |
+| Varlık | Strateji |
+|--------|----------|
+| Büyük sahne | Chunk / streaming |
+| Tekrar kullanım | Pool + blob URL cache |
 
 ## Code Examples
 
 ```typescript
 this.load.atlas('sprites', 'assets/atlases/sprites.png', 'assets/atlases/sprites.json');
 ```
+
+## Anti-Patterns
+
+| Bad | Why |
+|-----|-----|
+| Block main thread decode | Use workers where possible |
 
 ## Deep Dive Sources
 
