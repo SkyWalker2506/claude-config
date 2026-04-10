@@ -1,6 +1,23 @@
+---
+last_updated: 2026-04-10
+refined_by: mega-prompt-alignment
+confidence: high
+sources: 3
+---
+
 # Claude ecosystem — GitHub README update order (J10)
 
-Cross-repo marketing and navigation must tell the same story. When refreshing public GitHub surfaces, follow this **fixed order** so visitors always enter from the agent story first, then plugins, then the full OS, then the workspace hub, then the profile.
+## Quick Reference
+
+Public GitHub yüzeylerini güncellerken **sabit sıra**: (1) agent catalog → (2) marketplace → (3) claude-config → (4) ClaudeHQ → (5) profil README. Amaç: ziyaretçi önce “ne çalıştırılır”ı, sonra plugin kurulumunu, sonra tam OS’i görür; sayılar drift ederse metinde registry’ye link ver, rakamı tek kaynakta tut.
+
+| Step | Repository | Role |
+|------|------------|------|
+| 1 | claude-agent-catalog | Giriş: envanter, dispatch |
+| 2 | claude-marketplace | Plugin UX, install |
+| 3 | claude-config | MCP, skills, hooks, registry |
+| 4 | ClaudeHQ | Çok proje workspace |
+| 5 | Profile README | Sahip kartı, dört link |
 
 ## Canonical order (do not skip)
 
@@ -38,3 +55,10 @@ gh repo view SkyWalker2506/SkyWalker2506 >/dev/null 2>&1 || \
 
 - Any task: “update our GitHub pages”, “align READMEs”, “Claude ecosystem marketing”.
 - After `claude-config` agent registry or plugin registry changes that affect counts — refresh step 1–3 first, then 4–5.
+
+## Deep Dive Sources
+
+> Agent derine inmesi gerekirse:
+- [claude-agent-catalog](https://github.com/SkyWalker2506/claude-agent-catalog) — public agent inventory
+- [claude-marketplace](https://github.com/SkyWalker2506/claude-marketplace) — plugin install UX
+- [claude-config](https://github.com/SkyWalker2506/claude-config) — `config/agent-registry.json`, `install.sh`
