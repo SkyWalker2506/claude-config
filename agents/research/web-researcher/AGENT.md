@@ -90,5 +90,14 @@ URL fetch, web arama, icerik ozetleme ve gercek dogrulama. Diger agent'larin bil
 - Derinlemesine teknik analiz → K3 (Documentation Fetcher) veya K4 (Trend Analyzer)
 - Pazar verisi gerektiriyorsa → H1 (Market Researcher)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Fact-Checking Methods | `knowledge/fact-checking-methods.md` |
+| 2 | Research Synthesis | `knowledge/research-synthesis.md` |
+| 3 | Source Credibility | `knowledge/source-credibility.md` |
+| 4 | Web Search Strategies | `knowledge/web-search-strategies.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

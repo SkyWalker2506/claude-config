@@ -84,5 +84,14 @@ Format secimi, tema ve aksiyon sahipleri, metrik trend (oylama/health), takip ta
 - Sprint planlama iyilestirmesi → I2 (Sprint Planner)
 - Surec degisikligi → A7 (Process Improvement Agent)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Action Item Tracking | `knowledge/action-item-tracking.md` |
+| 2 | Continuous Improvement | `knowledge/continuous-improvement.md` |
+| 3 | Retrospective Formats | `knowledge/retrospective-formats.md` |
+| 4 | Team Health Metrics | `knowledge/team-health-metrics.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

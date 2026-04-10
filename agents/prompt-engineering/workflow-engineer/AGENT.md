@@ -77,5 +77,17 @@ AI agent workflow'larini ve karar agaclarini tasarlarim. Gercek dunyada "Process
 - Skill formati → N7 (Skill Design Specialist)
 - Prompt tasarimi → N3 (Prompt Engineer)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Artifact Hand-off | `knowledge/artifact-handoff.md` |
+| 2 | Decision Trees | `knowledge/decision-trees.md` |
+| 3 | Error Handling Strategies | `knowledge/error-handling.md` |
+| 4 | Learnings | `knowledge/learnings.md` |
+| 5 | Pipeline Design | `knowledge/pipeline-design.md` |
+| 6 | State Machines | `knowledge/state-machines.md` |
+| 7 | Workflow Patterns | `knowledge/workflow-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

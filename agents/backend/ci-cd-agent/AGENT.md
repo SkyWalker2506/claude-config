@@ -93,5 +93,14 @@ GitHub Actions ve benzeri pipeline’lari tasarlar: build, test, guvenlik tarama
 - Infra / cluster → J2
 - Bagimlilik cozumu → B10
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Deployment: Blue-Green and Canary | `knowledge/deployment-blue-green-canary.md` |
+| 2 | Environment and Secrets Management | `knowledge/environment-secrets-management.md` |
+| 3 | GitHub Actions Best Practices | `knowledge/github-actions-best-practices.md` |
+| 4 | Pipeline Optimization | `knowledge/pipeline-optimization.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

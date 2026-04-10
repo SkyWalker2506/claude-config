@@ -93,5 +93,14 @@ LOD/draco ayarlari, before/after metrik, dosya boyutlari, platform hedefi.
 - 2D asset optimizasyonu → D7 (Icon & Asset Agent)
 - Kalite kaybi karari → kullaniciya danis
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Gltf Draco Compression | `knowledge/gltf-draco-compression.md` |
+| 2 | Lod Generation | `knowledge/lod-generation.md` |
+| 3 | Polygon Reduction Methods | `knowledge/polygon-reduction-methods.md` |
+| 4 | Texture Optimization | `knowledge/texture-optimization.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

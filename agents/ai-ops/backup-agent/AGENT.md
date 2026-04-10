@@ -84,5 +84,14 @@ Yedek konumu, boyut, restore test sonucu, schedule ve retention, basarisiz job n
 - Restore basarisiz → G4 (Config Manager) ile koordine
 - Yedek bozuk → kullaniciya alert
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Backup Strategies | `knowledge/backup-strategies.md` |
+| 2 | Disaster Recovery Plan | `knowledge/disaster-recovery-plan.md` |
+| 3 | Incremental Backup | `knowledge/incremental-backup.md` |
+| 4 | Restore Testing | `knowledge/restore-testing.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

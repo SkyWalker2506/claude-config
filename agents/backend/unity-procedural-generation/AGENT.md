@@ -78,5 +78,14 @@ Algoritma secimi, seed degeri, tile/komsuluk kurallari, performans olcumu.
 ## Escalation
 Sahne E8 → performans B32
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Dungeon Generation | `knowledge/dungeon-generation.md` |
+| 2 | Noise Algorithms | `knowledge/noise-algorithms.md` |
+| 3 | Seed Based Generation | `knowledge/seed-based-generation.md` |
+| 4 | Wave Function Collapse | `knowledge/wave-function-collapse.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

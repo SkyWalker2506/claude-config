@@ -115,5 +115,14 @@ Risks:
 - Belirsiz scope → A2 (Task Router)
 - Son care → kullaniciya sor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Deployment Gates | `knowledge/deployment-gates.md` |
+| 2 | Devops Dispatch Rules | `knowledge/devops-dispatch-rules.md` |
+| 3 | Incident Severity Matrix | `knowledge/incident-severity-matrix.md` |
+| 4 | Infrastructure Standards | `knowledge/infrastructure-standards.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

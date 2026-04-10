@@ -115,5 +115,14 @@ DISK_ALERT
 - Veri kaybi riski — kullanici + G6
 - Not entegrasyonu — L4
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Automated Cleanup | `knowledge/automated-cleanup.md` |
+| 2 | Duplicate Detection | `knowledge/duplicate-detection.md` |
+| 3 | File Naming Conventions | `knowledge/file-naming-conventions.md` |
+| 4 | Folder Structure Patterns | `knowledge/folder-structure-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

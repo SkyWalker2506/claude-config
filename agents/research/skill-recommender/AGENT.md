@@ -95,5 +95,14 @@ TOOLS: primary=… | alt=… | PoC_hours_est=…
 - Teknoloji seçimi için pazar / rakip derinliği → **K4 Trend Analyzer**
 - Kurumsal araç satın alma → **H10** + ilgili satış süreci
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Competency Matrix | `knowledge/competency-matrix.md` |
+| 2 | Learning Roadmap | `knowledge/learning-roadmap.md` |
+| 3 | Skill Gap Analysis | `knowledge/skill-gap-analysis.md` |
+| 4 | Tool Recommendation Framework | `knowledge/tool-recommendation-framework.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

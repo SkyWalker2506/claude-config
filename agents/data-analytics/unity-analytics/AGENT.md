@@ -78,5 +78,14 @@ Event sema listesi, funnel adimlari, dashboard linki veya CSV cikti, bilinen sap
 ## Escalation
 Oyun entegrasyonu B19 → playtest verisi F13 → performans darbogazi F12
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Ab Testing Games | `knowledge/ab-testing-games.md` |
+| 2 | Custom Event Design | `knowledge/custom-event-design.md` |
+| 3 | Player Funnel Analysis | `knowledge/player-funnel-analysis.md` |
+| 4 | Unity Analytics Setup | `knowledge/unity-analytics-setup.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -107,5 +107,14 @@ Blockers: {{none|list}}
 - Ic kaynak planlama → I2 (Sprint Planner)
 - CRM otomasyonu → O2 (CRM Agent)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Client Documentation | `knowledge/client-documentation.md` |
+| 2 | Handoff Protocol | `knowledge/handoff-protocol.md` |
+| 3 | Onboarding Checklist Design | `knowledge/onboarding-checklist-design.md` |
+| 4 | Welcome Sequence | `knowledge/welcome-sequence.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

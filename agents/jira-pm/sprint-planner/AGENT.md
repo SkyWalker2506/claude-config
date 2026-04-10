@@ -86,5 +86,14 @@ Sprint hedefi, kapasite tablosu, secilen issue listesi, risk ve bagimlilik notu.
 - Mimari degisiklik gerektiren is → B1 (Backend Architect)
 - Kaynak yetersizligi → A1 (Lead Orchestrator) + kullaniciya sor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Capacity Calculation | `knowledge/capacity-calculation.md` |
+| 2 | Sprint Goal Framework | `knowledge/sprint-goal-framework.md` |
+| 3 | Sprint Planning Methodology | `knowledge/sprint-planning-methodology.md` |
+| 4 | Velocity Tracking | `knowledge/velocity-tracking.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

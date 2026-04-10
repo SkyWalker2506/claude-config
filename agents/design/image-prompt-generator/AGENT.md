@@ -92,5 +92,14 @@ Model ve arac basligi, ana prompt bloklari (positive/negative), parametre tablo 
 - Asset optimizasyonu → D7 (Icon & Asset Agent)
 - Tasarim karari → kullaniciya danis
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Midjourney Prompt Syntax | `knowledge/midjourney-prompt-syntax.md` |
+| 2 | Negative Prompt Patterns | `knowledge/negative-prompt-patterns.md` |
+| 3 | Stable Diffusion Parameters | `knowledge/stable-diffusion-parameters.md` |
+| 4 | Style Reference Guide | `knowledge/style-reference-guide.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

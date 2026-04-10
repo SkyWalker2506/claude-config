@@ -84,5 +84,14 @@ Karar ozeti, secenekler ve skor, escalation gereksinimi, kayit linki veya yorum.
 - Routing gerekirse → I1 (Jira Router)
 - Kritik karar → A1 (Lead Orchestrator) + kullanici
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Blocker Escalation | `knowledge/blocker-escalation.md` |
+| 2 | Decision Framework | `knowledge/decision-framework.md` |
+| 3 | Decision Log Format | `knowledge/decision-log-format.md` |
+| 4 | Priority Matrix | `knowledge/priority-matrix.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

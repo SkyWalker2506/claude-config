@@ -116,5 +116,14 @@ AGENDA_SNIPPET (for L6)
 - Organizasyon politikasi (sadece belirli saatlerde toplanti) → A1 veya kullanici
 - Toplanti notu ve Jira aksiyonu → L6 + I8
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Calendar Management | `knowledge/calendar-management.md` |
+| 2 | Meeting Preparation | `knowledge/meeting-preparation.md` |
+| 3 | Scheduling Optimization | `knowledge/scheduling-optimization.md` |
+| 4 | Timezone Handling | `knowledge/timezone-handling.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

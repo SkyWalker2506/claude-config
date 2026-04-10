@@ -73,5 +73,17 @@ AI arac, framework ve model degerlendirme uzmani. Benchmark, feature karsilastir
 - Trend analizi → K4 (Trend Analyzer)
 - Mimari karar → N6 (AI Systems Architect)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Agent Frameworks Comparison | `knowledge/agent-frameworks.md` |
+| 2 | AI Coding Agents Comparison | `knowledge/ai-coding-agents.md` |
+| 3 | Competing Agent Systems — Architecture & Definition Patterns | `knowledge/competing-agent-systems.md` |
+| 4 | Evaluation Methods | `knowledge/evaluation-methods.md` |
+| 5 | Free Model Evaluation | `knowledge/free-models.md` |
+| 6 | Learnings | `knowledge/learnings.md` |
+| 7 | AI Memory Systems Comparison | `knowledge/memory-systems.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -115,5 +115,14 @@ Risks:
 - Belirsiz scope → A2 (Task Router)
 - Son care → kullaniciya sor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Backend Dispatch Rules | `knowledge/backend-dispatch-rules.md` |
+| 2 | Code Quality Gates | `knowledge/code-quality-gates.md` |
+| 3 | Pr Review Routing | `knowledge/pr-review-routing.md` |
+| 4 | Tech Debt Tracking | `knowledge/tech-debt-tracking.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

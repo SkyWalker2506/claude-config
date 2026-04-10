@@ -78,5 +78,14 @@ Bake ayarlari, probe yerlesim ozeti, reflection/volumetric parametreler, GPU mal
 ## Escalation
 Sahne E8 → cinematik E9 → profil F12
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Light Probe Placement | `knowledge/light-probe-placement.md` |
+| 2 | Lightmap Baking Guide | `knowledge/lightmap-baking-guide.md` |
+| 3 | Reflection Probe Setup | `knowledge/reflection-probe-setup.md` |
+| 4 | Volumetric Effects | `knowledge/volumetric-effects.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

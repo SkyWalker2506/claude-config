@@ -88,5 +88,14 @@ Gelir modeli analizi, birim ekonomi hesaplama.
 - Fiyatlandirma optimizasyonu → H4 (Pricing Strategist)
 - Pazar buyuklugu verisi gerekirse → H1 (Market Researcher)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Financial Projection | `knowledge/financial-projection.md` |
+| 2 | Pricing Strategy Framework | `knowledge/pricing-strategy-framework.md` |
+| 3 | Revenue Model Patterns | `knowledge/revenue-model-patterns.md` |
+| 4 | Unit Economics | `knowledge/unit-economics.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

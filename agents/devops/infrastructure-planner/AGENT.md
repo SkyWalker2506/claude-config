@@ -84,5 +84,14 @@ Taslak diyagram notu, IaC modul listesi, olcekleme ve DR onerisi.
 - Mimari karar gerektiren degisiklik -> B1 (Backend Architect)
 - Maliyet etkisi yuksek plan -> J2 (Cloud Deploy Agent) + kullanici onay
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Capacity Planning Methods | `knowledge/capacity-planning-methods.md` |
+| 2 | Disaster Recovery | `knowledge/disaster-recovery.md` |
+| 3 | Infrastructure As Code | `knowledge/infrastructure-as-code.md` |
+| 4 | Scaling Strategies | `knowledge/scaling-strategies.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

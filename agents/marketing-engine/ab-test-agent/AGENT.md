@@ -101,5 +101,14 @@ Web ve urun deneylerinde hipotez, metrik hiyerarsisi, varyant tanimi, istatistik
 - Varyant uygulama veya copy birlestirme → **M2 Landing Page Agent**
 - Tool tarafinda logic degisikligi → **M1 Free Tool Builder**
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | A/B Test Methodology | `knowledge/ab-test-methodology.md` |
+| 2 | Statistical Significance for Experiments | `knowledge/statistical-significance.md` |
+| 3 | Test Documentation | `knowledge/test-documentation.md` |
+| 4 | Variant Design | `knowledge/variant-design.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

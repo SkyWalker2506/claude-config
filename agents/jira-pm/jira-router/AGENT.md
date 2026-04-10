@@ -86,5 +86,14 @@ Hedef proje/board, issue key listesi, transition ozeti, atanan sprint ve sahip.
 - Sprint kapasitesi asilmissa → I2 (Sprint Planner)
 - Epic veya multi-sprint is → A1 (Lead Orchestrator)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Custom Field Patterns | `knowledge/custom-field-patterns.md` |
+| 2 | Issue Triage Criteria | `knowledge/issue-triage-criteria.md` |
+| 3 | Jira Workflow Automation | `knowledge/jira-workflow-automation.md` |
+| 4 | Jql Query Recipes | `knowledge/jql-query-recipes.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

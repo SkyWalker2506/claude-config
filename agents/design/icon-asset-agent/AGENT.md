@@ -93,5 +93,14 @@ SVG/sprite cikti yolu, boyut ve format tablosu, favicon/manifest paket listesi.
 - Gorsel uretimi → D6 (Image Prompt Generator)
 - Marka asset onay → kullaniciya danis
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Favicon Manifest Setup | `knowledge/favicon-manifest-setup.md` |
+| 2 | Responsive Image Formats | `knowledge/responsive-image-formats.md` |
+| 3 | Sprite Sheet Generation | `knowledge/sprite-sheet-generation.md` |
+| 4 | Svg Optimization | `knowledge/svg-optimization.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

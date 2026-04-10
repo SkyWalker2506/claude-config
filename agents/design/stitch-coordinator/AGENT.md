@@ -93,5 +93,14 @@ Bilesen listesi, breakpoint kararlari, dosya yollari, acik TODO ve bagimlilik no
 - Frontend entegrasyon → B3 (Frontend Coder)
 - Stitch API hatasi → kullaniciya rapor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Css Grid Flexbox Decision | `knowledge/css-grid-flexbox-decision.md` |
+| 2 | Design To Code Workflow | `knowledge/design-to-code-workflow.md` |
+| 3 | Responsive Breakpoints | `knowledge/responsive-breakpoints.md` |
+| 4 | Tailwind Component Patterns | `knowledge/tailwind-component-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -86,5 +86,14 @@ Bash ve Python ile otomasyon: cron/launchd, veri tasima, kucuk CLI araclari, ide
 ## Escalation
 - Guvenlik (credential scope) → B13
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Bash Scripting Best Practices | `knowledge/bash-scripting-best-practices.md` |
+| 2 | Cron and launchd Scheduling | `knowledge/cron-launchd-scheduling.md` |
+| 3 | Idempotent Script Design | `knowledge/idempotent-script-design.md` |
+| 4 | Python Automation Patterns | `knowledge/python-automation-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

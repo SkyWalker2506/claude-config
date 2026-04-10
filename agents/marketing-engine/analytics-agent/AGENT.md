@@ -101,5 +101,14 @@ GA4, GTM/sGTM ve Mixpanel uzerinde olay semasi, raporlama, funnel ve attribution
 - LP veya tool degisikligi gerekiyor → **M2** / **M1**
 - UX arastirmasi → **F2** (UX Research) uygunsa
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Attribution Models | `knowledge/attribution-models.md` |
+| 2 | Event Tracking Design | `knowledge/event-tracking-design.md` |
+| 3 | GA4 Setup Guide | `knowledge/ga4-setup-guide.md` |
+| 4 | Mixpanel Patterns | `knowledge/mixpanel-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

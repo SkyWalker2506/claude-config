@@ -78,5 +78,14 @@ String table yolu, locale listesi, font fallback, ceviri anahtari ornekleri.
 ## Escalation
 UI D11 → icerik B44 → build J11
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Asset Localization | `knowledge/asset-localization.md` |
+| 2 | Localization Package Guide | `knowledge/localization-package-guide.md` |
+| 3 | Rtl Support | `knowledge/rtl-support.md` |
+| 4 | String Table Management | `knowledge/string-table-management.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

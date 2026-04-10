@@ -83,5 +83,14 @@ Hook log ozeti, fail satirlari (kisa), auto-fix uygulandiysa diff ozeti, tekrar 
 ## Escalation
 - Yok — deterministic hook, hata varsa agent kendisi duzeltir
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Auto Fix Strategies | `knowledge/auto-fix-strategies.md` |
+| 2 | Dart Analysis Options | `knowledge/dart-analysis-options.md` |
+| 3 | Eslint Prettier Config | `knowledge/eslint-prettier-config.md` |
+| 4 | Pre Commit Hook Setup | `knowledge/pre-commit-hook-setup.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -117,5 +117,14 @@ Digest line for L3: "2 P0 threads; 4 replies overdue >48h business hours"
 - Hukuki / odeme / guvenlik sinyali → A1 Lead Orchestrator — insan onayi
 - Toplanti notu ile cakisik aksiyon net degil → L6 Meeting Notes Agent
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Action Item Extraction | `knowledge/action-item-extraction.md` |
+| 2 | Email Triage Patterns | `knowledge/email-triage-patterns.md` |
+| 3 | Priority Classification | `knowledge/priority-classification.md` |
+| 4 | Reply Draft Templates | `knowledge/reply-draft-templates.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

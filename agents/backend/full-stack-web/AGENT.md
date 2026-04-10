@@ -88,5 +88,15 @@ Next.js App Router, React, Tailwind, Prisma ve Supabase ile tam yigin web uygula
 ## Escalation
 - Guvenlik modeli belirsiz → B13
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Next.js App Router Patterns | `knowledge/nextjs-app-router-patterns.md` |
+| 2 | Prisma Schema Patterns | `knowledge/prisma-schema-patterns.md` |
+| 3 | Supabase Auth and Realtime | `knowledge/supabase-auth-realtime.md` |
+| 4 | Tailwind Design System | `knowledge/tailwind-design-system.md` |
+| 5 | Vercel Deployment Optimization | `knowledge/vercel-deployment-optimization.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -25,8 +25,8 @@
 |------|-------:|
 | P0 | 0 |
 | P1 | 0 |
-| P2 | 182 |
-| OK | 14 |
+| P2 | 0 |
+| OK | 196 |
 
 ## P0 — critical (fix first)
 
@@ -40,7 +40,7 @@
 
 ## P2 (add Knowledge map + optional polish)
 
-_Count: 182_ — full table omitted; run script and filter `tier=P2` or grep `no_knowledge_map` in git.
+_Count: 0_ — full table omitted; run script and filter `tier=P2` or grep `no_knowledge_map` in git.
 
 ## Proposed new agents (backlog)
 
@@ -61,5 +61,5 @@ _Add to `config/agent-registry.json` + `tools/sync_agent_registry_from_agents.py
 
 1. **P0** — bootstrap `knowledge/` + `memory/` + `Knowledge map`
 2. **P1** — bring topic count to ≥4
-3. **P2** — add `## Knowledge map` everywhere (scriptable)
+3. **P2** — `python3 scripts/inject_knowledge_maps.py` (adds `## Knowledge map` from `knowledge/*.md` H1 titles)
 4. **Quality** — deepen knowledge files per `cursor-prompts/mega-prompt.md`

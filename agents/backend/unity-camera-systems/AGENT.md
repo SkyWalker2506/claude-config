@@ -78,5 +78,14 @@ Cinemachine brain ayarlari, stack/oncelik, custom controller parametreleri.
 ## Escalation
 Cinematik E9 → gameplay B19
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Camera Stacking | `knowledge/camera-stacking.md` |
+| 2 | Cinemachine Advanced Rigs | `knowledge/cinemachine-advanced-rigs.md` |
+| 3 | Custom Camera Controller | `knowledge/custom-camera-controller.md` |
+| 4 | Split Screen Setup | `knowledge/split-screen-setup.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

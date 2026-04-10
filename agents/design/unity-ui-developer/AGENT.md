@@ -80,5 +80,14 @@ UI dokumu listesi, USS/UXML dosya yollari, binding ornekleri, test sahnesi adi.
 - UI animasyon/VFX → E6 (Unity VFX & Animation)
 - Web/design system → D1 (UI/UX Designer)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Responsive Layout Strategies | `knowledge/responsive-layout-strategies.md` |
+| 2 | Runtime Data Binding | `knowledge/runtime-data-binding.md` |
+| 3 | Ui Toolkit Vs Ugui | `knowledge/ui-toolkit-vs-ugui.md` |
+| 4 | Uss Uxml Patterns | `knowledge/uss-uxml-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

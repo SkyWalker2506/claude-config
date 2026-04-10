@@ -81,5 +81,14 @@ Tarama raporu: arac adi, bulgu listesi (dosya: satir maskeli), severity, suppres
 ## Escalation
 - Kritik bulgu → B13 (Security Auditor) tetikle
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Dependency Audit Automation | `knowledge/dependency-audit-automation.md` |
+| 2 | Sast Integration | `knowledge/sast-integration.md` |
+| 3 | Secret Scanning Tools | `knowledge/secret-scanning-tools.md` |
+| 4 | Trivy Snyk Comparison | `knowledge/trivy-snyk-comparison.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

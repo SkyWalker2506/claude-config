@@ -96,5 +96,15 @@ Veri katmani uzmani: SQL semalari, migrasyonlar, indeksleme, `EXPLAIN` ile sorgu
 - Servis veya shard mimarisi → B1
 - Uygulama katmani bottleneck → B12 veya B2
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | NoSQL: When to Use | `knowledge/nosql-when-to-use.md` |
+| 2 | PostgreSQL Indexing Guide | `knowledge/postgresql-indexing-guide.md` |
+| 3 | Query EXPLAIN Analysis | `knowledge/query-explain-analysis.md` |
+| 4 | Schema Versioning Patterns | `knowledge/schema-versioning-patterns.md` |
+| 5 | Zero-Downtime Migrations | `knowledge/zero-downtime-migrations.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

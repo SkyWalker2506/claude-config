@@ -116,5 +116,14 @@ Risks:
 - Belirsiz scope → A2 (Task Router)
 - Son care → kullaniciya sor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Circuit Breaker Patterns | `knowledge/circuit-breaker-patterns.md` |
+| 2 | Fallback Chains | `knowledge/fallback-chains.md` |
+| 3 | Graceful Degradation | `knowledge/graceful-degradation.md` |
+| 4 | Model Health Monitoring | `knowledge/model-health-monitoring.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

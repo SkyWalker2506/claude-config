@@ -84,5 +84,14 @@ Sunucu listesi, son ping sonucu, basarisiz tool ve kok neden, oneri fix veya dis
 - MCP tamamen cevapsiz → A3 (Fallback Manager)
 - 3+ MCP hata → A1 (Lead Orchestrator) alert
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Mcp Connectivity Testing | `knowledge/mcp-connectivity-testing.md` |
+| 2 | Mcp Error Patterns | `knowledge/mcp-error-patterns.md` |
+| 3 | Server Health Checks | `knowledge/server-health-checks.md` |
+| 4 | Tool Availability Monitoring | `knowledge/tool-availability-monitoring.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

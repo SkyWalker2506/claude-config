@@ -85,5 +85,14 @@ DAG veya pipeline tanimi, schedule, SLI/alert listesi, idempotent load stratejis
 - Kalite dogrulama → F9 (Data Quality Agent)
 - Prod veri erisimi → kullaniciya danıs
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Airflow Dagster Comparison | `knowledge/airflow-dagster-comparison.md` |
+| 2 | Data Pipeline Monitoring | `knowledge/data-pipeline-monitoring.md` |
+| 3 | Etl Design Patterns | `knowledge/etl-design-patterns.md` |
+| 4 | Incremental Load | `knowledge/incremental-load.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

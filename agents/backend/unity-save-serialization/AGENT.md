@@ -78,5 +78,14 @@ Serialize format, migration adimi, bulut endpoint, geri yukleme testi.
 ## Escalation
 Backend B2 → B40 servisleri → guvenlik B13
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Cloud Save Patterns | `knowledge/cloud-save-patterns.md` |
+| 2 | Json Binary Serialization | `knowledge/json-binary-serialization.md` |
+| 3 | Playerprefs Alternatives | `knowledge/playerprefs-alternatives.md` |
+| 4 | Save System Architecture | `knowledge/save-system-architecture.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

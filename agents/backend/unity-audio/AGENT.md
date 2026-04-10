@@ -78,5 +78,14 @@ Mixer grup yapisi, spatial ayarlar, bank/event listesi, platform ses limiti.
 ## Escalation
 Gameplay B19 → build platform B33
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Adaptive Music System | `knowledge/adaptive-music-system.md` |
+| 2 | Audio Mixer Architecture | `knowledge/audio-mixer-architecture.md` |
+| 3 | Fmod Wwise Comparison | `knowledge/fmod-wwise-comparison.md` |
+| 4 | Spatial Audio Guide | `knowledge/spatial-audio-guide.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

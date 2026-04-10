@@ -116,5 +116,14 @@ Risks:
 - Belirsiz scope → A2 (Task Router)
 - Son care → kullaniciya sor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Escalation Protocols | `knowledge/escalation-protocols.md` |
+| 2 | Prioritization Methods | `knowledge/prioritization-methods.md` |
+| 3 | Risk Assessment Framework | `knowledge/risk-assessment-framework.md` |
+| 4 | Strategic Planning | `knowledge/strategic-planning.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

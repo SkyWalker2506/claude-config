@@ -86,5 +86,14 @@ Dashboard ozeti, trend cumleleri, blokaj listesi, sonraki adimlar.
 - Kritik bloke → A1 (Lead Orchestrator) + kullaniciya alert
 - Sprint bitmek uzere + cok is kaldi → I2 (Sprint Planner) re-plan
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Burndown Chart Analysis | `knowledge/burndown-chart-analysis.md` |
+| 2 | Dashboard Design Jira | `knowledge/dashboard-design-jira.md` |
+| 3 | Sprint Progress Metrics | `knowledge/sprint-progress-metrics.md` |
+| 4 | Stakeholder Reporting | `knowledge/stakeholder-reporting.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

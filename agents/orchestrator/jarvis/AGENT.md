@@ -120,5 +120,15 @@ Musab Kara'nin kisisel muhendislik asistani ve tum projelerin giris noktasi. Her
 - Kullanici onay gereken isler → kullaniciya sor
 - Otonom modda kullanici yok → Telegram ile bildir
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Agent Dispatch Rules | `knowledge/agent-dispatch-rules.md` |
+| 2 | Cross-Project Patterns | `knowledge/cross-project-patterns.md` |
+| 3 | Project Ecosystem | `knowledge/project-ecosystem.md` |
+| 4 | Session Management | `knowledge/session-management.md` |
+| 5 | User Preferences — Musab Kara | `knowledge/user-preferences.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

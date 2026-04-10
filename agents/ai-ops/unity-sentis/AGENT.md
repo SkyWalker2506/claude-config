@@ -78,5 +78,14 @@ ONNX/Sentis asset yolu, input/output tensor boyutlari, latency olcumu, fallback 
 ## Escalation
 ML-Agents egitim G11 → oyun mantigi B19 → profil F12
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Npc Ai With Sentis | `knowledge/npc-ai-with-sentis.md` |
+| 2 | On Device Inference | `knowledge/on-device-inference.md` |
+| 3 | Onnx Optimization | `knowledge/onnx-optimization.md` |
+| 4 | Sentis Model Import | `knowledge/sentis-model-import.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

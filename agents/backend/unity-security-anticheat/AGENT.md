@@ -78,5 +78,14 @@ Client obfuscation adimlari, server endpoint, anti-cheat telemetri, false positi
 ## Escalation
 B2 backend → B13 guvenlik
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Cheat Detection Patterns | `knowledge/cheat-detection-patterns.md` |
+| 2 | Code Obfuscation Tools | `knowledge/code-obfuscation-tools.md` |
+| 3 | Memory Protection | `knowledge/memory-protection.md` |
+| 4 | Server Side Validation | `knowledge/server-side-validation.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

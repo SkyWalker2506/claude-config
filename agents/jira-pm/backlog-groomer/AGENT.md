@@ -84,5 +84,14 @@ Oncelik sirasi, story map ozeti, silinen/ertelenen maddeler ve gerekce.
 - Sprint planlama → I2 (Sprint Planner)
 - Task bolunme gerekirse → I3 (Task Decomposer)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Backlog Hygiene | `knowledge/backlog-hygiene.md` |
+| 2 | Backlog Prioritization Methods | `knowledge/backlog-prioritization-methods.md` |
+| 3 | Epic Decomposition | `knowledge/epic-decomposition.md` |
+| 4 | Story Mapping | `knowledge/story-mapping.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

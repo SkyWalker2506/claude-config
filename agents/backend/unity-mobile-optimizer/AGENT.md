@@ -78,5 +78,14 @@ IL2CPP ayarlari, adaptive perf, termal test, bellek budce tablosu.
 ## Escalation
 Profil F12 → J11 pipeline
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Adaptive Performance | `knowledge/adaptive-performance.md` |
+| 2 | Il2Cpp Optimization | `knowledge/il2cpp-optimization.md` |
+| 3 | Mobile Memory Budget | `knowledge/mobile-memory-budget.md` |
+| 4 | Thermal Throttling | `knowledge/thermal-throttling.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

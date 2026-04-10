@@ -85,5 +85,14 @@ Render kuyrugu konfigi, frame araligi, cikti formatlari ve yollar, hata log ozet
 - Asset boyut sorunu → E5 (3D Asset Optimizer)
 - GPU/donanim sorunu → kullaniciya rapor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Batch Render Setup | `knowledge/batch-render-setup.md` |
+| 2 | Output Format Guide | `knowledge/output-format-guide.md` |
+| 3 | Render Farm Patterns | `knowledge/render-farm-patterns.md` |
+| 4 | Render Queue Management | `knowledge/render-queue-management.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -84,5 +84,14 @@ Epic alt task listesi, tahmin ve bagimlilik, tanimlanan DoD, siraya konan sira.
 - Sprint kapasitesi asimi → I2 (Sprint Planner)
 - Routing karari → I1 (Jira Router)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Definition Of Done | `knowledge/definition-of-done.md` |
+| 2 | Estimation Techniques | `knowledge/estimation-techniques.md` |
+| 3 | Subtask Templates | `knowledge/subtask-templates.md` |
+| 4 | Task Splitting Patterns | `knowledge/task-splitting-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

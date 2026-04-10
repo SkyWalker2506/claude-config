@@ -87,5 +87,14 @@ INTEGRATION_EST: [h_min, h_max]
 - Kod entegrasyonu ve refactor → **B19**
 - Motor yükseltme → **K15**
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Asset Store Evaluation | `knowledge/asset-store-evaluation.md` |
+| 2 | Integration Complexity | `knowledge/integration-complexity.md` |
+| 3 | License Risk Assessment | `knowledge/license-risk-assessment.md` |
+| 4 | Package Comparison Framework | `knowledge/package-comparison-framework.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

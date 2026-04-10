@@ -116,5 +116,14 @@ Risks:
 - Belirsiz scope → A2 (Task Router)
 - Son care → kullaniciya sor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Context Window Management | `knowledge/context-window-management.md` |
+| 2 | Cost Optimization Strategies | `knowledge/cost-optimization-strategies.md` |
+| 3 | Model Pricing Comparison | `knowledge/model-pricing-comparison.md` |
+| 4 | Token Counting Methods | `knowledge/token-counting-methods.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

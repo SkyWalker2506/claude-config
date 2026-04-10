@@ -90,5 +90,14 @@ SEO denetimi, anahtar kelime arastirmasi, meta tag optimizasyonu ve teknik SEO k
 - Teknik SEO sorunu (crawl engeli, duplicate content) → B3 (Frontend Coder)
 - Icerik stratejisi → H1 (Market Researcher)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Keyword Research Tools | `knowledge/keyword-research-tools.md` |
+| 2 | Meta Tag Optimization | `knowledge/meta-tag-optimization.md` |
+| 3 | SEO Audit Checklist | `knowledge/seo-audit-checklist.md` |
+| 4 | Technical SEO Guide | `knowledge/technical-seo-guide.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

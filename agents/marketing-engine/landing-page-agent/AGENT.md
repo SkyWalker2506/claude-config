@@ -103,5 +103,14 @@ Ornek: `docs/lp/q2-ap-campaign.md` (metin + section ID'ler), Figma/Stitch link, 
 - Tool veya API entegrasyonu → **M1 Free Tool Builder**
 - Olay eksik / rapor uyusmuyor → **M4 Analytics Agent**
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | A/B Testing on Landing Pages | `knowledge/ab-test-landing.md` |
+| 2 | Conversion Copywriting | `knowledge/conversion-copywriting.md` |
+| 3 | Hero Section Patterns | `knowledge/hero-section-patterns.md` |
+| 4 | Landing Page Anatomy | `knowledge/landing-page-anatomy.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

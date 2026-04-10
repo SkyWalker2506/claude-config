@@ -89,5 +89,15 @@ Profil, olcum ve yuk testi ile gecikme ve maliyeti dusurur: CPU/I/O ayristirmasi
 - Mimari shard → B1
 - Guvenlik (DoS riski) → B13
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Caching Strategies and Layers | `knowledge/caching-strategies-layers.md` |
+| 2 | Database Query Optimization | `knowledge/database-query-optimization.md` |
+| 3 | Frontend Performance Metrics | `knowledge/frontend-performance-metrics.md` |
+| 4 | Load Testing Methodology | `knowledge/load-testing-methodology.md` |
+| 5 | Profiling Tools Guide | `knowledge/profiling-tools-guide.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

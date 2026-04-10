@@ -85,5 +85,14 @@ Notebook veya script listesi, kernel/env, cikti hucresi ozeti, `requirements`/`e
 - Istatistik yontem → F10 (Statistics Agent)
 - Kernel/ortam sorunu → kullaniciya rapor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Ipywidgets Interactive | `knowledge/ipywidgets-interactive.md` |
+| 2 | Jupyter Best Practices | `knowledge/jupyter-best-practices.md` |
+| 3 | Notebook Reproducibility | `knowledge/notebook-reproducibility.md` |
+| 4 | Notebook To Production | `knowledge/notebook-to-production.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -78,5 +78,14 @@ Toplama yontemi, orneklem buyuklugu, heatmap/session linki, etik not ve PII mask
 ## Escalation
 Tasarim geri bildirimi B19 → analytics F11 → KVKK/PII konulari kullaniciya
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Heatmap Generation | `knowledge/heatmap-generation.md` |
+| 2 | Player Behavior Metrics | `knowledge/player-behavior-metrics.md` |
+| 3 | Playtest Data Collection | `knowledge/playtest-data-collection.md` |
+| 4 | Session Replay Tools | `knowledge/session-replay-tools.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

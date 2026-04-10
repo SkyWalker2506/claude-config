@@ -86,5 +86,14 @@ Gorev dagitim ozeti, agent listesi ve sira, bagimlilik grafigi (metin), basarisi
 - Concurrency limit asildi → queue'ye al, kullaniciya bildir
 - Agent stuck → watchdog alarm, fallback tetikle
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Agent Communication | `knowledge/agent-communication.md` |
+| 2 | Multi Agent Orchestration | `knowledge/multi-agent-orchestration.md` |
+| 3 | Parallel Dispatch Patterns | `knowledge/parallel-dispatch-patterns.md` |
+| 4 | Task Dependency Graph | `knowledge/task-dependency-graph.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

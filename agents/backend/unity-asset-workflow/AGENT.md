@@ -78,5 +78,14 @@ Addressables gruplari, bundle stratejisi, postprocessor kurallari, import preset
 ## Escalation
 J11 CI → E5 optimizasyon
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Addressables Advanced | `knowledge/addressables-advanced.md` |
+| 2 | Asset Bundle Strategies | `knowledge/asset-bundle-strategies.md` |
+| 3 | Asset Postprocessor | `knowledge/asset-postprocessor.md` |
+| 4 | Import Preset Management | `knowledge/import-preset-management.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

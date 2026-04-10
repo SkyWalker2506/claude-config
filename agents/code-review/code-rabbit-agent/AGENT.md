@@ -86,5 +86,14 @@ CodeRabbit config veya kural diff'i, ornek yorum formati, CI entegrasyon adimlar
 - Ek manual review gerekirse → C3 (Local AI Reviewer)
 - CI review katmani gerekirse → C5 (CI Review Agent)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Ci Integration Patterns | `knowledge/ci-integration-patterns.md` |
+| 2 | Coderabbit Configuration | `knowledge/coderabbit-configuration.md` |
+| 3 | Review Comment Format | `knowledge/review-comment-format.md` |
+| 4 | Review Rule Customization | `knowledge/review-rule-customization.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

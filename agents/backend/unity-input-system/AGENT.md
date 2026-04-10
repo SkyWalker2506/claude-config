@@ -78,5 +78,14 @@ InputAction asset, rebind UI, cihaz test listesi, touch/gesture notu.
 ## Escalation
 B33 platform → erisilebilirlik B43
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Input Action Maps | `knowledge/input-action-maps.md` |
+| 2 | Multi Device Support | `knowledge/multi-device-support.md` |
+| 3 | Rebinding Ui | `knowledge/rebinding-ui.md` |
+| 4 | Touch Gesture Patterns | `knowledge/touch-gesture-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -78,5 +78,14 @@ Egitim konfigi, reward tanimi, curriculum asamalari, model cikti yolu ve metrik 
 ## Escalation
 Oyun AI davranisi B19 → Sentis inference G12 → performans F12
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Curriculum Learning | `knowledge/curriculum-learning.md` |
+| 2 | Ml Agents Setup | `knowledge/ml-agents-setup.md` |
+| 3 | Reinforcement Learning Unity | `knowledge/reinforcement-learning-unity.md` |
+| 4 | Training Environment Design | `knowledge/training-environment-design.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

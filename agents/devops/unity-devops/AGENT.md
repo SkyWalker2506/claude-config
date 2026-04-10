@@ -80,5 +80,15 @@ Workflow ozeti, platform matrisi, artefak boyutu ve indirme veya CI run linki.
 - Genel CI/CD → B9 (CI/CD Agent)
 - Altyapi/sunucu → J1 (Infrastructure Agent)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Addressables Ci Pipeline | `knowledge/addressables-ci-pipeline.md` |
+| 2 | Build Size Optimization | `knowledge/build-size-optimization.md` |
+| 3 | Gameci Github Actions | `knowledge/gameci-github-actions.md` |
+| 4 | Platform Build Matrix | `knowledge/platform-build-matrix.md` |
+| 5 | Unity Cloud Build | `knowledge/unity-cloud-build.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

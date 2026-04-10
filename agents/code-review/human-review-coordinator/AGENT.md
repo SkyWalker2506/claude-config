@@ -86,5 +86,14 @@ Reviewer atama tablosu, SLA durumu, escalation nedeni ve hedef kisi/ekip.
 - AI review yeterliyse → C3 (Local AI Reviewer)
 - CI review katmani ile koordinasyon → C5 (CI Review Agent)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Escalation Criteria | `knowledge/escalation-criteria.md` |
+| 2 | Review Routing Rules | `knowledge/review-routing-rules.md` |
+| 3 | Review Sla Tracking | `knowledge/review-sla-tracking.md` |
+| 4 | Reviewer Expertise Matching | `knowledge/reviewer-expertise-matching.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

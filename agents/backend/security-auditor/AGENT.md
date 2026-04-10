@@ -90,5 +90,15 @@ Tehdit modeli, OWASP odakli bulgu listesi, auth/token guvenligi, baslik ve CORS 
 - Kurumsal uyumluluk (SOC2, PCI) → guvenlik/compliance rolü
 - Aktif istismar → incident proseduru
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | CORS, CSP, and Security Headers | `knowledge/cors-csp-security-headers.md` |
+| 2 | Dependency Vulnerability Management | `knowledge/dependency-vulnerability-management.md` |
+| 3 | JWT Security Best Practices | `knowledge/jwt-security-best-practices.md` |
+| 4 | OWASP Top 10 (Web) — Risk-Focused View | `knowledge/owasp-top10-2025.md` |
+| 5 | Secret Detection and Prevention | `knowledge/secret-detection-prevention.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

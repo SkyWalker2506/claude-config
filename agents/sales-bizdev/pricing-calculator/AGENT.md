@@ -107,5 +107,14 @@ Handoff to O1: embed table ID {{id}} — assumptions bullet list
 - Stratejik fiyat ve paket karari → H4 (Pricing Strategist)
 - Teklif anlatimi ve musteri dili → O1 (Sales Proposal Agent)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Bundle Pricing Strategies | `knowledge/bundle-pricing-strategies.md` |
+| 2 | Cost Estimation Models | `knowledge/cost-estimation-models.md` |
+| 3 | Margin Calculation | `knowledge/margin-calculation.md` |
+| 4 | Quote Generation | `knowledge/quote-generation.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

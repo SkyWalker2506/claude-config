@@ -106,5 +106,15 @@ REST ve GraphQL uzerinden HTTP API implementasyonu yapan gelistirici: route/cont
 - Uretim bug kok nedeni → B7 (Bug Hunter)
 - Buyuk DB migration → B5 (Database Agent)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | DTO Mapping Patterns | `knowledge/dto-mapping-patterns.md` |
+| 2 | Error Handling Strategies | `knowledge/error-handling-strategies.md` |
+| 3 | GraphQL Schema Design | `knowledge/graphql-schema-design.md` |
+| 4 | REST API Conventions | `knowledge/rest-api-conventions.md` |
+| 5 | Service Layer Patterns | `knowledge/service-layer-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -116,5 +116,14 @@ Risks:
 - Belirsiz scope → A2 (Task Router)
 - Son care → kullaniciya sor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Context Compression | `knowledge/context-compression.md` |
+| 2 | Memory Hierarchy | `knowledge/memory-hierarchy.md` |
+| 3 | State Transfer Patterns | `knowledge/state-transfer-patterns.md` |
+| 4 | Summarization Techniques | `knowledge/summarization-techniques.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

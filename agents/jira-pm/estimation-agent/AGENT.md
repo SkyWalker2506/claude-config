@@ -84,5 +84,14 @@ Tahmin yontemi, story point dagilimi, sapma analizi, bir sonraki sprint icin ogr
 - Task bolunme gerekirse → I3 (Task Decomposer)
 - Sprint kapasite kontrolu → I2 (Sprint Planner)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Estimation Accuracy | `knowledge/estimation-accuracy.md` |
+| 2 | Planning Poker | `knowledge/planning-poker.md` |
+| 3 | Relative Estimation | `knowledge/relative-estimation.md` |
+| 4 | Story Point Estimation | `knowledge/story-point-estimation.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -78,5 +78,14 @@ Terrain katmanlari, grass distans ayari, stream tile notu, draw call tahmini.
 ## Escalation
 Level E8 → streaming B52 → performans F12
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Grass Rendering Optimization | `knowledge/grass-rendering-optimization.md` |
+| 2 | Terrain Sculpting Tools | `knowledge/terrain-sculpting-tools.md` |
+| 3 | Terrain Streaming | `knowledge/terrain-streaming.md` |
+| 4 | Vegetation System | `knowledge/vegetation-system.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

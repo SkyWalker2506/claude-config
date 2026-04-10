@@ -87,5 +87,14 @@ UPGRADE_STEPS: [1..n] | rollback_tag=…
 - Uygulama ve debug → **B19 Unity Developer**
 - Asset içerik seçimi → **K14**
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Beta Package Evaluation | `knowledge/beta-package-evaluation.md` |
+| 2 | Deprecation Migration | `knowledge/deprecation-migration.md` |
+| 3 | Unity Roadmap Tracking | `knowledge/unity-roadmap-tracking.md` |
+| 4 | Version Upgrade Guide | `knowledge/version-upgrade-guide.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

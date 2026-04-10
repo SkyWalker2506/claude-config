@@ -78,5 +78,14 @@ GC alloc raporu, pool boyutlari, NativeContainer kullanimi, profiler capture not
 ## Escalation
 F12 profil → B34 ECS → B32 mobil
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Gc Optimization | `knowledge/gc-optimization.md` |
+| 2 | Memory Profiler Workflow | `knowledge/memory-profiler-workflow.md` |
+| 3 | Native Containers Guide | `knowledge/native-containers-guide.md` |
+| 4 | Object Pooling Patterns | `knowledge/object-pooling-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

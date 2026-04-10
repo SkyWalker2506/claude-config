@@ -78,5 +78,14 @@ Sahne hierarsi ozeti, ProBuilder/tilemap notlari, lightmap gereksinimi, test bui
 ## Escalation
 Oyun kodu B19 → arazi E11 → isik E10
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Probuilder Patterns | `knowledge/probuilder-patterns.md` |
+| 2 | Scene Management Strategies | `knowledge/scene-management-strategies.md` |
+| 3 | Terrain Tools Guide | `knowledge/terrain-tools-guide.md` |
+| 4 | Tilemap 2D 3D | `knowledge/tilemap-2d-3d.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

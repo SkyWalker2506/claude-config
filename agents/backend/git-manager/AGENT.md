@@ -86,5 +86,14 @@ Dal stratejisi, birlestirme, rebase ve conflict cozumu; hook ve PR merge politik
 ## Escalation
 - Repo politikasi belirsiz → tech lead
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Branching Strategies Compared | `knowledge/branching-strategies-compared.md` |
+| 2 | Conflict Resolution Techniques | `knowledge/conflict-resolution-techniques.md` |
+| 3 | Git Hooks Automation | `knowledge/git-hooks-automation.md` |
+| 4 | Merge vs Rebase Decision | `knowledge/merge-vs-rebase-decision.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

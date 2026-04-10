@@ -78,5 +78,14 @@ Timeline asset yolu, Cinemachine rig listesi, kesme listesi, Recorder ayarlari.
 ## Escalation
 Gameplay B19 → isik E10 → ses B26
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Cinemachine Rig Recipes | `knowledge/cinemachine-rig-recipes.md` |
+| 2 | Cutscene Pipeline | `knowledge/cutscene-pipeline.md` |
+| 3 | Timeline Advanced Patterns | `knowledge/timeline-advanced-patterns.md` |
+| 4 | Unity Recorder Guide | `knowledge/unity-recorder-guide.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

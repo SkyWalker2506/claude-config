@@ -78,5 +78,14 @@ Sprite import, sorting layer, Spine/pixel perfect ayarlari, test sahnesi.
 ## Escalation
 UI D11 → B27 fizik
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | 2D Physics Patterns | `knowledge/2d-physics-patterns.md` |
+| 2 | Pixel Perfect Setup | `knowledge/pixel-perfect-setup.md` |
+| 3 | Spine Animation | `knowledge/spine-animation.md` |
+| 4 | Sprite Renderer Guide | `knowledge/sprite-renderer-guide.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

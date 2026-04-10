@@ -87,5 +87,14 @@ Gercek zamanli baglantilar: native WebSocket veya Socket.IO, oda yayini, olcekle
 ## Escalation
 - Kurumsal Kafka/streaming → B1
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Connection Lifecycle Management | `knowledge/connection-lifecycle-management.md` |
+| 2 | Pub-Sub Message Patterns | `knowledge/pub-sub-message-patterns.md` |
+| 3 | Socket.IO Scaling Strategies | `knowledge/socketio-scaling-strategies.md` |
+| 4 | WebSocket Architecture Patterns | `knowledge/websocket-architecture-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

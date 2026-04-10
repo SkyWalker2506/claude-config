@@ -84,5 +84,14 @@ Pattern ozeti, ornek log satirlari (maskeli), korelasyon notu, oneri kurali.
 - Kritik hata pattern → B7 (Bug Hunter) dispatch
 - Performans metrigi anormal → G9 (Performance Monitor)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Anomaly Detection | `knowledge/anomaly-detection.md` |
+| 2 | Log Aggregation Tools | `knowledge/log-aggregation-tools.md` |
+| 3 | Log Pattern Detection | `knowledge/log-pattern-detection.md` |
+| 4 | Structured Logging | `knowledge/structured-logging.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -87,5 +87,15 @@ Tarayici tabanli oyun: Phaser/Three.js/WebGL ile sahne, oyun dongusu, varlik yuk
 ## Escalation
 - Ag oyun mimarisi → B21 + B1
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Asset Loading Strategies | `knowledge/asset-loading-strategies.md` |
+| 2 | Game Loop Patterns | `knowledge/game-loop-patterns.md` |
+| 3 | Phaser Game Architecture | `knowledge/phaser-game-architecture.md` |
+| 4 | Three.js Scene Management | `knowledge/threejs-scene-management.md` |
+| 5 | WebGL Performance Optimization | `knowledge/webgl-performance-optimization.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

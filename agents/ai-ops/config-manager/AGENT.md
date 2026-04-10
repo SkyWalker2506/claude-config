@@ -84,5 +84,14 @@ Degisen anahtarlar listesi (deger yok), sema diff ozeti, rollback adimlari, dogr
 - Config catismasi → G1 (Update Checker) ile koordine
 - Registry bozulursa → A3 (Fallback Manager) alert
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Config Sync Strategies | `knowledge/config-sync-strategies.md` |
+| 2 | Environment Config | `knowledge/environment-config.md` |
+| 3 | Feature Flag Patterns | `knowledge/feature-flag-patterns.md` |
+| 4 | Settings Schema Validation | `knowledge/settings-schema-validation.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

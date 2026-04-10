@@ -116,5 +116,14 @@ Risks:
 - Belirsiz scope → A2 (Task Router)
 - Son care → kullaniciya sor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Capability Matching | `knowledge/capability-matching.md` |
+| 2 | Dag Planning | `knowledge/dag-planning.md` |
+| 3 | Load Balancing | `knowledge/load-balancing.md` |
+| 4 | Task Classification | `knowledge/task-classification.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

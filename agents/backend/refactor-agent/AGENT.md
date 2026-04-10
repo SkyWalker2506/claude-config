@@ -91,5 +91,14 @@ Davranisi degistirmeden kodu sadelestiren uzman: extract/move, dead code temizli
 - Mimari yeniden yapilandirma → B1
 - Guvenlik ile ilgili temizlik → B13
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Code Smells Detection | `knowledge/code-smells-detection.md` |
+| 2 | Dead Code Elimination | `knowledge/dead-code-elimination.md` |
+| 3 | Refactoring Catalog (Fowler) | `knowledge/refactoring-catalog-fowler.md` |
+| 4 | Safe Refactoring Workflow | `knowledge/safe-refactoring-workflow.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -87,5 +87,14 @@ Akademik makale ve teknik paper ozetleme.
 - Cok teknik / domain-specific icerik -> K1 (Web Researcher) ek kaynak
 - Bilgi tabani guncelleme -> K7 (Knowledge Base Agent)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Abstract Extraction | `knowledge/abstract-extraction.md` |
+| 2 | Academic Paper Structure | `knowledge/academic-paper-structure.md` |
+| 3 | Citation Tracking | `knowledge/citation-tracking.md` |
+| 4 | Literature Review | `knowledge/literature-review.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

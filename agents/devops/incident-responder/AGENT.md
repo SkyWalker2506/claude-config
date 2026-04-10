@@ -86,5 +86,14 @@ Olay zaman cizelgesi, RCA ozeti, aksiyon maddeleri ve sahip.
 - Veri kaybi riski → A1 + kullaniciya HEMEN sor
 - 30 dk icinde cozulemeyen incident → eskalasyon zinciri (A1 → kullanici)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Incident Response Playbook | `knowledge/incident-response-playbook.md` |
+| 2 | Post Mortem Template | `knowledge/post-mortem-template.md` |
+| 3 | Rollback Strategies | `knowledge/rollback-strategies.md` |
+| 4 | Root Cause Analysis Framework | `knowledge/root-cause-analysis-framework.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

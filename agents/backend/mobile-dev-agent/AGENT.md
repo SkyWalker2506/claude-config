@@ -211,5 +211,16 @@ Kurallar:
 - [ ] Kritik yol testi veya test gorevi notu
 - [ ] Dokumentasyon: README veya kod icinde kisa not (karmasik akis ise)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Firebase Integration (Flutter) | `knowledge/firebase-integration.md` |
+| 2 | Flutter Best Practices | `knowledge/flutter-best-practices.md` |
+| 3 | Material 3 in Flutter | `knowledge/material3-flutter.md` |
+| 4 | Platform Channels | `knowledge/platform-channels.md` |
+| 5 | Riverpod Patterns (flutter_riverpod 3.x) | `knowledge/riverpod-patterns.md` |
+| 6 | Testing Patterns | `knowledge/testing-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak.

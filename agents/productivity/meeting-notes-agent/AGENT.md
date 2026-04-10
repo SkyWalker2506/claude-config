@@ -113,5 +113,14 @@ Subject: [Follow-up] API sunset — 2026-04-10
 - Jira entegrasyon ve workflow → I8 / I1
 - Hukuki dil gereksinimi → A1 + insan
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Action Item Tracking | `knowledge/action-item-tracking.md` |
+| 2 | Follow-Up Automation | `knowledge/follow-up-automation.md` |
+| 3 | Meeting Note Templates | `knowledge/meeting-note-templates.md` |
+| 4 | Transcript Processing | `knowledge/transcript-processing.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

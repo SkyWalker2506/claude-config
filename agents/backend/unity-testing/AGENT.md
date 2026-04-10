@@ -78,5 +78,14 @@ Test assembly listesi, PlayMode senaryolari, coverage veya smoke sonucu.
 ## Escalation
 Kod B19 → CI J11 → C3 review
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Editmode Test Patterns | `knowledge/editmode-test-patterns.md` |
+| 2 | Performance Test Framework | `knowledge/performance-test-framework.md` |
+| 3 | Playmode Test Guide | `knowledge/playmode-test-guide.md` |
+| 4 | Test Automation Ci | `knowledge/test-automation-ci.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

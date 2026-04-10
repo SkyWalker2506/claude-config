@@ -90,5 +90,14 @@ Pazar analizi, rakip arastirmasi, fiyatlandirma stratejisi ve sektorel trend tes
 - Fiyatlandirma karari → A1 (Lead Orchestrator) + kullaniciya sor
 - Rakip analizi derin inceleme → K1 (Web Researcher) dispatch
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Competitor Research Methods | `knowledge/competitor-research-methods.md` |
+| 2 | Market Analysis Framework | `knowledge/market-analysis-framework.md` |
+| 3 | Market Sizing | `knowledge/market-sizing.md` |
+| 4 | Trend Analysis Tools | `knowledge/trend-analysis-tools.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

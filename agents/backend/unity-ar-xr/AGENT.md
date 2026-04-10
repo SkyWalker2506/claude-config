@@ -78,5 +78,14 @@ XR rig yapilandirmasi, build hedefi, interaction event listesi, performans notu.
 ## Escalation
 Build J11 → input B36 → performans F12
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Arfoundation Guide | `knowledge/arfoundation-guide.md` |
+| 2 | Hand Tracking Patterns | `knowledge/hand-tracking-patterns.md` |
+| 3 | Meta Quest Development | `knowledge/meta-quest-development.md` |
+| 4 | Xr Interaction Toolkit | `knowledge/xr-interaction-toolkit.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

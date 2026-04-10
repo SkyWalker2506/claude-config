@@ -85,5 +85,14 @@ Rapor basligi, ozet, tablo/ekler listesi, uretilen dosya yolu veya CI artefakti,
 - Grafik olusturma → F3 (Visualization Agent)
 - Rapor formati/icerik onay → kullaniciya danıs
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Automated Reporting | `knowledge/automated-reporting.md` |
+| 2 | Executive Summary Format | `knowledge/executive-summary-format.md` |
+| 3 | Pdf Generation Tools | `knowledge/pdf-generation-tools.md` |
+| 4 | Report Template Design | `knowledge/report-template-design.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

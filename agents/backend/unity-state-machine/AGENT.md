@@ -78,5 +78,14 @@ FSM diyagrami, SO state listesi, hierarchical gecisler, kayit formati.
 ## Escalation
 B46 combat → B47 quest
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Fsm Patterns Unity | `knowledge/fsm-patterns-unity.md` |
+| 2 | Game State Management | `knowledge/game-state-management.md` |
+| 3 | Hierarchical State Machine | `knowledge/hierarchical-state-machine.md` |
+| 4 | Scriptableobject States | `knowledge/scriptableobject-states.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

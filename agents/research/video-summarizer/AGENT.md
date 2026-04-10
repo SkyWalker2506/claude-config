@@ -87,5 +87,14 @@ YouTube ve video transkript ozetleme.
 - Transkript alinamiyor -> K1 (Web Researcher) alternatif kaynak
 - Iliskili tutorial -> K6 (Tutorial Finder)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Key Takeaway Format | `knowledge/key-takeaway-format.md` |
+| 2 | Timestamp Navigation | `knowledge/timestamp-navigation.md` |
+| 3 | Video Summarization Patterns | `knowledge/video-summarization-patterns.md` |
+| 4 | YouTube Transcript Extraction | `knowledge/youtube-transcript-extraction.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

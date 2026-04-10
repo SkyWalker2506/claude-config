@@ -115,5 +115,14 @@ Risks:
 - Belirsiz scope → A2 (Task Router)
 - Son care → kullaniciya sor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Knowledge Freshness | `knowledge/knowledge-freshness.md` |
+| 2 | Research Dispatch Rules | `knowledge/research-dispatch-rules.md` |
+| 3 | Research Methodology | `knowledge/research-methodology.md` |
+| 4 | Source Quality Criteria | `knowledge/source-quality-criteria.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

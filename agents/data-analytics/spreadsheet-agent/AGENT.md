@@ -85,5 +85,14 @@ Sheet/workbook adlari, formuller veya Apps Script ozeti, erisim scope, ornek exp
 - Karmasik veri isleme → F1 (Data Cleaner)
 - Dosya erisim sorunu → kullaniciya danıs
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Excel Formula Patterns | `knowledge/excel-formula-patterns.md` |
+| 2 | Google Sheets Api | `knowledge/google-sheets-api.md` |
+| 3 | Pivot Table Design | `knowledge/pivot-table-design.md` |
+| 4 | Spreadsheet Automation | `knowledge/spreadsheet-automation.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

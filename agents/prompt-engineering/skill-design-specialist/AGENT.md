@@ -75,5 +75,16 @@ AI agent skill'lerini tasarlar, yapilandirir ve standartlastirir. Gercek dunyada
 - Prompt optimizasyonu → N3 (Prompt Engineer)
 - Workflow adim tasarimi → N8 (Workflow Engineer)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Anti-Patterns — Common Skill Design Mistakes | `knowledge/anti-patterns.md` |
+| 2 | Output Templates — Structured Output Formats | `knowledge/output-templates.md` |
+| 3 | Quality Standards — Scoring and Review Checklist | `knowledge/quality-standards.md` |
+| 4 | Reference Formats — Cross-System Comparison | `knowledge/reference-formats.md` |
+| 5 | Skill Anatomy — Required Sections and Format | `knowledge/skill-anatomy.md` |
+| 6 | Skill Composition — Inter-Skill References and Patterns | `knowledge/skill-composition.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

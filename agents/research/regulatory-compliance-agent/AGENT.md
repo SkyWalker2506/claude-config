@@ -93,5 +93,14 @@ OPEN_LEGAL_QUESTIONS: […]
 - Güvenlik mimarisi ve zafiyet → **B13 Security Auditor**
 - Güncel mevzuat metni doğrulama → **K1 Web Researcher** + Legal
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Data Protection Patterns | `knowledge/data-protection-patterns.md` |
+| 2 | GDPR Compliance Checklist | `knowledge/gdpr-compliance-checklist.md` |
+| 3 | KVKK Guide | `knowledge/kvkk-guide.md` |
+| 4 | Privacy by Design | `knowledge/privacy-by-design.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

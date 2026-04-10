@@ -84,5 +84,14 @@ Marka kilavuzu ozeti, palet ve tipografi tablosu, voice/tone ornek cumleler.
 - Design system → D2 (Design System Agent)
 - Gorsel uretim → D6 (Image Prompt Generator)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Brand Guide Structure | `knowledge/brand-guide-structure.md` |
+| 2 | Color Theory Palettes | `knowledge/color-theory-palettes.md` |
+| 3 | Typography Pairing | `knowledge/typography-pairing.md` |
+| 4 | Voice Tone Framework | `knowledge/voice-tone-framework.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

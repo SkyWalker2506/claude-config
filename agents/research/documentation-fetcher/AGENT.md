@@ -89,5 +89,14 @@ Kutuphane, framework, API ve SDK dokumantasyonunu getirir. Kod yazarken B2/B3/B4
 - Dokuman bulunamadiysa → K1 (Web Researcher) fallback
 - Breaking change tespit edilirse → B1 (Backend Architect) bilgilendir
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | API Doc Navigation | `knowledge/api-doc-navigation.md` |
+| 2 | Changelog Analysis | `knowledge/changelog-analysis.md` |
+| 3 | Doc Freshness Check | `knowledge/doc-freshness-check.md` |
+| 4 | Library Version Tracking | `knowledge/library-version-tracking.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle
