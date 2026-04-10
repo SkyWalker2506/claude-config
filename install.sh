@@ -331,6 +331,7 @@ sed \
   -e "s|__UVX_PATH__|$UVX_PATH|g" \
   -e "s|__PROJECTS_ROOT__|$PROJECTS_ROOT|g" \
   -e "s|__HOME__|$HOME|g" \
+  -e "s|__CLAUDE_CONFIG_ROOT__|$SCRIPT_DIR|g" \
   "$SCRIPT_DIR/global/settings.json.template" > "$HOME/.claude/settings.json"
 
 # Windows: wrap npx commands with 'cmd /c npx' for Claude Code compatibility
@@ -823,29 +824,12 @@ install_agents() {
     return 0
   fi
 
-  mkdir -p "$HOME/.claude/agents"
-  mkdir -p "$HOME/.claude/config"
+  # Copy agents + agent-related config (shared with SessionStart hook)
+  bash "$SCRIPT_DIR/config/session_sync_claude_config.sh" "$SCRIPT_DIR"
 
-  # Copy agent definitions
-  if [ -d "$SCRIPT_DIR/agents" ]; then
-    cp -r "$SCRIPT_DIR/agents/"* "$HOME/.claude/agents/" 2>/dev/null || true
-    local AGENT_COUNT
-    AGENT_COUNT=$(find "$HOME/.claude/agents" -name "*.md" -not -name "README.md" 2>/dev/null | wc -l | tr -d ' ')
-    echo "  ✅ Agent definitions: $AGENT_COUNT agents installed"
-  fi
-
-  # Copy config files
-  for f in agent-registry.json fallback-chains.json model-tiers.json layer-contracts.json model-requirements.json openrouter-free-models.json; do
-    if [ -f "$SCRIPT_DIR/config/$f" ]; then
-      cp "$SCRIPT_DIR/config/$f" "$HOME/.claude/config/" 2>/dev/null || true
-    fi
-  done
-
-  # Copy dependency checker
-  if [ -f "$SCRIPT_DIR/config/check-agent-deps.sh" ]; then
-    cp "$SCRIPT_DIR/config/check-agent-deps.sh" "$HOME/.claude/config/" 2>/dev/null || true
-    chmod +x "$HOME/.claude/config/check-agent-deps.sh" 2>/dev/null || true
-  fi
+  local AGENT_COUNT
+  AGENT_COUNT=$(find "$HOME/.claude/agents" -name "*.md" -not -name "README.md" 2>/dev/null | wc -l | tr -d ' ')
+  echo "  ✅ Agent definitions: $AGENT_COUNT agents installed"
   echo "  ✅ Config files copied (registry, fallback, tiers, contracts, deps, models)"
 
   # Validate registry
