@@ -34,6 +34,18 @@ sources: 4
 | Partial yaygın | Entegrasyon derinliği veya sürüm farkı netleştir |
 | Hepsi Yes | Fiyat veya güven / marka ile rekabet |
 
+## Code Examples
+
+### Örnek: özellik matrisi (MVP)
+
+```markdown
+| Capability | Us | A | B |
+|------------|----|----|---|
+| SSO (SAML) | Yes | Yes | Add-on |
+| Row-level security | Yes | Partial | No |
+| On-prem | Roadmap | Yes | No |
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

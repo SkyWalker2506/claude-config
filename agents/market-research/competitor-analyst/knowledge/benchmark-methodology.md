@@ -34,6 +34,21 @@ sources: 4
 3. **Gap** — biz vs. medyan / hedef
 4. **Öneri** — 3 aksiyon, etki/tahmini çaba
 
+## Code Examples
+
+### Örnek: normalize benchmark satırı
+
+```yaml
+metric_id: "time_to_first_value_hours"
+peer: "Competitor A"
+segment: "Mid-market B2B SaaS"
+value: 48
+currency_normalized: "USD_ACV"
+confidence: "medium"
+as_of: "2026-01-15"
+source_type: "secondary_annual_report"
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

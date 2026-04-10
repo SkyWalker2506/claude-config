@@ -31,6 +31,21 @@ sources: 4
 - Çalışan savunuculuğu (advocacy) — kurallı ve gönüllü
 - Şirket sayfası + kişisel profil — roller ayrı
 
+## Code Examples
+
+### Örnek: LinkedIn gönderi (kurumsal)
+
+```markdown
+Hook: We cut dashboard requests to data team by 60% — not with more headcount.
+
+3 lessons:
+1) …
+2) …
+3) …
+
+CTA: What's your #1 bottleneck — SQL queue or tool sprawl? Comment below.
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

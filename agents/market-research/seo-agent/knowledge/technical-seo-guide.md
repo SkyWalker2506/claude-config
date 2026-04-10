@@ -32,6 +32,19 @@ sources: 5
 
 Search Console → Crawl stats → URL Inspection → Lighthouse (CWV) → log (Bulutflare/Akamai) 
 
+## Code Examples
+
+### Örnek: Core Web Vitals field verisi (CrUX benzeri)
+
+```json
+{
+  "origin": "https://example.com",
+  "LCP": { "p75_ms": 2100 },
+  "INP": { "p75_ms": 180 },
+  "CLS": { "p75": 0.08 }
+}
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

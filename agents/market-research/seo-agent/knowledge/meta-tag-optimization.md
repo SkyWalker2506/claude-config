@@ -32,6 +32,15 @@ sources: 4
 - Tekrarlayan şablonları azalt (Search Console’da düşük CTR’lı URL’ler)
 - Structured data ile uyumlu iddia (ör. fiyat, stok — doğru olmalı)
 
+## Code Examples
+
+### Örnek: title + meta şablonu
+
+```html
+<title>Embedded Analytics SDK for SaaS | AnalyticsBoard</title>
+<meta name="description" content="Ship customer-facing dashboards in days. Row-level security, SSO, &lt;200 KB SDK. SOC2-ready.">
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

@@ -9,11 +9,11 @@ Expected sections (see `cursor-prompts/mega-prompt.md`):
 |---------|--------:|--------:|
 | Quick Reference | 826 | 0 |
 | Patterns & Decision Matrix | 804 | 22 |
-| Code Examples | 794 | 32 |
+| Code Examples | 826 | 0 |
 | Anti-Patterns | 803 | 23 |
 | Deep Dive Sources | 826 | 0 |
 
-- **Files with all 5 sections:** 765 / 826
+- **Files with all 5 sections:** 797 / 826
 
 ## Missing by section
 
@@ -45,40 +45,8 @@ Expected sections (see `cursor-prompts/mega-prompt.md`):
 - `backend/websocket-agent/knowledge/socketio-scaling-strategies.md`
 - `backend/websocket-agent/knowledge/websocket-architecture-patterns.md`
 
-### Code Examples (32)
+### Code Examples (0)
 
-- `market-research/competitor-analyst/knowledge/benchmark-methodology.md`
-- `market-research/competitor-analyst/knowledge/competitive-positioning.md`
-- `market-research/competitor-analyst/knowledge/competitor-swot-template.md`
-- `market-research/competitor-analyst/knowledge/feature-comparison-matrix.md`
-- `market-research/content-repurposer/knowledge/content-atomization.md`
-- `market-research/content-repurposer/knowledge/format-conversion.md`
-- `market-research/content-repurposer/knowledge/multi-channel-adaptation.md`
-- `market-research/content-repurposer/knowledge/repurpose-workflow.md`
-- `market-research/geo-agent/knowledge/ai-visibility-optimization.md`
-- `market-research/geo-agent/knowledge/geo-seo-strategies.md`
-- `market-research/geo-agent/knowledge/llm-seo-patterns.md`
-- `market-research/geo-agent/knowledge/structured-data-markup.md`
-- `market-research/market-researcher/knowledge/competitor-research-methods.md`
-- `market-research/market-researcher/knowledge/market-analysis-framework.md`
-- `market-research/market-researcher/knowledge/market-sizing.md`
-- `market-research/market-researcher/knowledge/trend-analysis-tools.md`
-- `market-research/pricing-strategist/knowledge/ab-test-pricing.md`
-- `market-research/pricing-strategist/knowledge/pricing-psychology.md`
-- `market-research/pricing-strategist/knowledge/tier-pricing-design.md`
-- `market-research/pricing-strategist/knowledge/value-based-pricing.md`
-- `market-research/revenue-analyst/knowledge/financial-projection.md`
-- `market-research/revenue-analyst/knowledge/pricing-strategy-framework.md`
-- `market-research/revenue-analyst/knowledge/revenue-model-patterns.md`
-- `market-research/revenue-analyst/knowledge/unit-economics.md`
-- `market-research/seo-agent/knowledge/keyword-research-tools.md`
-- `market-research/seo-agent/knowledge/meta-tag-optimization.md`
-- `market-research/seo-agent/knowledge/seo-audit-checklist.md`
-- `market-research/seo-agent/knowledge/technical-seo-guide.md`
-- `market-research/social-media-agent/knowledge/linkedin-content-strategy.md`
-- `market-research/social-media-agent/knowledge/scheduling-tools.md`
-- `market-research/social-media-agent/knowledge/social-media-post-templates.md`
-- `market-research/social-media-agent/knowledge/twitter-engagement.md`
 
 ### Anti-Patterns (23)
 

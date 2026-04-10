@@ -31,6 +31,20 @@ sources: 4
 
 - Her yayın öncesi: **factual** kontrol, **link** çalışıyor mu, **marka sesi**
 
+## Code Examples
+
+### Örnek: basit iş akışı (YAML)
+
+```yaml
+source: "webinar_recording.mp4"
+steps:
+  - extract_transcript
+  - tag_chapters
+  - generate: [blog_outline, quote_cards, email_digest, short_clips]
+owner: "content_lead"
+sla_hours: 48
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

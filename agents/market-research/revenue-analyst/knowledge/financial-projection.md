@@ -31,6 +31,17 @@ sources: 5
 | Ay | Yeni müşteri | Churn | Net müşteri | ARPA | MRR |
 |----|--------------|-------|-------------|------|-----|
 
+## Code Examples
+
+### Örnek: 12 aylık gelir projeksiyonu (satır)
+
+```markdown
+| Month | New logos | Expansion | Churn | Net MRR |
+|-------|-----------|-----------|-------|---------|
+| M1 | +12 | +2% | -1.5% | $118k |
+| M2 | +14 | +2% | -1.5% | $126k |
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

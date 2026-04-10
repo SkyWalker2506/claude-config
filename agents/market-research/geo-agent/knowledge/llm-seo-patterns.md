@@ -34,6 +34,19 @@ sources: 5
 | Yanlış rakip bilgisi | Birincil kaynak linki |
 | Uydurma istatistik | Sadece kaynaklı rakamlar |
 
+## Code Examples
+
+### Örnek: citation-dostu paragraf yapısı
+
+```markdown
+## What is [X]?
+One-sentence definition. [Brand] provides [Y] for [ICP] ([source year]).
+
+### Key capabilities
+- Bullet with named feature + limitation when relevant
+- Link to primary doc, not login wall
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

@@ -34,6 +34,18 @@ sources: 5
 3. **Kısıtlar:** 3 madde (rekabet, maliyet, dağıtım).
 4. **Önerilen SOM varsayımı:** Kaynak (anket, rapor, iç veri).
 
+## Code Examples
+
+### Örnek: TAM/SAM/SOM tablosu
+
+```markdown
+| | Definition | Value | Notes |
+|---|------------|-------|-------|
+| TAM | All firms with BI spend > $10k/yr | $4.2B | Top-down |
+| SAM | Product-led SaaS in NA+EU | $620M | Bottom-up accounts |
+| SOM | Win 2% SAM in 36 mo | $12.4M | Assumes 18 mo CAC payback |
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

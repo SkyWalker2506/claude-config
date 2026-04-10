@@ -33,6 +33,19 @@ sources: 4
 2. Görsel / veri varlığı
 3. Kanal uygunluğu (metin vs. video)
 
+## Code Examples
+
+### Örnek: pillar → atom listesi
+
+```markdown
+Pillar: "2026 Q1 product webinar"
+
+Atoms:
+- [QUOTE] "Ship dashboards in a sprint" — timestamp 12:40
+- [STAT] 73% faster time-to-insight (n=120 customers)
+- [FAQ] "Does it support Snowflake?" → 3-sentence answer + doc link
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

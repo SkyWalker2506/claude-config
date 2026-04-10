@@ -33,6 +33,17 @@ sources: 5
 | Değer ölçülemez | Kullanım veya sonuç garantisi ile hizala |
 | Uzun ROI | Aşamalı fiyat veya başarı ücreti |
 
+## Code Examples
+
+### Örnek: değer hesabı (basit)
+
+```text
+Baseline: manual SQL hours / month per analyst = 40
+After: 10 hours (75% reduction)
+Loaded cost $80/h → $2,400 saved / analyst / month
+Price ask: 20% of savings = $480 seat/month ceiling
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

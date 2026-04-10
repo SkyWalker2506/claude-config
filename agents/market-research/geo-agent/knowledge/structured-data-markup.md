@@ -31,6 +31,25 @@ sources: 5
 - Sadece **gerçekten** SSS olan içerik
 - Google yönergeleri: manipülatif SSS spam’i risk
 
+## Code Examples
+
+### Örnek: SoftwareApplication + Offer (JSON-LD)
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "AnalyticsBoard",
+  "applicationCategory": "BusinessApplication",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "USD",
+    "price": "0",
+    "description": "Free tier — up to 3 dashboards"
+  }
+}
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |
