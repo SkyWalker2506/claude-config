@@ -10,6 +10,8 @@
 python3 scripts/agent_coverage_audit.py
 ```
 
+Set `CLAUDE_VERIFY_AUDIT=1` to compute metrics **without** overwriting `agents/AGENT_COVERAGE_AUDIT.md` (used by `verify_knowledge_structure.py`).
+
 **Tier rules (short):** P0 = missing index or zero topic files; P1 = thin topics or memory; P2 = missing `## Knowledge map` in `AGENT.md`; OK = all checks pass.
 
 ## Knowledge map injection
@@ -25,6 +27,16 @@ python3 scripts/inject_knowledge_maps.py             # apply
 
 Re-run the audit after injection to confirm **P2 = 0**.
 
+## CI gate (both audits green)
+
+| Script | Purpose |
+|--------|---------|
+| `verify_knowledge_structure.py` | Runs coverage + quality audits; **exit 1** if P0–P2 not all zero or knowledge not `complete=N/N`. Used by `.github/workflows/knowledge-audit.yml`. |
+
+```bash
+python3 scripts/verify_knowledge_structure.py
+```
+
 ## Knowledge section coverage (mega-prompt)
 
 | Script | Purpose |
@@ -34,6 +46,8 @@ Re-run the audit after injection to confirm **P2 = 0**.
 ```bash
 python3 scripts/knowledge_quality_audit.py
 ```
+
+Set `CLAUDE_VERIFY_AUDIT=1` to skip writing `agents/KNOWLEDGE_QUALITY_AUDIT.md` when verifying.
 
 One-shot batch (historical / rerun only if restoring from git):
 

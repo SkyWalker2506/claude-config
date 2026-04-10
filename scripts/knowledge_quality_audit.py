@@ -5,6 +5,7 @@ Writes agents/KNOWLEDGE_QUALITY_AUDIT.md with counts and file lists per missing 
 """
 from __future__ import annotations
 
+import os
 from collections import defaultdict
 from pathlib import Path
 
@@ -93,7 +94,9 @@ def main() -> None:
             lines.append(f"- `{f}`")
         lines.append("")
 
-    OUT.write_text("\n".join(lines), encoding="utf-8")
+    report = "\n".join(lines)
+    if not os.environ.get("CLAUDE_VERIFY_AUDIT"):
+        OUT.write_text(report, encoding="utf-8")
     print(f"Wrote {OUT.relative_to(ROOT)}  complete={complete}/{total}")
 
 
