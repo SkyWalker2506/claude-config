@@ -17,6 +17,13 @@ sources: 3
 
 **Accumulator pattern:** Catch up capped steps to avoid spiral of death.
 
+## Patterns & Decision Matrix
+
+| Döngü | Kullanım |
+|-------|----------|
+| `requestAnimationFrame` | Render senkron |
+| Sabit timestep | Fizik / replay |
+
 ## Code Examples
 
 ```typescript
@@ -29,6 +36,13 @@ function frame(now: number) {
   requestAnimationFrame(frame);
 }
 ```
+
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| Değişken timestep fizik | Kaotik simülasyon |
+| `setInterval` oyun döngüsü | Throttle tutarsız |
 
 ## Deep Dive Sources
 

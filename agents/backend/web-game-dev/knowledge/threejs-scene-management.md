@@ -32,6 +32,13 @@ const cam = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 ```
 
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| Dispose atlama | GPU bellek sızıntısı |
+| Her frame `new` vektör | GC baskısı |
+
 ## Deep Dive Sources
 
 - [Three.js — Manual](https://threejs.org/manual/)

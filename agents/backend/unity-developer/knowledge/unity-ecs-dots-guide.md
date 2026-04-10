@@ -33,6 +33,13 @@ partial struct MovementSystem : ISystem
 }
 ```
 
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| ECS’de GameObject karışımı | Burst/job engeli |
+| Tek dev struct | Cache miss |
+
 ## Deep Dive Sources
 
 - [Unity — ECS Documentation](https://docs.unity3d.com/Packages/com.unity.entities@latest)

@@ -34,6 +34,13 @@ sources: 3
 CREATE INDEX CONCURRENTLY idx_orders_t ON orders (tenant_id, created_at DESC);
 ```
 
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| N+1 sorgu | Gecikme |
+| Select * büyük tabloda | I/O şişmesi |
+
 ## Deep Dive Sources
 
 - [PostgreSQL — Performance tips](https://wiki.postgresql.org/wiki/Performance_Optimization)

@@ -18,17 +18,24 @@ sources: 3
 
 **Draw calls:** Minimize state changes; batch geometry.
 
-## Anti-Patterns
+## Patterns & Decision Matrix
 
-| Bad | Why |
-|-----|-----|
-| New texture every frame | GPU stall |
+| Darboğaz | Önce |
+|----------|------|
+| Draw call | Batch / instancing |
+| Bellek | Texture boyutu / mip |
 
 ## Code Examples
 
 ```typescript
 const mesh = new THREE.InstancedMesh(geometry, material, count);
 ```
+
+## Anti-Patterns
+
+| Bad | Why |
+|-----|-----|
+| New texture every frame | GPU stall |
 
 ## Deep Dive Sources
 

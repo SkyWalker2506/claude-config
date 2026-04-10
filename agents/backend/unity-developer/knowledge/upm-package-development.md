@@ -17,6 +17,13 @@ sources: 3
 
 **Semver:** Unity packages follow major.minor.patch.
 
+## Patterns & Decision Matrix
+
+| Yayın | Yol |
+|-------|-----|
+| Dahili | Git URL / Verdaccio |
+| Asset Store | Compliance checklist |
+
 ## Code Examples
 
 ```json
@@ -26,6 +33,13 @@ sources: 3
   "unity": "2022.3"
 }
 ```
+
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| asmdef eksik | Derleme çakışması |
+| Semver ihlali | Bağımlılık kırılması |
 
 ## Deep Dive Sources
 

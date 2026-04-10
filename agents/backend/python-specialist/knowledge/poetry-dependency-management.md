@@ -17,12 +17,26 @@ sources: 3
 
 **2025–2026:** `pyproject.toml` PEP 621; Poetry 2.x lock format.
 
+## Patterns & Decision Matrix
+
+| Durum | Komut / ayar |
+|-------|----------------|
+| Kütüphane yayını | Semver üst sınır |
+| Uygulama | Lock commit + `poetry install --sync` |
+
 ## Code Examples
 
 ```bash
 poetry add httpx@^0.27
 poetry install --sync
 ```
+
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| Lock dosyasını commit etmeme | Prod drift |
+| Üst sınır * açık | Breaking sürpriz |
 
 ## Deep Dive Sources
 

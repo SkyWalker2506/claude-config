@@ -17,6 +17,13 @@ sources: 3
 
 **2025–2026:** Validate at edge for fast 400; duplicate in service for defense in depth optional.
 
+## Patterns & Decision Matrix
+
+| Katman | Doğrulama |
+|--------|-----------|
+| Gateway | Boyut, content-type, coarse schema |
+| Servis | İş kuralları, DB varlığı |
+
 ## Code Examples
 
 ```yaml
@@ -29,6 +36,13 @@ paths:
           application/json:
             schema: { $ref: '#/components/schemas/CreateOrder' }
 ```
+
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| Sadece client-side validate | Bypass |
+| Şema sürümü yok | Breaking değişiklik |
 
 ## Deep Dive Sources
 

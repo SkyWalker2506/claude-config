@@ -18,11 +18,13 @@ sources: 4
 
 **2025–2026:** PyArrow backend (`dtype_backend="pyarrow"`) where supported.
 
-## Anti-Patterns
+## Patterns & Decision Matrix
 
-| Bad | Why |
-|-----|-----|
-| `iterrows()` for big DF | Slow |
+| Teknik | Ne zaman |
+|--------|----------|
+| `category` | Düşük kardinalite string |
+| `observed=True` | Seyrek kategoriler |
+| Chunked read | RAM sınırı |
 
 ## Code Examples
 
@@ -30,6 +32,12 @@ sources: 4
 df["cat"] = df["cat"].astype("category")
 df.groupby("region", observed=True)["sales"].sum()
 ```
+
+## Anti-Patterns
+
+| Bad | Why |
+|-----|-----|
+| `iterrows()` for big DF | Slow |
 
 ## Deep Dive Sources
 

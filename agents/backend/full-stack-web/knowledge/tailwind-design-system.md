@@ -17,17 +17,24 @@ sources: 3
 
 **2025–2026:** `clsx` + `tailwind-merge` for conditional classes.
 
-## Anti-Patterns
+## Patterns & Decision Matrix
 
-| Bad | Why |
-|-----|-----|
-| Copy-paste arbitrary values | Use theme scale |
+| İhtiyaç | Yaklaşım |
+|---------|----------|
+| Tema | CSS variables + `tailwind.config` extend |
+| Bileşen kütüphanesi | Headless + token sınıfları |
 
 ## Code Examples
 
 ```tsx
 <button className={clsx('rounded px-3', isPrimary && 'bg-brand text-white')}>Save</button>
 ```
+
+## Anti-Patterns
+
+| Bad | Why |
+|-----|-----|
+| Copy-paste arbitrary values | Use theme scale |
 
 ## Deep Dive Sources
 

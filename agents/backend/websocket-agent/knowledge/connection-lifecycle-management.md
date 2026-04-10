@@ -17,11 +17,12 @@ sources: 3
 
 **2025–2026:** Rate limit connection attempts at edge (anti-DoS).
 
-## Anti-Patterns
+## Patterns & Decision Matrix
 
-| Bad | Why |
-|-----|-----|
-| Unbounded memory per socket | Per-connection cap |
+| Aşama | Kontrol |
+|-------|---------|
+| Handshake | Origin + auth |
+| Idle | Ping/pong + timeout |
 
 ## Code Examples
 
@@ -30,6 +31,12 @@ ws.isAlive = true;
 ws.on('pong', () => { ws.isAlive = true; });
 setInterval(() => { ... ping if !isAlive → terminate }, 30000);
 ```
+
+## Anti-Patterns
+
+| Bad | Why |
+|-----|-----|
+| Unbounded memory per socket | Per-connection cap |
 
 ## Deep Dive Sources
 

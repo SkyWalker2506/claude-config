@@ -17,6 +17,13 @@ sources: 3
 
 **2025–2026:** URP default for new projects; always test on target GPU tier.
 
+## Patterns & Decision Matrix
+
+| Hedef | Seçim |
+|-------|--------|
+| Mobil | URP + basit lit |
+| PC konsol | HDRP / URP özellik seti |
+
 ## Code Examples
 
 ```hlsl
@@ -24,6 +31,13 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
   o.Albedo = tex2D(_MainTex, IN.uv_MainTex).rgb;
 }
 ```
+
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| Her frame branch yoğun | GPU dalgalanması |
+| Precision gereksiz yüksek | Mobil yavaş |
 
 ## Deep Dive Sources
 

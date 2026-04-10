@@ -16,6 +16,13 @@ sources: 3
 
 **2025–2026:** Django 5.x async views improving; FastAPI for greenfield JSON APIs common.
 
+## Patterns & Decision Matrix
+
+| Sinyal | Django | FastAPI |
+|--------|--------|---------|
+| Admin + ORM + migrations | Güçlü | Ekle ile |
+| Yüksek I/O async | Channels | Native async |
+
 ## Code Examples
 
 ```python
@@ -23,6 +30,13 @@ sources: 3
 @app.get("/items/{item_id}")
 async def read_item(item_id: int): ...
 ```
+
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| “Hepsi async” zorlaması | Karma karmaşık stack |
+| İki framework karışık tek repo | Operasyon yükü |
 
 ## Deep Dive Sources
 

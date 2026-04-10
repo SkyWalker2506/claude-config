@@ -16,12 +16,26 @@ sources: 3
 
 **Ordering:** Per-partition order if using Kafka; WS itself unordered unless designed.
 
+## Patterns & Decision Matrix
+
+| Desen | Ne zaman |
+|-------|----------|
+| Topic per room | Oyun lobisi |
+| Fan-out servis | Yüksek yayın |
+
 ## Code Examples
 
 ```text
 Topic: notifications.user.{userId}
 Payload: { "type": "mention", "id": "..." }
 ```
+
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| Kanal adı tahmin edilebilir | Yetkisiz dinleme |
+| Mesaj boyutu limitsiz | DoS |
 
 ## Deep Dive Sources
 

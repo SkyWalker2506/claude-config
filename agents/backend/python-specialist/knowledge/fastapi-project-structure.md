@@ -18,6 +18,13 @@ sources: 4
 
 **2025–2026:** Pydantic v2 (`model_validate`); lifespan context for startup/shutdown.
 
+## Patterns & Decision Matrix
+
+| Ölçek | Yapı |
+|-------|------|
+| Küçük | `app/main.py` + routers |
+| Orta+ | domain paketleri + `deps.py` |
+
 ## Code Examples
 
 ```python
@@ -28,6 +35,13 @@ router = APIRouter(prefix="/items", tags=["items"])
 def read_item(item_id: int, db=Depends(get_db)):
     ...
 ```
+
+## Anti-Patterns
+
+| Hata | Sonuç |
+|------|--------|
+| Global state ile test | Flake |
+| Route’da DB session leak | Bağlantı tükenmesi |
 
 ## Deep Dive Sources
 
