@@ -114,3 +114,10 @@ Degisiklikler:
 - Yeni scriptler: `scripts/agent_coverage_audit.py`, `scripts/inject_knowledge_maps.py` — bak: `scripts/README.md`.
 - Knowledge konu dosyalari: **800+** ( `_index.md` haric ); mega-prompt dogrulama: Quick Reference / Deep Dive tum konu dosyalarinda hizali.
 
+## 2026-04-11 guncelleme (yapisal kalite tamam)
+
+- Konu dosyasi sayisi: **826** (`knowledge/*.md`, `_index.md` haric).
+- Mega-prompt bes bolum: **826/826** (`scripts/knowledge_quality_audit.py`).
+- Agent coverage tier: P0/P1/P2 = 0, OK = 196 (`scripts/agent_coverage_audit.py`).
+- Toplu scriptler: `inject_knowledge_maps.py`, `batch_mr_code_examples.py`, `batch_backend_patterns_anti.py` — `scripts/README.md`.
+
