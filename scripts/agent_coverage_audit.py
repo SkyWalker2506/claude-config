@@ -122,7 +122,7 @@ def main() -> None:
         "",
         "1. **P0** — bootstrap `knowledge/` + `memory/` + `Knowledge map`",
         "2. **P1** — bring topic count to ≥4",
-        "3. **P2** — add `## Knowledge map` everywhere (scriptable)",
+        "3. **P2** — `python3 scripts/inject_knowledge_maps.py` (adds `## Knowledge map` from `knowledge/*.md` H1 titles)",
         "4. **Quality** — deepen knowledge files per `cursor-prompts/mega-prompt.md`",
         "",
     ]
