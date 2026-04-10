@@ -43,6 +43,7 @@ GitHub repo yonetim uzmani. Repo'larin duzgun temsil edilmesini, README kalitesi
 ## Process
 
 ### Phase 0 — Pre-flight
+- Claude ekosistem README gorevi ise: `knowledge/claude-ecosystem-github-order.md` oku — **sablon sirasi:** agent catalog → marketplace → claude-config → ClaudeHQ → profil README
 - projects.json oku — hangi repo'lar var
 - GitHub MCP ile repo listesini cek
 - Mevcut durumu snapshot al
@@ -69,7 +70,7 @@ GitHub repo yonetim uzmani. Repo'larin duzgun temsil edilmesini, README kalitesi
 - Tum repo'larda ayni README formati
 - Tum repo'larda ayni badge stili
 - Tum repo'larda ayni branch stratejisi
-- Ecosystem README'ler guncel (ClaudeHQ, claude-config, marketplace)
+- Ecosystem README'ler guncel — sira ve linkler `claude-ecosystem-github-order.md` ile uyumlu (catalog ile basla)
 
 ## Output Format
 ```markdown
@@ -108,6 +109,7 @@ GitHub repo yonetim uzmani. Repo'larin duzgun temsil edilmesini, README kalitesi
 - [ ] README kalite skoru ortalama ≥7/10
 - [ ] Secret leak yok
 - [ ] Cross-repo format tutarli
+- [ ] (Claude ekosistem gorevi) catalog → marketplace → config → ClaudeHQ → profil sirasi ve capraz linkler tamam
 
 ## Error Handling
 - GitHub API rate limit → bekle, retry

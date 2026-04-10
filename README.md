@@ -4,6 +4,15 @@
 
 by [Musab Kara](https://linkedin.com/in/musab-kara-85580612a) · [GitHub](https://github.com/SkyWalker2506)
 
+## Ecosystem on GitHub (read order)
+
+1. **[claude-agent-catalog](https://github.com/SkyWalker2506/claude-agent-catalog)** — agent inventory and categories (entry point for the story on GitHub)
+2. **[claude-marketplace](https://github.com/SkyWalker2506/claude-marketplace)** — plugin catalog and installs
+3. **claude-config (this repo)** — full Multi-Agent OS: `install.sh`, skills, MCP, hooks, registry
+4. **[ClaudeHQ](https://github.com/SkyWalker2506/ClaudeHQ)** — multi-project workspace hub
+
+Optional: [sdk-market](https://github.com/SkyWalker2506/sdk-market). READMEs are cross-linked; minor count deltas may land in small follow-up commits while behavior tracks `main` here.
+
 ---
 
 ## What is this?
@@ -188,9 +197,9 @@ cd ~/Projects/claude-config
 
 ## Related
 
-- [ClaudeHQ](https://github.com/SkyWalker2506/ClaudeHQ) — Claude ecosystem HQ, cross-project workspace
-- [Plugin Marketplace](https://github.com/SkyWalker2506/claude-marketplace) — 21 plugins for Claude Code, browse & install
-- [Agent Catalog](https://github.com/SkyWalker2506/claude-agent-catalog) — agent inventory + templates
+- [Agent Catalog](https://github.com/SkyWalker2506/claude-agent-catalog) — agent inventory (GitHub entry point #1)
+- [Plugin Marketplace](https://github.com/SkyWalker2506/claude-marketplace) — plugins for Claude Code, browse & install
+- [ClaudeHQ](https://github.com/SkyWalker2506/ClaudeHQ) — ecosystem HQ, cross-project workspace
 - [SDK Market](https://github.com/SkyWalker2506/sdk-market) — production-ready SDKs and kits
 - [OpenCode](https://opencode.ai/) — Free/local models via Zen + Ollama
 
