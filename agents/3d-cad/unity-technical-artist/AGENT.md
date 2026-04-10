@@ -123,5 +123,14 @@ Unity asset pipeline ve render performans uzmani. Import ayarlari (mesh compress
 - CI'da Addressables build → J11 (Unity DevOps)
 - Model re-export → E2 (Blender Script Agent)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Import pipeline | `knowledge/import-pipeline.md` |
+| 2 | LOD / Addressables | `knowledge/lod-occlusion-addressables.md` |
+| 3 | SRP Batcher | `knowledge/srp-batcher-batching.md` |
+| 4 | Memory profiling | `knowledge/memory-profiling.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -121,5 +121,16 @@ GitHub repo yonetim uzmani. Repo'larin duzgun temsil edilmesini, README kalitesi
 - Mimari karar → B1 (Backend Architect)
 - CI/CD → J2 (CI/CD Agent)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Ekosistem sırası | `knowledge/claude-ecosystem-github-order.md` |
+| 2 | README kalite | `knowledge/readme-standards.md` |
+| 3 | Yeni repo checklist | `knowledge/repo-setup-checklist.md` |
+| 4 | gh / API | `knowledge/github-api-patterns.md` |
+| 5 | Çapraz repo | `knowledge/cross-repo-consistency.md` |
+| 6 | Güvenlik | `knowledge/security-checklist.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak

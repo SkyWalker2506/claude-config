@@ -110,5 +110,14 @@ Unity gorsel efekt ve animasyon uzmani. VFX Graph ile GPU-based particle sisteml
 - Asset pipeline → E7 (Unity Technical Artist)
 - Gameplay entegrasyonu → B19 (Unity Developer)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | VFX Graph vs Legacy | `knowledge/vfx-graph-vs-legacy.md` |
+| 2 | Animator / Timeline | `knowledge/animator-timeline.md` |
+| 3 | GPU bütçesi | `knowledge/gpu-budget-vfx.md` |
+| 4 | Procedural animation | `knowledge/procedural-animation.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

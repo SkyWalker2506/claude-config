@@ -118,5 +118,14 @@ Unity C# kod review uzmani. MonoBehaviour lifecycle hatalari, GC allocation tesp
 - Network kodu guvenlik sorunu → B23 + B13 (Security Auditor)
 - Shader performans sorunu → B22
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | GC / allocation | `knowledge/gc-allocation-patterns.md` |
+| 2 | Lifecycle | `knowledge/monobehaviour-lifecycle.md` |
+| 3 | GetComponent cache | `knowledge/getcomponent-caching.md` |
+| 4 | Mimari / async | `knowledge/architecture-async-unity.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

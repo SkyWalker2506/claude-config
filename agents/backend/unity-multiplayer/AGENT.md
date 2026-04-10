@@ -115,5 +115,14 @@ Unity multiplayer networking uzmani. Netcode for GameObjects (NGO), Mirror, Phot
 - Network security audit → B13
 - Custom transport → B21
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | NGO / Mirror / Photon | `knowledge/netcode-frameworks-overview.md` |
+| 2 | Sync & RPC | `knowledge/state-sync-rpc.md` |
+| 3 | Lag compensation | `knowledge/lag-compensation.md` |
+| 4 | Relay & matchmaking | `knowledge/relay-matchmaking.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

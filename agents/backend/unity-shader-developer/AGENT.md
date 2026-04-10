@@ -113,5 +113,14 @@ Unity render pipeline ve shader uzmani. ShaderLab/HLSL ile custom shader yazimi,
 - Asset pipeline sorunu → E7 (Unity Technical Artist)
 - Performans bottleneck tum pipeline'da → B19 (profiling) + E7
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | URP / HDRP | `knowledge/urp-hdrp-basics.md` |
+| 2 | HLSL / ShaderLab | `knowledge/hlsl-shaderlab.md` |
+| 3 | Shader Graph perf | `knowledge/shader-graph-performance.md` |
+| 4 | Render passes | `knowledge/custom-render-passes.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

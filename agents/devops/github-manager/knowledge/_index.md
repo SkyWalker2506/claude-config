@@ -1,6 +1,7 @@
 ---
 last_updated: 2026-04-10
 total_topics: 6
+knowledge_filled: true
 ---
 
 # Knowledge Index
