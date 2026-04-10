@@ -106,3 +106,11 @@ Degisiklikler:
 
 - `.DS_Store` dosyalari silindi.
 
+---
+
+## 2026-04-10 guncelleme (coverage + dokumantasyon)
+
+- Disk uzerinde **~196** agent (`agents/_template` haric); `AGENT_COVERAGE_AUDIT.md` tier: P0/P1/P2 = 0, OK = 196.
+- Yeni scriptler: `scripts/agent_coverage_audit.py`, `scripts/inject_knowledge_maps.py` — bak: `scripts/README.md`.
+- Knowledge konu dosyalari: **800+** ( `_index.md` haric ); mega-prompt dogrulama: Quick Reference / Deep Dive tum konu dosyalarinda hizali.
+

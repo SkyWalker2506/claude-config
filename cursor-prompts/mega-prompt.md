@@ -534,12 +534,12 @@ Her Lead agent'ın Bridge bölümünde A0, A1, A2 ve diğer lead'lerle çift yö
 ## DOĞRULAMA (bitince çalıştır)
 
 ```bash
-# Placeholder kontrolü — hepsi 0 olmalı
-echo "Bridge placeholder:" $(find agents -name "AGENT.md" | xargs grep -l "Hangi alanlarla" 2>/dev/null | wc -l)
-echo "Output placeholder:" $(find agents -name "AGENT.md" | xargs grep -l "Ciktinin formati" 2>/dev/null | wc -l)
-echo "Identity placeholder:" $(find agents -name "AGENT.md" | xargs grep -l "Cursor dolduracak" 2>/dev/null | wc -l)
+# Placeholder kontrolü — hepsi 0 olmalı (`agents/_template` hariç)
+echo "Bridge placeholder:" $(find agents -name AGENT.md ! -path "*/_template/*" | xargs grep -l "Hangi alanlarla" 2>/dev/null | wc -l)
+echo "Output placeholder:" $(find agents -name AGENT.md ! -path "*/_template/*" | xargs grep -l "Ciktinin formati" 2>/dev/null | wc -l)
+echo "Identity placeholder:" $(find agents -name AGENT.md ! -path "*/_template/*" | xargs grep -l "Cursor dolduracak" 2>/dev/null | wc -l)
 
-# Knowledge dosya sayısı — en az 660 olmalı (165 agent × 4 minimum)
+# Knowledge dosya sayısı — en az ~660 hedef (agent başına ≥4 konu); güncel repo 800+ olabilir
 echo "Knowledge files:" $(find agents -path "*/knowledge/*.md" ! -name "_index.md" | wc -l)
 
 # 3 katmanlı format kontrolü
@@ -547,4 +547,4 @@ echo "With Quick Reference:" $(find agents -path "*/knowledge/*.md" ! -name "_in
 echo "With Deep Dive:" $(find agents -path "*/knowledge/*.md" ! -name "_index.md" | xargs grep -l "Deep Dive Sources" 2>/dev/null | wc -l)
 ```
 
-Hedef: İlk 3 = 0, Knowledge files ≥ 660, Quick Reference ve Deep Dive = Knowledge files ile aynı.
+Hedef: İlk 3 = 0 (template hariç), Knowledge files ≥ 660 ve büyüyen envanterle uyumlu, Quick Reference ve Deep Dive = Knowledge files ile aynı. Coverage özeti: `python3 scripts/agent_coverage_audit.py`.
