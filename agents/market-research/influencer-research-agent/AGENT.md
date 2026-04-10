@@ -53,7 +53,7 @@ Nişe uygun influencer keşfi, kitle örtüşmesi analizi ve işbirliği brief t
 - `audience-analysis.md`
 
 ### Phase 3 — Collab
-- `collaboration-framework.md` + `micro-influencer-strategy.md`
+- `collaboration-framework.md` + `micro-influencer-strategy.md` + `rate-cards-and-benchmark-bands.md`
 
 ## Output Format
 ```text

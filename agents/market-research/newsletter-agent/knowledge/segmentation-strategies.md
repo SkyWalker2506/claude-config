@@ -1,6 +1,6 @@
 ---
-last_updated: 2026-04-09
-refined_by: mega-rollout
+last_updated: 2026-04-10
+refined_by: composer-2
 confidence: high
 sources: 4
 ---
@@ -30,12 +30,39 @@ sources: 4
 
 - Aynı kampanyayı segment A/B ile — ölçülebilir öğrenme
 
+## Code Examples
+
+**ESP segment tanımı (pseudo — Iterable / Customer.io benzeri):**
+
+```yaml
+segment:
+  name: trial_users_day7_no_convert
+  rules:
+    - event: trial_started
+      within_days: 7
+    - event: purchase_completed
+      count: 0
+  channels:
+    email: true
+    sms: false
+```
+
+**Warehouse SQL (BigQuery) — davranışsal segment:**
+
+```sql
+SELECT user_id
+FROM analytics.events
+WHERE event = 'pricing_page_view'
+  AND ts > TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 14 DAY)
+  AND user_id NOT IN (SELECT user_id FROM billing.subscribers WHERE status = 'active');
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |
 |------|--------|
 | Aşırı ince segment (N küçük) | İstatistik anlamsız |
-- Hassas sağlık/politik ayrımı | Etik + hukuk riski |
+| Hassas sağlık/politik ayrımı | Etik + hukuk riski |
 | Statik segmentler | Davranış değişince güncellenmez |
 
 ## Deep Dive Sources

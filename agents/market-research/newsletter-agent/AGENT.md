@@ -54,6 +54,7 @@ Bülten gönderimleri için konu satırı, gövde, CTA ve segment stratejisi ür
 
 ### Phase 3 — Deliverability
 - `deliverability-guide.md` checklist
+- Liste sağlığı / şikayet: `list-hygiene-suppression-compliance.md`
 
 ## Output Format
 ```text

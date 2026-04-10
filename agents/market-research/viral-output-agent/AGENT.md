@@ -53,7 +53,7 @@ Paylaşılabilir içerik kancaları, hafif oyunlaştırma fikirleri ve format (g
 - `gamification-mechanics.md` + `shareable-design.md`
 
 ### Phase 3 — Test plan
-- A/B hipotezi ve etik not
+- A/B hipotezi ve etik not — `ethics-platform-safety-and-contests.md`
 
 ## Output Format
 ```text

@@ -47,7 +47,7 @@ MCP sunucularının paketlenmesi, npm yayını, dizinlere eklenmesi ve pazar gö
 - Hedef platform (Cursor, Claude, vb.) ve minimum şema
 
 ### Phase 1 — Package
-- `mcp-server-creation.md` + `npm-publish-guide.md`
+- `mcp-server-creation.md` + `npm-publish-guide.md` + `semantic-versioning-and-changelog.md`
 
 ### Phase 2 — List
 - `directory-submission.md`

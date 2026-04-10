@@ -54,6 +54,7 @@ Yeni geliştirici araçları, model sürümleri ve erken erişim ürünlerini ta
 
 ### Phase 3 — Pilot
 - `early-adopter-strategy.md`
+- Prod öncesi: `sbom-and-supply-chain-signals.md` (audit / provenance)
 
 ## Output Format
 ```text

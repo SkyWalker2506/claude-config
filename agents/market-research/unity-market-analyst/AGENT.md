@@ -45,6 +45,7 @@ Oyun pazarı trendleri, Unity–Unreal karşılaştırması, mağaza (Steam vb.)
 
 ### Phase 0 — Pre-flight
 - Tür, platform, iş modeli (premium / F2P / hybrid)
+- Kaynak güveni: `data-sources-and-confidence-tiers.md`
 
 ### Phase 1 — Trends & genre
 - `game-market-trends.md` + `genre-revenue-analysis.md`

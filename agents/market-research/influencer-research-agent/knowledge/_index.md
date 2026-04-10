@@ -1,12 +1,13 @@
 ---
-last_updated: 2026-04-09
+last_updated: 2026-04-10
 knowledge_filled: true
-total_topics: 4
+total_topics: 5
 ---
 
 # Knowledge Index
 
-- [Influencer discovery tools](influencer-discovery-tools.md)
-- [Audience analysis](audience-analysis.md)
-- [Collaboration framework](collaboration-framework.md)
-- [Micro influencer strategy](micro-influencer-strategy.md)
+- [Influencer discovery tools](influencer-discovery-tools.md) — platform, filtre
+- [Audience analysis](audience-analysis.md) — örtüşme, sahte etkileşim
+- [Collaboration framework](collaboration-framework.md) — brief, haklar
+- [Micro influencer strategy](micro-influencer-strategy.md) — ölçek, toplu program
+- [Rate cards and benchmark bands](rate-cards-and-benchmark-bands.md) — CPM/CPE bantları

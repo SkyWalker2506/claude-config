@@ -53,7 +53,7 @@ status: pool
 - `platform-algorithm-guide.md` + `hashtag-strategy.md`
 
 ### Phase 3 — Measure
-- `engagement-metrics.md` dashboard tanımı
+- `engagement-metrics.md` + `reporting-and-experimentation-rhythm.md` (UTM, ritim)
 
 ## Output Format
 ```text

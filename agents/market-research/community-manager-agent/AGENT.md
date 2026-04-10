@@ -47,7 +47,7 @@ Discord / Slack / forum gibi topluluklar için moderasyon kuralları, onboarding
 - Platform, dil, yasal (çocuk, bahis, finans) risk
 
 ### Phase 1 — Moderation
-- `community-moderation-guide.md` + `discord-server-setup.md`
+- `community-moderation-guide.md` + `discord-server-setup.md` + `crisis-and-legal-escalation.md` (olay akışı)
 
 ### Phase 2 — Engagement
 - `engagement-playbook.md`
