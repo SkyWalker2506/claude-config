@@ -127,3 +127,7 @@ Degisiklikler:
 - GitHub Actions: `.github/workflows/knowledge-audit.yml` (main push + PR).
 - Audit scriptleri `CLAUDE_VERIFY_AUDIT=1` iken rapor `.md` dosyalarini yazmaz (verify icin).
 
+## 2026-04-13 guncelleme (kaynak derinligi metrigi)
+
+- `scripts/knowledge_sources_audit.py` — frontmatter `sources:` dagilimi; rapor `agents/KNOWLEDGE_SOURCES_AUDIT.md` (CI gate degil).
+

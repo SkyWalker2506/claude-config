@@ -220,6 +220,7 @@ cd ~/Projects/claude-config
 
 - **`scripts/README.md`** — audit ve toplu knowledge script’leri (`agent_coverage_audit`, `knowledge_quality_audit`, `inject_knowledge_maps`, vb.).
 - **Yapısal doğrulama:** `python3 scripts/verify_knowledge_structure.py` — coverage P0–P2 sıfır ve tüm konu dosyalarında mega bölümler tam mı kontrol eder (CI: `.github/workflows/knowledge-audit.yml`).
+- **Kaynak derinliği (isteğe bağlı):** `python3 scripts/knowledge_sources_audit.py` — frontmatter `sources:` istatistiği; çıktı `agents/KNOWLEDGE_SOURCES_AUDIT.md`.
 
 ## Related
 

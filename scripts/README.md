@@ -37,6 +37,18 @@ Re-run the audit after injection to confirm **P2 = 0**.
 python3 scripts/verify_knowledge_structure.py
 ```
 
+## Source depth (frontmatter)
+
+| Script | Purpose |
+|--------|---------|
+| `knowledge_sources_audit.py` | Counts `sources: N` in YAML frontmatter; writes `agents/KNOWLEDGE_SOURCES_AUDIT.md` (optional depth metric; not a CI gate). |
+
+```bash
+python3 scripts/knowledge_sources_audit.py
+```
+
+Respects `CLAUDE_VERIFY_AUDIT=1` (no write), same as other audits.
+
 ## Knowledge section coverage (mega-prompt)
 
 | Script | Purpose |
