@@ -550,3 +550,5 @@ echo "With Deep Dive:" $(find agents -path "*/knowledge/*.md" ! -name "_index.md
 Hedef: İlk 3 = 0 (template hariç), Knowledge files ≥ 660 ve büyüyen envanterle uyumlu, Quick Reference ve Deep Dive = Knowledge files ile aynı. Coverage özeti: `python3 scripts/agent_coverage_audit.py`.
 
 **Beş bölüm (Quick Reference, Patterns & Decision Matrix, Code Examples, Anti-Patterns, Deep Dive Sources):** `python3 scripts/knowledge_quality_audit.py` — çıktı `agents/KNOWLEDGE_QUALITY_AUDIT.md`; tam eşleşme hedefi konu dosyası sayısı ile aynı (ör. 826/826).
+
+**Tek komut (CI ile aynı kapı):** `python3 scripts/verify_knowledge_structure.py` — agent tier’ları yeşil + `complete=N/N`; başarısızsa exit 1. Rapor dosyalarını güncellemez (`CLAUDE_VERIFY_AUDIT=1` içerde).
