@@ -37,6 +37,16 @@ sources: 5
 | 5 farklı ana mesaj | Tek “north star” özelliği seç |
 | Sadece ürün, kanıt yok | Müşteri örneği veya metrik ekle |
 
+## Code Examples
+
+### Örnek: positioning cümlesi (şablon doldurulmuş)
+
+```text
+[AnalyticsBoard] is a [embedded analytics platform] that helps [SaaS PMs]
+[ship dashboards without eng weeks] by [SQL-in-UI + row-level cache]
+unlike [generic BI tools] we [ship under 200 KB SDK with SSO baked in].
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

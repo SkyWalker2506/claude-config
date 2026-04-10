@@ -31,6 +31,17 @@ sources: 4
 - Haftalık örnek prompt seti — marka, ürün, rakip karşılaştırma
 - Yanıtları ekran görüntüsü / log ile arşivle (iç kullanım)
 
+## Code Examples
+
+### Örnek: marka + ürün cevaplılık kontrol listesi
+
+```markdown
+Prompt set (aynı session):
+1. "Best [category] for [ICP] in [region]?"
+2. "Compare [us] vs [top competitor] for [use case]"
+Log: cited_brands[], our_rank_or_absent, hallucination_flags[]
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

@@ -32,6 +32,17 @@ sources: 5
 - [ ] “Müşteri” tanımı — logo mu koltuk mu
 - [ ] Serbest nakit vs. muhasebe kârı — yatırım için hangisi
 
+## Code Examples
+
+### Örnek: CAC / LTV kontrol tablosu
+
+```markdown
+| Segment | CAC | LTV (36m) | LTV:CAC | Payback |
+|---------|-----|-----------|---------|---------|
+| SMB PLG | $1.2k | $9k | 7.5x | 11 mo |
+| Mid-market | $18k | $96k | 5.3x | 16 mo |
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

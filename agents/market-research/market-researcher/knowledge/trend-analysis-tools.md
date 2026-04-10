@@ -33,6 +33,18 @@ sources: 5
 - Tek bir viral habere dayalı “sonsuz büyüme” projeksiyonu
 - COVID vb. tek seferlik şokla karışmış veri seti (adjust et)
 
+## Code Examples
+
+### Örnek: trend kanıt paketi
+
+```markdown
+Signal: "AI copilot for analytics"
+Evidence:
+- Gartner Hype Cycle 2025 — category position
+- GitHub stars growth repo:xyz +180% YoY (snapshot)
+- Hiring: 14 "analytics copilot" PM roles on LinkedIn (EU, 30d)
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

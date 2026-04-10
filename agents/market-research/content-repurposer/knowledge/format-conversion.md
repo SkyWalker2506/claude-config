@@ -32,6 +32,18 @@ sources: 5
 - Markdown → CMS: bileşen ve kısa kod uyumu
 - SVG vs. PNG: logo ve ikon için vektör
 
+## Code Examples
+
+### Örnek: blog → LinkedIn dönüşümü
+
+```markdown
+Kaynak H2: "Why row-level cache matters"
+LinkedIn çıktısı:
+Hook: Row-level cache isn't perf — it's permission model.
+Bullets: (1) tenant isolation (2) audit trail (3) BI tool sprawl
+CTA: Comment "cache" for architecture checklist PDF.
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

@@ -34,6 +34,17 @@ sources: 5
 3. Örnek URL’ler
 4. Sonraki adımlar ve sahip
 
+## Code Examples
+
+### Örnek: mini audit çıktısı (özet)
+
+```markdown
+## SEO audit — example.com (2026-04-10)
+**P0:** 120 URLs blocked by robots typo `/disallow: /api` catching `/api-docs`
+**P1:** Duplicate titles on paginated blog (pages 2–n)
+**P2:** Missing Article schema on 45 posts
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

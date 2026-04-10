@@ -31,6 +31,16 @@ sources: 4
 2. **Yapı** — good/better/best veya kullanım kademeleri
 3 **Yönetişim** — onay akışı, CPQ, denetim
 
+## Code Examples
+
+### Örnek: strateji seçimi özeti
+
+```markdown
+- Value metric: "active dashboards"
+- Packaging: Good/Better/Best + usage overage
+- Discount policy: max 20% on annual prepay; no multi-year lock without exec approval
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

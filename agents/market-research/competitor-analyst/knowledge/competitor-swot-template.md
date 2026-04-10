@@ -34,6 +34,17 @@ sources: 4
 | S+O kesişimi | Rakibin kaçırdığı pozisyonlara saldırı |
 | W+T | Rakibin savunmasız olduğu senaryolarda mesaj |
 
+## Code Examples
+
+### Örnek: SWOT özeti (kısa tablo)
+
+```markdown
+| | Helpful | Harmful |
+|---|---------|---------|
+| **Internal** | **S**: NPS 45 enterprise refs | **W**: No EU region |
+| **External** | **O**: New data privacy regs | **T**: Big cloud bundles analytics |
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

@@ -30,6 +30,18 @@ sources: 5
 - **Significance:** p-value veya Bayesian posterior — tek başına “%5 lift” yetmez
 - **Sipariş etkisi:** Yeni kullanıcılar vs. mevcut — farklı popülasyon
 
+## Code Examples
+
+### Örnek: fiyat A/B test planı
+
+```markdown
+Hypothesis: +10% on Pro tier does not reduce conversion >5%
+Split: 50/50 by account_id hash (sticky)
+Primary metric: net new MRR / visitor
+Guardrails: refund rate, sales cycle length
+Stop rule: 2 weeks OR 5k exposures per arm
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

@@ -31,6 +31,18 @@ sources: 4
 
 - Dil, para birimi, örnek müşteri — bölgeye özgü
 
+## Code Examples
+
+### Örnek: tek mesaj, üç kanal
+
+```text
+Core claim: "Cut ad-hoc SQL requests by 60% in 90 days."
+
+- Email: subject + 4 bullets + PS with case study
+- X/Twitter: 240 chars + link to thread
+- Slack customer: 2 sentences + link to Loom walkthrough
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

@@ -33,6 +33,18 @@ sources: 5
 | 1 | CAGR | Statista / şirket raporu | |
 | 2 | Penetrasyon yıl 5 | Karşılaştırmalı kategori | |
 
+## Code Examples
+
+### Örnek: bottom-up hesap sayımı
+
+```python
+# Illustrative — adjust inputs
+accounts = 48_000  # firms in ICP
+penetration = 0.08
+avg_contract = 24_000
+sam = accounts * penetration * avg_contract
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

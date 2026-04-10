@@ -31,6 +31,16 @@ sources: 4
 - **Good**: erişilebilir giriş — ama “çöp tier” değil (destek maliyeti)
 - **Best / Enterprise**: “Talk to sales” — özel şartlar
 
+## Code Examples
+
+### Örnek: kullanım metrikleri → tier
+
+```markdown
+Metric: "monthly active dashboard viewers"
+Free: ≤ 3 | Pro: ≤ 25 | Enterprise: unlimited + SLA
+Overage: $2/viewer/month billed arrears
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

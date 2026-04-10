@@ -32,6 +32,18 @@ sources: 5
 - Kontrol ve varyant **tek değişken** (fiyat veya sunum, ikisi birden değil — başlangıç için)
 - Örnek gücü — dönüşüm oranı düşükse süre uzar
 
+## Code Examples
+
+### Örnek: fiyat sunumu (Good / Better / Best)
+
+```markdown
+| Tier | Price | Anchor copy |
+|------|-------|-------------|
+| Starter | $29 | "For individuals" |
+| Team | $99 | **Most popular** — "Everything in Starter + SSO" |
+| Business | $299 | "SOC2 + audit logs" |
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

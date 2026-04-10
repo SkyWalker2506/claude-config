@@ -31,6 +31,18 @@ sources: 4
 
 - CRM / reklam — yeniden hedefleme için kitle senkronu (KVKK ile)
 
+## Code Examples
+
+### Örnek: haftalık yayın çizelgesi
+
+```markdown
+| Day | Channel | Format |
+|-----|---------|--------|
+| Tue | LinkedIn | Thought leadership |
+| Thu | X | Dev tip + link |
+| Fri | Newsletter | Digest |
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

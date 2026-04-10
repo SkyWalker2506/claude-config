@@ -33,6 +33,17 @@ sources: 5
 
 Her aşama için **dönüşüm %** ve **ortalama gelir** tanımla; aksi halde projeksiyon spekülatif kalır.
 
+## Code Examples
+
+### Örnek: basit birim ekonomisi
+
+```text
+ARPA = $2,400/year
+Gross margin = 78%
+CAC payback = 14 months (target ≤ 18)
+Net retention = 115%
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

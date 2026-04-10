@@ -31,6 +31,15 @@ sources: 4
 - Üçüncü taraf görsel — lisans kontrolü
 - Mention ve hashtag — platform kuralları (spam eşiği)
 
+## Code Examples
+
+### Örnek: şablon seti
+
+```text
+[Problem] → [Insight] → [Proof point] → [Soft CTA]
+"PMs wait 2 weeks for dashboards" → "Embedded analytics fixes handoffs" → "73% faster TTFV (n=120)" → "DM for checklist"
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

@@ -33,6 +33,16 @@ sources: 5
 - **Pillar + cluster:** Ana sayfa / hub + destek makaleleri
 - **Cannibalization:** İki URL aynı intent — birleştir veya netleştir
 
+## Code Examples
+
+### Örnek: intent etiketli kelime kümesi
+
+```csv
+keyword,intent,volume,primary_url
+"embedded analytics sdk",commercial,1900,/product/sdk
+"what is embedded analytics",informational,2400,/learn/embedded-analytics
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

@@ -30,6 +30,18 @@ sources: 5
 
 - Klasik CTR yerine: **marka mention**, **kaynak gösterimi**, **yanlış bilgi düzeltme** takibi (manuel + araçlar)
 
+## Code Examples
+
+### Örnek: GEO öncelik backlog (mini)
+
+```markdown
+| Asset | Action |
+|-------|--------|
+| /docs/pricing | Add FAQ JSON-LD + LLM-readable summary |
+| G2 profile | Align first paragraph with canonical positioning |
+| YouTube demo | Chapters + transcript for citation snippets |
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

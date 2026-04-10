@@ -33,6 +33,17 @@ sources: 4
 | Tartışma (politik, kültür) | Marka riski değerlendirmesi |
 | Spam mention | Rate limit ve kalite |
 
+## Code Examples
+
+### Örnek: thread iskeleti
+
+```text
+1/ Problem (one line)
+2/ Wrong fix vs right fix
+3/ Mini framework (3 bullets)
+4/ Link to doc + "follow for B2B analytics"
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |

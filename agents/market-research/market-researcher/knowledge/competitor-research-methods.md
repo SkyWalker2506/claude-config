@@ -38,6 +38,18 @@ sources: 5
 | Güçlü yön | | | |
 | Zayıf yön | | | |
 
+## Code Examples
+
+### Örnek: rakip profil kartı
+
+```markdown
+## Competitor: Acme Analytics
+- ICP: Mid-market SaaS
+- Motion: PLG + inside sales
+- Proof: G2 4.6 (n=400), mentions "slow support" in 12%
+- Differentiation vs us: Deeper Salesforce native; weaker embedded SDK
+```
+
 ## Anti-Patterns
 
 | Hata | Sonuç |
