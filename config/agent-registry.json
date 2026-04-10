@@ -127,16 +127,16 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "lead",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "A2": {
       "name": "Task Router & Dispatcher",
       "version": "1.0",
       "category": "orchestrator",
       "status": "active",
-      "primary_model": "sonnet",
+      "primary_model": "haiku",
       "fallbacks": [
-        "haiku",
         "sonnet"
       ],
       "mcps": [
@@ -157,7 +157,8 @@
       "escalate_to": "opus",
       "escalate_when": "multi_category >= 4 OR confidence < 0.6",
       "tier": "lead",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "cheap_first"
     },
     "A3": {
       "name": "Fallback Manager",
@@ -176,7 +177,8 @@
       "max_tool_calls": 5,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "A4": {
       "name": "Token Budget Manager",
@@ -196,7 +198,8 @@
       "max_tool_calls": 5,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "A5": {
       "name": "Context Pruner",
@@ -221,7 +224,8 @@
       "template": "autonomous",
       "tier": "junior",
       "model_source": "groq",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "A6": {
       "name": "Daily Health Check",
@@ -240,7 +244,8 @@
       "max_tool_calls": 5,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "A7": {
       "name": "Weekly Analyst",
@@ -266,7 +271,8 @@
       "effort": "medium",
       "template": "analiz",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "A8": {
       "name": "Manual Control",
@@ -285,7 +291,8 @@
       "max_tool_calls": 1,
       "effort": "low",
       "template": "autonomous",
-      "tier": "mid"
+      "tier": "mid",
+      "strategy": "direct"
     },
     "B1": {
       "name": "Backend Architect",
@@ -312,7 +319,8 @@
       "effort": "high",
       "template": "autonomous",
       "tier": "lead",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B2": {
       "name": "Backend Coder",
@@ -347,7 +355,8 @@
       "effort": "high",
       "template": "autonomous",
       "model_source": "openrouter",
-      "tier": "senior"
+      "tier": "senior",
+      "strategy": "two_pass"
     },
     "B3": {
       "name": "Frontend Coder",
@@ -383,7 +392,8 @@
       "effort": "medium",
       "template": "autonomous",
       "model_source": "openrouter",
-      "tier": "mid"
+      "tier": "mid",
+      "strategy": "two_pass"
     },
     "B4": {
       "name": "API Integrator",
@@ -413,7 +423,8 @@
       "template": "autonomous",
       "model_source": "groq",
       "tier": "mid",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "B5": {
       "name": "Database Agent",
@@ -441,7 +452,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "senior",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "two_pass"
     },
     "B6": {
       "name": "Test Writer",
@@ -471,7 +483,8 @@
       "template": "autonomous",
       "model_source": "groq",
       "tier": "junior",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "B7": {
       "name": "Bug Hunter",
@@ -482,7 +495,6 @@
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
         "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku",
         "sonnet"
       ],
       "mcps": [
@@ -500,7 +512,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "cheap_first"
     },
     "B8": {
       "name": "Refactor Agent",
@@ -527,7 +540,8 @@
       "effort": "medium",
       "template": "autonomous",
       "model_source": "openrouter",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "B9": {
       "name": "CI/CD Agent",
@@ -550,7 +564,8 @@
       "max_tool_calls": 15,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "B10": {
       "name": "Dependency Manager",
@@ -572,7 +587,8 @@
       "max_tool_calls": 10,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "B11": {
       "name": "Git Manager",
@@ -596,7 +612,8 @@
       "max_tool_calls": 10,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "B12": {
       "name": "Performance Optimizer",
@@ -625,7 +642,8 @@
       "effort": "medium",
       "template": "analiz",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "two_pass"
     },
     "B13": {
       "name": "Security Auditor",
@@ -653,7 +671,8 @@
       "effort": "high",
       "template": "analiz",
       "tier": "lead",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B14": {
       "name": "Scripting Agent",
@@ -679,7 +698,8 @@
       "template": "autonomous",
       "tier": "junior",
       "model_source": "groq",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "B15": {
       "name": "Mobile Dev Agent",
@@ -714,7 +734,8 @@
       "effort": "high",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "two_pass"
     },
     "C1": {
       "name": "Lint & Format Hook",
@@ -735,7 +756,8 @@
       "effort": "low",
       "template": "code-review",
       "layer": "L1",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "C2": {
       "name": "Security Scanner Hook",
@@ -756,7 +778,8 @@
       "effort": "low",
       "template": "code-review",
       "layer": "L1",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "C3": {
       "name": "Local AI Reviewer",
@@ -787,7 +810,8 @@
       "layer": "L2",
       "tier": "junior",
       "model_source": "groq",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "C4": {
       "name": "Code Rabbit Agent",
@@ -807,7 +831,8 @@
       "effort": "medium",
       "template": "code-review",
       "layer": "L2",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "C5": {
       "name": "CI Review Agent",
@@ -829,7 +854,8 @@
       "effort": "low",
       "template": "code-review",
       "layer": "L3",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "C6": {
       "name": "Human Review Coordinator",
@@ -856,7 +882,8 @@
       "layer": "L4",
       "tier": "junior",
       "model_source": "groq",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "D1": {
       "name": "UI/UX Researcher",
@@ -887,7 +914,8 @@
       "effort": "medium",
       "template": "analiz",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "D2": {
       "name": "Design System Agent",
@@ -919,7 +947,8 @@
       "template": "autonomous",
       "tier": "junior",
       "model_source": "groq",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "D3": {
       "name": "Stitch Coordinator",
@@ -948,7 +977,8 @@
       "template": "autonomous",
       "tier": "junior",
       "model_source": "groq",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "D4": {
       "name": "Figma Assistant",
@@ -970,7 +1000,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "analiz",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "D5": {
       "name": "Presentation Builder",
@@ -990,7 +1021,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "D6": {
       "name": "Image Prompt Generator",
@@ -1014,7 +1046,8 @@
       "max_tool_calls": 10,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "D7": {
       "name": "Icon & Asset Agent",
@@ -1038,7 +1071,8 @@
       "max_tool_calls": 10,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "D8": {
       "name": "Mockup Reviewer",
@@ -1066,7 +1100,8 @@
       "template": "analiz",
       "tier": "junior",
       "model_source": "groq",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "E1": {
       "name": "3D Concept Planner",
@@ -1093,7 +1128,8 @@
       "template": "analiz",
       "tier": "junior",
       "model_source": "groq",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "E2": {
       "name": "Blender Script Agent",
@@ -1122,7 +1158,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "E3": {
       "name": "CAD Automation",
@@ -1144,7 +1181,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "E4": {
       "name": "Render Pipeline",
@@ -1163,7 +1201,8 @@
       "max_tool_calls": 10,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "E5": {
       "name": "3D Asset Optimizer",
@@ -1187,7 +1226,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "F1": {
       "name": "Data Cleaner",
@@ -1208,7 +1248,8 @@
       "max_tool_calls": 20,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "F2": {
       "name": "Data Analyst",
@@ -1233,7 +1274,8 @@
       "effort": "medium",
       "template": "analiz",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "F3": {
       "name": "Visualization Agent",
@@ -1259,7 +1301,8 @@
       "template": "autonomous",
       "tier": "junior",
       "model_source": "groq",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "F4": {
       "name": "ETL Pipeline Agent",
@@ -1279,7 +1322,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "F5": {
       "name": "Report Generator",
@@ -1299,7 +1343,8 @@
       "max_tool_calls": 15,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "F6": {
       "name": "SQL Agent",
@@ -1323,7 +1368,8 @@
       "template": "autonomous",
       "tier": "junior",
       "model_source": "groq",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "F7": {
       "name": "Spreadsheet Agent",
@@ -1343,7 +1389,8 @@
       "max_tool_calls": 10,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "F8": {
       "name": "Jupyter Agent",
@@ -1363,7 +1410,8 @@
       "max_tool_calls": 20,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "F9": {
       "name": "Data Quality Agent",
@@ -1382,7 +1430,8 @@
       "max_tool_calls": 10,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "F10": {
       "name": "Statistics Agent",
@@ -1402,7 +1451,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "G1": {
       "name": "Agent Coordinator",
@@ -1425,7 +1475,8 @@
       "max_tool_calls": 30,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "senior"
+      "tier": "senior",
+      "strategy": "direct"
     },
     "G2": {
       "name": "Model Monitor",
@@ -1444,7 +1495,8 @@
       "max_tool_calls": 5,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "G3": {
       "name": "MCP Health Agent",
@@ -1464,7 +1516,8 @@
       "max_tool_calls": 5,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "G4": {
       "name": "Config Manager",
@@ -1483,7 +1536,8 @@
       "max_tool_calls": 10,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "G5": {
       "name": "Log Analyzer",
@@ -1502,7 +1556,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "analiz",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "G6": {
       "name": "Backup Agent",
@@ -1521,7 +1576,8 @@
       "max_tool_calls": 5,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "G7": {
       "name": "Update Checker",
@@ -1543,7 +1599,8 @@
       "max_tool_calls": 8,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "G8": {
       "name": "Cron Scheduler",
@@ -1563,7 +1620,8 @@
       "max_tool_calls": 5,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "G9": {
       "name": "Performance Monitor",
@@ -1582,7 +1640,8 @@
       "max_tool_calls": 5,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "G10": {
       "name": "Deployment Agent",
@@ -1605,7 +1664,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "H1": {
       "name": "Market Researcher",
@@ -1616,7 +1676,6 @@
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
         "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku",
         "sonnet"
       ],
       "mcps": [
@@ -1633,7 +1692,8 @@
       "effort": "high",
       "template": "analiz",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "cheap_first"
     },
     "H2": {
       "name": "Competitor Analyst",
@@ -1655,7 +1715,8 @@
       "max_tool_calls": 20,
       "effort": "medium",
       "template": "analiz",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "H3": {
       "name": "Revenue Analyst",
@@ -1679,7 +1740,8 @@
       "effort": "medium",
       "template": "analiz",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "H4": {
       "name": "Pricing Strategist",
@@ -1704,7 +1766,8 @@
       "template": "analiz",
       "tier": "junior",
       "model_source": "groq",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "H5": {
       "name": "SEO Agent",
@@ -1727,7 +1790,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "H6": {
       "name": "GEO Agent",
@@ -1752,7 +1816,8 @@
       "max_tool_calls": 20,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "H7": {
       "name": "Social Media Agent",
@@ -1773,7 +1838,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "H8": {
       "name": "Content Repurposer",
@@ -1793,7 +1859,8 @@
       "max_tool_calls": 20,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "H9": {
       "name": "Newsletter Agent",
@@ -1813,7 +1880,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "H10": {
       "name": "New Tool Scout",
@@ -1834,7 +1902,8 @@
       "max_tool_calls": 15,
       "effort": "low",
       "template": "analiz",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "H11": {
       "name": "MCP Distribution Agent",
@@ -1857,7 +1926,8 @@
       "max_tool_calls": 25,
       "effort": "high",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "H12": {
       "name": "Viral Output Agent",
@@ -1877,7 +1947,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "I1": {
       "name": "Jira Router",
@@ -1901,7 +1972,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "I2": {
       "name": "Sprint Planner",
@@ -1912,7 +1984,6 @@
       "fallbacks": [
         "stepfun/step-3.5-flash:free",
         "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku",
         "sonnet"
       ],
       "mcps": [
@@ -1928,7 +1999,8 @@
       "effort": "medium",
       "template": "analiz",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "cheap_first"
     },
     "I3": {
       "name": "Task Decomposer",
@@ -1954,7 +2026,8 @@
       "template": "autonomous",
       "tier": "junior",
       "model_source": "groq",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "I4": {
       "name": "Status Reporter",
@@ -1977,7 +2050,8 @@
       "max_tool_calls": 8,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "I5": {
       "name": "WAITING Decision Agent",
@@ -2004,7 +2078,8 @@
       "template": "autonomous",
       "tier": "junior",
       "model_source": "groq",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "I6": {
       "name": "Backlog Groomer",
@@ -2025,7 +2100,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "I7": {
       "name": "Burndown Tracker",
@@ -2047,7 +2123,8 @@
       "max_tool_calls": 5,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "I8": {
       "name": "Standup Generator",
@@ -2068,7 +2145,8 @@
       "max_tool_calls": 10,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "I9": {
       "name": "Retrospective Agent",
@@ -2094,7 +2172,8 @@
       "template": "analiz",
       "tier": "junior",
       "model_source": "groq",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "I10": {
       "name": "Estimation Agent",
@@ -2121,7 +2200,8 @@
       "template": "analiz",
       "tier": "junior",
       "model_source": "groq",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "J1": {
       "name": "Docker Agent",
@@ -2141,7 +2221,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "J2": {
       "name": "Cloud Deploy Agent",
@@ -2169,7 +2250,8 @@
       "template": "autonomous",
       "tier": "mid",
       "model_source": "groq",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "J3": {
       "name": "SSL/DNS Agent",
@@ -2189,7 +2271,8 @@
       "max_tool_calls": 10,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "J4": {
       "name": "Server Monitor",
@@ -2209,7 +2292,8 @@
       "max_tool_calls": 5,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "J5": {
       "name": "Cost Optimizer",
@@ -2234,7 +2318,8 @@
       "template": "analiz",
       "tier": "junior",
       "model_source": "groq",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "J6": {
       "name": "Firebase Agent",
@@ -2258,7 +2343,8 @@
       "max_tool_calls": 20,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "J7": {
       "name": "Incident Responder",
@@ -2285,7 +2371,8 @@
       "effort": "high",
       "template": "autonomous",
       "tier": "senior",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "J8": {
       "name": "Infrastructure Planner",
@@ -2308,7 +2395,8 @@
       "effort": "medium",
       "template": "analiz",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "K1": {
       "name": "Web Researcher",
@@ -2336,7 +2424,8 @@
       "effort": "medium",
       "template": "analiz",
       "model_source": "openrouter",
-      "tier": "mid"
+      "tier": "mid",
+      "strategy": "direct"
     },
     "K2": {
       "name": "Paper Summarizer",
@@ -2356,7 +2445,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "analiz",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "K3": {
       "name": "Documentation Fetcher",
@@ -2380,7 +2470,8 @@
       "max_tool_calls": 15,
       "effort": "low",
       "template": "analiz",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "K4": {
       "name": "Trend Analyzer",
@@ -2407,7 +2498,8 @@
       "effort": "medium",
       "template": "analiz",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "K5": {
       "name": "Video Summarizer",
@@ -2428,7 +2520,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "analiz",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "K6": {
       "name": "Tutorial Finder",
@@ -2450,7 +2543,8 @@
       "max_tool_calls": 15,
       "effort": "low",
       "template": "analiz",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "K7": {
       "name": "Knowledge Base Agent",
@@ -2470,7 +2564,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "analiz",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "K8": {
       "name": "Skill Recommender",
@@ -2494,7 +2589,8 @@
       "template": "analiz",
       "tier": "junior",
       "model_source": "groq",
-      "on_source_unavailable": "use_fallbacks"
+      "on_source_unavailable": "use_fallbacks",
+      "strategy": "direct"
     },
     "L1": {
       "name": "Email Summarizer",
@@ -2517,7 +2613,8 @@
       "max_tool_calls": 15,
       "effort": "low",
       "template": "analiz",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "L2": {
       "name": "Calendar Agent",
@@ -2537,7 +2634,8 @@
       "max_tool_calls": 10,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "L3": {
       "name": "Daily Briefing Agent",
@@ -2561,7 +2659,8 @@
       "max_tool_calls": 15,
       "effort": "low",
       "template": "analiz",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "L4": {
       "name": "Note Organizer",
@@ -2581,7 +2680,8 @@
       "max_tool_calls": 10,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "L5": {
       "name": "File Organizer",
@@ -2601,7 +2701,8 @@
       "max_tool_calls": 10,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "L6": {
       "name": "Meeting Notes Agent",
@@ -2621,7 +2722,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "analiz",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "M1": {
       "name": "Free Tool Builder",
@@ -2647,7 +2749,8 @@
       "max_tool_calls": 30,
       "effort": "high",
       "template": "autonomous",
-      "tier": "senior"
+      "tier": "senior",
+      "strategy": "two_pass"
     },
     "M2": {
       "name": "Landing Page Agent",
@@ -2671,7 +2774,8 @@
       "max_tool_calls": 25,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "M3": {
       "name": "A/B Test Agent",
@@ -2691,7 +2795,8 @@
       "max_tool_calls": 10,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "M4": {
       "name": "Analytics Agent",
@@ -2711,7 +2816,8 @@
       "max_tool_calls": 10,
       "effort": "low",
       "template": "analiz",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "B16": {
       "name": "Web Game Dev Agent",
@@ -2748,7 +2854,8 @@
       "effort": "high",
       "template": "autonomous",
       "notes": "Unity C# specialist. Free via Nemotron 120B (OpenRouter).",
-      "tier": "mid"
+      "tier": "mid",
+      "strategy": "two_pass"
     },
     "B17": {
       "name": "Full Stack Web Agent",
@@ -2783,7 +2890,8 @@
       "max_tool_calls": 30,
       "effort": "high",
       "template": "autonomous",
-      "notes": "Ücretli. B16 (free) yetersiz kalırsa."
+      "notes": "Ücretli. B16 (free) yetersiz kalırsa.",
+      "strategy": "two_pass"
     },
     "B18": {
       "name": "Python Specialist",
@@ -2816,7 +2924,8 @@
       "max_tool_calls": 30,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "senior"
+      "tier": "senior",
+      "strategy": "two_pass"
     },
     "B19": {
       "name": "Unity Developer",
@@ -2850,7 +2959,8 @@
       "max_tool_calls": 30,
       "effort": "high",
       "template": "autonomous",
-      "tier": "senior"
+      "tier": "senior",
+      "strategy": "two_pass"
     },
     "K9": {
       "name": "AI Tool Evaluator",
@@ -2876,7 +2986,8 @@
       "max_tool_calls": 30,
       "effort": "medium",
       "template": "analiz",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "N1": {
       "name": "Prompt Engineer",
@@ -2907,7 +3018,8 @@
       "max_tool_calls": 30,
       "effort": "high",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "N2": {
       "name": "Agent Builder",
@@ -2936,7 +3048,8 @@
       "max_tool_calls": 30,
       "effort": "high",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "O1": {
       "name": "Sales Proposal Agent",
@@ -2965,7 +3078,8 @@
       "max_tool_calls": 25,
       "effort": "high",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "O2": {
       "name": "CRM Agent",
@@ -2993,7 +3107,8 @@
       "max_tool_calls": 15,
       "effort": "high",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "O3": {
       "name": "Outreach Agent",
@@ -3021,7 +3136,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "O4": {
       "name": "Pricing Calculator",
@@ -3042,7 +3158,8 @@
       "max_tool_calls": 10,
       "effort": "low",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "O5": {
       "name": "Client Onboarding Agent",
@@ -3066,7 +3183,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "B20": {
       "name": "API Gateway Agent",
@@ -3093,7 +3211,8 @@
       "max_tool_calls": 25,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "senior"
+      "tier": "senior",
+      "strategy": "two_pass"
     },
     "B21": {
       "name": "WebSocket Agent",
@@ -3120,7 +3239,8 @@
       "max_tool_calls": 25,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "senior"
+      "tier": "senior",
+      "strategy": "two_pass"
     },
     "H13": {
       "name": "Social Media Strategist",
@@ -3145,7 +3265,8 @@
       "max_tool_calls": 20,
       "effort": "medium",
       "template": "analiz",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "H14": {
       "name": "Community Manager Agent",
@@ -3169,7 +3290,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "H15": {
       "name": "Influencer Research Agent",
@@ -3192,7 +3314,8 @@
       "max_tool_calls": 15,
       "effort": "low",
       "template": "analiz",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "D9": {
       "name": "Brand Identity Agent",
@@ -3215,7 +3338,8 @@
       "max_tool_calls": 20,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "D10": {
       "name": "Motion Graphics Agent",
@@ -3238,7 +3362,8 @@
       "max_tool_calls": 20,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "K10": {
       "name": "Regulatory Compliance Agent",
@@ -3264,7 +3389,8 @@
       "max_tool_calls": 25,
       "effort": "high",
       "template": "analiz",
-      "tier": "senior"
+      "tier": "senior",
+      "strategy": "direct"
     },
     "J9": {
       "name": "Performance Load Tester",
@@ -3287,7 +3413,8 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "K11": {
       "name": "Asset Scraper",
@@ -3313,7 +3440,8 @@
       "max_tool_calls": 25,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "K12": {
       "name": "Resource Collector",
@@ -3339,7 +3467,8 @@
       "max_tool_calls": 25,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "K13": {
       "name": "Dataset Finder",
@@ -3363,7 +3492,8 @@
       "max_tool_calls": 20,
       "effort": "medium",
       "template": "analiz",
-      "tier": "junior"
+      "tier": "junior",
+      "strategy": "direct"
     },
     "A9": {
       "name": "ArtLead",
@@ -3393,7 +3523,8 @@
         8,
         11
       ],
-      "tier": "senior"
+      "tier": "senior",
+      "strategy": "direct"
     },
     "A10": {
       "name": "CodeLead",
@@ -3424,7 +3555,8 @@
         4,
         10
       ],
-      "tier": "senior"
+      "tier": "senior",
+      "strategy": "direct"
     },
     "A11": {
       "name": "GrowthLead",
@@ -3455,7 +3587,8 @@
         6,
         9
       ],
-      "tier": "senior"
+      "tier": "senior",
+      "strategy": "direct"
     },
     "A12": {
       "name": "BizLead",
@@ -3485,7 +3618,8 @@
         5,
         12
       ],
-      "tier": "senior"
+      "tier": "senior",
+      "strategy": "direct"
     },
     "A13": {
       "name": "SecLead",
@@ -3510,7 +3644,8 @@
         7
       ],
       "tier_override": "always_high",
-      "tier": "lead"
+      "tier": "lead",
+      "strategy": "direct"
     },
     "J10": {
       "name": "GitHub Manager",
@@ -3539,7 +3674,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "N7": {
       "name": "Skill Design Specialist",
@@ -3565,7 +3701,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "N8": {
       "name": "Workflow Engineer",
@@ -3591,7 +3728,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "N6": {
       "name": "AI Systems Architect",
@@ -3618,7 +3756,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "senior",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "A0": {
       "name": "Jarvis",
@@ -3646,7 +3785,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "K15": {
       "name": "Unity Technology Researcher",
@@ -3673,7 +3813,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "K14": {
       "name": "Unity Asset Store Researcher",
@@ -3699,7 +3840,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "D11": {
       "name": "Unity UI Developer",
@@ -3727,7 +3869,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "D13": {
       "name": "Unity HUD & Minimap",
@@ -3755,7 +3898,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "D12": {
       "name": "Unity UX Flow Designer",
@@ -3782,7 +3926,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "J11": {
       "name": "Unity DevOps",
@@ -3809,7 +3954,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "J12": {
       "name": "Unity Version Control",
@@ -3837,7 +3983,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "F11": {
       "name": "Unity Analytics",
@@ -3864,7 +4011,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "F12": {
       "name": "Unity Performance Profiler",
@@ -3891,7 +4039,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "F13": {
       "name": "Unity Playtesting Analyst",
@@ -3918,7 +4067,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "C7": {
       "name": "Unity Code Reviewer",
@@ -3945,7 +4095,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "H16": {
       "name": "Unity Market Analyst",
@@ -3972,7 +4123,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B42": {
       "name": "Unity Security & Anti-Cheat",
@@ -3999,7 +4151,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B34": {
       "name": "Unity ECS/DOTS Specialist",
@@ -4027,7 +4180,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B33": {
       "name": "Unity Console/Platform",
@@ -4055,7 +4209,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B32": {
       "name": "Unity Mobile Optimizer",
@@ -4083,7 +4238,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B52": {
       "name": "Unity Streaming & Open World",
@@ -4110,7 +4266,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B29": {
       "name": "Unity Localization",
@@ -4137,7 +4294,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B25": {
       "name": "Unity AR/XR Developer",
@@ -4164,7 +4322,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B39": {
       "name": "Unity Testing Specialist",
@@ -4191,7 +4350,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B41": {
       "name": "Unity Monetization",
@@ -4218,7 +4378,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B49": {
       "name": "Unity State Machine",
@@ -4245,7 +4406,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B26": {
       "name": "Unity Audio Engineer",
@@ -4273,7 +4435,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B51": {
       "name": "Unity Asset Workflow",
@@ -4300,7 +4463,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B28": {
       "name": "Unity Save & Serialization",
@@ -4327,7 +4491,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B24": {
       "name": "Unity AI & Navigation",
@@ -4354,7 +4519,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B47": {
       "name": "Unity Quest & Mission System",
@@ -4381,7 +4547,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B38": {
       "name": "Unity Memory Manager",
@@ -4408,7 +4575,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B35": {
       "name": "Unity 2D Specialist",
@@ -4436,7 +4604,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B27": {
       "name": "Unity Physics Specialist",
@@ -4464,7 +4633,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B30": {
       "name": "Unity Editor Tooling",
@@ -4492,7 +4662,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B40": {
       "name": "Unity Cloud Services",
@@ -4520,7 +4691,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B37": {
       "name": "Unity Camera Systems",
@@ -4547,7 +4719,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B50": {
       "name": "Unity Dependency Injection",
@@ -4574,7 +4747,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B45": {
       "name": "Unity Inventory & Crafting",
@@ -4601,7 +4775,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B23": {
       "name": "Unity Multiplayer",
@@ -4630,7 +4805,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B44": {
       "name": "Unity Dialogue System",
@@ -4657,7 +4833,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B43": {
       "name": "Unity Accessibility",
@@ -4685,7 +4862,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B22": {
       "name": "Unity Shader Developer",
@@ -4714,7 +4892,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B46": {
       "name": "Unity Combat System",
@@ -4741,7 +4920,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B48": {
       "name": "Unity Game Economy Designer",
@@ -4768,7 +4948,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B36": {
       "name": "Unity Input System",
@@ -4796,7 +4977,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "B31": {
       "name": "Unity Procedural Generation",
@@ -4823,7 +5005,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "E11": {
       "name": "Unity Terrain Specialist",
@@ -4851,7 +5034,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "E9": {
       "name": "Unity Cinematic Director",
@@ -4878,7 +5062,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "E8": {
       "name": "Unity Level Designer",
@@ -4905,7 +5090,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "E10": {
       "name": "Unity Lighting Artist",
@@ -4933,7 +5119,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "E7": {
       "name": "Unity Technical Artist",
@@ -4962,7 +5149,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "E12": {
       "name": "Unity Rigging & Skinning",
@@ -4990,7 +5178,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "E6": {
       "name": "Unity VFX & Animation",
@@ -5018,7 +5207,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "G12": {
       "name": "Unity Sentis",
@@ -5045,7 +5235,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     },
     "G11": {
       "name": "Unity ML-Agents Trainer",
@@ -5072,7 +5263,8 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
-      "model_source": "openrouter"
+      "model_source": "openrouter",
+      "strategy": "direct"
     }
   },
   "retry_strategy": {

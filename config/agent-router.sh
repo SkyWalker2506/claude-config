@@ -120,8 +120,9 @@ best_score, best_id, best = results[0]
 model = best.get('primary_model', 'sonnet')
 effort = best.get('effort', 'medium')
 name = best.get('name', 'Unknown')
+strategy = best.get('strategy', 'direct')
 
-print(f'{best_id} {name} ({model}, {effort})')
+print(f'{best_id} {name} ({model}, {effort}, {strategy})')
 
 # Log dispatch decision
 import os, datetime
@@ -131,7 +132,7 @@ top3 = [{'id': aid, 'name': agent['name'], 'score': round(score,2)} for score, a
 log_entry = {
     'ts': datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
     'query': query,
-    'selected': {'id': best_id, 'name': name, 'model': model, 'effort': effort, 'score': round(best_score,2)},
+    'selected': {'id': best_id, 'name': name, 'model': model, 'effort': effort, 'strategy': strategy, 'score': round(best_score,2)},
     'top3': top3,
     'total_candidates': len(results)
 }

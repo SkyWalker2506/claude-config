@@ -61,13 +61,34 @@ Secilen agent'in registry'deki ayarlarini kullan:
 - `fallbacks` → model duserse sirayla dene
 - `mcps` → hangi MCP'ler aktif
 
+### 3.5. Strategy-aware dispatch
+
+Agent secildikten sonra `strategy` alanina bak:
+
+| Strategy | Model atama | Dispatch yontemi |
+|----------|-------------|-----------------|
+| `direct` | `primary_model` olarak kullan | Tek agent, degisiklik yok |
+| `cheap_first` | `primary_model` (ucuz/free/haiku) ile basla | Basarisizsa `fallbacks` zincirinden yuksel |
+| `two_pass` | Executor: `primary_model`, Reviewer: `opus` | Sonnet/free ile kod yaz, Opus ile review |
+| `opus_plan` | Plan: `opus`, Execution: `sonnet` | /plan modunda Opus, execution'da Sonnet |
+
+**`cheap_first` basari kriteri:**
+- Sub-agent ciktisi bos degil + hata mesaji yok → basarili
+- Basarisizsa → `fallbacks[0]` ile tekrar dispatch (retry_strategy adimlari)
+
+**`two_pass` nasil calisir:**
+- Forge / jira-start-new-task pipeline'i otomatik uygular bu stratejiyi
+- Manuel dispatch'te: once coder agent → PR olustur → sonra C3 (reviewer) agent'ini dispatch et
+
+**Strategy eksikse:** `direct` olarak davran.
+
 ### 4. Sub-agent baslat
 
 Agent tool ile sub-agent dispatch et. Sub-agent prompt'u:
 
 ```
 AGENT: {id} ({name})
-MODEL: {primary_model} | EFFORT: {effort} | MAX: {max_tool_calls} tool call
+MODEL: {primary_model} | EFFORT: {effort} | MAX: {max_tool_calls} tool call | STRATEGY: {strategy}
 MCP: {mcps}
 CAPABILITIES: {capabilities}
 
