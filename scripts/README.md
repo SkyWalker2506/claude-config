@@ -24,3 +24,13 @@ python3 scripts/inject_knowledge_maps.py             # apply
 ```
 
 Re-run the audit after injection to confirm **P2 = 0**.
+
+## Knowledge section coverage (mega-prompt)
+
+| Script | Purpose |
+|--------|---------|
+| `knowledge_quality_audit.py` | Counts topic files missing `Quick Reference`, `Patterns & Decision Matrix`, `Code Examples`, `Anti-Patterns`, or `Deep Dive Sources`. Writes `agents/KNOWLEDGE_QUALITY_AUDIT.md`. |
+
+```bash
+python3 scripts/knowledge_quality_audit.py
+```

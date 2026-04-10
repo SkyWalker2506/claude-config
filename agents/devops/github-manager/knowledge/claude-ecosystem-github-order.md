@@ -19,6 +19,35 @@ Public GitHub yüzeylerini güncellerken **sabit sıra**: (1) agent catalog → 
 | 4 | ClaudeHQ | Çok proje workspace |
 | 5 | Profile README | Sahip kartı, dört link |
 
+## Patterns & Decision Matrix
+
+| Senaryo | Karar |
+|---------|--------|
+| Tek repo README güncelleniyor | Metinde bu sırayı koru; “Ecosystem” bloğunda **catalog her zaman ilk link** |
+| Tam senkron kampanya | 1→5 PR/commit sırası; önce kullanıcı yolculuğu (ne çalışır → plugin → OS) |
+| Sayı / sayım güncellemesi | Rakamı kopyalama; `claude-config` veya catalog’a link ver |
+| Profil yok | Önce `gh repo create` ile public profil repo; sonra dört link |
+
+## Code Examples
+
+Örnek **Ecosystem** şeridi (her public README’de tutarlı sıra):
+
+```markdown
+## Ecosystem
+
+1. [Agent catalog](https://github.com/SkyWalker2506/claude-agent-catalog) — what you can run  
+2. [Plugin marketplace](https://github.com/SkyWalker2506/claude-marketplace) — install UX  
+3. [claude-config](https://github.com/SkyWalker2506/claude-config) — full OS (MCP, skills, hooks)  
+4. [ClaudeHQ](https://github.com/SkyWalker2506/ClaudeHQ) — multi-project workspace  
+```
+
+## Anti-Patterns
+
+- Marketplace veya config’i catalog’tan **önce** öne çıkarmak (giriş hikayesi bozulur).
+- Her README’de **farklı** agent/plugin sayıları yazmak — tek doğruluk: registry veya catalog linki.
+- Profilde dört linki **ters sırada** vermek veya sadece bir alt kümeye odaklanmak.
+- “Ecosystem” bloğunu tamamen atlayıp yalnız iç repo detayına gömülmek.
+
 ## Canonical order (do not skip)
 
 | Step | Repository | Role |
