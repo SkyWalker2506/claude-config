@@ -1,0 +1,18 @@
+name: Knowledge structure audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  knowledge-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify agent coverage + knowledge mega-sections
+        run: python3 scripts/verify_knowledge_structure.py

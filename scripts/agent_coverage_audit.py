@@ -2,6 +2,7 @@
 """Scan agents/*/ for knowledge completeness. Writes agents/AGENT_COVERAGE_AUDIT.md"""
 from __future__ import annotations
 
+import os
 import re
 from collections import Counter
 from pathlib import Path
@@ -126,7 +127,9 @@ def main() -> None:
         "4. **Quality** — deepen knowledge files per `cursor-prompts/mega-prompt.md`",
         "",
     ]
-    OUT.write_text("\n".join(lines), encoding="utf-8")
+    report = "\n".join(lines)
+    if not os.environ.get("CLAUDE_VERIFY_AUDIT"):
+        OUT.write_text(report, encoding="utf-8")
     print(f"Wrote {OUT.relative_to(ROOT)}  P0={by_tier.get('P0',0)} P1={by_tier.get('P1',0)} P2={by_tier.get('P2',0)} OK={by_tier.get('OK',0)}")
 
 
