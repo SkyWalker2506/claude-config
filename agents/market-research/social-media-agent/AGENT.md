@@ -88,5 +88,14 @@ Sosyal medya icerik uretimi ve zamanlama.
 - Icerik yeniden formatlama → H8 (Content Repurposer)
 - Viral potansiyel analizi → H12 (Viral Output Agent)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | LinkedIn Content Strategy | `knowledge/linkedin-content-strategy.md` |
+| 2 | Scheduling Tools | `knowledge/scheduling-tools.md` |
+| 3 | Social Media Post Templates | `knowledge/social-media-post-templates.md` |
+| 4 | Twitter / X Engagement | `knowledge/twitter-engagement.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

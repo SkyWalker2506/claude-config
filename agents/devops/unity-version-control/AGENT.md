@@ -78,5 +78,14 @@ Merge stratejisi, LFS esigi, kilitleme politikasi, cozulen conflict ozeti.
 ## Escalation
 CI/build J11 → asset pipeline B51 → kod B19
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Lock File Patterns | `knowledge/lock-file-patterns.md` |
+| 2 | Merge Prefab Scene | `knowledge/merge-prefab-scene.md` |
+| 3 | Plastic Scm Guide | `knowledge/plastic-scm-guide.md` |
+| 4 | Unity Lfs Strategies | `knowledge/unity-lfs-strategies.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

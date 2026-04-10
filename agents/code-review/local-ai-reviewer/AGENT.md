@@ -87,5 +87,14 @@ Skor veya ozet, bulgu listesi, oneri snippet'leri, false positive isaretleme not
 ## Escalation
 - Kritik guvenlik bulgusu → B13 (Security Auditor)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Ai Review Prompts | `knowledge/ai-review-prompts.md` |
+| 2 | False Positive Handling | `knowledge/false-positive-handling.md` |
+| 3 | Review Checklist Patterns | `knowledge/review-checklist-patterns.md` |
+| 4 | Severity Classification | `knowledge/severity-classification.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

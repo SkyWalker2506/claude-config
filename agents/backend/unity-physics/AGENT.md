@@ -78,5 +78,14 @@ Katman matrisi, joint/raycast ayarlari, fizik material tablosu, deterministik no
 ## Escalation
 Oyun mantigi B19 → profil F12
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Collision Layer Matrix | `knowledge/collision-layer-matrix.md` |
+| 2 | Joint Types Guide | `knowledge/joint-types-guide.md` |
+| 3 | Physx Configuration | `knowledge/physx-configuration.md` |
+| 4 | Raycast Patterns | `knowledge/raycast-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

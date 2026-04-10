@@ -84,5 +84,14 @@ DNS kayit ozeti, sertifika serial/yenileme tarihi, CDN/proxy notu.
 - Sertifika yenileme basarisiz -> J4 (Server Monitor) alert
 - DNS propagation sorunu -> J2 (Cloud Deploy Agent)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Cdn Dns Setup | `knowledge/cdn-dns-setup.md` |
+| 2 | Dns Configuration Patterns | `knowledge/dns-configuration-patterns.md` |
+| 3 | Lets Encrypt Automation | `knowledge/lets-encrypt-automation.md` |
+| 4 | Ssl Certificate Management | `knowledge/ssl-certificate-management.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -84,5 +84,14 @@ Maliyet kirilimi, tasarruf onerileri, uygulama sirasi ve risk notu.
 - Beklenmedik maliyet artisi -> A4 (Token Budget Manager) alert
 - Kaynak silme gerektiren oneri -> kullaniciya danisma zorunlu
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Cloud Cost Optimization | `knowledge/cloud-cost-optimization.md` |
+| 2 | Cost Monitoring Tools | `knowledge/cost-monitoring-tools.md` |
+| 3 | Reserved Vs Spot Instances | `knowledge/reserved-vs-spot-instances.md` |
+| 4 | Right Sizing Strategies | `knowledge/right-sizing-strategies.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -78,5 +78,14 @@ Profiler capture adimlari, bottleneck sinifi (CPU/GPU/memory), oneri listesi, te
 ## Escalation
 Sahne ve render B19 → telemetri F11 → cihaz ML cikisi G12
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Frame Debugger Analysis | `knowledge/frame-debugger-analysis.md` |
+| 2 | Gpu Cpu Bound Diagnosis | `knowledge/gpu-cpu-bound-diagnosis.md` |
+| 3 | Memory Profiler Workflow | `knowledge/memory-profiler-workflow.md` |
+| 4 | Unity Profiler Guide | `knowledge/unity-profiler-guide.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

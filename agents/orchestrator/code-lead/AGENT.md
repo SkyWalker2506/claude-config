@@ -115,5 +115,14 @@ Risks:
 - Belirsiz scope → A2 (Task Router)
 - Son care → kullaniciya sor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Brand Consistency | `knowledge/brand-consistency.md` |
+| 2 | Design Dispatch Rules | `knowledge/design-dispatch-rules.md` |
+| 3 | Design Review Gates | `knowledge/design-review-gates.md` |
+| 4 | Ux Metrics | `knowledge/ux-metrics.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

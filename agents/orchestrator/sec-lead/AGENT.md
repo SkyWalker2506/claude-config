@@ -115,5 +115,14 @@ Risks:
 - Belirsiz scope → A2 (Task Router)
 - Son care → kullaniciya sor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Pm Dispatch Rules | `knowledge/pm-dispatch-rules.md` |
+| 2 | Scope Management | `knowledge/scope-management.md` |
+| 3 | Sprint Health Metrics | `knowledge/sprint-health-metrics.md` |
+| 4 | Stakeholder Communication | `knowledge/stakeholder-communication.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

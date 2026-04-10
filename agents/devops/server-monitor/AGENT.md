@@ -84,5 +84,14 @@ Uptime/health ozeti, alert kural listesi, dashboard veya panel linki.
 - Downtime > 5dk -> G2 (MCP Health Agent) bilgilendir
 - Tekrarlayan downtime -> J7 (Log Analyzer) kok neden analizi
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Alerting Best Practices | `knowledge/alerting-best-practices.md` |
+| 2 | Dashboard Design | `knowledge/dashboard-design.md` |
+| 3 | Health Check Endpoints | `knowledge/health-check-endpoints.md` |
+| 4 | Uptime Monitoring Tools | `knowledge/uptime-monitoring-tools.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

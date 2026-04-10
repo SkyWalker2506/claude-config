@@ -78,5 +78,14 @@ Diyalog formati, Ink/Yarn asset yolu, dallanma grafigi, lokalizasyon anahtarlari
 ## Escalation
 B29 locale → UI D11
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Dialogue Tree Patterns | `knowledge/dialogue-tree-patterns.md` |
+| 2 | Ink Integration | `knowledge/ink-integration.md` |
+| 3 | Localized Dialogue | `knowledge/localized-dialogue.md` |
+| 4 | Yarn Spinner Guide | `knowledge/yarn-spinner-guide.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

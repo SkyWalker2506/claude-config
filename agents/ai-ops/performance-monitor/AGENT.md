@@ -84,5 +84,14 @@ Token/latency ozeti, budget karsilastirmasi, trend notu, tasarruf onerisi.
 - Token limiti yaklasirsa → A4 (Token Budget Manager) alert
 - Performans dususu → G2 (Model Monitor) ile koordine
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Cost Per Task Analysis | `knowledge/cost-per-task-analysis.md` |
+| 2 | Performance Budgets | `knowledge/performance-budgets.md` |
+| 3 | Response Time Metrics | `knowledge/response-time-metrics.md` |
+| 4 | Token Usage Tracking | `knowledge/token-usage-tracking.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

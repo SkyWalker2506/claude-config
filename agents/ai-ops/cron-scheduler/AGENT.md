@@ -84,5 +84,14 @@ Cron/launchd tanimi, son calisma zamani, stdout/stderr ozeti, idempotent id notu
 - Zamanlanmis gorev basarisiz → A6 (Notification Agent) alert
 - Cron catismasi → G2 (Model Monitor) ile koordine
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Cron Expression Guide | `knowledge/cron-expression-guide.md` |
+| 2 | Idempotent Scheduling | `knowledge/idempotent-scheduling.md` |
+| 3 | Launchd Patterns | `knowledge/launchd-patterns.md` |
+| 4 | Scheduled Task Monitoring | `knowledge/scheduled-task-monitoring.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

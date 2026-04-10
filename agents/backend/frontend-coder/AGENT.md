@@ -74,5 +74,15 @@ React ve Flutter UI bilesenleri, sayfa yapilari, state management uzmani. Compon
 - Mobile-specific → B15 (Mobile Dev)
 - Design system → D2
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Component Architecture | `knowledge/component-architecture.md` |
+| 2 | Flutter Widget Patterns | `knowledge/flutter-widget-patterns.md` |
+| 3 | Form Patterns | `knowledge/form-patterns.md` |
+| 4 | Responsive Layout | `knowledge/responsive-layout.md` |
+| 5 | State Management — Riverpod (VocabApp Standard) | `knowledge/state-management.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak

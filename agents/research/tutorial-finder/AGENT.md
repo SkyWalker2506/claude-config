@@ -87,5 +87,14 @@ Ogretici kaynak ve tutorial bulma.
 - Kaynak bulunamiyor -> K3 (Documentation Fetcher) resmi dokumantasyon
 - Video icerik -> K5 (Video Summarizer)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Learning Path Design | `knowledge/learning-path-design.md` |
+| 2 | Resource Curation | `knowledge/resource-curation.md` |
+| 3 | Skill Level Matching | `knowledge/skill-level-matching.md` |
+| 4 | Tutorial Quality Criteria | `knowledge/tutorial-quality-criteria.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

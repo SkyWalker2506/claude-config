@@ -86,5 +86,14 @@ FastAPI/Django ile Python backend, veri isleme (pandas/numpy) ve Poetry ile bagi
 ## Escalation
 - Guvenlik (pickle, SSTI) → B13
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Django vs FastAPI Decision | `knowledge/django-vs-fastapi-decision.md` |
+| 2 | FastAPI Project Structure | `knowledge/fastapi-project-structure.md` |
+| 3 | Pandas Performance Tips | `knowledge/pandas-performance-tips.md` |
+| 4 | Poetry Dependency Management | `knowledge/poetry-dependency-management.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

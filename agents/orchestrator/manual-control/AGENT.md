@@ -116,5 +116,14 @@ Risks:
 - Belirsiz scope → A2 (Task Router)
 - Son care → kullaniciya sor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Emergency Procedures | `knowledge/emergency-procedures.md` |
+| 2 | Human Handoff Protocol | `knowledge/human-handoff-protocol.md` |
+| 3 | Kill Switch Design | `knowledge/kill-switch-design.md` |
+| 4 | Rollback Procedures | `knowledge/rollback-procedures.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -109,5 +109,14 @@ Next owner: Legal review | O5 kickoff template
 - Derin rakip arastirmasi → H1 (Market Researcher)
 - Hukuki / risk maddesi → insan Legal (agent disi)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Pitch Deck Design | `knowledge/pitch-deck-design.md` |
+| 2 | Pricing Presentation | `knowledge/pricing-presentation.md` |
+| 3 | Proposal Structure | `knowledge/proposal-structure.md` |
+| 4 | RFP Response Guide | `knowledge/rfp-response-guide.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

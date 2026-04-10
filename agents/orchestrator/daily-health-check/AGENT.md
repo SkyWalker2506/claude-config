@@ -116,5 +116,14 @@ Risks:
 - Belirsiz scope → A2 (Task Router)
 - Son care → kullaniciya sor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Alerting Thresholds | `knowledge/alerting-thresholds.md` |
+| 2 | Daily Report Format | `knowledge/daily-report-format.md` |
+| 3 | Health Check Patterns | `knowledge/health-check-patterns.md` |
+| 4 | Monitoring Metrics | `knowledge/monitoring-metrics.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

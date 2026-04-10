@@ -85,5 +85,14 @@ Secilen chart turu gerekcesi, statik/interaktif cikti (png/html), legend ve ekse
 - Rapor entegrasyonu → F5 (Report Generator)
 - Grafik tipi/icerik karari → kullaniciya danıs
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Chart Type Selection | `knowledge/chart-type-selection.md` |
+| 2 | Color Accessibility | `knowledge/color-accessibility.md` |
+| 3 | Matplotlib Seaborn Guide | `knowledge/matplotlib-seaborn-guide.md` |
+| 4 | Plotly Interactive Charts | `knowledge/plotly-interactive-charts.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

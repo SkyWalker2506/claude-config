@@ -108,5 +108,14 @@ Rollback: previous stage IDs / workflow IDs saved in session note
 - Disa yonelik kampanya metni kalitesi → O3 (Outreach Agent)
 - Teklif veya SOW dili → O1 (Sales Proposal Agent)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Follow-Up Sequences | `knowledge/follow-up-sequences.md` |
+| 2 | HubSpot Patterns | `knowledge/hubspot-patterns.md` |
+| 3 | Lead Scoring | `knowledge/lead-scoring.md` |
+| 4 | Pipeline Management | `knowledge/pipeline-management.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

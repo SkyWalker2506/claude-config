@@ -104,5 +104,14 @@ Ornek teslim: `docs/tools/roi-calculator-v2-spec.md` (job, inputs, gating, event
 - Olay semasi, BigQuery, dashboard → **M4 Analytics Agent**
 - Deploy / CDN / domain → **H5 SEO Agent** veya ilgili DevOps agent (Escalation zincirine gore)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Calculator Builder Guide | `knowledge/calculator-builder-guide.md` |
+| 2 | Conversion Optimization (Lead-Gen Tools) | `knowledge/conversion-optimization.md` |
+| 3 | Free Tool SEO | `knowledge/free-tool-seo.md` |
+| 4 | Lead-Gen Tool Patterns | `knowledge/lead-gen-tool-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

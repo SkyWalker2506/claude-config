@@ -84,5 +84,14 @@ Dockerfile ve compose diff ozeti, image tag ve boyut, guvenlik tarama sonucu.
 - Build hatasi 3x tekrarlanirsa -> J2 (Cloud Deploy Agent)
 - Guvenlik zaafiyeti tespit edilirse -> B9 (Security Auditor)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Container Security | `knowledge/container-security.md` |
+| 2 | Docker Compose Patterns | `knowledge/docker-compose-patterns.md` |
+| 3 | Dockerfile Best Practices | `knowledge/dockerfile-best-practices.md` |
+| 4 | Multi Stage Builds | `knowledge/multi-stage-builds.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

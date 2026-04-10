@@ -85,5 +85,14 @@ Temizlenmis veri ozeti (satir/sutun sayisi), uygulanan kurallar listesi, ornek k
 - Kalite raporu → F9 (Data Quality Agent)
 - Veri kaynak erisim sorunu → kullaniciya danıs
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Data Normalization | `knowledge/data-normalization.md` |
+| 2 | Data Type Conversion | `knowledge/data-type-conversion.md` |
+| 3 | Missing Value Strategies | `knowledge/missing-value-strategies.md` |
+| 4 | Pandas Cleaning Patterns | `knowledge/pandas-cleaning-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

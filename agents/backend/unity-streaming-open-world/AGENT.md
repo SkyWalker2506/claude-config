@@ -78,5 +78,14 @@ Streaming adresleri, additive sahne listesi, partition boyutu, async yukleme sir
 ## Escalation
 B38 bellek → B31 proc → E8 level
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Additive Scene Loading | `knowledge/additive-scene-loading.md` |
+| 2 | Async Loading Strategies | `knowledge/async-loading-strategies.md` |
+| 3 | Scene Streaming Patterns | `knowledge/scene-streaming-patterns.md` |
+| 4 | World Partitioning | `knowledge/world-partitioning.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -78,5 +78,14 @@ ScriptableObject sema, craft formulu, drag-drop prefab, save B28.
 ## Escalation
 UI D11 → save B28 → ekonomi B48
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Crafting Recipe System | `knowledge/crafting-recipe-system.md` |
+| 2 | Drag Drop Ui | `knowledge/drag-drop-ui.md` |
+| 3 | Inventory System Design | `knowledge/inventory-system-design.md` |
+| 4 | Item Database Scriptableobject | `knowledge/item-database-scriptableobject.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

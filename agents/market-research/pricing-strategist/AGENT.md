@@ -88,5 +88,14 @@ Fiyatlandirma stratejisi, A/B test planlamasi.
 - Gelir etkisi hesaplama → H3 (Revenue Analyst)
 - Kullanici davranis verisi gerekirse → M3 (Analytics Agent)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | A/B Test Pricing | `knowledge/ab-test-pricing.md` |
+| 2 | Pricing Psychology | `knowledge/pricing-psychology.md` |
+| 3 | Tier Pricing Design | `knowledge/tier-pricing-design.md` |
+| 4 | Value-Based Pricing | `knowledge/value-based-pricing.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

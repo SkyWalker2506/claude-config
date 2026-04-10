@@ -92,5 +92,14 @@ CAD script veya cizim ciktisi, birim/olcek, STL parametreleri, validasyon notu.
 - 3D modelleme → E2 (Blender Script Agent)
 - CAD lisans/kurulum sorunu → kullaniciya danis
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Autocad Scripting | `knowledge/autocad-scripting.md` |
+| 2 | Parametric Design Patterns | `knowledge/parametric-design-patterns.md` |
+| 3 | Stl Export Optimization | `knowledge/stl-export-optimization.md` |
+| 4 | Technical Drawing Standards | `knowledge/technical-drawing-standards.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

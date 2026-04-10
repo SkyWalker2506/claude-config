@@ -86,5 +86,14 @@ WARNINGS: [seat_limit, no_redistribute]
 - Marka ihlali şüphesi → tasarım lead / legal
 - 3D karmaşık asset → **K11**
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Font Sources Guide | `knowledge/font-sources-guide.md` |
+| 2 | Icon Pack Curation | `knowledge/icon-pack-curation.md` |
+| 3 | Stock Resource Licenses | `knowledge/stock-resource-licenses.md` |
+| 4 | Texture Libraries | `knowledge/texture-libraries.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -84,5 +84,14 @@ Load test araci ve senaryo, throughput/latency tablosu, bottleneck ve oneri.
 - Performans optimizasyonu → B12 (Performance Optimizer)
 - Incident → J7 (Incident Responder)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Artillery Patterns | `knowledge/artillery-patterns.md` |
+| 2 | K6 Load Testing | `knowledge/k6-load-testing.md` |
+| 3 | Performance Baseline | `knowledge/performance-baseline.md` |
+| 4 | Stress Test Methodology | `knowledge/stress-test-methodology.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -85,5 +85,14 @@ Slayt plani veya storyboard, sunum dosyasi yolu veya link, konusmaci notlari.
 - Gorsel uretimi → D6 (Image Prompt Generator)
 - Icerik/strateji onay → kullaniciya danıs
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Data Visualization Slides | `knowledge/data-visualization-slides.md` |
+| 2 | Keynote Powerpoint Api | `knowledge/keynote-powerpoint-api.md` |
+| 3 | Slide Design Principles | `knowledge/slide-design-principles.md` |
+| 4 | Storytelling Frameworks | `knowledge/storytelling-frameworks.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

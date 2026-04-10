@@ -84,5 +84,14 @@ Burn/burnup degerleri, velocity, sapma analizi, duzeltici oneri.
 - Sprint risk → I2 (Sprint Planner)
 - Raporlama → I4 (Status Reporter)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Burndown Vs Burnup | `knowledge/burndown-vs-burnup.md` |
+| 2 | Scope Creep Detection | `knowledge/scope-creep-detection.md` |
+| 3 | Sprint Health Indicators | `knowledge/sprint-health-indicators.md` |
+| 4 | Velocity Calculation | `knowledge/velocity-calculation.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -78,5 +78,14 @@ Para birimi sema, progression egrisi, gacha olasilik tablosu, simulasyon notu.
 ## Escalation
 B41 monetizasyon → tasarim urun
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Gacha Probability | `knowledge/gacha-probability.md` |
+| 2 | Progression Curve | `knowledge/progression-curve.md` |
+| 3 | Reward Loop Patterns | `knowledge/reward-loop-patterns.md` |
+| 4 | Virtual Currency Design | `knowledge/virtual-currency-design.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

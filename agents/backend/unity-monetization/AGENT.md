@@ -78,5 +78,14 @@ IAP urun id'leri, reklam mediation, receipt dogrulama ortami, test hesabi.
 ## Escalation
 Ekonomi B48 → B42 guvenlik → B2
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Ad Mediation | `knowledge/ad-mediation.md` |
+| 2 | Iap Implementation | `knowledge/iap-implementation.md` |
+| 3 | Receipt Validation | `knowledge/receipt-validation.md` |
+| 4 | Unity Ads Integration | `knowledge/unity-ads-integration.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

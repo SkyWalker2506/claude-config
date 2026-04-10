@@ -85,5 +85,14 @@ SQL dosyalari veya migration notu, explain ozeti, indeks onerileri, test sorgusu
 - Veri analizi → F2 (Data Analyst)
 - Prod DB degisikligi → kullaniciya danıs
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Cte Recursive Patterns | `knowledge/cte-recursive-patterns.md` |
+| 2 | Sql Antipatterns | `knowledge/sql-antipatterns.md` |
+| 3 | Sql Query Optimization | `knowledge/sql-query-optimization.md` |
+| 4 | Window Functions Guide | `knowledge/window-functions-guide.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

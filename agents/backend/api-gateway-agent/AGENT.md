@@ -87,5 +87,14 @@ Edge uzerinde rota, kimlik dogrulama, hiz sinirlama ve istek dogrulama: Kong, En
 ## Escalation
 - Zero trust / mTLS tasarim → B13
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | API Gateway Patterns | `knowledge/api-gateway-patterns.md` |
+| 2 | Auth Middleware: JWT and OAuth | `knowledge/auth-middleware-jwt-oauth.md` |
+| 3 | Rate Limiting Algorithms Compared | `knowledge/rate-limiting-algorithms-compared.md` |
+| 4 | Request Validation Schemas | `knowledge/request-validation-schemas.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

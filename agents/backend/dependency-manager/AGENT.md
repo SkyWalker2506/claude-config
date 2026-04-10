@@ -90,5 +90,14 @@ Paket surumleri, lockfile tutarliligi, CVE tarama ve guncelleme otomasyonu. Guve
 - Kritik CVE ve mimari etki → B13
 - Supply chain suphesi → B13
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Dependency Update Automation | `knowledge/dependency-update-automation.md` |
+| 2 | Lockfile Management | `knowledge/lockfile-management.md` |
+| 3 | Semver Strategy | `knowledge/semver-strategy.md` |
+| 4 | Vulnerability Scanning Tools | `knowledge/vulnerability-scanning-tools.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

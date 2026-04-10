@@ -90,5 +90,14 @@ Generative Engine Optimization — ChatGPT, Gemini, Perplexity gibi AI arama mot
 - Kapsamli icerik yeniden yapilandirmasi → H1 (Market Researcher) + A1
 - Yapisal veri implementasyonu → B3 (Frontend Coder)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | AI Visibility Optimization | `knowledge/ai-visibility-optimization.md` |
+| 2 | GEO SEO Strategies | `knowledge/geo-seo-strategies.md` |
+| 3 | LLM SEO Patterns | `knowledge/llm-seo-patterns.md` |
+| 4 | Structured Data Markup | `knowledge/structured-data-markup.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

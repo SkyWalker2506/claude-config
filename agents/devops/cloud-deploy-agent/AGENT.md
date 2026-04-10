@@ -89,5 +89,14 @@ Deploy plan, terraform/helm ozeti, hedef URL ve surum, smoke test sonucu.
 - Mimari degisiklik iceriyorsa → B1 (Backend Architect) onay
 - Production veri etkisi varsa → A1 + kullaniciya sor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Cloud Deployment Strategies | `knowledge/cloud-deployment-strategies.md` |
+| 2 | Cloud Provider Comparison | `knowledge/cloud-provider-comparison.md` |
+| 3 | Terraform Patterns | `knowledge/terraform-patterns.md` |
+| 4 | Zero Downtime Deploy | `knowledge/zero-downtime-deploy.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

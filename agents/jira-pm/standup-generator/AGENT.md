@@ -84,5 +84,14 @@ Katilimci bazli blok notlari, blokajlar, ertelenen isler, takip maddeleri.
 - Detayli rapor → I4 (Status Reporter)
 - Velocity verisi gerekirse → I7 (Burndown Tracker)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Async Standup Tools | `knowledge/async-standup-tools.md` |
+| 2 | Blocker Detection | `knowledge/blocker-detection.md` |
+| 3 | Daily Summary Template | `knowledge/daily-summary-template.md` |
+| 4 | Standup Format Patterns | `knowledge/standup-format-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

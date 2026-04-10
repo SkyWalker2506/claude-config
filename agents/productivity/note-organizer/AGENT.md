@@ -116,5 +116,14 @@ OBSIDIAN_SNIPPET
 - Anlam cikarimi ve kurumsal politika → K7
 - Gunluk brifing format → L3
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Knowledge Linking | `knowledge/knowledge-linking.md` |
+| 2 | Note Classification Methods | `knowledge/note-classification-methods.md` |
+| 3 | Obsidian Patterns | `knowledge/obsidian-patterns.md` |
+| 4 | Tagging Taxonomy | `knowledge/tagging-taxonomy.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

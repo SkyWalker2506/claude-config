@@ -141,6 +141,15 @@ Next: optional peer Bridge PR for N1/N6 if routing text changed
 - Cok adimli is akisi DAG olarak modellenmeli → **N8 (Workflow Engineer)**
 - MCP prod kesintisi veya alarm kok nedeni → **G3 (MCP Health Agent)**
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Agent Design Patterns | `knowledge/agent-design-patterns.md` |
+| 2 | Agent Testing Strategies | `knowledge/agent-testing-strategies.md` |
+| 3 | MCP Integration Guide | `knowledge/mcp-integration-guide.md` |
+| 4 | Skill Creation Workflow | `knowledge/skill-creation-workflow.md` |
+
 ## Knowledge Index
 
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

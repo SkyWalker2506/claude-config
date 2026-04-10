@@ -78,5 +78,14 @@ Erisilebilirlik ayarlari, kontrast tablosu, screen reader test sonucu.
 ## Escalation
 UI D11 → B36 input
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Colorblind Mode | `knowledge/colorblind-mode.md` |
+| 2 | Input Accessibility | `knowledge/input-accessibility.md` |
+| 3 | Screen Reader Unity | `knowledge/screen-reader-unity.md` |
+| 4 | Subtitle System | `knowledge/subtitle-system.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

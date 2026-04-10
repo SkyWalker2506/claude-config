@@ -78,5 +78,14 @@ Entity tanimlari, system sira, Burst ayarlari, structural change notu.
 ## Escalation
 Hybrid B19 → profil F12
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Burst Compiler Guide | `knowledge/burst-compiler-guide.md` |
+| 2 | Entities Component Guide | `knowledge/entities-component-guide.md` |
+| 3 | Job System Patterns | `knowledge/job-system-patterns.md` |
+| 4 | System Lifecycle | `knowledge/system-lifecycle.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

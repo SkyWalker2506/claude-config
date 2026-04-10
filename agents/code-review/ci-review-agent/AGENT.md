@@ -86,5 +86,14 @@ PR numarasi, check durumu tablosu, merge blok nedeni, gerekli onay listesi.
 - Derin review gerekirse → C4 (Code Rabbit Agent)
 - Human review gerekirse → C6 (Human Review Coordinator)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Github Pr Review Api | `knowledge/github-pr-review-api.md` |
+| 2 | Merge Criteria | `knowledge/merge-criteria.md` |
+| 3 | Review Automation Workflow | `knowledge/review-automation-workflow.md` |
+| 4 | Status Check Patterns | `knowledge/status-check-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

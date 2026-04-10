@@ -87,5 +87,14 @@ Bilgi tabani sorgulama ve retrieval.
 - Bilgi bulunamiyor -> K2 (Paper Summarizer) veya K3 (Documentation Fetcher)
 - Index bozuk -> jCodeMunch reindex tetikle
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Knowledge Graph Basics | `knowledge/knowledge-graph-basics.md` |
+| 2 | Knowledge Retrieval | `knowledge/knowledge-retrieval.md` |
+| 3 | Memory Query Optimization | `knowledge/memory-query-optimization.md` |
+| 4 | RAG Patterns | `knowledge/rag-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

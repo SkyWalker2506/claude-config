@@ -78,5 +78,14 @@ Servis konfig anahtarlari, economy leaderboard entegrasyonu, sandbox test.
 ## Escalation
 Backend B2 → B48 ekonomi
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Cloud Save Setup | `knowledge/cloud-save-setup.md` |
+| 2 | Leaderboard Implementation | `knowledge/leaderboard-implementation.md` |
+| 3 | Remote Config Guide | `knowledge/remote-config-guide.md` |
+| 4 | Unity Economy Package | `knowledge/unity-economy-package.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

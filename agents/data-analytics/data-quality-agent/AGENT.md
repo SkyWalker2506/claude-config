@@ -85,5 +85,14 @@ Kural seti, ihlal ornekleri, lineage ozeti, oneri listesi ve sahiplik.
 - Pipeline hatasi → F4 (ETL Pipeline Agent)
 - Kalite esik karari → kullaniciya danıs
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Consistency Checks | `knowledge/consistency-checks.md` |
+| 2 | Data Lineage Tracking | `knowledge/data-lineage-tracking.md` |
+| 3 | Data Profiling Tools | `knowledge/data-profiling-tools.md` |
+| 4 | Data Validation Rules | `knowledge/data-validation-rules.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

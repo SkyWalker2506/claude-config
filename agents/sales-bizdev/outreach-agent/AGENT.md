@@ -106,5 +106,14 @@ CRM hooks for O2: stage update on reply = {{rule}}
 - CRM alan ve workflow tasarimi → O2 (CRM Agent)
 - Marka tonu uyusmazligi → H7 (Social Media Agent)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Cold Email Patterns | `knowledge/cold-email-patterns.md` |
+| 2 | LinkedIn Outreach Guide | `knowledge/linkedin-outreach-guide.md` |
+| 3 | Personalization at Scale | `knowledge/personalization-at-scale.md` |
+| 4 | Sequence Design | `knowledge/sequence-design.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

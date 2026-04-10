@@ -76,5 +76,17 @@ System prompt, few-shot ornekleri ve chain-of-thought yapilarini tasarlar ve opt
 - Orkestrasyon → A1 (Lead Orchestrator)
 - Mimari → N6 (AI Systems Architect)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Chain-of-Thought Prompting | `knowledge/chain-of-thought.md` |
+| 2 | Context Engineering | `knowledge/context-engineering.md` |
+| 3 | Few-Shot Engineering | `knowledge/few-shot-engineering.md` |
+| 4 | Guardrails | `knowledge/guardrails.md` |
+| 5 | Learnings | `knowledge/learnings.md` |
+| 6 | System Prompt Patterns | `knowledge/system-prompt-patterns.md` |
+| 7 | Token Optimization | `knowledge/token-optimization.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

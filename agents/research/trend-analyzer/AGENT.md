@@ -90,5 +90,14 @@ Teknoloji ve pazar trendlerini tespit eder, adoption egrisini degerlendirir, zam
 - Stratejik karar gerektiriyorsa → H1 (Market Researcher) + A1
 - Teknik degerlenirlik → B1 (Backend Architect)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Adoption Curve Analysis | `knowledge/adoption-curve-analysis.md` |
+| 2 | Hype Cycle Assessment | `knowledge/hype-cycle-assessment.md` |
+| 3 | Market Timing | `knowledge/market-timing.md` |
+| 4 | Technology Radar Method | `knowledge/technology-radar-method.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

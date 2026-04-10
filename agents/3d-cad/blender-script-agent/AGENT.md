@@ -95,5 +95,14 @@ Blend dosyasi veya script ozeti, export ayarlari, vertex sayisi, bilinen modifie
 - Konsept/planlama → E1 (3D Concept Planner)
 - Blender versiyon uyumsuzlugu → kullaniciya rapor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Bpy Api Patterns | `knowledge/bpy-api-patterns.md` |
+| 2 | Export Pipeline | `knowledge/export-pipeline.md` |
+| 3 | Geometry Nodes Guide | `knowledge/geometry-nodes-guide.md` |
+| 4 | Shader Nodes Recipes | `knowledge/shader-nodes-recipes.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

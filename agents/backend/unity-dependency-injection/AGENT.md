@@ -78,5 +78,14 @@ Lifetime secimi, binding modulu listesi, mock stratejisi, startup sira.
 ## Escalation
 B39 test → B19 kod
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Service Locator Vs Di | `knowledge/service-locator-vs-di.md` |
+| 2 | Testability Patterns | `knowledge/testability-patterns.md` |
+| 3 | Vcontainer Patterns | `knowledge/vcontainer-patterns.md` |
+| 4 | Zenject Guide | `knowledge/zenject-guide.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

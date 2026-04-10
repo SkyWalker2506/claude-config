@@ -88,5 +88,14 @@ Rakip analizi — SWOT, benchmark, fiyat karsilastirmasi.
 - Derin web arastirmasi gerekirse → K1 (Web Researcher) dispatch
 - Strateji karari → H1 (Market Researcher) ile koordine
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Benchmark Methodology | `knowledge/benchmark-methodology.md` |
+| 2 | Competitive Positioning | `knowledge/competitive-positioning.md` |
+| 3 | Competitor SWOT Template | `knowledge/competitor-swot-template.md` |
+| 4 | Feature Comparison Matrix | `knowledge/feature-comparison-matrix.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

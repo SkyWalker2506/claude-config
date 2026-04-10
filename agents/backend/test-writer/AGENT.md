@@ -96,5 +96,15 @@ Otomatik test uzmani: unit, entegrasyon ve E2E senaryolari yazar; mock/fake seci
 - Performans/load → B12
 - Guvenlik odakli test case → B13
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Flutter Widget Testing | `knowledge/flutter-widget-testing.md` |
+| 2 | Mocking vs Integration Tests | `knowledge/mocking-vs-integration.md` |
+| 3 | TDD: Red-Green-Refactor | `knowledge/tdd-red-green-refactor.md` |
+| 4 | Test Coverage Strategies | `knowledge/test-coverage-strategies.md` |
+| 5 | Testing Pyramid Strategy | `knowledge/testing-pyramid-strategy.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

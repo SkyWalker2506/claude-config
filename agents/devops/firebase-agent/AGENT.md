@@ -84,5 +84,14 @@ Hedef servisler, rules/index diff ozeti, emulator veya staging test sonucu.
 - Functions deploy hatasi -> J2 (Cloud Deploy Agent)
 - Auth guvenlik sorunu -> B15 (Security Auditor)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Cloud Functions Best Practices | `knowledge/cloud-functions-best-practices.md` |
+| 2 | Firebase Auth Patterns | `knowledge/firebase-auth-patterns.md` |
+| 3 | Firebase Hosting Rules | `knowledge/firebase-hosting-rules.md` |
+| 4 | Firestore Data Modeling | `knowledge/firestore-data-modeling.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

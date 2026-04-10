@@ -84,5 +84,14 @@ Hedef ortam, build log ozeti, deploy URL veya commit SHA, smoke test sonucu.
 - Deploy basarisiz (2x) → J2 (CI/CD Agent) ile koordine
 - Prod deploy → kullaniciya onay sor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Firebase Deploy Patterns | `knowledge/firebase-deploy-patterns.md` |
+| 2 | Github Pages Setup | `knowledge/github-pages-setup.md` |
+| 3 | Preview Deployments | `knowledge/preview-deployments.md` |
+| 4 | Vercel Deployment Guide | `knowledge/vercel-deployment-guide.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

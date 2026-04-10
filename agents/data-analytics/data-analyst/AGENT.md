@@ -85,5 +85,14 @@ Bulgu ozeti, hipotez/sonuc tablosu, grafik onerisi (F3'e gecis), metrik tanimlar
 - Ileri istatistik → F10 (Statistics Agent)
 - Is karari → kullaniciya danıs
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Correlation Causation | `knowledge/correlation-causation.md` |
+| 2 | Hypothesis Testing | `knowledge/hypothesis-testing.md` |
+| 3 | Insight Reporting | `knowledge/insight-reporting.md` |
+| 4 | Statistical Analysis Methods | `knowledge/statistical-analysis-methods.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

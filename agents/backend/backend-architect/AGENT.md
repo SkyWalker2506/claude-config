@@ -110,5 +110,15 @@ Sistem ve servis sinirlari, API yuzeyi, veri depolama stratejisi ve olcekleme ya
 - Ücretli bulut maliyeti / kota → ilgili FinOps veya kullanıcı onayı
 - Ürün önceliği belirsiz → ürün sahibi; mimari “hangi özellik kesilecek” kararını alamaz
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | API Design: REST vs GraphQL | `knowledge/api-design-rest-vs-graphql.md` |
+| 2 | Database Architecture Decisions | `knowledge/database-architecture-decisions.md` |
+| 3 | Microservices vs Monolith | `knowledge/microservices-vs-monolith.md` |
+| 4 | Scalability: Horizontal vs Vertical | `knowledge/scalability-horizontal-vertical.md` |
+| 5 | System Design Patterns | `knowledge/system-design-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

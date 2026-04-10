@@ -91,5 +91,14 @@ Figma link veya dosya, cikarilan token ozeti, component envanteri tablosu.
 - Kod donusumu → D3 (Stitch Coordinator)
 - Figma API erisim hatasi → kullaniciya danis
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Component Inventory | `knowledge/component-inventory.md` |
+| 2 | Design Token Extraction | `knowledge/design-token-extraction.md` |
+| 3 | Figma Api Patterns | `knowledge/figma-api-patterns.md` |
+| 4 | Figma To Code Pipeline | `knowledge/figma-to-code-pipeline.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

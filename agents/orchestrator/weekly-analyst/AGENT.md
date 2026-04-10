@@ -116,5 +116,14 @@ Risks:
 - Belirsiz scope → A2 (Task Router)
 - Son care → kullaniciya sor
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Data Visualization Patterns | `knowledge/data-visualization-patterns.md` |
+| 2 | Kpi Tracking | `knowledge/kpi-tracking.md` |
+| 3 | Trend Reporting | `knowledge/trend-reporting.md` |
+| 4 | Weekly Digest Format | `knowledge/weekly-digest-format.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

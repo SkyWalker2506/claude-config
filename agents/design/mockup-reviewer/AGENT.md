@@ -91,5 +91,14 @@ Audit checklist sonucu, oncelikli bulgular, mockup ve ekran referansi.
 - Token guncelleme → D2 (Design System)
 - Buyuk UX degisikligi → kullaniciya danis
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Accessibility Wcag Guide | `knowledge/accessibility-wcag-guide.md` |
+| 2 | Contrast Ratio Tools | `knowledge/contrast-ratio-tools.md` |
+| 3 | Touch Target Guidelines | `knowledge/touch-target-guidelines.md` |
+| 4 | Ux Audit Checklist | `knowledge/ux-audit-checklist.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

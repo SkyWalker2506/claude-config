@@ -84,5 +84,14 @@ Metrik paneli ozeti (latency/quality), alarm esikleri, karsilastirma tablosu, on
 - Model tamamen cevapsiz → A3 (Fallback Manager)
 - 3+ model hata → G3 (MCP Health Agent) ile koordine
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Latency Tracking | `knowledge/latency-tracking.md` |
+| 2 | Model Comparison Live | `knowledge/model-comparison-live.md` |
+| 3 | Model Health Metrics | `knowledge/model-health-metrics.md` |
+| 4 | Quality Degradation Detection | `knowledge/quality-degradation-detection.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -80,5 +80,17 @@ AI agent sistemlerinin mimarisini tasarlarim — framework secimi, agent-to-agen
 - Skill format tasarimi → N7 (Skill Design Specialist)
 - Workflow tasarimi → N8 (Workflow Engineer)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Agent Communication | `knowledge/agent-communication.md` |
+| 2 | Context Engineering | `knowledge/context-engineering.md` |
+| 3 | Cost Modeling | `knowledge/cost-modeling.md` |
+| 4 | Multi-Agent Frameworks Comparison | `knowledge/frameworks.md` |
+| 5 | Memory Architecture | `knowledge/memory-architecture.md` |
+| 6 | Orchestration Patterns | `knowledge/orchestration-patterns.md` |
+| 7 | Reference Implementations | `knowledge/reference-implementations.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

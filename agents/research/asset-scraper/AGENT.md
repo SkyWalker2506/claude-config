@@ -88,5 +88,14 @@ BATCH: manifest.json | checksum=sha256
 - Özel sipariş veya konsept → tasarım / sanat pipeline
 - Asset Store satın alma kararı → **K14 Unity Asset Store Researcher**
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | 3D Asset Sources | `knowledge/3d-asset-sources.md` |
+| 2 | Asset Quality Criteria | `knowledge/asset-quality-criteria.md` |
+| 3 | Batch Download Patterns | `knowledge/batch-download-patterns.md` |
+| 4 | License Compliance | `knowledge/license-compliance.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

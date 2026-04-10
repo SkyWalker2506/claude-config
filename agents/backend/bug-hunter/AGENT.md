@@ -184,5 +184,15 @@ Cikti formati: bu dosyadaki Output Format yapisina uy.
 - [ ] Kok neden + kanit
 - [ ] Sonraki aksiyon sahibi net (B2/B5/B13/B6)
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Error Log Analysis | `knowledge/error-log-analysis.md` |
+| 2 | Incident Timeline Reconstruction | `knowledge/incident-timeline-reconstruction.md` |
+| 3 | Regression Detection | `knowledge/regression-detection.md` |
+| 4 | Root Cause: 5 Whys and Fishbone | `knowledge/root-cause-5why-fishbone.md` |
+| 5 | Systematic Debugging | `knowledge/systematic-debugging.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` — ozellikle `incident-timeline-reconstruction.md`.

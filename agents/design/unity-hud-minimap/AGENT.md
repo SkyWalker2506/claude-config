@@ -78,5 +78,14 @@ HUD wire ozeti, minimap ayarlari, compass/damage indicator parametreleri.
 ## Escalation
 Sahne entegrasyonu B19 → akis D12 → profil F12
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Damage Indicator Systems | `knowledge/damage-indicator-systems.md` |
+| 2 | Hud Design Patterns | `knowledge/hud-design-patterns.md` |
+| 3 | Minimap Implementation | `knowledge/minimap-implementation.md` |
+| 4 | Waypoint Compass Systems | `knowledge/waypoint-compass-systems.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

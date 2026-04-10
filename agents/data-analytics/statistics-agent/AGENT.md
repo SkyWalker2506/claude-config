@@ -85,5 +85,14 @@ Model varsayimlari, p-degeri/guven araligi tablosu, etki buyuklugu, alternatif m
 - Notebook ortami → F8 (Jupyter Agent)
 - Yontem secimi karari → kullaniciya danıs
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Ab Test Statistics | `knowledge/ab-test-statistics.md` |
+| 2 | Bayesian Methods | `knowledge/bayesian-methods.md` |
+| 3 | Hypothesis Testing Guide | `knowledge/hypothesis-testing-guide.md` |
+| 4 | Regression Analysis | `knowledge/regression-analysis.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

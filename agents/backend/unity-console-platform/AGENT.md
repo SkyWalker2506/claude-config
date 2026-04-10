@@ -78,5 +78,14 @@ Platform ifdef listesi, SDK surumu, remap tablosu, uyumluluk notu.
 ## Escalation
 Build J11 → B36 input → destek
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Input Remapping Guide | `knowledge/input-remapping-guide.md` |
+| 2 | Platform Abstraction Layer | `knowledge/platform-abstraction-layer.md` |
+| 3 | Platform Specific Code | `knowledge/platform-specific-code.md` |
+| 4 | Trc Xr Compliance | `knowledge/trc-xr-compliance.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

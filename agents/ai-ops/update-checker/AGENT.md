@@ -85,5 +85,14 @@ Surum karsilastirmasi, changelog ozeti, risk seviyesi, guncelleme onerisi ve zam
 ## Escalation
 - Breaking change iceren guncelleme → A1 (Lead Orchestrator) inceleme
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Breaking Change Detection | `knowledge/breaking-change-detection.md` |
+| 2 | Changelog Parsing | `knowledge/changelog-parsing.md` |
+| 3 | Update Notification | `knowledge/update-notification.md` |
+| 4 | Version Tracking Methods | `knowledge/version-tracking-methods.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

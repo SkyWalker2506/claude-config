@@ -98,5 +98,14 @@ Harici SaaS ve API’lere baglanma uzmani: OAuth/OIDC akislari, imzali webhook a
 - Buyuk kod tabani entegrasyonu → B2
 - Guvenlik incelemesi → B13
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | OAuth 2.0 Grant Types | `knowledge/oauth2-grant-types.md` |
+| 2 | Rate Limiting and Retry Strategies | `knowledge/rate-limiting-retry-strategies.md` |
+| 3 | SDK Wrapper Design | `knowledge/sdk-wrapper-design.md` |
+| 4 | Webhook Design Patterns | `knowledge/webhook-design-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -78,5 +78,14 @@ NavMesh ayarlari, agent parametreleri, BT/FSM dosya yollari, pathfinding test so
 ## Escalation
 Gameplay B19 → animasyon → ag gerekiyorsa B2
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Behavior Tree Patterns | `knowledge/behavior-tree-patterns.md` |
+| 2 | Navmesh Setup Guide | `knowledge/navmesh-setup-guide.md` |
+| 3 | Pathfinding Algorithms | `knowledge/pathfinding-algorithms.md` |
+| 4 | State Machine Ai | `knowledge/state-machine-ai.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

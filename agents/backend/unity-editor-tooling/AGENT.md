@@ -78,5 +78,14 @@ EditorWindow/Inspector kod yollari, menu item, kullanici rehberi, risk notu.
 ## Escalation
 Runtime B19 → paket UPM → CI J11
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Custom Inspector Guide | `knowledge/custom-inspector-guide.md` |
+| 2 | Editor Window Patterns | `knowledge/editor-window-patterns.md` |
+| 3 | Property Drawer Recipes | `knowledge/property-drawer-recipes.md` |
+| 4 | Scriptable Wizard | `knowledge/scriptable-wizard.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

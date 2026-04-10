@@ -86,5 +86,15 @@ Unity ve C# ile oyun ve arac gelistirme: ECS/DOTS, shader, editor extension, UPM
 ## Escalation
 - Cok oyunculu mimari → B1 + B21
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Shader Programming Basics | `knowledge/shader-programming-basics.md` |
+| 2 | Unity ECS and DOTS Guide | `knowledge/unity-ecs-dots-guide.md` |
+| 3 | Unity Editor Tooling | `knowledge/unity-editor-tooling.md` |
+| 4 | Unity Performance Profiling | `knowledge/unity-performance-profiling.md` |
+| 5 | UPM Package Development | `knowledge/upm-package-development.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -78,5 +78,14 @@ Hitbox katmanlari, hasar formulu, combo state makinesi, status efekt tablosu.
 ## Escalation
 Animasyon B19 → B49 state
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Combo System Design | `knowledge/combo-system-design.md` |
+| 2 | Damage Calculation | `knowledge/damage-calculation.md` |
+| 3 | Hitbox Hurtbox System | `knowledge/hitbox-hurtbox-system.md` |
+| 4 | Status Effect Framework | `knowledge/status-effect-framework.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

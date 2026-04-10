@@ -78,5 +78,14 @@ Akis ozeti (ekran sirasi), onboarding adimlari, tutorial tetikleyicileri.
 ## Escalation
 UI implementasyon D11 → gameplay B19 → arastirma K1
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Game Ux Patterns | `knowledge/game-ux-patterns.md` |
+| 2 | Menu Flow Architecture | `knowledge/menu-flow-architecture.md` |
+| 3 | Player Onboarding | `knowledge/player-onboarding.md` |
+| 4 | Tutorial System Design | `knowledge/tutorial-system-design.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

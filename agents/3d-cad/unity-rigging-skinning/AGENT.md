@@ -78,5 +78,14 @@ Rig setup, IK hedefleri, blend shape listesi, humanoid retarget notu.
 ## Escalation
 Animasyon B19 → mesh E2 → sahne E8
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Animation Rigging Package | `knowledge/animation-rigging-package.md` |
+| 2 | Avatar Humanoid Setup | `knowledge/avatar-humanoid-setup.md` |
+| 3 | Blend Shape Workflow | `knowledge/blend-shape-workflow.md` |
+| 4 | Ik Constraint Patterns | `knowledge/ik-constraint-patterns.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

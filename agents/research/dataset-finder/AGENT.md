@@ -90,5 +90,14 @@ RISKS: [leakage, class_imbalance, PII]
 - Kurumsal veri politikası → **K10**
 - Büyük veri altyapısı → **F2 / F4** ilgili agent
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Data Discovery Methods | `knowledge/data-discovery-methods.md` |
+| 2 | Dataset Quality Assessment | `knowledge/dataset-quality-assessment.md` |
+| 3 | Hugging Face Datasets | `knowledge/huggingface-datasets.md` |
+| 4 | Kaggle Navigation | `knowledge/kaggle-navigation.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

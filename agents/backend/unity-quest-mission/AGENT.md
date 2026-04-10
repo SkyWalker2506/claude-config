@@ -78,5 +78,14 @@ Quest graph ozeti, objective id'leri, odul dagitim kurali, editor araci notu.
 ## Escalation
 B44 hikaye → B46 combat → UI D11
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Objective Framework | `knowledge/objective-framework.md` |
+| 2 | Quest Graph Editor | `knowledge/quest-graph-editor.md` |
+| 3 | Quest Tracking System | `knowledge/quest-tracking-system.md` |
+| 4 | Reward Distribution | `knowledge/reward-distribution.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

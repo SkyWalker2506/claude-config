@@ -91,5 +91,14 @@ Konsept dokuman: mood board listesi, kamera/lens plani, polygon/texture butcesi 
 - Asset optimizasyonu → E5 (3D Asset Optimizer)
 - Butce/zaman karari → kullaniciya danis
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | 3D Scene Composition | `knowledge/3d-scene-composition.md` |
+| 2 | Camera Angle Patterns | `knowledge/camera-angle-patterns.md` |
+| 3 | Lighting Setup Guide | `knowledge/lighting-setup-guide.md` |
+| 4 | Reference Gathering | `knowledge/reference-gathering.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle
