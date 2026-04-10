@@ -1,17 +1,38 @@
+<div align="center">
+
 # claude-config
 
-**Multi-Agent OS for Claude Code** — 139 agents, 21 plugins, local-first routing, Telegram bridge, plugin marketplace.
+### **Multi-Agent OS** for [**Claude Code**](https://claude.ai/claude-code)
 
-by [Musab Kara](https://linkedin.com/in/musab-kara-85580612a) · [GitHub](https://github.com/SkyWalker2506)
+[![Agents](https://img.shields.io/badge/agents-196_registry-6366f1)](./config/agent-registry.json)
+[![Plugins](https://img.shields.io/badge/plugins-21_marketplace-f97316)](https://github.com/SkyWalker2506/claude-marketplace)
+[![MCP](https://img.shields.io/badge/MCP-8_integrated-0ea5e9)](./global/settings.json.template)
+[![License](https://img.shields.io/badge/license-MIT-22c55e)](./LICENSE)
+[![Author](https://img.shields.io/badge/Musab_Kara-GitHub-181717?logo=github)](https://github.com/SkyWalker2506)
+
+**Install once · Skills + hooks + MCP · Agent registry · Session sync to `~/.claude/`**
+
+[Install](#quick-start) · [Architecture](#architecture) · [Ecosystem](#ecosystem-on-github-read-order)
+
+</div>
+
+---
 
 ## Ecosystem on GitHub (read order)
 
-1. **[claude-agent-catalog](https://github.com/SkyWalker2506/claude-agent-catalog)** — agent inventory and categories (entry point for the story on GitHub)
-2. **[claude-marketplace](https://github.com/SkyWalker2506/claude-marketplace)** — plugin catalog and installs
-3. **claude-config (this repo)** — full Multi-Agent OS: `install.sh`, skills, MCP, hooks, registry
+1. **[claude-agent-catalog](https://github.com/SkyWalker2506/claude-agent-catalog)** — agent inventory (start the story on GitHub)
+2. **[claude-marketplace](https://github.com/SkyWalker2506/claude-marketplace)** — plugins — `ccplugin-*`
+3. **claude-config (this repo)** — full OS: `./install.sh`, skills, MCP, hooks, [`agent-registry.json`](./config/agent-registry.json)
 4. **[ClaudeHQ](https://github.com/SkyWalker2506/ClaudeHQ)** — multi-project workspace hub
 
-Optional: [sdk-market](https://github.com/SkyWalker2506/sdk-market). READMEs are cross-linked; minor count deltas may land in small follow-up commits while behavior tracks `main` here.
+Optional: [sdk-market](https://github.com/SkyWalker2506/sdk-market). Counts follow **`main`** here and the linked repos.
+
+```mermaid
+flowchart LR
+  A[1 Catalog] --> B[2 Marketplace]
+  B --> C[3 claude-config]
+  C --> D[4 ClaudeHQ]
+```
 
 ---
 
@@ -19,8 +40,8 @@ Optional: [sdk-market](https://github.com/SkyWalker2506/sdk-market). READMEs are
 
 A portable, self-installing configuration system that turns Claude Code into a multi-agent operating system. Clone → `./install.sh` → done.
 
-- **139 AI agents** across 15 categories (30 active, 104 pool — activate on demand)
-- **21 plugins** published on our own [marketplace](https://github.com/SkyWalker2506/claude-marketplace)
+- **196 registered agents** in [`agent-registry.json`](./config/agent-registry.json) · 15 categories (activate on demand)
+- **21 plugins** on our [marketplace](https://github.com/SkyWalker2506/claude-marketplace)
 - **8 MCP servers** integrated (GitHub, Atlassian/Jira, Firebase, Flutter, jCodeMunch, Git, Fetch, Context7)
 - **34 slash commands** (/yolo, /team-build, /jira-run, /audit, /web-research, /sprint-plan, and more)
 - **Telegram bot** with persistent Haiku agent — control Claude from your phone
@@ -48,7 +69,7 @@ The installer sets up everything: CLAUDE.md hierarchy, skills, MCP servers, hook
 ┌─────────────────────────────────────────────────┐
 │              Routing & Budget                    │
 │   Task Router → Token Budget → Fallback Manager  │
-│              Agent Registry (134)                │
+│           Agent Registry (~196)                  │
 └──────────────────────┬──────────────────────────┘
                        ▼
 ┌───────────┬──────────┬──────────┬───────────────┐
@@ -94,7 +115,7 @@ Then browse with `/plugin > Discover` or install directly:
 
 ## Agent System
 
-144 Knowledge-First agents across 15 categories. Each agent lives in a folder with:
+Knowledge-First agents across **15 categories** (registry on `main`). Each agent lives in a folder with:
 - `AGENT.md` (identity, boundaries, process)
 - `knowledge/` (lazy-loaded domain notes)
 - `memory/` (sessions + learnings)
@@ -161,7 +182,7 @@ claude-config/
 │   ├── CLAUDE.md           # → ~/.claude/CLAUDE.md
 │   ├── settings.json.template  # MCP servers, hooks, permissions
 │   └── skills/             # 52 slash commands
-├── agents/                 # 144 Knowledge-First agents
+├── agents/                 # Knowledge-First agent trees
 │   ├── orchestrator/       # A1–A8
 │   ├── backend/            # B1–B19
 │   ├── code-review/        # C1–C6
