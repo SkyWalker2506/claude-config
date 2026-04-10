@@ -46,7 +46,13 @@ agents/{category}/{agent-name}/
 5. **knowledge/_index.md olustur**: Agent'in alanina gore bos konu listesi hazirla (ileride doldurulacak)
 6. **memory/ dosyalari olustur**: Template'ten kopyala
 7. **Eski .md'yi sil**: Yeni dizin yapisi hazirlandi, eski dosya gereksiz
-8. **Registry guncelle**: `config/agent-registry.json`'da yapisi guncelle (opsiyonel)
+8. **Registry guncelle (zorunlu)**: Yeni veya silinen agent icin `config/agent-registry.json` dosyasini elle uzun uzadiya yazma — repoda:
+
+```bash
+cd ~/Projects/claude-config && python3 tools/sync_agent_registry_from_agents.py
+```
+
+Bu komut yeni `AGENT.md` icin kayit ekler, silinmis agent'i registry'den cikarir, `active_agents` listesini frontmatter `status` ile esitler. Degisikligi `AGENT.md` ile birlikte commit et.
 
 ## When to Use
 - Yeni agent olusturulurken
@@ -65,13 +71,14 @@ agents/{category}/{agent-name}/
 ## Error Handling
 - Eski .md parse edilemiyorsa → varsayilan template ile olustur, kullaniciyi bildir
 - Dizin olusturma basarisizsa → path/izin kontrol et, raporla
-- Registry guncelleme basarisizsa → AGENT.md'yi yine de olustur, registry'yi sonra guncelle
+- Registry guncelleme basarisizsa → AGENT.md'yi yine de olustur; `tools/sync_agent_registry_from_agents.py` hatasini duzelt, tekrar calistir (commit once registry tutarli olsun)
 
 ## Verification
 - [ ] Dizin yapisi dogru olusturuldu (AGENT.md, knowledge/_index.md, memory/*.md)
 - [ ] AGENT.md tum section'lari iceriyor
 - [ ] Eski bilgi tasindi, kayip yok
 - [ ] _index.md en az 3 bos konu iceriyor (doldurulmaya hazir)
+- [ ] `python3 tools/sync_agent_registry_from_agents.py` calistirildi; `config/agent-registry.json` commit'e dahil
 
 ## Tier Kurali
 

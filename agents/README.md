@@ -39,6 +39,32 @@
 ## Agent .md Format
 Each agent has frontmatter (id, model, capabilities) + 3 sections (Amac, Kapsam, Escalation). ~20 lines each.
 
+## Registry sync (required when adding or removing an agent)
+
+Whenever you **add**, **remove**, or **rename** an agent folder under `agents/`, update `config/agent-registry.json` so dispatch and tooling stay in sync.
+
+**Do not hand-edit the full agent list** unless you know what you are doing — run the sync script from the repo root:
+
+```bash
+cd ~/Projects/claude-config
+python3 tools/sync_agent_registry_from_agents.py
+```
+
+This script:
+
+- Adds registry rows for new `agents/*/*/AGENT.md` files
+- Removes registry entries whose files no longer exist
+- Rebuilds `active_agents` from frontmatter `status: active`
+
+Optional check (name/status vs files):
+
+```bash
+python3 config/sync_agents.py --check
+python3 config/sync_agents.py --fix   # only if you want MD-driven name/status fixes
+```
+
+Commit `config/agent-registry.json` together with the new or changed `AGENT.md`.
+
 ## Routing
 Task Router (A2, Sonnet) uses capability tags for matching. Auto-dispatch integrated into plan template (CLAUDE.md §9a). See `config/agent-registry.json` for full mapping.
 

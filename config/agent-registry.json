@@ -3647,6 +3647,1432 @@
       "template": "autonomous",
       "tier": "mid",
       "model_source": "openrouter"
+    },
+    "K15": {
+      "name": "Unity Technology Researcher",
+      "version": "1.0",
+      "category": "research",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "unity-roadmap",
+        "beta-packages",
+        "deprecation-tracking",
+        "feature-evaluation",
+        "version-migration"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "K14": {
+      "name": "Unity Asset Store Researcher",
+      "version": "1.0",
+      "category": "research/unity-asset-store-researcher",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "asset-store-evaluation",
+        "package-comparison",
+        "license-audit",
+        "integration-risk"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "D11": {
+      "name": "Unity UI Developer",
+      "version": "1.0",
+      "category": "design",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "ui-toolkit",
+        "ugui",
+        "uss",
+        "uxml",
+        "responsive-layout",
+        "data-binding"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "D13": {
+      "name": "Unity HUD & Minimap",
+      "version": "1.0",
+      "category": "design",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "hud-system",
+        "minimap",
+        "compass",
+        "health-bar",
+        "damage-indicator",
+        "waypoint"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "D12": {
+      "name": "Unity UX Flow Designer",
+      "version": "1.0",
+      "category": "design",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "menu-flow",
+        "hud-design",
+        "player-onboarding",
+        "tutorial-system",
+        "contextual-help"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "J11": {
+      "name": "Unity DevOps",
+      "version": "1.0",
+      "category": "devops",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "gameci",
+        "unity-cloud-build",
+        "addressables-ci",
+        "build-optimization",
+        "platform-switching"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "J12": {
+      "name": "Unity Version Control",
+      "version": "1.0",
+      "category": "devops",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "plastic-scm",
+        "unity-version-control",
+        "large-file",
+        "merge-strategies",
+        "lfs",
+        "lock-files"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "F11": {
+      "name": "Unity Analytics",
+      "version": "1.0",
+      "category": "data-analytics",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "unity-analytics",
+        "custom-events",
+        "ab-testing",
+        "player-telemetry",
+        "funnel-analysis"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "F12": {
+      "name": "Unity Performance Profiler",
+      "version": "1.0",
+      "category": "data-analytics",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "frame-analysis",
+        "deep-profiling",
+        "cpu-gpu-markers",
+        "memory-snapshots",
+        "timeline-view"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "F13": {
+      "name": "Unity Playtesting Analyst",
+      "version": "1.0",
+      "category": "data-analytics",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "playtest-data",
+        "heatmaps",
+        "player-behavior",
+        "session-replay",
+        "funnel-analysis"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "C7": {
+      "name": "Unity Code Reviewer",
+      "version": "1.0",
+      "category": "code-review",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "unity-csharp-review",
+        "monobehaviour-lifecycle",
+        "gc-allocation",
+        "unity-antipatterns",
+        "solid-unity"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "H16": {
+      "name": "Unity Market Analyst",
+      "version": "1.0",
+      "category": "market-research",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "game-market-trends",
+        "unity-vs-unreal",
+        "platform-store-analysis",
+        "genre-analysis",
+        "revenue-models"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B42": {
+      "name": "Unity Security & Anti-Cheat",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "code-obfuscation",
+        "memory-protection",
+        "server-validation",
+        "cheat-detection",
+        "secure-playerprefs"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B34": {
+      "name": "Unity ECS/DOTS Specialist",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "entities",
+        "systems",
+        "jobs",
+        "burst-compiler",
+        "chunk-iteration",
+        "structural-changes"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B33": {
+      "name": "Unity Console/Platform",
+      "version": "1.0",
+      "category": "backend/unity-console-platform",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "ps5",
+        "xbox",
+        "switch",
+        "platform-abstraction",
+        "trc-xr-compliance",
+        "input-remapping"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B32": {
+      "name": "Unity Mobile Optimizer",
+      "version": "1.0",
+      "category": "backend/unity-mobile-optimizer",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "il2cpp",
+        "managed-stripping",
+        "thermal-throttling",
+        "adaptive-performance",
+        "touch-input",
+        "battery-optimization"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B52": {
+      "name": "Unity Streaming & Open World",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "scene-streaming",
+        "additive-scenes",
+        "lod-streaming",
+        "world-partitioning",
+        "async-loading"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B29": {
+      "name": "Unity Localization",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "localization-package",
+        "rtl-support",
+        "font-management",
+        "string-tables",
+        "asset-localization"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B25": {
+      "name": "Unity AR/XR Developer",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "arfoundation",
+        "xr-interaction-toolkit",
+        "meta-quest",
+        "vision-pro",
+        "hand-tracking"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B39": {
+      "name": "Unity Testing Specialist",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "playmode-test",
+        "editmode-test",
+        "performance-testing",
+        "utf",
+        "test-automation"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B41": {
+      "name": "Unity Monetization",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "iap",
+        "unity-ads",
+        "ad-mediation",
+        "economy-package",
+        "receipt-validation"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B49": {
+      "name": "Unity State Machine",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "fsm",
+        "hfsm",
+        "pushdown-automata",
+        "scriptableobject-states",
+        "game-state-management"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B26": {
+      "name": "Unity Audio Engineer",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "audio-mixer",
+        "fmod",
+        "wwise",
+        "spatial-audio",
+        "adaptive-music",
+        "audio-pooling"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B51": {
+      "name": "Unity Asset Workflow",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "addressables-advanced",
+        "asset-bundles",
+        "asset-import-pipeline",
+        "presets",
+        "asset-postprocessor"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B28": {
+      "name": "Unity Save & Serialization",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "save-system",
+        "json-serialization",
+        "binary-serialization",
+        "cloud-save",
+        "scriptableobject-data"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B24": {
+      "name": "Unity AI & Navigation",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "navmesh",
+        "behavior-tree",
+        "state-machine",
+        "ml-agents",
+        "pathfinding"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B47": {
+      "name": "Unity Quest & Mission System",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "quest-tracking",
+        "objectives",
+        "rewards",
+        "procedural-quests",
+        "quest-graph"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B38": {
+      "name": "Unity Memory Manager",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "memory-profiler",
+        "gc-optimization",
+        "native-containers",
+        "object-pooling",
+        "managed-heap"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B35": {
+      "name": "Unity 2D Specialist",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "sprite-renderer",
+        "2d-physics",
+        "tilemap-2d",
+        "spine",
+        "2d-animation",
+        "pixel-perfect"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B27": {
+      "name": "Unity Physics Specialist",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "physx",
+        "collision-layers",
+        "joints",
+        "raycasting",
+        "custom-physics",
+        "havok"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B30": {
+      "name": "Unity Editor Tooling",
+      "version": "1.0",
+      "category": "backend/unity-editor-tooling",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "custom-inspector",
+        "editor-window",
+        "property-drawer",
+        "scriptable-wizard",
+        "imgui",
+        "ui-toolkit-editor"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B40": {
+      "name": "Unity Cloud Services",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "remote-config",
+        "cloud-save",
+        "economy",
+        "leaderboards",
+        "cloud-code",
+        "ugc"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B37": {
+      "name": "Unity Camera Systems",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "cinemachine-advanced",
+        "split-screen",
+        "picture-in-picture",
+        "camera-stacking",
+        "custom-rig"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B50": {
+      "name": "Unity Dependency Injection",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "zenject",
+        "vcontainer",
+        "service-locator",
+        "di-patterns",
+        "testability"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B45": {
+      "name": "Unity Inventory & Crafting",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "inventory-system",
+        "item-database",
+        "crafting-recipes",
+        "scriptableobject-data",
+        "drag-drop-ui"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B23": {
+      "name": "Unity Multiplayer",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "netcode",
+        "mirror",
+        "photon",
+        "relay",
+        "matchmaking",
+        "state-sync",
+        "lag-compensation"
+      ],
+      "max_tool_calls": 30,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B44": {
+      "name": "Unity Dialogue System",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "dialogue-trees",
+        "branching-narrative",
+        "ink-integration",
+        "yarn-spinner",
+        "localized-dialogue"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B43": {
+      "name": "Unity Accessibility",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "screen-reader",
+        "colorblind",
+        "input-accessibility",
+        "wcag",
+        "subtitle-system",
+        "ui-scaling"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B22": {
+      "name": "Unity Shader Developer",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "shaderlab",
+        "hlsl",
+        "shader-graph",
+        "urp",
+        "hdrp",
+        "custom-render-pass",
+        "post-processing"
+      ],
+      "max_tool_calls": 30,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B46": {
+      "name": "Unity Combat System",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "hitbox-hurtbox",
+        "damage-calculation",
+        "combo-system",
+        "status-effects",
+        "weapon-system"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B48": {
+      "name": "Unity Game Economy Designer",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "virtual-currency",
+        "reward-loops",
+        "gacha-balance",
+        "drop-rates",
+        "progression-curve"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B36": {
+      "name": "Unity Input System",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "new-input-system",
+        "action-maps",
+        "rebinding",
+        "multi-device",
+        "touch",
+        "gamepad"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "B31": {
+      "name": "Unity Procedural Generation",
+      "version": "1.0",
+      "category": "backend/unity-procedural-generation",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "wave-function-collapse",
+        "noise-algorithms",
+        "dungeon-generation",
+        "procedural-terrain",
+        "seed-based-generation"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "E11": {
+      "name": "Unity Terrain Specialist",
+      "version": "1.0",
+      "category": "3d-cad",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "terrain-tools",
+        "vegetation",
+        "speedtree",
+        "grass-rendering",
+        "terrain-streaming",
+        "erosion"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "E9": {
+      "name": "Unity Cinematic Director",
+      "version": "1.0",
+      "category": "3d-cad/unity-cinematic-director",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "timeline-advanced",
+        "cinemachine-rigs",
+        "cutscene-pipeline",
+        "recorder",
+        "post-process-storytelling"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "E8": {
+      "name": "Unity Level Designer",
+      "version": "1.0",
+      "category": "3d-cad",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "terrain",
+        "probuilder",
+        "tilemap",
+        "procedural-generation",
+        "scene-management"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "E10": {
+      "name": "Unity Lighting Artist",
+      "version": "1.0",
+      "category": "3d-cad",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "lightmapping",
+        "light-probes",
+        "reflection-probes",
+        "volumetric-fog",
+        "ssao",
+        "hdr-bloom"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "E7": {
+      "name": "Unity Technical Artist",
+      "version": "1.0",
+      "category": "3d-cad",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "asset-pipeline",
+        "lod",
+        "texture-optimization",
+        "lightmapping",
+        "addressables",
+        "srp-batcher",
+        "mesh-compression"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "E12": {
+      "name": "Unity Rigging & Skinning",
+      "version": "1.0",
+      "category": "3d-cad",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "avatar-setup",
+        "humanoid-generic",
+        "animation-rigging",
+        "ik-constraints",
+        "blend-shapes",
+        "bone-constraints"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "E6": {
+      "name": "Unity VFX & Animation",
+      "version": "1.0",
+      "category": "3d-cad",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "vfx-graph",
+        "particle-system",
+        "animator",
+        "timeline",
+        "cinemachine",
+        "procedural-animation"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "G12": {
+      "name": "Unity Sentis",
+      "version": "1.0",
+      "category": "ai-ops",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "onnx-inference",
+        "on-device-ai",
+        "npc-behavior",
+        "procedural-content",
+        "model-optimization"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
+    },
+    "G11": {
+      "name": "Unity ML-Agents Trainer",
+      "version": "1.0",
+      "category": "ai-ops",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "reinforcement-learning",
+        "imitation-learning",
+        "training-environments",
+        "curriculum-learning",
+        "self-play"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "openrouter"
     }
   },
   "retry_strategy": {
