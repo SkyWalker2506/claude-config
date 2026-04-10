@@ -216,6 +216,11 @@ cd ~/Projects/claude-config
 # Secrets pulled automatically if you own the private repo
 ```
 
+## Repo maintenance
+
+- **`scripts/README.md`** — audit ve toplu knowledge script’leri (`agent_coverage_audit`, `knowledge_quality_audit`, `inject_knowledge_maps`, vb.).
+- **Yapısal doğrulama:** `python3 scripts/verify_knowledge_structure.py` — coverage P0–P2 sıfır ve tüm konu dosyalarında mega bölümler tam mı kontrol eder (CI: `.github/workflows/knowledge-audit.yml`).
+
 ## Related
 
 - [Agent Catalog](https://github.com/SkyWalker2506/claude-agent-catalog) — agent inventory (GitHub entry point #1)

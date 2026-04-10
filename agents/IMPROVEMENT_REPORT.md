@@ -121,3 +121,9 @@ Degisiklikler:
 - Agent coverage tier: P0/P1/P2 = 0, OK = 196 (`scripts/agent_coverage_audit.py`).
 - Toplu scriptler: `inject_knowledge_maps.py`, `batch_mr_code_examples.py`, `batch_backend_patterns_anti.py` — `scripts/README.md`.
 
+## 2026-04-12 guncelleme (CI dogrulama)
+
+- `scripts/verify_knowledge_structure.py` — tek komutla agent coverage + knowledge mega-bolum kontrolu; basarisizda exit 1.
+- GitHub Actions: `.github/workflows/knowledge-audit.yml` (main push + PR).
+- Audit scriptleri `CLAUDE_VERIFY_AUDIT=1` iken rapor `.md` dosyalarini yazmaz (verify icin).
+
