@@ -89,5 +89,15 @@ RISKS: [competition, budget]
 - Ürün stratejisi → **H1** / ürün liderliği
 - Teknik uygulama → **B19 / K15**
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Pazar trendleri | `knowledge/game-market-trends.md` |
+| 2 | Unity vs Unreal | `knowledge/unity-vs-unreal-comparison.md` |
+| 3 | Mağaza sinyalleri | `knowledge/platform-store-analysis.md` |
+| 4 | Tür gelir | `knowledge/genre-revenue-analysis.md` |
+| 5 | Kaynak güveni | `knowledge/data-sources-and-confidence-tiers.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

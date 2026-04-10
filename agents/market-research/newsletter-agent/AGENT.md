@@ -89,5 +89,15 @@ DELIVERABILITY: spf/dkim/dmarc note | suppression rules
 - İçerik kaynağı çeşitlendirme → **H8**
 - Ürün analitiği derinliği → **M4**
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Tasarım şablonları | `knowledge/newsletter-design-patterns.md` |
+| 2 | Metin / konu satırı | `knowledge/email-copywriting.md` |
+| 3 | Segmentasyon | `knowledge/segmentation-strategies.md` |
+| 4 | SPF/DKIM/DMARC | `knowledge/deliverability-guide.md` |
+| 5 | Liste hijyen / KVKK | `knowledge/list-hygiene-suppression-compliance.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

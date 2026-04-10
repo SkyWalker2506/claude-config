@@ -86,5 +86,15 @@ SUBMIT: [directory URLs] | status=pending
 - Kod derinliği → **B2**
 - Büyük pazarlama kampanyası → **H7 / M2**
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | MCP sunucu şeması | `knowledge/mcp-server-creation.md` |
+| 2 | npm yayını | `knowledge/npm-publish-guide.md` |
+| 3 | Dizin başvuruları | `knowledge/directory-submission.md` |
+| 4 | GTM / görünürlük | `knowledge/mcp-marketplace-strategy.md` |
+| 5 | SemVer / CHANGELOG | `knowledge/semantic-versioning-and-changelog.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

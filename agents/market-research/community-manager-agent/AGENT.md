@@ -87,5 +87,15 @@ FAQ_SYNC: [topic, owner, last_review]
 - Güvenlik olayı → **B13** + insan
 - Marka krizi → PR / üst yönetim
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Moderasyon | `knowledge/community-moderation-guide.md` |
+| 2 | Discord kurulum | `knowledge/discord-server-setup.md` |
+| 3 | Etkinlik / etkileşim | `knowledge/engagement-playbook.md` |
+| 4 | FAQ | `knowledge/faq-management.md` |
+| 5 | Kriz / hukuki | `knowledge/crisis-and-legal-escalation.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

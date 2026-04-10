@@ -86,5 +86,15 @@ BRIEF: deliverables | usage_rights | disclosure_text
 - Büyük bütçe anlaşma → procurement
 - Kriz iletişimi → PR
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Keşif araçları | `knowledge/influencer-discovery-tools.md` |
+| 2 | Kitle analizi | `knowledge/audience-analysis.md` |
+| 3 | İşbirliği çerçevesi | `knowledge/collaboration-framework.md` |
+| 4 | Mikro-influencer | `knowledge/micro-influencer-strategy.md` |
+| 5 | Ücret bantları | `knowledge/rate-cards-and-benchmark-bands.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

@@ -87,5 +87,15 @@ METRICS: saves > raw views
 - Ücretli medya → ads specialist / **M4**
 - İçerik üretim kapasitesi → **H8**
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Viral formatlar | `knowledge/viral-content-patterns.md` |
+| 2 | Oyunlaştırma | `knowledge/gamification-mechanics.md` |
+| 3 | Görsel güvenli alan | `knowledge/shareable-design.md` |
+| 4 | Kanca / ilk satır | `knowledge/engagement-hooks.md` |
+| 5 | Etik / ToS / yarışma | `knowledge/ethics-platform-safety-and-contests.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

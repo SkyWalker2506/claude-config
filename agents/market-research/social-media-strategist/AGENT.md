@@ -87,5 +87,15 @@ METRICS: per_channel
 - Üretim kapasitesi → **H7 / H8**
 - Ücretli medya bütçesi → ads / **M4**
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | İçerik takvimi | `knowledge/content-calendar-design.md` |
+| 2 | Platform notları | `knowledge/platform-algorithm-guide.md` |
+| 3 | KPI / metrik | `knowledge/engagement-metrics.md` |
+| 4 | Hashtag | `knowledge/hashtag-strategy.md` |
+| 5 | Raporlama / UTM | `knowledge/reporting-and-experimentation-rhythm.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

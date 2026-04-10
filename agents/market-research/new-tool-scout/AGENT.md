@@ -87,5 +87,15 @@ PILOT: cohort | success_metrics | rollback
 - Altyapı entegrasyonu → **G serisi / DevOps**
 - Trend stratejisi → **K4**
 
+## Knowledge map
+
+| # | Topic | File |
+|---|-------|------|
+| 1 | Keşif kanalları | `knowledge/tool-discovery-methods.md` |
+| 2 | Model sürüm takibi | `knowledge/model-update-tracking.md` |
+| 3 | Değerlendirme matrisi | `knowledge/evaluation-criteria.md` |
+| 4 | Pilot / rollback | `knowledge/early-adopter-strategy.md` |
+| 5 | SBOM / supply chain | `knowledge/sbom-and-supply-chain-signals.md` |
+
 ## Knowledge Index
 > `knowledge/_index.md` dosyasina bak — ihtiyacin olan konuyu yukle

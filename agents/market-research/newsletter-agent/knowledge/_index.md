@@ -9,5 +9,5 @@ total_topics: 5
 - [Newsletter design patterns](newsletter-design-patterns.md) — yapı, mobil, tek CTA
 - [Email copywriting](email-copywriting.md) — konu, gövde, varyant JSON
 - [Segmentation strategies](segmentation-strategies.md) — davranış, SQL, ESP kuralları
-- [Deliverability guide](deliverability-guide.md) — SPF/DKIM/DMARC, itibar
+- [Deliverability guide](deliverability-guide.md) — SPF/DKIM/DMARC, reputation, DNS örnekleri
 - [List hygiene, suppression, compliance](list-hygiene-suppression-compliance.md) — bounce, şikayet, KVKK
