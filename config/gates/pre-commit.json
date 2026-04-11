@@ -1,0 +1,28 @@
+{
+  "_comment": "Verification gates run before git commit. Set 'blocking' to true per-gate to hard-fail; default is warn-only so existing workflows are not disrupted.",
+  "mode": "warn",
+  "gates": [
+    {
+      "name": "secret_scan",
+      "type": "deterministic",
+      "description": "Detect leaked secrets in staged files",
+      "command": "git diff --cached --name-only -z | xargs -0 -r grep -l -E 'sk-[a-zA-Z0-9]{20,}|AKIA[0-9A-Z]{16}|ghp_[a-zA-Z0-9]{36}|xox[baprs]-[0-9a-zA-Z-]{10,}' 2>/dev/null | grep -v -E '\\.(md|lock|json)$' || true",
+      "expect_empty": true,
+      "blocking": true
+    },
+    {
+      "name": "lint_format",
+      "type": "deterministic",
+      "description": "Run project linter if configured",
+      "command": "if [ -f package.json ] && jq -e '.scripts.lint' package.json >/dev/null 2>&1; then npm run lint; elif [ -f pyproject.toml ] && command -v ruff >/dev/null 2>&1; then ruff check .; else echo 'no linter configured'; fi",
+      "blocking": false
+    },
+    {
+      "name": "test_pass",
+      "type": "deterministic",
+      "description": "Run project test suite if configured",
+      "command": "if [ -f package.json ] && jq -e '.scripts.test' package.json >/dev/null 2>&1; then npm test; elif [ -f pytest.ini ] || [ -f pyproject.toml ]; then command -v pytest >/dev/null 2>&1 && pytest || echo 'pytest not installed'; else echo 'no tests configured'; fi",
+      "blocking": false
+    }
+  ]
+}

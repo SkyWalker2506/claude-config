@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+# hq — claude-config operations CLI.
+#
+# Subcommands:
+#   dashboard [--json|--watch]   Unified telemetry view
+#   lifecycle                    Agent promote/demote/retire recommendations
+#   optimize                     Model routing optimization
+#   plugin-eval                  Plugin quality grade report
+#   health                       Run all of the above
+#
+# Resolves the config dir from $CLAUDE_CONFIG_ROOT, the script's own
+# location, or ~/Projects/claude-config (in that order).
+set -eo pipefail
+
+resolve_root() {
+  if [ -n "${CLAUDE_CONFIG_ROOT:-}" ] && [ -d "$CLAUDE_CONFIG_ROOT" ]; then
+    echo "$CLAUDE_CONFIG_ROOT"
+    return
+  fi
+  local here
+  here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  if [ -f "$here/../config/agent-registry.json" ]; then
+    (cd "$here/.." && pwd)
+    return
+  fi
+  echo "$HOME/Projects/claude-config"
+}
+
+CONFIG_DIR="$(resolve_root)"
+export CLAUDE_CONFIG_ROOT="$CONFIG_DIR"
+
+# Scripts always live alongside this CLI, regardless of where the
+# data root is. This lets tests point CLAUDE_CONFIG_ROOT at a tempdir.
+SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+cmd="${1:-}"
+shift || true
+
+case "$cmd" in
+  dashboard)
+    python3 "$SCRIPTS_DIR/hq_dashboard.py" "$@"
+    ;;
+  lifecycle)
+    python3 "$SCRIPTS_DIR/agent_lifecycle.py" "$@"
+    ;;
+  optimize)
+    python3 "$SCRIPTS_DIR/route_optimizer.py" "$@"
+    ;;
+  plugin-eval)
+    python3 "$SCRIPTS_DIR/plugin_eval.py" "$@"
+    ;;
+  health)
+    echo "Running full system health check..."
+    echo
+    python3 "$SCRIPTS_DIR/hq_dashboard.py"
+    echo
+    python3 "$SCRIPTS_DIR/agent_lifecycle.py"
+    echo
+    python3 "$SCRIPTS_DIR/route_optimizer.py"
+    echo
+    python3 "$SCRIPTS_DIR/plugin_eval.py"
+    echo
+    echo "Health check complete. Reports -> Reports/ and config/telemetry/aggregated/"
+    ;;
+  ""|help|--help|-h)
+    cat <<'EOF'
+hq — claude-config operations CLI
+
+Usage: hq <command> [options]
+
+Commands:
+  dashboard              Unified telemetry view (agents, models, projects)
+    --json               JSON-only output (pipeable)
+    --watch              Refresh every 60 seconds
+  lifecycle              Agent promote/demote/retire recommendations
+  optimize               Model routing optimization suggestions
+  plugin-eval            Plugin quality grade report
+  health                 Run all of the above in one pass
+
+Environment:
+  CLAUDE_CONFIG_ROOT     Override repo location
+  CLAUDE_PLUGINS_ROOT    Override plugin scan root (plugin-eval only)
+EOF
+    ;;
+  *)
+    echo "hq: unknown command '$cmd' (try 'hq help')" >&2
+    exit 1
+    ;;
+esac

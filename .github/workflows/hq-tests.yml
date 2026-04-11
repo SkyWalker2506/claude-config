@@ -1,0 +1,53 @@
+name: hq tooling tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/hq*'
+      - 'scripts/log_dispatch.py'
+      - 'scripts/agent_lifecycle.py'
+      - 'scripts/route_optimizer.py'
+      - 'scripts/plugin_eval.py'
+      - 'scripts/gate_check.py'
+      - 'config/gates/**'
+      - 'config/telemetry/**'
+      - 'tests/test_hq.py'
+      - '.github/workflows/hq-tests.yml'
+  pull_request:
+    paths:
+      - 'scripts/hq*'
+      - 'scripts/log_dispatch.py'
+      - 'scripts/agent_lifecycle.py'
+      - 'scripts/route_optimizer.py'
+      - 'scripts/plugin_eval.py'
+      - 'scripts/gate_check.py'
+      - 'config/gates/**'
+      - 'config/telemetry/**'
+      - 'tests/test_hq.py'
+      - '.github/workflows/hq-tests.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run hq integration tests
+        run: python3 -m unittest tests/test_hq.py -v
+
+      - name: Smoke test hq CLI on real repo data
+        run: |
+          chmod +x scripts/hq
+          scripts/hq dashboard
+          scripts/hq lifecycle
+          scripts/hq optimize
+          scripts/hq plugin-eval || true

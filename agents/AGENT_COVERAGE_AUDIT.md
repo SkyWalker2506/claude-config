@@ -24,9 +24,9 @@
 | Tier | Count |
 |------|-------:|
 | P0 | 0 |
-| P1 | 0 |
+| P1 | 47 |
 | P2 | 0 |
-| OK | 196 |
+| OK | 149 |
 
 ## P0 — critical (fix first)
 
@@ -37,6 +37,53 @@
 
 | ID | Category | Path | k-files | Notes |
 |----|----------|------|---------|-------|
+| E8 | 3d-cad | `3d-cad/unity-level-designer` | 4 | no_memory_dir |
+| E10 | 3d-cad | `3d-cad/unity-lighting-artist` | 4 | no_memory_dir |
+| E12 | 3d-cad | `3d-cad/unity-rigging-skinning` | 4 | no_memory_dir |
+| E11 | 3d-cad | `3d-cad/unity-terrain-specialist` | 4 | no_memory_dir |
+| E9 | 3d-cad/unity-cinematic-director | `3d-cad/unity-cinematic-director` | 4 | no_memory_dir |
+| G11 | ai-ops | `ai-ops/unity-ml-agents` | 4 | no_memory_dir |
+| G12 | ai-ops | `ai-ops/unity-sentis` | 4 | no_memory_dir |
+| B35 | backend | `backend/unity-2d-specialist` | 4 | no_memory_dir |
+| B43 | backend | `backend/unity-accessibility` | 4 | no_memory_dir |
+| B24 | backend | `backend/unity-ai-navigation` | 4 | no_memory_dir |
+| B25 | backend | `backend/unity-ar-xr` | 4 | no_memory_dir |
+| B51 | backend | `backend/unity-asset-workflow` | 4 | no_memory_dir |
+| B26 | backend | `backend/unity-audio` | 4 | no_memory_dir |
+| B37 | backend | `backend/unity-camera-systems` | 4 | no_memory_dir |
+| B40 | backend | `backend/unity-cloud-services` | 4 | no_memory_dir |
+| B46 | backend | `backend/unity-combat-system` | 4 | no_memory_dir |
+| B50 | backend | `backend/unity-dependency-injection` | 4 | no_memory_dir |
+| B44 | backend | `backend/unity-dialogue-system` | 4 | no_memory_dir |
+| B34 | backend | `backend/unity-ecs-dots` | 4 | no_memory_dir |
+| B48 | backend | `backend/unity-game-economy` | 4 | no_memory_dir |
+| B36 | backend | `backend/unity-input-system` | 4 | no_memory_dir |
+| B45 | backend | `backend/unity-inventory-crafting` | 4 | no_memory_dir |
+| B29 | backend | `backend/unity-localization` | 4 | no_memory_dir |
+| B38 | backend | `backend/unity-memory-manager` | 4 | no_memory_dir |
+| B41 | backend | `backend/unity-monetization` | 4 | no_memory_dir |
+| B27 | backend | `backend/unity-physics` | 4 | no_memory_dir |
+| B47 | backend | `backend/unity-quest-mission` | 4 | no_memory_dir |
+| B28 | backend | `backend/unity-save-serialization` | 4 | no_memory_dir |
+| B42 | backend | `backend/unity-security-anticheat` | 4 | no_memory_dir |
+| B49 | backend | `backend/unity-state-machine` | 4 | no_memory_dir |
+| B52 | backend | `backend/unity-streaming-open-world` | 4 | no_memory_dir |
+| B39 | backend | `backend/unity-testing` | 4 | no_memory_dir |
+| B33 | backend/unity-console-platform | `backend/unity-console-platform` | 4 | no_memory_dir |
+| B30 | backend/unity-editor-tooling | `backend/unity-editor-tooling` | 4 | no_memory_dir |
+| B32 | backend/unity-mobile-optimizer | `backend/unity-mobile-optimizer` | 4 | no_memory_dir |
+| B31 | backend/unity-procedural-generation | `backend/unity-procedural-generation` | 4 | no_memory_dir |
+| F11 | data-analytics | `data-analytics/unity-analytics` | 4 | no_memory_dir |
+| F12 | data-analytics | `data-analytics/unity-performance-profiler` | 4 | no_memory_dir |
+| F13 | data-analytics | `data-analytics/unity-playtesting-analyst` | 4 | no_memory_dir |
+| D13 | design | `design/unity-hud-minimap` | 4 | no_memory_dir |
+| D11 | design | `design/unity-ui-developer` | 4 | no_memory_dir |
+| D12 | design | `design/unity-ux-flow` | 4 | no_memory_dir |
+| J11 | devops | `devops/unity-devops` | 5 | no_memory_dir |
+| J12 | devops | `devops/unity-version-control` | 4 | no_memory_dir |
+| H16 | market-research | `market-research/unity-market-analyst` | 5 | no_memory_dir |
+| K15 | research | `research/unity-tech-researcher` | 4 | no_memory_dir |
+| K14 | research/unity-asset-store-researcher | `research/unity-asset-store-researcher` | 4 | no_memory_dir |
 
 ## P2 (add Knowledge map + optional polish)
 

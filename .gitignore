@@ -7,3 +7,5 @@ secrets.env
 secrets/
 claude-secrets/
 .yolo/
+__pycache__/
+*.pyc

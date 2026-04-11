@@ -93,6 +93,28 @@
             "command": "f=$(echo \"$CLAUDE_TOOL_INPUT\" | python3 -c \"import sys,json;print(json.load(sys.stdin).get('file_path',''))\" 2>/dev/null); case \"$f\" in *.env*|*/secrets/*) echo \"BLOCKED: $f is a secrets file — edit ~/.claude/secrets/ directly\"; exit 2;; esac"
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "description": "Verification gates for git commit/push (warn-only by default)",
+            "command": "python3 __CLAUDE_CONFIG_ROOT__/scripts/gate_check.py 2>&1 || true"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Task|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "description": "Append dispatch event to telemetry log (best-effort)",
+            "command": "python3 __CLAUDE_CONFIG_ROOT__/scripts/log_dispatch.py 2>/dev/null || true"
+          }
+        ]
       }
     ],
     "Notification": [
