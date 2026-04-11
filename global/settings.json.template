@@ -78,7 +78,7 @@
           {
             "type": "command",
             "description": "Auto migration check on prompt submit",
-            "command": "bash /Users/musabkara/Projects/claude-config/projects/scripts/migration_check.sh 2>/dev/null || true"
+            "command": "bash __CLAUDE_CONFIG_ROOT__/projects/scripts/migration_check.sh 2>/dev/null || true"
           }
         ]
       }
@@ -164,7 +164,7 @@
       }
     },
     "git": {
-      "command": "/Users/musabkara/.local/bin/uvx",
+      "command": "uvx",
       "args": [
         "mcp-server-git"
       ]
@@ -202,7 +202,7 @@
       ]
     },
     "jcodemunch": {
-      "command": "/Users/musabkara/.local/bin/uvx",
+      "command": "uvx",
       "args": [
         "jcodemunch-mcp"
       ]

@@ -557,6 +557,10 @@ class HQCLITests(HQTestBase):
         self.assertIn("dashboard", result.stdout)
         self.assertIn("lifecycle", result.stdout)
         self.assertIn("plugin-eval", result.stdout)
+        # New subcommands surfaced in help
+        self.assertIn("events", result.stdout)
+        self.assertIn("tail", result.stdout)
+        self.assertIn("stats", result.stdout)
 
     def test_unknown_command_exits_nonzero(self) -> None:
         result = self.run_hq("nonexistent")
@@ -578,6 +582,56 @@ class HQCLITests(HQTestBase):
     def test_optimize_subcommand_runs(self) -> None:
         result = self.run_hq("optimize")
         self.assertEqual(result.returncode, 0)
+
+    def test_stats_without_agent_id_errors(self) -> None:
+        result = self.run_hq("stats")
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("agent_id", result.stderr)
+
+
+# ---------- hq events / tail / stats ----------
+
+class HQEventsTests(HQTestBase):
+
+    def test_events_empty(self) -> None:
+        result = self.run_hq("events")
+        self.assertEqual(result.returncode, 0)
+        self.assertIn("No telemetry events yet", result.stdout)
+
+    def test_events_lists_recent(self) -> None:
+        events = [make_event(agent_id="B2") for _ in range(5)]
+        self.write_events(events)
+        result = self.run_hq("events", "--limit", "3")
+        self.assertEqual(result.returncode, 0)
+        # Header present + at least one row
+        self.assertIn("Last 3 events", result.stdout)
+        self.assertIn("B2", result.stdout)
+        self.assertIn("Backend Coder", result.stdout)
+
+    def test_stats_no_data(self) -> None:
+        result = self.run_hq("stats", "B2")
+        self.assertEqual(result.returncode, 0)
+        self.assertIn("No events found", result.stdout)
+
+    def test_stats_per_agent_breakdown(self) -> None:
+        events = (
+            [make_event(agent_id="B2", outcome="success") for _ in range(7)]
+            + [make_event(agent_id="B2", outcome="failed") for _ in range(3)]
+            + [make_event(agent_id="B7") for _ in range(4)]  # other agent
+        )
+        self.write_events(events)
+        result = self.run_hq("stats", "B2")
+        self.assertEqual(result.returncode, 0)
+        self.assertIn("Dispatches:    10", result.stdout)
+        self.assertIn("70.0%", result.stdout)  # 7/10 success
+        # Should not include the other agent's events
+        self.assertNotIn("B7", result.stdout)
+
+    def test_tail_non_follow_prints_recent(self) -> None:
+        self.write_events([make_event(agent_id="B2") for _ in range(3)])
+        result = self.run_hq("tail")
+        self.assertEqual(result.returncode, 0)
+        self.assertIn("B2", result.stdout)
 
 
 if __name__ == "__main__":

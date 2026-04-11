@@ -699,6 +699,8 @@ function claude() {
 # cl bypass zaten var — kısayollar
 function clhq() { cd ~/Projects/ClaudeHQ && _claude_bin --dangerously-skip-permissions "$@"; }
 alias plugin-update='bash ~/Projects/claude-config/config/plugin-update.sh'
+# hq — observability + lifecycle CLI (telemetry, dashboard, optimize, gates)
+[ -x ~/Projects/claude-config/scripts/hq ] && alias hq='bash ~/Projects/claude-config/scripts/hq'
 # __CLAUDE_CONFIG_SHELL_BLOCK_END__
 CLEOF
 echo "✅ Shell: cl, claude, clhq → $SHELL_RC"

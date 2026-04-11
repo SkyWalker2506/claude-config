@@ -112,6 +112,9 @@ Then browse with `/plugin > Discover` or install directly:
 | [improve](https://github.com/SkyWalker2506/ccplugin-improve) | Analyzes content (videos, articles) → extracts claude-config improvements |
 | [clipboard](https://github.com/SkyWalker2506/ccplugin-clipboard) | Cross-platform clipboard manager — macOS, Linux, Windows |
 | [voice-input](https://github.com/SkyWalker2506/ccplugin-voice-input) | macOS mic + Whisper transcript, Türkçe destekli |
+| [3d-forge](https://github.com/SkyWalker2506/ccplugin-3d-forge) | AI 3D studio — Blender orchestration, Meshy AI mesh, render feedback |
+| [backend-forge](https://github.com/SkyWalker2506/ccplugin-backend-forge) | Infra API layer — Vercel + Supabase deploy, provisioning, DB ops |
+| [frontend-craft](https://github.com/SkyWalker2506/ccplugin-frontend-craft) | Web/Flutter/RN frontend pipeline — design systems, components, layouts |
 
 ## Agent System
 
@@ -131,6 +134,31 @@ Knowledge-First agents across **15 categories** (registry on `main`). Each agent
 | Market Research | H1–H12 | Competitor Analyst, SEO, GEO |
 | DevOps | J1–J8 | Cloud Deploy, Incident Responder |
 | And more... | D, E, F, L, M, N, O | Design, 3D/CAD, Data, Productivity, Marketing, Prompt Eng, Sales |
+
+## Observability — `hq` CLI
+
+Production-grade telemetry, lifecycle, and routing across the agent system. All commands write structured reports under `Reports/` and `config/telemetry/aggregated/`.
+
+```bash
+hq dashboard            # Unified system view (success rate, top agents, model mix)
+hq dashboard --json     # Pipeable JSON
+hq dashboard --watch    # Live refresh every 60s
+hq lifecycle            # Promote/demote/retire recommendations
+hq lifecycle --force    # Bypass min sample guard (20 events)
+hq optimize             # Cheaper-model swap recommendations from telemetry
+hq plugin-eval          # Grade ccplugin-* repos (A–F, 11-point rubric)
+hq events               # Tail recent dispatch events
+hq stats <agent_id>     # Per-agent breakdown (success, models, projects)
+hq health               # Run all of the above in one pass
+```
+
+**Telemetry pipeline:**
+- `PostToolUse → log_dispatch.py` writes one JSONL line per Task/Bash to `config/telemetry/events/<date>.jsonl`
+- `hq_dashboard.py` aggregates 30 days into `config/telemetry/aggregated/dashboard.json`
+- `agent_lifecycle.py`, `route_optimizer.py`, `plugin_eval.py` consume the same event stream
+- Verification gates (`pre-commit.json`, `pre-push.json`) run via `gate_check.py` PreToolUse hook (warn-only by default)
+
+After `install.sh`, `hq` is available on your `PATH` as `~/Projects/claude-config/bin/hq` (or run `scripts/hq` directly).
 
 ## Telegram Bot
 

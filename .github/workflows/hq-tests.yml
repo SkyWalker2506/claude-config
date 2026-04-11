@@ -10,6 +10,7 @@ on:
       - 'scripts/route_optimizer.py'
       - 'scripts/plugin_eval.py'
       - 'scripts/gate_check.py'
+      - 'bin/hq'
       - 'config/gates/**'
       - 'config/telemetry/**'
       - 'tests/test_hq.py'
@@ -22,6 +23,7 @@ on:
       - 'scripts/route_optimizer.py'
       - 'scripts/plugin_eval.py'
       - 'scripts/gate_check.py'
+      - 'bin/hq'
       - 'config/gates/**'
       - 'config/telemetry/**'
       - 'tests/test_hq.py'
@@ -46,8 +48,14 @@ jobs:
 
       - name: Smoke test hq CLI on real repo data
         run: |
-          chmod +x scripts/hq
+          chmod +x scripts/hq bin/hq
+          scripts/hq help
           scripts/hq dashboard
+          scripts/hq events --limit 5
+          scripts/hq tail
+          scripts/hq stats A1 || true
           scripts/hq lifecycle
           scripts/hq optimize
           scripts/hq plugin-eval || true
+          # bin/hq must forward identically
+          bin/hq help

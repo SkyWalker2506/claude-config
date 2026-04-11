@@ -1,0 +1,4 @@
+#!/bin/bash
+# hq — wrapper for scripts/hq, callable from anywhere on PATH.
+# Forwards all args to the canonical CLI under scripts/.
+exec bash "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/scripts/hq" "$@"
