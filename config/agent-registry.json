@@ -1211,11 +1211,8 @@
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "qwen/qwen3.6-plus:free",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
-        "stepfun/step-3.5-flash:free",
-        "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku",
         "sonnet"
       ],
       "mcps": [
@@ -1238,14 +1235,16 @@
       "model_source": "openrouter",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "D2": {
       "name": "Design System Agent",
@@ -1538,11 +1537,8 @@
       "version": "1.0",
       "category": "3d-cad",
       "status": "pool",
-      "primary_model": "qwen/qwen3.6-plus:free",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
-        "stepfun/step-3.5-flash:free",
-        "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku",
         "sonnet"
       ],
       "mcps": [],
@@ -1563,14 +1559,16 @@
       "model_source": "openrouter",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "E3": {
       "name": "CAD Automation",
@@ -2321,10 +2319,8 @@
       "version": "1.0",
       "category": "market-research",
       "status": "active",
-      "primary_model": "qwen/qwen3.6-plus:free",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
-        "stepfun/step-3.5-flash:free",
-        "nvidia/nemotron-3-nano-30b-a3b:free",
         "sonnet"
       ],
       "mcps": [
@@ -2344,14 +2340,16 @@
       "model_source": "openrouter",
       "strategy": "cheap_first",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "H2": {
       "name": "Competitor Analyst",
@@ -2390,11 +2388,8 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "qwen/qwen3.6-plus:free",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
-        "stepfun/step-3.5-flash:free",
-        "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku",
         "sonnet"
       ],
       "mcps": [],
@@ -2410,14 +2405,16 @@
       "model_source": "openrouter",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "H4": {
       "name": "Pricing Strategist",
@@ -2746,10 +2743,8 @@
       "version": "1.0",
       "category": "jira-pm",
       "status": "active",
-      "primary_model": "qwen/qwen3.6-plus:free",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
-        "stepfun/step-3.5-flash:free",
-        "nvidia/nemotron-3-nano-30b-a3b:free",
         "sonnet"
       ],
       "mcps": [
@@ -2768,14 +2763,16 @@
       "model_source": "openrouter",
       "strategy": "cheap_first",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "I3": {
       "name": "Task Decomposer",
@@ -3343,11 +3340,8 @@
       "version": "1.0",
       "category": "research",
       "status": "active",
-      "primary_model": "qwen/qwen3.6-plus:free",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
-        "stepfun/step-3.5-flash:free",
-        "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku",
         "sonnet"
       ],
       "mcps": [
@@ -3367,14 +3361,16 @@
       "tier": "mid",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "K2": {
       "name": "Paper Summarizer",
@@ -3445,11 +3441,8 @@
       "version": "1.0",
       "category": "research",
       "status": "active",
-      "primary_model": "qwen/qwen3.6-plus:free",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
-        "stepfun/step-3.5-flash:free",
-        "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku",
         "sonnet"
       ],
       "mcps": [
@@ -3468,14 +3461,16 @@
       "model_source": "openrouter",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "K5": {
       "name": "Video Summarizer",
@@ -3609,7 +3604,7 @@
       "version": "1.0",
       "category": "productivity",
       "status": "active",
-      "primary_model": "free-gmail-mcp",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
         "sonnet"
       ],
@@ -3628,14 +3623,16 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "L2": {
       "name": "Calendar Agent",
@@ -4196,9 +4193,10 @@
       "version": "1.0",
       "category": "prompt-engineering",
       "status": "pool",
-      "primary_model": "qwen/qwen3.6-plus:free",
+      "primary_model": "gpt-5.4",
       "model_source": "openrouter",
       "fallbacks": [
+        "opus",
         "sonnet"
       ],
       "mcps": [
@@ -4221,21 +4219,23 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "O1": {
       "name": "Sales Proposal Agent",
       "version": "1.0",
       "category": "sales-bizdev",
       "status": "pool",
-      "primary_model": "qwen/qwen3.6-plus:free",
+      "primary_model": "gpt-5.4",
       "model_source": "openrouter",
       "fallbacks": [
         "sonnet"
@@ -4260,21 +4260,23 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "O2": {
       "name": "CRM Agent",
       "version": "1.0",
       "category": "sales-bizdev",
       "status": "pool",
-      "primary_model": "qwen/qwen3.6-plus:free",
+      "primary_model": "gpt-5.4",
       "model_source": "openrouter",
       "fallbacks": [
         "sonnet"
@@ -4298,24 +4300,25 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "O3": {
       "name": "Outreach Agent",
       "version": "1.0",
       "category": "sales-bizdev",
       "status": "pool",
-      "primary_model": "qwen/qwen3.6-plus:free",
+      "primary_model": "gpt-5.4",
       "model_source": "openrouter",
       "fallbacks": [
-        "stepfun/step-3.5-flash:free",
         "sonnet"
       ],
       "mcps": [
@@ -4336,14 +4339,16 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "O4": {
       "name": "Pricing Calculator",

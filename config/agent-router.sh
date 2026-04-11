@@ -121,6 +121,17 @@ model = best.get('primary_model', 'sonnet')
 effort = best.get('effort', 'medium')
 name = best.get('name', 'Unknown')
 strategy = best.get('strategy', 'direct')
+fallback_models = [str(m).lower() for m in best.get('fallbacks', [])]
+tier = str(best.get('tier', '')).lower()
+
+def choose_claude_fallback_model(agent):
+    caps = set(c.lower() for c in agent.get('capabilities', []))
+    planning_caps = {'architecture_decision', 'planning', 'orchestration', 'system-design'}
+    fallback_models = [str(m).lower() for m in agent.get('fallbacks', [])]
+    tier = str(agent.get('tier', '')).lower()
+    if 'opus' in fallback_models or tier in {'senior', 'lead'} or caps & planning_caps:
+        return 'claude-opus-4-6'
+    return 'claude-sonnet-4-6'
 
 # --- Phase 2: Backend resolution ---
 backend_primary = best.get('execution_backends', {}).get('primary', 'claude')
@@ -184,13 +195,11 @@ if os.path.exists(quota_file):
 if codex_exhausted and resolved_backend == 'openai-codex-cli':
     resolved_backend = 'claude'
     resolved_reason = 'codex_quota_exhausted'
-    caps = set(c.lower() for c in best.get('capabilities', []))
-    planning_caps = {'architecture_decision', 'planning', 'orchestration', 'system-design'}
-    if caps & planning_caps:
-        model = 'claude-opus-4-6'
-    else:
-        model = 'claude-sonnet-4-6'
+    model = choose_claude_fallback_model(best)
     print(f'⚠️  Codex kullanım limiti doldu → {model} fallback aktif', file=sys.stderr)
+
+if resolved_backend == 'claude' and model.startswith('gpt-'):
+    model = choose_claude_fallback_model(best)
 
 backend_model = ""
 if resolved_backend == "openai-codex-cli" and os.path.exists(backends_path):
