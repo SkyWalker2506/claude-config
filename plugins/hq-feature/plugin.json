@@ -12,5 +12,5 @@
     "deps": ["bash", "python3"],
     "external": ["ClaudeHQ at ~/Projects/ClaudeHQ/scripts/hq"]
   },
-  "install": false
+  "install": true
 }

@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
 """
-sync_agents.py — Agent .md frontmatter ↔ agent-registry.json dogrulama + senkronizasyon
+sync_agents.py — Agent frontmatter ↔ agent-registry.json drift kontrolu.
 
 Kullanim:
   python3 config/sync_agents.py --check        # uyumsuzluklari raporla
-  python3 config/sync_agents.py --fix          # registry'yi .md dosyalarindan guncelle
+  python3 config/sync_agents.py --fix          # guvenli alanlari registry'ye senkronize et
   python3 config/sync_agents.py --stats        # ozet istatistik
 """
 
 import json
 import sys
-import os
 import re
 from pathlib import Path
 
@@ -18,30 +17,104 @@ REPO_ROOT = Path(__file__).parent.parent
 REGISTRY_PATH = REPO_ROOT / "config" / "agent-registry.json"
 AGENTS_DIR = REPO_ROOT / "agents"
 
-REQUIRED_FRONTMATTER_KEYS = ["id", "name", "category", "primary_model", "status"]
+REQUIRED_FRONTMATTER_KEYS = [
+    "id",
+    "name",
+    "category",
+    "tier",
+    "models",
+    "refine_model",
+    "mcps",
+    "capabilities",
+    "max_tool_calls",
+    "status",
+]
+LIST_KEYS = {"mcps", "capabilities", "related", "fallbacks", "languages"}
+SAFE_FIX_KEYS = {"name", "category", "status", "mcps", "capabilities", "max_tool_calls"}
+
+
+def parse_inline_list(raw: str) -> list[str]:
+    raw = raw.strip()
+    if raw.startswith("[") and raw.endswith("]"):
+        raw = raw[1:-1].strip()
+    if not raw:
+        return []
+    parts = [part.strip() for part in raw.split(",")]
+    return [part.strip("'\"") for part in parts if part]
+
+
+def parse_scalar(key: str, raw: str):
+    raw = raw.strip()
+    if key in LIST_KEYS:
+        return parse_inline_list(raw)
+    if re.fullmatch(r"-?\d+", raw):
+        return int(raw)
+    return raw
 
 
 def parse_frontmatter(filepath):
-    """Parse YAML-like frontmatter from a .md file."""
-    content = filepath.read_text()
-    if not content.startswith("---"):
+    """Parse top-level frontmatter keys from an AGENT.md file."""
+    content = filepath.read_text(encoding="utf-8")
+    if not content.startswith("---\n"):
         return None
-    end = content.find("---", 3)
-    if end == -1:
+    match = re.match(r"^---\n(.*?)\n---", content, re.S)
+    if not match:
         return None
-    fm_text = content[3:end].strip()
+    fm_text = match.group(1)
     data = {}
     for line in fm_text.splitlines():
-        if ":" in line:
-            key, _, val = line.partition(":")
-            key = key.strip()
-            val = val.strip()
-            # Parse list values like [a, b, c]
-            if val.startswith("[") and val.endswith("]"):
-                inner = val[1:-1]
-                val = [v.strip() for v in inner.split(",") if v.strip()]
-            data[key] = val
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        if line.startswith(" ") or line.startswith("\t"):
+            continue
+        if ":" not in line:
+            continue
+        key, _, raw = line.partition(":")
+        key = key.strip()
+        data[key] = parse_scalar(key, raw)
     return data
+
+
+def comparable_value(key, value):
+    if key in LIST_KEYS:
+        if isinstance(value, list):
+            return sorted(str(v) for v in value)
+        if value in (None, ""):
+            return []
+        return sorted(parse_inline_list(str(value)))
+    if key == "max_tool_calls":
+        try:
+            return int(value)
+        except (TypeError, ValueError):
+            return None
+    return "" if value is None else str(value).strip()
+
+
+def fmt_value(value):
+    if isinstance(value, list):
+        return "[" + ", ".join(str(v) for v in value) + "]"
+    return str(value)
+
+
+def derive_legacy_primary_model(tier: str) -> str:
+    tier = (tier or "mid").strip().lower()
+    if tier == "junior":
+        return "haiku"
+    if tier == "senior":
+        return "opus"
+    return "sonnet"
+
+
+def default_execution_backend(tier: str) -> dict:
+    """Default execution backend for new agents (safe, no extra billing)."""
+    # Routing is driven by execution_backends; keep new agents on Claude by default.
+    # Can be manually upgraded to openai-codex-cli later.
+    return {
+        "execution_backends": {"primary": "claude", "fallback": ["local-free"]},
+        "execution_mode": "claude_native",
+        "billing_mode": "plan_included",
+        "interaction_mode": "automated",
+    }
 
 
 def load_registry():
@@ -56,10 +129,10 @@ def save_registry(registry):
 
 
 def collect_agent_files():
-    """Return list of (path, frontmatter) for all agent .md files."""
+    """Return list of (path, frontmatter) for real agent files."""
     results = []
-    for md_file in AGENTS_DIR.rglob("*.md"):
-        if md_file.name == "README.md":
+    for md_file in AGENTS_DIR.glob("*/*/AGENT.md"):
+        if "_template" in str(md_file):
             continue
         fm = parse_frontmatter(md_file)
         if fm and "id" in fm:
@@ -96,35 +169,45 @@ def check(fix=False):
             warnings.append(f"UNREGISTERED: {agent_id} ({fm.get('name', '?')}) in {path.relative_to(REPO_ROOT)}")
             if fix:
                 agents_reg[agent_id] = {
+                    "version": "1.0",
                     "name": fm.get("name", agent_id),
                     "category": fm.get("category", "unknown"),
-                    "primary_model": fm.get("primary_model", "haiku"),
+                    # Legacy compat only; routing uses execution_backends.
+                    "primary_model": derive_legacy_primary_model(fm.get("tier", "mid")),
                     "fallbacks": fm.get("fallbacks", []),
                     "mcps": fm.get("mcps", []),
                     "capabilities": fm.get("capabilities", []),
                     "max_tool_calls": int(fm.get("max_tool_calls", 10)),
                     "status": fm.get("status", "pool"),
                     "related": fm.get("related", []),
+                    "tier": fm.get("tier", "mid"),
+                    **default_execution_backend(fm.get("tier", "mid")),
                 }
                 fixed.append(f"ADDED to registry: {agent_id}")
         else:
             reg_entry = agents_reg[agent_id]
-            # Check name mismatch
-            if reg_entry.get("name") != fm.get("name"):
+            for key in ("name", "category", "status", "tier", "mcps", "capabilities", "max_tool_calls"):
+                reg_value = comparable_value(key, reg_entry.get(key))
+                md_value = comparable_value(key, fm.get(key))
+                if reg_value == md_value:
+                    continue
                 warnings.append(
-                    f"NAME MISMATCH: {agent_id} registry='{reg_entry.get('name')}' md='{fm.get('name')}'"
+                    f"{key.upper()} MISMATCH: {agent_id} "
+                    f"registry='{fmt_value(reg_entry.get(key))}' md='{fmt_value(fm.get(key))}'"
                 )
-                if fix:
-                    reg_entry["name"] = fm.get("name")
-                    fixed.append(f"FIXED name for {agent_id}")
-            # Check status mismatch
-            if reg_entry.get("status") != fm.get("status"):
+                if fix and key in SAFE_FIX_KEYS:
+                    reg_entry[key] = fm.get(key)
+                    fixed.append(f"FIXED {key} for {agent_id}")
+
+            if "/" in str(fm.get("category", "")):
                 warnings.append(
-                    f"STATUS MISMATCH: {agent_id} registry='{reg_entry.get('status')}' md='{fm.get('status')}'"
+                    f"NON-CANONICAL CATEGORY: {agent_id} md='{fm.get('category')}' "
+                    f"(top-level category expected)"
                 )
-                if fix:
-                    reg_entry["status"] = fm.get("status")
-                    fixed.append(f"FIXED status for {agent_id}")
+            if "/" in str(reg_entry.get("category", "")):
+                warnings.append(
+                    f"NON-CANONICAL REGISTRY CATEGORY: {agent_id} registry='{reg_entry.get('category')}'"
+                )
 
     # Check registry entries without .md files
     for agent_id in agents_reg:
@@ -147,6 +230,7 @@ def stats():
     total_md = len(agent_files)
     active = sum(1 for a in agents_reg.values() if a.get("status") == "active")
     pool = sum(1 for a in agents_reg.values() if a.get("status") == "pool")
+    slash_categories = sum(1 for a in agents_reg.values() if "/" in str(a.get("category", "")))
 
     by_category = {}
     for a in agents_reg.values():
@@ -158,6 +242,7 @@ def stats():
     print(f"Agent .md files  : {total_md}")
     print(f"Active           : {active}")
     print(f"Pool             : {pool}")
+    print(f"Slash categories : {slash_categories}")
     print(f"\nBy category:")
     for cat, count in sorted(by_category.items()):
         print(f"  {cat:<20} {count}")
@@ -193,7 +278,7 @@ def main():
     if not errors and not warnings:
         print("✓ Registry and agent files are in sync.")
     elif not errors and not fix:
-        print(f"\n{len(warnings)} warning(s). Run with --fix to auto-correct.")
+        print(f"\n{len(warnings)} warning(s). Run with --fix to sync safe fields.")
 
     if errors:
         sys.exit(1)
