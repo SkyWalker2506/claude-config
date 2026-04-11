@@ -43,9 +43,12 @@ def block(reason: str) -> None:
 
 
 def run_gate(gate: dict) -> tuple[bool, str]:
+    cmd = gate.get("command")
+    if not cmd:
+        return True, ""  # malformed gate -> skip, never block
     try:
         result = subprocess.run(
-            gate["command"], shell=True,
+            cmd, shell=True,
             capture_output=True, text=True, timeout=120,
         )
     except subprocess.TimeoutExpired:

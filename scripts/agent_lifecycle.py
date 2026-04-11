@@ -57,14 +57,17 @@ def load_events(days: int) -> list[dict]:
     return events
 
 
-def analyze() -> list[dict]:
+MIN_SAMPLE = 20
+
+
+def analyze(force: bool = False) -> list[dict]:
     registry = json.loads((BASE / "config" / "agent-registry.json").read_text())
     agents_map = registry.get("agents") or {}
 
     events_180 = load_events(180)
     # Need minimum data to make any recommendation at all.
     # Otherwise a fresh install flags every active agent for demotion.
-    if len(events_180) < 20:
+    if not force and len(events_180) < MIN_SAMPLE:
         return []
 
     now = datetime.now(timezone.utc)
@@ -124,7 +127,8 @@ def analyze() -> list[dict]:
 
 
 def main() -> None:
-    recs = analyze()
+    force = "--force" in sys.argv
+    recs = analyze(force=force)
 
     promote = [r for r in recs if r["recommended"] == "active"]
     demote = [r for r in recs if r["recommended"] == "pool"]

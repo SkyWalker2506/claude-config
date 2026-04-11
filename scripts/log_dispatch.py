@@ -95,9 +95,16 @@ def extract_agent(hook_input: dict) -> tuple[str, str, str]:
 def main() -> None:
     try:
         raw = sys.stdin.read()
-        hook_input = json.loads(raw) if raw.strip() else {}
     except Exception:
-        return  # silent no-op
+        return
+    if not raw.strip():
+        return  # no input -> nothing to log
+    try:
+        hook_input = json.loads(raw)
+    except Exception:
+        return  # malformed input -> silent no-op
+    if not isinstance(hook_input, dict):
+        return
 
     try:
         tool_name = hook_input.get("tool_name", "unknown")

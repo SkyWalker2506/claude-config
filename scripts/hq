@@ -29,32 +29,36 @@ resolve_root() {
 CONFIG_DIR="$(resolve_root)"
 export CLAUDE_CONFIG_ROOT="$CONFIG_DIR"
 
+# Scripts always live alongside this CLI, regardless of where the
+# data root is. This lets tests point CLAUDE_CONFIG_ROOT at a tempdir.
+SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 cmd="${1:-}"
 shift || true
 
 case "$cmd" in
   dashboard)
-    python3 "$CONFIG_DIR/scripts/hq_dashboard.py" "$@"
+    python3 "$SCRIPTS_DIR/hq_dashboard.py" "$@"
     ;;
   lifecycle)
-    python3 "$CONFIG_DIR/scripts/agent_lifecycle.py" "$@"
+    python3 "$SCRIPTS_DIR/agent_lifecycle.py" "$@"
     ;;
   optimize)
-    python3 "$CONFIG_DIR/scripts/route_optimizer.py" "$@"
+    python3 "$SCRIPTS_DIR/route_optimizer.py" "$@"
     ;;
   plugin-eval)
-    python3 "$CONFIG_DIR/scripts/plugin_eval.py" "$@"
+    python3 "$SCRIPTS_DIR/plugin_eval.py" "$@"
     ;;
   health)
     echo "Running full system health check..."
     echo
-    python3 "$CONFIG_DIR/scripts/hq_dashboard.py"
+    python3 "$SCRIPTS_DIR/hq_dashboard.py"
     echo
-    python3 "$CONFIG_DIR/scripts/agent_lifecycle.py"
+    python3 "$SCRIPTS_DIR/agent_lifecycle.py"
     echo
-    python3 "$CONFIG_DIR/scripts/route_optimizer.py"
+    python3 "$SCRIPTS_DIR/route_optimizer.py"
     echo
-    python3 "$CONFIG_DIR/scripts/plugin_eval.py"
+    python3 "$SCRIPTS_DIR/plugin_eval.py"
     echo
     echo "Health check complete. Reports -> Reports/ and config/telemetry/aggregated/"
     ;;

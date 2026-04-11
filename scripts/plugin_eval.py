@@ -85,7 +85,14 @@ def eval_plugin(path: Path) -> dict:
     if 50 <= desc_len <= 250:
         score += 1
 
-    has_tests = any(path.rglob("*test*")) or any(path.rglob("*spec*"))
+    has_tests = (
+        (path / "tests").is_dir()
+        or (path / "test").is_dir()
+        or (path / "__tests__").is_dir()
+        or (path / "spec").is_dir()
+        or any(f.name.startswith("test_") or f.name.endswith("_test.py")
+               for f in path.rglob("*.py") if f.is_file())
+    )
     checks["has_tests"] = bool(has_tests)
     score += 2 if has_tests else 0
 
