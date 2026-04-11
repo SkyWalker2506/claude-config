@@ -164,6 +164,34 @@ if not ok:
         resolved_backend = 'claude'
         resolved_reason = f'default fallback (all blocked)'
 
+# --- Phase 3: Codex quota check ---
+quota_file = os.path.expanduser('~/.watchdog/codex-quota.json')
+codex_exhausted = False
+if os.path.exists(quota_file):
+    try:
+        with open(quota_file) as qf:
+            qstate = json.load(qf)
+        if qstate.get('status') == 'exhausted':
+            import datetime
+            reset_at = qstate.get('reset_at', '')
+            if reset_at:
+                reset_dt = datetime.datetime.fromisoformat(reset_at.replace('Z', '+00:00'))
+                if datetime.datetime.now(datetime.timezone.utc) < reset_dt:
+                    codex_exhausted = True
+    except:
+        pass
+
+if codex_exhausted and resolved_backend == 'openai-codex-cli':
+    resolved_backend = 'claude'
+    resolved_reason = 'codex_quota_exhausted'
+    caps = set(c.lower() for c in best.get('capabilities', []))
+    planning_caps = {'architecture_decision', 'planning', 'orchestration', 'system-design'}
+    if caps & planning_caps:
+        model = 'claude-opus-4-6'
+    else:
+        model = 'claude-sonnet-4-6'
+    print(f'⚠️  Codex kullanım limiti doldu → {model} fallback aktif', file=sys.stderr)
+
 backend_model = ""
 if resolved_backend == "openai-codex-cli" and os.path.exists(backends_path):
     with open(backends_path) as bm:

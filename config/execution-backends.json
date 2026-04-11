@@ -43,6 +43,22 @@
         "exec": "codex exec -m {model} -c 'model_reasoning_effort=\"{effort}\"' \"{task}\"",
         "interactive": "codex -m {model} -c 'model_reasoning_effort=\"{effort}\"'",
         "review": "codex review --uncommitted"
+      },
+      "quota_exhausted_fallback": {
+        "primary": "claude-sonnet-4-6",
+        "planning_fallback": "claude-opus-4-6",
+        "detection_patterns": [
+          "rate limit",
+          "quota exceeded",
+          "usage limit",
+          "too many requests",
+          "429",
+          "ChatGPT Plus",
+          "upgrade your plan"
+        ],
+        "state_file": "~/.watchdog/codex-quota.json",
+        "notify_user": true,
+        "notify_message": "⚠️ Codex (GPT) kullanım limiti doldu → claude-sonnet fallback aktif"
       }
     },
     "openai-chatgpt-session": {

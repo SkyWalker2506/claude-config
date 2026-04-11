@@ -28,6 +28,16 @@ Do NOT: run deep analysis, write code, implement solutions, or stay in hot path.
 - Browser automation to simulate ChatGPT: **NOT an official lane**
 - Any path that creates unexpected billing: **blocked**
 
+## Codex Quota Fallback
+
+Codex CLI (ChatGPT Pro plan) aylık/saatlik kota dolduğunda otomatik fallback devreye girer:
+
+- Quota state: `~/.watchdog/codex-quota.json`
+- Quota dolunca: `~/Projects/claude-config/config/codex-quota-report.sh`
+- Sıfırlamak için: `codex-quota-report.sh --reset`
+- Fallback model: coding tasks → `claude-sonnet-4-6`, planning tasks → `claude-opus-4-6`
+- agent-router.sh her dispatch'te quota state'i kontrol eder
+
 ### After dispatch
 - Release hot path
 - Wait for result
