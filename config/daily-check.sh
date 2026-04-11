@@ -119,7 +119,28 @@ else
   warn "Agent registry not found at $REGISTRY"
 fi
 
-# 10. Token usage (if cost.json exists)
+# 10. hq dashboard — telemetry health (best-effort)
+HQ_BIN="$(dirname "$0")/../scripts/hq"
+if [ -x "$HQ_BIN" ]; then
+  HQ_OUT=$(bash "$HQ_BIN" dashboard --json 2>/dev/null || echo "")
+  if [ -n "$HQ_OUT" ]; then
+    HQ_STATUS=$(echo "$HQ_OUT" | python3 -c "import sys,json;d=json.load(sys.stdin);print(d['system_health']['status'])" 2>/dev/null || echo "unknown")
+    HQ_DISP=$(echo "$HQ_OUT" | python3 -c "import sys,json;d=json.load(sys.stdin);print(d['system_health']['total_dispatches'])" 2>/dev/null || echo "0")
+    HQ_SR=$(echo "$HQ_OUT" | python3 -c "import sys,json;d=json.load(sys.stdin);print(round(d['system_health']['success_rate']*100,1))" 2>/dev/null || echo "0")
+    case "$HQ_STATUS" in
+      healthy) ok "hq telemetry: HEALTHY — ${HQ_DISP} dispatches, ${HQ_SR}% success" ;;
+      degraded) warn "hq telemetry: DEGRADED — ${HQ_DISP} dispatches, ${HQ_SR}% success" ;;
+      critical) fail "hq telemetry: CRITICAL — ${HQ_DISP} dispatches, ${HQ_SR}% success" ;;
+      *) ok "hq telemetry: cold (no events yet)" ;;
+    esac
+  else
+    warn "hq dashboard returned no output"
+  fi
+else
+  warn "hq CLI not found at $HQ_BIN"
+fi
+
+# 11. Token usage (if cost.json exists)
 COST_FILE="$REPORT_DIR/cost.json"
 if [ -f "$COST_FILE" ]; then
   TODAY=$(date +%Y-%m-%d)

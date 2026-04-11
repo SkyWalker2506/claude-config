@@ -112,16 +112,24 @@ def eval_plugin(path: Path) -> dict:
     if days <= 90:
         score += 1
 
-    # hardcoded paths
+    # hardcoded paths — scan shell + python + js/ts source files (sampled)
     has_hardcoded = False
-    for f in list(path.rglob("*.sh"))[:50]:
+    scan_globs = ("*.sh", "*.py", "*.js", "*.ts", "*.mjs")
+    candidates: list[Path] = []
+    for pat in scan_globs:
+        candidates.extend(list(path.rglob(pat))[:30])
+    for f in candidates[:120]:
+        # skip vendor / lock dirs
+        sp = str(f)
+        if "/node_modules/" in sp or "/.git/" in sp or "/dist/" in sp or "/build/" in sp:
+            continue
         try:
             content = f.read_text(errors="ignore")
-            if "/Users/" in content or "/home/" in content:
-                has_hardcoded = True
-                break
         except Exception:
             continue
+        if "/Users/" in content or "/home/" in content:
+            has_hardcoded = True
+            break
     checks["no_hardcoded_paths"] = not has_hardcoded
     score += 2 if not has_hardcoded else 0
 

@@ -1,6 +1,6 @@
 {
   "registry_version": "1.0.0",
-  "updated": "2026-04-05",
+  "updated": "2026-04-11",
   "plugins": {
     "telegram": {
       "name": "Telegram Bridge",
@@ -163,6 +163,33 @@
       "complexity": "simple",
       "repo": "https://github.com/SkyWalker2506/ccplugin-voice-input",
       "local": "plugins/voice-input"
+    },
+    "3d-forge": {
+      "name": "3D Forge",
+      "version": "1.0.0",
+      "description": "AI-powered 3D creation studio — Blender orchestration, 24 presets, Meshy AI mesh generation, render feedback loops.",
+      "category": "creative",
+      "complexity": "complex",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-3d-forge",
+      "local": "plugins/3d-forge"
+    },
+    "backend-forge": {
+      "name": "Backend Forge",
+      "version": "1.0.0",
+      "description": "Infrastructure API layer — machine-callable deployment, project provisioning, DB management via Vercel + Supabase.",
+      "category": "development",
+      "complexity": "complex",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-backend-forge",
+      "local": "plugins/backend-forge"
+    },
+    "frontend-craft": {
+      "name": "Frontend Craft",
+      "version": "1.0.0",
+      "description": "Frontend pipeline for Web, Flutter, React Native — design systems, component generation, responsive layouts.",
+      "category": "development",
+      "complexity": "medium",
+      "repo": "https://github.com/SkyWalker2506/ccplugin-frontend-craft",
+      "local": "plugins/frontend-craft"
     }
   }
 }

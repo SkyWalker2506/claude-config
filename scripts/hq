@@ -3,10 +3,13 @@
 #
 # Subcommands:
 #   dashboard [--json|--watch]   Unified telemetry view
-#   lifecycle                    Agent promote/demote/retire recommendations
+#   lifecycle [--force]          Agent promote/demote/retire recommendations
 #   optimize                     Model routing optimization
 #   plugin-eval                  Plugin quality grade report
-#   health                       Run all of the above
+#   events [--limit N]           Recent dispatch events
+#   tail [-f|--follow]           Live event stream
+#   stats <agent_id>             Per-agent 30-day breakdown
+#   health                       Dashboard + lifecycle + optimize + plugin-eval
 #
 # Resolves the config dir from $CLAUDE_CONFIG_ROOT, the script's own
 # location, or ~/Projects/claude-config (in that order).
@@ -49,6 +52,19 @@ case "$cmd" in
   plugin-eval)
     python3 "$SCRIPTS_DIR/plugin_eval.py" "$@"
     ;;
+  events)
+    python3 "$SCRIPTS_DIR/hq_events.py" events "$@"
+    ;;
+  tail)
+    python3 "$SCRIPTS_DIR/hq_events.py" tail "$@"
+    ;;
+  stats)
+    if [ -z "${1:-}" ]; then
+      echo "hq stats: missing agent_id (e.g. 'hq stats B2')" >&2
+      exit 1
+    fi
+    python3 "$SCRIPTS_DIR/hq_events.py" stats "$@"
+    ;;
   health)
     echo "Running full system health check..."
     echo
@@ -72,10 +88,19 @@ Commands:
   dashboard              Unified telemetry view (agents, models, projects)
     --json               JSON-only output (pipeable)
     --watch              Refresh every 60 seconds
-  lifecycle              Agent promote/demote/retire recommendations
+  lifecycle [--force]    Agent promote/demote/retire recommendations
   optimize               Model routing optimization suggestions
   plugin-eval            Plugin quality grade report
-  health                 Run all of the above in one pass
+  events [--limit N]     List recent dispatch events (default 20)
+  tail [-f]              Print events as they arrive; -f to follow
+  stats <agent_id>       Per-agent 30-day breakdown (success, models, projects)
+  health                 Run dashboard + lifecycle + optimize + plugin-eval
+
+Examples:
+  hq dashboard --json | jq '.system_health'
+  hq stats B2
+  hq tail -f
+  CLAUDE_PLUGINS_ROOT=~/code hq plugin-eval
 
 Environment:
   CLAUDE_CONFIG_ROOT     Override repo location

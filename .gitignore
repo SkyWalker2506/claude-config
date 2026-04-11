@@ -9,3 +9,7 @@ claude-secrets/
 .yolo/
 __pycache__/
 *.pyc
+
+# Telemetry — generated outputs (keep dirs via .gitkeep)
+config/telemetry/aggregated/*.json
+config/telemetry/events/*.jsonl
