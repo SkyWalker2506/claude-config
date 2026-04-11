@@ -220,6 +220,11 @@
         "-y",
         "@playwright/mcp@latest"
       ]
+    },
+    "codex": {
+      "command": "codex",
+      "args": ["mcp-server"],
+      "env": {}
     }
   },
   "model": "claude-sonnet-4-6"

@@ -1,0 +1,16 @@
+{
+  "id": "hq-feature",
+  "name": "HQ Feature",
+  "version": "1.0.0",
+  "description": "Cross-repo feature branch management via ClaudeHQ hq feature CLI",
+  "author": "SkyWalker2506",
+  "category": "dev-workflow",
+  "complexity": "low",
+  "type": "skill",
+  "invocation": "/hq-feature",
+  "requires": {
+    "deps": ["bash", "python3"],
+    "external": ["ClaudeHQ at ~/Projects/ClaudeHQ/scripts/hq"]
+  },
+  "install": false
+}

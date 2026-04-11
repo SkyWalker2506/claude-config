@@ -1,6 +1,6 @@
 ---
-last_updated: 2026-04-09
-total_topics: 5
+last_updated: 2026-04-11
+total_topics: 6
 ---
 
 # Knowledge Index
@@ -10,3 +10,4 @@ total_topics: 5
 - [Scalability: Horizontal vs Vertical](scalability-horizontal-vertical.md) — bottlenecks, replicas, autoscaling signals
 - [Database Architecture Decisions](database-architecture-decisions.md) — OLTP vs document vs search; polyglot persistence
 - [Microservices vs Monolith](microservices-vs-monolith.md) — team/ops fit, strangler migration
+- [API Documentation Standards](api-documentation-standards.md) — OpenAPI schema design, naming, validation checklist

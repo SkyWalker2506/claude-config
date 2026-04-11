@@ -4,6 +4,16 @@
 
 ## Calisma kurallari (tum projeler)
 
+## Dispatch-First Rule
+
+Non-trivial görevlerde: classify → lane seç → dispatch → bekle.
+
+- Coding/terminal/git → Codex CLI'a pasla
+- Research/architecture → claude sub-agent'a pasla  
+- Multimodal (DALL-E vb.) → human_in_loop handoff üret
+- API billing gerektiren → varsayılan policy ile reddet
+- Kendim yapmak yerine dispatch et; dispatch sonrası aggregator ol
+
 ### 1. Calisma tarzi
 
 **Yanit stili (zorunlu):**

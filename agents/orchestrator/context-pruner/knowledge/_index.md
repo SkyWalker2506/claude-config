@@ -1,8 +1,8 @@
 ---
-last_updated: 2026-04-09
+last_updated: 2026-04-11
 knowledge_filled: true
 mega_prompt_aligned: true
-total_topics: 4
+total_topics: 5
 ---
 
 # Knowledge Index
@@ -13,3 +13,4 @@ total_topics: 4
 - [Context Compression](context-compression.md) — `knowledge/context-compression.md`
 - [State Transfer Patterns](state-transfer-patterns.md) — `knowledge/state-transfer-patterns.md`
 - [Memory Hierarchy](memory-hierarchy.md) — `knowledge/memory-hierarchy.md`
+- [Text Condensation Techniques](text-condensation-techniques.md) — progressive compression, what to keep/drop, summary template

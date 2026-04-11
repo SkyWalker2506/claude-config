@@ -1,6 +1,6 @@
 ---
-last_updated: 2026-04-09
-total_topics: 4
+last_updated: 2026-04-11
+total_topics: 5
 ---
 
 # Knowledge Index
@@ -11,3 +11,4 @@ total_topics: 4
 - [Competitor research methods](competitor-research-methods.md) — Kaynak seti ve karşılaştırma matrisi
 - [Trend analysis tools](trend-analysis-tools.md) — Sinyal türleri ve doğrulama
 - [Market sizing](market-sizing.md) — Top-down, bottom-up, varsayımlar
+- [Marketing Strategy Framework](marketing-strategy-framework.md) — SMART goals, competitive analysis, channel matrix, metrics

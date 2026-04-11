@@ -2,6 +2,39 @@
 
 > Sub-agent baslatilirken uygulanacak header, bildirim ve heartbeat kurallari.
 
+## Dispatch-First Operating Contract
+
+Claude's role is **orchestrator / router / aggregator** — NOT implementer.
+
+### Core rule
+> If a capable worker exists, do NOT do the work yourself. Pass it.
+
+### Pre-dispatch limit (hard)
+Before dispatching, Claude may only:
+- Short classification pass (identify task type + lane)
+- A few quick file reads for context (max 3-5)
+- Task packaging (write the dispatch prompt)
+
+Do NOT: run deep analysis, write code, implement solutions, or stay in hot path.
+
+### Lane selection (priority order)
+1. **codex_cli + plan_included + automated** → coding, refactor, test, review, git, terminal tasks
+2. **claude_native + plan_included + automated** → architecture, research, orchestration, writing
+3. **local_script + local_free + automated** → deterministic transforms, scripts, file ops
+4. **chatgpt_interactive + plan_included + human_in_loop** → multimodal tasks where CLI/API automation unavailable (DALL-E, image gen, voice) — produce handoff instructions, do NOT attempt to automate via browser or unofficial APIs
+
+### Forbidden lanes (default policy)
+- `api_billed` lane: **NEVER selected** unless user has explicitly run `/set-cost-policy api-ok`
+- Browser automation to simulate ChatGPT: **NOT an official lane**
+- Any path that creates unexpected billing: **blocked**
+
+### After dispatch
+- Release hot path
+- Wait for result
+- Handle retry/fallback if worker fails
+- Run parallel dispatches for independent subtasks
+- Final aggregation and reporting only
+
 ## Sub-agent prompt header formati
 
 Her `Agent tool` cagrisinda prompt'un basina su blok eklenmeli:
@@ -80,9 +113,33 @@ Agent secimi icin:
 ~/Projects/claude-config/config/agent-router.sh "{gorev aciklamasi}"
 ```
 
-Cikti: `{ID} {Name} ({model}, {effort})`
+Cikti: `{ID} {Name} ({model}, {effort}, {strategy}) → backend:{resolved_backend}`
 
 Bu cikti dispatch header'in `AGENT`, `MODEL`, `EFFORT` alanlarini doldurur.
+
+## Capability-First Backend Routing
+
+agent-router.sh runs a two-phase selection:
+
+**Phase 1 — Agent selection** (unchanged):
+Keyword + capability matching against registry to find best agent.
+
+**Phase 2 — Backend resolution**:
+1. Read selected agent's `execution_backends.primary`
+2. Check if backend is available and cost-policy compliant
+3. If not: walk `execution_backends.fallback` list
+4. Emit warning to stderr if backend was downgraded
+
+**Cost policy enforcement:**
+- Default: `api_billing_enabled: false` — backends with `api_billing: true` are blocked
+- Affected backend: `claude` (Anthropic API)
+- Unaffected: `openai-codex-cli` (subscription), `local-free` (free), `deterministic-tool` (free)
+- To enable API billing: `/set-cost-policy api-ok` (user opt-in)
+
+**Backend output format:**
+```
+B2 Backend Coder (sonnet, medium, direct) → backend:openai-codex-cli (gpt-5.4)
+```
 
 ---
 

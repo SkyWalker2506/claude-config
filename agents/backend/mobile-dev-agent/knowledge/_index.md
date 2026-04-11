@@ -1,6 +1,6 @@
 ---
-last_updated: 2026-04-09
-total_topics: 6
+last_updated: 2026-04-11
+total_topics: 7
 ---
 
 # Knowledge Index
@@ -11,3 +11,4 @@ total_topics: 6
 - [Platform Channels](platform-channels.md) — MethodChannel, EventChannel, platform-specific code
 - [Testing Patterns](testing-patterns.md) — widget test, integration test, golden test, mocking
 - [Material 3 Flutter](material3-flutter.md) — ColorScheme.fromSeed, useMaterial3, adaptive components
+- [Android Native Best Practices](android-native-best-practices.md) — MVVM, Coroutines, Hilt, Jetpack, testing pyramid

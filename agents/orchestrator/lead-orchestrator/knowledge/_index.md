@@ -1,8 +1,8 @@
 ---
-last_updated: 2026-04-09
+last_updated: 2026-04-11
 knowledge_filled: true
 mega_prompt_aligned: true
-total_topics: 4
+total_topics: 5
 ---
 
 # Knowledge Index
@@ -13,3 +13,4 @@ total_topics: 4
 - [Risk Assessment Framework](risk-assessment-framework.md) — `knowledge/risk-assessment-framework.md`
 - [Prioritization Methods](prioritization-methods.md) — `knowledge/prioritization-methods.md`
 - [Escalation Protocols](escalation-protocols.md) — `knowledge/escalation-protocols.md`
+- [Chain of Reasoning Orchestration](chain-of-reasoning-orchestration.md) — CoR methodology, expert init, goal alignment

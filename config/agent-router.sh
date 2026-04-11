@@ -122,10 +122,63 @@ effort = best.get('effort', 'medium')
 name = best.get('name', 'Unknown')
 strategy = best.get('strategy', 'direct')
 
-print(f'{best_id} {name} ({model}, {effort}, {strategy})')
+# --- Phase 2: Backend resolution ---
+backend_primary = best.get('execution_backends', {}).get('primary', 'claude')
+backend_fallback = best.get('execution_backends', {}).get('fallback', ['claude'])
+
+# Load execution-backends.json
+import os
+backends_path = os.path.expanduser('~/Projects/claude-config/config/execution-backends.json')
+backends = {}
+if os.path.exists(backends_path):
+    with open(backends_path) as bf:
+        backends = json.load(bf).get('backends', {})
+
+# Check cost policy (from execution-backends.json or agent-registry.json)
+cost_policy = {}
+if os.path.exists(backends_path):
+    with open(backends_path) as bf2:
+        cost_policy = json.load(bf2).get('cost_policy', {})
+if not cost_policy:
+    cost_policy = reg.get('cost_policy', {})
+api_billing_enabled = cost_policy.get('api_billing_enabled', False)
+
+def backend_ok(backend_id):
+    b = backends.get(backend_id, {})
+    if b.get('api_billing') and not api_billing_enabled:
+        return False, 'api_billing_disabled'
+    return True, 'ok'
+
+resolved_backend = backend_primary
+resolved_reason = 'primary'
+ok, reason = backend_ok(backend_primary)
+if not ok:
+    # Try fallbacks
+    for fb in backend_fallback:
+        ok2, _ = backend_ok(fb)
+        if ok2:
+            resolved_backend = fb
+            resolved_reason = f'fallback (primary {backend_primary} blocked: {reason})'
+            break
+    else:
+        resolved_backend = 'claude'
+        resolved_reason = f'default fallback (all blocked)'
+
+backend_model = ""
+if resolved_backend == "openai-codex-cli" and os.path.exists(backends_path):
+    with open(backends_path) as bm:
+        bdata = json.load(bm)
+    backend_model = bdata.get("backends", {}).get("openai-codex-cli", {}).get("default_model", "")
+model_suffix = f" ({backend_model})" if backend_model else ""
+print(f'{best_id} {name} ({model}, {effort}, {strategy}) → backend:{resolved_backend}{model_suffix}')
+
+if resolved_reason != 'primary':
+    print(f'⚠️  Backend downgraded: {backend_primary} → {resolved_backend} ({resolved_reason})', file=sys.stderr)
+    warning_msg = cost_policy.get('warning_message', 'API billing disabled, using fallback backend.')
+    print(f'   {warning_msg}', file=sys.stderr)
 
 # Log dispatch decision
-import os, datetime
+import datetime
 log_path = os.path.expanduser('~/Projects/.watchdog/dispatch-log.jsonl')
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 top3 = [{'id': aid, 'name': agent['name'], 'score': round(score,2)} for score, aid, agent in results[:3]]
@@ -133,6 +186,8 @@ log_entry = {
     'ts': datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
     'query': query,
     'selected': {'id': best_id, 'name': name, 'model': model, 'effort': effort, 'strategy': strategy, 'score': round(best_score,2)},
+    'resolved_backend': resolved_backend,
+    'resolved_reason': resolved_reason,
     'top3': top3,
     'total_candidates': len(results)
 }

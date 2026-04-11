@@ -1,0 +1,16 @@
+{
+  "id": "gpt-import",
+  "name": "GPT Import",
+  "version": "1.0.0",
+  "description": "Import and distill leaked GPT prompts into agent knowledge files",
+  "author": "SkyWalker2506",
+  "category": "agent-tooling",
+  "complexity": "medium",
+  "type": "skill",
+  "invocation": "/gpt-import",
+  "requires": {
+    "deps": ["bash", "gh"],
+    "external": ["linexjlin/GPTs on GitHub"]
+  },
+  "install": false
+}

@@ -1,0 +1,137 @@
+{
+  "version": "1.0",
+  "backends": {
+    "claude": {
+      "name": "Claude (Anthropic)",
+      "type": "api",
+      "cost_type": "api",
+      "requires_login": false,
+      "api_billing": false,
+      "mcp_tools": [],
+      "check_command": "echo ok",
+      "description": "Anthropic Claude via MCP/SDK. Covered by existing Anthropic subscription/API access.",
+      "subscription_plan": "anthropic-api"
+    },
+    "openai-codex-cli": {
+      "name": "OpenAI Codex CLI",
+      "type": "cli",
+      "cost_type": "subscription",
+      "requires_login": true,
+      "api_billing": false,
+      "mcp_tools": ["mcp__codex__*"],
+      "check_command": "codex --version 2>/dev/null && echo ok || echo not_installed",
+      "login_check_command": "codex ls 2>&1 | grep -v 'Not logged in' | grep -q . && echo logged_in || echo not_logged_in",
+      "login_command": "codex login",
+      "description": "OpenAI Codex CLI for code tasks. Uses ChatGPT Pro subscription, no extra API billing.",
+      "subscription_plan": "chatgpt-pro",
+      "default_model": "gpt-5.4",
+      "default_effort": "xhigh",
+      "available_models": ["gpt-5.4", "gpt-5.4-mini", "gpt-5.3-codex"],
+      "profiles": {
+        "fast": {"model": "gpt-5.4-mini", "effort": "low"},
+        "deep": {"model": "gpt-5.4", "effort": "xhigh"},
+        "coder": {"model": "gpt-5.3-codex", "effort": "high"},
+        "review": {"model": "gpt-5.4", "effort": "high", "sandbox": "read-only"}
+      },
+      "capability_model_map": {
+        "fast_code_edit": {"model": "gpt-5.4-mini", "effort": "low", "profile": "fast"},
+        "deep_code_generation": {"model": "gpt-5.4", "effort": "xhigh", "profile": "deep"},
+        "review_audit": {"model": "gpt-5.4", "effort": "high", "profile": "review"},
+        "long_context_agentic": {"model": "gpt-5.3-codex", "effort": "high", "profile": "coder"}
+      },
+      "invocation_patterns": {
+        "exec": "codex exec -m {model} -c 'model_reasoning_effort=\"{effort}\"' \"{task}\"",
+        "interactive": "codex -m {model} -c 'model_reasoning_effort=\"{effort}\"'",
+        "review": "codex review --uncommitted"
+      }
+    },
+    "openai-chatgpt-session": {
+      "name": "OpenAI ChatGPT Session",
+      "type": "session",
+      "cost_type": "subscription",
+      "requires_login": true,
+      "api_billing": false,
+      "mcp_tools": [],
+      "check_command": "codex --version 2>/dev/null && echo ok || echo not_installed",
+      "description": "ChatGPT Pro plan browser/CLI session. No API billing. For non-code specialized tasks.",
+      "subscription_plan": "chatgpt-pro"
+    },
+    "local-free": {
+      "name": "Local / Free Models",
+      "type": "proxy",
+      "cost_type": "free",
+      "requires_login": false,
+      "api_billing": false,
+      "mcp_tools": [],
+      "check_command": "curl -s http://localhost:4000/health 2>/dev/null | grep -q ok && echo ok || echo not_running",
+      "description": "LiteLLM proxy → Ollama / free-tier OpenRouter models. Zero cost.",
+      "proxy_url": "http://localhost:4000"
+    },
+    "deterministic-tool": {
+      "name": "Deterministic / Scripted",
+      "type": "script",
+      "cost_type": "free",
+      "requires_login": false,
+      "api_billing": false,
+      "mcp_tools": [],
+      "check_command": "echo ok",
+      "description": "Bash scripts, CLI tools, no LLM needed. Used for mechanical transforms, file ops, etc."
+    }
+  },
+  "capability_routing": {
+    "fast_code_edit": {
+      "description": "Mechanical, narrow-scope code changes",
+      "preferred_backend": "openai-codex-cli",
+      "fallback": ["claude", "local-free"]
+    },
+    "deep_code_generation": {
+      "description": "Deep code generation, large refactors, agentic code editing",
+      "preferred_backend": "openai-codex-cli",
+      "fallback": ["claude", "local-free"]
+    },
+    "architecture_decision": {
+      "description": "Architecture decisions, trade-off analysis, system design",
+      "preferred_backend": "claude",
+      "fallback": ["local-free"]
+    },
+    "review_audit": {
+      "description": "Code review, security audit, quality checks",
+      "preferred_backend": "claude",
+      "fallback": ["local-free"]
+    },
+    "research": {
+      "description": "Web research, document analysis, information gathering",
+      "preferred_backend": "claude",
+      "fallback": ["local-free"]
+    },
+    "long_context_agentic": {
+      "description": "Long-context autonomous task execution",
+      "preferred_backend": "claude",
+      "fallback": ["openai-codex-cli", "local-free"]
+    },
+    "broad_creative": {
+      "description": "UI/design/copy, broad creative tasks",
+      "preferred_backend": "claude",
+      "fallback": ["local-free"]
+    },
+    "fast_qa": {
+      "description": "Short Q&A, lookup, classification",
+      "preferred_backend": "local-free",
+      "fallback": ["claude"]
+    },
+    "specialized_custom_gpt": {
+      "description": "Tasks suited for specialized ChatGPT custom GPTs (design tools, SEO, etc.)",
+      "preferred_backend": "openai-chatgpt-session",
+      "fallback": ["claude"]
+    }
+  },
+  "cost_policy": {
+    "default_mode": "subscription-only",
+    "api_billing_enabled": false,
+    "api_opt_in_required": true,
+    "max_daily_api_spend_usd": 0,
+    "override_allowed_by_user": true,
+    "override_command": "/set-cost-policy api-ok",
+    "warning_message": "Bu görev için OpenAI API billing gerekiyor (abonelik dışı). Default kapalı. Devam etmek için: /set-cost-policy api-ok"
+  }
+}
