@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Dispatch Event",
+  "description": "Agent dispatch telemetry event format (append-only JSONL).",
+  "type": "object",
+  "required": ["event_id", "timestamp", "outcome"],
+  "properties": {
+    "event_id": {"type": "string", "description": "UUID v4"},
+    "timestamp": {"type": "string", "format": "date-time", "description": "ISO-8601 UTC"},
+    "agent_id": {"type": "string", "description": "e.g. A1, B2, C3 (unknown if not derivable)"},
+    "agent_name": {"type": "string"},
+    "category": {"type": "string", "description": "backend, code-review, research..."},
+    "model_used": {"type": "string"},
+    "model_tier": {"type": "string", "enum": ["premium", "standard", "economy", "free", "unknown"]},
+    "project": {"type": "string", "description": "Working directory basename"},
+    "task_type": {"type": "string", "description": "Tool name or task descriptor"},
+    "input_tokens": {"type": "integer", "minimum": 0},
+    "output_tokens": {"type": "integer", "minimum": 0},
+    "duration_seconds": {"type": "number", "minimum": 0},
+    "outcome": {"type": "string", "enum": ["success", "partial", "failed", "timeout", "unknown"]},
+    "fallback_used": {"type": "boolean"},
+    "fallback_chain": {"type": "array", "items": {"type": "string"}},
+    "cost_usd": {"type": "number", "minimum": 0}
+  }
+}

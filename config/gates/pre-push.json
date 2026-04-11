@@ -1,0 +1,21 @@
+{
+  "_comment": "Verification gates run before git push. Warn-only by default.",
+  "mode": "warn",
+  "gates": [
+    {
+      "name": "secret_scan_full",
+      "type": "deterministic",
+      "description": "Full-tree secret scan (not just staged)",
+      "command": "grep -rnE 'sk-[a-zA-Z0-9]{20,}|AKIA[0-9A-Z]{16}|ghp_[a-zA-Z0-9]{36}' --include='*.py' --include='*.ts' --include='*.js' --include='*.sh' --include='*.env*' . 2>/dev/null | grep -v -E 'node_modules|\\.git/' || true",
+      "expect_empty": true,
+      "blocking": true
+    },
+    {
+      "name": "lint_format",
+      "type": "deterministic",
+      "description": "Run project linter",
+      "command": "if [ -f package.json ] && jq -e '.scripts.lint' package.json >/dev/null 2>&1; then npm run lint; elif [ -f pyproject.toml ] && command -v ruff >/dev/null 2>&1; then ruff check .; else echo 'no linter configured'; fi",
+      "blocking": false
+    }
+  ]
+}
