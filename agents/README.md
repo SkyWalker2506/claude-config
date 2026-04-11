@@ -67,7 +67,14 @@ Commit `config/agent-registry.json` together with the new or changed `AGENT.md`.
 
 ### Runtime copy to `~/.claude/`
 
-After `install.sh`, **SessionStart** runs `config/session_sync_claude_config.sh` so every Claude Code open copies `agents/` and agent-related JSON from your **claude-config clone** (path baked at install time as `__CLAUDE_CONFIG_ROOT__`) into `~/.claude/agents` and `~/.claude/config/`. Override clone location: set `CLAUDE_CONFIG_ROOT` before running the script manually; re-run `./install.sh` to refresh hook paths if you move the repo.
+After `install.sh`, **SessionStart** runs `config/session_sync_claude_config.sh` so every Claude Code open copies `agents/` and agent-related JSON from your **claude-config clone** (path baked at install time as `__CLAUDE_CONFIG_ROOT__`) into `~/.claude/agents` and `~/.claude/config/`.
+
+Single-source rule:
+- `agents/<category>/<slug>/AGENT.md` = scope/process/escalation truth
+- `config/agent-registry.json` = model/backend/fallback truth
+- `~/.claude/agents/<category>/<slug>.md` = generated runtime mirror only
+
+Override clone location: set `CLAUDE_CONFIG_ROOT` before running the script manually; re-run `./install.sh` to refresh hook paths if you move the repo.
 
 ## Routing
 Task Router (A2, Sonnet) uses capability tags for matching. Auto-dispatch integrated into plan template (CLAUDE.md §9a). See `config/agent-registry.json` for full mapping.

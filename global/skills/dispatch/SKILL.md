@@ -28,6 +28,26 @@ Her dispatch öncesi `source_requirements` tablosunu oku:
 
 **Şu an bilinen durum:** Groq key yok → Groq primary'li agentlar otomatik OpenRouter fallback'e düşer.
 
+## Agent Truth Check
+
+Dispatch karari vermeden once **zorunlu olarak** su komutu calistir:
+
+```bash
+python3 ~/Projects/claude-config/scripts/inspect_agent_truth.py <agent-id-veya-slug>
+```
+
+Bu komut ayni agent'i dort katmanda yan yana gosterir:
+- `~/Projects/claude-config/agents/<kategori>/<slug>/AGENT.md` → kapsam, escalation, knowledge kurallari
+- `~/Projects/claude-config/config/agent-registry.json` → **kanonik model/backend truth**
+- `~/.claude/agents/<kategori>/<slug>.md` → session sync ile uretilen runtime mirror
+- `~/.claude/config/agent-registry.json` → runtime capability ve active-agent index
+
+**Sert kurallar:**
+- `primary_model` hakkinda yorum yaparken once source registry'yi esas al
+- Scope veya escalation anlatmadan once source `AGENT.md` dosyasini gor
+- Runtime mirror ile source registry cakisiyorsa drift vardir; source registry'yi esas al ve sync bekle
+- Tek bir katmandan tum gercegi cikarmaya calisma
+
 ## Akis
 
 ### 1. Gorev analizi (max 3 tool call)
@@ -54,12 +74,16 @@ Kullanicinin gorevini analiz et:
 
 ### 3. Model & effort atama
 
-Secilen agent'in registry'deki ayarlarini kullan:
-- `primary_model` → model olarak ata
-- `effort` → effort seviyesi
-- `max_tool_calls` → sub-agent limiti
-- `fallbacks` → model duserse sirayla dene
-- `mcps` → hangi MCP'ler aktif
+Secilen agent icin katmanlari ayir:
+- **Kanonik model/backend truth:** `~/Projects/claude-config/config/agent-registry.json`
+- **Scope/escalation truth:** source `agents/<kategori>/<slug>/AGENT.md`
+- **Runtime mirror/cache:** `~/.claude/agents/<kategori>/<slug>.md`
+
+Atama sirasi:
+- `primary_model`, `fallbacks`, `effort`, `template` → source registry
+- `max_tool_calls`, `mcps`, `capabilities`, `related` → source `AGENT.md`, yoksa source registry
+- Kapsam ve escalation kurallari → source `AGENT.md`
+- Runtime mirror sadece hizli kontrol icindir; source ile cakisirsa mirror'a guvenme
 
 ### 3.5. Strategy-aware dispatch
 

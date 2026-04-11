@@ -65,8 +65,13 @@
           },
           {
             "type": "command",
-            "description": "Sync agents + agent-registry from claude-config clone to ~/.claude (every session)",
+            "description": "Sync core CLAUDE + skills + agents + agent-registry from claude-config clone to ~/.claude (every session)",
             "command": "bash \"__CLAUDE_CONFIG_ROOT__/config/session_sync_claude_config.sh\" \"__CLAUDE_CONFIG_ROOT__\" 2>/dev/null || true"
+          },
+          {
+            "type": "command",
+            "description": "Print Jarvis routing and agent truth policy",
+            "command": "echo \"JARVIS_POLICY: Sen implementer degilsin; isi agent'lar yapar. Truth source = __CLAUDE_CONFIG_ROOT__/agents/**/AGENT.md + __CLAUDE_CONFIG_ROOT__/config/agent-registry.json. ~/.claude/agents/*.md generated mirror.\""
           }
         ]
       }

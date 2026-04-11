@@ -6,6 +6,26 @@
 |--------|---------|
 | `agent_coverage_audit.py` | Scans `agents/**/AGENT.md` + `knowledge/` + `memory/`. Writes `agents/AGENT_COVERAGE_AUDIT.md` with tiers **P0 / P1 / P2 / OK**. |
 
+## Agent truth inspection
+
+| Script | Purpose |
+|--------|---------|
+| `inspect_agent_truth.py` | Shows the same agent across runtime flat entry, runtime registry, source `AGENT.md`, and source registry so model/tier claims are not guessed from the wrong layer. |
+
+```bash
+python3 scripts/inspect_agent_truth.py B15
+python3 scripts/inspect_agent_truth.py mobile-dev-agent
+python3 scripts/inspect_agent_truth.py B15 --json
+```
+
+| Script | Purpose |
+|--------|---------|
+| `generate_runtime_agent_mirrors.py` | Rebuilds `~/.claude/agents/<category>/<slug>.md` from source `AGENT.md` + `config/agent-registry.json` so runtime mirror files stay in sync with the canonical sources. |
+
+```bash
+python3 scripts/generate_runtime_agent_mirrors.py --verbose
+```
+
 ```bash
 python3 scripts/agent_coverage_audit.py
 ```

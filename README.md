@@ -84,7 +84,7 @@ The installer sets up everything: CLAUDE.md hierarchy, skills, MCP servers, hook
 
 ## Plugin Marketplace
 
-21 plugins, each in its own repo. Add the marketplace:
+22 plugins, each in its own repo. Add the marketplace:
 
 ```bash
 claude plugin marketplace add SkyWalker2506/claude-marketplace

@@ -614,6 +614,19 @@ Format: `§9e` ile ayni — `learnings` alani serbest metin.
 
 **Routing:** Her `Agent tool` cagrisindan once `config/agent-router.sh "{gorev}"` ile uygun agent bul. Cikti: `{ID} {Name} ({model}, {effort})`.
 
+**Agent truth lookup (zorunlu):** Model, fallback veya "bu agent GPT/Sonnet kullanir" gibi bir iddia yapmadan once:
+
+```bash
+python3 ~/Projects/claude-config/scripts/inspect_agent_truth.py <agent-id-veya-slug>
+```
+
+Bu komutun anlami:
+- `~/Projects/claude-config/agents/<kategori>/<slug>/AGENT.md` = kapsam, escalation, knowledge
+- `~/Projects/claude-config/config/agent-registry.json` = **kanonik model/backend truth**
+- `~/.claude/agents/<kategori>/<slug>.md` = session sync ile uretilen runtime mirror
+
+Bu katmanlar cakisiyorsa source repo'yu esas al. `AGENT.md` okumadan tier yorumu yapma; source registry okumadan `primary_model` yorumu yapma.
+
 **Dispatch header:** Sub-agent prompt'unun basina ekle (format: `config/agent-dispatch.md`):
 ```
 ---
@@ -626,6 +639,8 @@ WATCHDOG: {quick|medium|long} — max {N} tool call
 ---
 ```
 - `AGENT: {id} — {name}` satirinda `{name}` zorunlu.
+- `MODEL`, `FALLBACK`, `EFFORT` alanlari source registry'den doldurulur.
+- `MAX`, `MCP`, `CAPABILITIES`, scope ve escalation maddeleri source `AGENT.md` dosyasindan doldurulur.
 
 **Ana thread bildirimi:** Agent baslatildiginda `[{id}] {name} → {gorev}` satiri yaz.
 

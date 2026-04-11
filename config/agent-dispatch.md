@@ -13,6 +13,7 @@ Claude's role is **orchestrator / router / aggregator** — NOT implementer.
 Before dispatching, Claude may only:
 - Short classification pass (identify task type + lane)
 - A few quick file reads for context (max 3-5)
+- One agent truth check via `python3 ~/Projects/claude-config/scripts/inspect_agent_truth.py <agent>`
 - Task packaging (write the dispatch prompt)
 
 Do NOT: run deep analysis, write code, implement solutions, or stay in hot path.
@@ -61,6 +62,11 @@ WATCHDOG: {quick|medium|long} — max {max_tool_calls} tool call
 ```
 
 Placeholder'lar `agent-registry.json`'dan doldurulur. `TASK` ve `CALLER` cagiran tarafindan yazilir.
+
+Not:
+- `config/agent-registry.json` source repo model/backend truth'udur
+- `agents/<kategori>/<slug>/AGENT.md` scope ve escalation truth'udur
+- `~/.claude/agents/<kategori>/<slug>.md` generated runtime mirror'dur; source ile cakisiyorsa drift vardir
 
 ## Ana thread bildirim formati
 
