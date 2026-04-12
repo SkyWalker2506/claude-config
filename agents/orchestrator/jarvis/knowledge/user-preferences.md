@@ -1,34 +1,10 @@
 ---
-last_updated: 2026-04-09
+last_updated: 2026-04-12
 refined_by: opus
 confidence: high
 ---
 
 # User Preferences — Musab Kara
-
-## Quick Reference
-| Kavram | Not |
-|--------|-----|
-| Özet | Aşağıdaki bölümlerde bu konunun detayı ve örnekleri yer alır. |
-| Bağlam | Proje sürümüne göre güncelleyin. |
-
-## Patterns & Decision Matrix
-| Durum | Öneri |
-|-------|-------|
-| Karar gerekiyor | Bu dosyadaki tablolar ve alt başlıklara bakın |
-| Risk | Küçük adım, ölçüm, geri alınabilir değişiklik |
-
-## Code Examples
-Bu dosyanın devamındaki kod ve yapılandırma blokları geçerlidir.
-
-## Anti-Patterns
-- Bağlam olmadan dışarıdan kopyalanan desenler.
-- Ölçüm ve doğrulama olmadan prod'a taşımak.
-
-## Deep Dive Sources
-- Bu dosyanın mevcut bölümleri; resmi dokümantasyon ve proje kaynakları.
-
----
 
 ## Iletisim Stili
 - Turkce konusma, Ingilizce kod/commit
@@ -43,6 +19,8 @@ Bu dosyanın devamındaki kod ve yapılandırma blokları geçerlidir.
 - Otonom calisma tercih eder — minimum mudahale
 - Buyuk isleri paralel agent'larla yap
 - Her is bitince commit at (istenirse)
+- **TODO-only modu:** "kod yazma, sadece todo olarak yaz aciklama" dediginde → drift analizi yap + bullet TODO listesi + P0/P1/P2 oncelik + implementer agent onerisi, kod asla yazilmaz
+- **Drift report stili:** Missing / Misaligned / Incomplete / Extra / Version-mismatch kategorilerinde grupla
 
 ## Teknik Tercihler
 - Flutter + Riverpod + Firebase stack

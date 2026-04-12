@@ -1,34 +1,10 @@
 ---
-last_updated: 2026-04-09
+last_updated: 2026-04-12
 refined_by: opus
 confidence: high
 ---
 
 # Project Ecosystem
-
-## Quick Reference
-| Kavram | Not |
-|--------|-----|
-| Özet | Aşağıdaki bölümlerde bu konunun detayı ve örnekleri yer alır. |
-| Bağlam | Proje sürümüne göre güncelleyin. |
-
-## Patterns & Decision Matrix
-| Durum | Öneri |
-|-------|-------|
-| Karar gerekiyor | Bu dosyadaki tablolar ve alt başlıklara bakın |
-| Risk | Küçük adım, ölçüm, geri alınabilir değişiklik |
-
-## Code Examples
-Bu dosyanın devamındaki kod ve yapılandırma blokları geçerlidir.
-
-## Anti-Patterns
-- Bağlam olmadan dışarıdan kopyalanan desenler.
-- Ölçüm ve doğrulama olmadan prod'a taşımak.
-
-## Deep Dive Sources
-- Bu dosyanın mevcut bölümleri; resmi dokümantasyon ve proje kaynakları.
-
----
 
 ## Aktif Projeler (projects.json'dan)
 
@@ -46,6 +22,15 @@ Bu dosyanın devamındaki kod ve yapılandırma blokları geçerlidir.
 | trading-bot | TB | Python | Aktif |
 | football-ai-platform | — | Flutter | Aktif |
 | transcriptr | TSCR | Flutter | Aktif |
+| 3d-asset-foundry | — | Python, Blender, multi-LLM (Claude/Gemini/OpenAI/Ollama), refinement loop | Aktif — Phase 0 scaffold (ARCHITECTURE v0.10, STRUCTURE v0.10) |
+
+## 3d-asset-foundry Notlari
+- **Mimari:** Intent layer → AI agents → Comparison engine → Learning/refinement loop → Blender tool runner
+- **Kritik guvenlik sinir:** §4.6 reference_vault yalitimi; sadece `comparison/vault_reader.py` erisebilir
+- **Phase 0 blockers:** `vault_token.py`, comparison dekompozisyonu (aggregator/vault_reader/escalation), `schema_repair.py`, schema split, 7 invariant test
+- **Dil/stack:** Python 3, pyproject.toml, pytest, Blender subprocess (lifecycle.py §14.6)
+- **Drift report kaynak:** ARCHITECTURE.md §15.0/§15.3/§20.5 ve STRUCTURE.md knowledge-first tree
+- **Dispatch rotasi:** Python/3D pipeline satiri — §agent-dispatch-rules
 
 ## Claude Ecosystem
 | Proje | Amac |
@@ -58,9 +43,11 @@ Bu dosyanın devamındaki kod ve yapılandırma blokları geçerlidir.
 | craft-unity | Unity + Claude entegrasyonu |
 
 ## Ortak Ozellikler
-- Cogu proje Flutter/Dart
+- Cogu proje Flutter/Dart (mobil ekosistem)
+- Python istisna: 3d-asset-foundry, trading-bot
+- Unity istisna: KnightOnlineAI, craft-unity
 - Firebase yaygin (Auth, Firestore, FCM)
-- Riverpod state management standart
+- Riverpod state management standart (Flutter tarafi)
 - Material 3 tema sistemi
-- Jira ile sprint yonetimi
+- Jira ile sprint yonetimi (Jira-less: 3d-asset-foundry, football-ai-platform)
 - Conventional commit + PR workflow

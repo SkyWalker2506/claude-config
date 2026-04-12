@@ -1332,7 +1332,7 @@
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "local-qwen-9b",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
         "sonnet"
       ],
@@ -1347,24 +1347,26 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "analiz",
-      "tier": "junior",
+      "tier": "mid",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "D5": {
       "name": "Presentation Builder",
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "local-qwen-9b",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
         "sonnet"
       ],
@@ -1377,17 +1379,19 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior",
+      "tier": "mid",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "D6": {
       "name": "Image Prompt Generator",
@@ -1575,7 +1579,7 @@
       "version": "1.0",
       "category": "3d-cad",
       "status": "pool",
-      "primary_model": "local-qwen-9b",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
         "sonnet"
       ],
@@ -1590,17 +1594,19 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior",
+      "tier": "mid",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "E4": {
       "name": "Render Pipeline",
@@ -1636,7 +1642,7 @@
       "version": "1.0",
       "category": "3d-cad",
       "status": "pool",
-      "primary_model": "local-qwen-9b",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
         "sonnet"
       ],
@@ -1653,17 +1659,19 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior",
+      "tier": "mid",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "F1": {
       "name": "Data Cleaner",
@@ -2136,7 +2144,7 @@
       "version": "1.0",
       "category": "ai-ops",
       "status": "pool",
-      "primary_model": "local-qwen-9b",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
         "sonnet"
       ],
@@ -2148,17 +2156,19 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "analiz",
-      "tier": "junior",
+      "tier": "mid",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "G6": {
       "name": "Backup Agent",
@@ -2524,7 +2534,7 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "local-qwen-9b",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
         "sonnet"
       ],
@@ -2538,24 +2548,26 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior",
+      "tier": "mid",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "H8": {
       "name": "Content Repurposer",
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "local-qwen-9b",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
         "sonnet"
       ],
@@ -2568,24 +2580,26 @@
       "max_tool_calls": 20,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior",
+      "tier": "mid",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "H9": {
       "name": "Newsletter Agent",
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "local-qwen-9b",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
         "sonnet"
       ],
@@ -2598,17 +2612,19 @@
       "max_tool_calls": 15,
       "effort": "medium",
       "template": "autonomous",
-      "tier": "junior",
+      "tier": "mid",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "local-free",
+        "primary": "openai-codex-cli",
         "fallback": [
-          "claude"
+          "claude",
+          "local-free"
         ]
       },
-      "execution_mode": "local_script",
-      "billing_mode": "local_free",
-      "interaction_mode": "automated"
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     },
     "H10": {
       "name": "New Tool Scout",

@@ -1,7 +1,8 @@
 ---
-last_updated: 2026-04-09
+last_updated: 2026-04-12
 knowledge_filled: true
 total_topics: 5
+last_sharpen: 2026-04-12 (filler-strip + 3d-asset-foundry + git-dispatch-fix + python-row + todo-only-mode)
 ---
 
 # Knowledge Index

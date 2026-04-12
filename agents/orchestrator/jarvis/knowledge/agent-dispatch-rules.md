@@ -1,34 +1,10 @@
 ---
-last_updated: 2026-04-09
+last_updated: 2026-04-12
 refined_by: opus
 confidence: high
 ---
 
 # Agent Dispatch Rules
-
-## Quick Reference
-| Kavram | Not |
-|--------|-----|
-| Özet | Aşağıdaki bölümlerde bu konunun detayı ve örnekleri yer alır. |
-| Bağlam | Proje sürümüne göre güncelleyin. |
-
-## Patterns & Decision Matrix
-| Durum | Öneri |
-|-------|-------|
-| Karar gerekiyor | Bu dosyadaki tablolar ve alt başlıklara bakın |
-| Risk | Küçük adım, ölçüm, geri alınabilir değişiklik |
-
-## Code Examples
-Bu dosyanın devamındaki kod ve yapılandırma blokları geçerlidir.
-
-## Anti-Patterns
-- Bağlam olmadan dışarıdan kopyalanan desenler.
-- Ölçüm ve doğrulama olmadan prod'a taşımak.
-
-## Deep Dive Sources
-- Bu dosyanın mevcut bölümleri; resmi dokümantasyon ve proje kaynakları.
-
----
 
 ## Temel Kural
 Jarvis ASLA kod/design yazmaz. Her uretim isi ilgili agent'a dispatch edilir.
@@ -64,6 +40,16 @@ Jarvis ASLA kod/design yazmaz. Her uretim isi ilgili agent'a dispatch edilir.
 | Prompt yazma | N1 Prompt Engineer | mid |
 | Tool degerlendirme | K9 AI Tool Evaluator | junior |
 
+### Python / 3D Pipeline / Blender
+| Gorev | Agent | Tier |
+|-------|-------|------|
+| Python modul implementasyon | B2 Backend Coder | mid |
+| Python mimari karar | B1 Backend Architect | senior |
+| Blender/DCC tool entegrasyonu | B2 Backend Coder (+context7) | mid |
+| 3D asset/geometry spec | C1 3D CAD Specialist | senior |
+| Security invariant test (AST scan) | B13 Security Auditor | senior |
+| Schema/pydantic model | B2 Backend Coder | mid |
+
 ### Proje Yonetimi
 | Gorev | Agent | Tier |
 |-------|-------|------|
@@ -86,8 +72,14 @@ Jarvis ASLA kod/design yazmaz. Her uretim isi ilgili agent'a dispatch edilir.
 
 ## Jarvis'in Kendisi Ne Yapar
 - Sohbet, planlama, karar danisma
-- Git komutlari, commit, PR
 - Agent dispatch ve sonuc takibi
-- Raporlama ve ozet
+- Raporlama ve ozet (drift report, TODO listesi, yol haritasi)
 - Agent sharpen tetikleme
 - Memory/knowledge guncelleme
+- MD/dokuman okuma ve yorumlama (kod yazmadan)
+
+## Jarvis'in Kendisi YAPMAZ
+- **Kod/design/test yazma** — ilgili agent'a dispatch
+- **Git apply/commit/PR/push** — git agent veya kullanici onayi ile
+- **Refactor/debug implementasyonu** — B6/B7'ye dispatch
+- **Uzman arastirma** — Explore/research agent'a dispatch

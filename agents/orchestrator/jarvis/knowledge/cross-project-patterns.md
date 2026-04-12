@@ -1,34 +1,10 @@
 ---
-last_updated: 2026-04-09
+last_updated: 2026-04-12
 refined_by: opus
 confidence: high
 ---
 
 # Cross-Project Patterns
-
-## Quick Reference
-| Kavram | Not |
-|--------|-----|
-| Özet | Aşağıdaki bölümlerde bu konunun detayı ve örnekleri yer alır. |
-| Bağlam | Proje sürümüne göre güncelleyin. |
-
-## Patterns & Decision Matrix
-| Durum | Öneri |
-|-------|-------|
-| Karar gerekiyor | Bu dosyadaki tablolar ve alt başlıklara bakın |
-| Risk | Küçük adım, ölçüm, geri alınabilir değişiklik |
-
-## Code Examples
-Bu dosyanın devamındaki kod ve yapılandırma blokları geçerlidir.
-
-## Anti-Patterns
-- Bağlam olmadan dışarıdan kopyalanan desenler.
-- Ölçüm ve doğrulama olmadan prod'a taşımak.
-
-## Deep Dive Sources
-- Bu dosyanın mevcut bölümleri; resmi dokümantasyon ve proje kaynakları.
-
----
 
 ## Ortak Tech Stack
 - **Frontend:** Flutter 3.x + Dart
@@ -36,6 +12,13 @@ Bu dosyanın devamındaki kod ve yapılandırma blokları geçerlidir.
 - **Backend:** Firebase (Auth, Firestore, FCM, Analytics)
 - **Theme:** Material 3, ColorScheme.fromSeed, useMaterial3: true
 - **Testing:** flutter_test, integration_test, mockito
+
+## Python Projeleri (Istisna)
+- **Stack:** Python 3.11+, pyproject.toml, pytest, dataclasses/pydantic
+- **Projeler:** 3d-asset-foundry, trading-bot
+- **3d-asset-foundry ozel:** Blender subprocess, multi-LLM provider, refinement loop, AST-based security invariant testleri (§4.6 vault isolation)
+- **Dispatch:** B1/B2 backend agent'lari; Blender/Context7 MCP kullanimi
+- **Test kurali:** Invariant testler (security boundary) asla skip/xfail yapilmaz
 
 ## Ortak Kurallar (Tum Projeler)
 
