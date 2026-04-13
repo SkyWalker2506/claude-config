@@ -101,22 +101,22 @@ Sorular varsa → hepsini tek mesajda, şıklı, numara ile sor.
 
 ## §1 — Analiz Kategorileri
 
-> **Model notu:** Aşağıdaki "Analiz Modeli" kolonu, `/project-analysis` bağlamında kullanılacak minimum modeli gösterir. Agent'ların kendi `primary_model`'i farklı olabilir (free-script, local-qwen vb.) — analiz sırasında Lead Orchestrator bu modelleri aşağıdaki minimuma yükseltir.
+> **Model notu:** Agent'ların `primary_model`'i artık çoğunlukla `gpt-5.4` (OpenRouter üzerinden). Analiz sırasında Lead Orchestrator aşağıdaki "Analiz Modeli" kolonundaki modeli atar. Claude Code sub-agent'lar `sonnet` veya `opus` kullanır; GPT tabanlı agent'lar OpenRouter `gpt-5.4` üzerinden çalışır.
 
 | # | Kategori | Odak | Worker Agent(lar) | Analiz Modeli |
 |---|----------|------|-------------------|---------------|
-| 1 | **UI/UX & Design** | Görsel tasarım, layout, renk, tipografi, responsive, dark mode, animasyon, component tutarlılığı, design system, mobile UX | B3 Frontend Coder, D1 UI/UX Researcher, D2 Design System Agent, D8 Mockup Reviewer | free-gemini → Sonnet (fallback) |
-| 2 | **Performance & Core Web Vitals** | LCP, FID, CLS, bundle size, lazy loading, image optimization, caching, SSR/SSG/ISR, DB sorgu, API response time | B12 Performance Optimizer | Sonnet |
-| 3 | **SEO & Discoverability** | Meta tags, Open Graph, JSON-LD, sitemap, robots.txt, canonical URL, semantic HTML, mobile-friendliness, internal linking | H5 SEO Agent | Haiku |
-| 4 | **Data & Scraping Infrastructure** | Veri kaynakları, scraper mimarisi, veri kalitesi, pipeline robustness, error handling, rate limiting, veri modeli | F2 Data Analyst, F4 ETL Pipeline Agent | Sonnet |
-| 5 | **Monetization & Business Model** | Gelir modelleri, pricing stratejisi, conversion funnel, paywall, freemium vs premium, affiliate | H3 Revenue Analyst, H4 Pricing Strategist | Sonnet |
-| 6 | **Growth & User Engagement** | Viral loop, gamification, social sharing, retention, onboarding, referral, push notification | H7 Social Media Agent, H9 Newsletter Agent | Sonnet |
+| 1 | **UI/UX & Design** | Görsel tasarım, layout, renk, tipografi, responsive, dark mode, animasyon, component tutarlılığı, design system, mobile UX | B3 Frontend Coder, D1 UI/UX Researcher, D2 Design System Agent, D8 Mockup Reviewer | gpt-5.4 (OpenRouter) |
+| 2 | **Performance & Core Web Vitals** | LCP, FID, CLS, bundle size, lazy loading, image optimization, caching, SSR/SSG/ISR, DB sorgu, API response time | B12 Performance Optimizer | gpt-5.4 (OpenRouter) |
+| 3 | **SEO & Discoverability** | Meta tags, Open Graph, JSON-LD, sitemap, robots.txt, canonical URL, semantic HTML, mobile-friendliness, internal linking | H5 SEO Agent | gpt-5.4 (OpenRouter) |
+| 4 | **Data & Scraping Infrastructure** | Veri kaynakları, scraper mimarisi, veri kalitesi, pipeline robustness, error handling, rate limiting, veri modeli | F2 Data Analyst, F4 ETL Pipeline Agent | gpt-5.4 (OpenRouter) |
+| 5 | **Monetization & Business Model** | Gelir modelleri, pricing stratejisi, conversion funnel, paywall, freemium vs premium, affiliate | H3 Revenue Analyst, H4 Pricing Strategist | gpt-5.4 (OpenRouter) |
+| 6 | **Growth & User Engagement** | Viral loop, gamification, social sharing, retention, onboarding, referral, push notification | H7 Social Media Agent, H9 Newsletter Agent | gpt-5.4 (OpenRouter) |
 | 7 | **Security & Infrastructure** | Auth, OWASP top 10, env/secret yönetimi, CORS, rate limiting, input validation, dependency audit, SAST | B13 Security Auditor, C2 Security Scanner Hook | Opus |
-| 8 | **Content & Editorial Strategy** | İçerik kalitesi, çeşitlilik, editorial flow, UGC, moderation, tone of voice | H8 Content Repurposer | Haiku |
-| 9 | **Analytics & Tracking** | Event tracking, conversion, funnel analizi, A/B test altyapısı, KPI tanımlar | M3 A/B Test Agent, M4 Analytics Agent, F2 Data Analyst | Sonnet |
+| 8 | **Content & Editorial Strategy** | İçerik kalitesi, çeşitlilik, editorial flow, UGC, moderation, tone of voice | H8 Content Repurposer | gpt-5.4 (OpenRouter) |
+| 9 | **Analytics & Tracking** | Event tracking, conversion, funnel analizi, A/B test altyapısı, KPI tanımlar | M3 A/B Test Agent, M4 Analytics Agent, F2 Data Analyst | gpt-5.4 (OpenRouter) |
 | 10 | **Architecture & Code Quality** | Kod yapısı, modülerlik, test coverage, CI/CD, tech debt, scalability, type safety | B1 Backend Architect, B8 Refactor Agent, B10 Dependency Manager | Opus |
-| 11 | **Accessibility (a11y)** | WCAG 2.1/2.2, keyboard navigation, screen reader, color contrast, focus, ARIA, form labels | D8 Mockup Reviewer, B3 Frontend Coder | Haiku |
-| 12 | **Competitive Analysis** | Rakip platformlar, feature gap, pazar konumlandırma, diferansiasyon, SWOT, benchmark | H2 Competitor Analyst, K1 Web Researcher, K4 Trend Analyzer | Sonnet |
+| 11 | **Accessibility (a11y)** | WCAG 2.1/2.2, keyboard navigation, screen reader, color contrast, focus, ARIA, form labels | D8 Mockup Reviewer, B3 Frontend Coder | gpt-5.4 (OpenRouter) |
+| 12 | **Competitive Analysis** | Rakip platformlar, feature gap, pazar konumlandırma, diferansiasyon, SWOT, benchmark | H2 Competitor Analyst, K1 Web Researcher, K4 Trend Analyzer | gpt-5.4 (OpenRouter) |
 
 ---
 
@@ -221,45 +221,46 @@ Tüm 12 kategori, §1'deki varsayılan agent'lar ve analiz modelleriyle başlat�
 
 **Model Mapping — Registry → Claude Code:**
 
-| Registry Modeli | Claude Code Modeli | Notlar |
+> Agent'ların `primary_model`'i artık `gpt-5.4` (OpenRouter üzerinden). Eski modeller (`free-gemini`, `local-qwen-9b`, `free-script` vb.) `primary_model_legacy` olarak saklanıyor. Analiz sırasında `gpt-5.4` kullanılır; erişilemezse Claude Code modelleri (`sonnet`/`haiku`) fallback olur.
+
+| Registry Modeli | Çalışma Yöntemi | Notlar |
 |---|---|---|
-| `free-web` | `haiku` | Fetch/search işleri — en ucuz model yeterli |
-| `free-script` | `haiku` | Bash çalıştırır — model kritik değil |
-| `free-gemini` | OpenRouter curl | `$OPENROUTER_API_KEY` ile `scripts/gemini-call.sh` çağır |
-| `local-qwen-9b` | `haiku` (fallback) | Ollama varsa skip, yoksa haiku |
-| `free-deterministic` | `haiku` | Deterministik tarama — model kritik değil |
-| `free-gpt` | OpenRouter curl | `scripts/gpt-call.sh` — GPT-4o-mini, `$OPENROUTER_API_KEY` gerekir |
+| `gpt-5.4` | OpenRouter API | `$OPENROUTER_API_KEY` gerekir — tüm worker agent'ların birincil modeli |
+| `gpt-5.4-mini` | OpenRouter API | Hafif işler için (script, deterministic tarama) |
+| `opus` | Claude Code native | Security (#7), Architecture (#10) — değişmedi |
+| `sonnet` | Claude Code native | Fallback model — OpenRouter ulaşılamazsa |
+| `haiku` | Claude Code native | Minimum fallback |
 
-| Agent ID | İsim | Kendi Modeli | Analiz Modeli | Kategori |
-|----------|------|-------------|---------------|----------|
-| A14 | Discovery Agent | sonnet | Sonnet | §0 Discovery |
-| A15 | TechLead | sonnet | Sonnet | §0 Tech Stack |
+| Agent ID | İsim | Primary Model | Analiz Modeli | Kategori |
+|----------|------|--------------|---------------|----------|
+| A14 | Discovery Agent | gpt-5.4 | gpt-5.4 | §0 Discovery |
+| A15 | TechLead | gpt-5.4 | gpt-5.4 | §0 Tech Stack |
 | B1 | Backend Architect | opus | Opus | #10 Architecture |
-| B3 | Frontend Coder | free-gemini | free-gemini → Sonnet | #1 UI/UX, #11 Accessibility |
-| B8 | Refactor Agent | haiku | Opus | #10 Architecture |
-| B12 | Performance Optimizer | sonnet | Sonnet | #2 Performance |
-| B10 | Dependency Manager | free-script | Sonnet | #10 Architecture |
-| B13 | Security Auditor | opus | Opus | #7 Security |
-| C2 | Security Scanner Hook | free-deterministic | Sonnet | #7 Security |
-| D1 | UI/UX Researcher | free-gemini | free-gemini → Sonnet | #1 UI/UX |
-| D2 | Design System Agent | free-gemini | free-gemini → Haiku | #1 UI/UX |
-| D8 | Mockup Reviewer | free-gemini | free-gemini → Haiku | #1 UI/UX, #11 Accessibility |
-| F2 | Data Analyst | sonnet | Sonnet | #4 Data, #9 Analytics |
-| F4 | ETL Pipeline Agent | free-script | Sonnet | #4 Data |
-| H1 | Market Researcher | sonnet | Sonnet | #12 Competitive |
-| H2 | Competitor Analyst | free-web | Sonnet | #12 Competitive |
-| H3 | Revenue Analyst | sonnet | Sonnet | #5 Monetization |
-| H4 | Pricing Strategist | haiku | Sonnet | #5 Monetization |
-| H5 | SEO Agent | free-script | Haiku | #3 SEO |
-| H7 | Social Media Agent | local-qwen-9b | Sonnet | #6 Growth |
-| H8 | Content Repurposer | local-qwen-9b | Haiku | #8 Content |
-| H9 | Newsletter Agent | local-qwen-9b | Sonnet | #6 Growth |
-| K1 | Web Researcher | free-web | Sonnet | #12 Competitive |
-| K4 | Trend Analyzer | free-web | Sonnet | #12 Competitive |
-| M3 | A/B Test Agent | free-script | Sonnet | #9 Analytics |
-| M4 | Analytics Agent | free-script | Sonnet | #9 Analytics |
+| B3 | Frontend Coder | gpt-5.4 | gpt-5.4 | #1 UI/UX, #11 Accessibility |
+| B8 | Refactor Agent | gpt-5.4 | Opus | #10 Architecture |
+| B12 | Performance Optimizer | gpt-5.4 | gpt-5.4 | #2 Performance |
+| B10 | Dependency Manager | gpt-5.4 | gpt-5.4 | #10 Architecture |
+| B13 | Security Auditor | gpt-5.4 | Opus | #7 Security |
+| C2 | Security Scanner Hook | gpt-5.4 | gpt-5.4-mini | #7 Security |
+| D1 | UI/UX Researcher | gpt-5.4 | gpt-5.4 | #1 UI/UX |
+| D2 | Design System Agent | gpt-5.4 | gpt-5.4 | #1 UI/UX |
+| D8 | Mockup Reviewer | gpt-5.4 | gpt-5.4 | #1 UI/UX, #11 Accessibility |
+| F2 | Data Analyst | gpt-5.4 | gpt-5.4 | #4 Data, #9 Analytics |
+| F4 | ETL Pipeline Agent | gpt-5.4 | gpt-5.4 | #4 Data |
+| H1 | Market Researcher | gpt-5.4 | gpt-5.4 | #12 Competitive |
+| H2 | Competitor Analyst | gpt-5.4 | gpt-5.4 | #12 Competitive |
+| H3 | Revenue Analyst | gpt-5.4 | gpt-5.4 | #5 Monetization |
+| H4 | Pricing Strategist | gpt-5.4 | gpt-5.4 | #5 Monetization |
+| H5 | SEO Agent | gpt-5.4 | gpt-5.4 | #3 SEO |
+| H7 | Social Media Agent | gpt-5.4 | gpt-5.4 | #6 Growth |
+| H8 | Content Repurposer | gpt-5.4 | gpt-5.4 | #8 Content |
+| H9 | Newsletter Agent | gpt-5.4 | gpt-5.4 | #6 Growth |
+| K1 | Web Researcher | gpt-5.4 | gpt-5.4 | #12 Competitive |
+| K4 | Trend Analyzer | gpt-5.4 | gpt-5.4 | #12 Competitive |
+| M3 | A/B Test Agent | gpt-5.4 | gpt-5.4-mini | #9 Analytics |
+| M4 | Analytics Agent | gpt-5.4 | gpt-5.4-mini | #9 Analytics |
 
-> **"Analiz Modeli"** = project-analysis çalışırken bu agent'a atanacak minimum model. Lead veya Lead Orchestrator tarafından yükseltilir.
+> **"Analiz Modeli"** = project-analysis çalışırken bu agent'a atanacak model. Opus kategorileri (#7, #10) değişmedi; geri kalan tüm worker'lar `gpt-5.4` kullanır.
 
 ---
 
@@ -311,11 +312,10 @@ Rapor formatı:
 ### Referanslar
 
 ## MODEL DISPATCH KURALLARI
-- `model: free-gemini` → Bash tool ile `scripts/gemini-call.sh "[PROMPT]"` çağır
-  - Bu agent UI/UX araştırması (D1) için tercih edilir
-  - `$OPENROUTER_API_KEY` secret'ı gerekir
-- `model: free-script` veya `free-deterministic` → Bash tool yeterli, haiku fallback
-- `model: local-qwen-9b` → Ollama yoksa haiku ile devam et
+- `model: gpt-5.4` → OpenRouter API üzerinden çalışır, `$OPENROUTER_API_KEY` gerekir
+- `model: gpt-5.4-mini` → Hafif tarama/script işleri için OpenRouter API
+- `model: opus` / `sonnet` / `haiku` → Claude Code native sub-agent
+- OpenRouter ulaşılamazsa → `sonnet` fallback olarak kullanılır
 
 ## KURALLAR
 - Kod yazma, dosya düzenleme YAPMA — sadece oku ve raporla
@@ -407,11 +407,10 @@ Seçiminiz (1/2/3/4):
 
 | Model Tipi | Kontrol Yöntemi | Kurulum Talimatı | Fallback Modeli |
 |---|---|---|---|
-| `free-gemini` | `$OPENROUTER_API_KEY` var mı? + OpenRouter ping | `~/.claude/secrets/secrets.env`'e `OPENROUTER_API_KEY=` ekle | `sonnet` |
-| `local-qwen-9b` | `ollama list` çıktısında `qwen` var mı? | `ollama pull qwen2.5:9b` | `haiku` |
+| `gpt-5.4` | `$OPENROUTER_API_KEY` var mı? + OpenRouter ping | `~/.claude/secrets/secrets.env`'e `OPENROUTER_API_KEY=` ekle | `sonnet` |
+| `gpt-5.4-mini` | `$OPENROUTER_API_KEY` var mı? + OpenRouter ping | Aynı key ile çalışır | `haiku` |
+| `opus` / `sonnet` / `haiku` | Claude Code native — her zaman mevcut | — | — |
 | `free-web` | Herhangi bir URL fetch başarılı mı? | MCP fetch server aktif mi? (`/mcp` ile kontrol) | `haiku` |
-| `free-script` | Bash tool çalışıyor mu? | Claude Code izinleri kontrol et | `haiku` |
-| `free-deterministic` | Bash tool çalışıyor mu? | Claude Code izinleri kontrol et | `haiku` |
 
 ### Kullanıcı Seçim Sonuçları
 

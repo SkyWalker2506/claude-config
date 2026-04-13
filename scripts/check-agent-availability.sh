@@ -14,14 +14,12 @@ if [ -f "$SECRETS_FILE" ]; then
   source "$SECRETS_FILE" 2>/dev/null || true
 fi
 
-UNAVAILABLE_COUNT=0
-
 # ---------------------------------------------------------------------------
-# 1. free-gemini — OpenRouter API key + connectivity
+# 1. gpt-5.4 — OpenRouter API key + connectivity (primary model for most agents)
 # ---------------------------------------------------------------------------
-check_free_gemini() {
+check_gpt54() {
   if [ -z "${OPENROUTER_API_KEY:-}" ]; then
-    echo "UNAVAILABLE: free-gemini | OPENROUTER_API_KEY tanımlı değil | ~/.claude/secrets/secrets.env dosyasına OPENROUTER_API_KEY=... ekle | sonnet"
+    echo "UNAVAILABLE: gpt-5.4 | OPENROUTER_API_KEY tanımlı değil | ~/.claude/secrets/secrets.env dosyasına OPENROUTER_API_KEY=... ekle | sonnet"
     return
   fi
 
@@ -32,42 +30,30 @@ check_free_gemini() {
     --max-time 5 2>/dev/null || echo "000")
 
   if [ "$http_code" = "200" ]; then
-    echo "AVAILABLE: free-gemini"
+    echo "AVAILABLE: gpt-5.4"
   elif [ "$http_code" = "401" ]; then
-    echo "UNAVAILABLE: free-gemini | OPENROUTER_API_KEY geçersiz (401) | Geçerli bir API key al: openrouter.ai/keys | sonnet"
+    echo "UNAVAILABLE: gpt-5.4 | OPENROUTER_API_KEY geçersiz (401) | Geçerli bir API key al: openrouter.ai/keys | sonnet"
   else
-    echo "UNAVAILABLE: free-gemini | OpenRouter ulaşılamıyor (HTTP $http_code) | İnternet bağlantısını kontrol et | sonnet"
+    echo "UNAVAILABLE: gpt-5.4 | OpenRouter ulaşılamıyor (HTTP $http_code) | İnternet bağlantısını kontrol et | sonnet"
   fi
 }
 
 # ---------------------------------------------------------------------------
-# 2. local-qwen-9b — Ollama + model
+# 2. gpt-5.4-mini — Same OpenRouter key, lighter model
 # ---------------------------------------------------------------------------
-check_local_qwen() {
-  if ! command -v ollama &>/dev/null; then
-    echo "UNAVAILABLE: local-qwen-9b | Ollama kurulu değil | brew install ollama && ollama pull qwen2.5:9b | haiku"
+check_gpt54_mini() {
+  # Same key as gpt-5.4 — if key exists, mini is also available
+  if [ -z "${OPENROUTER_API_KEY:-}" ]; then
+    echo "UNAVAILABLE: gpt-5.4-mini | OPENROUTER_API_KEY tanımlı değil | ~/.claude/secrets/secrets.env dosyasına ekle | haiku"
     return
   fi
-
-  # Ollama servis çalışıyor mu?
-  if ! ollama list &>/dev/null 2>&1; then
-    echo "UNAVAILABLE: local-qwen-9b | Ollama servisi çalışmıyor | ollama serve & | haiku"
-    return
-  fi
-
-  # Qwen modeli indirili mi?
-  if ollama list 2>/dev/null | grep -qi "qwen"; then
-    echo "AVAILABLE: local-qwen-9b"
-  else
-    echo "UNAVAILABLE: local-qwen-9b | qwen2.5:9b modeli indirilmemiş | ollama pull qwen2.5:9b | haiku"
-  fi
+  echo "AVAILABLE: gpt-5.4-mini"
 }
 
 # ---------------------------------------------------------------------------
 # 3. free-web — fetch MCP erişilebilirlik (basit URL testi)
 # ---------------------------------------------------------------------------
 check_free_web() {
-  # Basit connectivity testi
   http_code=$(curl -s -o /dev/null -w "%{http_code}" \
     "https://www.google.com" \
     --max-time 5 2>/dev/null || echo "000")
@@ -80,51 +66,18 @@ check_free_web() {
 }
 
 # ---------------------------------------------------------------------------
-# 4. free-gpt — OpenRouter GPT-4o-mini (aynı key, farklı model)
+# 4. Claude Code native models (opus, sonnet, haiku — always available)
 # ---------------------------------------------------------------------------
-check_free_gpt() {
-  # OPENROUTER_API_KEY kontrolü free-gemini ile aynı
-  if [ -z "${OPENROUTER_API_KEY:-}" ]; then
-    echo "UNAVAILABLE: free-gpt | OPENROUTER_API_KEY tanımlı değil | ~/.claude/secrets/secrets.env dosyasına ekle | haiku"
-    return
-  fi
-  # Key varsa OpenRouter ping zaten free-gemini'de yapıldı — available say
-  echo "AVAILABLE: free-gpt"
-}
-
-# ---------------------------------------------------------------------------
-# 5. free-script — Bash tool (her zaman mevcut Claude Code'da)
-# ---------------------------------------------------------------------------
-check_free_script() {
-  echo "AVAILABLE: free-script"
-}
-
-# ---------------------------------------------------------------------------
-# 6. free-deterministic — Bash tool (her zaman mevcut)
-# ---------------------------------------------------------------------------
-check_free_deterministic() {
-  echo "AVAILABLE: free-deterministic"
+check_claude_native() {
+  echo "AVAILABLE: opus"
+  echo "AVAILABLE: sonnet"
+  echo "AVAILABLE: haiku"
 }
 
 # ---------------------------------------------------------------------------
 # Çalıştır
 # ---------------------------------------------------------------------------
-check_free_gemini
-check_local_qwen
+check_gpt54
+check_gpt54_mini
 check_free_web
-check_free_gpt
-check_free_script
-check_free_deterministic
-
-# ---------------------------------------------------------------------------
-# Özet satırı
-# ---------------------------------------------------------------------------
-unavailable_list=$(grep "^UNAVAILABLE:" <<< "$(
-  check_free_gemini
-  check_local_qwen
-  check_free_web
-  check_free_script
-  check_free_deterministic
-)" 2>/dev/null | wc -l | tr -d ' ')
-
-# (Özet sadece isteğe bağlı, yukarıdaki çıktı asıl veri kaynağı)
+check_claude_native
