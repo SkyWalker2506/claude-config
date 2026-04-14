@@ -60,9 +60,55 @@ check_claude_native() {
 }
 
 # ---------------------------------------------------------------------------
+# 5. Gemini API — GOOGLE_API_KEY check + quota
+# ---------------------------------------------------------------------------
+check_gemini() {
+  SECRETS_FILE="$HOME/.claude/secrets/secrets.env"
+  if [ -f "$SECRETS_FILE" ]; then
+    # shellcheck disable=SC1090
+    source "$SECRETS_FILE"
+  fi
+
+  if [ -z "${GOOGLE_API_KEY:-}" ]; then
+    echo "UNAVAILABLE: gemini-2.5-pro | GOOGLE_API_KEY eksik | secrets.env'e ekle | gpt-5.4"
+    echo "UNAVAILABLE: gemini-2.0-flash | GOOGLE_API_KEY eksik | secrets.env'e ekle | gpt-5.4-mini"
+    return
+  fi
+
+  # Quick quota check
+  QUOTA_SCRIPT="$HOME/Projects/claude-config/scripts/quota-check.sh"
+  if [ -f "$QUOTA_SCRIPT" ]; then
+    quota_result=$(bash "$QUOTA_SCRIPT" gemini 2>/dev/null || true)
+    if echo "$quota_result" | grep -q '"blocked":true'; then
+      echo "UNAVAILABLE: gemini-2.5-pro | Günlük limit doldu | Yarın tekrar dene | gpt-5.4"
+      echo "UNAVAILABLE: gemini-2.0-flash | Günlük limit doldu | Yarın tekrar dene | gpt-5.4-mini"
+      return
+    fi
+  fi
+
+  echo "AVAILABLE: gemini-2.5-pro"
+  echo "AVAILABLE: gemini-2.0-flash"
+}
+
+# ---------------------------------------------------------------------------
+# 6. Codex quota check (enhanced)
+# ---------------------------------------------------------------------------
+check_codex_quota() {
+  QUOTA_SCRIPT="$HOME/Projects/claude-config/scripts/quota-check.sh"
+  if [ -f "$QUOTA_SCRIPT" ]; then
+    quota_result=$(bash "$QUOTA_SCRIPT" codex 2>/dev/null || true)
+    if echo "$quota_result" | grep -q '"blocked":true'; then
+      echo "QUOTA_WARNING: codex | 5-saat veya haftalık limit doldu | Fallback: gemini/claude"
+    fi
+  fi
+}
+
+# ---------------------------------------------------------------------------
 # Çalıştır
 # ---------------------------------------------------------------------------
 check_gpt54
 check_gpt54_mini
 check_free_web
 check_claude_native
+check_gemini
+check_codex_quota

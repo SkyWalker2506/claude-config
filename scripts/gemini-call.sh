@@ -37,6 +37,9 @@ response=$(curl -s \
 
 if echo "$response" | python3 -c "import json,sys; d=json.load(sys.stdin); exit(0 if 'candidates' in d else 1)" 2>/dev/null; then
   echo "$response" | python3 -c "import json,sys; print(json.load(sys.stdin)['candidates'][0]['content']['parts'][0]['text'])"
+  # Increment quota counter
+  QUOTA_SCRIPT="$(dirname "$0")/quota-check.sh"
+  [ -f "$QUOTA_SCRIPT" ] && bash "$QUOTA_SCRIPT" increment gemini 2>/dev/null || true
 else
   echo "HATA: Gemini yanıtı beklenmedik format:" >&2
   echo "$response" >&2

@@ -21,3 +21,7 @@ if ! command -v codex &>/dev/null; then
 fi
 
 codex exec -m "$MODEL" -c "model_reasoning_effort=\"$EFFORT\"" "$PROMPT"
+
+# Increment quota counter
+QUOTA_SCRIPT="$(dirname "$0")/quota-check.sh"
+[ -f "$QUOTA_SCRIPT" ] && bash "$QUOTA_SCRIPT" increment codex 2>/dev/null || true

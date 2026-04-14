@@ -107,6 +107,21 @@
         "web_research": {"model": "gemini-2.0-flash"},
         "fast_tasks": {"model": "gemini-2.0-flash-lite"},
         "long_context": {"model": "gemini-2.5-pro"}
+      },
+      "quota_exhausted_fallback": {
+        "primary": "gpt-5.4-mini",
+        "planning_fallback": "gpt-5.4",
+        "detection_patterns": [
+          "quota exceeded",
+          "RESOURCE_EXHAUSTED",
+          "rate limit",
+          "429",
+          "daily limit",
+          "requests per minute"
+        ],
+        "state_file": "~/.watchdog/quota-state.json",
+        "notify_user": true,
+        "notify_message": "⚠️ Gemini günlük limit doldu → gpt-5.4-mini fallback aktif"
       }
     },
     "deterministic-tool": {
