@@ -92,21 +92,21 @@
       "mcp_tools": [],
       "check_command": "[ -n \"$GOOGLE_API_KEY\" ] && echo ok || echo missing_key",
       "description": "Google Gemini API via gemini-call.sh. Requires GOOGLE_API_KEY in secrets.env.",
-      "default_model": "gemini-2.0-flash",
-      "available_models": ["gemini-2.5-pro", "gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-2.5-flash"],
+      "default_model": "gemini-3-flash-preview",
+      "available_models": ["gemini-3.1-pro-preview", "gemini-3-flash-preview", "gemini-2.0-flash-lite", "gemini-2.5-flash"],
       "invocation_patterns": {
         "exec": "GEMINI_MODEL={model} bash ~/Projects/claude-config/scripts/gemini-call.sh \"{task}\"",
         "model_map": {
-          "gemini-2.5-pro": "gemini-2.5-pro",
-          "gemini-2.0-flash": "gemini-2.0-flash"
+          "gemini-3.1-pro-preview": "gemini-3.1-pro-preview",
+          "gemini-3-flash-preview": "gemini-3-flash-preview"
         }
       },
       "capability_model_map": {
-        "design_ui": {"model": "gemini-2.5-pro"},
-        "data_analysis": {"model": "gemini-2.5-pro"},
-        "web_research": {"model": "gemini-2.0-flash"},
+        "design_ui": {"model": "gemini-3.1-pro-preview"},
+        "data_analysis": {"model": "gemini-3.1-pro-preview"},
+        "web_research": {"model": "gemini-3-flash-preview"},
         "fast_tasks": {"model": "gemini-2.0-flash-lite"},
-        "long_context": {"model": "gemini-2.5-pro"}
+        "long_context": {"model": "gemini-3.1-pro-preview"}
       },
       "quota_exhausted_fallback": {
         "primary": "gpt-5.4-mini",

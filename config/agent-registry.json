@@ -370,7 +370,7 @@
       "status": "active",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -409,7 +409,7 @@
       "status": "active",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -457,7 +457,7 @@
       "status": "active",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -504,7 +504,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -546,7 +546,7 @@
       "status": "active",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -587,7 +587,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -628,7 +628,7 @@
       "status": "active",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -668,7 +668,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -707,7 +707,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -745,7 +745,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -782,7 +782,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -821,7 +821,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -861,7 +861,7 @@
       "status": "active",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -903,7 +903,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [],
@@ -940,7 +940,7 @@
       "status": "active",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -987,7 +987,7 @@
       "primary_model": "gpt-5.4",
       "fallbacks": [
         "sonnet",
-        "gemini-2.5-pro"
+        "gemini-3.1-pro-preview"
       ],
       "mcps": [],
       "capabilities": [
@@ -1023,7 +1023,7 @@
       "primary_model": "gpt-5.4",
       "fallbacks": [
         "sonnet",
-        "gemini-2.5-pro"
+        "gemini-3.1-pro-preview"
       ],
       "mcps": [],
       "capabilities": [
@@ -1059,7 +1059,7 @@
       "primary_model": "gpt-5.4",
       "fallbacks": [
         "sonnet",
-        "gemini-2.5-pro"
+        "gemini-3.1-pro-preview"
       ],
       "mcps": [
         "github",
@@ -1101,7 +1101,7 @@
       "primary_model": "gpt-5.4",
       "fallbacks": [
         "sonnet",
-        "gemini-2.5-pro"
+        "gemini-3.1-pro-preview"
       ],
       "mcps": [],
       "capabilities": [
@@ -1136,7 +1136,7 @@
       "primary_model": "gpt-5.4",
       "fallbacks": [
         "sonnet",
-        "gemini-2.5-pro"
+        "gemini-3.1-pro-preview"
       ],
       "mcps": [
         "github"
@@ -1173,7 +1173,7 @@
       "primary_model": "gpt-5.4",
       "fallbacks": [
         "sonnet",
-        "gemini-2.5-pro"
+        "gemini-3.1-pro-preview"
       ],
       "mcps": [
         "github"
@@ -1208,7 +1208,7 @@
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -1249,7 +1249,7 @@
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -1290,7 +1290,7 @@
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -1328,7 +1328,7 @@
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -1364,7 +1364,7 @@
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -1398,7 +1398,7 @@
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -1435,7 +1435,7 @@
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -1472,7 +1472,7 @@
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -1509,7 +1509,7 @@
       "version": "1.0",
       "category": "3d-cad",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -1545,7 +1545,7 @@
       "version": "1.0",
       "category": "3d-cad",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -1584,7 +1584,7 @@
       "version": "1.0",
       "category": "3d-cad",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -1620,7 +1620,7 @@
       "version": "1.0",
       "category": "3d-cad",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -1652,7 +1652,7 @@
       "version": "1.0",
       "category": "3d-cad",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -1690,7 +1690,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -1725,7 +1725,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -1761,7 +1761,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -1798,7 +1798,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -1833,7 +1833,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -1868,7 +1868,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -1903,7 +1903,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -1938,7 +1938,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -1973,7 +1973,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -2007,7 +2007,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -2044,7 +2044,7 @@
       "status": "active",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [
@@ -2079,7 +2079,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [],
@@ -2111,7 +2111,7 @@
       "status": "active",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [],
@@ -2144,7 +2144,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [],
@@ -2176,7 +2176,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [],
@@ -2209,7 +2209,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [],
@@ -2241,7 +2241,7 @@
       "status": "active",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [
@@ -2276,7 +2276,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [],
@@ -2309,7 +2309,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [],
@@ -2341,7 +2341,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [
@@ -2375,7 +2375,7 @@
       "version": "1.0",
       "category": "market-research",
       "status": "active",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -2413,7 +2413,7 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -2448,7 +2448,7 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -2482,7 +2482,7 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -2516,7 +2516,7 @@
       "version": "1.0",
       "category": "market-research",
       "status": "active",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -2552,7 +2552,7 @@
       "version": "1.0",
       "category": "market-research",
       "status": "active",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -2589,7 +2589,7 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -2624,7 +2624,7 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -2658,7 +2658,7 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -2692,7 +2692,7 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -2726,7 +2726,7 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -2761,7 +2761,7 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -2796,7 +2796,7 @@
       "status": "active",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [
@@ -2832,7 +2832,7 @@
       "status": "active",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [
@@ -2869,7 +2869,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [
@@ -2904,7 +2904,7 @@
       "status": "active",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [
@@ -2940,7 +2940,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [
@@ -2976,7 +2976,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [
@@ -3010,7 +3010,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [
@@ -3045,7 +3045,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [
@@ -3079,7 +3079,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [
@@ -3114,7 +3114,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [
@@ -3150,7 +3150,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [],
@@ -3185,7 +3185,7 @@
       "status": "active",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -3225,7 +3225,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [],
@@ -3260,7 +3260,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [],
@@ -3295,7 +3295,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [],
@@ -3331,7 +3331,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -3369,7 +3369,7 @@
       "status": "active",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -3409,7 +3409,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [],
@@ -3439,7 +3439,7 @@
       "version": "1.0",
       "category": "research",
       "status": "active",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -3477,7 +3477,7 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -3510,7 +3510,7 @@
       "version": "1.0",
       "category": "research",
       "status": "active",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -3547,7 +3547,7 @@
       "version": "1.0",
       "category": "research",
       "status": "active",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -3584,7 +3584,7 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -3618,7 +3618,7 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -3653,7 +3653,7 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -3686,7 +3686,7 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -3719,7 +3719,7 @@
       "version": "1.0",
       "category": "productivity",
       "status": "active",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-nano",
         "haiku"
@@ -3756,7 +3756,7 @@
       "version": "1.0",
       "category": "productivity",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-nano",
         "haiku"
@@ -3789,7 +3789,7 @@
       "version": "1.0",
       "category": "productivity",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-nano",
         "haiku"
@@ -3826,7 +3826,7 @@
       "version": "1.0",
       "category": "productivity",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-nano",
         "haiku"
@@ -3859,7 +3859,7 @@
       "version": "1.0",
       "category": "productivity",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-nano",
         "haiku"
@@ -3892,7 +3892,7 @@
       "version": "1.0",
       "category": "productivity",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-nano",
         "haiku"
@@ -3925,7 +3925,7 @@
       "version": "1.0",
       "category": "marketing-engine",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "sonnet"
@@ -3964,7 +3964,7 @@
       "version": "1.0",
       "category": "marketing-engine",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "sonnet"
@@ -4001,7 +4001,7 @@
       "version": "1.0",
       "category": "marketing-engine",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "sonnet"
@@ -4034,7 +4034,7 @@
       "version": "1.0",
       "category": "marketing-engine",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "sonnet"
@@ -4070,7 +4070,7 @@
       "primary_model": "gpt-5.4",
       "model_source": "codex_cli",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -4121,7 +4121,7 @@
       "primary_model": "gpt-5.4",
       "model_source": "codex_cli",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -4167,7 +4167,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -4214,7 +4214,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -4259,7 +4259,7 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -4300,7 +4300,7 @@
       "primary_model": "sonnet",
       "fallbacks": [
         "gpt-5.4",
-        "gemini-2.5-pro"
+        "gemini-3.1-pro-preview"
       ],
       "mcps": [
         "fetch",
@@ -4343,7 +4343,7 @@
       "model_source": "claude_native",
       "fallbacks": [
         "gpt-5.4",
-        "gemini-2.5-pro"
+        "gemini-3.1-pro-preview"
       ],
       "mcps": [
         "github",
@@ -4381,7 +4381,7 @@
       "version": "1.0",
       "category": "sales-bizdev",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "model_source": "gemini_api",
       "fallbacks": [
         "gpt-5.4-mini",
@@ -4423,7 +4423,7 @@
       "version": "1.0",
       "category": "sales-bizdev",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "model_source": "gemini_api",
       "fallbacks": [
         "gpt-5.4-mini",
@@ -4464,7 +4464,7 @@
       "version": "1.0",
       "category": "sales-bizdev",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "model_source": "gemini_api",
       "fallbacks": [
         "gpt-5.4-mini",
@@ -4504,7 +4504,7 @@
       "version": "1.0",
       "category": "sales-bizdev",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -4538,7 +4538,7 @@
       "version": "1.0",
       "category": "sales-bizdev",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -4576,7 +4576,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -4617,7 +4617,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -4656,7 +4656,7 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -4693,7 +4693,7 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -4730,7 +4730,7 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -4766,7 +4766,7 @@
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -4801,7 +4801,7 @@
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -4837,7 +4837,7 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -4877,7 +4877,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [],
@@ -4913,7 +4913,7 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -4952,7 +4952,7 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -4991,7 +4991,7 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -5227,7 +5227,7 @@
       "status": "active",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -5271,7 +5271,7 @@
       "primary_model": "sonnet",
       "fallbacks": [
         "gpt-5.4",
-        "gemini-2.5-pro"
+        "gemini-3.1-pro-preview"
       ],
       "mcps": [
         "fetch",
@@ -5309,7 +5309,7 @@
       "primary_model": "sonnet",
       "fallbacks": [
         "gpt-5.4",
-        "gemini-2.5-pro"
+        "gemini-3.1-pro-preview"
       ],
       "mcps": [
         "fetch",
@@ -5347,7 +5347,7 @@
       "primary_model": "sonnet",
       "fallbacks": [
         "gpt-5.4",
-        "gemini-2.5-pro"
+        "gemini-3.1-pro-preview"
       ],
       "mcps": [
         "fetch",
@@ -5420,7 +5420,7 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -5497,7 +5497,7 @@
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -5538,7 +5538,7 @@
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -5579,7 +5579,7 @@
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -5621,7 +5621,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -5662,7 +5662,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -5702,7 +5702,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -5743,7 +5743,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -5784,7 +5784,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -5828,7 +5828,7 @@
       "primary_model": "gpt-5.4",
       "fallbacks": [
         "sonnet",
-        "gemini-2.5-pro"
+        "gemini-3.1-pro-preview"
       ],
       "mcps": [
         "github",
@@ -5866,7 +5866,7 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-2.0-flash",
+      "primary_model": "gemini-3-flash-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -5907,7 +5907,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -5948,7 +5948,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6070,7 +6070,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6111,7 +6111,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6152,7 +6152,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6193,7 +6193,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6234,7 +6234,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6275,7 +6275,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6316,7 +6316,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6358,7 +6358,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6399,7 +6399,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6440,7 +6440,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6481,7 +6481,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6522,7 +6522,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6563,7 +6563,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6605,7 +6605,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6687,7 +6687,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6729,7 +6729,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6770,7 +6770,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6811,7 +6811,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6852,7 +6852,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6895,7 +6895,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6936,7 +6936,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6978,7 +6978,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -7021,7 +7021,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -7062,7 +7062,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -7103,7 +7103,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "sonnet"
       ],
       "mcps": [
@@ -7182,7 +7182,7 @@
       "version": "1.0",
       "category": "3d-cad",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -7262,7 +7262,7 @@
       "version": "1.0",
       "category": "3d-cad",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -7302,7 +7302,7 @@
       "version": "1.0",
       "category": "3d-cad",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -7343,7 +7343,7 @@
       "version": "1.0",
       "category": "3d-cad",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -7385,7 +7385,7 @@
       "version": "1.0",
       "category": "3d-cad",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -7426,7 +7426,7 @@
       "version": "1.0",
       "category": "3d-cad",
       "status": "pool",
-      "primary_model": "gemini-2.5-pro",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
         "gpt-5.4-mini",
         "haiku"
@@ -7468,7 +7468,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [
@@ -7508,7 +7508,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-2.0-flash",
+        "gemini-3-flash-preview",
         "haiku"
       ],
       "mcps": [
