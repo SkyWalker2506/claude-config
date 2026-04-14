@@ -83,6 +83,32 @@
       "description": "LiteLLM proxy → Ollama / free-tier models. Zero cost.",
       "proxy_url": "http://localhost:4000"
     },
+    "google-gemini-api": {
+      "name": "Google Gemini API",
+      "type": "api",
+      "cost_type": "api_key",
+      "requires_login": false,
+      "api_billing": true,
+      "mcp_tools": [],
+      "check_command": "[ -n \"$GOOGLE_API_KEY\" ] && echo ok || echo missing_key",
+      "description": "Google Gemini API via gemini-call.sh. Requires GOOGLE_API_KEY in secrets.env.",
+      "default_model": "gemini-2.0-flash",
+      "available_models": ["gemini-2.5-pro", "gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-2.5-flash"],
+      "invocation_patterns": {
+        "exec": "GEMINI_MODEL={model} bash ~/Projects/claude-config/scripts/gemini-call.sh \"{task}\"",
+        "model_map": {
+          "gemini-2.5-pro": "gemini-2.5-pro",
+          "gemini-2.0-flash": "gemini-2.0-flash"
+        }
+      },
+      "capability_model_map": {
+        "design_ui": {"model": "gemini-2.5-pro"},
+        "data_analysis": {"model": "gemini-2.5-pro"},
+        "web_research": {"model": "gemini-2.0-flash"},
+        "fast_tasks": {"model": "gemini-2.0-flash-lite"},
+        "long_context": {"model": "gemini-2.5-pro"}
+      }
+    },
     "deterministic-tool": {
       "name": "Deterministic / Scripted",
       "type": "script",
