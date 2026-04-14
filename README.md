@@ -43,7 +43,7 @@ A portable, self-installing configuration system that turns Claude Code into a m
 - **196 registered agents** in [`agent-registry.json`](./config/agent-registry.json) · 15 categories (activate on demand)
 - **21 plugins** on our [marketplace](https://github.com/SkyWalker2506/claude-marketplace)
 - **8 MCP servers** integrated (GitHub, Atlassian/Jira, Firebase, Flutter, jCodeMunch, Git, Fetch, Context7)
-- **34 slash commands** (/yolo, /team-build, /jira-run, /audit, /web-research, /sprint-plan, and more)
+- **54 slash commands** (/yolo, /team-build, /jira-run, /audit, /web-research, /sprint-plan, and more)
 - **Telegram bot** with persistent Haiku agent — control Claude from your phone
 - **Local-first model routing** — Ollama → Claude → Groq free (saves tokens)
 - **Cost control** — automatic model tier switching based on quota remaining
@@ -209,7 +209,7 @@ claude-config/
 ├── global/
 │   ├── CLAUDE.md           # → ~/.claude/CLAUDE.md
 │   ├── settings.json.template  # MCP servers, hooks, permissions
-│   └── skills/             # 52 slash commands
+│   └── skills/             # 54 slash commands
 ├── agents/                 # Knowledge-First agent trees
 │   ├── orchestrator/       # A1–A8
 │   ├── backend/            # B1–B19

@@ -125,6 +125,15 @@ if [ ! -d "$PROJECTS_ROOT" ]; then
   mkdir -p "$PROJECTS_ROOT"
 fi
 
+# ── Permission check ──
+echo "Checking write permissions..."
+for check_dir in "$HOME/.claude" "$HOME/Projects"; do
+  if [ -d "$check_dir" ] && [ ! -w "$check_dir" ]; then
+    echo "❌ No write permission: $check_dir"
+    exit 1
+  fi
+done
+
 # ── 2. uvx path ──
 UVX_PATH=$(which uvx 2>/dev/null || echo "")
 if [ -z "$UVX_PATH" ]; then
@@ -242,17 +251,29 @@ elif [ -f "$CLAUDE_SECRETS_FILE" ]; then
 
 elif [ -n "$SECRETS_REPO_URL" ]; then
   echo "Secrets clone ediliyor..."
-  git clone --quiet "$SECRETS_REPO_URL" "$CLAUDE_SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || echo "❌ Clone basarisiz."
+  git clone --quiet "$SECRETS_REPO_URL" "$CLAUDE_SECRETS_DIR" 2>&1 || {
+    echo "❌ Clone failed for $CLAUDE_SECRETS_DIR"
+    exit 1
+  }
+  echo "✅ Secrets yuklendi"
 
 elif [ -n "$CURRENT_USER" ] && [ "$IS_OWNER" -eq 1 ]; then
   echo "Private secrets clone ediliyor..."
-  git clone --quiet "$OWNER_SECRETS_REPO" "$CLAUDE_SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || echo "❌ Clone basarisiz. (gh auth kontrolu)"
+  git clone --quiet "$OWNER_SECRETS_REPO" "$CLAUDE_SECRETS_DIR" 2>&1 || {
+    echo "❌ Clone failed for $CLAUDE_SECRETS_DIR (gh auth kontrolu)"
+    exit 1
+  }
+  echo "✅ Secrets yuklendi"
 
 elif [ -n "$CURRENT_USER" ] && [ "$AUTO" -eq 0 ]; then
   if confirm "Secrets reposunu indirmek ister misin?"; then
     ask "Private secrets repo URL'niz" "" SECRETS_REPO
     if [ -n "$SECRETS_REPO" ]; then
-      git clone --quiet "$SECRETS_REPO" "$CLAUDE_SECRETS_DIR" 2>/dev/null && echo "✅ Secrets yuklendi" || echo "❌ Clone basarisiz."
+      git clone --quiet "$SECRETS_REPO" "$CLAUDE_SECRETS_DIR" 2>&1 || {
+        echo "❌ Clone failed for $CLAUDE_SECRETS_DIR"
+        exit 1
+      }
+      echo "✅ Secrets yuklendi"
     else
       _create_secrets_template
     fi
@@ -321,6 +342,7 @@ cp "$SCRIPT_DIR/global/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 # Skills
 for skill_dir in "$SCRIPT_DIR/global/skills"/*/; do
   skill_name=$(basename "$skill_dir")
+  [ -d "./global/skills/$skill_name" ] || { echo "⚠️  Skill $skill_name not found, skipping"; continue; }
   mkdir -p "$HOME/.claude/skills/$skill_name"
   cp -r "$skill_dir"* "$HOME/.claude/skills/$skill_name/" 2>/dev/null || true
 done
@@ -1017,6 +1039,10 @@ else
   setup_telegram
   setup_plugins
 fi
+
+echo ""
+echo "Testing critical integrations..."
+gh auth status >/dev/null 2>&1 && echo "  ✓ GitHub auth OK" || echo "  ⚠️  GitHub auth needed — run: gh auth login"
 
 # ── 9. Done ──
 echo ""
