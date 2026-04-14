@@ -107,9 +107,9 @@
       "version": "1.0",
       "category": "orchestrator",
       "status": "active",
-      "primary_model": "opus",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "sonnet"
+        "opus"
       ],
       "mcps": [
         "*"
@@ -143,9 +143,10 @@
       "version": "1.0",
       "category": "orchestrator",
       "status": "active",
-      "primary_model": "claude-haiku-4-5-20251001",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
-        "sonnet"
+        "sonnet",
+        "opus"
       ],
       "mcps": [
         "*"
@@ -167,7 +168,7 @@
       "tier": "lead",
       "strategy": "cheap_first",
       "execution_backends": {
-        "primary": "claude",
+        "primary": "openai-codex-cli",
         "fallback": [
           "local-free"
         ]
@@ -181,9 +182,10 @@
       "version": "1.0",
       "category": "orchestrator",
       "status": "active",
-      "primary_model": "opus",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "sonnet"
+        "opus",
+        "gpt-5.4-mini"
       ],
       "mcps": [],
       "capabilities": [
@@ -210,9 +212,10 @@
       "version": "1.0",
       "category": "orchestrator",
       "status": "active",
-      "primary_model": "opus",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "sonnet"
+        "opus",
+        "gpt-5.4-mini"
       ],
       "mcps": [],
       "capabilities": [
@@ -240,12 +243,10 @@
       "version": "1.0",
       "category": "orchestrator",
       "status": "active",
-      "primary_model": "opus",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "nvidia/nemotron-3-nano-30b-a3b:free",
-        "liquid/lfm-2.5-1.2b-instruct:free",
-        "haiku",
-        "sonnet"
+        "opus",
+        "gpt-5.4-mini"
       ],
       "mcps": [],
       "capabilities": [
@@ -275,9 +276,10 @@
       "version": "1.0",
       "category": "orchestrator",
       "status": "pool",
-      "primary_model": "opus",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "sonnet"
+        "opus",
+        "gpt-5.4-mini"
       ],
       "mcps": [],
       "capabilities": [
@@ -304,12 +306,10 @@
       "version": "1.0",
       "category": "orchestrator",
       "status": "pool",
-      "primary_model": "opus",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "stepfun/step-3.5-flash:free",
-        "nvidia/nemotron-3-nano-30b-a3b:free",
-        "haiku",
-        "sonnet"
+        "opus",
+        "gpt-5.4-mini"
       ],
       "mcps": [
         "fetch"
@@ -339,9 +339,10 @@
       "version": "1.0",
       "category": "orchestrator",
       "status": "pool",
-      "primary_model": "opus",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "sonnet"
+        "opus",
+        "gpt-5.4-mini"
       ],
       "mcps": [],
       "capabilities": [
@@ -370,7 +371,7 @@
       "status": "active",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -409,7 +410,7 @@
       "status": "active",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -457,7 +458,7 @@
       "status": "active",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -504,7 +505,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -546,7 +547,7 @@
       "status": "active",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -587,7 +588,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -628,7 +629,7 @@
       "status": "active",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -668,7 +669,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -707,7 +708,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -745,7 +746,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -782,7 +783,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -821,7 +822,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -859,10 +860,10 @@
       "version": "1.0",
       "category": "backend",
       "status": "active",
-      "primary_model": "gpt-5.4",
+      "primary_model": "opus",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
-        "sonnet"
+        "gpt-5.4",
+        "gemini-2.5-pro"
       ],
       "mcps": [
         "github",
@@ -884,7 +885,7 @@
       "model_source": "codex_cli",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "openai-codex-cli",
+        "primary": "claude",
         "fallback": [
           "google-gemini-api",
           "claude"
@@ -903,7 +904,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [],
@@ -940,7 +941,7 @@
       "status": "active",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -984,10 +985,10 @@
       "version": "1.0",
       "category": "code-review",
       "status": "active",
-      "primary_model": "gpt-5.4",
+      "primary_model": "opus",
       "fallbacks": [
-        "sonnet",
-        "gemini-3.1-pro-preview"
+        "gpt-5.4",
+        "gemini-2.5-pro"
       ],
       "mcps": [],
       "capabilities": [
@@ -1002,7 +1003,7 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "openai-codex-cli",
+        "primary": "claude",
         "fallback": [
           "google-gemini-api",
           "claude"
@@ -1020,10 +1021,10 @@
       "version": "1.0",
       "category": "code-review",
       "status": "active",
-      "primary_model": "gpt-5.4",
+      "primary_model": "opus",
       "fallbacks": [
-        "sonnet",
-        "gemini-3.1-pro-preview"
+        "gpt-5.4",
+        "gemini-2.5-pro"
       ],
       "mcps": [],
       "capabilities": [
@@ -1038,7 +1039,7 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "openai-codex-cli",
+        "primary": "claude",
         "fallback": [
           "google-gemini-api",
           "claude"
@@ -1056,10 +1057,10 @@
       "version": "1.0",
       "category": "code-review",
       "status": "active",
-      "primary_model": "gpt-5.4",
+      "primary_model": "opus",
       "fallbacks": [
-        "sonnet",
-        "gemini-3.1-pro-preview"
+        "gpt-5.4",
+        "gemini-2.5-pro"
       ],
       "mcps": [
         "github",
@@ -1081,7 +1082,7 @@
       "on_source_unavailable": "use_fallbacks",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "openai-codex-cli",
+        "primary": "claude",
         "fallback": [
           "google-gemini-api",
           "claude"
@@ -1098,10 +1099,10 @@
       "version": "1.0",
       "category": "code-review",
       "status": "pool",
-      "primary_model": "gpt-5.4",
+      "primary_model": "opus",
       "fallbacks": [
-        "sonnet",
-        "gemini-3.1-pro-preview"
+        "gpt-5.4",
+        "gemini-2.5-pro"
       ],
       "mcps": [],
       "capabilities": [
@@ -1115,7 +1116,7 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "openai-codex-cli",
+        "primary": "claude",
         "fallback": [
           "google-gemini-api",
           "claude"
@@ -1133,10 +1134,10 @@
       "version": "1.0",
       "category": "code-review",
       "status": "pool",
-      "primary_model": "gpt-5.4",
+      "primary_model": "opus",
       "fallbacks": [
-        "sonnet",
-        "gemini-3.1-pro-preview"
+        "gpt-5.4",
+        "gemini-2.5-pro"
       ],
       "mcps": [
         "github"
@@ -1152,7 +1153,7 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "openai-codex-cli",
+        "primary": "claude",
         "fallback": [
           "google-gemini-api",
           "claude"
@@ -1170,10 +1171,10 @@
       "version": "1.0",
       "category": "code-review",
       "status": "pool",
-      "primary_model": "gpt-5.4",
+      "primary_model": "opus",
       "fallbacks": [
-        "sonnet",
-        "gemini-3.1-pro-preview"
+        "gpt-5.4",
+        "gemini-2.5-pro"
       ],
       "mcps": [
         "github"
@@ -1191,7 +1192,7 @@
       "on_source_unavailable": "use_fallbacks",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "openai-codex-cli",
+        "primary": "claude",
         "fallback": [
           "google-gemini-api",
           "claude"
@@ -1210,8 +1211,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [
         "fetch",
@@ -1251,8 +1252,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -1292,8 +1293,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1330,8 +1331,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1366,8 +1367,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1400,8 +1401,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1437,8 +1438,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1472,10 +1473,10 @@
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "gemini-3.1-pro-preview",
+      "primary_model": "opus",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "gemini-2.5-pro"
       ],
       "mcps": [],
       "capabilities": [
@@ -1494,7 +1495,7 @@
       "on_source_unavailable": "use_fallbacks",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "google-gemini-api",
+        "primary": "claude",
         "fallback": [
           "openai-codex-cli",
           "claude"
@@ -1511,8 +1512,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1547,8 +1548,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1586,8 +1587,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1622,8 +1623,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1654,8 +1655,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -1690,7 +1691,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-3.1-pro-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -1725,7 +1726,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-3.1-pro-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -1761,7 +1762,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-3.1-pro-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -1798,7 +1799,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-3.1-pro-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -1833,7 +1834,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-3.1-pro-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -1868,7 +1869,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-3.1-pro-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -1903,7 +1904,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-3.1-pro-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -1938,7 +1939,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-3.1-pro-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -1973,7 +1974,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-3.1-pro-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -2007,7 +2008,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-3.1-pro-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -2044,8 +2045,8 @@
       "status": "active",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [
         "*"
@@ -2079,8 +2080,8 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -2111,8 +2112,8 @@
       "status": "active",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -2144,8 +2145,8 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -2176,8 +2177,8 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -2209,8 +2210,8 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -2241,8 +2242,8 @@
       "status": "active",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [
         "fetch"
@@ -2276,8 +2277,8 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -2309,8 +2310,8 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -2341,8 +2342,8 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [
         "github"
@@ -2375,10 +2376,10 @@
       "version": "1.0",
       "category": "market-research",
       "status": "active",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "fetch",
@@ -2413,10 +2414,10 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "fetch"
@@ -2448,10 +2449,10 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [],
       "capabilities": [
@@ -2482,10 +2483,10 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [],
       "capabilities": [
@@ -2516,10 +2517,10 @@
       "version": "1.0",
       "category": "market-research",
       "status": "active",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "fetch"
@@ -2552,10 +2553,10 @@
       "version": "1.0",
       "category": "market-research",
       "status": "active",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "fetch",
@@ -2589,10 +2590,10 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [],
       "capabilities": [
@@ -2624,10 +2625,10 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [],
       "capabilities": [
@@ -2658,10 +2659,10 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [],
       "capabilities": [
@@ -2692,10 +2693,10 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "fetch"
@@ -2726,10 +2727,10 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "github"
@@ -2761,10 +2762,10 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [],
       "capabilities": [
@@ -2796,8 +2797,8 @@
       "status": "active",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [
         "atlassian"
@@ -2832,8 +2833,8 @@
       "status": "active",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [
         "atlassian"
@@ -2869,8 +2870,8 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [
         "atlassian"
@@ -2904,8 +2905,8 @@
       "status": "active",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [
         "atlassian"
@@ -2940,8 +2941,8 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [
         "atlassian"
@@ -2976,8 +2977,8 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [
         "atlassian"
@@ -3010,8 +3011,8 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [
         "atlassian"
@@ -3045,8 +3046,8 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [
         "atlassian"
@@ -3079,8 +3080,8 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [
         "atlassian"
@@ -3114,8 +3115,8 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [
         "atlassian"
@@ -3148,9 +3149,9 @@
       "version": "1.0",
       "category": "devops",
       "status": "pool",
-      "primary_model": "gpt-5.4",
+      "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [],
@@ -3183,9 +3184,9 @@
       "version": "1.0",
       "category": "devops",
       "status": "active",
-      "primary_model": "gpt-5.4",
+      "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -3223,9 +3224,9 @@
       "version": "1.0",
       "category": "devops",
       "status": "pool",
-      "primary_model": "gpt-5.4",
+      "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [],
@@ -3258,9 +3259,9 @@
       "version": "1.0",
       "category": "devops",
       "status": "pool",
-      "primary_model": "gpt-5.4",
+      "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [],
@@ -3293,9 +3294,9 @@
       "version": "1.0",
       "category": "devops",
       "status": "pool",
-      "primary_model": "gpt-5.4",
+      "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [],
@@ -3329,9 +3330,9 @@
       "version": "1.0",
       "category": "devops",
       "status": "pool",
-      "primary_model": "gpt-5.4",
+      "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -3367,9 +3368,9 @@
       "version": "1.0",
       "category": "devops",
       "status": "active",
-      "primary_model": "gpt-5.4",
+      "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -3407,9 +3408,9 @@
       "version": "1.0",
       "category": "devops",
       "status": "pool",
-      "primary_model": "gpt-5.4",
+      "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [],
@@ -3439,10 +3440,10 @@
       "version": "1.0",
       "category": "research",
       "status": "active",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "fetch",
@@ -3477,10 +3478,10 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [],
       "capabilities": [
@@ -3510,10 +3511,10 @@
       "version": "1.0",
       "category": "research",
       "status": "active",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "context7",
@@ -3547,10 +3548,10 @@
       "version": "1.0",
       "category": "research",
       "status": "active",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "fetch"
@@ -3584,10 +3585,10 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "fetch"
@@ -3618,10 +3619,10 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "fetch"
@@ -3653,10 +3654,10 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [],
       "capabilities": [
@@ -3686,10 +3687,10 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [],
       "capabilities": [
@@ -3719,10 +3720,10 @@
       "version": "1.0",
       "category": "productivity",
       "status": "active",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gpt-5.4-nano",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [
         "gmail"
@@ -3739,7 +3740,7 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "google-gemini-api",
+        "primary": "openai-codex-cli",
         "fallback": [
           "openai-codex-cli",
           "claude"
@@ -3756,10 +3757,10 @@
       "version": "1.0",
       "category": "productivity",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gpt-5.4-nano",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -3773,7 +3774,7 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "google-gemini-api",
+        "primary": "openai-codex-cli",
         "fallback": [
           "openai-codex-cli",
           "claude"
@@ -3789,10 +3790,10 @@
       "version": "1.0",
       "category": "productivity",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gpt-5.4-nano",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [
         "fetch",
@@ -3810,7 +3811,7 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "google-gemini-api",
+        "primary": "openai-codex-cli",
         "fallback": [
           "openai-codex-cli",
           "claude"
@@ -3826,10 +3827,10 @@
       "version": "1.0",
       "category": "productivity",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gpt-5.4-nano",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -3843,7 +3844,7 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "google-gemini-api",
+        "primary": "openai-codex-cli",
         "fallback": [
           "openai-codex-cli",
           "claude"
@@ -3859,10 +3860,10 @@
       "version": "1.0",
       "category": "productivity",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gpt-5.4-nano",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -3876,7 +3877,7 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "google-gemini-api",
+        "primary": "openai-codex-cli",
         "fallback": [
           "openai-codex-cli",
           "claude"
@@ -3892,10 +3893,10 @@
       "version": "1.0",
       "category": "productivity",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gpt-5.4-nano",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -3909,7 +3910,7 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "google-gemini-api",
+        "primary": "openai-codex-cli",
         "fallback": [
           "openai-codex-cli",
           "claude"
@@ -3925,10 +3926,10 @@
       "version": "1.0",
       "category": "marketing-engine",
       "status": "pool",
-      "primary_model": "gemini-3.1-pro-preview",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "sonnet"
+        "gemini-3-flash-preview",
+        "gpt-5.4-mini"
       ],
       "mcps": [
         "github",
@@ -3947,7 +3948,7 @@
       "tier": "senior",
       "strategy": "two_pass",
       "execution_backends": {
-        "primary": "google-gemini-api",
+        "primary": "claude",
         "fallback": [
           "openai-codex-cli",
           "claude"
@@ -3964,10 +3965,10 @@
       "version": "1.0",
       "category": "marketing-engine",
       "status": "pool",
-      "primary_model": "gemini-3.1-pro-preview",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "sonnet"
+        "gemini-3-flash-preview",
+        "gpt-5.4-mini"
       ],
       "mcps": [
         "github",
@@ -3984,7 +3985,7 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "google-gemini-api",
+        "primary": "claude",
         "fallback": [
           "openai-codex-cli",
           "claude"
@@ -4001,10 +4002,10 @@
       "version": "1.0",
       "category": "marketing-engine",
       "status": "pool",
-      "primary_model": "gemini-3.1-pro-preview",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "sonnet"
+        "gemini-3-flash-preview",
+        "gpt-5.4-mini"
       ],
       "mcps": [],
       "capabilities": [
@@ -4018,7 +4019,7 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "google-gemini-api",
+        "primary": "claude",
         "fallback": [
           "openai-codex-cli",
           "claude"
@@ -4034,10 +4035,10 @@
       "version": "1.0",
       "category": "marketing-engine",
       "status": "pool",
-      "primary_model": "gemini-3.1-pro-preview",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "sonnet"
+        "gemini-3-flash-preview",
+        "gpt-5.4-mini"
       ],
       "mcps": [],
       "capabilities": [
@@ -4051,7 +4052,7 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "google-gemini-api",
+        "primary": "claude",
         "fallback": [
           "openai-codex-cli",
           "claude"
@@ -4070,7 +4071,7 @@
       "primary_model": "gpt-5.4",
       "model_source": "codex_cli",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -4121,7 +4122,7 @@
       "primary_model": "gpt-5.4",
       "model_source": "codex_cli",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -4145,7 +4146,7 @@
       "max_tool_calls": 30,
       "effort": "high",
       "template": "autonomous",
-      "notes": "\u00dccretli. B16 (free) yetersiz kal\u0131rsa.",
+      "notes": "Ücretli. B16 (free) yetersiz kalırsa.",
       "strategy": "two_pass",
       "execution_backends": {
         "primary": "openai-codex-cli",
@@ -4167,7 +4168,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -4214,7 +4215,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -4259,10 +4260,10 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "fetch",
@@ -4299,8 +4300,8 @@
       "status": "pool",
       "primary_model": "sonnet",
       "fallbacks": [
-        "gpt-5.4",
-        "gemini-3.1-pro-preview"
+        "opus",
+        "gemini-2.5-pro"
       ],
       "mcps": [
         "fetch",
@@ -4342,8 +4343,8 @@
       "primary_model": "sonnet",
       "model_source": "claude_native",
       "fallbacks": [
-        "gpt-5.4",
-        "gemini-3.1-pro-preview"
+        "opus",
+        "gemini-2.5-pro"
       ],
       "mcps": [
         "github",
@@ -4381,11 +4382,11 @@
       "version": "1.0",
       "category": "sales-bizdev",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "sonnet",
       "model_source": "gemini_api",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gemini-3-flash-preview",
+        "gpt-5.4-mini"
       ],
       "mcps": [
         "github",
@@ -4407,7 +4408,7 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "google-gemini-api",
+        "primary": "claude",
         "fallback": [
           "openai-codex-cli",
           "claude"
@@ -4423,11 +4424,11 @@
       "version": "1.0",
       "category": "sales-bizdev",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "sonnet",
       "model_source": "gemini_api",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gemini-3-flash-preview",
+        "gpt-5.4-mini"
       ],
       "mcps": [
         "fetch"
@@ -4448,7 +4449,7 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "google-gemini-api",
+        "primary": "claude",
         "fallback": [
           "openai-codex-cli",
           "claude"
@@ -4464,11 +4465,11 @@
       "version": "1.0",
       "category": "sales-bizdev",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "sonnet",
       "model_source": "gemini_api",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gemini-3-flash-preview",
+        "gpt-5.4-mini"
       ],
       "mcps": [
         "fetch"
@@ -4488,7 +4489,7 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "google-gemini-api",
+        "primary": "claude",
         "fallback": [
           "openai-codex-cli",
           "claude"
@@ -4504,10 +4505,10 @@
       "version": "1.0",
       "category": "sales-bizdev",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gemini-3-flash-preview",
+        "gpt-5.4-mini"
       ],
       "mcps": [],
       "capabilities": [
@@ -4522,7 +4523,7 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "google-gemini-api",
+        "primary": "claude",
         "fallback": [
           "openai-codex-cli",
           "claude"
@@ -4538,10 +4539,10 @@
       "version": "1.0",
       "category": "sales-bizdev",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gemini-3-flash-preview",
+        "gpt-5.4-mini"
       ],
       "mcps": [
         "atlassian"
@@ -4558,7 +4559,7 @@
       "tier": "junior",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "google-gemini-api",
+        "primary": "claude",
         "fallback": [
           "openai-codex-cli",
           "claude"
@@ -4576,7 +4577,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -4617,7 +4618,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -4656,10 +4657,10 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "fetch"
@@ -4693,10 +4694,10 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "fetch"
@@ -4730,10 +4731,10 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "fetch"
@@ -4768,8 +4769,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -4803,8 +4804,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [],
       "capabilities": [
@@ -4837,10 +4838,10 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "fetch"
@@ -4875,9 +4876,9 @@
       "version": "1.0",
       "category": "devops",
       "status": "pool",
-      "primary_model": "gpt-5.4",
+      "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [],
@@ -4913,10 +4914,10 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "fetch",
@@ -4952,10 +4953,10 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "fetch",
@@ -4991,10 +4992,10 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "fetch"
@@ -5028,10 +5029,10 @@
       "version": "1.0",
       "category": "orchestrator",
       "status": "active",
-      "primary_model": "opus",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "haiku",
-        "sonnet"
+        "opus",
+        "gpt-5.4-mini"
       ],
       "mcps": [],
       "capabilities": [],
@@ -5068,10 +5069,10 @@
       "version": "1.0",
       "category": "orchestrator",
       "status": "active",
-      "primary_model": "opus",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "haiku",
-        "sonnet"
+        "opus",
+        "gpt-5.4-mini"
       ],
       "mcps": [],
       "capabilities": [],
@@ -5109,10 +5110,10 @@
       "version": "1.0",
       "category": "orchestrator",
       "status": "active",
-      "primary_model": "opus",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "haiku",
-        "sonnet"
+        "opus",
+        "gpt-5.4-mini"
       ],
       "mcps": [],
       "capabilities": [],
@@ -5150,10 +5151,10 @@
       "version": "1.0",
       "category": "orchestrator",
       "status": "active",
-      "primary_model": "opus",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "haiku",
-        "sonnet"
+        "opus",
+        "gpt-5.4-mini"
       ],
       "mcps": [],
       "capabilities": [],
@@ -5190,9 +5191,10 @@
       "version": "1.0",
       "category": "orchestrator",
       "status": "active",
-      "primary_model": "opus",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "sonnet"
+        "opus",
+        "gpt-5.4-mini"
       ],
       "mcps": [],
       "capabilities": [],
@@ -5225,9 +5227,9 @@
       "version": "1.0",
       "category": "devops",
       "status": "active",
-      "primary_model": "gpt-5.4",
+      "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -5270,8 +5272,8 @@
       "status": "pool",
       "primary_model": "sonnet",
       "fallbacks": [
-        "gpt-5.4",
-        "gemini-3.1-pro-preview"
+        "opus",
+        "gemini-2.5-pro"
       ],
       "mcps": [
         "fetch",
@@ -5308,8 +5310,8 @@
       "status": "pool",
       "primary_model": "sonnet",
       "fallbacks": [
-        "gpt-5.4",
-        "gemini-3.1-pro-preview"
+        "opus",
+        "gemini-2.5-pro"
       ],
       "mcps": [
         "fetch",
@@ -5346,8 +5348,8 @@
       "status": "pool",
       "primary_model": "sonnet",
       "fallbacks": [
-        "gpt-5.4",
-        "gemini-3.1-pro-preview"
+        "opus",
+        "gemini-2.5-pro"
       ],
       "mcps": [
         "fetch",
@@ -5383,9 +5385,10 @@
       "version": "1.0",
       "category": "orchestrator",
       "status": "active",
-      "primary_model": "opus",
+      "primary_model": "sonnet",
       "fallbacks": [
-        "sonnet"
+        "opus",
+        "gpt-5.4-mini"
       ],
       "mcps": [
         "*"
@@ -5420,10 +5423,10 @@
       "version": "1.0",
       "category": "research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "github",
@@ -5459,10 +5462,10 @@
       "version": "1.0",
       "category": "research/unity-asset-store-researcher",
       "status": "pool",
-      "primary_model": "gpt-5.4-mini",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-nano",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "github",
@@ -5481,7 +5484,7 @@
       "tier": "mid",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "openai-codex-cli",
+        "primary": "google-gemini-api",
         "fallback": [
           "claude",
           "local-free"
@@ -5499,8 +5502,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -5540,8 +5543,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -5581,8 +5584,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -5619,9 +5622,9 @@
       "version": "1.0",
       "category": "devops",
       "status": "pool",
-      "primary_model": "gpt-5.4",
+      "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -5660,9 +5663,9 @@
       "version": "1.0",
       "category": "devops",
       "status": "pool",
-      "primary_model": "gpt-5.4",
+      "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -5702,7 +5705,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-3.1-pro-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -5743,7 +5746,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-3.1-pro-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -5784,7 +5787,7 @@
       "version": "1.0",
       "category": "data-analytics",
       "status": "pool",
-      "primary_model": "gemini-3.1-pro-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
         "gpt-5.4",
         "sonnet"
@@ -5825,10 +5828,10 @@
       "version": "1.0",
       "category": "code-review",
       "status": "pool",
-      "primary_model": "gpt-5.4",
+      "primary_model": "opus",
       "fallbacks": [
-        "sonnet",
-        "gemini-3.1-pro-preview"
+        "gpt-5.4",
+        "gemini-2.5-pro"
       ],
       "mcps": [
         "github",
@@ -5849,7 +5852,7 @@
       "model_source": "codex_cli",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "openai-codex-cli",
+        "primary": "claude",
         "fallback": [
           "google-gemini-api",
           "claude"
@@ -5866,10 +5869,10 @@
       "version": "1.0",
       "category": "market-research",
       "status": "pool",
-      "primary_model": "gemini-3-flash-preview",
+      "primary_model": "gemini-2.5-pro",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "opus",
+        "gpt-5.4"
       ],
       "mcps": [
         "github",
@@ -5907,7 +5910,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -5948,7 +5951,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -5988,10 +5991,10 @@
       "version": "1.0",
       "category": "backend/unity-console-platform",
       "status": "pool",
-      "primary_model": "gpt-5.4-mini",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gpt-5.4-nano",
-        "haiku"
+        "gemini-3-flash-preview",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -6028,10 +6031,10 @@
       "version": "1.0",
       "category": "backend/unity-mobile-optimizer",
       "status": "pool",
-      "primary_model": "gpt-5.4-mini",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gpt-5.4-nano",
-        "haiku"
+        "gemini-3-flash-preview",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -6070,7 +6073,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6111,7 +6114,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6152,7 +6155,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6193,7 +6196,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6234,7 +6237,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6275,7 +6278,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6316,7 +6319,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6358,7 +6361,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6399,7 +6402,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6440,7 +6443,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6481,7 +6484,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6522,7 +6525,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6563,7 +6566,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6605,7 +6608,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6645,10 +6648,10 @@
       "version": "1.0",
       "category": "backend/unity-editor-tooling",
       "status": "pool",
-      "primary_model": "gpt-5.4-mini",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gpt-5.4-nano",
-        "haiku"
+        "gemini-3-flash-preview",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -6687,7 +6690,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6729,7 +6732,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6770,7 +6773,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6811,7 +6814,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6852,7 +6855,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6895,7 +6898,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6936,7 +6939,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -6978,7 +6981,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -7021,7 +7024,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -7062,7 +7065,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -7103,7 +7106,7 @@
       "status": "pool",
       "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "sonnet"
       ],
       "mcps": [
@@ -7143,10 +7146,10 @@
       "version": "1.0",
       "category": "backend/unity-procedural-generation",
       "status": "pool",
-      "primary_model": "gpt-5.4-mini",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
-        "gpt-5.4-nano",
-        "haiku"
+        "gemini-3-flash-preview",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -7184,8 +7187,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -7223,10 +7226,10 @@
       "version": "1.0",
       "category": "3d-cad/unity-cinematic-director",
       "status": "pool",
-      "primary_model": "gpt-5.4-mini",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-nano",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -7246,7 +7249,7 @@
       "tier": "mid",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "openai-codex-cli",
+        "primary": "google-gemini-api",
         "fallback": [
           "claude",
           "local-free"
@@ -7264,8 +7267,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -7304,8 +7307,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -7345,8 +7348,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -7387,8 +7390,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -7428,8 +7431,8 @@
       "status": "pool",
       "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "gpt-5.4-mini",
-        "haiku"
+        "gpt-5.4",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -7468,8 +7471,8 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -7508,8 +7511,8 @@
       "status": "pool",
       "primary_model": "gpt-5.4-mini",
       "fallbacks": [
-        "gemini-3-flash-preview",
-        "haiku"
+        "gemini-2.5-flash",
+        "sonnet"
       ],
       "mcps": [
         "github",
@@ -7570,7 +7573,7 @@
     "groq": {
       "secret_key": "GROQ_API_KEY",
       "status": "available",
-      "test_result": "\u2705 tested 2026-04-07",
+      "test_result": "✅ tested 2026-04-07",
       "setup_url": "https://console.groq.com/keys",
       "notes": "Free tier. Fast inference. Get key at console.groq.com",
       "working_models": [
@@ -7597,7 +7600,7 @@
       "status": "available",
       "on_missing": "skip",
       "notes": "Optional. HF Inference API free tier.",
-      "test_result": "\u2705 token set 2026-04-07"
+      "test_result": "✅ token set 2026-04-07"
     }
   },
   "jarvis_session": {
@@ -7606,16 +7609,16 @@
       "agent_id": "Jarvis",
       "name": "Claude Code Main Session",
       "model": "claude-sonnet-4-6",
-      "cost_emoji": "\ud83d\udd36",
+      "cost_emoji": "🔶",
       "cost_label": "mid",
       "tier": "session"
     },
     "cost_labels": {
-      "\ud83c\udd93 free": "Groq \u00fccretsiz tier",
-      "\ud83d\udcbb local": "Ollama lokal model",
-      "\ud83d\udc9b cheap": "Haiku \u2014 d\u00fc\u015f\u00fck \u00fccretli",
-      "\ud83d\udd36 mid": "Sonnet \u2014 orta \u00fccretli",
-      "\ud83d\udd34 paid": "Opus \u2014 y\u00fcksek \u00fccretli"
+      "🆓 free": "Groq ücretsiz tier",
+      "💻 local": "Ollama lokal model",
+      "💛 cheap": "Haiku — düşük ücretli",
+      "🔶 mid": "Sonnet — orta ücretli",
+      "🔴 paid": "Opus — yüksek ücretli"
     }
   },
   "cost_policy": {
