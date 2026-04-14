@@ -1,0 +1,60 @@
+name: Validate Sync
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'config/agent-registry.json'
+      - 'agents/**'
+      - 'global/skills/**'
+      - 'README.md'
+
+permissions:
+  contents: read
+
+jobs:
+  check-counts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Count agent dirs vs registry
+        run: |
+          # AGENT.md files live at agents/<category>/<agent-name>/AGENT.md (depth 3)
+          AGENT_DIR_COUNT=$(find agents -maxdepth 3 -name "AGENT.md" | wc -l | tr -d ' ')
+          REGISTRY_COUNT=$(python3 -c "
+          import json
+          d = json.load(open('config/agent-registry.json'))
+          agents = d.get('agents', d) if isinstance(d, dict) else d
+          print(len(agents))
+          ")
+          echo "Agent dirs (AGENT.md files): $AGENT_DIR_COUNT"
+          echo "Registry agents:             $REGISTRY_COUNT"
+          if [ "$AGENT_DIR_COUNT" != "$REGISTRY_COUNT" ]; then
+            echo "::warning::Agent dir count ($AGENT_DIR_COUNT) differs from registry count ($REGISTRY_COUNT). Run 'hq sync' to reconcile."
+          else
+            echo "Agent counts match: $AGENT_DIR_COUNT"
+          fi
+
+      - name: Count skills vs README
+        run: |
+          SKILL_DIR_COUNT=$(ls global/skills/ | wc -l | tr -d ' ')
+          README_SKILL_COUNT=$(python3 -c "
+          import re
+          with open('README.md') as f:
+              content = f.read()
+          # Match patterns like '# 54 slash commands' or '54 skills'
+          m = re.search(r'#\s*(\d+)\s*slash commands', content)
+          if not m:
+              m = re.search(r'(\d+)\s*skills', content)
+          print(m.group(1) if m else 'unknown')
+          ")
+          echo "Skill dirs: $SKILL_DIR_COUNT"
+          echo "README skill count: $README_SKILL_COUNT"
+          if [ "$README_SKILL_COUNT" = "unknown" ]; then
+            echo "::warning::Could not find skill count in README.md — add a reference like '# $SKILL_DIR_COUNT slash commands'."
+          elif [ "$SKILL_DIR_COUNT" != "$README_SKILL_COUNT" ]; then
+            echo "::warning::Skill dir count ($SKILL_DIR_COUNT) differs from README count ($README_SKILL_COUNT). Run 'hq sync' to update README."
+          else
+            echo "Skill counts match: $SKILL_DIR_COUNT"
+          fi

@@ -250,6 +250,10 @@ cd ~/Projects/claude-config
 - **Yapısal doğrulama:** `python3 scripts/verify_knowledge_structure.py` — coverage P0–P2 sıfır ve tüm konu dosyalarında mega bölümler tam mı kontrol eder (CI: `.github/workflows/knowledge-audit.yml`).
 - **Kaynak derinliği (isteğe bağlı):** `python3 scripts/knowledge_sources_audit.py` — frontmatter `sources:` istatistiği; çıktı `agents/KNOWLEDGE_SOURCES_AUDIT.md`.
 
+## Cross-References
+
+- [**AGENT_PLUGIN_MAP.md**](./AGENT_PLUGIN_MAP.md) — navigable index: which plugins work with which agents, which MCPs each active agent requires, and a quick MCP → agents reverse lookup.
+
 ## Related
 
 - [Agent Catalog](https://github.com/SkyWalker2506/claude-agent-catalog) — agent inventory (GitHub entry point #1)
