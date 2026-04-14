@@ -83,19 +83,22 @@
       "description": "LiteLLM proxy → Ollama / free-tier models. Zero cost.",
       "proxy_url": "http://localhost:4000"
     },
-    "google-gemini-api": {
-      "name": "Google Gemini API",
-      "type": "api",
-      "cost_type": "api_key",
-      "requires_login": false,
-      "api_billing": true,
+    "gemini-cli": {
+      "name": "Google Gemini CLI",
+      "type": "cli",
+      "cost_type": "subscription",
+      "requires_login": true,
+      "api_billing": false,
       "mcp_tools": [],
-      "check_command": "[ -n \"$GOOGLE_API_KEY\" ] && echo ok || echo missing_key",
-      "description": "Google Gemini API via gemini-call.sh. Requires GOOGLE_API_KEY in secrets.env.",
+      "check_command": "gemini --version 2>/dev/null && echo ok || echo not_installed",
+      "login_check_command": "gemini auth status 2>&1 | grep -q 'Logged in' && echo logged_in || echo not_logged_in",
+      "login_command": "gemini auth login",
+      "description": "Google Gemini CLI. Uses Google One / Gemini Advanced monthly subscription, no API billing.",
+      "subscription_plan": "google-one-ai-premium",
       "default_model": "gemini-3-flash-preview",
       "available_models": ["gemini-3.1-pro-preview", "gemini-3-flash-preview", "gemini-2.0-flash-lite", "gemini-2.5-flash"],
       "invocation_patterns": {
-        "exec": "GEMINI_MODEL={model} bash ~/Projects/claude-config/scripts/gemini-call.sh \"{task}\"",
+        "exec": "gemini -m {model} \"{task}\"",
         "model_map": {
           "gemini-3.1-pro-preview": "gemini-3.1-pro-preview",
           "gemini-3-flash-preview": "gemini-3-flash-preview"
@@ -113,15 +116,15 @@
         "planning_fallback": "gpt-5.4",
         "detection_patterns": [
           "quota exceeded",
-          "RESOURCE_EXHAUSTED",
           "rate limit",
           "429",
           "daily limit",
-          "requests per minute"
+          "requests per minute",
+          "subscription limit"
         ],
-        "state_file": "~/.watchdog/quota-state.json",
+        "state_file": "~/.watchdog/gemini-quota.json",
         "notify_user": true,
-        "notify_message": "⚠️ Gemini günlük limit doldu → gpt-5.4-mini fallback aktif"
+        "notify_message": "⚠️ Gemini CLI limit doldu → gpt-5.4-mini fallback aktif"
       }
     },
     "deterministic-tool": {
