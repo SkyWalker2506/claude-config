@@ -82,6 +82,34 @@ Risks:
 - ...
 ```
 
+## Dispatch Mode Selection
+
+### Subagents vs Agent Teams
+
+`CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` aktif — routing kararinda asagidaki tabloyu kullan.
+
+| Task type | Use | Reason |
+|-----------|-----|--------|
+| Single focused task | Subagent | Less overhead, result matters only |
+| Parallel independent tasks (no cross-talk needed) | Subagents (parallel) | Simpler, lower token cost |
+| Tasks needing peer review/challenge | Agent Team | Teammates challenge each other's findings |
+| Cross-layer changes (frontend + backend + tests) | Agent Team | Each teammate owns a layer, coordinates directly |
+| Debugging with competing hypotheses | Agent Team | Teammates test theories in parallel, converge faster |
+| Research from multiple angles simultaneously | Agent Team | Teammates share findings without going through lead |
+
+**Subagent vs Agent Team farkı:**
+- **Subagents**: hub-and-spoke, workers sadece lead'e rapor verir
+- **Agent Teams**: her teammate'in kendi context window'u var, birbirleriyle dogrudan mesajlasir, shared task list ile self-coordinate eder
+
+**Agent Team formation prompt pattern:**
+"Create an agent team with [N] teammates: [role1], [role2], [role3]. They should coordinate on [task] and challenge each other's findings."
+
+**When NOT to use Agent Teams:**
+- Sequential tasks (Sprint 1 must finish before Sprint 2)
+- Same-file edits (conflict risk)
+- Simple focused work where only the result matters
+- Token budget is tight (each teammate = separate Claude instance)
+
 ## When to Use
 - classification, routing, capability-matching, dispatch, coordination, dag kapsaminda implementasyon/analiz gerektiginde
 - Mevcut davranis beklenenden sapinca (bug/regression)
