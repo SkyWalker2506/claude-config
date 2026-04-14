@@ -45,6 +45,7 @@ Her bulgu/öneri için:
 - **Label** (security, perf, arch, ui, growth, analytics, data, content, monetization, a11y, seo)
 - **Öncelik** (P0/P1/P2/P3)
 - **Efor** S=1, M=2, L=3, XL=5 story point
+- **Verify kriteri** (mekanik doğrulama komutu — test, curl, dosya varlığı kontrolü, lint)
 
 ### 4. Sprint Organizasyonu
 
@@ -61,9 +62,37 @@ Her bulgu/öneri için:
 - P0 task'lar atandığı sprint'te kesinlikle yer alır
 - Her sprint 2 haftalık
 
+### 4b. Wave Dependency Graph
+
+Sprint içindeki task'lar wave'lere ayrılır:
+- Her task'a `depends_on: [KEY-xxx, KEY-yyy]` alanı eklenir
+- Bağımlılığı olmayan task'lar Wave 1'e gider
+- Bağımlılığı olan task'lar, bağımlılıkları tamamlanınca sonraki wave'e girer
+- Wave içi task'lar paralel çalışır, wave'ler sıralı
+
+Örnek:
+```
+Wave 1 (paralel): KEY-101, KEY-102, KEY-103
+Wave 2 (paralel): KEY-104 (depends: 101), KEY-105 (depends: 102)
+Wave 3: KEY-106 (depends: 104, 105)
+```
+
+SPRINT_PLAN.md'de her task'ın formatı:
+```markdown
+### KEY-101: Add rate limiting
+- Priority: P1
+- Effort: M (2 SP)
+- Labels: security, backend
+- Verify: `curl -w '%{http_code}' localhost:3000/api/test | grep 429`
+- Depends: []
+- Wave: 1
+```
+
 ### 5. Doküman Oluştur
 
 Çıktı: `analysis/SPRINT_PLAN.md`
+
+Her task `verify:` alanını içermelidir — mekanik doğrulama komutu (test, curl, dosya varlığı kontrolü, lint). Verify eksik task SPRINT_PLAN.md'ye alınmaz.
 
 ### 6. Jira Girişi
 

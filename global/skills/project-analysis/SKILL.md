@@ -131,6 +131,33 @@ Brief hazır. Şimdi ne yapalım?
 
 ---
 
+### Paralel Research Phase (Phase 1'den önce)
+
+Analysis başlamadan önce 4 paralel research agent çalıştırılır. Her biri farklı açıdan projeyi araştırır:
+
+| Researcher | Odak | Çıktı |
+|-----------|------|-------|
+| **Stack Researcher** | Tech stack, versiyon, bağımlılıklar, uyumluluk | `analysis/research-stack.md` |
+| **Feature Researcher** | Mevcut özellikler, eksikler, rakip karşılaştırma | `analysis/research-features.md` |
+| **Architecture Researcher** | Kod yapısı, pattern'ler, coupling, complexity | `analysis/research-architecture.md` |
+| **Risk Researcher** | Güvenlik açıkları, performans darboğazları, teknik borç | `analysis/research-risks.md` |
+
+**Çalışma şekli:**
+1. 4 agent paralel `run_in_background: true` ile başlatılır
+2. Her agent kendi dosyasına yazar (max 3-5KB)
+3. Tüm research tamamlanınca Lead'lere context olarak verilir
+4. Lead'ler research çıktılarını okuyarak daha derin analiz yapar
+
+**Focus modu etkisi:**
+- `-backend`: Stack + Architecture + Risk researcher çalışır (Feature atlanır)
+- `-frontend`: Stack + Feature researcher çalışır (Architecture + Risk atlanır)  
+- `-security`: Risk researcher tek başına, detaylı (Opus modeli ile)
+- Diğer focus'lar: 4'ü de çalışır, sonuçlar focus'a göre filtrelenir
+
+Research phase max 3 dakika sürer. Timeout olan researcher atlanır, lead'ler onsuz devam eder.
+
+---
+
 ## Adım 1 — Agent atama modunu sor
 
 ```

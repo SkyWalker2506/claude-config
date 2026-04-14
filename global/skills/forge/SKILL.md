@@ -19,6 +19,11 @@ Projeyi analiz et, sprint plan, paralel task'lari calistir, PR/review/merge dong
 /forge 2 all                    # 2 run, tum projeler
 /forge choose                   # proje seçim menüsü — listeden seç, müsaitlik göster, forge et
 
+# Unattended mode:
+/forge auto                     # CWD, tüm kategoriler, soru sormadan
+/forge auto 3 CoinHQ -backend   # 3 run, CoinHQ, backend focus, unattended
+/forge auto all                 # Tüm projeler, unattended
+
 # Focus modları (-ile ayrilir, birden fazla verilebilir):
 /forge -optimize                # Performans ve teknik borç
 /forge -feature                 # Yeni özellik geliştirme
@@ -30,6 +35,11 @@ Projeyi analiz et, sprint plan, paralel task'lari calistir, PR/review/merge dong
 /forge -docs                    # Dokümantasyon
 /forge 3 CoinHQ -backend -security    # Kombinasyon: 3 run, iki focus
 /forge all -frontend            # Tüm projeler, sadece frontend
+
+# Granularity modlari:
+/forge -quick                   # Max 3 task, verify atla, hizli cycle
+/forge -deep                    # XL task'lar dahil, tum verify calistir, detayli analiz
+/forge CoinHQ -quick -security  # Hizli guvenlik taramasi
 ```
 
 ## Arguman cozumu
@@ -46,6 +56,11 @@ Projeyi analiz et, sprint plan, paralel task'lari calistir, PR/review/merge dong
 | `/forge 3 CoinHQ -frontend -test` | 3 | CoinHQ | frontend + test |
 | `/forge choose` | — | seçilen projeler | tümü |
 | `/forge choose -backend` | — | seçilen projeler | backend |
+| `/forge -quick` | 1 | CWD | tümü (max 3 task) |
+| `/forge -deep` | 1 | CWD | tümü (XL dahil) |
+| `/forge auto` | 1 | CWD | tümü (unattended) |
+| `/forge auto 3 CoinHQ` | 3 | CoinHQ | tümü (unattended) |
+| `/forge auto all` | 1 | tüm projeler (unattended) |
 
 **Focus parsing:** `-` ile başlayan her token focus flag'idir. Sayı token → N, bilinen proje adı → proje, geri kalan `-xxx` → focus listesi.
 
@@ -63,6 +78,14 @@ Projeyi analiz et, sprint plan, paralel task'lari calistir, PR/review/merge dong
 | `-docs` | README, API docs, in-code comments | Content analizi | Docs task'ları |
 
 **Kombinasyon:** Birden fazla focus verilirse sadece o alanların kesişim task'ları seçilir.
+
+## Granularity Modlari
+
+| Flag | Phase 1 | Phase 2 | Phase 4 |
+|------|---------|---------|---------|
+| `-quick` | Hizli scan (tek agent, 5dk max) | Max 3 task, sadece P0/P1 | Verify atla, review hizli |
+| (default) | Standart (5 lead paralel) | Tum P0-P2, SP <= 35/sprint | Verify + review |
+| `-deep` | Detayli (12 lead + research) | Tum P0-P3, XL dahil | Verify + review + re-verify after merge |
 
 **Focus yok:** Tüm kategoriler analiz edilir, öncelik metriklere göre doğal sıralanır.
 
@@ -230,6 +253,44 @@ Pre-flight geçtikten hemen sonra, Phase 1 başlamadan projeyi jCodeMunch ile in
 
 ---
 
+### State Manifest (`forge/state-manifest.json`)
+
+Forge her phase geçişinde state'ini diske yazar. Crash/timeout sonrası buradan devam eder.
+
+```json
+{
+  "run": 1,
+  "total_runs": 3,
+  "project": "CoinHQ",
+  "focus": ["-backend", "-security"],
+  "current_phase": 4,
+  "current_sprint": 2,
+  "current_wave": 1,
+  "completed_tasks": ["KEY-101", "KEY-102", "KEY-103"],
+  "failed_tasks": ["KEY-104"],
+  "in_progress_tasks": ["KEY-105"],
+  "started_at": "2026-04-14T10:00:00Z",
+  "last_checkpoint": "2026-04-14T11:30:00Z"
+}
+```
+
+**Recovery akışı:**
+1. Forge başlarken `forge/state-manifest.json` kontrol et
+2. Varsa ve `last_checkpoint` 1 saatten yeniyse:
+   ```
+   ⚠️ Önceki forge run kaldığı yerden devam edebilir:
+     Run 1/3, Phase 4, Sprint 2, Wave 1
+     Tamamlanan: 3 task, Başarısız: 1, Devam eden: 1
+     
+     1) Devam et (kaldığı yerden)
+     2) Baştan başla (state sıfırla)
+     3) İptal
+   ```
+3. "Devam et" seçilirse: completed_tasks atla, in_progress_tasks'tan devam et
+4. Her phase geçişinde state-manifest güncelle
+
+---
+
 ### Phase 1 — Project Analysis
 
 Focus varsa `/project-analysis {focus_flags}` olarak calistir (ornek: `/project-analysis -backend -security`). Focus yoksa sadece `/project-analysis`. Interaktif sorulari otomatik cevapla:
@@ -242,6 +303,8 @@ Focus varsa `/project-analysis {focus_flags}` olarak calistir (ornek: `/project-
 | Agent kullanilabilirlik | 4 (tum alternatifleri uygula) |
 
 Analiz tamamlaninca `analysis/MASTER_ANALYSIS.md` olusur.
+
+**Önceki kararlar:** `forge/DECISIONS.md` dosyasını oku — mevcut kararlarla çelişme.
 
 **Sonraki run'larda:** Onceki run'in `lessons_learned` dosyasini analysis'e feed et:
 ```
@@ -289,16 +352,22 @@ Sprint sprint ilerle (Sprint 1 bitince Sprint 2, vs.):
 ━━ Sprint 1 Complete ━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
+**Wave-based execution (SPRINT_PLAN.md'deki depends_on'a göre):**
+
+1. SPRINT_PLAN.md'den wave'leri parse et
+2. Wave 1 task'larını paralel başlat
+3. Wave 1 tamamlanınca Wave 2'yi başlat
+4. Her wave içi max 5 concurrent task
+
 Sprint baslamadan once dispatch tablosu goster:
 
 ```
 ━━ Sprint 1 — Task Pipeline ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Task         Agent     Model          Gorev              Durum
-  ──────────   ──────    ───────────    ──────────         ───────
-  KEY-101      Coder     Sonnet 4.6     Branch + code + PR  ⏳
-  KEY-101      Reviewer  Opus 4.6       Review + merge       ⏳
-  KEY-102      Coder     Sonnet 4.6     Branch + code + PR  ⏳
-  KEY-102      Reviewer  Opus 4.6       Review + merge       ⏳
+  Task         Wave  Agent     Model          Gorev
+  ──────────   ────  ──────    ───────────    ──────────
+  KEY-101      W1    Coder     Sonnet 4.6     Branch + code + PR
+  KEY-102      W1    Coder     Sonnet 4.6     Branch + code + PR
+  KEY-104      W2    Coder     Sonnet 4.6     Branch + code + PR (after 101)
   ...
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
@@ -343,12 +412,31 @@ Her task icin `/jira-start-new-task` pipeline'ini kullan:
      - Sonraki task'a gec
    ```
 6. **Merge** — `gh pr merge --squash --delete-branch`
-7. **Jira Done** — transition
+7. **Verify** — SPRINT_PLAN.md'deki verify komutunu çalıştır
+   - Pass → devam
+   - Fail → fix loop'a geri dön (max 3 retry)
+   - 3 retry sonra fail → PR'a yorum bırak, sonraki task'a geç
+8. **Jira Done** — transition
 
 **Paralel calisma:**
-- Ayni sprint icerisindeki task'lar paralel calisir (max 5 concurrent)
+- Ayni sprint icerisindeki task'lar wave sirasina gore paralel calisir (max 5 concurrent per wave)
 - Farkli sprint'ler sirayla calisir
 - Dosya lock sistemi cakismayi onler (`.jira-state/file-locks/`)
+
+**Event Journal (`forge/event-log.jsonl`):**
+
+Her onemli adimda bir satir append edilir:
+
+```jsonl
+{"ts":"2026-04-14T10:30:00Z","run":1,"sprint":1,"wave":1,"task":"KEY-101","event":"branch_created","detail":"feat/key-101-rate-limiting"}
+{"ts":"2026-04-14T10:35:00Z","run":1,"sprint":1,"wave":1,"task":"KEY-101","event":"code_complete","detail":"3 files changed"}
+{"ts":"2026-04-14T10:36:00Z","run":1,"sprint":1,"wave":1,"task":"KEY-101","event":"pr_created","detail":"#42"}
+{"ts":"2026-04-14T10:40:00Z","run":1,"sprint":1,"wave":1,"task":"KEY-101","event":"review_pass","detail":"score 9/10"}
+{"ts":"2026-04-14T10:41:00Z","run":1,"sprint":1,"wave":1,"task":"KEY-101","event":"verify_pass","detail":"curl returned 429"}
+{"ts":"2026-04-14T10:42:00Z","run":1,"sprint":1,"wave":1,"task":"KEY-101","event":"merged","detail":"squash into main"}
+```
+
+Event types: `branch_created`, `code_complete`, `test_pass`, `test_fail`, `pr_created`, `review_pass`, `review_fail`, `fix_attempt`, `verify_pass`, `verify_fail`, `merged`, `skipped`, `error`
 
 ---
 
@@ -409,6 +497,34 @@ Tum sprint'ler tamamlaninca:
 
 ---
 
+### Decision Log (`forge/DECISIONS.md`)
+
+Her forge run'ı boyunca alınan önemli kararlar append-only olarak kaydedilir:
+
+```markdown
+## Run 1 — 2026-04-14
+
+### D001: SQLite yerine PostgreSQL
+- **Karar:** Veritabanı PostgreSQL olarak seçildi
+- **Neden:** Concurrent write ihtiyacı + full-text search
+- **Alternatifler:** SQLite (basit ama concurrent weak), MongoDB (overkill)
+- **Etkisi:** Task KEY-103, KEY-107 bu karara bağlı
+
+### D002: Auth middleware yeniden yazılacak
+- **Karar:** Mevcut auth middleware tamamen değiştirilecek
+- **Neden:** Legal compliance — session token storage uyumsuz
+- **Risk:** 12 endpoint etkileniyor, regression riski yüksek
+- **Etkisi:** Sprint 1'de P0 olarak öne alındı
+```
+
+**Kurallar:**
+- Her önemli teknik karar (library seçimi, mimari değişiklik, scope kararı) loglanır
+- Append-only — eski kararlar silinmez, üzeri çizilmez
+- Sonraki run'larda Phase 1 DECISIONS.md'yi okur — çelişen karar almaz
+- Agent'lar karar alırken DECISIONS.md'ye yazar (Coder ve Reviewer dahil)
+
+---
+
 ### Phase 7 — Forge Analysis (Otomatik)
 
 Phase 5 tamamlanır tamamlanmaz `/forge-analysis` skill'ini çalıştır. Argüman olarak mevcut run'ın summary dosya yolunu geç:
@@ -458,20 +574,30 @@ Sonraki run icin:
 
 ## `forge all` modu
 
-Tum projeleri **paralel** forge et — her proje bağımsız background agent:
+Tum projeleri **wave sırasıyla** forge et — her wave paralel, wave'ler sıralı:
 
 ```
-/forge all        # her proje 1 run, hepsi paralel
-/forge 2 all      # her proje 2 run, paralel
+/forge all        # her proje 1 run, wave sırasıyla
+/forge 2 all      # her proje 2 run, wave sırasıyla
 ```
+
+**Wave-ordered execution (projects.json `forge_wave_order`):**
+
+`forge all` artık projeleri rastgele değil, wave sırasıyla çalıştırır:
+1. Wave 1 projeleri paralel başlat (foundation — claude-config)
+2. Wave 1 tamamlanınca Wave 2'yi başlat (dependents)
+3. Wave 2 tamamlanınca Wave 3'ü başlat (independent projects)
+4. Wave 3 tamamlanınca Wave 4'ü başlat (plugins/tools)
+
+Bu sıralama `projects.json` → `forge_wave_order` alanından okunur. Alan yoksa tüm projeler paralel çalışır (eski davranış).
 
 Akis:
-1. `~/Projects/ClaudeHQ/projects.json` oku
+1. `~/Projects/ClaudeHQ/projects.json` oku — `forge_wave_order` alanını parse et
 2. Aktif session tespiti yap — atlanacakları belirle
-3. Kalan projelerin hepsini tek seferde paralel background agent olarak başlat:
+3. Her wave'i sırayla işle: wave içindeki projeler paralel background agent olarak başlatılır:
    - Her agent kendi projesini tam forge eder (analysis → tasks → PR → merge → Jira)
-   - Agent'lar birbirini beklemez
-   - Max 12 concurrent agent
+   - Wave içi agent'lar birbirini beklemez; bir sonraki wave tüm önceki wave tamamlanınca başlar
+   - Max 12 concurrent agent (tüm wave'ler dahil)
 4. Tüm agent'lar tamamlanınca özet göster:
 
 ```
@@ -499,6 +625,10 @@ Akis:
 │   ├── run-2-summary.md
 │   ├── run-2-lessons.md
 │   ├── analysis-2026-04-09-run-2.md
+│   ├── DECISIONS.md                        # Append-only karar logu (tüm run'lar)
+│   ├── event-log.jsonl                     # Structured event journal (Phase 4)
+│   ├── state-manifest.json                 # Recovery state — her phase geçişinde güncellenir
+│   ├── auto-report-{tarih}.md              # Unattended run özeti (auto mode)
 │   └── ...
 └── .jira-state/                            # Lock dosyalari
 ```
@@ -633,6 +763,33 @@ Bu sayede iki ayri `forge all` ayni projeye cakismaz.
       Devam etmek için: /forge 1 --force-continue
       ```
     - Kullanıcı **2** seçerse veya `--force-continue` flag'i varsa: normal akış, skor limiti yok.
+
+## Auto Mode (Unattended)
+
+`auto` argümanı verildiğinde forge tamamen otonom çalışır — hiç soru sormaz:
+
+| Normalde sorulan | Auto modda cevap |
+|-----------------|-----------------|
+| Compact önerisi | Geç (2) |
+| Agent atama modu | Lead Orchestrator (1) |
+| Brief oluştur mu | Evet (Y) |
+| Agent kullanılabilirlik | Tüm alternatifleri uygula (4) |
+| Belirsiz proje (forge all) | Dahil et (Y) |
+| Recovery: devam mı baştan mı | Devam et (1) |
+| Focus menüsü | Full Cycle (3) |
+
+**Kullanım senaryoları:**
+- Gece boyu çalıştırma: `tmux new -d '/forge auto 5 CoinHQ'`
+- CI/CD: schedule trigger ile periyodik forge
+- Toplu bakım: `tmux new -d '/forge auto all -security'`
+
+**Güvenlik:**
+- `--force` flag'i olmadan destructive git operasyonları atlanır
+- Quota limit'e ulaşılırsa durur, sonraki run'a geçmez
+- Max 8 saat çalışma süresi — aşılırsa state kaydet ve dur
+- Sonuç: `forge/auto-report-{tarih}.md` — unattended run özeti
+
+---
 
 ## When NOT to Use
 - Tek satirlik basit soru/cevap ise
