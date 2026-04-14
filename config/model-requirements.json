@@ -32,24 +32,24 @@
       "console": "https://console.anthropic.com/settings/keys"
     },
     "qwen-3.6-free": {
-      "needs": ["openrouter-api"],
-      "check_env": "OPENROUTER_API_KEY",
-      "console": "https://openrouter.ai/keys"
+      "needs": ["groq-api"],
+      "check_env": "GROQ_API_KEY",
+      "console": "https://console.groq.com/keys"
     },
     "qwen-3.6-plus-free": {
-      "needs": ["openrouter-api"],
-      "check_env": "OPENROUTER_API_KEY",
-      "console": "https://openrouter.ai/keys"
+      "needs": ["groq-api"],
+      "check_env": "GROQ_API_KEY",
+      "console": "https://console.groq.com/keys"
     },
     "nemotron-120b-free": {
-      "needs": ["openrouter-api"],
-      "check_env": "OPENROUTER_API_KEY",
-      "console": "https://openrouter.ai/keys"
+      "needs": ["groq-api"],
+      "check_env": "GROQ_API_KEY",
+      "console": "https://console.groq.com/keys"
     },
     "gpt-oss-120b-free": {
-      "needs": ["openrouter-api"],
-      "check_env": "OPENROUTER_API_KEY",
-      "console": "https://openrouter.ai/keys"
+      "needs": ["groq-api"],
+      "check_env": "GROQ_API_KEY",
+      "console": "https://console.groq.com/keys"
     }
   },
   "platform_requirements": {

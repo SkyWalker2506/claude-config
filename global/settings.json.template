@@ -41,7 +41,7 @@
           {
             "type": "command",
             "description": "Print active Jarvis model label + emoji",
-            "command": "MODEL=$(jq -r '.model // \"sonnet\"' ~/.claude/settings.json 2>/dev/null); if echo \"$MODEL\" | grep -qE 'openrouter|groq/|hf/|cerebras|local/|google/'; then EMOJI='🆓'; elif echo \"$MODEL\" | grep -q 'haiku'; then EMOJI='💛'; elif echo \"$MODEL\" | grep -q 'opus'; then EMOJI='🔴'; else EMOJI='🔶'; fi; echo \"JARVIS_MODEL: $MODEL $EMOJI\""
+            "command": "MODEL=$(jq -r '.model // \"sonnet\"' ~/.claude/settings.json 2>/dev/null); if echo \"$MODEL\" | grep -qE 'groq/|hf/|cerebras|local/|google/'; then EMOJI='🆓'; elif echo \"$MODEL\" | grep -q 'haiku'; then EMOJI='💛'; elif echo \"$MODEL\" | grep -q 'opus'; then EMOJI='🔴'; else EMOJI='🔶'; fi; echo \"JARVIS_MODEL: $MODEL $EMOJI\""
           },
           {
             "type": "command",

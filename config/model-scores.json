@@ -13,47 +13,6 @@
     }
   },
   "models": {
-    "openrouter/qwen/qwen3.6-plus:free": {
-      "score": 100, "tests_run": 3, "tests_passed": 3,
-      "last_tested": "2026-04-07", "last_status": "ok",
-      "provider": "openrouter", "category": "llm-general"
-    },
-    "openrouter/openai/gpt-oss-120b:free": {
-      "score": 67, "tests_run": 3, "tests_passed": 2,
-      "last_tested": "2026-04-07", "last_status": "ok",
-      "provider": "openrouter", "category": "llm-general",
-      "notes": "Tutarsız — bazen rate limit"
-    },
-    "openrouter/openai/gpt-oss-20b:free": {
-      "score": 33, "tests_run": 3, "tests_passed": 1,
-      "last_tested": "2026-04-07", "last_status": "fail",
-      "provider": "openrouter", "category": "llm-general",
-      "notes": "Sık rate limit — upstream provider sorunu"
-    },
-    "openrouter/nvidia/nemotron-3-super-120b-a12b:free": {
-      "score": 20, "tests_run": 3, "tests_passed": 1,
-      "last_tested": "2026-04-07", "last_status": "fail",
-      "provider": "openrouter", "category": "llm-general",
-      "notes": "Instruction following bozuk — system prompt ile de düzelmiyor, kendi iç monologunu döndürüyor"
-    },
-    "openrouter/meta-llama/llama-3.3-70b-instruct:free": {
-      "score": 0, "tests_run": 3, "tests_passed": 0,
-      "last_tested": "2026-04-07", "last_status": "fail",
-      "provider": "openrouter", "category": "llm-general",
-      "notes": "Upstream rate-limited — kalıcı sorun"
-    },
-    "openrouter/google/gemma-3-27b-it:free": {
-      "score": 67, "tests_run": 3, "tests_passed": 2,
-      "last_tested": "2026-04-07", "last_status": "ok",
-      "provider": "openrouter", "category": "llm-general",
-      "notes": "Tutarsız — bazen rate limit"
-    },
-    "openrouter/qwen/qwen3-coder:free": {
-      "score": 0, "tests_run": 3, "tests_passed": 0,
-      "last_tested": "2026-04-07", "last_status": "fail",
-      "provider": "openrouter", "category": "llm-code",
-      "notes": "Upstream rate-limited — kalıcı sorun"
-    },
     "groq/llama-3.3-70b-versatile": {
       "score": 100, "tests_run": 3, "tests_passed": 3,
       "last_tested": "2026-04-07", "last_status": "ok",

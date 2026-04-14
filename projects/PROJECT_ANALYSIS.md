@@ -78,7 +78,7 @@ Sorular varsa → hepsini tek mesajda, şıklı, numara ile sor.
 | Frontend | Flutter | Cross-platform, tek codebase | — |
 | Backend | Firebase | Auth + DB + Storage | Spark plan ücretsiz |
 | Hosting | Vercel | Web deploy | Ücretsiz |
-| AI/API | OpenRouter | Çoklu model, tek key | Ücretsiz tier mevcut |
+| AI/API | Groq | Ücretsiz free tier | Ücretsiz tier mevcut |
 | CI/CD | GitHub Actions | — | Ücretsiz |
 
 ## Alternatifler
@@ -101,22 +101,22 @@ Sorular varsa → hepsini tek mesajda, şıklı, numara ile sor.
 
 ## §1 — Analiz Kategorileri
 
-> **Model notu:** Agent'ların `primary_model`'i artık çoğunlukla `gpt-5.4` (OpenRouter üzerinden). Analiz sırasında Lead Orchestrator aşağıdaki "Analiz Modeli" kolonundaki modeli atar. Claude Code sub-agent'lar `sonnet` veya `opus` kullanır; GPT tabanlı agent'lar OpenRouter `gpt-5.4` üzerinden çalışır.
+> **Model notu:** Agent'ların `primary_model`'i artık çoğunlukla `gpt-5.4` (Codex CLI üzerinden). Analiz sırasında Lead Orchestrator aşağıdaki "Analiz Modeli" kolonundaki modeli atar. Claude Code sub-agent'lar `sonnet` veya `opus` kullanır; GPT tabanlı agent'lar Codex CLI ile çalışır.
 
 | # | Kategori | Odak | Worker Agent(lar) | Analiz Modeli |
 |---|----------|------|-------------------|---------------|
-| 1 | **UI/UX & Design** | Görsel tasarım, layout, renk, tipografi, responsive, dark mode, animasyon, component tutarlılığı, design system, mobile UX | B3 Frontend Coder, D1 UI/UX Researcher, D2 Design System Agent, D8 Mockup Reviewer | gpt-5.4 (OpenRouter) |
-| 2 | **Performance & Core Web Vitals** | LCP, FID, CLS, bundle size, lazy loading, image optimization, caching, SSR/SSG/ISR, DB sorgu, API response time | B12 Performance Optimizer | gpt-5.4 (OpenRouter) |
-| 3 | **SEO & Discoverability** | Meta tags, Open Graph, JSON-LD, sitemap, robots.txt, canonical URL, semantic HTML, mobile-friendliness, internal linking | H5 SEO Agent | gpt-5.4 (OpenRouter) |
-| 4 | **Data & Scraping Infrastructure** | Veri kaynakları, scraper mimarisi, veri kalitesi, pipeline robustness, error handling, rate limiting, veri modeli | F2 Data Analyst, F4 ETL Pipeline Agent | gpt-5.4 (OpenRouter) |
-| 5 | **Monetization & Business Model** | Gelir modelleri, pricing stratejisi, conversion funnel, paywall, freemium vs premium, affiliate | H3 Revenue Analyst, H4 Pricing Strategist | gpt-5.4 (OpenRouter) |
-| 6 | **Growth & User Engagement** | Viral loop, gamification, social sharing, retention, onboarding, referral, push notification | H7 Social Media Agent, H9 Newsletter Agent | gpt-5.4 (OpenRouter) |
+| 1 | **UI/UX & Design** | Görsel tasarım, layout, renk, tipografi, responsive, dark mode, animasyon, component tutarlılığı, design system, mobile UX | B3 Frontend Coder, D1 UI/UX Researcher, D2 Design System Agent, D8 Mockup Reviewer | gpt-5.4 (Codex CLI) |
+| 2 | **Performance & Core Web Vitals** | LCP, FID, CLS, bundle size, lazy loading, image optimization, caching, SSR/SSG/ISR, DB sorgu, API response time | B12 Performance Optimizer | gpt-5.4 (Codex CLI) |
+| 3 | **SEO & Discoverability** | Meta tags, Open Graph, JSON-LD, sitemap, robots.txt, canonical URL, semantic HTML, mobile-friendliness, internal linking | H5 SEO Agent | gpt-5.4 (Codex CLI) |
+| 4 | **Data & Scraping Infrastructure** | Veri kaynakları, scraper mimarisi, veri kalitesi, pipeline robustness, error handling, rate limiting, veri modeli | F2 Data Analyst, F4 ETL Pipeline Agent | gpt-5.4 (Codex CLI) |
+| 5 | **Monetization & Business Model** | Gelir modelleri, pricing stratejisi, conversion funnel, paywall, freemium vs premium, affiliate | H3 Revenue Analyst, H4 Pricing Strategist | gpt-5.4 (Codex CLI) |
+| 6 | **Growth & User Engagement** | Viral loop, gamification, social sharing, retention, onboarding, referral, push notification | H7 Social Media Agent, H9 Newsletter Agent | gpt-5.4 (Codex CLI) |
 | 7 | **Security & Infrastructure** | Auth, OWASP top 10, env/secret yönetimi, CORS, rate limiting, input validation, dependency audit, SAST | B13 Security Auditor, C2 Security Scanner Hook | Opus |
-| 8 | **Content & Editorial Strategy** | İçerik kalitesi, çeşitlilik, editorial flow, UGC, moderation, tone of voice | H8 Content Repurposer | gpt-5.4 (OpenRouter) |
-| 9 | **Analytics & Tracking** | Event tracking, conversion, funnel analizi, A/B test altyapısı, KPI tanımlar | M3 A/B Test Agent, M4 Analytics Agent, F2 Data Analyst | gpt-5.4 (OpenRouter) |
+| 8 | **Content & Editorial Strategy** | İçerik kalitesi, çeşitlilik, editorial flow, UGC, moderation, tone of voice | H8 Content Repurposer | gpt-5.4 (Codex CLI) |
+| 9 | **Analytics & Tracking** | Event tracking, conversion, funnel analizi, A/B test altyapısı, KPI tanımlar | M3 A/B Test Agent, M4 Analytics Agent, F2 Data Analyst | gpt-5.4 (Codex CLI) |
 | 10 | **Architecture & Code Quality** | Kod yapısı, modülerlik, test coverage, CI/CD, tech debt, scalability, type safety | B1 Backend Architect, B8 Refactor Agent, B10 Dependency Manager | Opus |
-| 11 | **Accessibility (a11y)** | WCAG 2.1/2.2, keyboard navigation, screen reader, color contrast, focus, ARIA, form labels | D8 Mockup Reviewer, B3 Frontend Coder | gpt-5.4 (OpenRouter) |
-| 12 | **Competitive Analysis** | Rakip platformlar, feature gap, pazar konumlandırma, diferansiasyon, SWOT, benchmark | H2 Competitor Analyst, K1 Web Researcher, K4 Trend Analyzer | gpt-5.4 (OpenRouter) |
+| 11 | **Accessibility (a11y)** | WCAG 2.1/2.2, keyboard navigation, screen reader, color contrast, focus, ARIA, form labels | D8 Mockup Reviewer, B3 Frontend Coder | gpt-5.4 (Codex CLI) |
+| 12 | **Competitive Analysis** | Rakip platformlar, feature gap, pazar konumlandırma, diferansiasyon, SWOT, benchmark | H2 Competitor Analyst, K1 Web Researcher, K4 Trend Analyzer | gpt-5.4 (Codex CLI) |
 
 ---
 
@@ -221,14 +221,14 @@ Tüm 12 kategori, §1'deki varsayılan agent'lar ve analiz modelleriyle başlat�
 
 **Model Mapping — Registry → Claude Code:**
 
-> Agent'ların `primary_model`'i artık `gpt-5.4` (OpenRouter üzerinden). Eski modeller (`free-gemini`, `local-qwen-9b`, `free-script` vb.) `primary_model_legacy` olarak saklanıyor. Analiz sırasında `gpt-5.4` kullanılır; erişilemezse Claude Code modelleri (`sonnet`/`haiku`) fallback olur.
+> Agent'ların `primary_model`'i artık `gpt-5.4` (Codex CLI üzerinden). Eski modeller (`free-gemini`, `local-qwen-9b`, `free-script` vb.) `primary_model_legacy` olarak saklanıyor. Analiz sırasında `gpt-5.4` kullanılır; erişilemezse Claude Code modelleri (`sonnet`/`haiku`) fallback olur.
 
 | Registry Modeli | Çalışma Yöntemi | Notlar |
 |---|---|---|
-| `gpt-5.4` | OpenRouter API | `$OPENROUTER_API_KEY` gerekir — tüm worker agent'ların birincil modeli |
-| `gpt-5.4-mini` | OpenRouter API | Hafif işler için (script, deterministic tarama) |
+| `gpt-5.4` | Codex CLI | Tüm worker agent'ların birincil modeli — ChatGPT Pro aboneliği ile |
+| `gpt-5.4-mini` | Codex CLI | Hafif işler için (script, deterministic tarama) |
 | `opus` | Claude Code native | Security (#7), Architecture (#10) — değişmedi |
-| `sonnet` | Claude Code native | Fallback model — OpenRouter ulaşılamazsa |
+| `sonnet` | Claude Code native | Fallback model — Codex CLI ulaşılamazsa |
 | `haiku` | Claude Code native | Minimum fallback |
 
 | Agent ID | İsim | Primary Model | Analiz Modeli | Kategori |
@@ -312,10 +312,10 @@ Rapor formatı:
 ### Referanslar
 
 ## MODEL DISPATCH KURALLARI
-- `model: gpt-5.4` → OpenRouter API üzerinden çalışır, `$OPENROUTER_API_KEY` gerekir
-- `model: gpt-5.4-mini` → Hafif tarama/script işleri için OpenRouter API
+- `model: gpt-5.4` → Codex CLI üzerinden çalışır
+- `model: gpt-5.4-mini` → Hafif tarama/script işleri için Codex CLI
 - `model: opus` / `sonnet` / `haiku` → Claude Code native sub-agent
-- OpenRouter ulaşılamazsa → `sonnet` fallback olarak kullanılır
+- Codex CLI ulaşılamazsa → `sonnet` fallback olarak kullanılır
 
 ## KURALLAR
 - Kod yazma, dosya düzenleme YAPMA — sadece oku ve raporla
@@ -407,8 +407,8 @@ Seçiminiz (1/2/3/4):
 
 | Model Tipi | Kontrol Yöntemi | Kurulum Talimatı | Fallback Modeli |
 |---|---|---|---|
-| `gpt-5.4` | `$OPENROUTER_API_KEY` var mı? + OpenRouter ping | `~/.claude/secrets/secrets.env`'e `OPENROUTER_API_KEY=` ekle | `sonnet` |
-| `gpt-5.4-mini` | `$OPENROUTER_API_KEY` var mı? + OpenRouter ping | Aynı key ile çalışır | `haiku` |
+| `gpt-5.4` | Codex CLI login check | `codex login` ile giriş yap | `sonnet` |
+| `gpt-5.4-mini` | Codex CLI login check | Aynı oturum ile çalışır | `haiku` |
 | `opus` / `sonnet` / `haiku` | Claude Code native — her zaman mevcut | — | — |
 | `free-web` | Herhangi bir URL fetch başarılı mı? | MCP fetch server aktif mi? (`/mcp` ile kontrol) | `haiku` |
 

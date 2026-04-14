@@ -14,9 +14,9 @@ Her dispatch öncesi `source_requirements` tablosunu oku:
 
 | Source | Secret Key | Durum |
 |--------|-----------|-------|
-| openrouter | OPENROUTER_API_KEY | ✅ available |
-| groq | GROQ_API_KEY | ❌ missing_key |
-| anthropic | (session) | ✅ available |
+| groq | GROQ_API_KEY | ✅ available |
+| anthropic | (session Max) | ✅ available |
+| codex | codex CLI login | ✅ available |
 | huggingface | HF_TOKEN | ? not_tested |
 
 **Ulaşılamayan source ile karşılaşılırsa:**
@@ -25,8 +25,6 @@ Her dispatch öncesi `source_requirements` tablosunu oku:
    - E → setup_url ver ve bekle
    - H → bir sonraki fallback'e geç
 3. Tüm fallback'ler tükendiyse → farklı capability'li alternatif agent sec
-
-**Şu an bilinen durum:** Groq key yok → Groq primary'li agentlar otomatik OpenRouter fallback'e düşer.
 
 ## Agent Truth Check
 

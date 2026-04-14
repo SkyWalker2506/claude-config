@@ -1,12 +1,12 @@
 ---
 name: free-models
-description: "Ücretsiz modelleri tara (OpenRouter + Groq + HuggingFace), karşılaştır, openrouter-free-models.json güncelle. Triggers: free models, ücretsiz modeller, free model ara, model tara, openrouter models."
+description: "Ücretsiz modelleri tara (Groq + HuggingFace), karşılaştır, free-models.json güncelle. Triggers: free models, ücretsiz modeller, free model ara, model tara."
 argument-hint: "[update|list|search <konu>|sources] — varsayılan: list+update"
 ---
 
 # /free-models — Multi-Source Free Model Scanner & Updater
 
-OpenRouter, Groq ve HuggingFace kaynaklarını tarayarak güncel free modelleri bulur, değerlendirir ve `config/openrouter-free-models.json`'u günceller.
+Groq ve HuggingFace kaynaklarını tarayarak güncel free modelleri bulur, değerlendirir ve `config/free-models.json`'u günceller.
 
 ## Argüman davranışı
 
@@ -20,21 +20,14 @@ OpenRouter, Groq ve HuggingFace kaynaklarını tarayarak güncel free modelleri 
 
 ## Kaynaklar
 
-### 1. OpenRouter
-```
-GET https://openrouter.ai/api/v1/models
-```
-Filter: `pricing.prompt == "0"` VEYA `id` `:free` ile biter.
-OPENROUTER_API_KEY varsa header'a ekle.
-
-### 2. Groq Free Tier
+### 1. Groq Free Tier
 ```
 GET https://api.groq.com/openai/v1/models
 ```
 Groq'un tüm modelleri ücretsizdir (rate limit var). API key gerekmez liste için.
 Bilinen güçlü Groq modelleri: `llama-3.3-70b-versatile`, `llama-3.1-70b-versatile`, `gemma2-9b-it`, `mixtral-8x7b-32768`
 
-### 3. HuggingFace Inference API
+### 2. HuggingFace Inference API
 ```
 GET https://huggingface.co/api/models?inference=warm&limit=20&sort=trending
 ```
@@ -78,10 +71,10 @@ Aşağıdaki alanlar için en uygun free modeli ata:
 ## Akış
 
 ### 1. Mevcut durumu oku
-`~/.claude/config/openrouter-free-models.json` oku — son güncelleme tarihi.
+`~/Projects/claude-config/config/free-models.json` oku — son güncelleme tarihi.
 
 ### 2. Kaynakları paralel tara
-Üç kaynağı `mcp__fetch__fetch_json` ile çek (paralel mümkünse sırayla).
+İki kaynağı `mcp__fetch__fetch_json` ile çek (paralel mümkünse sırayla).
 
 ### 3. Değerlendirme & puanlama
 Her model için: güç skoru hesapla → tier ata → alan eşle.
@@ -94,7 +87,7 @@ Mevcut json ile karşılaştır:
 - ⚠️ Yakında biten (expiration_date < 14 gün)
 
 ### 5. JSON güncelle
-`~/Projects/claude-config/config/openrouter-free-models.json`:
+`~/Projects/claude-config/config/free-models.json`:
 - `version` minör artır
 - `last_updated` bugünün tarihi
 - `agent_mapping` güncelle (alan → model listesi)
@@ -111,7 +104,6 @@ Yeni very-high model → tablo satırı öner.
 ### Kaynak Özeti
 | Kaynak | Taranan | Free Bulunan |
 |--------|---------|-------------|
-| OpenRouter | N | N |
 | Groq | N | N |
 | HuggingFace | N | N |
 
@@ -139,7 +131,7 @@ Yeni very-high model → tablo satırı öner.
 - ⚠️ Yakında bitiyor: ...
 
 ### Eylemler
-- [ ] openrouter-free-models.json güncellendi
+- [ ] free-models.json güncellendi
 - [ ] CLAUDE.md kontrol edildi
 - [ ] Commit önerisi: chore: update free model list YYYY-MM-DD
 ```
@@ -149,7 +141,6 @@ Yeni very-high model → tablo satırı öner.
 - Eski modelleri silme — `deprecated: true` işaretle
 - Groq modelleri `"source": "groq"` ile işaretle
 - HF modelleri `"source": "huggingface"` ile işaretle
-- OpenRouter modelleri `"source": "openrouter"` (default)
 - Max 20 tool call
 
 ## When NOT to Use

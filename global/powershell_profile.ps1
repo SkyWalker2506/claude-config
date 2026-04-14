@@ -14,7 +14,7 @@ if (Test-Path $_secretsPath) {
 # Claude binary
 function _claude_bin {
     # Secrets henuz yuklenmediyse yukle
-    if (-not $env:OPENROUTER_API_KEY) {
+    if (-not $env:ANTHROPIC_API_KEY) {
         $s = "$env:USERPROFILE\.claude\secrets\secrets.env"
         if (Test-Path $s) {
             Get-Content $s | ForEach-Object {

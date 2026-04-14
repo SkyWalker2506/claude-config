@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     env:
-      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       PR_NUMBER: ${{ github.event.pull_request.number }}
     steps:
@@ -21,7 +21,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: AI Review via OpenRouter Free
+      - name: AI Review via Groq Free
         run: |
           set +e
 
@@ -38,15 +38,15 @@ jobs:
           import json, sys
           prompt = sys.stdin.read()
           print(json.dumps({
-            'model': 'google/gemma-3-27b-it:free',
+            'model': 'llama-3.3-70b-versatile',
             'messages': [{'role': 'user', 'content': prompt}],
             'max_tokens': 2000
           }))
           " <<< "$PROMPT")
 
           # Call API
-          RESPONSE=$(curl -s -X POST https://openrouter.ai/api/v1/chat/completions \
-            -H "Authorization: Bearer ${OPENROUTER_API_KEY}" \
+          RESPONSE=$(curl -s -X POST https://api.groq.com/openai/v1/chat/completions \
+            -H "Authorization: Bearer ${GROQ_API_KEY}" \
             -H "Content-Type: application/json" \
             -d "$PAYLOAD")
 
@@ -65,9 +65,9 @@ jobs:
           ")
 
           # Post comment
-          gh pr comment "$PR_NUMBER" --body "## AI Code Review (Gemma 3 27B Free)
+          gh pr comment "$PR_NUMBER" --body "## AI Code Review (Llama 3.3 70B via Groq)
 
           ${REVIEW}
 
           ---
-          *Cost: \$0.00 — free model via OpenRouter*"
+          *Cost: \$0.00 — free model via Groq*"

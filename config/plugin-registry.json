@@ -14,7 +14,7 @@
     "ai-review": {
       "name": "AI PR Review",
       "version": "1.0.0",
-      "description": "Auto PR review on GitHub via OpenRouter free models (Gemma 3 27B)",
+      "description": "Auto PR review on GitHub via free models (Gemma 3 27B)",
       "category": "code-review",
       "complexity": "simple",
       "repo": "https://github.com/SkyWalker2506/ccplugin-ai-review",

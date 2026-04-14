@@ -27,7 +27,7 @@ fi
 
 cp -r "$ROOT/agents/"* "$HOME/.claude/agents/" 2>/dev/null || true
 
-for f in agent-registry.json fallback-chains.json model-tiers.json layer-contracts.json model-requirements.json openrouter-free-models.json; do
+for f in agent-registry.json fallback-chains.json model-tiers.json layer-contracts.json model-requirements.json; do
   if [ -f "$ROOT/config/$f" ]; then
     cp "$ROOT/config/$f" "$HOME/.claude/config/" 2>/dev/null || true
   fi

@@ -88,16 +88,16 @@
       "tier": "economy"
     },
     "qwen-3.6-free": {
-      "type": "openrouter",
-      "id": "qwen/qwen3.6-plus:free",
+      "type": "groq",
+      "id": "qwen/qwen3-32b",
       "tier": "free",
-      "note": "alias for qwen-3.6-plus-free"
+      "note": "alias for groq-qwen3-32b"
     },
     "free-router": {
-      "type": "openrouter",
-      "id": "qwen/qwen3.6-plus:free",
+      "type": "groq",
+      "id": "llama-3.3-70b-versatile",
       "tier": "free",
-      "note": "default free OpenRouter — qwen3.6-plus"
+      "note": "default free fallback — groq llama 70b"
     },
     "local-qwen-9b": {
       "type": "ollama",
@@ -131,18 +131,18 @@
       "device": "mac"
     },
     "qwen-3.6-plus-free": {
-      "type": "openrouter",
-      "id": "qwen/qwen3.6-plus:free",
+      "type": "groq",
+      "id": "qwen/qwen3-32b",
       "tier": "free"
     },
     "gpt-oss-120b-free": {
-      "type": "openrouter",
-      "id": "openai/gpt-oss-120b:free",
+      "type": "groq",
+      "id": "moonshotai/kimi-k2-instruct",
       "tier": "free"
     },
     "gpt-oss-20b-free": {
-      "type": "openrouter",
-      "id": "openai/gpt-oss-20b:free",
+      "type": "groq",
+      "id": "llama-3.3-70b-versatile",
       "tier": "free",
       "note": "hızlı, hafif görevler için"
     },
@@ -169,11 +169,10 @@
       "note": "alias for gemini-flash"
     },
     "nemotron-120b-free": {
-      "type": "openrouter",
-      "id": "nvidia/nemotron-3-super-120b-a12b:free",
+      "type": "groq",
+      "id": "meta-llama/llama-4-scout-17b-16e-instruct",
       "tier": "free",
-      "status": "degraded",
-      "note": "instruction following bozuk — kullanma"
+      "note": "multimodal groq model"
     }
   },
   "on_exhausted": "alert",

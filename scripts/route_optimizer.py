@@ -50,7 +50,7 @@ def cost_for(model: str) -> float:
     for key, c in MODEL_COST.items():
         if key in lower:
             return c
-    if any(tag in lower for tag in ("free", "openrouter", "groq", "ollama", "local", "qwen", "gemma", "llama")):
+    if any(tag in lower for tag in ("free", "groq", "ollama", "local", "qwen", "gemma", "llama")):
         return 0.0
     return 0.5
 

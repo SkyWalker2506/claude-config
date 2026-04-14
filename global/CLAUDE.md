@@ -59,7 +59,7 @@ ls ~/.claude/settings.json 2>/dev/null && ls ~/.claude/skills/ 2>/dev/null
 cd ~/Projects/claude-config && bash ./install.sh --auto --skip-login --stacks general
 ```
 
-Kullaniciya stack sorusu sormadan `general` ile basla. Kurulum sonrasi `/restart` hatırlat.
+Kullaniciya stack sorusu sormadan `general` ile basla. Kurulum sonrasi oturumu yeniden baslat.
 
 ### Adim 4: Normal akis
 

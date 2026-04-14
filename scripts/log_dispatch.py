@@ -49,7 +49,7 @@ def tier_for(model: str) -> str:
     for key, tier in MODEL_TIER.items():
         if key in lower:
             return tier
-    if any(tag in lower for tag in ("free", "openrouter", "groq", "ollama", "local", "qwen", "gemma", "llama")):
+    if any(tag in lower for tag in ("free", "groq", "ollama", "local", "qwen", "gemma", "llama")):
         return "free"
     return "unknown"
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 # Free Model Proxy — LiteLLM based
-# Starts a local proxy that translates Anthropic API → OpenRouter free models
+# Starts a local proxy that translates Anthropic API → free models (Groq)
 # Usage: free-proxy start|stop|status|restart
 
 PORT=4123
@@ -23,8 +23,8 @@ start() {
     return 0
   fi
   _load_secrets
-  if [ -z "$OPENROUTER_API_KEY" ]; then
-    echo "ERROR: OPENROUTER_API_KEY not set. Check $SECRETS"
+  if [ -z "${GROQ_API_KEY:-}" ]; then
+    echo "ERROR: GROQ_API_KEY not set. Check $SECRETS"
     return 1
   fi
   echo "Starting free-proxy on port $PORT..."

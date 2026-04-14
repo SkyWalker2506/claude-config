@@ -192,7 +192,6 @@ JIRA_API_TOKEN=
 FIREBASE_SERVICE_ACCOUNT_PATH=
 TELEGRAM_BOT_TOKEN=
 TELEGRAM_CHAT_ID=
-OPENROUTER_API_KEY=
 CLAUDE_LOCAL_BASE_URL=http://127.0.0.1:11434
 CLAUDE_LOCAL_AUTH_TOKEN=ollama
 CLAUDE_LOCAL_MODEL=deepseek-coder:6.7b
@@ -681,7 +680,7 @@ function cl_bypass() {
 # Gerçek claude binary'sine doğrudan erişim (fonksiyon döngüsünü önler)
 function _claude_bin() {
   # Secrets henüz export edilmemişse yükle (yeni terminal olmadan çağrıldığında)
-  if [ -z "$OPENROUTER_API_KEY" ]; then
+  if [ -z "${GROQ_API_KEY:-}" ]; then
     local _s="$HOME/.claude/secrets/secrets.env"
     [ -f "$_s" ] && set -a && source "$_s" && set +a
   fi
@@ -786,34 +785,28 @@ setup_ollama() {
   fi
 }
 
-# ── Phase 9: Free Cloud Models (OpenRouter) ──
-setup_openrouter() {
+# ── Phase 9: Free Cloud Models (Groq) ──
+setup_free_models() {
   echo ""
-  echo "── Phase 9: Free Cloud Models (OpenRouter) ──"
+  echo "── Phase 9: Free Cloud Models (Groq) ──"
 
-  # Check API key in secrets
-  local OR_KEY=""
+  # Check Groq API key in secrets
+  local GROQ_KEY=""
   if [ -f "$SECRETS_DIR/secrets.env" ]; then
-    OR_KEY=$(grep -E '^OPENROUTER_API_KEY=' "$SECRETS_DIR/secrets.env" 2>/dev/null | cut -d= -f2- || true)
+    GROQ_KEY=$(grep -E '^GROQ_API_KEY=' "$SECRETS_DIR/secrets.env" 2>/dev/null | cut -d= -f2- || true)
   fi
 
-  if [ -n "$OR_KEY" ]; then
-    echo "  ✅ OpenRouter API key found"
-    # Quick connectivity test
-    if curl -s --max-time 5 "https://openrouter.ai/api/v1/models" >/dev/null 2>&1; then
-      echo "  ✅ OpenRouter API reachable"
+  if [ -n "$GROQ_KEY" ]; then
+    echo "  ✅ Groq API key found"
+    if curl -s --max-time 5 "https://api.groq.com/openai/v1/models" >/dev/null 2>&1; then
+      echo "  ✅ Groq API reachable"
     else
-      echo "  ⚠ OpenRouter API unreachable — free models will use local fallback"
+      echo "  ⚠ Groq API unreachable — free models will use local fallback"
     fi
   else
-    echo "  ℹ  No OPENROUTER_API_KEY in secrets.env — free cloud models disabled"
-    echo "     Add to ~/.claude/secrets/secrets.env: OPENROUTER_API_KEY=sk-or-..."
+    echo "  ℹ  No GROQ_API_KEY in secrets.env — Groq free models disabled"
+    echo "     Add to ~/.claude/secrets/secrets.env: GROQ_API_KEY=gsk_..."
   fi
-
-  # Copy free models list
-  mkdir -p "$HOME/.claude/config"
-  cp "$SCRIPT_DIR/config/openrouter-free-models.json" "$HOME/.claude/config/" 2>/dev/null || true
-  echo "  ✅ Free models list copied"
 }
 
 # ── Phase 10: Agent Definitions ──
@@ -1017,7 +1010,7 @@ if [ "$ONLY_AGENTS" -eq 1 ]; then
   install_agents
 else
   setup_ollama
-  setup_openrouter
+  setup_free_models
   install_agents
   setup_cron
   setup_voice

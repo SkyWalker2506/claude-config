@@ -7,44 +7,29 @@
 
 set -euo pipefail
 
-# --- Secrets yükle ---
-SECRETS_FILE="$HOME/.claude/secrets/secrets.env"
-if [ -f "$SECRETS_FILE" ]; then
-  # shellcheck disable=SC1090
-  source "$SECRETS_FILE" 2>/dev/null || true
-fi
-
 # ---------------------------------------------------------------------------
-# 1. gpt-5.4 — OpenRouter API key + connectivity (primary model for most agents)
+# 1. gpt-5.4 — Codex CLI availability
 # ---------------------------------------------------------------------------
 check_gpt54() {
-  if [ -z "${OPENROUTER_API_KEY:-}" ]; then
-    echo "UNAVAILABLE: gpt-5.4 | OPENROUTER_API_KEY tanımlı değil | ~/.claude/secrets/secrets.env dosyasına OPENROUTER_API_KEY=... ekle | sonnet"
+  if ! command -v codex &>/dev/null; then
+    echo "UNAVAILABLE: gpt-5.4 | codex CLI bulunamadı | npm install -g @openai/codex çalıştır | sonnet"
     return
   fi
 
-  # Lightweight ping — modeller listesi (düşük token maliyet)
-  http_code=$(curl -s -o /dev/null -w "%{http_code}" \
-    -H "Authorization: Bearer $OPENROUTER_API_KEY" \
-    "https://openrouter.ai/api/v1/models" \
-    --max-time 5 2>/dev/null || echo "000")
-
-  if [ "$http_code" = "200" ]; then
+  login_status=$(codex ls 2>&1 | grep -v 'Not logged in' | grep -q . && echo "logged_in" || echo "not_logged_in")
+  if [ "$login_status" = "logged_in" ]; then
     echo "AVAILABLE: gpt-5.4"
-  elif [ "$http_code" = "401" ]; then
-    echo "UNAVAILABLE: gpt-5.4 | OPENROUTER_API_KEY geçersiz (401) | Geçerli bir API key al: openrouter.ai/keys | sonnet"
   else
-    echo "UNAVAILABLE: gpt-5.4 | OpenRouter ulaşılamıyor (HTTP $http_code) | İnternet bağlantısını kontrol et | sonnet"
+    echo "UNAVAILABLE: gpt-5.4 | Codex CLI giriş yapılmamış | codex login çalıştır | sonnet"
   fi
 }
 
 # ---------------------------------------------------------------------------
-# 2. gpt-5.4-mini — Same OpenRouter key, lighter model
+# 2. gpt-5.4-mini — Same Codex CLI
 # ---------------------------------------------------------------------------
 check_gpt54_mini() {
-  # Same key as gpt-5.4 — if key exists, mini is also available
-  if [ -z "${OPENROUTER_API_KEY:-}" ]; then
-    echo "UNAVAILABLE: gpt-5.4-mini | OPENROUTER_API_KEY tanımlı değil | ~/.claude/secrets/secrets.env dosyasına ekle | haiku"
+  if ! command -v codex &>/dev/null; then
+    echo "UNAVAILABLE: gpt-5.4-mini | codex CLI bulunamadı | npm install -g @openai/codex çalıştır | haiku"
     return
   fi
   echo "AVAILABLE: gpt-5.4-mini"
@@ -66,7 +51,7 @@ check_free_web() {
 }
 
 # ---------------------------------------------------------------------------
-# 4. Claude Code native models (opus, sonnet, haiku — always available)
+# 4. Claude Code native models (opus, sonnet, haiku — always available via Max subscription)
 # ---------------------------------------------------------------------------
 check_claude_native() {
   echo "AVAILABLE: opus"

@@ -32,19 +32,12 @@ Bu dosyanın devamındaki kod ve yapılandırma blokları geçerlidir.
 
 ## Free Tier Providers (April 2026)
 
-### OpenRouter Free Tier
-- Aggregates multiple free models from various providers
-- Models rotate — availability changes frequently
-- Rate limits vary per model (typically 10-60 RPM)
-- Best for: model diversity, testing different architectures
-- Current active: qwen3.6-plus:free (our primary free model)
-
 ### Groq
 - Extremely fast inference (LPU hardware)
 - Free tier with generous limits
 - Limited model selection (Llama, Mixtral families)
 - Best for: speed-critical tasks, real-time applications
-- Weakness: model selection narrower than OpenRouter
+- Weakness: model selection narrower than HuggingFace
 
 ### HuggingFace Inference API
 - Free tier for open-source models
@@ -72,7 +65,7 @@ Scoring:
 
 ```
 Fallback chain (our standard):
-free (OpenRouter) → free (Groq) → local (Ollama) → haiku → sonnet
+free (Groq) → local (Ollama) → haiku → sonnet
 ```
 
 Rules:

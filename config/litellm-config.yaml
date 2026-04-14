@@ -1,47 +1,41 @@
 # LiteLLM Proxy Config — Free Model Routing
-# Claude Code sends Anthropic model IDs → proxy routes to free models via OpenRouter
+# Claude Code sends Anthropic model IDs → proxy routes to free models via Groq
 #
 # Usage: litellm --config ~/Projects/claude-config/config/litellm-config.yaml --port 4123
 # Then:  ANTHROPIC_BASE_URL=http://localhost:4123 claude --model claude-sonnet-4-6
 
 model_list:
-  # All Anthropic model IDs → free model
+  # All Anthropic model IDs → free Groq model
   - model_name: claude-sonnet-4-6
     litellm_params:
-      model: openrouter/qwen/qwen3.6-plus:free
-      api_key: os.environ/OPENROUTER_API_KEY
-      api_base: https://openrouter.ai/api/v1
+      model: groq/llama-3.3-70b-versatile
+      api_key: os.environ/GROQ_API_KEY
 
   - model_name: claude-opus-4-6
     litellm_params:
-      model: openrouter/qwen/qwen3.6-plus:free
-      api_key: os.environ/OPENROUTER_API_KEY
-      api_base: https://openrouter.ai/api/v1
+      model: groq/moonshotai/kimi-k2-instruct
+      api_key: os.environ/GROQ_API_KEY
 
   - model_name: claude-haiku-4-5-20251001
     litellm_params:
-      model: openrouter/qwen/qwen3.6-plus:free
-      api_key: os.environ/OPENROUTER_API_KEY
-      api_base: https://openrouter.ai/api/v1
+      model: groq/llama-3.3-70b-versatile
+      api_key: os.environ/GROQ_API_KEY
 
   # Aliases
   - model_name: sonnet
     litellm_params:
-      model: openrouter/qwen/qwen3.6-plus:free
-      api_key: os.environ/OPENROUTER_API_KEY
-      api_base: https://openrouter.ai/api/v1
+      model: groq/llama-3.3-70b-versatile
+      api_key: os.environ/GROQ_API_KEY
 
   - model_name: opus
     litellm_params:
-      model: openrouter/qwen/qwen3.6-plus:free
-      api_key: os.environ/OPENROUTER_API_KEY
-      api_base: https://openrouter.ai/api/v1
+      model: groq/moonshotai/kimi-k2-instruct
+      api_key: os.environ/GROQ_API_KEY
 
   - model_name: haiku
     litellm_params:
-      model: openrouter/qwen/qwen3.6-plus:free
-      api_key: os.environ/OPENROUTER_API_KEY
-      api_base: https://openrouter.ai/api/v1
+      model: groq/llama-3.3-70b-versatile
+      api_key: os.environ/GROQ_API_KEY
 
 litellm_settings:
   drop_params: true

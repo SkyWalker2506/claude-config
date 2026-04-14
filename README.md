@@ -45,7 +45,7 @@ A portable, self-installing configuration system that turns Claude Code into a m
 - **8 MCP servers** integrated (GitHub, Atlassian/Jira, Firebase, Flutter, jCodeMunch, Git, Fetch, Context7)
 - **34 slash commands** (/yolo, /team-build, /jira-run, /audit, /web-research, /sprint-plan, and more)
 - **Telegram bot** with persistent Haiku agent — control Claude from your phone
-- **Local-first model routing** — Ollama → Claude → OpenRouter free (saves tokens)
+- **Local-first model routing** — Ollama → Claude → Groq free (saves tokens)
 - **Cost control** — automatic model tier switching based on quota remaining
 
 ## Quick Start
@@ -105,7 +105,7 @@ Then browse with `/plugin > Discover` or install directly:
 | [devtools-setup](https://github.com/SkyWalker2506/ccplugin-devtools-setup) | Install, migrate, secrets, MCP config |
 | [agent-browser](https://github.com/SkyWalker2506/ccplugin-agent-browser) | Headless browser automation |
 | [opencode-bridge](https://github.com/SkyWalker2506/ccplugin-opencode-bridge) | OpenCode/Zen + Ollama local models |
-| [ai-review](https://github.com/SkyWalker2506/ccplugin-ai-review) | GitHub PR review via OpenRouter ($0) |
+| [ai-review](https://github.com/SkyWalker2506/ccplugin-ai-review) | GitHub PR review via free models ($0) |
 | [daily-check](https://github.com/SkyWalker2506/ccplugin-daily-check) | Daily system health check |
 | [sync-agents](https://github.com/SkyWalker2506/ccplugin-sync-agents) | Agent registry validator |
 | [notifications](https://github.com/SkyWalker2506/ccplugin-notifications) | Multi-channel notifications — Telegram, macOS, sound |
@@ -197,7 +197,7 @@ Open `claude` in any project directory → migration hook fires → setup wizard
 | <5% | Critical | No Opus, Sonnet + Haiku |
 | <1% | Sonnet-only | Haiku exhausted, Sonnet takes over |
 
-Fallback priority: **Local (Ollama) → Claude (paid) → Free (OpenRouter)**
+Fallback priority: **Local (Ollama) → Claude (paid) → Free (Groq)**
 
 ## File Structure
 

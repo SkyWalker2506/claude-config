@@ -2,6 +2,8 @@
 # migration_check.sh — Proje migration + MCP sağlık kontrolü
 # Hook: UserPromptSubmit — her mesajda çalışır, max 1 sn
 # Çıktı yalnızca aksiyon gerektiğinde üretilir; güncel projede sessiz kalır.
+# Tüm çıktıyı stderr'e yönlendir — Claude Code'da kullanıcıya görünür
+exec 1>&2
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 # Script is at claude-config/projects/scripts/ → go up 3 levels for PROJECTS_ROOT

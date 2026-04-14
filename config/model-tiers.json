@@ -32,11 +32,11 @@
     },
     "track_file": "~/.watchdog/cost.json"
   },
-  "openrouter_limits": {
+  "free_model_limits": {
     "daily_budget_requests": 1000,
     "warn_at": 800,
     "on_exhausted": "switch_to_local",
-    "track_file": "~/.watchdog/openrouter_usage.json"
+    "track_file": "~/.watchdog/free_model_usage.json"
   },
   "self_evaluation": {
     "enabled": true,

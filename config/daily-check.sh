@@ -57,23 +57,21 @@ if command -v ollama &>/dev/null && ollama list &>/dev/null 2>&1; then
   fi
 fi
 
-# 3. OpenRouter API reachable?
-OR_STATUS="unreachable"
-if curl -s --max-time 5 "https://openrouter.ai/api/v1/models" >/dev/null 2>&1; then
-  OR_STATUS="reachable"
-  ok "OpenRouter API reachable"
-else
-  warn "OpenRouter API unreachable — free models unavailable"
-fi
-
-# 4. OpenRouter API key?
+# 3. Groq API reachable?
 SECRETS_FILE="$HOME/.claude/secrets/secrets.env"
+OR_STATUS="unreachable"
 OR_KEY_STATUS="missing"
-if [ -f "$SECRETS_FILE" ] && grep -q "OPENROUTER_API_KEY" "$SECRETS_FILE" 2>/dev/null; then
+if [ -f "$SECRETS_FILE" ] && grep -q "GROQ_API_KEY" "$SECRETS_FILE" 2>/dev/null; then
   OR_KEY_STATUS="present"
-  ok "OpenRouter API key found"
+  ok "Groq API key found"
 else
-  warn "OpenRouter API key not found in secrets.env"
+  warn "Groq API key not found in secrets.env"
+fi
+if curl -s --max-time 5 "https://api.groq.com/openai/v1/models" >/dev/null 2>&1; then
+  OR_STATUS="reachable"
+  ok "Groq API reachable"
+else
+  warn "Groq API unreachable — free models may be unavailable"
 fi
 
 # 5. MCP servers (basic connectivity)
@@ -168,8 +166,8 @@ cat > "$REPORT_FILE" << REPORT_EOF
   "timestamp": "$TIMESTAMP",
   "ollama_running": $(command -v ollama &>/dev/null && ollama list &>/dev/null 2>&1 && echo true || echo false),
   "ollama_latency_ms": "$OLLAMA_LATENCY",
-  "openrouter_reachable": $([ "$OR_STATUS" = "reachable" ] && echo true || echo false),
-  "openrouter_key": "$OR_KEY_STATUS",
+  "groq_reachable": $([ "$OR_STATUS" = "reachable" ] && echo true || echo false),
+  "groq_key": "$OR_KEY_STATUS",
   "claude_code": "$(command -v claude &>/dev/null && claude --version 2>/dev/null | head -1 || echo 'not found')",
   "disk_free": "$DISK_FREE",
   "errors": ${#ERRORS[@]},

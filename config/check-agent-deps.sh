@@ -84,8 +84,6 @@ for model in [pm]+(fb if isinstance(fb,list) else []):
             if chk: (req if model==pm else opt).append({"type":"model","name":om,"install":r.get('install','')})
     if 'claude-api' in n and not env_exists('ANTHROPIC_API_KEY'):
         req.append({"type":"api","name":"ANTHROPIC_API_KEY","console":r.get('console','')})
-    if 'openrouter-api' in n and not env_exists('OPENROUTER_API_KEY'):
-        opt.append({"type":"api","name":"OPENROUTER_API_KEY","console":r.get('console','')})
 
 res={"agent":agent_id,"primary_model":pm,"ready":len(req)==0,"missing_required":req,"missing_optional":opt}
 print(json.dumps(res,indent=2))

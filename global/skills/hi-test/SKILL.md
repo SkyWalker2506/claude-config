@@ -37,21 +37,6 @@ Sadece bu tek satırı döndür, başka açıklama ekleme.
 
 ## Model listesi ve endpoint'leri
 
-### OpenRouter modelleri
-Endpoint: `POST https://openrouter.ai/api/v1/chat/completions`  
-Header: `Authorization: Bearer $OPENROUTER_API_KEY`  
-Body: `{"model":"<id>","messages":[{"role":"user","content":"Selam, kim olduğunu 1 cümlede söyle."}],"max_tokens":60}`
-
-| Agent | Model ID |
-|-------|----------|
-| agent-or-1 | `qwen/qwen3.6-plus:free` |
-| agent-or-2 | `openai/gpt-oss-120b:free` |
-| agent-or-3 | `openai/gpt-oss-20b:free` |
-| agent-or-4 | `nvidia/nemotron-3-super-120b-a12b:free` |
-| agent-or-5 | `meta-llama/llama-3.3-70b-instruct:free` |
-| agent-or-6 | `google/gemma-3-27b-it:free` |
-| agent-or-7 | `qwen/qwen3-coder:free` |
-
 ### Groq modelleri
 Endpoint: `POST https://api.groq.com/openai/v1/chat/completions`  
 Header: `Authorization: Bearer $GROQ_API_KEY`
@@ -123,7 +108,6 @@ Formül: `score = round((tests_passed / tests_run) * 100)`
 ```
 Model                                        | Skor | Durum | Cevap
 ---------------------------------------------|------|-------|-------
-openrouter/qwen/qwen3.6-plus:free            |  95  |  ✅   | Merhaba, ben...
 groq/llama-3.3-70b-versatile                 | 100  |  ✅   | Ben bir yapay...
 hf/meta-llama/Llama-3.1-8B-Instruct          | 100  |  ✅   | Ben bir sanal...
 cerebras/qwen-3-235b-a22b-instruct-2507      | 100  |  ✅   | Ben, insanlar...

@@ -31,7 +31,7 @@
 | N | Prompt Engineering & Agent Design | 0 | 2 | 2 |
 
 ## Model Distribution
-- **Free/Local:** ~65% (scripts, Ollama, OpenRouter free)
+- **Free/Local:** ~65% (scripts, Ollama, Groq free)
 - **Haiku:** ~18%
 - **Sonnet:** ~13%
 - **Opus:** ~4% (B1 Backend Architect, B13 Security Auditor, N2 Agent Builder)

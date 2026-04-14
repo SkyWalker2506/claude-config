@@ -58,7 +58,7 @@ When NOT to retry: deterministic failures (syntax error, missing file, wrong API
 Chain of alternatives, tried in order:
 
 ```
-free (OpenRouter) → free (Groq) → local (Ollama) → haiku → sonnet
+free (Groq) → local (Ollama) → haiku → sonnet
 ```
 
 Rules:

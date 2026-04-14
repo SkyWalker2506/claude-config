@@ -120,7 +120,7 @@ def main() -> None:
                 "effort": "medium",
                 "template": "autonomous",
                 "tier": meta["tier"].lower() if meta["tier"] else "mid",
-                "model_source": "openrouter",
+                "model_source": "local-free",
             }
         else:
             entry = reg_agents[aid]

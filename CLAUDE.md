@@ -45,7 +45,7 @@ Format: `[{AgentID} {Name} | {model} {cost_emoji} | Tier: {tier}]`
 - `{Name}` zorunlu; atlanmaz.
 
 Cost emoji:
-- `🆓` — OpenRouter/Groq ücretsiz
+- `🆓` — Groq/HuggingFace ücretsiz
 - `💻` — Ollama lokal
 - `💛` — Haiku (cheap)
 - `🔶` — Sonnet (mid)
@@ -53,7 +53,7 @@ Cost emoji:
 
 **Fallback zinciri (zorunlu sıra):**
 ```
-free (OpenRouter) → free (Groq) → local (Ollama) → haiku → sonnet
+free (Groq) → local (Ollama) → haiku → sonnet
 ```
 Sonnet her zaman son fallback. Sonnet'e geçmeden önce kullanıcıya sor.
 
@@ -103,15 +103,12 @@ free/local → haiku → sonnet → opus
 | Model | Maliyet | Ne zaman |
 |-------|---------|----------|
 | `free-gemini` | Ücretsiz | UI/UX, design, frontend kod, araştırma, kolay analiz |
-| `free-qwen3.6` | Ücretsiz | Coding, frontend, backend, uzun context (1M) — OpenRouter |
-| `free-nemotron` | Ücretsiz | Backend, Unity/C#, reasoning, 120B güç — OpenRouter |
-| `free-stepfun` | Ücretsiz | Frontend kod, genel coding — OpenRouter |
-| `free-groq` | Ücretsiz | Hızlı inference: Llama 3.1/3.3, Gemma (Groq free tier) |
+| `free-groq` | Ücretsiz | Hızlı inference: Llama 3.1/3.3, Qwen3, Kimi K2 (Groq free tier) |
 | `free-hf` | Ücretsiz | HuggingFace Inference API free modeller |
 | `local-qwen-9b` | Ücretsiz | İçerik, metin, orta analiz (Ollama gerekir) |
 | `free-script` | Ücretsiz | Bash/script tabanlı işler |
 | `free-web` | Ücretsiz | Web fetch/arama — MCP fetch ile |
-| `free-gpt` | Ücretsiz tier | Basit soru-cevap, kısa görev (OpenRouter GPT-4o-mini) |
+| `free-gpt` | GPT Pro | Codex CLI ile GPT-5.4 — kod üretimi, agentic görevler |
 | Haiku 4.5 | En düşük | Label, küçük düzenleme, basit soru — free yoksa |
 | Sonnet 4.6 | Orta | Kod, orta karmaşıklık — free yetmiyorsa |
 | Opus 4.6 | En yüksek | Mimari, büyük feature, zor debug — zorunlu ise |
@@ -256,7 +253,7 @@ Hook ciktisindaki sinyaller:
 | `JIRA_API_TOKEN` + `JIRA_URL` | Jira — dogrudan API cagrisi yapilabilir |
 | `GITHUB_TOKEN` | GitHub — gh CLI + MCP |
 | `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID` | Telegram bot |
-| `OPENROUTER_API_KEY` | OpenRouter — ucretsiz modeller |
+| `GROQ_API_KEY` | Groq — ucretsiz modeller |
 | `FIREBASE_SERVICE_ACCOUNT_PATH` | Firebase |
 | `CLAUDE_LOCAL_*` | Lokal Claude (Ollama bridge) |
 
@@ -605,7 +602,7 @@ Format: `§9e` ile ayni — `learnings` alani serbest metin.
 - Layer contracts: `config/layer-contracts.json` — Ultra Plan Mode structured output zorunluluklari
 - Health check: `config/daily-check.sh` — gunluk Ollama/MCP/API/registry kontrolu
 - Routing: A2 (Task Router, Sonnet) capability match + confidence skoru ile agent secer
-- Fallback oncelik: LOCAL (Ollama) → CLAUDE (paid) → FREE (OpenRouter)
+- Fallback oncelik: LOCAL (Ollama) → FREE (Groq) → CLAUDE (paid)
 - Mevcut skill'ler aynen calisir — agent sistemi ust katman, degisiklik yok
 - Pool → Active gecis: `agent-registry.json`'da `status` degistir
 - Auto-dispatch: Her plan ciktiginda `agent-registry.json`'dan capability match ile uygun agent secer; model/effort/MCP o agent'in kurallarina gore atanir

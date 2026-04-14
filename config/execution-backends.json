@@ -80,7 +80,7 @@
       "api_billing": false,
       "mcp_tools": [],
       "check_command": "curl -s http://localhost:4000/health 2>/dev/null | grep -q ok && echo ok || echo not_running",
-      "description": "LiteLLM proxy → Ollama / free-tier OpenRouter models. Zero cost.",
+      "description": "LiteLLM proxy → Ollama / free-tier models. Zero cost.",
       "proxy_url": "http://localhost:4000"
     },
     "deterministic-tool": {

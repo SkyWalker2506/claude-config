@@ -29,7 +29,7 @@ def transcribe(audio_path: str, lang: str = "tr") -> str:
                     return r.stdout.strip()
 
     # 3. Try ffmpeg + OpenAI API (if key available)
-    api_key = os.environ.get("OPENAI_API_KEY") or os.environ.get("OPENROUTER_API_KEY", "")
+    api_key = os.environ.get("OPENAI_API_KEY", "")
     if api_key and shutil.which("curl"):
         r = subprocess.run([
             "curl", "-s", "-X", "POST",

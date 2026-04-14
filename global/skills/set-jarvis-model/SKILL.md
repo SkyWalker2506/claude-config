@@ -11,7 +11,7 @@ Jarvis'in hangi modelle çalışacağını seç, test et, kalıcı olarak ayarla
 
 - `settings.json` → `model` alanı Jarvis'in modeli
 - Claude native modeller (sonnet/opus/haiku) doğrudan settings.json'a yazılır
-- External modeller (openrouter, groq, cerebras vb.) `--model` flag'ı ile çalışır → settings.json'a tam model ID yazılır
+- External modeller (groq, cerebras, hf vb.) `--model` flag'ı ile çalışır → settings.json'a tam model ID yazılır
 - Tüm komutlar (`cl`, `claude`, `clhq`) settings.json'dan okur — başka override yok
 
 ## Adımlar
@@ -33,23 +33,19 @@ Tablo formatı — **Kaynak** sütunu provider'ı gösterir:
 ```
 #  | Model                                   | Kaynak     | Skor | Son Test   | Durum
 ---|------------------------------------------|------------|------|------------|------
-1  | qwen/qwen3.6-plus:free                  | OpenRouter | 100  | 2026-04-07 | ✅ (AKTİF)
-2  | qwen-3-235b-a22b-instruct-2507          | Cerebras   | 100  | 2026-04-07 | ✅
-3  | llama-3.3-70b-versatile                  | Groq       | 100  | 2026-04-07 | ✅
-4  | google/gemma-4-31B-it                    | HuggingFace| 100  | 2026-04-07 | ✅
-5  | qwen3.5:9b                              | Local      | 100  | 2026-04-07 | ✅
-6  | qwen2.5-coder:7b                        | Local      | 100  | 2026-04-07 | ✅
-7  | deepseek-coder:6.7b                     | Local      | 100  | 2026-04-07 | ✅
-8  | gemini-2.0-flash                        | Google     |  90  | 2026-04-07 | ✅
-9  | openai/gpt-oss-120b:free                | OpenRouter |  67  | 2026-04-07 | ⚠️
-10 | llama-3.3-70b-instruct:free             | OpenRouter |   0  | 2026-04-07 | ❌
+1  | qwen-3-235b-a22b-instruct-2507          | Cerebras   | 100  | 2026-04-07 | ✅ (AKTİF)
+2  | llama-3.3-70b-versatile                  | Groq       | 100  | 2026-04-07 | ✅
+3  | google/gemma-4-31B-it                    | HuggingFace| 100  | 2026-04-07 | ✅
+4  | qwen3.5:9b                              | Local      | 100  | 2026-04-07 | ✅
+5  | qwen2.5-coder:7b                        | Local      | 100  | 2026-04-07 | ✅
+6  | deepseek-coder:6.7b                     | Local      | 100  | 2026-04-07 | ✅
+7  | gemini-2.0-flash                        | Google     |  90  | 2026-04-07 | ✅
 —  | sonnet                                  | Claude API |  —   |     —      | 🔵
 —  | opus                                    | Claude API |  —   |     —      | 🔵
 —  | haiku                                   | Claude API |  —   |     —      | 🔵
 ```
 
 **Kaynak mapping** (model-scores.json `provider` alanından):
-- `openrouter` → OpenRouter
 - `groq` → Groq
 - `huggingface` → HuggingFace
 - `cerebras` → Cerebras
@@ -67,7 +63,6 @@ Tablo formatı — **Kaynak** sütunu provider'ı gösterir:
 - `(AKTİF)` — şu an settings.json'da set olan model
 
 **Model adı gösterimi:** Prefix'leri kaldır, kısa göster:
-- `openrouter/qwen/qwen3.6-plus:free` → `qwen/qwen3.6-plus:free`
 - `groq/llama-3.3-70b-versatile` → `llama-3.3-70b-versatile`
 - `hf/google/gemma-4-31B-it` → `google/gemma-4-31B-it`
 - `cerebras/llama3.1-8b` → `llama3.1-8b`
@@ -87,16 +82,6 @@ Tablo formatı — **Kaynak** sütunu provider'ı gösterir:
 `~/Projects/claude-config/claude-secrets/secrets.env` oku → API key'leri al.
 
 Seçilen modelin provider'ına göre tek curl çağrısı yap:
-
-**OpenRouter** (`provider: openrouter`):
-Model ID: model-scores.json'daki key'den `openrouter/` prefix'ini kaldır → API'ye gönder
-```bash
-curl -s -X POST https://openrouter.ai/api/v1/chat/completions \
-  -H "Authorization: Bearer $OPENROUTER_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"model":"<MODEL_ID>","messages":[{"role":"user","content":"Selam, 1 cümlede kim olduğunu söyle."}],"max_tokens":60}' \
-  | python3 -c "import sys,json; d=json.load(sys.stdin); print('ok|'+d['choices'][0]['message']['content'][:80])" 2>/dev/null || echo "fail"
-```
 
 **Groq** (`provider: groq`):
 Model ID: `groq/` prefix'ini kaldır
@@ -172,7 +157,6 @@ jq --arg m "<SETTINGS_MODEL_VALUE>" '.model = $m' ~/.claude/settings.json > /tmp
 | Claude native: sonnet | `sonnet` |
 | Claude native: opus | `opus` |
 | Claude native: haiku | `haiku` |
-| OpenRouter: `qwen/qwen3.6-plus:free` | `openrouter/qwen/qwen3.6-plus:free` |
 | Groq: `llama-3.3-70b-versatile` | `groq/llama-3.3-70b-versatile` |
 | HuggingFace: `google/gemma-4-31B-it` | `hf/google/gemma-4-31B-it` |
 | Cerebras: `llama3.1-8b` | `cerebras/llama3.1-8b` |

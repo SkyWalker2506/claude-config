@@ -32,7 +32,7 @@ confidence: high
 
 ## Model Secim Kurallari
 ```
-free (OpenRouter) → free (Groq) → local (Ollama) → haiku → sonnet
+free (Groq) → local (Ollama) → haiku → sonnet
 ```
 - Sormadan ucretli baslatma
 - Ucretli gecis icin kullaniciya sor
