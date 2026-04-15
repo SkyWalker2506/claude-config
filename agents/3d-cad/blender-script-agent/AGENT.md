@@ -5,9 +5,10 @@ category: 3d-cad
 tier: mid
 models:
   lead: gpt-5.4
-  senior: gpt-5.4-mini
+  senior: gemini-3.1-pro
   mid: gpt-5.4-mini
   junior: gpt-5.4-nano
+  vision: gemini-3.1-pro
 fallback: sonnet opus
 mcps: []
 capabilities: [blender, python-scripting, geometry-nodes, shader-nodes, animation, rigging, fbx-export, gltf]

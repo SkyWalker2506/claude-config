@@ -99,7 +99,11 @@
     "K1",
     "K3",
     "K4",
-    "L1"
+    "L1",
+    "E13",
+    "E14",
+    "E15",
+    "E2"
   ],
   "agents": {
     "A1": {
@@ -7543,6 +7547,108 @@
       "interaction_mode": "automated",
       "codex_model": "gpt-5.4",
       "model_source": "codex_cli"
+    },
+    "E13": {
+      "name": "3D Art Director",
+      "version": "1.0",
+      "category": "3d-cad",
+      "status": "active",
+      "primary_model": "opus",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "art-direction",
+        "visual-critique",
+        "style-guide",
+        "proportion-analysis",
+        "color-theory",
+        "composition",
+        "character-design",
+        "iteration-management"
+      ],
+      "max_tool_calls": 25,
+      "effort": "high",
+      "template": "autonomous",
+      "tier": "senior",
+      "model_source": "anthropic",
+      "strategy": "direct",
+      "execution_backends": {
+        "primary": "claude",
+        "fallback": []
+      },
+      "execution_mode": "claude",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated"
+    },
+    "E14": {
+      "name": "Character Sculptor",
+      "version": "1.0",
+      "category": "3d-cad",
+      "status": "active",
+      "primary_model": "opus",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "character-modeling",
+        "anatomy",
+        "sculpting-workflow",
+        "form-language",
+        "displacement",
+        "blockout",
+        "creature-design",
+        "proportion-control"
+      ],
+      "max_tool_calls": 25,
+      "effort": "high",
+      "template": "autonomous",
+      "tier": "senior",
+      "model_source": "anthropic",
+      "strategy": "direct",
+      "execution_backends": {
+        "primary": "claude",
+        "fallback": []
+      },
+      "execution_mode": "claude",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated"
+    },
+    "E15": {
+      "name": "Material & Lighting Artist",
+      "version": "1.0",
+      "category": "3d-cad",
+      "status": "active",
+      "primary_model": "opus",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "shader-authoring",
+        "pbr-materials",
+        "procedural-textures",
+        "lighting-setup",
+        "skin-shading",
+        "atmospheric-effects",
+        "color-grading",
+        "bump-mapping"
+      ],
+      "max_tool_calls": 25,
+      "effort": "high",
+      "template": "autonomous",
+      "tier": "senior",
+      "model_source": "anthropic",
+      "strategy": "direct",
+      "execution_backends": {
+        "primary": "claude",
+        "fallback": []
+      },
+      "execution_mode": "claude",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated"
     }
   },
   "retry_strategy": {

@@ -83,3 +83,42 @@ All files are copy-paste ready with real working code from official docs.
 - knowledge/_index.md — added entry for ai-mesh-prompting.md
 - src/foundry/pipeline/enhanced_mode.py — _BMESH_SYSTEM_PROMPT upgraded with Chain-of-3D-Thoughts
 - forge/.../v5/orchestrate_v5.py — BLENDER_SYSTEM upgraded with quality rules
+
+## 2026-04-14 — Humanoid + Goblin + API + Render Research (agent-sharpen round 2)
+
+**Source:** Knowledge synthesis from Blender 4.x/5.x docs, game dev character guides, fantasy character design references
+
+### Key Learnings
+
+1. **use_auto_smooth KALDIRILDI (Blender 4.0):** `obj.data.use_auto_smooth = True` artık çalışmıyor. Yeni yol: `bpy.ops.object.shade_smooth_by_angle(angle=...)` veya "Smooth by Angle" modifier. Her script'in başında versiyon kontrolü şart.
+
+2. **Principled BSDF input isimleri değişti (Blender 4.0):**
+   - `"Subsurface"` → `"Subsurface Weight"`
+   - `"Specular"` → `"Specular IOR Level"`
+   - `"Transmission"` → `"Transmission Weight"`
+   Eski isimle yazılan tüm material scriptleri 4.0+'da sessizce çalışmaz (hata vermeden yanlış değer atar).
+
+3. **EEVEE engine adı değişti (Blender 4.2):** `BLENDER_EEVEE` → `BLENDER_EEVEE_NEXT`. Render engine scriptleri güncellenmeli.
+
+4. **Goblin oranları:** 4-5 head tall, kafa %22 boy, kulak kafa yüksekliğinin %45'i, omuz dar, el büyük, bacak kısa. Blender koordinatlarında: total_height=1.0m, head_height=0.22, shoulder_w=0.20.
+
+5. **T-pose zorunluluğu:** Kollar yatay (+X ekseni) olmalı. Extrude direction: `Vector((x_sign * 0.18, 0, 0))`. Aksi halde auto weight paint yanlış hesaplar.
+
+6. **3-point lighting değerleri:** Key=200W 45° yandan, Fill=80W karşı yandan, Rim=120W arkadan. Renk: Key sıcak (0.95 tint), Fill soğuk (0.8 mavi tint), Rim beyaz.
+
+7. **Quad topology kritik:** Eklem bölgesinde minimum 2 edge loop. Rigged mesh'te ngon YASAK. Quad ratio > %85 hedef.
+
+### How to Apply
+
+1. **Script başına:** BSDF_NAMES dict ve bsdf_set() helper ekle → versiyon bağımsız çalışır
+2. **Goblin script:** goblin_anatomy.md'deki GOBLIN dict koordinatları kullan
+3. **Karakter render:** render_setup.md'deki setup_3point_lighting() direkt çalıştır
+4. **Smooth shading:** apply_smooth_shading() wrapper kullan, doğrudan use_auto_smooth yazma
+
+### Files Created
+- knowledge/humanoid_modelling.md (NEW) — T-pose workflow, edge flow, oranlar
+- knowledge/goblin_anatomy.md (NEW) — fantasy goblin oranları, kafa/kulak script
+- knowledge/blender_python_api.md (NEW) — kritik bmesh ops + armature
+- knowledge/render_setup.md (NEW) — 3-point lighting + turntable + camera
+- knowledge/blender_4x_api_changes.md (NEW) — breaking changes + uyumluluk kodu
+- knowledge/_index.md — 5 yeni topic eklendi, hızlı erişim tablosu güncellendi
