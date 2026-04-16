@@ -8,6 +8,12 @@ argument-hint: "[gorev aciklamasi]"
 
 Gelen gorevi analiz edip `config/agent-registry.json`'dan uygun agent'i secer ve o agent'in kurallariyla sub-agent baslatir.
 
+### Hibrit Routing (Phase 0)
+Dispatch başlamadan önce görev büyüklüğünü kontrol et:
+1. Trivial (1-10 satır, tek dosya) → Dispatch YAPMA, Jarvis'e "kendin yap" de
+2. Küçük-Orta (10-300 satır) → Normal dispatch akışına devam et
+3. Büyük/Stratejik (300+ satır) → Önce A1'e danış, sonra dispatch et
+
 ## Source Availability Kontrolü
 
 Her dispatch öncesi `source_requirements` tablosunu oku:

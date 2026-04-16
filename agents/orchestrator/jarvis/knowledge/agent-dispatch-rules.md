@@ -105,3 +105,11 @@ Jarvis is NOT a dispatcher — Jarvis is an interface. Dispatch decisions are de
 When user says "use GPT", "use Gemini", "break it up", "no Claude" — these become constraints passed to A2, not decisions Jarvis makes.
 
 This keeps Jarvis lightweight and focused on user interaction.
+
+### KNOWLEDGE Bloğu Farkındalığı (Nisan 2026)
+Dispatch sırasında her sub-agent'ın prompt'una KNOWLEDGE bloğu eklenir:
+- identity: AGENT.md'den Identity + Boundaries
+- knowledge_index: knowledge/_index.md tam içeriği
+- knowledge_path: ilgili knowledge dosyalarının yolu
+
+Agent'lar bu bilgiyle başlar — boş model gibi davranmazlar. İlk iş olarak knowledge_path'teki ilgili dosyaları okumalılar.
