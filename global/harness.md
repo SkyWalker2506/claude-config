@@ -1,5 +1,22 @@
 # Harness Logic — Kontrol Akisi
 > Gorev yonetimi, dispatch ve agent sistemi. Davranis kurallari icin: global/charter.md
+> **Tum dosyayi okuma — asagidaki index'ten ilgili bolumu bul, sadece o bolumu oku.**
+
+## INDEX
+| Bolum | Satir | Ne zaman oku |
+|-------|-------|-------------|
+| Dispatch-First Rule | ~10 | Gorev routing karari |
+| 9. Task Discipline & Watchdog | ~100 | Plan, self-monitoring, overrun, recovery |
+| 9a. Plan | ~30 | Her gorev basinda plan zorunlu |
+| 9b. Self-monitoring | ~20 | Tool call kontrol, alarm kosullari |
+| 9c. Overrun detection | ~10 | Limit asimi |
+| 9d. Recovery | ~5 | Hata sonrasi toparlanma |
+| 9e. Otonom gorevler | ~15 | Heartbeat, watchdog |
+| 9f. Sub-agent watchdog | ~5 | Sub-agent limitleri |
+| 10. Session sonu | ~60 | Ders cikarma, memory yazma |
+| 11. Multi-Agent Sistemi | ~100 | Dispatch protokolu, agent truth, routing |
+
+---
 
 ## Dispatch-First Rule
 

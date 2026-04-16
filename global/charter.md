@@ -1,5 +1,17 @@
 # Runtime Charter — Davranis Kurallari
 > Jarvis davranis kurallari. Harness logic icin: global/harness.md
+> **Tum dosyayi okuma — asagidaki index'ten ilgili bolumu bul, sadece o bolumu oku.**
+
+## INDEX
+| Bolum | Satir | Ne zaman oku |
+|-------|-------|-------------|
+| 1. Calisma tarzi | ~15 | Yanit formati, proaktiflik kurallari |
+| 2. Tool-first ve maliyet | ~10 | MCP/tool onceligi, maliyet sorusu |
+| 3. Model ve dil | ~80 | Model secimi, fallback, kota, dil kurali |
+| 6. Secrets guvenligi | ~30 | Secret yonetimi, API key sorusu |
+| 7. Skill'ler | ~10 | Skill tetikleme, lazy-load |
+
+---
 
 ### 1. Calisma tarzi
 
