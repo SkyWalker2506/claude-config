@@ -101,3 +101,30 @@ Pipeline stage 3 → hierarchical delegation
 3. **Use Router** when input types diverge significantly
 4. **Reach for DAG** only when dependency graph is complex and well-defined
 5. **Avoid Hierarchical** unless task naturally decomposes 3+ levels deep
+
+## 2026 Harness Engineering Research
+
+### Meta-Harness (Stanford, March 2026)
+
+- Automated harness optimization: proposer reads execution traces (~82 files), diagnoses failures, writes new harness
+- Haiku with optimized harness outranked Opus on TerminalBench 2
+- Self-evolution is THE ONLY consistently helpful module (+4.8 SWE-bench, +2.7 OS World)
+- Verifiers actively hurt performance (-0.8 and -8.4 in ablation)
+- Multi-candidate search hurt (-2.4 and -5.6)
+- Harness optimized on one model transfers to 5 others
+
+### LangChain TerminalBench 2 (rank 30+ to rank 5, harness only)
+
+- Context assembly (feedforward guide): inject env info, tools, best practices upfront
+- Self-verification loops: BUILD → TEST → VERIFY → FIX cycle
+- Trace-driven debugging: analyze execution traces for patterns
+- Loop detection: same tool+args 3x → intervene; 80% budget → warning
+- Model-specific tuning per model
+
+### Anthropic's 5 Canonical Patterns
+
+1. Prompt Chaining — sequential for decomposable tasks
+2. Routing — classify → specialized handler
+3. Parallelization — independent subtasks or voting
+4. Orchestrator-Workers — central LLM delegates to workers
+5. Evaluator-Optimizer — generate + feedback loop

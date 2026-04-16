@@ -48,6 +48,31 @@ Bu komut ayni agent'i dort katmanda yan yana gosterir:
 
 ## Akis
 
+### Dispatch Decision Flow
+
+Jarvis does NOT make dispatch decisions directly. The flow is:
+
+1. **Jarvis receives task** from user
+2. **Jarvis passes to A2** (Task Router & Dispatcher) with:
+   - Task description
+   - User constraints (e.g., "use GPT 5.4", "break into small tasks", "no Claude")
+   - Project context (tech stack, current branch)
+3. **A2 decides:**
+   - Which agent(s) to assign
+   - Which model/backend to use (respecting user constraints)
+   - Whether to split into sub-tasks
+   - Confidence score for routing
+4. **A2 dispatches** — launches sub-agent(s) with full knowledge injection
+5. **Jarvis monitors** — tracks progress, reports results
+
+Jarvis NEVER:
+- Selects agents from registry directly
+- Decides model assignments
+- Writes dispatch prompts
+- Contains routing logic or model selection tables
+
+All routing intelligence lives in A2. Jarvis only passes task + constraints.
+
 ### 1. Gorev analizi (max 3 tool call)
 
 Kullanicinin gorevini analiz et:
@@ -117,6 +142,14 @@ Sub-agent prompt header'i kurulmadan hemen once bu adim **zorunlu**:
 Agent tool cagrilmadan once `KNOWLEDGE` blogu bos birakilmaz. Sub-agent kendi source `AGENT.md` kimligi ve `knowledge/_index.md` icerigini header'da gormeden baslatilmaz. Bu dosyalardan biri eksikse runtime mirror'dan uydurma bilgi cekme; dispatch'i durdur ve blocker olarak raporla.
 
 ### 4. Sub-agent baslat
+
+Before calling the Agent tool, write dispatch metadata to a sidecar file:
+
+```bash
+mkdir -p /tmp/watchdog
+echo '{"agent_id":"{id}","agent_name":"{name}","model":"{primary_model}","task":"{task_summary}","ts":"'$(date -Iseconds)'"}' > /tmp/watchdog/current_dispatch.json
+```
+Replace `{id}`, `{name}`, `{primary_model}`, `{task_summary}` with actual values from the selected agent.
 
 Agent tool ile sub-agent dispatch et. Sub-agent prompt'u:
 
@@ -201,3 +234,14 @@ Gorev birden fazla bagimsiz parcaya bolunebiliyorsa:
 - [ ] Beklenen cikti uretildi
 - [ ] Yan etki yok (dosya/ayar)
 - [ ] Gerekli log/rapor paylasildi
+
+### Codex CLI Dispatch Rules
+
+When dispatching to an agent with `execution_mode: codex_cli`:
+
+1. **No git instructions** — Codex cannot commit/push. Remove "Commit: ..." from prompts. Jarvis commits separately after verifying output.
+2. **Max file size** — If target file is >500 lines, break the task into sub-tasks of max 300 lines each.
+3. **No network tasks** — Codex has no internet. Don't ask it to fetch URLs, install packages, or call APIs.
+4. **Verify after each task** — Check that output files exist and were modified. `codex exec` exit code 0 does not guarantee file changes.
+5. **Kill timeout** — If codex runs >15 minutes on a medium task, it's likely stuck. Kill and retry with a smaller scope.
+6. **Prompt format** — Use stdin: `cat prompt.md | codex exec --model gpt-5.4 --full-auto -`. This avoids shell escaping issues with complex prompts.

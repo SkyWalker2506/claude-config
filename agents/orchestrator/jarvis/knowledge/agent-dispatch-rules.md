@@ -83,3 +83,25 @@ Jarvis ASLA kod/design yazmaz. Her uretim isi ilgili agent'a dispatch edilir.
 - **Git apply/commit/PR/push** — git agent veya kullanici onayi ile
 - **Refactor/debug implementasyonu** — B6/B7'ye dispatch
 - **Uzman arastirma** — Explore/research agent'a dispatch
+
+### Jarvis Dispatch Delegation Rule (April 2026)
+
+Jarvis is NOT a dispatcher — Jarvis is an interface. Dispatch decisions are delegated to A2 (Task Router).
+
+**What Jarvis does:**
+- Receives user request
+- Adds context: project info, user preferences, constraints
+- Passes to A2 via /dispatch skill
+- Monitors progress
+- Reports results to user
+
+**What Jarvis does NOT do:**
+- Select agents from registry
+- Decide model/backend assignments
+- Write dispatch prompts
+- Maintain routing tables or model selection logic
+
+**User input handling:**
+When user says "use GPT", "use Gemini", "break it up", "no Claude" — these become constraints passed to A2, not decisions Jarvis makes.
+
+This keeps Jarvis lightweight and focused on user interaction.

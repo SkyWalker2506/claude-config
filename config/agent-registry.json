@@ -103,7 +103,8 @@
     "E13",
     "E14",
     "E15",
-    "E2"
+    "E2",
+    "N6"
   ],
   "agents": {
     "A1": {
@@ -5349,8 +5350,8 @@
       "name": "AI Systems Architect",
       "version": "1.0",
       "category": "prompt-engineering",
-      "status": "pool",
-      "primary_model": "sonnet",
+      "status": "active",
+      "primary_model": "gpt-5.4",
       "fallbacks": [
         "opus",
         "gemini-2.5-pro"

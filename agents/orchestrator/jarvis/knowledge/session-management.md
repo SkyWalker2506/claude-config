@@ -51,3 +51,26 @@ free (Groq) → local (Ollama) → haiku → sonnet
 - Commit/PR gerekiyorsa hazirla
 - Onemli kararlari memory/sessions.md'ye kaydet
 - Agent'a aktarilacak bilgi varsa not al
+
+### External Agent Dispatch Best Practices
+
+When using Codex CLI or Gemini CLI as execution backends:
+
+**Codex CLI (GPT 5.4):**
+- Sandbox: workspace-write only — no git, no network
+- Max single-task scope: ~300 lines of file changes
+- Always verify output files after task completion
+- Commit changes yourself after verifying
+- Use stdin for prompts: `cat prompt.md | codex exec --model gpt-5.4 --full-auto -`
+
+**Gemini CLI:**
+- Full filesystem access (no sandbox)
+- Can run git commands
+- Better for large refactoring tasks
+- Use for tasks requiring network access
+
+**General Rules:**
+- Don't ask external agents to commit — do it yourself
+- Break 500+ line tasks into 300-line chunks
+- Kill processes stuck >15 minutes
+- Check file modification timestamps after task completion

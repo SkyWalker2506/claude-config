@@ -120,8 +120,23 @@ def main() -> None:
             outcome = "failed"
 
         agent_id, agent_name, category = extract_agent(hook_input)
+        model_used = "unknown"
 
-        model = os.environ.get("CLAUDE_MODEL") or hook_input.get("model") or "unknown"
+        # Fallback: read sidecar file written by dispatch skill
+        if agent_id == "unknown":
+            sidecar_path = "/tmp/watchdog/current_dispatch.json"
+            try:
+                import json as _json
+
+                with open(sidecar_path, "r") as f:
+                    sidecar = _json.load(f)
+                    agent_id = sidecar.get("agent_id", "unknown")
+                    agent_name = sidecar.get("agent_name", "unknown")
+                    model_used = sidecar.get("model", "unknown")
+            except (FileNotFoundError, ValueError):
+                pass
+
+        model = os.environ.get("CLAUDE_MODEL") or hook_input.get("model") or model_used or "unknown"
         project = os.path.basename(os.environ.get("CLAUDE_PROJECT_DIR") or os.getcwd())
 
         event = {

@@ -109,3 +109,33 @@ Agent reads index (~100 tokens), loads only needed files.
 - **Agent hallucmates APIs**: Missing L1 (rules) or L2 (source)
 - **Agent loses thread**: Context too large — compact or split task
 - **Agent asks redundant questions**: Missing persistent context (CLAUDE.md)
+
+## 2026 Context Engineering Advances
+
+### Manus Context Engineering (5 principles)
+
+1. KV-cache hit rate is #1 metric — stable system prompts, append-only contexts
+2. Mask tools (don't remove) — cache stability while controlling behavior
+3. Filesystem as extended memory — `working_memory.json`, `todo.md` instead of compressing
+4. `todo.md` recitation — agent rewrites `todo.md` continuously, keeps plan in attention window
+5. Preserve error traces — don't hide failures, models learn from visible mistakes
+
+### NLH Three-Layer Separation (Tingua, March 2026)
+
+- Layer 1: Harness Logic — task-family control (roles, stages, verification gates)
+- Layer 2: Runtime Charter — shared execution semantics and policies
+- Layer 3: Deterministic Scripts — tools, tests, adapters (file-backed)
+- Representation change alone: +16.8 benchmark points, runtime 361→141 min, LLM calls 1200→34
+
+### Execution Contracts
+
+- Required outputs (file paths, artifacts)
+- Token/tool-call budgets
+- Completion conditions (gates)
+- Permissions and artifact output paths
+- Like function signatures for agent calls
+
+### AgentSpec Safety DSL
+
+- Declarative rules: trigger → check → enforce
+- Prevented 90%+ unsafe executions with millisecond overhead

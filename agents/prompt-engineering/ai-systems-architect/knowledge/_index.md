@@ -1,6 +1,6 @@
 ---
-last_updated: 2026-04-09
-total_topics: 7
+last_updated: 2026-04-16
+total_topics: 8
 ---
 
 # Knowledge Index
@@ -12,3 +12,4 @@ total_topics: 7
 - [Agent Communication](agent-communication.md) — delegation, hand-off, artifact passing protokolleri
 - [Cost Modeling](cost-modeling.md) — token/maliyet hesaplama, tier stratejisi, free model kullanimi
 - [Reference Implementations](reference-implementations.md) — agent-skills, spec-kit ve diger acik kaynak ornekler
+- [Harness Engineering — claude-config Specifics](harness-engineering-claude-config.md) — CLAUDE.md dispatch issues, knowledge injection, telemetry, execution contracts
