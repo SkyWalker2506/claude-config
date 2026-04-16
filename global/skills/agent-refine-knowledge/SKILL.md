@@ -12,7 +12,8 @@ Agent'in tum dosyalarini opus ile review eder, kaliteyi artir.
 
 ### Phase 0 — Pre-flight
 - Agent dizini mevcut ve knowledge dosyalari dolu mu kontrol et
-- Knowledge bos ise → `/agent-sharpen` once calistir, refine'i iptal et
+- Knowledge bos ise → kullaniciya "once /agent-sharpen calistir" de, refine'i iptal et
+- Web arastirma YAPMA — mevcut dosyalari oldugu gibi al, dis kaynak ekleme
 
 ### Phase 1-5 — Execution
 
@@ -35,6 +36,10 @@ Agent'in tum dosyalarini opus ile review eder, kaliteyi artir.
 
 **Knowledge dosyalarini dusunup guncellemek HER ZAMAN opus ile yapilir.**
 Bu dosyalar surekli kullanilacak — kalite kritik. Tier ne olursa olsun refine = opus.
+
+**Opus sadece review eder** — mevcut dosyalari analiz eder, yeniden yazar, gereksizi atar.
+Web arastirmasi, dis kaynak ekleme, sharpen islemi YAPILMAZ.
+Araştirma gerekiyorsa → kullaniciya `/agent-sharpen` one calistirmasini soy, dur.
 
 ## When to Use
 - Knowledge dosyalari dolduktan sonra kalite artirma
