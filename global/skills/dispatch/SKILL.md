@@ -104,13 +104,42 @@ Agent secildikten sonra `strategy` alanina bak:
 
 **Strategy eksikse:** `direct` olarak davran.
 
+### 3.6. Knowledge Assembly
+
+Sub-agent prompt header'i kurulmadan hemen once bu adim **zorunlu**:
+1. Secilen agent'in registry kaydindan `category` bilgisini al.
+2. `slug`'u varsayma; source repo'da `agents/{category}/*/AGENT.md` dosyalari icinde `id: {agent_id}` eslesmesini bularak gercek agent klasorunu tespit et.
+3. `agents/{category}/{slug}/AGENT.md` dosyasini oku ve yalnizca `Identity` + `Boundaries` bolumlerini cikar.
+4. `agents/{category}/{slug}/knowledge/_index.md` dosyasini oku ve tam icerigini al.
+5. Bu iki kaynagi dispatch header'indaki `KNOWLEDGE.identity` ve `KNOWLEDGE.knowledge_index` alanlarina inject et.
+6. `knowledge_path` alanini `agents/{category}/{slug}/knowledge/` olarak yaz ve `instruction` satirini ekle: `Read knowledge files relevant to your task from the path above before starting work.`
+
+Agent tool cagrilmadan once `KNOWLEDGE` blogu bos birakilmaz. Sub-agent kendi source `AGENT.md` kimligi ve `knowledge/_index.md` icerigini header'da gormeden baslatilmaz. Bu dosyalardan biri eksikse runtime mirror'dan uydurma bilgi cekme; dispatch'i durdur ve blocker olarak raporla.
+
 ### 4. Sub-agent baslat
 
 Agent tool ile sub-agent dispatch et. Sub-agent prompt'u:
 
 ```
-AGENT: {id} ({name})
-MODEL: {primary_model} | EFFORT: {effort} | MAX: {max_tool_calls} tool call | STRATEGY: {strategy}
+---
+AGENT: {id} — {name}
+ROLE: {description}
+MODEL: {primary_model} | EFFORT: {effort}
+TASK: {kullanici gorevi - 1 satir ozet}
+CALLER: {cagiran agent id veya "user"}
+WATCHDOG: {quick|medium|long} — max {max_tool_calls} tool call
+
+KNOWLEDGE:
+  identity: |
+    {AGENT.md dosyasindan Identity + Boundaries}
+  knowledge_index: |
+    {agents/{category}/{slug}/knowledge/_index.md tam icerigi}
+  knowledge_path: agents/{category}/{slug}/knowledge/
+  instruction: Read knowledge files relevant to your task from the path above before starting work.
+---
+
+STRATEGY: {strategy}
+MAX_TOOL_CALLS: {max_tool_calls}
 MCP: {mcps}
 CAPABILITIES: {capabilities}
 
@@ -118,6 +147,7 @@ GOREV: {kullanici gorevi}
 
 KURALLAR:
 - {agent .md dosyasindan kapsam ve escalation kurallari}
+- KNOWLEDGE: Header'daki `Identity + Boundaries` ve `knowledge_index` source of truth'tur; ise baslamadan once `knowledge_path` altindan gorevle ilgili dosyalari oku
 - WATCHDOG: Her {watchdog.self_check_interval} call self-check, max {max_tool_calls} call
 - Escalation gerekirse → {related agent'lar}
 ```

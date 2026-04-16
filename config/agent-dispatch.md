@@ -58,10 +58,19 @@ MODEL: {primary_model} | EFFORT: {effort}
 TASK: {gorev ozeti - 1 satir}
 CALLER: {cagiran agent id veya "user"}
 WATCHDOG: {quick|medium|long} — max {max_tool_calls} tool call
+
+KNOWLEDGE:
+  identity: |
+    {AGENT.md dosyasindan Identity + Boundaries bolumleri}
+  knowledge_index: |
+    {agents/{category}/{slug}/knowledge/_index.md tam icerigi}
+  knowledge_path: agents/{category}/{slug}/knowledge/
+  instruction: Read knowledge files relevant to your task from the path above before starting work.
 ---
 ```
 
 Placeholder'lar `agent-registry.json`'dan doldurulur. `TASK` ve `CALLER` cagiran tarafindan yazilir.
+`KNOWLEDGE.identity` source `agents/<kategori>/<slug>/AGENT.md` icindeki `Identity` + `Boundaries` bolumlerinden, `KNOWLEDGE.knowledge_index` ise `agents/<kategori>/<slug>/knowledge/_index.md` dosyasinin tam iceriginden uretilir. `knowledge_path` her agent icin source dizinidir; sub-agent goreve baslamadan once ilgili knowledge dosyalarini buradan okumakla yukumludur.
 
 Not:
 - `config/agent-registry.json` source repo model/backend truth'udur
