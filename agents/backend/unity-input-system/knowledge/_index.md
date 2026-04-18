@@ -1,7 +1,7 @@
 ---
-last_updated: 2026-04-09
+last_updated: 2026-04-18
 knowledge_filled: true
-total_topics: 4
+total_topics: 5
 ---
 
 # Knowledge Index
@@ -12,3 +12,4 @@ total_topics: 4
 - [Rebinding Ui](rebinding-ui.md) — kısa özet `knowledge/rebinding-ui.md`
 - [Multi Device Support](multi-device-support.md) — kısa özet `knowledge/multi-device-support.md`
 - [Touch Gesture Patterns](touch-gesture-patterns.md) — kısa özet `knowledge/touch-gesture-patterns.md`
+- [Local Multiplayer Input](local-multiplayer-input.md) — same-keyboard dual scheme, DualInputHandler pattern, conflict detection, common pitfalls
