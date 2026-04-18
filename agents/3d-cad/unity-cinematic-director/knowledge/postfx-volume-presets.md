@@ -18,7 +18,7 @@ URP ve HDRP'de VolumeProfile asset'ler aracılığıyla post-process efektleri y
 | Profile türü | `VolumeProfile` | `VolumeProfile` |
 | Effect component'ler | `VolumeComponent` türevi | `VolumeComponent` türevi |
 | Rendering Pipeline | Universal Render Pipeline | High Definition Render Pipeline |
-| Available effects | Bloom, DoF, MotionBlur, Chromatic Aberration, Vignette, ColorAdjustments | GTAO, Bloom, DoF, MotionBlur, ChromaticAberration, Vignette, FilmGrain, ColorGrading |
+| Available effects | Bloom, DoF, MotionBlur, Chromatic Aberration, Vignette, ColorAdjustments | GTAO, Bloom, DoF, MotionBlur, ChromaticAberration, Vignette, FilmGrain (HDRP only), ColorGrading |
 
 VolumeProfile asset yapısı her iki pipeline'da benzerdir; fark, hangi effect component'lerin available olmasında yatar.
 

@@ -288,7 +288,7 @@ Kaynakları **bu sirayla** kontrol et:
 | Cinemachine (kamera) | Unity Resmi | `com.unity.cinemachine` | First-party, 3.x modern |
 | UI layout (UI Toolkit) | Unity Resmi | `com.unity.ui` | First-party |
 | Lokalizasyon | Unity Resmi | `com.unity.localization` | First-party, multilingual |
-| Durum makinası | OpenUPM | `com.xesmedia.fsm` | Ücretsiz, NodeCanvas alternatifi |
+| Durum makinası | OpenUPM | `com.alelievr.nodegraphprocessor` | MIT, aktif, node-based logic |
 | Profiler görselleştirme | Git UPM | `github.com/Tayx94/graphy` | MIT, hafif |
 | Input (yeni sistem) | Unity Resmi | `com.unity.inputsystem` | First-party |
 | AI Navigation | Unity Resmi | `com.unity.ai.navigation` | First-party |
