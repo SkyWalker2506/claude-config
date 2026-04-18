@@ -7735,6 +7735,52 @@
       "execution_mode": "gemini_cli",
       "billing_mode": "plan_included",
       "interaction_mode": "automated"
+    },
+    "E16": {
+      "name": "Asset Store Curator",
+      "version": "1.0",
+      "category": "3d-cad",
+      "status": "pool",
+      "primary_model": "gemini-3.1-pro",
+      "fallbacks": [
+        "gpt-5.4",
+        "gpt-5.4-mini",
+        "sonnet",
+        "opus"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "fetch",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "asset-inventory-query",
+        "free-asset-research",
+        "paid-asset-research",
+        "upm-registry-search",
+        "openupm-search",
+        "git-upm-discovery",
+        "compatibility-check",
+        "publisher-reputation",
+        "value-for-money-ranking"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "gemini_cli",
+      "strategy": "direct",
+      "execution_backends": {
+        "primary": "gemini-cli",
+        "fallback": [
+          "openai-codex-cli",
+          "claude"
+        ]
+      },
+      "execution_mode": "gemini_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated"
     }
   },
   "retry_strategy": {
