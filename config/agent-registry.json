@@ -7650,6 +7650,91 @@
       "execution_mode": "claude",
       "billing_mode": "plan_included",
       "interaction_mode": "automated"
+    },
+    "G13": {
+      "name": "Vision-Action Operator",
+      "version": "1.0",
+      "category": "ai-ops",
+      "status": "pool",
+      "primary_model": "gpt-5.4",
+      "fallbacks": [
+        "gpt-5.4-mini",
+        "sonnet",
+        "opus"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "screen-capture-analysis",
+        "pixel-to-scene-resolution",
+        "craft-ops-derivation",
+        "idempotent-action-chains",
+        "pattern-caching"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "codex_cli",
+      "strategy": "direct",
+      "execution_backends": {
+        "primary": "openai-codex-cli",
+        "fallback": [
+          "gemini-cli",
+          "claude"
+        ]
+      },
+      "execution_mode": "codex_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated"
+    },
+    "B53": {
+      "name": "Unity Performance Analyzer",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "gemini-3.1-pro",
+      "fallbacks": [
+        "gpt-5.4",
+        "gpt-5.4-mini",
+        "sonnet",
+        "opus"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "profiler-analysis",
+        "draw-call-reduction",
+        "srp-batcher-audit",
+        "texture-compression",
+        "lod-setup",
+        "gc-alloc-hunting",
+        "quality-settings-preset",
+        "shader-variant-stripping",
+        "asset-purge-audit"
+      ],
+      "max_tool_calls": 25,
+      "effort": "high",
+      "template": "autonomous",
+      "tier": "mid",
+      "model_source": "gemini_cli",
+      "strategy": "direct",
+      "execution_backends": {
+        "primary": "gemini-cli",
+        "fallback": [
+          "openai-codex-cli",
+          "claude"
+        ]
+      },
+      "execution_mode": "gemini_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated"
     }
   },
   "retry_strategy": {
