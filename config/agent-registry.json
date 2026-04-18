@@ -7781,6 +7781,61 @@
       "execution_mode": "gemini_cli",
       "billing_mode": "plan_included",
       "interaction_mode": "automated"
+    },
+    "A14": {
+      "name": "Game Director",
+      "version": "1.0",
+      "category": "orchestrator",
+      "status": "pool",
+      "primary_model": "gemini-3.1-pro",
+      "fallbacks": [
+        "gpt-5.4",
+        "gpt-5.4-mini",
+        "opus",
+        "sonnet"
+      ],
+      "mcps": [
+        "github",
+        "git",
+        "jcodemunch",
+        "fetch"
+      ],
+      "capabilities": [
+        "gdd-parsing",
+        "task-graph-generation",
+        "cross-family-dispatch",
+        "iterative-refinement",
+        "vision-feedback-loop",
+        "playtest-orchestration",
+        "polish-critique"
+      ],
+      "max_tool_calls": 50,
+      "effort": "high",
+      "template": "autonomous",
+      "tier": "lead",
+      "model_source": "gemini_cli",
+      "strategy": "direct",
+      "dispatches": [
+        "D11",
+        "E9",
+        "E11",
+        "E16",
+        "B26",
+        "B36",
+        "B53",
+        "G13"
+      ],
+      "reports_to": "A1",
+      "execution_backends": {
+        "primary": "gemini-cli",
+        "fallback": [
+          "openai-codex-cli",
+          "claude"
+        ]
+      },
+      "execution_mode": "gemini_cli",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated"
     }
   },
   "retry_strategy": {
