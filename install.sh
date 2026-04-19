@@ -862,6 +862,27 @@ install_agents() {
   fi
 }
 
+# ── Phase 10.5: Knowledge-Graph Hooks ──
+setup_hooks() {
+  echo ""
+  echo "── Phase 10.5: Knowledge-Graph Hooks ──"
+
+  if [ ! -d "$SCRIPT_DIR/hooks" ]; then
+    echo "  ○  hooks/ directory not found — skipped"
+    return 0
+  fi
+
+  mkdir -p "$HOME/.claude/hooks"
+  local copied=0
+  for h in "$SCRIPT_DIR/hooks/"*.sh; do
+    [ -f "$h" ] || continue
+    cp "$h" "$HOME/.claude/hooks/"
+    chmod +x "$HOME/.claude/hooks/$(basename "$h")"
+    copied=$((copied + 1))
+  done
+  echo "  ✅ $copied hook scripts installed to ~/.claude/hooks/"
+}
+
 # ── Phase 11: Cron / Health Checks ──
 setup_cron() {
   echo ""
@@ -1034,6 +1055,7 @@ else
   setup_ollama
   setup_free_models
   install_agents
+  setup_hooks
   setup_cron
   setup_voice
   setup_telegram

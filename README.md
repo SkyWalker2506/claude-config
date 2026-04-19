@@ -221,6 +221,9 @@ claude-config/
 │   ├── model-tiers.json
 │   ├── telegram-agent.py   # Persistent Telegram bot
 │   └── daily-check.sh      # Health check script
+├── hooks/                  # Shared hook scripts → ~/.claude/hooks/
+│   ├── session-start-graph.sh        # Emits graph-cache summary on SessionStart
+│   └── post-commit-graph-update.sh   # Marks graph-cache stale on git commit
 ├── plugins/                # Plugin source (telegram, ai-review, etc.)
 └── templates/              # Project scaffolding
 ```
