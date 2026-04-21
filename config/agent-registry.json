@@ -104,7 +104,8 @@
     "E14",
     "E15",
     "E2",
-    "N6"
+    "N6",
+    "D14"
   ],
   "agents": {
     "A1": {
@@ -5568,6 +5569,54 @@
       "effort": "medium",
       "template": "autonomous",
       "tier": "mid",
+      "strategy": "direct",
+      "execution_backends": {
+        "primary": "gemini-cli",
+        "fallback": [
+          "openai-codex-cli",
+          "claude"
+        ]
+      },
+      "execution_mode": "gemini_api",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4",
+      "model_source": "gemini_api"
+    },
+    "D14": {
+      "name": "2D Puzzle Physics Level Designer",
+      "version": "1.0",
+      "category": "design",
+      "status": "active",
+      "primary_model": "gemini-3.1-pro-preview",
+      "fallbacks": [
+        "gpt-5.4",
+        "sonnet",
+        "opus"
+      ],
+      "mcps": [
+        "fetch",
+        "github",
+        "git",
+        "context7"
+      ],
+      "capabilities": [
+        "2d-level-design",
+        "physics-puzzle",
+        "matter-js",
+        "box2d",
+        "difficulty-curve",
+        "mechanic-composition",
+        "playtesting-critique",
+        "progression-design",
+        "one-puzzle-one-lesson",
+        "solve-path-analysis",
+        "upgrade-balance"
+      ],
+      "max_tool_calls": 30,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "senior",
       "strategy": "direct",
       "execution_backends": {
         "primary": "gemini-cli",
