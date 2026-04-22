@@ -2,10 +2,9 @@
 
 ## Core principles
 - [principles.md](principles.md) — 2D puzzle level design ilkeleri, "one puzzle one lesson", teach-practice-combine-twist
-- [physics-checks.md](physics-checks.md) — Matter.js/Box2D icin menzil, sekme, impulse hesaplari
-- [mechanics-library.md](mechanics-library.md) — Yaygin 2D puzzle mekaniklerinin (hill, trampoline, portal, magnet, wind, ice) tasarim rolleri
-- [difficulty-curve.md](difficulty-curve.md) — Zorluk egrisi pattern'leri (lineer, dalgali, crescendo)
-- [upgrade-balance.md](upgrade-balance.md) — Power/precision/assist upgrade'leri karsisinda level nasil korunur
+- [balance-math.md](balance-math.md) — Golf Paper Craft specific: force/drag/range tablosu, tier hesapları
+- [mechanics-catalog.md](mechanics-catalog.md) — 15 aktif + 3 önerilen mekanik (data spec, physics, render, rol, pitfall)
+- [common-pitfalls.md](common-pitfalls.md) — 10 yaygın tuzak ve kaçınma kuralı
 
 ## References
 - Angry Birds level design postmortems
