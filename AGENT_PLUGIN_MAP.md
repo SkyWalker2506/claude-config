@@ -28,6 +28,8 @@ Which agents benefit from each plugin. Install a plugin when you frequently use 
 | [ccplugin-sync-agents](https://github.com/SkyWalker2506/ccplugin-sync-agents) | G4 (Config Manager), G3 (MCP Health), A0 (Jarvis) | AI Ops |
 | [ccplugin-improve](https://github.com/SkyWalker2506/ccplugin-improve) | A0 (Jarvis), A1 (Lead Orchestrator), K1 (Web Researcher) | AI Ops |
 | [ccplugin-telegram](https://github.com/SkyWalker2506/ccplugin-telegram) | A0 (Jarvis — primary phone interface), A1, A2 | Communication |
+| gpt-import (local) | A0 (Jarvis), K1 (Web Researcher), G4 (Config Manager) | Agent Tooling |
+| hq-feature (local) | A0 (Jarvis), A1 (Lead Orchestrator), J10 (GitHub Manager) | Dev Workflow |
 | [ccplugin-notifications](https://github.com/SkyWalker2506/ccplugin-notifications) | A0 (Jarvis), G1 (Agent Coordinator), J7 (Incident Responder) | Communication |
 | [ccplugin-3d-forge](https://github.com/SkyWalker2506/ccplugin-3d-forge) | E1 (3D Concept Planner), E2 (Blender Script), E4 (Render Pipeline), E5 (3D Asset Optimizer), A9 (ArtLead) | Creative |
 | [ccplugin-clipboard](https://github.com/SkyWalker2506/ccplugin-clipboard) | A0 (Jarvis — cross-session data passing), all agents writing output | Tools |
