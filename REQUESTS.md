@@ -1,4 +1,13 @@
+# Feature Requests & Improvement Backlog
+
+> Kullanıcı taleplerini ve ekosistem iyileştirme önerilerini buraya ekle.
+> Durum: `Open` | `In Progress` | `Done` | `Deferred`
+
+---
+
 ## [2026-04-06] OpenRouter Multi-Provider Agent Desteği
+
+**Status:** `Open`
 
 **Talep:** Agent registry'sine Gemini ve GPT modellerini OpenRouter üzerinden ekle.
 
