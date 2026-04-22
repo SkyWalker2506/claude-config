@@ -4,7 +4,7 @@
 
 ### **Multi-Agent OS** for [**Claude Code**](https://claude.ai/claude-code)
 
-[![Agents](https://img.shields.io/badge/agents-196_registry-6366f1)](./config/agent-registry.json)
+[![Agents](https://img.shields.io/badge/agents-204_registry-6366f1)](./config/agent-registry.json)
 [![Plugins](https://img.shields.io/badge/plugins-21_marketplace-f97316)](https://github.com/SkyWalker2506/claude-marketplace)
 [![MCP](https://img.shields.io/badge/MCP-8_integrated-0ea5e9)](./global/settings.json.template)
 [![License](https://img.shields.io/badge/license-MIT-22c55e)](./LICENSE)
@@ -40,7 +40,7 @@ flowchart LR
 
 A portable, self-installing configuration system that turns Claude Code into a multi-agent operating system. Clone → `./install.sh` → done.
 
-- **196 registered agents** in [`agent-registry.json`](./config/agent-registry.json) · 15 categories (activate on demand)
+- **204 registered agents** in [`agent-registry.json`](./config/agent-registry.json) · 15 categories (activate on demand)
 - **21 plugins** on our [marketplace](https://github.com/SkyWalker2506/claude-marketplace)
 - **8 MCP servers** integrated (GitHub, Atlassian/Jira, Firebase, Flutter, jCodeMunch, Git, Fetch, Context7)
 - **54 slash commands** (/yolo, /team-build, /jira-run, /audit, /web-research, /sprint-plan, and more)
@@ -69,7 +69,7 @@ The installer sets up everything: CLAUDE.md hierarchy, skills, MCP servers, hook
 ┌─────────────────────────────────────────────────┐
 │              Routing & Budget                    │
 │   Task Router → Token Budget → Fallback Manager  │
-│           Agent Registry (~196)                  │
+│           Agent Registry (~204)                  │
 └──────────────────────┬──────────────────────────┘
                        ▼
 ┌───────────┬──────────┬──────────┬───────────────┐
