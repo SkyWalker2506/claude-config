@@ -22,6 +22,13 @@ capabilities:
   - one-puzzle-one-lesson
   - solve-path-analysis
   - upgrade-balance
+  - flow-design
+  - onboarding-design
+  - playtesting-analytics
+  - composition-theory
+  - balance-math
+  - mechanic-spec-review
+  - solve-cost-analysis
 related: [B16, A14, D1, E8]
 status: active
 ---

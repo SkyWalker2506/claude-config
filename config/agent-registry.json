@@ -5631,6 +5631,129 @@
       "codex_model": "gpt-5.4",
       "model_source": "gemini_api"
     },
+    "D15": {
+      "name": "Nakkas Art Style Curator",
+      "version": "1.0",
+      "category": "design",
+      "status": "pool",
+      "primary_model": "opus",
+      "fallbacks": ["sonnet", "gpt-5.4", "gpt-5.4-mini"],
+      "mcps": ["fetch", "context7"],
+      "capabilities": [
+        "2d-art-styles",
+        "game-art-history",
+        "style-taxonomy",
+        "engine-affinity",
+        "reference-curation",
+        "catalog-design"
+      ],
+      "max_tool_calls": 15,
+      "effort": "medium",
+      "template": "knowledge-first",
+      "tier": "mid",
+      "strategy": "direct",
+      "execution_backends": {
+        "primary": "claude",
+        "fallback": ["openai-codex-cli", "gemini-cli"]
+      },
+      "execution_mode": "claude_session",
+      "billing_mode": "subscription-only",
+      "interaction_mode": "automated",
+      "project_scope": "nakkas"
+    },
+    "D16": {
+      "name": "Nakkas Prompt Craftsman",
+      "version": "1.0",
+      "category": "design",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": ["opus", "gpt-5.4-mini", "gpt-5.4-nano"],
+      "mcps": [],
+      "capabilities": [
+        "prompt-enrichment",
+        "engine-tuning",
+        "style-merging",
+        "composition-design",
+        "negative-prompt",
+        "2d-game-asset-prompt"
+      ],
+      "max_tool_calls": 8,
+      "effort": "low",
+      "template": "knowledge-first",
+      "tier": "mid",
+      "strategy": "direct",
+      "execution_backends": {
+        "primary": "claude",
+        "fallback": ["openai-codex-cli", "gemini-cli"]
+      },
+      "execution_mode": "claude_session",
+      "billing_mode": "subscription-only",
+      "interaction_mode": "automated",
+      "project_scope": "nakkas",
+      "related": ["D15", "D17", "B54"]
+    },
+    "D17": {
+      "name": "Nakkas Catalog Builder",
+      "version": "1.0",
+      "category": "design",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": ["gpt-5.4-mini", "opus"],
+      "mcps": ["playwright"],
+      "capabilities": [
+        "nextjs-ui",
+        "tailwind",
+        "style-gallery",
+        "filter-search",
+        "responsive-grid",
+        "lazy-loading",
+        "comparison-view"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "knowledge-first",
+      "tier": "mid",
+      "strategy": "direct",
+      "execution_backends": {
+        "primary": "claude",
+        "fallback": ["openai-codex-cli", "gemini-cli"]
+      },
+      "execution_mode": "claude_session",
+      "billing_mode": "subscription-only",
+      "interaction_mode": "automated",
+      "project_scope": "nakkas",
+      "related": ["D15", "D16", "B54"]
+    },
+    "B54": {
+      "name": "Nakkas Adapter Author",
+      "version": "1.0",
+      "category": "backend",
+      "status": "pool",
+      "primary_model": "sonnet",
+      "fallbacks": ["opus", "gpt-5.4", "gpt-5.4-mini"],
+      "mcps": ["git", "github", "jcodemunch", "context7"],
+      "capabilities": [
+        "ts-adapter-writing",
+        "cli-subprocess-wrapping",
+        "image-gen-integration",
+        "next-api-route",
+        "error-normalization"
+      ],
+      "max_tool_calls": 25,
+      "effort": "medium",
+      "template": "knowledge-first",
+      "tier": "senior",
+      "strategy": "direct",
+      "execution_backends": {
+        "primary": "claude",
+        "fallback": ["openai-codex-cli"]
+      },
+      "execution_mode": "claude_session",
+      "billing_mode": "subscription-only",
+      "interaction_mode": "automated",
+      "project_scope": "nakkas",
+      "related": ["D15", "D16", "D17"]
+    },
     "D12": {
       "name": "Unity UX Flow Designer",
       "version": "1.0",
