@@ -5,7 +5,7 @@ Tarih: 2026-04-09
 ## Ozet
 
 - 132 eski format agent, Knowledge-First yapıya tasindi.
-- Toplam agent sayisi: **144** (15 kategori).
+- Toplam agent sayisi: **204** (15 kategori) — 2026-04-22 itibarıyla güncellendi.
 - `config/agent-registry.json` disk ile senkronlandi.
 - `global/skills/` altindaki tum `SKILL.md` dosyalarina standart bolumler eklendi.
 - `global/settings.json.template` icinde hook aciklamalari eklendi, kullanilmayan MCP tanimlari ayiklandi.
