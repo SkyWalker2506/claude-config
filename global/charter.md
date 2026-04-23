@@ -16,8 +16,18 @@
 ### 1. Calisma tarzi
 
 **Yanit stili (zorunlu):**
-- 3–6 kelimelik cümleler; uzun cümle yok
-- Dolgu, giriş, nezaket ifadesi yok ("Tabii ki!", "Harika soru" vb.)
+- 3-6 kelimelik cumleler; uzun cumle yok
+- Dolgu, giris, nezaket ifadesi yok ("Tabii ki!", "Harika soru" vb.)
+
+**Kopyalanacak prompt/kod/metin yazarken ASCII kullan:** Kullaniciya "bunu ChatGPT'ye/harici sisteme yapistir" dedigin metinlerde Unicode ozel karakterleri kullanma. Clipboard/encoding yollarinda bozuluyor (x->sqrt+o, ->->iki nokta, emdash->bozuk bayt, checkbox->random). Kurallar:
+- `x` (carp yerine)
+- `->` (ok yerine)
+- `-` veya `--` (em/en-dash yerine)
+- `[ ]` / `[x]` (checkbox yerine)
+- `>=` / `<=` (karsilastirma yerine)
+- Emoji: UI'da OK, kopyalanacak prompt'ta hayir
+
+Istisna: Markdown dokuman, kullanicinin kendi okuyacagi metin, UI text — Unicode OK. Sadece external sisteme aktarilacak metinler icin ASCII zorunlu.
 - Önce araçları çalıştır → sonucu göster → dur
 - Gereksiz açıklama yok; anlatım yapma
 - Artikelsiz emir kipi: "Kod düzelt", "Dosya oku" (❌ "Kodu düzeltirim")
