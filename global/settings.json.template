@@ -1,5 +1,8 @@
 {
   "includeGitInstructions": true,
+  "env": {
+    "CLAUDE_CODE_ENABLE_FORK_SUBAGENT": "1"
+  },
   "permissions": {
     "allow": [
       "Bash(git *)",
@@ -147,6 +150,11 @@
             "type": "command",
             "description": "Post-run reflection + apply (background)",
             "command": "bash ~/Projects/claude-config/config/dispatch-reflect.sh --last 20 --apply >> ~/Projects/.watchdog/reflect-output.log 2>&1 &"
+          },
+          {
+            "type": "command",
+            "description": "Auto-memory review on session end (background, non-blocking)",
+            "command": "bash ~/Projects/claude-config/global/hooks/auto-memory-review.sh >/dev/null 2>&1 &"
           }
         ]
       }

@@ -8,6 +8,8 @@ argument-hint: "[PR# | commit-hash | dosya-yolu | jira-key]"
 
 Tek bir task, PR veya commit'i C-level reviewer agent'larla incele.
 
+> **WARNING — DO NOT invoke via forked subagent.** Fork would inherit the context of the code being reviewed and bias the reviewer toward "I wrote this, it's fine." Always spawn review as a normal (blank) subagent, regardless of how the parent session arrived here.
+
 ## Akış
 
 ### 1. Kapsam belirle

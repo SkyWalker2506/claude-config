@@ -251,3 +251,17 @@ When dispatching to an agent with `execution_mode: codex_cli`:
 4. **Verify after each task** — Check that output files exist and were modified. `codex exec` exit code 0 does not guarantee file changes.
 5. **Kill timeout** — If codex runs >15 minutes on a medium task, it's likely stuck. Kill and retry with a smaller scope.
 6. **Prompt format** — Use stdin: `cat prompt.md | codex exec --model gpt-5.4 --full-auto -`. This avoids shell escaping issues with complex prompts.
+
+### Fork vs Normal Subagent Decision
+
+Claude Code supports forked subagents (enabled via `CLAUDE_CODE_ENABLE_FORK_SUBAGENT=1`). A forked subagent inherits the full parent conversation and prompt cache; a normal subagent starts blank.
+
+| Use FORK | Use NORMAL subagent |
+|---|---|
+| Main conversation nuance is load-bearing (design iterations, sprint mid-session planning) | Blank perspective wanted (code review, opposing view, bias-free research) |
+| Noisy tool calls that need prior context (log verification, contextual MCP queries) | Generic/throwaway research unrelated to current thread |
+| Memory consolidation, recap, summarization of the session | Fresh exploration of unknown codebase |
+
+**Rule of thumb:** "Is the accumulated nuance of this conversation useful to the subagent, or would it bias them?" Useful → fork. Biasing → normal.
+
+**Hard guard:** Never fork for `review`, `review-ops`, security review, or any "is this code correct?" evaluation — forking leaks the author's perspective into the reviewer.

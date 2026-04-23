@@ -9,6 +9,8 @@ argument-hint: "[jira-task-ids | repo-list | son-batch]"
 Tamamlanan bir iş grubunu (Jira task seti, repo batch, sprint) incele.
 Puan ver, eksik bul, gerekirse yeni task aç veya yeniden yaptır.
 
+> **WARNING — DO NOT invoke via forked subagent.** Fork would inherit the context of the code/work being audited and bias the reviewer toward "I wrote this, it's fine." Always spawn review-ops as a normal (blank) subagent, regardless of how the parent session arrived here.
+
 ## Ne zaman tetiklenir
 
 - A1 veya büyük bir agent batch'i tamamlandıktan sonra
