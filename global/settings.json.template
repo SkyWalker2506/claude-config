@@ -48,23 +48,18 @@
           },
           {
             "type": "command",
-            "description": "List available secret keys (names only)",
-            "command": "SFILE=\"$HOME/.claude/secrets/secrets.env\"; if [ -f \"$SFILE\" ]; then KEYS=$(grep -v '^#' \"$SFILE\" | grep '=' | cut -d= -f1 | paste -sd ',' -); echo \"AVAILABLE_SECRETS: $KEYS\"; else echo 'AVAILABLE_SECRETS: none — secrets.env bulunamadi'; fi"
-          },
-          {
-            "type": "command",
-            "description": "Show currently enabled MCP servers",
-            "command": "MCPS=$(jq -r '.mcpServers | keys | join(\", \")' ~/.claude/settings.json 2>/dev/null); echo \"🔌 MCP_ACTIVE: $MCPS — Kullanmayacaklarini /mcp ile kapat\""
-          },
-          {
-            "type": "command",
-            "description": "Update projects index cache (best-effort)",
+            "description": "Update projects index cache (silent if no .claude/index.md)",
             "command": "bash ~/Projects/claude-config/projects/scripts/project_index.sh 2>/dev/null || true"
           },
           {
             "type": "command",
-            "description": "Check pending Reports (best-effort)",
+            "description": "Check pending Reports (silent if none)",
             "command": "bash ~/Projects/claude-config/config/reports_check.sh 2>/dev/null || true"
+          },
+          {
+            "type": "command",
+            "description": "Warn only if graph cache is stale (> 7 days); silent otherwise",
+            "command": "for f in ~/.claude/graph-cache.json ~/Projects/claude-config/cache/graph.json ~/.claude/cache/graph.json; do [ -f \"$f\" ] || continue; mtime=$(stat -f %m \"$f\" 2>/dev/null || stat -c %Y \"$f\" 2>/dev/null); [ -z \"$mtime\" ] && continue; age=$(( ( $(date +%s) - mtime ) / 86400 )); [ \"$age\" -gt 7 ] && echo \"⚠️ GRAPH_CACHE stale: $f ($age d old) — run /harness-status to refresh\"; done 2>/dev/null || true"
           },
           {
             "type": "command",
@@ -74,7 +69,7 @@
           {
             "type": "command",
             "description": "Print Jarvis routing and agent truth policy",
-            "command": "echo \"JARVIS_POLICY: Sen implementer degilsin; isi agent'lar yapar. Truth source = __CLAUDE_CONFIG_ROOT__/agents/**/AGENT.md + __CLAUDE_CONFIG_ROOT__/config/agent-registry.json. ~/.claude/agents/*.md generated mirror.\""
+            "command": "echo \"JARVIS_POLICY: Sen implementer degilsin; isi agent'lar yapar. Truth source = __CLAUDE_CONFIG_ROOT__/agents/**/AGENT.md + __CLAUDE_CONFIG_ROOT__/config/agent-registry.json. ~/.claude/agents/*.md generated mirror. Reference info (MCP list, secrets names, graph cache) via /harness-status.\""
           }
         ]
       }

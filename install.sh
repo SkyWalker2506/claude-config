@@ -55,6 +55,7 @@ WITH_AGENTS=1
 SKIP_AGENTS=0
 SKIP_CRON=0
 ONLY_AGENTS=0
+WITH_AUTO_DREAM=0
 
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -74,6 +75,7 @@ while [[ $# -gt 0 ]]; do
     --skip-agents) SKIP_AGENTS=1; WITH_AGENTS=0; shift ;;
     --skip-cron) SKIP_CRON=1; shift ;;
     --only-agents) ONLY_AGENTS=1; shift ;;
+    --with-auto-dream) WITH_AUTO_DREAM=1; shift ;;
     *) shift ;;
   esac
 done
@@ -1048,6 +1050,48 @@ setup_plugins() {
   fi
 }
 
+# ── Phase 15: Auto-Dream (weekly memory consolidation) ──
+setup_auto_dream() {
+  echo ""
+  echo "── Phase 15: Auto-Dream Memory Consolidation ──"
+
+  if [ "$WITH_AUTO_DREAM" -ne 1 ]; then
+    echo "  ○  Skipped (use --with-auto-dream to enable weekly consolidation)"
+    return 0
+  fi
+
+  if [ "$OS" != "mac" ]; then
+    echo "  ⚠️  launchd is macOS-only — skipping. Use cron manually on this platform."
+    return 0
+  fi
+
+  local plist_src="$SCRIPT_DIR/global/launchd/com.jarvis.auto-dream.plist.template"
+  local plist_dst="$HOME/Library/LaunchAgents/com.jarvis.auto-dream.plist"
+  local script_dst="$HOME/.claude/scripts/auto-dream.sh"
+
+  mkdir -p "$HOME/Library/LaunchAgents" "$HOME/.claude/scripts" "$HOME/.claude/logs"
+
+  # Copy script (so updates from claude-config flow via install.sh)
+  cp "$SCRIPT_DIR/global/scripts/auto-dream.sh" "$script_dst"
+  chmod +x "$script_dst"
+
+  # Substitute paths in plist
+  sed \
+    -e "s|__CLAUDE_CONFIG_ROOT__|$SCRIPT_DIR|g" \
+    -e "s|__HOME__|$HOME|g" \
+    "$plist_src" > "$plist_dst"
+
+  # Unload if already loaded, then load
+  launchctl unload "$plist_dst" 2>/dev/null || true
+  if launchctl load "$plist_dst" 2>/dev/null; then
+    echo "  ✅ auto-dream launchd agent installed (weekly Sun 03:00)"
+    echo "     Log: ~/.claude/logs/auto-dream.log"
+    echo "     Disable: launchctl unload $plist_dst"
+  else
+    echo "  ⚠️  launchctl load failed — plist at $plist_dst"
+  fi
+}
+
 # ── Run Phase 8-14 ──
 if [ "$ONLY_AGENTS" -eq 1 ]; then
   install_agents
@@ -1060,6 +1104,7 @@ else
   setup_voice
   setup_telegram
   setup_plugins
+  setup_auto_dream
 fi
 
 echo ""
