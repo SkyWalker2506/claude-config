@@ -127,6 +127,50 @@
         "notify_message": "⚠️ Gemini CLI limit doldu → gpt-5.4-mini fallback aktif"
       }
     },
+    "opencode-zen": {
+      "name": "OpenCode Zen (Free Cloud Models)",
+      "type": "cli",
+      "cost_type": "free",
+      "requires_login": true,
+      "api_billing": false,
+      "mcp_tools": [],
+      "check_command": "opencode --version 2>/dev/null && echo ok || echo not_installed",
+      "login_check_command": "test -f ~/.local/share/opencode/auth.json && echo logged_in || echo not_logged_in",
+      "login_command": "opencode providers",
+      "description": "OpenCode CLI with Zen free-tier models (gpt-5-nano, minimax, kimi, glm). $0 cost, beta unlimited.",
+      "subscription_plan": "opencode-zen-free",
+      "default_model": "opencode/gpt-5-nano",
+      "available_models": [
+        "opencode/gpt-5-nano",
+        "opencode/minimax-m2.1-free",
+        "opencode/glm-4.7-free",
+        "opencode/kimi-k2.5-free",
+        "opencode/big-pickle"
+      ],
+      "profiles": {
+        "fast": {"model": "opencode/gpt-5-nano"},
+        "creative": {"model": "opencode/kimi-k2.5-free"},
+        "code": {"model": "opencode/minimax-m2.1-free"}
+      },
+      "capability_model_map": {
+        "fast_code_edit": {"model": "opencode/gpt-5-nano", "profile": "fast"},
+        "fast_qa": {"model": "opencode/gpt-5-nano", "profile": "fast"},
+        "broad_creative": {"model": "opencode/kimi-k2.5-free", "profile": "creative"},
+        "web_game_generation": {"model": "opencode/gpt-5-nano", "profile": "fast"}
+      },
+      "invocation_patterns": {
+        "exec": "opencode run \"{task}\"",
+        "interactive": "opencode",
+        "with_model": "OPENCODE_MODEL={model} opencode run \"{task}\""
+      },
+      "quota_exhausted_fallback": {
+        "primary": "opencode/minimax-m2.1-free",
+        "secondary": "opencode/kimi-k2.5-free",
+        "detection_patterns": ["rate limit", "quota", "429", "cannot assist"],
+        "notify_message": "OpenCode gpt-5-nano limit → minimax/kimi fallback"
+      },
+      "notes": "opencode run calisma dizinindeki dosyalara erisir. Hassas dizinlerde calistirma. ~/.claude/CLAUDE.md'yi degistirebilir — dikkatli ol."
+    },
     "deterministic-tool": {
       "name": "Deterministic / Scripted",
       "type": "script",
@@ -142,7 +186,7 @@
     "fast_code_edit": {
       "description": "Mechanical, narrow-scope code changes",
       "preferred_backend": "openai-codex-cli",
-      "fallback": ["claude", "local-free"]
+      "fallback": ["opencode-zen", "claude", "local-free"]
     },
     "deep_code_generation": {
       "description": "Deep code generation, large refactors, agentic code editing",
@@ -176,8 +220,13 @@
     },
     "fast_qa": {
       "description": "Short Q&A, lookup, classification",
-      "preferred_backend": "local-free",
-      "fallback": ["claude"]
+      "preferred_backend": "opencode-zen",
+      "fallback": ["local-free", "claude"]
+    },
+    "web_game_generation": {
+      "description": "Single-file HTML5/Canvas web game generation and iteration",
+      "preferred_backend": "opencode-zen",
+      "fallback": ["claude", "openai-codex-cli"]
     },
     "specialized_custom_gpt": {
       "description": "Tasks suited for specialized ChatGPT custom GPTs (design tools, SEO, etc.)",
