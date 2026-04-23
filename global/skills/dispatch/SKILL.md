@@ -197,6 +197,8 @@ Sub-agent tamamladiginda:
 - Basarili → sonucu kullaniciya goster
 - Basarisiz → retry_strategy uygula (1. ayni agent farkli model, 2. farkli agent ayni capability, 3. A1'e escalate)
 
+**Hive mind log:** After task completion, agents SHOULD voluntarily record the outcome by calling `~/Projects/claude-config/global/scripts/hive-append.sh --agent <id> --status <done|failed|started> --summary "<1-line>"`. This appends a JSONL record to `~/.claude/hive/tasks.jsonl` so any other agent (or `hq hive query`) can inspect cross-agent activity. Voluntary today; not wired to hooks.
+
 ## Ozel durumlar
 
 ### Paralel dispatch
