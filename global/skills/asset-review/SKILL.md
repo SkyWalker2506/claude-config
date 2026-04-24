@@ -74,7 +74,7 @@ Ham bulunanlari listele → kullaniciya sor "bunlari post-process edip yenileyey
 - Raw input genelde horizontal veya grid layout + magenta separator
 - `-fuzz 35% -transparent magenta` → temizle
 - `-crop NxM@` ile frame'lere bol (N = frame_count / 1 veya dosya adindan _Nf)
-- Her frame `-trim +repage -background none -gravity south -extent 256x256`
+- Her frame **aspect-preserving fit** yap: `-background none -resize 256x256 -gravity center -extent 256x256`. **ASLA** sadece `-gravity south -extent 256x256` kullanma — kaynak 256'dan uzunsa tepeyi kirpar (blacksmith head-crop bug'i buradan cikti Apr 2026). Once `-resize 256x256` ile aspect koruyarak kucult, sonra `-extent 256x256` ile padding ekle.
 - `+append` ile strip birlestir (1536x256 6-frame vb.)
 - `cwebp -q 90 -alpha_q 100` → WebP
 - Hedef: `<project>/game/public/assets/<name>.webp` veya config'de belirlenen runtime dizini
