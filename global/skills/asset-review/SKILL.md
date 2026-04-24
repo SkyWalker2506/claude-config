@@ -47,7 +47,28 @@ curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
    - Reddet → sebep iste, /api/review deny
    - Atla → sonraki item
 
-### 4. Onay + post-process (tip bazli)
+### 4a. Web-approved items (post-process eksik)
+
+`/api/review approve` artik uploaded dosyayi **ham halde** runtime dir'e kopyaliyor. Ama bu animasyon icin DOGRU degil — post-process gerekli.
+
+Bu durumu tespit et:
+```bash
+for name in $(curl -s ...missing.json | jq -r '.items[] | select(.status=="approved" and .type=="Animasyon") | .name'); do
+  # runtime file dim kontrolu
+  magick identify $PROJECT/game/public/assets/$name.webp
+  # dim raw grid (1536x1024 / 2048x1024 / similar) ise = ham kopyalanmis, split gerekli
+done
+```
+
+Ham bulunanlari listele → kullaniciya sor "bunlari post-process edip yenileyeyim mi?" → evetse magick pipeline ile:
+1. Magenta transparent
+2. Uygun split (6x1 horizontal / 3x2 grid / etc. isme gore `_6f` / `_8f`)
+3. Trim + center + extent 256x256 per frame
+4. Append horizontal strip
+5. WebP q90, overwrite runtime
+6. Commit + push
+
+### 4b. Onay + post-process (tip bazli)
 
 **Animasyon (type=="Animasyon")**:
 - Raw input genelde horizontal veya grid layout + magenta separator
