@@ -62,7 +62,7 @@ if [ -z "$INPUT_DIR" ]; then
     "${HOME}/Desktop"
   do
     if [ -d "$D" ]; then
-      PNG_COUNT=$(ls "$D"/*.png "$D"/*.PNG 2>/dev/null | wc -l | tr -d ' ')
+      PNG_COUNT=$(find "$D" -maxdepth 1 -iname "*.png" 2>/dev/null | wc -l | tr -d ' ')
       [ "$PNG_COUNT" -gt 0 ] && echo "  $IDX) $D  ($PNG_COUNT PNG)" && DIRS+=("$D") && IDX=$((IDX+1))
     fi
   done
@@ -81,7 +81,8 @@ fi
 
 [ ! -d "$UPLOAD_DIR" ] && { echo "ERROR: klasör bulunamadı: $UPLOAD_DIR"; exit 1; }
 
-PNG_LIST=($(ls "$UPLOAD_DIR"/*.png "$UPLOAD_DIR"/*.PNG 2>/dev/null))
+PNG_LIST=()
+while IFS= read -r f; do PNG_LIST+=("$f"); done < <(find "$UPLOAD_DIR" -maxdepth 1 -iname "*.png" 2>/dev/null | sort)
 [ ${#PNG_LIST[@]} -eq 0 ] && { echo "PNG bulunamadı: $UPLOAD_DIR"; exit 0; }
 
 echo "=== asset-browser-upload ==="
