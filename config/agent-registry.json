@@ -4152,7 +4152,7 @@
       "max_tool_calls": 30,
       "effort": "high",
       "template": "autonomous",
-      "notes": "Ücretli. B16 (free) yetersiz kalırsa.",
+      "notes": "\u00dccretli. B16 (free) yetersiz kal\u0131rsa.",
       "strategy": "two_pass",
       "execution_backends": {
         "primary": "openai-codex-cli",
@@ -5637,8 +5637,15 @@
       "category": "design",
       "status": "pool",
       "primary_model": "opus",
-      "fallbacks": ["sonnet", "gpt-5.4", "gpt-5.4-mini"],
-      "mcps": ["fetch", "context7"],
+      "fallbacks": [
+        "sonnet",
+        "gpt-5.4",
+        "gpt-5.4-mini"
+      ],
+      "mcps": [
+        "fetch",
+        "context7"
+      ],
       "capabilities": [
         "2d-art-styles",
         "game-art-history",
@@ -5654,7 +5661,10 @@
       "strategy": "direct",
       "execution_backends": {
         "primary": "claude",
-        "fallback": ["openai-codex-cli", "gemini-cli"]
+        "fallback": [
+          "openai-codex-cli",
+          "gemini-cli"
+        ]
       },
       "execution_mode": "claude_session",
       "billing_mode": "subscription-only",
@@ -5667,7 +5677,11 @@
       "category": "design",
       "status": "pool",
       "primary_model": "sonnet",
-      "fallbacks": ["opus", "gpt-5.4-mini", "gpt-5.4-nano"],
+      "fallbacks": [
+        "opus",
+        "gpt-5.4-mini",
+        "gpt-5.4-nano"
+      ],
       "mcps": [],
       "capabilities": [
         "prompt-enrichment",
@@ -5684,13 +5698,20 @@
       "strategy": "direct",
       "execution_backends": {
         "primary": "claude",
-        "fallback": ["openai-codex-cli", "gemini-cli"]
+        "fallback": [
+          "openai-codex-cli",
+          "gemini-cli"
+        ]
       },
       "execution_mode": "claude_session",
       "billing_mode": "subscription-only",
       "interaction_mode": "automated",
       "project_scope": "nakkas",
-      "related": ["D15", "D17", "B54"]
+      "related": [
+        "D15",
+        "D17",
+        "B54"
+      ]
     },
     "D17": {
       "name": "Nakkas Catalog Builder",
@@ -5698,8 +5719,13 @@
       "category": "design",
       "status": "pool",
       "primary_model": "sonnet",
-      "fallbacks": ["gpt-5.4-mini", "opus"],
-      "mcps": ["playwright"],
+      "fallbacks": [
+        "gpt-5.4-mini",
+        "opus"
+      ],
+      "mcps": [
+        "playwright"
+      ],
       "capabilities": [
         "nextjs-ui",
         "tailwind",
@@ -5716,13 +5742,20 @@
       "strategy": "direct",
       "execution_backends": {
         "primary": "claude",
-        "fallback": ["openai-codex-cli", "gemini-cli"]
+        "fallback": [
+          "openai-codex-cli",
+          "gemini-cli"
+        ]
       },
       "execution_mode": "claude_session",
       "billing_mode": "subscription-only",
       "interaction_mode": "automated",
       "project_scope": "nakkas",
-      "related": ["D15", "D16", "B54"]
+      "related": [
+        "D15",
+        "D16",
+        "B54"
+      ]
     },
     "B54": {
       "name": "Nakkas Adapter Author",
@@ -5730,8 +5763,17 @@
       "category": "backend",
       "status": "pool",
       "primary_model": "sonnet",
-      "fallbacks": ["opus", "gpt-5.4", "gpt-5.4-mini"],
-      "mcps": ["git", "github", "jcodemunch", "context7"],
+      "fallbacks": [
+        "opus",
+        "gpt-5.4",
+        "gpt-5.4-mini"
+      ],
+      "mcps": [
+        "git",
+        "github",
+        "jcodemunch",
+        "context7"
+      ],
       "capabilities": [
         "ts-adapter-writing",
         "cli-subprocess-wrapping",
@@ -5746,13 +5788,19 @@
       "strategy": "direct",
       "execution_backends": {
         "primary": "claude",
-        "fallback": ["openai-codex-cli"]
+        "fallback": [
+          "openai-codex-cli"
+        ]
       },
       "execution_mode": "claude_session",
       "billing_mode": "subscription-only",
       "interaction_mode": "automated",
       "project_scope": "nakkas",
-      "related": ["D15", "D16", "D17"]
+      "related": [
+        "D15",
+        "D16",
+        "D17"
+      ]
     },
     "D12": {
       "name": "Unity UX Flow Designer",
@@ -8008,6 +8056,42 @@
       "execution_mode": "gemini_cli",
       "billing_mode": "plan_included",
       "interaction_mode": "automated"
+    },
+    "D18": {
+      "name": "Sprite Animation Prompter",
+      "version": "1.0",
+      "category": "design",
+      "status": "pool",
+      "primary_model": "opus",
+      "fallbacks": [
+        "sonnet"
+      ],
+      "mcps": [],
+      "capabilities": [
+        "sprite-strip",
+        "frame-animation",
+        "dalle",
+        "gpt-image",
+        "gamedev-asset",
+        "prompt-engineering",
+        "pixel-painterly",
+        "magenta-bg"
+      ],
+      "max_tool_calls": 20,
+      "effort": "medium",
+      "template": "autonomous",
+      "tier": "mid",
+      "strategy": "direct",
+      "execution_backends": {
+        "primary": "claude",
+        "fallback": [
+          "openai-codex-cli"
+        ]
+      },
+      "execution_mode": "claude_native",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated",
+      "model_source": "anthropic"
     }
   },
   "retry_strategy": {
@@ -8033,12 +8117,12 @@
     "max_no_progress": 8,
     "max_loop": 5
   },
-  "last_updated": "2026-04-07",
+  "last_updated": "2026-04-24",
   "source_requirements": {
     "groq": {
       "secret_key": "GROQ_API_KEY",
       "status": "available",
-      "test_result": "✅ tested 2026-04-07",
+      "test_result": "\u2705 tested 2026-04-07",
       "setup_url": "https://console.groq.com/keys",
       "notes": "Free tier. Fast inference. Get key at console.groq.com",
       "working_models": [
@@ -8065,7 +8149,7 @@
       "status": "available",
       "on_missing": "skip",
       "notes": "Optional. HF Inference API free tier.",
-      "test_result": "✅ token set 2026-04-07"
+      "test_result": "\u2705 token set 2026-04-07"
     }
   },
   "jarvis_session": {
@@ -8074,16 +8158,16 @@
       "agent_id": "Jarvis",
       "name": "Claude Code Main Session",
       "model": "claude-sonnet-4-6",
-      "cost_emoji": "🔶",
+      "cost_emoji": "\ud83d\udd36",
       "cost_label": "mid",
       "tier": "session"
     },
     "cost_labels": {
-      "🆓 free": "Groq ücretsiz tier",
-      "💻 local": "Ollama lokal model",
-      "💛 cheap": "Haiku — düşük ücretli",
-      "🔶 mid": "Sonnet — orta ücretli",
-      "🔴 paid": "Opus — yüksek ücretli"
+      "\ud83c\udd93 free": "Groq \u00fccretsiz tier",
+      "\ud83d\udcbb local": "Ollama lokal model",
+      "\ud83d\udc9b cheap": "Haiku \u2014 d\u00fc\u015f\u00fck \u00fccretli",
+      "\ud83d\udd36 mid": "Sonnet \u2014 orta \u00fccretli",
+      "\ud83d\udd34 paid": "Opus \u2014 y\u00fcksek \u00fccretli"
     }
   },
   "cost_policy": {
