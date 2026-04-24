@@ -1,24 +1,27 @@
 ---
 name: asset-browser
-description: "Asset browser aç veya güncelle — Vercel URL'i aç, local dev sunucusu başlat, veya paket kodunu güncelle + redeploy. Triggers: asset browser aç, asset browser open, browse assets, open browser, asset browser update, browser güncelle, update browser"
-argument-hint: "[local|online|update]"
+description: "Asset browser aç, güncelle veya lokal dosya yükle — Vercel URL'i aç, local dev sunucusu başlat, paket kodunu güncelle + redeploy, veya lokal PNG'leri işleyip runtime'a ekle. Triggers: asset browser aç, asset browser open, browse assets, open browser, asset browser update, browser güncelle, update browser, asset upload, lokal dosya yükle, generated assets işle"
+argument-hint: "[local|online|update|upload [dir]]"
 ---
 
-# /asset-browser — Asset Browser'ı Aç / Güncelle
+# /asset-browser — Aç / Güncelle / Lokal Yükle
 
 | Argüman | Eylem |
 |---------|-------|
 | (yok) / `online` | Vercel canlı URL'i açar |
 | `local` | Yerel dev sunucusu başlatır ve açar |
 | `update` | Paketten kodu çeker, redeploy eder |
+| `upload [dir]` | Lokal PNG'leri işler → WebP → runtime → missing.json approved |
 
 ## Kullanım
 
 ```
-/asset-browser          # online (varsayılan)
-/asset-browser online   # Vercel canlı
-/asset-browser local    # local dev sunucusu
-/asset-browser update   # paket güncellemesi + redeploy
+/asset-browser                        # online (varsayılan)
+/asset-browser online                 # Vercel canlı
+/asset-browser local                  # local dev sunucusu
+/asset-browser update                 # paket güncellemesi + redeploy
+/asset-browser upload                 # 07_generated_assets/ klasörünü işle (varsayılan)
+/asset-browser upload path/to/dir     # belirli klasörü işle
 ```
 
 ## Çalıştır
@@ -82,6 +85,105 @@ if [ "$ARG" = "update" ]; then
 
   echo ""
   echo "Done! Live: $VERCEL_URL"
+
+elif [ "$ARG" = "upload" ]; then
+  # Lokal PNG'leri işle → WebP → runtime → missing.json approved
+  UPLOAD_DIR="${2:-}"
+  [ -z "$UPLOAD_DIR" ] && UPLOAD_DIR="${PROJECT_DIR}/07_generated_assets"
+  [ ! -d "$UPLOAD_DIR" ] && { echo "ERROR: dir not found: $UPLOAD_DIR"; exit 1; }
+
+  RUNTIME_DIR=$(python3 -c "
+import json
+c=json.load(open('${CONFIG}'))
+src=next((s for s in c.get('sources',[]) if 'game' in s.get('category','').lower() or 'in' in s.get('category','').lower()), c.get('sources',[{}])[0])
+print(src.get('dir','game/public/assets'))
+" 2>/dev/null)
+  RUNTIME="${PROJECT_DIR}/${RUNTIME_DIR}"
+  ALIAS="https://asset-browser-${SLUG}.vercel.app"
+  TMPDIR="/tmp/ab_upload_$$"
+  mkdir -p "$TMPDIR"
+
+  echo "=== asset-browser upload: $UPLOAD_DIR → $RUNTIME ==="
+  APPROVED=()
+
+  for PNG in "$UPLOAD_DIR"/*.png "$UPLOAD_DIR"/*.PNG; do
+    [ -f "$PNG" ] || continue
+    BASENAME=$(basename "$PNG")
+    NAME="${BASENAME%.*}"
+    TMPFRAMES="$TMPDIR/frames_${NAME}"
+    mkdir -p "$TMPFRAMES"
+
+    # Frame sayısını isimden çıkar (_Nf pattern)
+    FRAMES=$(echo "$NAME" | grep -oE '_([0-9]+)f$' | grep -oE '[0-9]+' || echo "")
+
+    if [ -n "$FRAMES" ]; then
+      # Animasyon: magenta kaldır, frame böl, trim+center 256x256, strip birleştir
+      magick "$PNG" -fuzz 35% -transparent magenta \
+        -crop ${FRAMES}x1@ +repage \
+        "$TMPFRAMES/f_%02d.png" 2>/dev/null
+
+      # Siyah bg desteği (smoke vb.)
+      if [ $(ls "$TMPFRAMES"/f_*.png 2>/dev/null | wc -l) -eq 0 ]; then
+        magick "$PNG" -fuzz 20% -transparent black \
+          -crop ${FRAMES}x1@ +repage \
+          "$TMPFRAMES/f_%02d.png" 2>/dev/null
+      fi
+
+      FCOUNT=$(ls "$TMPFRAMES"/f_*.png 2>/dev/null | wc -l | tr -d ' ')
+      if [ "$FCOUNT" -eq 0 ]; then
+        echo "SKIP $NAME — frame split failed"
+        continue
+      fi
+
+      for F in "$TMPFRAMES"/f_*.png; do
+        magick "$F" -trim +repage \
+          -background none -gravity center -extent 256x256 "$F" 2>/dev/null
+      done
+
+      FLIST=()
+      while IFS= read -r F; do FLIST+=("$F"); done < <(ls "$TMPFRAMES"/f_*.png | sort)
+      magick "${FLIST[@]}" +append "$TMPDIR/${NAME}.png"
+    else
+      # Statik resim: max 512px resize
+      magick "$PNG" -resize '512x512>' "$TMPDIR/${NAME}.png"
+    fi
+
+    # WebP dönüşüm
+    cwebp -q 90 -alpha_q 100 "$TMPDIR/${NAME}.png" -o "$TMPDIR/${NAME}.webp" -quiet 2>/dev/null
+    [ ! -f "$TMPDIR/${NAME}.webp" ] && { echo "SKIP $NAME — webp failed"; continue; }
+
+    # Runtime'a kopyala
+    cp "$TMPDIR/${NAME}.webp" "$RUNTIME/${NAME}.webp"
+    echo "✓ $NAME → $RUNTIME_DIR/${NAME}.webp"
+
+    APPROVED+=("$NAME")
+  done
+
+  if [ ${#APPROVED[@]} -eq 0 ]; then
+    echo "No assets processed."
+    rm -rf "$TMPDIR"
+    exit 0
+  fi
+
+  # missing.json'da todo olanları approved yap
+  for NAME in "${APPROVED[@]}"; do
+    RESP=$(curl -s -X POST "$ALIAS/api/missing-patch" \
+      -H "Content-Type: application/json" \
+      -d "{\"name\":\"$NAME\",\"patch\":{\"status\":\"approved\"}}" 2>/dev/null)
+    echo "$NAME status: $RESP"
+    sleep 0.2
+  done
+
+  # Git commit + push
+  (cd "$PROJECT_DIR" && \
+    git add "$RUNTIME_DIR"/ && \
+    git diff --cached --quiet || \
+    git commit -m "feat: approve $(echo "${APPROVED[@]}" | tr ' ' '\n' | wc -l | tr -d ' ') local assets" && \
+    git push)
+
+  rm -rf "$TMPDIR"
+  echo ""
+  echo "Done! ${#APPROVED[@]} asset(s) added to $RUNTIME_DIR/"
 
 elif [ "$ARG" = "local" ]; then
   # Local dev sunucusu
