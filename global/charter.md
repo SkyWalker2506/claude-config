@@ -72,6 +72,7 @@ Sonnet her zaman son fallback. Sonnet'e geçmeden önce kullanıcıya sor.
 - **Komutlari dogrudan calistir** — "su komutu calistir: `...`" yazma, Bash tool ile kendin calistir. Kullaniciya copy-paste yaptirma
 - **Tehlikeli komutlar** (`rm -rf`, force push, DB drop, prod silme vb.): calistirma — kullaniciya ac,ikca soyle ("BU TEHLİKELİ: [ne olur]"), birden fazla kez sor, emin degilsen yapma
 - **Kullaniciya soru sormak gerekirse:** once terminal'de sor; kullanici yoksa (otonom/background gorev) `bash ~/Projects/claude-config/config/telegram-ask.sh "soru" "emoji"` ile Telegram'a gonder, cevap bekle
+- **Deploy/publish sonrasi dogrulama (ZORUNLU):** Canli URL, veritabani, GitHub, CI pipeline vb. degistiren her gorev bittikten sonra sonucu GERCEK ortamda kontrol et — deploy komutu basarili donse bile. "Bitti" diyebilmek icin: sayfayi ac, API'yi cagir, log'u oku, degisikligi goz ile goster. Komut cikti = dogrulama degil.
 
 ### 2. Tool-first ve maliyet
 
