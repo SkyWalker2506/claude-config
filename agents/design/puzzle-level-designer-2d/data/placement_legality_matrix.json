@@ -1,0 +1,28 @@
+{
+  "classes": {
+    "grounded_object": {
+      "requires": ["solid_support"],
+      "invalid_surfaces": ["water", "pit", "void", "lava", "deep_hazard"],
+      "exceptions": ["island", "platform", "explicit_support"]
+    },
+    "wall_mounted_object": {
+      "requires": ["wall_support"],
+      "invalid_surfaces": ["unsupported_air"],
+      "exceptions": ["explicit_suspension"]
+    },
+    "ceiling_mounted_object": {
+      "requires": ["ceiling_support"],
+      "invalid_surfaces": ["unsupported_air"],
+      "exceptions": ["explicit_suspension"]
+    },
+    "goal_object": {
+      "requires": ["reachable_space", "readable_visual_state"],
+      "invalid_surfaces": ["void", "hazard_overlap", "ambiguous_goal_hazard_overlap"]
+    },
+    "traversal_object": {
+      "requires": ["connects_two_meaningful_spaces"],
+      "invalid_if": ["leads_nowhere", "crosses_no_gap_unless_decorative"]
+    }
+  }
+}
+

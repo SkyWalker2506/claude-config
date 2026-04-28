@@ -28,12 +28,12 @@ Data'da `portal`/`magnet`/`movingHill` TANIMLI ama `LEVELS` array'inde kullanıl
 ## 6. Crescendo violation
 Boss level'da mekanik sayısı `< önceki level + 2` → anticlimactic.
 
-**Kural**: Boss (L18) `≥ 7 distinct mekanik` içermeli. Yeni mekanik varsa boss'ta debut.
+**Kural**: Boss level’lar “kombinasyon” olmalı: yeni mekanik varsa boss’ta debut edebilir. Mekanik sayısı hedefi game-pack’e göre değişir.
 
 ## 7. Breather spacing
 Her 6 level'da bir "breather" — tanıdık parça tekrarı, yeni mekanik yok, kolay tempo. 
 
-**Kural**: L6, L12 breather pozisyonlarında. Course 2'ye geçişte L19 breather.
+**Kural**: Breather konumları game-pack’e aittir. (Örn: Golf Paper Craft’ta L6/L12/L19 hedefleri `game-packs/golf-paper-craft/progression.md` altında.)
 
 ## 8. Trampoline over water visibility
 Pad su üstünde `y=GY-6` ise su yüzeyi ile görsel olarak karışır; oyuncu "ada" gibi algılar → raft pozisyonunda `y=GY-20` yarı-airborne ideal.

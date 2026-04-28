@@ -1,0 +1,17 @@
+{
+  "level_id": "",
+  "player_already_knows": [],
+  "level_teaches": [],
+  "level_tests": [],
+  "required_dependencies": [
+    {
+      "step": "",
+      "requires": [],
+      "unlocks": [],
+      "failure_if_missing": ""
+    }
+  ],
+  "invalid_dependencies": [],
+  "later_levels_may_depend_on": []
+}
+

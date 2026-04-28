@@ -5584,8 +5584,8 @@
       "model_source": "gemini_api"
     },
     "D14": {
-      "name": "2D Puzzle Physics Level Designer",
-      "version": "1.0",
+      "name": "General Level Designer",
+      "version": "1.1",
       "category": "design",
       "status": "active",
       "primary_model": "gemini-3.1-pro-preview",
@@ -5601,17 +5601,22 @@
         "context7"
       ],
       "capabilities": [
-        "2d-level-design",
-        "physics-puzzle",
-        "matter-js",
-        "box2d",
+        "level-design",
+        "spatial-logic",
+        "player-guidance",
+        "puzzle-design",
+        "puzzle-dependency-analysis",
+        "physics-puzzle-design",
+        "combat-encounter-design",
+        "pacing-design",
         "difficulty-curve",
-        "mechanic-composition",
         "playtesting-critique",
         "progression-design",
-        "one-puzzle-one-lesson",
         "solve-path-analysis",
-        "upgrade-balance"
+        "onboarding-design",
+        "level-readability",
+        "validation-checklists",
+        "game-specific-pack-integration"
       ],
       "max_tool_calls": 30,
       "effort": "medium",

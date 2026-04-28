@@ -63,14 +63,8 @@ Surprise = retention yakiti. Kotu hook: menu → setting → tutorial video → 
 
 Timing-kritik, state-aware veya ters-sezgisel olan her sey L5+'a ertelenir. Golf Paper Craft icin:
 
-| Mekanik | Min level | Neden L1 degil |
-|---|---|---|
-| **magnet** | L8+ | state-aware cekim alani, gorunmez kuvvet |
-| **portal** | L10+ | non-euclidean teleport, "nerede ciktim" kafa karisir |
-| **movingHill** | L7+ | timing + prediction, statik zemini kalibre etmeden gurultu |
-| **ice** | L6+ | friction degisir, default friction'i ogrenmeden bulanik |
-| **spring** | L5 (izole) | power override, kendi gucunu olcemeden dis kuvvet = agency kaybi |
-| **fan** | L9+ | continuous force, trajectory icgudusu olmadan anlamsiz |
+Bu “min level” tabloları game-pack’e aittir. Core onboarding dosyasında yalnız metodoloji tutulur.
+Golf Paper Craft için bkz: `../game-packs/golf-paper-craft/progression.md`
 
 Ek yasaklar L1-L5: ruzgar, hareketli engel, multi-shot combo, time limit, reverse logic, zincirleme, chain trigger.
 
@@ -92,28 +86,9 @@ Tek kus, tek domuz, tek blok, tek nokta. Oyuncu sling'i geri ceker (affordance: 
 
 ---
 
-## Golf Paper Craft'a Uygulama — L1-L5 Spec
+## Game-specific onboarding specs
+Game-specific onboarding specs (L1–L5 targets, mechanic intro min-level tables, etc.) must live in the relevant game-pack.
 
-Tile = world unit. Yasak list yukarida. Bu tablo baglayicidir; iterasyon bu sayilari hedefler.
-
-| L | Distance | Obstacle | maxShots | Yeni mekanik | Kanonik cozum | Completion hedef | Avg attempt |
-|---|---|---|---|---|---|---|---|
-| **L1 "Baslangic"** | 6-8 | 0 | 5 | aim + power (duz atis) | 1 atis, orta guc | %98 | 1.1 |
-| **L2 "Hafif egim"** | 8-10 | 15° egimli zemin | 4 | egimin gucu etkilemesi | 1-2 atis | %92 | 1.4 |
-| **L3 "Yukseklik"** | 10-12 | delik yuksek platformda | 4 | arc control | 1-2 atis arc | %85 | 2.0 |
-| **L4 "Ilk engel"** | 12-14 | tek duvar (delik arkasinda) | 3 | arc + guc birlikte (combine) | 2 atis | %78 | 2.5 |
-| **L5 "Trampoline izole"** | 12-15 | trampoline + duvar | 3 | trampoline zorunlu (izole intro) | 2 atis, bounce | %72 | 3.0 |
-
-**L1 checklist**
-- Top gorunur, delik gorunur, arada engel yok, scroll yok
-- Zayif gucle bile top delige yaklasir (yakin miss = ogretici)
-- Ilk shot'ta vurma sansi %30-50 — kasitli
-- UI: tek element (drag-aim). Hiçbir panel yok.
-
-**L2 checklist**
-- Egim **yanda baslar**, sonra yolun altina girer — once tanit, sonra yolla bulustur
-- Fail penalty hala 0
-
-**Iterasyon kurali**: her level 10+ oyuncu ile test. Time-to-success medyan ± %50 bandinda kalmali. Disinda kalan = level kirik, yeniden tasarla.
-
-Cross-ref: principles.md §3 (teach-practice-combine-twist), mechanics-catalog.md (introduction order), flow-theory.md (attempt budget), common-pitfalls.md (tutorial-heavy L1 anti-pattern).
+Golf Paper Craft:
+- `../game-packs/golf-paper-craft/level-rules.md`
+- `../game-packs/golf-paper-craft/progression.md`

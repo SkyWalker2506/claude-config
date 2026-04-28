@@ -1,0 +1,47 @@
+{
+  "universal_level_validation": {
+    "design_intent": [
+      "main_intention_defined",
+      "expected_player_emotion_defined",
+      "primary_idea_defined",
+      "fits_progression"
+    ],
+    "player_knowledge": [
+      "required_knowledge_listed",
+      "new_knowledge_isolated_before_test",
+      "no_untaught_mechanic_mandatory",
+      "dependency_model_valid"
+    ],
+    "spatial_logic": [
+      "no_unsupported_objects",
+      "no_invalid_surface_placements",
+      "goal_reachable_and_readable",
+      "hazards_readable",
+      "decor_no_false_affordance"
+    ],
+    "gameplay_logic": [
+      "intended_path_possible",
+      "obvious_wrong_path_handled",
+      "failure_teaches",
+      "every_object_has_purpose"
+    ],
+    "readability": [
+      "goal_clear",
+      "first_action_clear",
+      "no_hidden_information_required",
+      "feedback_clear"
+    ],
+    "difficulty": [
+      "attempt_budget_matches_tier",
+      "no_unexpected_spike",
+      "breathers_exist",
+      "mastery_optional"
+    ],
+    "production": [
+      "implemented_mechanics_only_or_flagged",
+      "new_requirements_listed",
+      "game_pack_constraints_respected"
+    ]
+  }
+}
+

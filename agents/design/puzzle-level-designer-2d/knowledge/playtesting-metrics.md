@@ -107,27 +107,8 @@ Bir mekanik / paramtre degisti → hangi leveller etkilendi?
 
 ---
 
-## Golf Paper Craft'a Uygulama
+## Game-specific playtesting notes
+Any game-specific thresholds, boss numbers, or level IDs belong in the relevant game-pack.
 
-Backend yok, analytics yok — self-test disiplinine bagimliyiz. Pratik plan:
-
-**Takip edilecek metrikler** (designer elle, Notion / CSV):
-- Her level icin `avg_attempts` (min 10 run self + 3 cold player)
-- `time_to_solve` (saniyeden kronometre)
-- `quit_after_level` proxy: cold player'a "devam eder miydin?" (evet/hayir/belki) sor
-- Win replay **video kaydi** — dead drop avcilama icin sart (OBS yeterli)
-
-**Break esikleri** (Golf Paper Craft spesifik):
-- `avg_attempts > 12` → level ship edilmez (boss haric).
-- Tutorial L1-L3: cold player ilk denemede gecmiyorsa **mekanigi yeniden ogret**.
-- `time_to_solve > 150s` mid-level'da → readability patch.
-- Win replay'de tolerance > 1.5x → **luck solve**, level designi keskinles.
-
-**L18 Boss icin kabul edilebilir fail rate**:
-- Hedef `fail_rate`: **%65-72**
-- Hedef `avg_attempts`: **10-14**
-- Ustu "masochist", altı "antiklimaks". 
-- Cold player boss'ta 3 denemede gecerse boss zayif, 20 denemede gecemezse boss caydirici — orta band sweet spot.
-- Boss `quit_after_level` **%40'a kadar normal** (oyun bitti, oyuncu cikiyor — buna `closure quit` denir, saglikli).
-
-**Golden run kurali**: L1'den L18'e tek seferde gec, sure < 25dk olsun. Ustu → pacing sorunu; 10dk alti → oyun cok kisa, content ekle.
+Golf Paper Craft:
+- `../game-packs/golf-paper-craft/playtest-notes.md`

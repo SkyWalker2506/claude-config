@@ -1,0 +1,30 @@
+{
+  "patterns": [
+    {
+      "id": "double_take",
+      "category": "puzzle",
+      "purpose": "Make the obvious first solution fail in a readable way, forcing recontextualization.",
+      "requires": [
+        "clear_goal",
+        "obvious_first_solution",
+        "readable_failure",
+        "low_retry_cost",
+        "second_solution_reuses_elements"
+      ],
+      "common_mistakes": [
+        "failure_feels_unfair",
+        "correct_solution_hidden",
+        "too_much_complexity",
+        "failure_teaches_nothing"
+      ],
+      "validation_questions": [
+        "What will most players try first?",
+        "Why does that fail?",
+        "What does the failure teach?",
+        "What assumption must change?",
+        "Is the second solution visible after the first failure?"
+      ]
+    }
+  ]
+}
+

@@ -529,6 +529,128 @@ Tum sprint'ler tamamlaninca:
 
 ---
 
+### Phase 5.5 — Per-Run Scoring (Otomatik, Atlanamaz)
+
+**Her run sonunda 0-10 arası puanlama zorunlu.** Phase 5 bittikten hemen sonra, Phase 7'den önce çalışır. Skip edilemez. Çıktı: `forge/run-{N}-score.md`.
+
+**Ne zaman çalışır:** Her run sonunda (run sayısına bakmaksızın). Auto/quick/deep tüm modlarda aktif.
+
+**Skorlama kategorileri (her biri 0-10):**
+
+| Kategori | Ölçüt | Nasıl ölçülür |
+|----------|-------|---------------|
+| **Build** | Bundle size, type check, build time | `npm run build` / proje build komutu, exit code + bundle size |
+| **GDD Compliance** | GDD.md / PRD'deki maddelerle birebir uyum | `GDD.md`, `analysis/MASTER_ANALYSIS.md` ve kod karşılaştırması; eksik/yanlış implement = puan kırma |
+| **UI/UX Quality** | Görsel polish, hata yok, akıcı | Playwright MCP ile live URL'de screenshot + `browser_console_messages` (hata var mı), interaksiyon testi |
+| **Functional** | Çalışıyor mu, golden path + edge case | Playwright ile gameplay/feature testi: tıkla, bekle, snapshot al |
+| **Code Quality** | PR review skorları ortalaması, fix loop oranı | Phase 4 review_pass event'lerinin score detail'inden; <5 review = N/A |
+| **Performance** | FPS, memory, network | Playwright `browser_evaluate` ile `performance.memory`, FPS ölçümü |
+
+**Agregat:** `total = (build*2 + gdd*3 + ui*2 + functional*2 + code_quality*1 + performance*1) / 11`  
+GDD ve build en ağır — GDD birebir uyum forge'un nihai amacı, build kırıksa hiçbir şey önemsiz değil.
+
+**Web projeleri için Playwright kontrolü (zorunlu adımlar):**
+
+1. `mcp__playwright__browser_navigate` → projenin live URL'i (memory'den oku — örn. `reference_vercel_url.md`). URL yoksa lokal dev server başlat (`npm run dev` background) ve `http://localhost:5173` kullan.
+2. `mcp__playwright__browser_snapshot` → açılış görüntüsü
+3. `mcp__playwright__browser_console_messages` → JS hatası var mı (her error -1 puan UI'dan)
+4. **GDD'deki ilk 3 ana feature için ayrı interaksiyon testi:**
+   - Tıkla, bekle, snapshot, sonucu doğrula
+   - Çalışmıyorsa Functional'dan -2 puan
+5. `mcp__playwright__browser_evaluate` → `JSON.stringify({mem: performance.memory?.usedJSHeapSize, fps: window.__fps || null})`
+
+**GDD Compliance kontrolü (zorunlu adımlar):**
+
+1. `GDD.md`, `PRD.md` veya `analysis/MASTER_ANALYSIS.md` dosyalarını oku (varsa)
+2. GDD'deki feature listesi vs kod karşılaştır:
+   - Her implement edilmiş feature: +1 puan (max 10)
+   - Yanlış/eksik implement: -1 puan
+   - Hiç başlanmamış kritik feature: -2 puan
+3. Önceki run'ın GDD score'u ile karşılaştır → trend (yükseliş/düşüş)
+
+**Çıktı formatı (`forge/run-{N}-score.md`):**
+
+```markdown
+# Forge Run N Score — {proje}
+
+**Tarih:** {ISO date}
+**Toplam Skor:** 7.8/10
+
+## Kategori Skorları
+| Kategori        | Skor | Ağırlık | Katkı |
+|-----------------|------|---------|-------|
+| Build           | 9/10 | 2       | 18    |
+| GDD Compliance  | 8/10 | 3       | 24    |
+| UI/UX Quality   | 7/10 | 2       | 14    |
+| Functional      | 8/10 | 2       | 16    |
+| Code Quality    | 8/10 | 1       | 8     |
+| Performance     | 7/10 | 1       | 7     |
+| **Toplam**      |      | 11      | **86/110 = 7.8** |
+
+## GDD Compliance Detay
+- ✅ Implement: Building system, save/load, day-night, audio
+- ⚠️  Eksik: Multiplayer (GDD bölüm 4.2)
+- ❌ Bug: Tutorial step 3 — buton tıklanmıyor
+
+## UI/UX Detay
+- Konsol: 0 error, 2 warning (deprecated API)
+- Screenshot: ✅ Ana ekran temiz, ✅ HUD okunaklı, ⚠️ Mobile responsive değil
+- İnteraksiyon: 5/5 buton çalışıyor
+
+## Functional Detay
+- ✅ Yeni oyun başlatma
+- ✅ İlk bina inşası
+- ⚠️ Achievement modal açılmıyor (P2)
+
+## Performance
+- Heap: 42 MB
+- FPS: 58 avg
+- Bundle: 149.85 kB / 45.70 kB gzip
+
+## Trend (Önceki Run'larla)
+| Run | Toplam | GDD | UI | Functional |
+|-----|--------|-----|----|-----------:|
+| N-2 | 7.2    | 7   | 7  | 7          |
+| N-1 | 7.5    | 8   | 7  | 7          |
+| **N** | **7.8** | **8** | **7** | **8** |
+
+## Sonraki Run İçin Öneriler
+- GDD bölüm 4.2 (multiplayer) — XL task
+- Tutorial step 3 buton bug — P0 fix
+- Mobile responsive — frontend focus next run
+```
+
+**Skor eşikleri ve aksiyonlar:**
+
+| Skor aralığı | Aksiyon |
+|--------------|---------|
+| **9.0-10.0** | "Polish bölgesi" — kullanıcıya bildir, devam etme önerisi (memory: feedback_diminishing_returns) |
+| **7.0-8.9** | Sağlıklı — devam et |
+| **5.0-6.9** | Uyarı — Phase 7 analysis'e "kritik gap" flag'i geç |
+| **0-4.9** | Kritik — sonraki run otomatik durur, kullanıcıya escalate |
+
+**Aggregate trend:** `forge/scores-aggregate.json` — her run sonunda append:
+
+```json
+[
+  {"run": 1, "ts": "2026-04-26T10:00Z", "total": 7.2, "build": 9, "gdd": 7, "ui": 7, "functional": 7, "code_quality": 7, "performance": 8},
+  {"run": 2, "ts": "2026-04-26T11:30Z", "total": 7.5, ...}
+]
+```
+
+**Implementation notes:**
+- Web olmayan projeler (CLI, lib): UI/Functional yerine "API Surface" + "Test Coverage" kullan
+- Playwright erişilebilir değilse: UI/Functional skorları `manuel-pending` etiketiyle 0 yazılır, agregat'ta hariç tutulur
+- GDD.md yoksa: GDD Compliance skorı yerine PRD.md veya `analysis/MASTER_ANALYSIS.md` kullan; ikisi de yoksa skor "N/A" — agregat ağırlıktan düşülür
+
+**Score agent dispatch:**  
+Skorlama Phase 4'teki Reviewer agent değil — **ayrı dispatch** edilir:
+- Sonnet 4.6 model (hızlı + ucuz)
+- Tools: Read, Bash (build), mcp__playwright__*, mcp__jcodemunch__search_text
+- Süre limit: 8 dk; aşılırsa partial score yazılır
+
+---
+
 ### Decision Log (`forge/DECISIONS.md`)
 
 Her forge run'ı boyunca alınan önemli kararlar append-only olarak kaydedilir:
@@ -773,6 +895,7 @@ Bu sayede iki ayri `forge all` ayni projeye cakismaz.
 8. **Sprint sirasi korunur** — Sprint 1 bitmeden Sprint 2 baslamaz
 9. **Baska projeden cagirilabilir** — proje adi veya `all` ile herhangi bir dizinden calistir
 10. **Phase 7 atlanamazz** — her forge run'inda `/forge-analysis` otomatik calisir, skip edilemez
+10a. **Phase 5.5 atlanamazz** — her run sonunda per-run scoring (browser test + GDD compliance + UI + functional + perf) zorunlu; skor < 5.0 ise sonraki run otomatik durur
 11. **Verimlilik skoru < 50 ise dur** — kullaniciya bildir, sonraki run'i baslatma
 12. **`all` modunda aktif session tespiti zorunlu** — skor ≥ 2 projeyi forge etme, kullaniciya bildir
 13. **Forge lock** — her forge baslayinca `.jira-state/forge.lock` yaz, bitince sil
