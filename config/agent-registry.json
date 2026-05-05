@@ -8103,10 +8103,10 @@
       "version": "1.0",
       "category": "design",
       "status": "pool",
-      "primary_model": "opus-4.7",
+      "primary_model": "gemini-3.1-pro-preview",
       "fallbacks": [
-        "sonnet-4.6",
-        "gemini-3.1-pro-preview"
+        "gpt-5.4",
+        "sonnet-4.6"
       ],
       "mcps": [
         "playwright",
@@ -8130,15 +8130,16 @@
       "model_source": "anthropic_api",
       "strategy": "direct",
       "execution_backends": {
-        "primary": "claude",
+        "primary": "gemini-cli",
         "fallback": [
-          "gemini-cli",
-          "openai-codex-cli"
+          "openai-codex-cli",
+          "claude"
         ]
       },
-      "execution_mode": "claude_native",
+      "execution_mode": "gemini_api",
       "billing_mode": "plan_included",
-      "interaction_mode": "automated"
+      "interaction_mode": "automated",
+      "codex_model": "gpt-5.4"
     }
   },
   "retry_strategy": {
@@ -8164,7 +8165,7 @@
     "max_no_progress": 8,
     "max_loop": 5
   },
-  "last_updated": "2026-05-05T11:22:59.409435Z",
+  "last_updated": "2026-05-05T17:49:41.995211Z",
   "source_requirements": {
     "groq": {
       "secret_key": "GROQ_API_KEY",
