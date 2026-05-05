@@ -8097,6 +8097,48 @@
       "billing_mode": "plan_included",
       "interaction_mode": "automated",
       "model_source": "anthropic"
+    },
+    "D19": {
+      "name": "Web Game Editor Craftsman",
+      "version": "1.0",
+      "category": "design",
+      "status": "pool",
+      "primary_model": "opus-4.7",
+      "fallbacks": [
+        "sonnet-4.6",
+        "gemini-3.1-pro-preview"
+      ],
+      "mcps": [
+        "playwright",
+        "jcodemunch"
+      ],
+      "capabilities": [
+        "wysiwyg-editor-refactor",
+        "live-preview-iframe",
+        "editor-sync-postmessage",
+        "dirty-state-ux",
+        "beforeunload-guards",
+        "layered-render-schema",
+        "property-pane-design",
+        "cross-tab-storage-sync",
+        "hot-apply-patterns"
+      ],
+      "max_tool_calls": 80,
+      "effort": "long",
+      "template": "implement",
+      "tier": "senior",
+      "model_source": "anthropic_api",
+      "strategy": "direct",
+      "execution_backends": {
+        "primary": "claude",
+        "fallback": [
+          "gemini-cli",
+          "openai-codex-cli"
+        ]
+      },
+      "execution_mode": "claude_native",
+      "billing_mode": "plan_included",
+      "interaction_mode": "automated"
     }
   },
   "retry_strategy": {
@@ -8122,7 +8164,7 @@
     "max_no_progress": 8,
     "max_loop": 5
   },
-  "last_updated": "2026-04-24",
+  "last_updated": "2026-05-05T11:22:59.409435Z",
   "source_requirements": {
     "groq": {
       "secret_key": "GROQ_API_KEY",
