@@ -76,6 +76,12 @@ Sonnet her zaman son fallback. Sonnet'e geçmeden önce kullanıcıya sor.
 
 - **UI testleri = islev + gorsel kalite (ZORUNLU):** Playwright/screenshot ile test ederken sadece "JS calisti, console temiz" yetmez. Her UI degisiminden sonra screenshot'a tasarimci gozuyle bak: hizalama, hiyerarsi, bosluk, netlik dogru mu? Yeni eleman entegre mi yoksa bosluga dusmus debug widget gibi mi duruyor? Yan paneller/komsular ezildi mi? Calisan-ama-cirkin sonuc regression sayilir; iterate et. Tek satirlik cevap: "screenshot'a tasarimci gibi bak — calismasi yetmez, guzel olmali."
 
+- **Browser native dialog'lara takilma (ZORUNLU):** Playwright/automation sirasinda `beforeunload`, `alert`, `confirm`, `prompt`, file picker, basic auth gibi yerli tarayici dialog'lari **dead-end**'tir — her zaman onceden handler register et:
+  ```js
+  page.on('dialog', d => d.dismiss());  // veya .accept(), niyete gore
+  ```
+  MCP playwright'ta `browser_handle_dialog` ile cevapla. `beforeunload` dogrulamasi: listener'i kur, leave action'i tetikle, listener firin firmadigini logla, dismiss et, devam. Sub-agent brieflerinde de UI testi varsa bu kurali dahil et — agent'in dialog onunde sonsuz beklemesi en yaygin bottleneck.
+
 ### 2. Tool-first ve maliyet
 
 **Oncelik sirasi:** (1) MCP / tool → (2) yerel script / mevcut cozum → (3) son care reasoning
