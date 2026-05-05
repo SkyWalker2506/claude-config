@@ -74,6 +74,8 @@ Sonnet her zaman son fallback. Sonnet'e geçmeden önce kullanıcıya sor.
 - **Kullaniciya soru sormak gerekirse:** once terminal'de sor; kullanici yoksa (otonom/background gorev) `bash ~/Projects/claude-config/config/telegram-ask.sh "soru" "emoji"` ile Telegram'a gonder, cevap bekle
 - **Deploy/publish sonrasi dogrulama (ZORUNLU):** Canli URL, veritabani, GitHub, CI pipeline vb. degistiren her gorev bittikten sonra sonucu GERCEK ortamda kontrol et — deploy komutu basarili donse bile. "Bitti" diyebilmek icin: sayfayi ac, API'yi cagir, log'u oku, degisikligi goz ile goster. Komut cikti = dogrulama degil.
 
+- **UI testleri = islev + gorsel kalite (ZORUNLU):** Playwright/screenshot ile test ederken sadece "JS calisti, console temiz" yetmez. Her UI degisiminden sonra screenshot'a tasarimci gozuyle bak: hizalama, hiyerarsi, bosluk, netlik dogru mu? Yeni eleman entegre mi yoksa bosluga dusmus debug widget gibi mi duruyor? Yan paneller/komsular ezildi mi? Calisan-ama-cirkin sonuc regression sayilir; iterate et. Tek satirlik cevap: "screenshot'a tasarimci gibi bak — calismasi yetmez, guzel olmali."
+
 ### 2. Tool-first ve maliyet
 
 **Oncelik sirasi:** (1) MCP / tool → (2) yerel script / mevcut cozum → (3) son care reasoning

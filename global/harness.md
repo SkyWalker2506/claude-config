@@ -263,6 +263,28 @@ WATCHDOG: {quick|medium|long} — max {N} tool call
 
 **Tamamlanma:** Gorev bittiginde outcome (success/failed) + sure + tool call sayisi log'a yazilir.
 
+#### General-purpose agent — son care, ilk teklif "yeni agent tanimla"
+
+`general-purpose` (veya benzeri jenerik) agent **son care fallback**'tir. Asla ilk tercih degil.
+
+Sira:
+1. **Once registry'den ara** — `config/agent-router.sh "{gorev}"` veya `inspect_agent_truth.py` ile capability match.
+2. **Eslesen ozel agent yoksa** — kullaniciya **yeni agent tanimi** teklif et (general-purpose ile gitmeden once):
+   ```
+   Bu gorev icin registry'de uygun ozel agent yok. Su islemi onerirm:
+     1) Yeni agent tanimla (rol, kapsam, model, MCP tools, knowledge dosyalari)
+     2) `claude-config/agents/<kategori>/<slug>/AGENT.md` + registry entry yaz
+     3) `agent-sharpen` ile bilgi dagarcigi doldur
+     4) Sonra dispatch et
+   Onaylar misin? (yoksa fallback: general-purpose, ama daha az verimli)
+   ```
+3. **Kullanici onaylarsa** — agent'i tanimla → registry'ye ekle → install.sh ile mirror'la → dispatch et.
+4. **Kullanici "hayir, simdilik general-purpose"** derse — yalnizca o zaman fallback. Ama gorevi memory'e not et: bu kategori siklasiyorsa kalici agent yarat.
+
+**Why:** Jenerik agent capability/MCP/model tuning'i yok; ozel agent ya da hicbir agent. Tek seferlik gercek bir genel arastirma haricinde general-purpose secmek registry'i kor noktada birakir ve verim dusurur. Kullanici bu kurali acik istedi.
+
+**Logging:** `general-purpose` her seferinde dispatch edildiyse `~/Projects/.watchdog/general-fallback.log`'a yaz (gorev + neden) — periodic agent-refine bunlari yeni agent adayina cevirir.
+
 **Chain ornegi:** `user → Jarvis → A2 (route) → B7 (implement) → C3 (review) → Jarvis (rapor)`
 
 **Review pipeline (zorunlu):**
