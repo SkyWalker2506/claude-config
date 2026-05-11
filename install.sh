@@ -524,14 +524,14 @@ elif command -v python &>/dev/null; then
 fi
 
 if [ -n "$PYTHON_CMD" ]; then
-  if $PYTHON_CMD -c "import json; json.load(open('$HOME/.claude/settings.json'))" 2>/dev/null; then
+  if $PYTHON_CMD -c "import json, os; json.load(open(os.path.expanduser('~/.claude/settings.json'), encoding='utf-8'))" 2>/dev/null; then
     echo "✅ settings.json gecerli"
   else
     echo "❌ settings.json JSON hatali!"
     ERRORS=$((ERRORS + 1))
   fi
 elif command -v node &>/dev/null; then
-  if node -e "JSON.parse(require('fs').readFileSync('$HOME/.claude/settings.json','utf8'))" 2>/dev/null; then
+  if node -e "const os=require('os'),path=require('path'),fs=require('fs');JSON.parse(fs.readFileSync(path.join(os.homedir(),'.claude','settings.json'),'utf8'))" 2>/dev/null; then
     echo "✅ settings.json gecerli"
   else
     echo "❌ settings.json JSON hatali!"
