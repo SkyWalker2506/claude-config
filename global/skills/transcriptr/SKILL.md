@@ -73,6 +73,28 @@ curl -s "http://localhost:8080/ask?ids=ID1,ID2&q=SORU&provider=claude&format=tex
 ```
 LLM saglayici zorunlu (`extractive` reddedilir). Doner: `answer` + `videos[]`.
 
+### Yapilandirilmis cikarim (not / adim / SSS ...)
+Transkripti yapilandirilmis bir belgeye cevir.
+```bash
+curl -s "http://localhost:8080/extract?videoId=ID&type=notes&provider=claude&format=text"
+```
+`type`: `notes|takeaways|steps|faq|quotes|glossary|recipe`. LLM zorunlu.
+
+### Kutuphane RAG (cok videoda ara + alintili cevap)
+Once indeksle (Ollama `nomic-embed-text`, ucretsiz/offline), sonra sor.
+```bash
+curl -s "http://localhost:8080/index?videoId=ID"            # her video icin bir kez
+curl -s "http://localhost:8080/rag?q=SORU&provider=claude"  # tum indeksli kutuphanede
+```
+`/rag` doner: `answer` + `sources[]` (`title`, `ts_ms`, `score`). LLM + Ollama zorunlu.
+
+### Yerel dosya transkript (Whisper, offline)
+YouTube degil, diskteki bir ses/video dosyasi icin.
+```bash
+curl -s "http://localhost:8080/transcribe-file?path=/abs/yol/ses.mp3&format=text"
+```
+Sunucunun eristigi yerel `path` gerekir (ffmpeg + whisper.cpp).
+
 ### Yardimci
 `GET /providers` (hangi LLM bagli) · `GET /languages?videoId=ID` ·
 `GET /has-captions?ids=ID1,ID2` (toplu altyazi kontrolu) · `GET /` (tum API).
