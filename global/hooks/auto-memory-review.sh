@@ -46,6 +46,25 @@ if [ -z "$size" ] || [ "$size" -lt 20480 ]; then
   exit 0
 fi
 
+# ── Per-transcript reviewed-offset guard (Bug 3 fix): a resumed ORIGINAL
+#    session (not a review session) appends new lines and bumps mtime, so the
+#    "newest jsonl" fallback re-selects it and forces a full re-review even
+#    when only a handful of bytes are new. Track how far each transcript has
+#    been reviewed (by byte size) and only proceed if enough new content has
+#    accumulated since last time. ──
+STATE_DIR="$HOME/.claude/logs/auto-memory-review-state"
+mkdir -p "$STATE_DIR" 2>/dev/null || true
+state_key=$(printf '%s' "$TRANSCRIPT" | shasum | cut -d' ' -f1)
+STATE_FILE="$STATE_DIR/$state_key.size"
+last_size=0
+[ -f "$STATE_FILE" ] && last_size=$(cat "$STATE_FILE" 2>/dev/null || echo 0)
+[ -z "$last_size" ] && last_size=0
+delta=$((size - last_size))
+if [ "$last_size" -gt 0 ] && [ "$delta" -lt 20480 ]; then
+  log "skip: transcript already reviewed through ${last_size}B, only +${delta}B new (< 20480B threshold) — $TRANSCRIPT"
+  exit 0
+fi
+
 # ── Prefer user-turn count if jq available ──
 if command -v jq >/dev/null 2>&1; then
   user_turns=$(jq -r 'select(.type=="user") | .uuid' "$TRANSCRIPT" 2>/dev/null | wc -l | tr -d ' ')
@@ -77,6 +96,7 @@ if ! command -v claude >/dev/null 2>&1; then
 fi
 
 log "start: transcript=$TRANSCRIPT size=$size"
+echo "$size" > "$STATE_FILE" 2>/dev/null || true
 
 PROMPT="Review this session transcript at path: $TRANSCRIPT
 
