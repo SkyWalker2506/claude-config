@@ -53,6 +53,21 @@ if command -v jq >/dev/null 2>&1; then
     log "skip: only $user_turns user turns — $TRANSCRIPT"
     exit 0
   fi
+
+  # ── Self-referential loop guard: skip if this transcript's first user
+  #    turn is itself a prior auto-memory-review invocation (its own prompt
+  #    fingerprint), otherwise every review session's transcript becomes the
+  #    next review's target the instant it ends — chaining forever. ──
+  first_user_text=$(jq -nr '
+    first(inputs | select(.type=="user")) |
+    if (.message.content | type) == "string" then .message.content
+    else ([.message.content[]? | select(.type=="text") | .text] | join("\n"))
+    end
+  ' "$TRANSCRIPT" 2>/dev/null)
+  if [ -n "$first_user_text" ] && echo "$first_user_text" | grep -qF "Scan for new/updated facts matching types (user, feedback, project, reference) per the auto-memory rules"; then
+    log "skip: transcript is itself a prior auto-memory-review session (self-referential loop guard) — $TRANSCRIPT"
+    exit 0
+  fi
 fi
 
 # ── Ensure claude binary exists ──
