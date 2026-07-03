@@ -46,6 +46,24 @@ if [ -z "$size" ] || [ "$size" -lt 20480 ]; then
   exit 0
 fi
 
+# ── Resolved cross-project marker guard (Bug 4 fix): a long-lived, heavily
+#    tool-instrumented session can clear the byte/turn gates below every few
+#    minutes from routine tool-call volume alone, even when a prior headless
+#    review already fully mined it for ClaudeHQ-worthy facts and parked a
+#    pending_claudehq-entries-from-<sessionId>.md marker in the transcript's
+#    OWN project memory dir (resolved or blocked, either way already
+#    reviewed). Re-dispatching a full headless review in that case is pure
+#    waste — confirmed 6+ redundant dispatches in a single day (2026-07-03)
+#    against transcript d0d7b2d3 alone. Skip permanently once such a marker
+#    exists; this does not affect the session's own live in-context memory
+#    writes, which happen independently of this hook. ──
+transcript_session_prefix=$(basename "$TRANSCRIPT" .jsonl | cut -d'-' -f1)
+transcript_memory_dir="$(dirname "$TRANSCRIPT")/memory"
+if ls "$transcript_memory_dir"/pending_claudehq-entries-from-"${transcript_session_prefix}"*.md >/dev/null 2>&1; then
+  log "skip: resolved-marker exists for session ${transcript_session_prefix} — $TRANSCRIPT"
+  exit 0
+fi
+
 # ── Per-transcript reviewed-offset guard (Bug 3 fix): a resumed ORIGINAL
 #    session (not a review session) appends new lines and bumps mtime, so the
 #    "newest jsonl" fallback re-selects it and forces a full re-review even
