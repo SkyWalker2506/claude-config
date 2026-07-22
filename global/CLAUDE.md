@@ -31,6 +31,7 @@ Bu dosyalar HER ZAMAN yuklenmez. Ihtiyac oldugunda oku:
 | `global/charter.md` | Calisma tarzi, model secimi, dil, cost, secrets sorusu geldiginde | Davranis kurallari |
 | `global/harness.md` | Dispatch, watchdog, recovery, agent sistemi gerektiginde | Kontrol akisi |
 | `CLAUDE.md` (root) | Proje kurallari, Jira, git, bootstrap gerektiginde | Proje kurallari |
+| `docs/unity-cli.md` | Unity otomasyonu (build/test/sahne/capture/MCP) gerektiginde — GUI'yi computer-use ile surmeden ONCE | Unity CLI + Pipeline referansi |
 
 **Kural:** Tum dosyayi okuma — index'ten ilgili bolumu bul, sadece o bolumu oku.
 
