@@ -106,6 +106,15 @@
             "command": "python3 __CLAUDE_CONFIG_ROOT__/scripts/gate_check.py 2>&1 || true"
           }
         ]
+      },
+      {
+        "matcher": "Agent|Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__HOME__/Projects/ClaudeHQ/tools/kb-baseline/observe_dispatch.sh"
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -231,7 +240,9 @@
     },
     "codex": {
       "command": "codex",
-      "args": ["mcp-server"],
+      "args": [
+        "mcp-server"
+      ],
       "env": {}
     }
   },
