@@ -33,7 +33,36 @@ paralellik kazancindan buyuktur.
 sanat prompt'u uretme · hata ayiklama · optimizasyon. Temel kodlama, ses, UI, asset icin
 **asla ajan bekleme**.
 
-## Butce
+## Basari olcutu: DOGRULUK degil HIS
+
+Bu bir MVP. Sorulan soru **"dogru mu"** degil, **"guzel mi, oynanir mi, tekrar etmek istiyor
+muyum"**. Cevabi **bakarak** verilir, test kosturarak degil.
+
+Bu yuzden: kabul kriteri yok, kapi suiti yok, mutasyon yok, determinizm kaniti yok. Tek
+dogrulama **ekran goruntusu + 60 saniye oynamak**. Bir sey calismiyorsa zaten goreceksin;
+calisiyor ama sikici ise hicbir test bunu soylemez.
+
+> Olculmus: bir kosuda dogrulugu kovalamak ~5.000 satir kapi uretti ve kirmizilarin yarisi
+> kapinin kendi hatasiydi. O sure hissi iyilestirmeye harcansa prototip daha iyi olurdu.
+
+## Model ve effort politikasi — hiz icin ayarlanir
+
+| Is | Model | Effort |
+|---|---|---|
+| Sen (ana ajan): analiz, iskelet, cekirdek dongu, juice, entegrasyon | oturumun modeli | **dusuk tut** — uzun muhakeme etme, ilk makul cozumu yaz |
+| Mikro ajan (yalniz sanat prompt'u / debug / optimizasyon, prototip kostuktan SONRA) | `opus` | **`low`** |
+| Plan/analiz delegasyonu | — | **yok**. 3 dakikalik analizi delege etmek, yapmaktan uzun surer |
+
+**`effort: high` bu skill'de yasak.** Olculmus: `high` paketler 24-38 dakika, `medium` olanlar
+7-19 dakika surdu. Prototipte fark kaliteye degil sureye gidiyor.
+
+**Kendi muhakemeni de kis.** Her karari olcme, her alternatifi tartma. Bir sayi makul
+gorunuyorsa yaz, sonra ekranda bak. "Hangi yaklasim daha dogru" sorusu bu skill'in sorusu
+degil; **"su an ekranda ne var"** sorusu.
+
+## Butce ve saat
+
+**30 dakika sert tavandir.** Asilirsa kesilen sey kapsamdir, sure degil.
 
 | Faz | Sure | Cikti |
 |---|---:|---|
@@ -43,7 +72,17 @@ sanat prompt'u uretme · hata ayiklama · optimizasyon. Temel kodlama, ses, UI, 
 | 4 · Juice + ses | 6 dk | partikul, shake, punch, procedural ses |
 | 5 · Bak ve tek gecis | 4 dk | ekran goruntusu, **en yuksek etkili tek** duzeltme |
 
-**30 dakikayi asan sey kapsam olmali, sure degil.** Tasan kismi "eksikler" diye yaz ve teslim et.
+### Saat kayarsa — kesme sirasi, tartismasiz
+
+| Dakika | Elinde yoksa | Yap |
+|---:|---|---|
+| 15 | cekirdek dongu calismyor | icerigi yariya indir (2 gun -> 1, 4 kart -> 2) ve donguyu bitir |
+| 22 | juice yok | **ikincil sistemleri at**, juice'a gec — juice'suz prototip sorusunu cevaplamaz |
+| 26 | hala bitmedi | ne varsa **calisan haliyle** dondur, gerisini "eksikler"e yaz |
+| 30 | — | **dur.** Ekran goruntusu al, README yaz, teslim et |
+
+Yarim biten bir sistem, hic baslamamis sistemden pahalidir: entegrasyonu bozar ve neyin
+calistigi belirsizlesir. **Kesmek erteleme degil, karardir** ve `README.md`'de gorunur olur.
 
 ---
 
