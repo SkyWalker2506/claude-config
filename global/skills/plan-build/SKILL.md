@@ -1,6 +1,6 @@
 ---
 name: plan-build
-description: "Fable planlar, Opus paralel uygular. Is paketlerine bol, dosya sahipligini ayristir, dalga dalga calistir, her pakete kendi effort'unu sec. Triggers: plan-build, fable ile planla, opus ile uygula, paralel gelistir, planla ve uygula, dual model build."
+description: "Fable planlar, Opus paralel uygular, /goal hedefe varana kadar donguyu surdurur. Is paketlerine bol, dosya sahipligini ayristir, dalga dalga calistir, her pakete kendi effort'unu sec. Triggers: plan-build, fable ile planla, opus ile uygula, paralel gelistir, planla ve uygula, dual model build."
 user-invocable: true
 argument-hint: "[hedef tanimi] veya [plan|build|status|resume]"
 ---
@@ -14,6 +14,10 @@ Iki modeli **yaptiklari isin dogasina gore** ayirir: plan yazmak arama ve secim 
 Bu skill'in tek gercek katkisi paralellik degil — **paralelligi guvenli kilan kisit**tir:
 iki paket asla ayni dosyayi yazamaz. O kisit saglanmadan paralel calistirmak, agent'larin
 birbirinin isini ezmesiyle biter ve seri calismaktan yavastir.
+
+**Dalgalar bittiginde is bitmez.** Faz 5'te `goal` skill'i devreye girer ve kabul kriterleri
+yesillenene kadar donguyu surdurur. `plan-build` bir artis teslim eder; **`goal` hedefe
+varildigini dogrular** — varilmadiysa durmaz, teshis eder ve devam eder.
 
 ## Argumanlar
 
@@ -38,6 +42,19 @@ degil ne yapilacagini kararlastirir. Ne oldugunu sen olcersin:
 - Calisan test suite'i var mi, yesil mi (kirmizidan baslamak paketleri birbirine bulastirir)
 
 Bu fazin ciktisi 20-40 satirlik bir **olgu ozeti**dir. Tahmin degil, olculmus sey.
+
+## Faz 0.5 — Hedef kilidi: kriterleri plandan ONCE yaz
+
+`goal` skill'inin Faz 1'ini burada calistir: hedefi 3-8 **calistirilabilir kabul kriterine**
+cevir, `.goal/criteria.json`'a yaz.
+
+Sirasi tesadufi degil. Kriterler plandan **once** yazilir, cunku:
+
+- Plan kriterlere gore bolunur — hangi paketin varligi hangi kriteri yesillendiriyor belli olur
+- Kriteri plandan sonra yazmak, kriteri **plana uydurmak** demektir; o zaman kriter hicbir sey olcmez
+- Fable'a kriterler verilir; plan onlari hedef alir, tahmin etmez
+
+Faz 1'de Fable'a giden prompt bu kriterleri **aynen** tasir.
 
 ## Faz 1 — Plan: Fable
 
@@ -150,7 +167,33 @@ paketler arasi sozlesme yanlis kurulmus demektir. Bunu plan hatasi olarak kaydet
 
 Kapi yesilse commit + push. Mesaj paket id'lerini tasisin.
 
-## Faz 5 — Ne ogrendik
+**Burada durma.** Entegrasyon kapisi "dalgalar tutarli mi" der; "hedefe varildi mi" demez.
+Onu Faz 5 soyler.
+
+## Faz 5 — Hedef dongusu: `goal`, kriterler yesillenene kadar
+
+`goal` skill'inin Faz 2-4'unu calistir. Faz 0.5'te yazilan kriterlerin **hepsini** kos.
+
+Hepsi yesilse is bitti. Kirmizi varsa **durma** — kirmizinin cinsine gore iki yol:
+
+| Kirmizi cinsi | Isaret | Ne yap |
+|---|---|---|
+| **Noktasal** | Tek dosya, tek hata, tek eksik baglanti | Dogrudan duzelt. Yeni plan turu **acma** — pahali ve gereksiz |
+| **Yapisal** | Eksik modul, paketler arasi sozlesme yanlis, plan bir seyi hic ongormemis | Fable'a **sadece kalan isi** yazdir → Faz 2 kapisi → yeni dalga → Faz 4 → tekrar Faz 5 |
+
+Yapisal turda Fable'a plani **bastan yazdirma**. Girdisi sudur: kalan kirmizi kriterler,
+neyin neden tutmadigi, ve mevcut paketlerin ne teslim ettigi. Bastan yazdirmak biten isi
+yeniden planlatir ve dongu ilerlemez.
+
+**Dur kosullari `goal` Faz 3'tekilerdir** — ozellikle "ilerleme yok" kurali: 3 ardisik turda
+hicbir kriter durum degistirmediyse dur ve uc teshisi kullaniciya yaz. Bu kural `durmasin`
+emrinin istisnasi degil, kosuludur: ayni duvara dorduncu kez kosmak ilerlemek degildir.
+
+Insan kilidine takilan kriter (uretilemeyecek sanat varligi, kimlik bilgisi, urun karari)
+donguyu **durdurmaz** — `blocked_by_human`'a tasinir, kalan kriterlerle devam edilir, sonda
+acikca listelenir.
+
+## Faz 6 — Ne ogrendik
 
 `.plan-build/run-{tarih}.json`: paket basina sure, kapi ilk seferde yesil miydi, plan disi
 dosya dokunusu, revizyon turu sayisi.
@@ -162,6 +205,7 @@ Uc tekrar eden sinyal, uc farkli teshis:
 | Kapi cogu pakette ilk seferde kirmizi | `done_when` yeterince kesin yazilmamis |
 | Paketler surekli `owns` disina tasiyor | Paket sinirlari gercek modul sinirlariyla ortusmiyor |
 | Entegrasyon kirmizi, paketler yesil | Paketler arasi sozlesme plan asamasinda tanimlanmamis |
+| Faz 5 dongusu cok tur donuyor | Kriterler plandan once yazilmis ama plana **girmemis** — Fable onlari hedef almamis |
 
 ## Yapma
 
@@ -169,3 +213,5 @@ Uc tekrar eden sinyal, uc farkli teshis:
 - **`owns` olmayan plani calistirma.** Paralellik o listeye dayaniyor; yoksa seri calis.
 - **Paket icinde plan yazdirma.** Opus paketi uygular; kapsami yeniden tartisirsa paket coker.
 - **Kirmizi kapiyi "sonra bakariz"a birakma.** Sonraki dalga onun ciktisini girdi sanar.
+- **Entegrasyon yesil diye durma.** Entegrasyon tutarlilik olcer, hedefi degil. Faz 5 kosulmadan is bitmemistir.
+- **Kriteri gevseterek dongu kapatma.** Esigi dusurmek hedefi degistirmektir; yapilacaksa gorunur yapilir.
