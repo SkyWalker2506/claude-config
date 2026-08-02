@@ -169,6 +169,30 @@ KISITLAR
 Son uc madde tesadufi degil, her biri yasanmis bir hatanin karsiligi:
 scope creep, canli agent agacinin commit'lenmesi, ve yesil rapor eden kirmizi kapi.
 
+### Paket boyutunu kopru gecikmesine gore olc
+
+Bir paketin buyuklugu satir sayisiyla degil, **kac dis gidis-donusu gerektirdigiyle** olculur.
+Yavas bir arac (canli Unity editoru, uzaktaki CI, uzun test kosusu) ajani beklemede birakir ve
+ajan beklerken **cikti uretmez** — watchdog onu askida sayip oldurur.
+
+Olculdu (Unity, tek oturum): bes `opus/high` paketi "600 sn ilerleme yok" ile oldu. Besinin de
+isi %80-90 bitmisti ve derleme temizdi; devralip tamamlamak her seferinde kisa surdu. Yani
+ajanlar basarisiz olmadi, **bekleme suresi sabir suresini asti**.
+
+Buna gore:
+
+- Unity/CI dokunan pakette **3-5 derleme + 1-2 test kosusundan** fazlasini isteme.
+- **Olcumu ajana yaptirma.** Palet cikarma, geometri olcme, kontrast hesabi orkestratorde
+  saniyeler surer; ajana verilince hem yavas hem stall sebebidir. Degerleri hazir ver.
+- **Gorsel dogrulama ayri pakettir.** "Ekran goruntusu al, ac, bak" tek basina bir tur eder.
+- **Stall sonrasi once `git status` ve derleme durumuna bak** — is genelde bitmistir, yarim
+  kalan sey dogrulamadir. Yeni ajan acmak yerine devral.
+
+### Ajan kosarken paylasilan araca dokunma
+
+Orkestrator ve ajan ayni canli editorde/aygitta is yaparsa ikisi de kilitlenir. Bu oturumda iki
+kez yasandi ve iki kez de sebep orkestratordu. Ajan kosarken o araci **kullanma**, bekle.
+
 ### Unity ve worktree
 
 `isolation: "worktree"` cogu repoda dogru cevap; **Unity projelerinde degildir** —
