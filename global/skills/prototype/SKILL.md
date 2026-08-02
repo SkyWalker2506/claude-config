@@ -62,7 +62,16 @@ degil; **"su an ekranda ne var"** sorusu.
 
 ## Butce ve saat
 
-**30 dakika sert tavandir.** Asilirsa kesilen sey kapsamdir, sure degil.
+**30 dakika bir PLANLAMA kisitidir, bir kesme sayaci degil.**
+
+Faz 1'de kapsami **30 dakikada bitecek sekilde** sec — bu skill'in asil isi budur. Ama is
+uzarsa **saat doldu diye birakma**: calismayan bir sey teslim etmek, gec teslim etmekten
+kotudur. Kural tek cumle:
+
+> Kapsami 30 dakikaya gore planla. Tasarsa **calisir hale gelene kadar devam et**, sonra dur.
+
+Yani tavan **kapsamin** tavanidir, **calismanin** degil. 30. dakikada elinde yarim bir dongu
+varsa dogru hamle durmak degil, o donguyu kapatmak.
 
 | Faz | Sure | Cikti |
 |---|---:|---|
@@ -72,17 +81,25 @@ degil; **"su an ekranda ne var"** sorusu.
 | 4 · Juice + ses | 6 dk | partikul, shake, punch, procedural ses |
 | 5 · Bak ve tek gecis | 4 dk | ekran goruntusu, **en yuksek etkili tek** duzeltme |
 
-### Saat kayarsa — kesme sirasi, tartismasiz
+### Saat kayarsa — ne KESILIR, ne kesilmez
 
-| Dakika | Elinde yoksa | Yap |
+Kontrol noktalari **kapsami** daraltmak icindir, isi yarida birakmak icin degil:
+
+| Dakika | Elinde yoksa | Kes |
 |---:|---|---|
-| 15 | cekirdek dongu calismyor | icerigi yariya indir (2 gun -> 1, 4 kart -> 2) ve donguyu bitir |
-| 22 | juice yok | **ikincil sistemleri at**, juice'a gec — juice'suz prototip sorusunu cevaplamaz |
-| 26 | hala bitmedi | ne varsa **calisan haliyle** dondur, gerisini "eksikler"e yaz |
-| 30 | — | **dur.** Ekran goruntusu al, README yaz, teslim et |
+| 15 | cekirdek dongu calismiyor | icerigi yariya indir (2 gun -> 1, 4 kart -> 2), donguyu bitir |
+| 22 | juice yok | ikincil sistemleri at ve juice'a gec — **juice'suz prototip sorusunu cevaplamaz** |
+| 26 | hala eksik var | kalan "olsa iyi" maddelerinin hepsini at |
+
+**Asla kesilmeyen uc sey:** cekirdek dongunun calisir olmasi, juice katmani, ve teslim
+edilenin **hatasiz acilmasi**. Bunlar bitmeden saat bahane degildir.
 
 Yarim biten bir sistem, hic baslamamis sistemden pahalidir: entegrasyonu bozar ve neyin
-calistigi belirsizlesir. **Kesmek erteleme degil, karardir** ve `README.md`'de gorunur olur.
+calistigi belirsizlesir. O yuzden **kesmek erteleme degil karardir**, ve `README.md`'nin
+"yapilmayanlar" bolumunde gorunur olur.
+
+Sure tasarsa **kullaniciya soyle** — tahmin degil olcum: kac dakika oldu, ne kaldi, neden.
+Sessizce uzatma.
 
 ---
 
