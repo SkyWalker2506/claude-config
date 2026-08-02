@@ -99,10 +99,30 @@ Bunu **model kendi secer**, kullaniciya sormaz:
 | Sinirli kapsam, bilinen desen (CRUD, veri sinifi, basit UI) | `medium` |
 | Tasarim karari iceren kod, cok dosyali ozellik, hata ayiklama, mimari | `high` |
 
-**Tavan `high`.** `xhigh`/`max`'e cikmak icin kullanicinin acik izni gerekir. Sebep olculmus:
-Artificial Analysis'in effort taramasinda skor monoton artiyor ama high→max arasi ~%70 maliyet
-artisina karsilik kazanc kucuk. Yani "yuksek effort daha kotu sonuc verir" yanlis — "her zaman
-parasini hak etmez" dogru.
+**Tavan `high` ve bu tavan Opus icin serttir.** `xhigh`/`max`'e cikmak icin kullanicinin acik
+izni gerekir. Sebep olculmus: Artificial Analysis'in effort taramasinda skor monoton artiyor ama
+high→max arasi ~%70 maliyet artisina karsilik kazanc kucuk. Yani "yuksek effort daha kotu sonuc
+verir" yanlis — "her zaman parasini hak etmez" dogru.
+
+**Fable'da varsayilan asagi kaydirilir.** Plan yazmak arama isidir ve arama genis effort'la
+daha iyi olmaz, daha pahali olur. Fable icin `medium` varsayilan; `high`'a **yalnizca** plan
+gercekten zor bir bolme problemi tasiyorsa cik (cok modullu greenfield mimari, birbirine giren
+bagimliliklar, ya da bir revizyon turu zaten kirmizi dondu). "Ise onemli, o zaman yuksek olsun"
+bir gerekce degil — hangi kararin arama gerektirdigini yaz, yazamiyorsan `medium` kalir.
+
+### Etiketleme — hangi model, hangi effort, her yerde gorunur
+
+Kullanici paralel calisirken kimin ne ile calistigini **okuyabilmeli**. Uc yerde birden yazilir:
+
+| Yer | Bicim |
+|---|---|
+| Yanit basi etiketi | `(Jarvis \| Opus 5 \| high)` — orkestratorun kendi modeli ve effort'u |
+| `Agent` cagrisinin `description` alani | `P9 tren · opus · high` — panelde gorunen ad budur |
+| Gorev listesi (`TaskCreate`) | `Dalga 4 — P9 tren · P10 kart · opus · high×2` |
+
+Bu suslemek icin degil: dort ajan paralel kosarken hangisinin hangi effort'ta oldugunu
+gormeden, biri erken bitti mi yoksa ucuz effort'la mi kosuldu ayirt edilemez. Effort'u
+gizlemek, maliyeti gizlemektir.
 
 ## Faz 2 — Plan kapisi: kendin dogrula, Fable'a geri gonder
 
@@ -123,12 +143,16 @@ kapsam daraltma.
 Her dalga icin **tek mesajda** paralel `Agent` cagrilari, `model: "opus"`, paketin kendi
 `effort`u ile. Dalga bitmeden sonraki dalga baslamaz (bagimlilik gercek).
 
+Her `Agent` cagrisinin `description` alani model ve effort tasir (Faz 1 → *Etiketleme*).
+Panelde gorunen ad budur; dalga kosarken disaridan gorunen tek sey odur.
+
 Es zamanli paket sayisi pratikte **4-6**; ustu makine ve dikkat dagitir.
 
 ### Her paket prompt'unun tasimasi gerekenler
 
 ```
 PAKET: {id} — {title}
+MODEL: {model} · EFFORT: {effort}   ← ajan kendi maliyetini bilsin, rapor da onu tasisin
 NEDEN: {why}
 YAZABILECEGIN DOSYALAR: {owns}   ← bu listenin disina cikma
 OKUYABILECEGIN: {reads}
