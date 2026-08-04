@@ -1,16 +1,27 @@
 #!/usr/bin/env bash
-# SessionStart hook: emit concise summary from .claude/graph-cache.json if present.
-# Claude-Code SessionStart hooks read JSON input on stdin; we only need cwd heuristics
-# so we just ignore stdin. Output goes to stdout — becomes part of session context.
+# SessionStart hook: emit a concise summary from .claude/graph-cache.json.
+# Rebuilds the cache in place when it is stale (the rebuild takes ~0.1s, so
+# nagging the user to run it by hand was pure per-session noise).
+# Claude-Code SessionStart hooks read JSON on stdin; we ignore it and use cwd.
 set -euo pipefail
 
-# Best-effort: pick project root from env, else PWD.
 ROOT="${CLAUDE_PROJECT_DIR:-${PWD}}"
 CACHE="$ROOT/.claude/graph-cache.json"
 [[ -f "$CACHE" ]] || exit 0
 
+# Auto-refresh when older than 7 days, if this project ships an hq CLI.
+MAX_AGE_DAYS=7
+mtime=$(stat -f %m "$CACHE" 2>/dev/null || stat -c %Y "$CACHE" 2>/dev/null || echo "")
+if [[ -n "$mtime" ]]; then
+    age=$(( ( $(date +%s) - mtime ) / 86400 ))
+    if (( age > MAX_AGE_DAYS )) && [[ -x "$ROOT/scripts/hq" ]]; then
+        "$ROOT/scripts/hq" graph build "$(basename "$ROOT")" >/dev/null 2>&1 || true
+    fi
+fi
+
 python3 - "$CACHE" <<'PY'
 import json, sys
+
 p = sys.argv[1]
 try:
     with open(p) as f:
@@ -22,8 +33,7 @@ except Exception as e:
 nodes = g.get("nodes", []) or []
 edges = g.get("edges", []) or []
 communities = g.get("communities", []) or []
-stale = g.get("stale", False)
-built = g.get("built_at", "?")
+
 
 def deg(n):
     try:
@@ -31,15 +41,21 @@ def deg(n):
     except Exception:
         return 0
 
-top = sorted(nodes, key=deg, reverse=True)[:10]
-top_names = [str(n.get("name") or n.get("id") or "?") for n in top]
 
-docs = [n for n in nodes if n.get("type") == "doc"]
+hubs, seen = [], set()
+for n in sorted(nodes, key=deg, reverse=True):
+    name = str(n.get("name") or n.get("id") or "?")
+    if name in seen:
+        continue
+    seen.add(name)
+    hubs.append(name)
+    if len(hubs) == 5:
+        break
 
-print(f"GRAPH_CACHE: {len(nodes)} nodes, {len(edges)} edges, {len(communities)} communities")
-if top_names:
-    print("Top hubs: " + ", ".join(top_names))
-if docs:
-    print(f"Docs indexed: {len(docs)}")
-print(f"Built: {built}" + (" (STALE — run 'hq graph build')" if stale else ""))
+line = f"GRAPH_CACHE: {len(nodes)} nodes, {len(edges)} edges, {len(communities)} communities"
+if g.get("stale"):
+    line += " (STALE)"
+print(line)
+if hubs:
+    print("Top hubs: " + ", ".join(hubs))
 PY

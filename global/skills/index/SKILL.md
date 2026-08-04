@@ -8,6 +8,9 @@ argument-hint: "[force] — force ile mevcut indexi sifirdan olusturur"
 
 Mevcut calisma dizinini jCodeMunch ile indexler. Ayni zamanda otomatik index guncellemeyi aktif eder — bundan sonra bu klasorde her Claude oturumu basinda index sessizce guncellenir.
 
+> **On kosul:** jcodemunch MCP artik default kurulumda degil (2026-08-04, arsivde 0 cagri).
+> Once `/add-mcp jcodemunch` calistir, sonra bu skill'i kullan.
+
 ## Kullanim
 
 ```

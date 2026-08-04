@@ -419,9 +419,10 @@ else
   mcp_register github claude mcp add -s user github -e "GITHUB_PERSONAL_ACCESS_TOKEN=$GITHUB_TOKEN_VAL" -- $NPX_CMD -y @modelcontextprotocol/server-github
   mcp_register git claude mcp add -s user git -- "$UVX_PATH" mcp-server-git
   mcp_register atlassian claude mcp add -s user atlassian -- $NPX_CMD -y mcp-remote@latest https://mcp.atlassian.com/v1/mcp
-  mcp_register context7 claude mcp add -s user context7 -- $NPX_CMD -y @upstash/context7-mcp
-  mcp_register jcodemunch claude mcp add -s user jcodemunch -- "$UVX_PATH" jcodemunch-mcp
   mcp_register fetch claude mcp add -s user fetch -- $NPX_CMD -y mcp-fetch-server
+  # context7 + jcodemunch: 2026-08-04 core'dan cikarildi — tum transcript
+  # arsivinde 0 cagri, jcodemunch tek basina ~120 tool tanimi tasiyordu.
+  # Geri eklemek icin: /add-mcp jcodemunch  |  /add-mcp context7
 fi
 
 # Stack-specific MCPs

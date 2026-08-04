@@ -22,9 +22,11 @@ Kurulum sonrasi ek MCP sunuculari ekler. Mevcut olanlar atlanir.
 
 | Anahtar | MCP | Komut | Not |
 |---------|-----|-------|-----|
-| `flutter` | flutter-dev | `claude mcp add -s user flutter-dev -- npx -y flutter-dev-mcp` | — |
+| `flutter` | flutter-dev | `claude mcp add -s user flutter-dev -- npx -y flutter-dev-mcp` | 2026-08-04'te default'tan cikarildi (0 cagri) |
 | `firebase` | firebase | `claude mcp add -s user firebase -e "SERVICE_ACCOUNT_KEY_PATH=$PATH" -- npx -y @gannonh/firebase-mcp` | `FIREBASE_SERVICE_ACCOUNT_PATH` gerekir (secrets.env) |
 | `unity` | unity-mcp | Proje bazli kurulum (asagiya bak) | Unity Editor acik olmali |
+| `jcodemunch` | jcodemunch | `claude mcp add -s user jcodemunch -- uvx jcodemunch-mcp` | ~120 tool; `/index` skill'i buna bagli. 2026-08-04'te cikarildi (0 cagri) |
+| `context7` | context7 | `claude mcp add -s user context7 -- npx -y @upstash/context7-mcp` | 2026-08-04'te cikarildi (0 cagri) |
 
 ## Akis
 
