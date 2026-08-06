@@ -33,6 +33,20 @@ paralellik kazancindan buyuktur.
 sanat prompt'u uretme · hata ayiklama · optimizasyon. Temel kodlama, ses, UI, asset icin
 **asla ajan bekleme**.
 
+## Bu skill NEREDE biter
+
+Prototip, "bu fikir eglenceli mi" sorusunu cevapladiginda isini bitirmistir. Su uc kosul
+birden saglaninca **dur ve `/polish`'e devret**:
+
+1. Cekirdek dongu oynaniyor,
+2. Kullanici oynadi ve cevap verdi,
+3. Gelen istekler yeni mekanik degil **var olani derinlestirme** (gercek sanat, shader,
+   ses kimligi, performans, UI hizasi).
+
+Sanat hatti, sprite prompt'lari, shader efektleri, ses aranjmani, konfor ayarlari ve
+instancing **bu skill'in isi degildir** — `/polish`. Yeni sistem/mekanik ise `plan-build`.
+Bu siniri asmak prototipi sessizce testsiz bir urune cevirir.
+
 ## Basari olcutu: DOGRULUK degil HIS
 
 Bu bir MVP. Sorulan soru **"dogru mu"** degil, **"guzel mi, oynanir mi, tekrar etmek istiyor
@@ -144,6 +158,11 @@ kod degisikligi olur ve iterasyon durur.
 sabit adimlarla ilerletir. Bunsuz 7 gunluk bir kampanyayi test etmek 35 dakika surer; bununla
 saniyenin altinda. Olculmus.
 
+`advance()` yalniz oyun mantigini degil, **simulasyonun dokundugu her saati** sanallastirmali:
+ses saati, `performance.now()`, animasyon zamani. Bir saat gercek kalirsa sim **sessizce hicbir
+sey yapmaz**. Olculmus: `advance()` hic vurus uretmedi, cunku `AudioContext.currentTime` senkron
+dongu boyunca donuyordu — sanal saat + `beginSim()/endSim()` ile cozuldu.
+
 ### three.js: vendor mi CDN mi
 
 Cevrimdisi calismasi ya da tek dosya paylasilmasi gerekiyorsa **vendor'la**
@@ -203,7 +222,7 @@ yorucu olur. AudioContext'i **ilk kullanici etkilesiminde** resume et.
 
 **Ekran goruntusu al ve KENDIN BAK.** Rapor gorsel kanit degildir.
 
-Sonra **iki sayiyi olc**, goz karariyla karar verme:
+Sonra **uc sayiyi olc**, goz karariyla karar verme:
 
 1. **Okunabilirlik.** Oyuncunun ayirt etmesi gereken sey (birim, bina, kart) varsayilan
    kamerada viewport genisliginin **>= %6'si** olmali. Olcum: mesh'in kose noktalarini
@@ -214,6 +233,10 @@ Sonra **iki sayiyi olc**, goz karariyla karar verme:
 2. **Bosluk.** Varsayilan kameranin gosterdigi her "yer"de bir sey olmali. Olculmus hata:
    5 ada uretip 3 yerlesim koymak — iki ada bombos kaldi ve ekran bos gorundu.
    Kural: **yer sayisi <= icerik sayisi.**
+3. **Duyulabilirlik.** Master bus'a analyser tak, 1 sn ornekle: tepe ve RMS yazdir.
+   Tepe < 0,7 → duyulmuyor. Tepe > 0,98 → kirpiyor, limiter ekle.
+   *Neden kural:* "hic ses yok" sikayetinde olcum RMS **0,018** cikti; tahminle degil
+   olcumle duzeldi (0,123'e). Prosedurel seste bu, okunabilirligin muadilidir.
 
 Sonra dort soruyu sor ve **yalnizca en yuksek etkili olani** duzelt:
 
@@ -241,6 +264,9 @@ sadece guzel mi?* Teslimat yayi anlatiyor; sis anlatmiyor.
 | Save/tutorial/ayarlar/erisilebilirlik | GDD istese bile prototip disi |
 | Determinizm/digest kaniti | GDD'nin tasarim sorusu bu degilse gereksiz |
 | Ekran goruntusune bakmadan "polish yapildi" demek | kompozisyon hatasi sona kadar tasinir |
+| Durum degistiren gorseli **tek** ekran goruntusuyle dogrulamak | Sprite flip kodu dogruydu ama `THREE.Sprite` negatif olcegi yok sayiyor — ozellik bastan sona oluydu, kullanici oynayana kadar fark edilmedi. **Iki durumu da yakala ve karsilastir** |
+| Modul kaynagini test edip **teslim edilen build'i** test etmemek | Tarayici modul onbellegi eski dosyayi servis eder; duzeltilmis bug duzelmemis gorunur. Ciktiyi cache-bust parametresiyle test et |
+| Sayisal alani `undefined` birakmak | Bir kare sonra NaN; AudioParam'a giderse rAF icinde exception atar. **Siyah sahne + calisan HTML HUD = dongu oldu; once konsol, sonra renderer** |
 
 **Test yazma.** Tek istisna: prototip kostuktan sonra, 40 satirlik bir duman kontrolu —
 sifir console error, canvas var, bir frame render edildi, 60 saniye ilerlet ve oyun ilerliyor.
@@ -253,5 +279,6 @@ sifir console error, canvas var, bir frame render edildi, 60 saniye ilerlet ve o
 3. Bir ekran goruntusu
 4. Iki olcum: okunabilirlik yuzdesi ve "her yerde bir sey var mi"
 
-Kullanici daha fazlasini isterse **o zaman** urun hattina gec (`plan-build`). Prototip,
+Kullanici daha fazlasini isterse: gercek sanat / shader / ses kimligi / performans / UI
+cilasi ise **`/polish`**, yeni sistem veya mekanik ise **`plan-build`**. Prototip,
 "bu fikir eglenceli mi" sorusunu cevapladiginda isini bitirmistir.
