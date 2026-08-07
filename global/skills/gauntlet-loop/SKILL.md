@@ -91,8 +91,8 @@ yoksa gauntlet baslatma; olculemeyen bar, kritigi nazik yapar.
 Gauntlet promptu tek bir istekle bitmez; **dongu tasiyicisina** ihtiyaci var:
 
 - **Varsayilan: `/loop` + yuksek effort.** `/loop` bar yesillenene kadar turlari surdurur;
-  kaliteyi ajan sayisi degil **effort** tasir. Uretici ajanlar `high`, en zor kritik/yargi
-  adimi `max`. Mekanik parcalar (dosya tasima, isim degistirme) `low`.
+  kaliteyi ajan sayisi degil **effort** tasir. Opus'ta tavan `high` — `xhigh`/`max` kullanma.
+  Uretici ve kritik ajanlar `high`; mekanik parcalar (dosya tasima, isim degistirme) `low`.
 - `ultracode` **varsayilan degil.** Fan-out'u acar ama ajan sayisini da patlatir; ancak
   kullanici acikca isterse veya is tek baglama sigmayacak kadar buyukse (genis migrasyon,
   coklu repo tarama) kullan.
