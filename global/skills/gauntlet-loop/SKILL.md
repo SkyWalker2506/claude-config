@@ -156,6 +156,11 @@ olmamasi**. Ilk turu harcamadan su ucunu dogrula; ucu de dosya sisteminden, hafi
 
 Bu uc kontrol dakikalar surer; atlanirsa saatler yanar.
 
+**Kuru kosu bir teslimat degildir.** Kapilari yesillettiginde tur BITMEZ; ayni turda ilk
+parcanin ureticisini baslatirsin. "Artik kosabilir", "`/loop` ile surebilirsin", "hazir"
+diye biten bir yanit, gauntlet'i baslatmamis olmanin kibar halidir. Sure ve token uyarisi
+**baslarken soylenen tek satirdir**, baslamamak icin gerekce degil.
+
 **Uyusmazligi kullaniciya rapor etme — DUZELT.** Yol yanlissa dogrusuna cevir; bir parcanin
 yakalamasi yoksa yakalamayi ekle; kapi zaten kirmiziysa once onu yesillet. Bunlar gauntlet'in
 onunde duran isler, gauntlet'in yerine gecen sorular degil. Duzelttigini tek satirda soyle
