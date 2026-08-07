@@ -126,6 +126,34 @@ Iki mod var, ikisi de gecerli, ama **secmeden baslama**:
 Sprite gerekiyorsa uretim yolunu da promptta adlandir (orn. bir sprite uretim skill'i),
 yoksa ajan placeholder ile yesil ilan eder.
 
+## Baslatmadan once: kuru kosu — promptun yalan soyleyip soylemedigini olc
+
+Gauntlet'in baslamama sebebi genelde model degil, **promptun adlandirdigi seylerin var
+olmamasi**. Ilk turu harcamadan su ucunu dogrula; ucu de dosya sisteminden, hafizadan degil:
+
+1. **Yollar gercek mi.** Prompt kritige "su dosyayi ac" diyorsa, o dosyayi **yakalama
+   komutunu calistiran arac** gercekten oraya yaziyor mu? Betigin yazdigi dizin ile
+   promptta yazan dizin bir harf bile farkliysa kritik bos klasore bakar ve tur olur.
+   **Kaynak dogruluk betiktir, promptun iddiasi degil.**
+2. **Sayilar esit mi:** parca sayisi = referans sayisi = yakalama sayisi. Referansi olup
+   yakalamasi olmayan parca **hicbir zaman yesillenemez**; o parca icin once yakalamayi
+   ekle, sonra donguye sok.
+3. **Kapilar bugun yesil mi.** Baslamadan once testi ve yakalamayi bir kez kos. Zaten
+   kirmizi olan bir kapi, gauntlet'in urettigi kirmiziyla karisir.
+
+Bu uc kontrol dakikalar surer; atlanirsa saatler yanar.
+
+**On-kirmizilar kritige degil, OLCULEBILIR kapiya baglanir.** "Kosu 10. gune varmali",
+"failed=0", "10 sayfa, hicbiri bos degil" gibi. Bunlar icin ayri kritik ajan acma —
+kapinin kendisi zaten yargic.
+
+### Aracin dayattigi sira, planin degil
+
+Bazi araclar ayni proje uzerinde **ikinci bir ornek kabul etmez** (Unity bunun tipik
+ornegi). Boyle bir arac varsa parcalari paralel calistiramassin; plan ne derse desin
+gercek paralellik sinirini arac koyar. Bunu promptta bastan yaz, yoksa ajanlar birbirinin
+kosusunu dusurur ve hata "test kirmizi" diye yanlis teshis edilir.
+
 ## Izolasyon — sessiz kopyalama riski
 
 Ajan, ayni makinedeki baska projelerden kod, kontrol semasi ve kamera ayari **kendiliginden**
