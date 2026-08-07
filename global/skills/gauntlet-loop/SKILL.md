@@ -47,6 +47,9 @@ bir dosya. "AAA kalite", "profesyonel gorunsun" bar degildir — olculemez.
    oner (rakip urun, mevcut ekran, sanat pegi) ve promptun icine yaz.
 2. **Parcalama eksenini sec.** Ekran bazli · sistem bazli · varlik bazli. Parca sayisini
    yaz; 4-12 arasi tut. Daha fazlasi koordinasyon maliyetini kazanctan buyuk yapar.
+   **Ajan sayisi: gerekenden az degil, bir tane fazla da degil.** Parcalar ayni dosyalari
+   yazacaksa birlestir; ayni gozle dogrulanacaksa tek kritik birden fazla parcaya baksin.
+   Sadece **birbirinden bagimsiz basarisiz olabilen** isler ayri ajan hak eder.
 3. **Kritik kriterini yaz.** Her parca icin "neye bakacak" bir cumle: kompozisyon, isik,
    tipografi hizasi, hissiyat, veri dogrulugu. Kritik ne olctugunu bilmezse nazik davranir.
 4. **Cikis kosulunu yaz.** Kor karsilastirma sonucu + kac ardisik tur yesil kalmali (2 iyi
@@ -55,6 +58,49 @@ bir dosya. "AAA kalite", "profesyonel gorunsun" bar degildir — olculemez.
    yok. Kullanici bunu kopyalayacak.
 6. `--run` verildiyse promptu bu oturumda uygula: parcalari `Agent` ile fan-out et, her uretici
    icin ayri kritik ajan ac, kritik kirmizi verdikce ureticiyi geri bildirimle yeniden calistir.
+
+## Calistirma bicimi
+
+Gauntlet promptu tek bir istekle bitmez; **dongu tasiyicisina** ihtiyaci var:
+
+- `/loop` + `ultracode` — pratikte en cok kullanilan kombinasyon. `ultracode` fan-out'u
+  acar, `/loop` bar yesillenene kadar turlari surdurur.
+- `/goal` de calisir ama kabul kriterini calistirilabilir hale getirmeni ister; gorsel
+  kalite gibi kor-karsilastirmayla olculen barlarda `/loop` daha az surtunme uretir.
+
+Promptun sonuna cikis kosulunu **yaz**; tasiyici durma karari icin oraya bakar.
+
+## Uretim ortami: kritik kendi gozuyle gormeli
+
+Kritik ajan ciktiyi kendisi yakalayabilmeli. Ortam basina yakalama yolu:
+
+| Ortam | Kritigin gorme yolu |
+|---|---|
+| Web / prototip | Browser pane + `screenshot` |
+| Unity | Unity CLI ile sahne screenshot'i (`docs/unity-cli.md` — GUI'yi computer-use ile surme) |
+| CLI / veri | ciktinin kendisi + referans dosya diff'i |
+
+Unity tarafinda kazanci saglayan sey ajanin **degistir → screenshot → karsilastir → duzelt**
+dongusunu insan olmadan kapatabilmesi. Screenshot adimi yoksa gauntlet yoktur.
+
+### Varlik politikasini promptta belirt
+
+Iki mod var, ikisi de gecerli, ama **secmeden baslama**:
+
+- **Dis varlik yok** — her sey primitive/sahne araclariyla kurulur. Zor, ama tutarli bir
+  gorsel dil cikar ve lisans derdi olmaz.
+- **Dis varlik serbest** — modular pack'ler kullanilir; hizli, ama kritik ozellikle
+  **yanlis yonlendirilmis / ic ice gecmis** parcalari aramali (bu modun tipik hatasi budur).
+
+Sprite gerekiyorsa uretim yolunu da promptta adlandir (orn. bir sprite uretim skill'i),
+yoksa ajan placeholder ile yesil ilan eder.
+
+## Izolasyon — sessiz kopyalama riski
+
+Ajan, ayni makinedeki baska projelerden kod, kontrol semasi ve kamera ayari **kendiliginden**
+odunc alabilir; cikti "one-shot" gorunur ama degildir. Temiz bir olcum istiyorsan prompta
+sunu koy: *"Sadece bu proje dizinini kullan; baska projelerden referans alma."*
+Aksi halde sonucu one-shot diye raporlama.
 
 ## Sinirlar — bunu bilmeden calistirma
 
