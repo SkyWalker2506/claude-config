@@ -1,14 +1,22 @@
 ---
 name: gauntlet-loop
-description: "Bir hedefi 'gauntlet loop' promptuna cevirir: gorev + fan-out build metodu + kor karsilastirmali kalite bariyeri. Sub-agent'lar uretir, ayri kritik ajanlar acimasizca reddeder, bar gecilene kadar donguyu surdurur. Triggers: gauntlet, gauntlet loop, gauntlet prompt, kor kritik, fan out ve dongu, referansa kadar dovus."
+description: "Bir hedefi gauntlet dongusu olarak CALISTIRIR: parcalara boler, uretici + ayri kor kritik ajan koser, bar gecilene kadar surdurur. Referans verilmediyse arastirip bulur. Triggers: gauntlet, gauntlet loop, gauntlet calistir, kor kritik, referansa kadar dovus, bar gecene kadar."
 user-invocable: true
-argument-hint: "[hedef] [--run] [--ref <dosya yolu veya benzemesi istenen urun adi>]"
+argument-hint: "[hedef] [--ref <dosya/dizin veya benzemesi istenen urun adi>] [--prompt-only]"
 ---
 
-# /gauntlet-loop — bar gecilene kadar dovusen prompt
+# /gauntlet-loop — bar gecilene kadar dovusen dongu
 
-Bu skill **prompt uretir**, kod degil. Ciktisi tek parca, kopyala-yapistir bir gauntlet
-promptudur. `--run` verilirse ureten sen ayni promptu bu oturumda calistirirsin.
+**Bu skill calistirir.** Kullanici hedefi ve varsa referanslari verir; gerisi sende:
+parcalara bolmek, uretici ve kritik ajanlari kosmak, bar gecilene kadar donguyu surdurmek.
+Kullaniciya prompt uzatip "bunu calistir" **deme**.
+
+`--prompt-only` verilirse — ve yalnizca o zaman — calistirmaz, tek blok gauntlet promptu
+uretirsin.
+
+**Kullaniciya donmenin tek mesru sebebi:** yalnizca onun verebilecegi bir karar
+(referans hic yok ve uretilmesi gerekiyor, ya da hedef iki farkli isi ayni anda
+tarif ediyor). Eksik dosya, yanlis yol, bozuk kapi **sana ait** — duzelt ve devam et.
 
 > Uc parca: **Gorev** · **Build metodu (fan-out + kritik)** · **Bar (kor karsilastirma)**
 > Ucu de olmayan prompt gauntlet degildir; sadece uzun bir istektir.
@@ -20,7 +28,7 @@ Fan-out ise her parcaya kendi kritigini verir — kalite tek bir genel degerlend
 parca sayisi kadar bagimsiz redde bagli olur. Dongu de bariyeri **cikis kosulu** yapar,
 tavsiye degil.
 
-## Uretecegin promptun iskeleti
+## Iskelet — her uretici/kritik ajana verecegin sozlesme
 
 ```
 [GOREV]
@@ -43,7 +51,12 @@ bir dosya. "AAA kalite", "profesyonel gorunsun" bar degildir — olculemez.
 
 ## Referansi nereden bulursun
 
-Bar somut bir goruntu olmadan olculemez. Uc yol var; sirayla dene:
+Bar somut bir goruntu olmadan olculemez. Dort yol var; sirayla dene:
+
+**0. Kullanici referans verdiyse → onu kullan, baskasini arama.**
+Dosya, dizin ya da `refs/` gibi bir klasor verildiyse is bitti. Adlandirmayi bir kez
+dogrula (hangi goruntu hangi parcanin bari) ve basla; "daha iyi referans bulayim" diye
+tur harcama.
 
 **1. Kullanici bir isim verdiyse → kendin arastir, sorma.**
 "Call of Duty gibi", "Zelda gibi", "Linear gibi" dendiginde web'den o urunun ekran
@@ -143,6 +156,11 @@ olmamasi**. Ilk turu harcamadan su ucunu dogrula; ucu de dosya sisteminden, hafi
 
 Bu uc kontrol dakikalar surer; atlanirsa saatler yanar.
 
+**Uyusmazligi kullaniciya rapor etme — DUZELT.** Yol yanlissa dogrusuna cevir; bir parcanin
+yakalamasi yoksa yakalamayi ekle; kapi zaten kirmiziysa once onu yesillet. Bunlar gauntlet'in
+onunde duran isler, gauntlet'in yerine gecen sorular degil. Duzelttigini tek satirda soyle
+ve donguye devam et.
+
 **On-kirmizilar kritige degil, OLCULEBILIR kapiya baglanir.** "Kosu 10. gune varmali",
 "failed=0", "10 sayfa, hicbiri bos degil" gibi. Bunlar icin ayri kritik ajan acma —
 kapinin kendisi zaten yargic.
@@ -173,5 +191,8 @@ Aksi halde sonucu one-shot diye raporlama.
 
 ## Cikti
 
-Tek fenced blok icinde gauntlet promptu. Ustunde en fazla iki satir: sectigin referans ve
-parca sayisi. `--run` ile ayrica dongu ilerlemesi ve her parcanin kritik verdikti.
+Calisirken: iki satirlik acilis (referans + parca sayisi), sonra tur tur ilerleme —
+hangi parca, kacinci tur, kritik ne dedi. Sonunda parca basina yesil/kirmizi tablosu;
+kirmizilarda hangi eksenin gecmedigi yazili.
+
+`--prompt-only` ile: tek fenced blok icinde gauntlet promptu, ustunde en fazla iki satir.
