@@ -90,8 +90,12 @@ yoksa gauntlet baslatma; olculemeyen bar, kritigi nazik yapar.
 
 Gauntlet promptu tek bir istekle bitmez; **dongu tasiyicisina** ihtiyaci var:
 
-- `/loop` + `ultracode` — pratikte en cok kullanilan kombinasyon. `ultracode` fan-out'u
-  acar, `/loop` bar yesillenene kadar turlari surdurur.
+- **Varsayilan: `/loop` + yuksek effort.** `/loop` bar yesillenene kadar turlari surdurur;
+  kaliteyi ajan sayisi degil **effort** tasir. Uretici ajanlar `high`, en zor kritik/yargi
+  adimi `max`. Mekanik parcalar (dosya tasima, isim degistirme) `low`.
+- `ultracode` **varsayilan degil.** Fan-out'u acar ama ajan sayisini da patlatir; ancak
+  kullanici acikca isterse veya is tek baglama sigmayacak kadar buyukse (genis migrasyon,
+  coklu repo tarama) kullan.
 - `/goal` de calisir ama kabul kriterini calistirilabilir hale getirmeni ister; gorsel
   kalite gibi kor-karsilastirmayla olculen barlarda `/loop` daha az surtunme uretir.
 
