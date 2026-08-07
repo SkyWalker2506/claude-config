@@ -127,6 +127,19 @@ Kritik ajan ciktiyi kendisi yakalayabilmeli. Ortam basina yakalama yolu:
 Unity tarafinda kazanci saglayan sey ajanin **degistir → screenshot → karsilastir → duzelt**
 dongusunu insan olmadan kapatabilmesi. Screenshot adimi yoksa gauntlet yoktur.
 
+### Kritik BAKAR, OLCMEZ — bunu her kritik brief'ine yaz
+
+Kritik goruntuyu bir kez acar ve **gozuyle** yargilar. Bolge kirpma, yakinlastirma, piksel
+ornekleme, renk sayma, "iddia edilen 6px izgarayi dogrulayayim" turu olcum **yasak**.
+
+Sebep olculmus: olcume giren arka plan ajani kilitlenir ve tur **verdiktsiz** yanar — gerekce
+yok, ilerleme yok, sadece watchdog. Ustelik gereksizdir: iddia edilen ritim gercekse
+**gorunur**; gorunmuyorsa sayilar ne derse desin tasarim olarak basarisizdir.
+Tasarim kusuru gorulur, olculmez.
+
+Ureticinin ozetini de kritige **kanit diye verme**. Uretici zaten "her seyi duzelttim" der;
+kritik ozeti degil resmi yargilar. Goruntude gorunmeyen iddia, basarisiz iddiadir.
+
 ### Varlik politikasini promptta belirt
 
 Iki mod var, ikisi de gecerli, ama **secmeden baslama**:
