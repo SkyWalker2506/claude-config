@@ -14,6 +14,18 @@ Kullaniciya prompt uzatip "bunu calistir" **deme**.
 `--prompt-only` verilirse — ve yalnizca o zaman — calistirmaz, tek blok gauntlet promptu
 uretirsin.
 
+**Ama "calistir" bu skill CAGRILDIGINDA gecerlidir.** Konusma sirasinda bir hedefin adi
+gecmesi, o hedefi baslatma yetkisi degildir. Skill'in kendisi uzerinde calisiliyorsa —
+kurallarini duzeltiyor, metnini tartisiyorsan — is skill dosyasidir, ornek verilen proje
+degil. Ornegi baslatmak, istenmeyen saatler ve baskasinin deposuna commit demektir.
+
+**Tek yazar kurali.** Gauntlet hedef deponun kendi dizininde acilmis bir oturumda kosar.
+Baslamadan once o depoya baska kimsenin yazmadigini dogrula: baskasinin biraktigi kirli
+agac, ayni proje uzerinde kosan bir build/test sureci, ya da kullanicinin ayri baslattigi
+bir gorev. Ikinci yazar varsa **baslatma** — ayni dosyaya iki taraftan yazmak sessiz kayip
+uretir, ve ayni anda kosan iki test surecinin cakismasi neredeyse her zaman "test kirmizi"
+diye yanlis teshis edilir.
+
 **Kullaniciya donmenin tek mesru sebebi:** yalnizca onun verebilecegi bir karar
 (referans hic yok ve uretilmesi gerekiyor, ya da hedef iki farkli isi ayni anda
 tarif ediyor). Eksik dosya, yanlis yol, bozuk kapi **sana ait** — duzelt ve devam et.
