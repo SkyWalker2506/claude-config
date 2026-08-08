@@ -1,0 +1,4 @@
+interface:
+  display_name: "Social Hook Capture"
+  short_description: "Draft social posts with hook screenshots"
+  default_prompt: "Use $social-hook-capture to capture a hook screenshot and draft a Reddit/social post preview."

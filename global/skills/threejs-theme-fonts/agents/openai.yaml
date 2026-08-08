@@ -1,0 +1,4 @@
+interface:
+  display_name: "Three.js Theme Fonts"
+  short_description: "Research and tune game fonts for theme and localization"
+  default_prompt: "Use $threejs-theme-fonts to research theme-appropriate free multilingual fonts, use Noto as fallback, and set up HUD typography."

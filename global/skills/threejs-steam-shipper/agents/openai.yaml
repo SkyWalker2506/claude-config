@@ -1,0 +1,4 @@
+interface:
+  display_name: "Three.js Steam/Web Shipper"
+  short_description: "Package Three.js games for Steam desktop, web, and mobile"
+  default_prompt: "Use $threejs-steam-shipper to analyze this Three.js project and prepare host-aware Windows/macOS/Linux Steam desktop, web, Cordova mobile, or WebGPU/WebGL fallback exports."

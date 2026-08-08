@@ -1,0 +1,4 @@
+interface:
+  display_name: "Three.js Prototype Starter"
+  short_description: "Scaffold playable Three.js prototypes with adaptive controls"
+  default_prompt: "Use $threejs-prototype-starter to create a simple playable Three.js prototype with index.html, ESM modules, and desktop/mobile controls ready for Steam, web, or Cordova export."

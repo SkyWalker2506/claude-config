@@ -1,0 +1,4 @@
+interface:
+  display_name: "Three.js Localize"
+  short_description: "Extract and translate Three.js game text"
+  default_prompt: "Use $threejs-localize to extract hardcoded text from this Three.js project and prepare JSON locale files."
