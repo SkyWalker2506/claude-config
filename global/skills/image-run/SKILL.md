@@ -38,6 +38,37 @@ altina sakla. Boylece her batch icin indirme suresi sifira iner.
 
 ---
 
+## Model ve efor — kotayi burada koru
+
+Bu skill'in isi ikiye ayrilir ve **ayni modelle yapilmaz**:
+
+| is | model / efor | neden |
+|---|---|---|
+| Prompt yazimi (`/image-prompt`) | **ana model, normal efor — asla low** | Stil blogu, kadraj dagilimi, sepya/kolaj tuzaklari muhakeme isi. Ucuzlatilan prompt tum batch'i cope atar; 10 gorsel yeniden uretmek her tasarrufu geri alir |
+| Gonder / bekle / kontrol / indir / esle | **Sonnet 5, `effort: low`** | Mekanik: sabit DOM secicileri, sabit tiklama sirasi. Bu dosyada adim adim yazili, muhakeme gerekmiyor |
+
+Calistirma dongusunu **arka plan `Agent`'ina devret** — tek batch'te bile:
+
+```
+Agent(subagent_type: "general-purpose", model: "sonnet", effort: "low",
+      run_in_background: true)
+```
+
+Prompt metni ajana **hazir** verilir; ajan prompt yazmaz, degistirmez, "iyilestirmez".
+Gorevi: sohbeti ac → yapistir → Return → 1 dk'da bir kontrol → indir → dosyalari
+esle → rapor. Ana hat bu sirada proje isine devam eder.
+
+**Haiku secme.** Indirme akisi (paylas ikonu → seri secenegi → Indir) yanlis
+dugumu tiklamaya musait; bu skill'in gecmisinde kor tiklama bir kez Reddit gonderi
+formunu acti. Sonnet low bu adimlari guvenle yuruturken Opus'un maliyetinin
+kucuk bir kismini harcar.
+
+**Efor'u yukselt** sadece su iki durumda: kolaj geldi ve promptun neden bozuldugunu
+teshis etmek gerekiyor, ya da indirme akisi UI degisikligi yuzunden tutmuyor.
+Teshis ana hatta yapilir, duzeltilmis prompt yine low ajana verilir.
+
+---
+
 ## 0. Sohbet adini coz — kullaniciya sorma
 
 Sohbet adi **hicbir zaman** bloklayan bir soru degildir. Su sirayla coz:
@@ -291,8 +322,9 @@ bekleme adimlari ana konusma hattini asla bloklamaz:
   "hala uretiyor" deyip durmak israftir.
 - Kontrol turlari **sessiz** olmali. Her dakika "kontrol 3/∞, hala calisiyor"
   yazma; sadece durum degistiginde (bitti / hata / indi) konus.
-- Uzun kuyruklarda (3+ batch) tum dongoyu bir arka plan `Agent`'ina devret ve
-  ana hatta proje isine devam et.
+- Tum dongoyu bir arka plan `Agent`'ina devret (Sonnet 5 / `effort: low` — bkz.
+  "Model ve efor") ve ana hatta proje isine devam et. Tek batch'te bile boyle;
+  bekleme turlarini pahali modelle harcama.
 - **Indirmeyi bir sonraki uretimin altina sakla** (bkz. 6. adim). Indirme bos
   beklemede degil, uretim donerken yapilir.
 
