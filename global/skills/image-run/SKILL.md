@@ -142,22 +142,26 @@ Damga kim/ne zaman/hangi batch bilgisini tasir; kullanici kendi elle attigi
 promptlarla senin gonderdiklerini ayirt edebilsin, eski batch'ler yanlislikla
 tekrar indirilmesin.
 
-**Damga promptun EN SONUNA konur, basina degil.**
+**Damga basta durur — ama ikinci satirda.** Kullanici sohbeti actiginda hangi
+batch'e baktigini kaydirmadan gormeli; sona konan damga bu isi yapmiyor.
 
 ```
 Generate 10 separate images, one for each numbered subject below.      <- ILK SATIR
+[CLAUDE — 2026-08-09 16:50 — <proje>, batch 3/4]                        <- DAMGA
 IMPORTANT: output each as its OWN separate image file. ...
 STYLE (applies to all 10): ...
 1. ...
 10. ...
-
-[CLAUDE — 2026-08-09 16:50 — <proje>, batch 3/4]                        <- SON SATIR
 ```
 
-**Neden:** damgayi basa koyunca `Generate 10 separate images` ilk satir olmaktan
-cikti ve model tum istegi tek bir konu gibi okuyup **tek birlesik gorsel** uretti
-(2026-08-09'da bir batch boyle kayboldu). Ilk satir her zaman "10 ayri gorsel
-uret" olmali.
+**Birinci satir pazarlik konusu degil.** Damga bir kez gercekten en basa kondu,
+`Generate 10 separate images` ilk satir olmaktan cikti ve model tum istegi tek bir
+konu gibi okuyup **tek birlesik gorsel** uretti — 2026-08-09'da bir batch boyle
+kayboldu. Bu yuzden damga **ikinci** satira gelir: hem gorunur, hem ilk satiri
+yerinden etmez.
+
+Damga ile devami arasina **bos satir birakma**; bosluk modelin damgayi ayri bir
+istek gibi okumasini kolaylastiriyor.
 
 Damgaya **kart/konu id listesi yazma** — model onu tek sahnenin ogeleri sanabiliyor.
 Sadece proje adi ve batch numarasi yeter.
@@ -276,15 +280,54 @@ kontrolleri > Paylasilan baglantilar'dan silinebilir.
 
 ## 5. Dosyalari esle
 
-Inen dosya adlari anlamsiz (`ChatGPT Image ... (3).png`). Eslemeyi **mtime
-sirasina** gore yap — prompt sirasiyla ortusuyor — ama **icerige bakarak
-dogrula**, varsayma:
+Inen dosya adlari anlamsiz (`ChatGPT Image ... (3).png`).
+
+**Zaman penceresiyle dosya secme.** `son N dakikada inenler` veya `[-10:]` gibi
+secimler kirilgan: baska bir uygulama ayni klasore dosya birakabilir, onceki
+batch'in kuyrugu pencereye girebilir. Bir kez **tam bir pozisyon kaymasina** yol
+acti — infantry dusup yerine alakasiz bir grafik girdi, 10 kartin hepsi bir sira
+kaydi ve build yesil kaldigi icin sessizce yanlis baglandi.
+
+**Indirmeden once seri sayisinin ARTTIGINI dogrula.** Paylas dugmelerini
+(`Bu görseli paylaş`) say; bu sayi her tamamlanmis gorsel serisi icin bir artar.
+Indirmeye baslamadan onceki sayiyi hatirla:
+
+```js
+const groups = [...document.querySelectorAll('button')]
+  .filter(b => /Bu görseli paylaş/i.test(b.getAttribute('aria-label') || '')).length;
+```
+
+`groups` bir artmadiysa **yeni batch daha bitmemistir**; `shares[son]` hala bir
+onceki seriyi gosterir ve indirirsen **ayni gorselleri ikinci kez indirirsin**.
+Bu bir kez oldu: 10 dosya indi, hepsi bir onceki batch'in birebir kopyasiydi.
+Bekle, tekrar kontrol et.
+
+**Dogru yontem: indirmeden ONCE klasorun anlik goruntusunu al, sonra farki al.**
+
+```bash
+before=$(ls ~/Downloads)                       # indirmeden once
+# ... seri indirmesini yap ...
+comm -13 <(echo "$before" | sort) <(ls ~/Downloads | sort)   # sadece yeni gelenler
+```
+
+Yeni dosya sayisi beklenenden **fazlaysa dur** — arada yabanci dosya var, gozle
+ayikla. Eksikse indirme tamamlanmamis, bekle.
+
+Eslemeyi mtime sirasina gore yap (prompt sirasiyla ortusuyor) ve **her zaman
+icerige bakarak dogrula**:
 
 ```bash
 # tekilleştir, gecerli olanlari al, kontak sayfasi yap, goz ile kontrol et
 ```
 
-Yanlis eslesme sessizce yanlis karta yanlis gorsel bagliyor; bir kere gozle bak.
+Yanlis eslesme sessizce yanlis karta yanlis gorsel bagliyor ve **build yesil
+kalir** — hicbir test bunu yakalamaz. Baglamadan once kart adiyla etiketlenmis
+bir kontak sayfasi uret ve gozle gec:
+
+```python
+# her karenin altina kart adini yaz, tek sayfada goster
+ImageDraw.Draw(lab).text((4, h+4), names[card_id], fill=(210,205,185))
+```
 
 Sonra projeye tasi: WebP'ye cevir (`quality 84, method 6`), hedef dizine
 `<id>.webp` olarak yaz, veri dosyasina `art` alani ekle.

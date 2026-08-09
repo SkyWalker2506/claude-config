@@ -55,8 +55,11 @@ digerini yok sayiyorum") ve 10'u tamamlamadan kesiyor.
 
 **Ilk satir yuk tasiyor.** `Generate N separate images...` promptun **birinci**
 satiri olmali. Onune bir damga, baslik veya aciklama koyarsan model istegi tek bir
-konu gibi okuyup tek birlesik gorsel uretiyor. Damga gerekiyorsa **en sona** koy ve
-icine konu/id listesi yazma.
+konu gibi okuyup tek birlesik gorsel uretiyor.
+
+Damga (proje + batch bilgisi) **ikinci satira** gelir — basta, gorunur, ama ilk
+satiri yerinden etmeden. Icine konu/id listesi yazma; model onu tek sahnenin
+ogeleri saniyor. Detay: `/image-run` 2. adim.
 
 **Prompt metninin icine batch iskelesi YAZMA.** `--- 1/10 -> dosya.png ---` gibi basliklar
 modele "bu bir seri isi" dedirtiyor ve anlatmaya basliyor. Dosya adlari prompt'un
