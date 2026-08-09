@@ -68,8 +68,18 @@ SKILL.md'nin adi gecen bolumu okunur ve oradaki kurallar aynen uygulanir:
   eder — biten batch'leri yeniden uretmez, biten paketleri yeniden calistirmaz
   (`.plan-build/` ve `.goal/` kendi durumunu zaten tasir).
 
-**Calisma dizini:** icinde bulunulan proje. ClaudeHQ'dan fikirle cagrildiysa once
-`~/Projects/<oyun-adi>` olustur (`hq new` akisi), orada calis.
+**Calisma dizini ve repo:** icinde bulunulan proje. ClaudeHQ'dan fikirle cagrildiysa
+once `~/Projects/<oyun-adi>` olustur (`hq new` akisi), orada calis. G0 onayindan hemen
+sonra repo hattini kur — Perde 2'nin commit noktalari buna dayanir:
+
+1. Repo yoksa `git init` + ilk commit.
+2. Remote yoksa **private** GitHub reposu ac ve bagla:
+   `gh repo create <oyun-adi> --private --source . --remote origin --push`
+   Gorunurluk pazarlik konusu degil: oyun repolari private acilir.
+3. **GitHub Desktop'a ekle:** `open -a "GitHub Desktop" <proje-yolu>` — Desktop kurulu
+   degilse atla ve rapora tek satir yaz, akisi bloklamaz.
+
+Bundan sonra her commit noktasi **commit + push** demektir; push'suz commit birikmez.
 
 ---
 
@@ -238,16 +248,16 @@ ayni ayarla: `cwebp -q 82` · Chrome MCP'yi ayni anda tek taraf kullanir.
 hala curuk olan ya da kota bittiginde bekleyen id `insan-kilidi`ne tasinir** — "Sanat
 tam" kriterine sayilmaz, teslim raporunda listelenir. Hicbir eksik donguyu bloklamaz.
 
-**Commit noktalari:** cekirdek dongu ilk kostugunda bir commit; her sanat batch'i
-entegre edildiginde bir commit. Saatlerce commitsiz calisma yasak — `resume`'un kod
-tarafindaki tek dayanagi budur.
+**Commit noktalari:** cekirdek dongu ilk kostugunda bir commit + push; her sanat
+batch'i entegre edildiginde bir commit + push. Saatlerce commitsiz calisma yasak —
+`resume`'un kod tarafindaki tek dayanagi budur ve push'suz commit makine olunce kaybolur.
 
 ## Faz C — Genisleme dalgalari
 
 Cekirdek dongu kosunca `/plan-build` Faz 3-4: plandaki dalgalar paralel **Opus**
 ajanlariyla, paket basina kendi `effort`u, `owns` disina cikmak yasak, her paketin
 kapisi calistirilir. Es zamanli paket 4-6'yi gecmez. Entegrasyon kapisi: tam derleme +
-duman + plan disi dosya kontrolu; yesilse commit.
+duman + plan disi dosya kontrolu; yesilse commit + push.
 
 **Takilinca Fable'a danis.** Bir paket ayni kirmiziya **iki farkli teshisle** saldirip
 cozemezse ucuncu denemeye girme: Fable'a dar bir danisma sorusu yaz — belirti, iki
@@ -311,7 +321,9 @@ aynidir: iki teshis tutmadiysa Fable'a danis, sonra devam.
 3. Build'i `file://` ile ac ve **teslim edilen dosyayi** test et (modul onbellegi
    tuzagina karsi cache-bust) — kaynak agaci degil.
 4. `~/Downloads/<oyun-adi>.html`'e kopyala — teslim her zaman buraya.
-5. Proje reposunda commit + push (repo yoksa `git init` + ilk commit).
+5. Son commit + push — private repo ve GitHub Desktop baglantisi zaten Perde 2
+   basinda kuruldu ("Calisma dizini ve repo"); kurulamadiysa (orn. `gh` girisi yok)
+   burada tekrar dene, hala olmuyorsa rapora yaz.
 6. Rapor: ne kuruldu (tek paragraf) · kriter tablosu (hepsi yesil/istisnalar) ·
    funscore bot skoru (seed sayisi + yon) · once/sonra performans · sanat durumu
    (kac id gercek, kac insan-kilidi) · `blocked_by_human` listesi (insan playtest'i
@@ -366,13 +378,14 @@ echo "Girdi: ${1:-<fikir/GDD belirtilmedi — kullanicidan iste>}"
 echo ""
 echo "PERDE 1 — sorular:"
 echo "  G0  Konsept kilidi: tek sayfa GDD, ONAY (baska soru yok)"
+echo "      Onay sonrasi repo: git init + gh repo create --private + GitHub Desktop'a ekle"
 echo "  G1  Stil turu: ayni sahne x 10 stil (/image-prompt + /image-run), SECIM + tur sayisi (10/20)"
 echo "  G2  Sahne turlari: 10 ya da 20 gorsel, kontak sayfasi, ONAY (hedefli redo, max 2)"
 echo "  G3  Soru turu: kapsam zarfi + kalan kararlar tek turda -> kilit ozeti -> 'Basliyorum'"
 echo ""
 echo "PERDE 2 — sifir soru:"
 echo "  A   /goal kriterleri + ART.md tam envanter + plan: Fable taslak, Opus itiraz, Fable karar"
-echo "  B   Uc paralel hat: kod+harness (tek akis) | sanat (Sonnet low) | ses — commit noktalari"
+echo "  B   Uc paralel hat: kod+harness (tek akis) | sanat (Sonnet low) | ses — commit+push noktalari"
 echo "  C   /plan-build dalgalari (Opus, tavan high) — takilinca Fable'a danis"
 echo "  D   /polish tam gecis + /sprite-parallax derinlik + kart parilti — her iddia olcumlu"
 echo "  E   /goal dongusu + /funscore bot (>=3 seed, bant 85-90, yon)"
