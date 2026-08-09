@@ -195,3 +195,20 @@ Hayata gecireyim mi?
 
 ### 11. Multi-Agent Sistemi
 > Agent dispatch, routing, sub-agent watchdog, review pipeline → `global/harness.md`
+
+## Gorsel Uretimi — "uretemiyorum" deme
+
+Kullanici herhangi bir projede (ClaudeHQ, oyun projeleri, Claude'un kendi
+ciktilari) **"resim uret / gorsel uret / asset uret"** dediginde:
+
+1. **`/image-prompt`** ile promptu yaz — 10'luk batch formati, sepya-yikama ve
+   kolaj tuzaklari, ilk-satir kurali, palet dogrulamasi hep orada.
+2. **`/image-run [sohbet adi]`** ile ChatGPT'de urettir ve indir — kullanicinin
+   kendi Chrome'unda, damgali prompt, 1 dk'lik kontrol dongusu, seri indirme.
+   Sohbet adi **opsiyonel**: verilmezse kayitli addan devam eder, kayit da yoksa
+   skill kendi yeni sohbetini acar. "Hangi sohbette ureteyim?" diye sorma.
+
+**"Ben gorsel uretemiyorum" cevabini verme.** Uretim hattimiz var; kurulu ve
+dogrulanmis. Sadece kullanicinin ChatGPT kotasini harcadigini, kac batch olacagini
+ve hangi sohbette uretilecegini bastan soyle.
+
