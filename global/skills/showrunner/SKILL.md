@@ -19,6 +19,7 @@ haline getirir: Three.js + Web Audio, gercek sanat, cila, tek dosya teslim.
 
 | Durum | Skill |
 |---|---|
+| Ortada fikir bile yok — "hangi oyunu yapayim?" | [`/greenlight`](../greenlight/SKILL.md) |
 | "Fikir eglenceli mi" hala belirsiz, hizli kanit lazim | `/prototype` |
 | Kosan prototip var, derinlestirilecek | `/polish` |
 | Fikirden **bitmis, cilali, gorselleri gercek** oyuna tek komutta | **`/showrunner`** |
