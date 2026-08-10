@@ -329,7 +329,8 @@ bir kontak sayfasi uret ve gozle gec:
 ImageDraw.Draw(lab).text((4, h+4), names[card_id], fill=(210,205,185))
 ```
 
-Sonra projeye tasi: WebP'ye cevir (`quality 84, method 6`), hedef dizine
+Sonra projeye tasi: WebP'ye cevir (`cwebp -q 82` — tum hatlarin ortak ayari;
+olculmus: ~%80 kucultme, kart boyutunda fark gorunmuyor), hedef dizine
 `<id>.webp` olarak yaz, veri dosyasina `art` alani ekle.
 
 ---
