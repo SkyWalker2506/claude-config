@@ -1,17 +1,17 @@
 ---
 name: image-run
-description: "ChatGPT'de gorselleri uctan uca uretir: her gorseli kendi mesajinda damgalayip gonderir, 1 dk'da bir kontrol eder, bitince teker teker indirir, sonrakine gecer. Sohbet adi verilmezse kayitli addan devam eder, o da yoksa kendi yeni sohbetini acar. Triggers: image run, gorsel uret indir, chatgpt gorsel, sohbette uret, otomatik gorsel, gorselleri indir, stil arama calistir."
+description: "ChatGPT'de gorselleri uctan uca uretir: 10 konuluk tek mesaj gonderir (damga sonda), 1 dk'da bir kontrol eder, bitince teker teker indirir, sonrakine gecer. Sohbet adi verilmezse kayitli addan devam eder, o da yoksa kendi yeni sohbetini acar. Triggers: image run, gorsel uret indir, chatgpt gorsel, sohbette uret, otomatik gorsel, gorselleri indir, stil arama calistir."
 user-invocable: true
 argument-hint: "[sohbet adi] — opsiyonel; bos birakilirsa kayitli sohbet ya da yeni sohbet"
 ---
 
 # /image-run — ChatGPT'de uctan uca gorsel uretimi
 
-Kullanicinin kendi Chrome'unda gorselleri **teker teker** uretir ve indirir. Hangi
+Kullanicinin kendi Chrome'unda gorselleri uretir ve indirir: **istek toplu, indirme teker teker**. Hangi
 sohbette calisilacagini **kendisi cozer** — bkz. 0. adim. Prompt yazimi ve palet
 dogrulamasi ayri bir skill'in isi:
-**[/image-prompt](../image-prompt/SKILL.md)** — once oradaki "tek mesaj = tek gorsel"
-formatini ve sepya/kolaj tuzaklarini oku, prompt metnini oradaki kurallara gore uret.
+**[/image-prompt](../image-prompt/SKILL.md)** — once oradaki toplu istek
+formatini (10 konu, damga sonda) ve sepya/kolaj tuzaklarini oku, prompt metnini oradaki kurallara gore uret.
 Bu skill o promptlari **calistirir**.
 
 Arac: `mcp__claude-in-chrome__*` (kullanicinin gercek, oturumu acik Chrome'u).
@@ -20,28 +20,27 @@ login degil, dosya ucu 401 doner.
 
 ---
 
-## Akis — tek mesaj, tek gorsel, seri
+## Akis — tek istek, sirayla uretim, teker teker indirme
 
 ```
-sohbeti ac  →  prompt N'i gonder  →  1 dk'da bir kontrol
-                                            ↓ bitti
-                              gorsel N'i INDIR + dogrula
-                                            ↓
-                              dosyayi tasi ve adlandir
-                                            ↓
-                                   prompt N+1'i gonder
+sohbeti ac  →  10 konuluk TEK mesaj gonder (damga en sonda)
+                          ↓
+              model konulari sirayla uretir
+                          ↓
+        her gorsel bittikce onu INDIR + dogrula + adlandir
+                          ↓
+              tur bitince sonraki 10'luk mesaj
 ```
 
-**Arac tek seferde tek gorsel uretir.** Tek mesajda birden fazla konu istemek ciktiyi
-tek birlesik tuvale cevirir — 2026-08-09'da 8 konuluk bir mesaj boyle coktu, ChatGPT'nin
-kendisi *"Ilk uretim tek tuvalde birlesti; bunu teslim etmiyorum"* dedi. Prompt yazim
-kurali: [/image-prompt](../image-prompt/SKILL.md) Kural 1.
+**Bir mesaj, on konu, bir istek.** Uretim yine teker teker olur ama gonderilen istek
+sayisi 10 kat duser — cok sayida arka arkaya istek kotayi ve oturumu zorluyor.
+Parcalama: 3 istiyorsan 3, 15 istiyorsan 10 + 5, 30 istiyorsan 10 + 10 + 10.
+Prompt formati ve **damganin en sonda** durmasi: [/image-prompt](../image-prompt/SKILL.md)
+Kural 1.
 
-**Indirmeyi bir sonraki gonderimin altina SAKLAMA.** Bu skill'in onceki surumu "once
-sonrakini gonder, sonra oncekini indir" diyordu; o kural coklu-uretim icindi ve tek
-gorselde **tehlikeli**: yeni gorsel senden once biterse "son paylas dugmesi" ona kayar ve
-yanlis dosyayi indirirsin. Kullanicinin talimati da acik — *"birde teker teker indir"*.
-Sira **gonder → bekle → indir → dogrula → sonraki**. Daha yavas, ama eslesme kaymiyor.
+**Indirme toplu yapilmaz.** Her gorsel bittikce tek tek indirilir ve diskte dogrulanir.
+Toplu "seri indir" akisi bir kez ayni seriyi ikinci kez indirdi, bir kez de pozisyon
+kaymasi uretti. Kullanicinin talimati da acik: *"birde teker teker indir"*.
 
 ---
 
@@ -149,33 +148,36 @@ ve kullanici durdurdu: *"yanlis yerden indiriyorsun sifirdan ac"*.
 
 ## 2. Damgali promptu gonder
 
-Damga kim/ne zaman/hangi gorsel bilgisini tasir; kullanici kendi elle attigi
-promptlarla senin gonderdiklerini ayirt edebilsin, eski gorseller yanlislikla
-tekrar indirilmesin.
+Damga kim/ne zaman/hangi tur bilgisini tasir; kullanici kendi elle attigi promptlarla
+senin gonderdiklerini ayirt edebilsin, eski turlar yanlislikla tekrar indirilmesin.
 
-**Damga basta durur — ama ikinci satirda.** Kullanici sohbeti actiginda hangi
-gorsele baktigini kaydirmadan gormeli; sona konan damga bu isi yapmiyor.
+**Damga EN SONDA durur.** Ilk satir uretim talimati olmali:
 
 ```
-Generate one image.                                          <- ILK SATIR
-[CLAUDE — 2026-08-09 16:50 — <proje>, stil arama 3/10]        <- DAMGA
-<konu, bir-iki cumle>
-FRAMING: ...
-STYLE: ...
-LIGHT: ...
-<negatifler>
+Generate 10 separate images, one for each numbered subject below.   <- ILK SATIR
+IMPORTANT: output each as its OWN separate image file. ...
+
+STYLE (identical in all 10): ...
+LIGHT (identical in all 10): ...
+NEGATIVE (identical in all 10): ...
+
+1. ...
+10. ...
+
+[CLAUDE — 2026-08-10 14:30 — <proje>, <tur adi>]                    <- DAMGA, EN SON
 ```
 
-**Birinci satir pazarlik konusu degil.** Damga bir kez gercekten en basa kondu,
-uretim talimati ilk satir olmaktan cikti ve model tum istegi tek bir konu gibi okuyup
-**tek birlesik gorsel** uretti — 2026-08-09'da bir tur boyle kayboldu. Bu yuzden damga
-**ikinci** satira gelir: hem gorunur, hem ilk satiri yerinden etmez.
+**Damga uretim talimatinin onune gecemez.** 2026-08-09'da damga gercekten en basa kondu,
+`Generate 10 separate images` ilk satir olmaktan cikti ve model tum istegi tek konu sanip
+**tek birlesik tuval** uretti. Sonrasinda damga ikinci satira alindi, ardindan toplu format
+tamamen birakildi — ikincisi asiri duzeltmeydi. Damga **listenin altinda**, numarasiz ve
+bos satirla ayrilmis dururken toplu format calisiyor.
 
-Damga ile devami arasina **bos satir birakma**; bosluk modelin damgayi ayri bir
-istek gibi okumasini kolaylastiriyor.
+Damga ile numarali listenin arasina **bos satir birak** — damganin 11. konu
+sanilmamasi icin ayri durmasi gerekiyor.
 
-Damgaya **kart/konu id listesi yazma** — model onu tek sahnenin ogeleri sanabiliyor.
-Sadece proje adi ve gorsel numarasi (N/10) yeter.
+Damgaya **kart/konu id listesi yazma** — model onu ek konu sanabiliyor. Proje adi,
+tarih-saat ve tur adi yeter.
 
 Tarihi **calistirma aninda** uret, uydurma.
 
@@ -468,20 +470,19 @@ olculmus: ~%80 kucultme, kart boyutunda fark gorunmuyor), hedef dizine
 
 ---
 
-## 6. Sonraki gorsel
+## 6. Sonraki tur
 
 ```
-N bitti  →  N'i indir + dogrula + tasi/adlandir  →  N+1'i gonder
+turdaki 10 gorsel bittikce tek tek indirildi  →  sonraki 10'luk mesaji gonder
 ```
 
-Indirmeyi bir sonrakinin altina **saklama** (sebep: "Akis"). Dosya diskte dogrulanmadan
-yeni prompt gonderme — dogrulanmamis bir indirme, sonraki eslemenin tamamini kaydirir.
+Bir turun **tum** gorselleri inip diskte dogrulanmadan sonraki turu gonderme — yeni
+uretim baslarsa DOM'daki sira degisir ve eksik kalan gorseli bulmak zorlasir.
 
-Tum kuyruk bitene kadar kesintisiz devam et; gorseller arasinda kullanicidan onay
-bekleme — kuyruk basta bir kez onaylanir.
-
-Her prompt kendi damgasini ve kendi stil blogunu tasir — **stil blogunu harfi harfine
-ayni kopyala**, tek kelime degistirirsen set ikiye bolunur.
+Tum kuyruk bitene kadar kesintisiz devam et; turlar arasinda kullanicidan onay bekleme —
+kuyruk basta bir kez onaylanir. Her tur kendi damgasini ve kendi ortak stil blogunu
+tasir; **stil blogunu harfi harfine ayni kopyala**, tek kelime degistirirsen set ikiye
+bolunur.
 
 ---
 
@@ -511,10 +512,9 @@ kullanirken ana hat da Chrome'a dokunursa tiklamalar birbirine karisir. Ayni and
 
 - Sadece kullanicinin **kendi** sohbetinde calisir. Paylasim linkinde
   (`/share/<id>`) dosya ucu 401 doner, indirilemez.
-- **ChatGPT tek mesajda tek gorsel uretir.** Tek mesajda birden fazla konu istemek
-  ciktiyi tek kolaja birlestirir — olculmus, iki kez. 10 gorsel = 10 mesaj.
-- Bu, bir turu uzatir: gorsel basina ~1-2 dk uretim + ~1 dk indirme, yani 10'luk bir
-  tur ~20-30 dk. Arka plan ajaniyla kosuldugunda ana hat bloklanmaz.
+- **Tek mesajda en fazla 10 konu.** Fazlasi tek contact sheet'e birlesiyor.
+- Uretim yine sirayla olur: gorsel basina ~1-2 dk, yani 10'luk bir tur ~20-30 dk.
+  Arka plan ajaniyla kosuldugunda ana hat bloklanmaz.
 
 ### Paralellik — sekme sayisinda, mesaj icinde degil
 
@@ -575,10 +575,10 @@ else
 fi
 echo ""
 echo "0. Sohbeti coz: argüman > kayitli ad > yeni sohbet ac. Kullaniciya SORMA"
-echo "1. /image-prompt kurallariyla promptlari yaz (tek mesaj = tek gorsel)"
+echo "1. /image-prompt kurallariyla turu yaz: 10 numarali konu, damga EN SONDA"
 echo "2. Sohbeti ac, damgali promptu gonder"
 echo "3. sleep 60 (run_in_background) ile 1 dk'da bir kontrol et"
-echo "4. Bitince: sayfa ici fetch + a.download ile indir (paylas menusune GIRME)"
+echo "4. Her gorsel bittikce: sayfa ici fetch + a.download (paylas menusune GIRME)"
 echo "5. Dosyayi dogrula, tasi/adlandir, WebP'ye cevir, veri dosyasina bagla"
-echo "6. Kalan prompt varsa 2'ye don; yeni sohbet acildiysa adini memo'ya yaz"
+echo "6. Tur bitip hepsi diskte dogrulaninca sonraki 10'luk tura don"
 ```

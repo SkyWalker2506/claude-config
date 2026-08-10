@@ -247,19 +247,25 @@ uret (en cok bakilan iki ekrani sabit tut, kalanlari cesitlendir). Amac artik st
 degil, **stilin butun ekranlarda tutup tutmadigini** gormek — bir stil dovus sahnesinde
 harika, ust-bakis kesif ekraninda cokebilir ve bu ancak bakinca anlasilir.
 
-**On stil = on ayri mesaj.** `/image-prompt` Kural 1: arac tek mesajda tek gorsel uretir;
-tek mesajda 10 konu istemek ciktiyi tek kolaja cevirir. Her stil kendi mesajinda, kendi
-basina calisan tam bir prompt olarak gider ve **gonderilmeden once oncekinin indigi
-dogrulanir**.
+**On stil = TEK mesaj.** `/image-prompt` Kural 1: on konu tek mesajda gider, damga en
+sonda durur; uretim yine sirayla olur ama 10 yerine 1 istek gonderilir. Stil aramasinda
+sabit olan **sahne**, degisen **stil** — yani numarali liste stilleri sayar:
 
 ```
-Generate one image.
-[CLAUDE — <zaman damgasi> — <proje>, stil arama N/10]
-<SAHNE — on promptta harfi harfine ayni, bir-iki cumle>
-FRAMING: <oyun ici kadraj notu — on promptta ayni>
-STYLE: <teknik + palet + isik, ~25 kelime — SADECE bu satir promptlar arasi degisir>
-LIGHT: <isik dili — on promptta ayni>
-Absolutely no text, letters, numbers, logos or watermarks. No UI, no health bars.
+Generate 10 separate images, one for each numbered style below.
+IMPORTANT: output each as its OWN separate image file. Do not combine them into a grid,
+contact sheet, collage or single canvas.
+
+SUBJECT (identical in all 10): <oyun ici sahne, bir-iki cumle>
+FRAMING (identical in all 10): <oyun ici kadraj notu>
+NEGATIVE (identical in all 10): no text, letters, numbers, logos, watermarks, no UI.
+
+Render the SAME subject ten times, once in each style below.
+1. <teknik + palet + isik, ~25 kelime>
+...
+10. ...
+
+[CLAUDE — <tarih saat> — <proje>, stil arama]
 ```
 
 **On stil gercekten farkli eksenlerde olmali**, ayni seyin on tonu degil. Ornek
@@ -288,9 +294,9 @@ kopyalar. Tek kelime degistirirsen set ikiye bolunur.
 
 ### Adim 3 — Asset turlari, arka plan ajaniyla
 
-`ART.md` listesini 10'arli turlara bol; **her id kendi promptunu ve kendi mesajini alir**
-(tek mesaj = tek gorsel). Promptlari `/image-prompt` kurallariyla **sen yaz** (prompt yazimi
-low'a verilmez), calistirmayi `/image-run`'a devret:
+`ART.md` listesini 10'arli turlara bol; **her tur tek mesajdir** (10 numarali konu, ortak
+stil blogu, damga en sonda). Promptlari `/image-prompt` kurallariyla **sen yaz** (prompt
+yazimi low'a verilmez), calistirmayi `/image-run`'a devret:
 
 ```
 Agent(subagent_type: "general-purpose", model: "sonnet", effort: "low",
@@ -494,7 +500,7 @@ sadece guzel mi?* Teslimat yayi anlatiyor; sis anlatmiyor.
 | Modul kaynagini test edip **teslim edilen build'i** test etmemek | Tarayici modul onbellegi eski dosyayi servis eder; duzeltilmis bug duzelmemis gorunur. Ciktiyi cache-bust parametresiyle test et |
 | Sayisal alani `undefined` birakmak | Bir kare sonra NaN; AudioParam'a giderse rAF icinde exception atar. **Siyah sahne + calisan HTML HUD = dongu oldu; once konsol, sonra renderer** |
 | Gorsel insin diye kodu bekletmek | Hat saatlerce donebilir; o sure cekirdek donguye gider. Placeholder'la yaz, gorsel gelince manifest satirini ekle |
-| Tek mesajda 10 gorsel istemek | Cikti tek kolaja birlesir, tur cope gider. Olculmus, iki kez — `/image-prompt` Kural 1 |
+| Damgayi uretim talimatinin onune koymak | Model tum istegi tek konu sanip kolaj uretir — olculmus. Damga EN SONDA (`/image-prompt` Kural 1) |
 | Sanat ajanina `src/` acmak | Olcumdeki iki-sema tuzagi. Ajanin tek kod temasi `data/art.js` manifestidir |
 | Stil onayini beklemek | Onay bloklayan tek sanat adimi ama **seni** bloklamaz; sen Faz 2-3'tesin |
 | Ucuncu stil turu | Ikinci turdan sonra secim kilitli. Ucuncu tur prototipin sorusunu cevaplamiyor, kota harciyor |

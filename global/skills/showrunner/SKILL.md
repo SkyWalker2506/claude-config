@@ -101,8 +101,9 @@ sonra ozet `brief.md`'ye yazilir ve G1 **hemen** tetiklenir.
 
 `/prototype` "Adim 1 — Stil arama" formati aynen: **ayni sahne, 10 farkli stil**.
 
-- **Tek mesaj = tek gorsel**, yani 10 ayri mesaj (`/image-prompt` Kural 1). Tek mesajda
-  10 konu istemek ciktiyi kolaja cevirir — olculmus, iki kez.
+- **On stil tek mesajda** gider (`/image-prompt` Kural 1): numarali liste + ortak sahne
+  blogu + **damga en sonda**. Uretim sirayla olur, indirme teker teker; istek sayisi
+  10 kat duser.
 - **Sahne oyun ici goruntu gibi kadrajlanir**: oyunun kamerasi, oyunun kompozisyonu,
   bagimsiz bir illustrasyon gibi degil. Secilen sey oyunun nasil gorunecegidir. Sahne
   oyuncunun en cok bakacagi ekran olmali (genelde ana oynanis ekrani).
@@ -132,10 +133,10 @@ kaybetme, seviye atlama) · ortamlar/bolgeler · ana karakter(ler) yakin plan. O
 yerler) her alan **ayri sahne olarak** uretilir — bunlar Faz D'de parallax derinlik
 alacak gorsellerdir, tam kadraj ve tek bakis acisiyla iste.
 
-G1'de secilen tur sayisina gore 10 ya da 2x10 = 20 gorsel; **her gorsel kendi mesajinda**
-gider, her prompt kendi damgasini tasir, stil blogu harfi harfine tekrar eder. Sira
-`/image-run`'daki gibi seridir: **gonder → bekle → indir → dogrula → sonraki**. Indirmeyi
-sonraki gonderimin altina saklama; yanlis dosyayi indirmeye yol acar.
+G1'de secilen tur sayisina gore 10 ya da 2x10 = 20 gorsel; **her tur tek mesajdir**
+(10 numarali sahne, ortak stil blogu, damga en sonda). Uretim sirayla olur; her gorsel
+bittikce **teker teker** indirilir ve diskte dogrulanir. Bir tur tamamen inmeden sonraki
+turu gonderme.
 
 Inen kareleri sahne adlariyla etiketlenmis **tek kontak sayfasi** olarak goster, onay
 iste. Begenilmeyen icin `/prototype` "Adim 6" kurali: **tum seti yeniden uretme**,
@@ -247,8 +248,7 @@ Ayni anda uc hat kosar; birbirini beklemez:
 sonra ilgili satirlar `gercek` cevrilir, curuk cikan `eksik` isaretlenir. Sanat ajani
 ART.md'ye dokunmaz; iki yazar ayni dosyada bulusmaz.
 
-Sanat hatti kurallari: **tek mesaj = tek gorsel, tur basina 10** · stil blogu harfi harfine · damga ikinci
-satirda · kolaj gelirse durdur-duzelt-yeniden gonder · indirmeden once seri sayisinin
+Sanat hatti kurallari: **tur basina tek mesaj, 10 konu** · stil blogu harfi harfine · damga EN SONDA · kolaj gelirse durdur-duzelt-yeniden gonder · indirmeden once seri sayisinin
 arttigini dogrula · esleme icerige bakarak, kontak sayfasiyla · WebP her iki hatta
 ayni ayarla: `cwebp -q 82` · Chrome MCP'yi ayni anda tek taraf kullanir.
 
@@ -364,7 +364,8 @@ son karar Fable'indir; kodu Opus yazar; Opus takilirsa Fable'a danisilir.
 | Perde 2'de `AskUserQuestion` cagirmak | Sozlesmenin ihlali; varsayilan sec, `decisions.md`'ye yaz |
 | Perde 2'de "ister misin / onaylar misin" yazmak | Ayni ihlalin cumle hali |
 | Perde 1 kapisini kendi kendine onaylamak | Onay kullanicinindir; tikanirsa Perde 1'de sorulur |
-| Tek mesajda birden fazla gorsel istemek | Cikti tek kolaja birlesir, tur cope gider — olculmus, iki kez |
+| Damgayi uretim talimatinin onune koymak | Model tum istegi tek konu sanip kolaj uretir — olculmus |
+| Tek mesaja 10'dan fazla konu koymak | Fazlasi tek contact sheet'e birlesir |
 | Stil blogunu "iyilestirmek" | Set ikiye bolunur; kilit kilittir |
 | G2 gorsellerini onay sonrasi cope atmak | Onlar oyunun key art'i; ingestion'a girer |
 | Sanat insin diye kodu bekletmek | Placeholder sozlesmesi bunun icin var |

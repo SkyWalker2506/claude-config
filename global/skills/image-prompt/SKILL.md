@@ -1,18 +1,18 @@
 ---
 name: image-prompt
-description: "Gorsel uretim promptlarini dogrulanmis formatta yazar: tek mesaj = tek gorsel, bir tur 10 ayri prompt. Cikan paleti olcerek dogrular; sepya-yikama ve kolaj tuzaklarini prompt seviyesinde onler. Triggers: image prompt, gorsel prompt, resim promptu, asset prompt, kart gorseli, art prompt, 10 resim, stil arama."
+description: "Gorsel uretim promptlarini dogrulanmis formatta yazar: tek mesajda 10 numarali konu, damga en sonda, indirme teker teker. Cikan paleti olcerek dogrular; sepya-yikama ve kolaj tuzaklarini prompt seviyesinde onler. Triggers: image prompt, gorsel prompt, resim promptu, asset prompt, kart gorseli, art prompt, 10 resim, stil arama."
 user-invocable: true
 argument-hint: "[konu/proje] — orn. 'kart gorselleri' veya 'ikon seti'"
 ---
 
 # /image-prompt — Image Prompt Generator
 
-Illustration, key art, ikon ve prop promptlarini **tek mesaj = tek gorsel** formatinda
-yazar; bir tur tipik olarak 10 ayri prompttur. Uretim sonrasi paleti olcup dogrular.
+Illustration, key art, ikon ve prop promptlarini **tek mesajda 10 numarali konu** formatinda
+yazar (damga en sonda); istek bir kez gider, uretim teker teker olur. Uretim sonrasi paleti olcup dogrular.
 
 **Promptu yazdirmakla kalmayip uretimi de calistirmak istiyorsan:**
 `/image-run <sohbet adi>` — adi verilen ChatGPT sohbetinde promptu gonderir,
-1 dk'da bir kontrol eder, biten gorseli indirir, sonrakine gecer.
+1 dk'da bir kontrol eder, biten gorselleri teker teker indirir.
 Bu skill promptu **yazar**, `/image-run` onu **calistirir**; ikisi birlikte kullanilir.
 
 **Bu skill degil, sunun icin:** sprite strip / animasyon / asset-browser hattina asset
@@ -33,45 +33,69 @@ metin Ingilizcedir. Turkce sahne tarifi yazma, ceviri de yaptirma.
 
 ---
 
-## Kural 1 — Tek mesaj, TEK gorsel
+## Kural 1 — Tek mesajda 10 konu, damga EN SONDA
 
-**Bu kural bir kez tersine cevrildi. Eski hali "tek istekte 10 sahne" diyordu; olcum
-onu curuttu.** 2026-08-09'da tek mesajda 8 konu istendi ve cikti **tek birlesik tuval**
-oldu — ChatGPT'nin kendisi *"Ilk uretim tek tuvalde birlesti; bunu teslim etmiyorum"*
-deyip bastan uretmeye basladi. Kullanicinin talimati net: *"birde teker teker indir"*.
-2026-08-10'da ayni sey tekrar dogrulandi: **arac tek seferde tek gorsel uretiyor.**
-
-Dogru format — **her gorsel kendi mesajinda, kendi basina calisan tam bir prompt**:
+**Tek mesaj = tek istek. Uretim yine teker teker olur, ama sen 10 yerine 1 istek
+gondermis olursun.** Istek sayisini dusurmek onemli: cok sayida arka arkaya istek hem
+kotayi hem oturumu zorluyor.
 
 ```
-Generate one image.
-[CLAUDE — <tarih> — <proje>, <tur adi> N/10]
-<konu, bir-iki cumle>
-FRAMING: <kadraj notu>
-STYLE: <stil blogu — bu promptta TAM haliyle tekrar eder>
-LIGHT: <isik dili>
-<negatifler>
+Generate 10 separate images, one for each numbered subject below.        <- ILK SATIR
+IMPORTANT: output each as its OWN separate image file. Do not combine them into a
+grid, contact sheet, collage or single canvas.
+
+STYLE (identical in all 10): <stil blogu — harfi harfine sabit>
+LIGHT (identical in all 10): <isik dili>
+NEGATIVE (identical in all 10): <negatifler>
+
+1. <konu bir cumle + kadraj notu>
+2. ...
+10. ...
+
+[CLAUDE — <tarih saat> — <proje>, <tur adi>]                             <- DAMGA, EN SON
 ```
 
-**Ortak stil basligi YOK.** Onceki surumun "STYLE (applies to all 10)" blogu, ancak tek
-mesajda 10 gorsel isterken anlamliydi. Artik her prompt tek basina gonderildigi icin stil
-blogu **her promptta harfi harfine tekrar eder**. Tek kelime degistirirsen set ikiye
-bolunur — tekrar bir israf degil, tutarliligin tek mekanizmasidir.
+### Damga neden sonda
 
-**Damga yine ikinci satirda.** Ilk satir uretim talimati olmali; damgayi en basa koymak
-bir kez modelin tum istegi tek konu gibi okumasina yol acti. Damgaya konu/id listesi
-yazma.
+Bu iki kez yer degistirdi, ikisinin de sebebi olculdu:
 
-**"10" hala gecerli ama artik tur demek, batch degil.** Bir turda 10 gorsel istemek
-dogru olcek; ama bu **10 ayri mesaj** demek, tek mesajda 10 konu degil. 10'dan fazlasi
-icin turu ikiye bol.
+1. Damga **en basa** konunca `Generate N separate images` ilk satir olmaktan cikti ve
+   model tum istegi tek konu sanip **tek birlesik tuval** uretti (2026-08-09).
+2. Bunun uzerine damga ikinci satira alindi, sonra da toplu format tamamen birakilip
+   "tek mesaj tek gorsel"e gecildi. **Bu asiri duzeltmeydi:** asil sorun toplu istek
+   degil, damganin uretim talimatinin onune gecmesiydi.
 
-**Her gorseli gonderdikten sonra, sonrakini gondermeden ONCE indir.** Toplu "seri indir"
-akisina guvenme — indirmeyi bekletmek dosyalari birbirine karistiriyor ve bir kez tam
-bir pozisyon kaymasina yol acti.
+Damga **en sonda** dururken toplu format calisiyor: ilk satir uretim talimati kaliyor,
+numarali liste kesintisiz okunuyor, damga da liste bittikten sonra geliyor ve hicbir
+konuyu golgelemiyor. Damgayi listeye **numarasiz** ve **bos satirla ayrilmis** yaz ki
+11. konu sanilmasin.
 
-Yine de kolaj/izgara gelirse tek satir duzeltme:
-`Please output this as a single standalone image. No grid, no contact sheet, no collage.`
+Damgaya konu/id listesi yazma; proje adi, tarih-saat ve tur adi yeter.
+
+### Parca boyutu — 10 tavan
+
+| Istenen | Nasil gonderilir |
+|---|---:|
+| 3 gorsel | tek mesajda 3 |
+| 10 gorsel | tek mesajda 10 |
+| 15 gorsel | once 10, sonra 5 |
+| 30 gorsel | 10 + 10 + 10 |
+
+10'dan fazlasini tek mesaja koyma — fazlasi tek contact sheet'e birlesiyor.
+
+### Indirme yine teker teker
+
+Toplu **istek** gonderilir; indirme toplu yapilmaz. Model gorselleri sirayla uretir;
+her biri bittikce **tek tek** indirilir ve diskte dogrulanir (`/image-run` 4. adim).
+Toplu "seri indir" akisi bir kez ayni seriyi ikinci kez indirdi, bir kez de pozisyon
+kaymasi uretti.
+
+### Kolaj gelirse
+
+Tek mesajda 10 istendigi halde izgara/contact sheet geldiyse: uretimi durdur, damganin
+gercekten **en sonda** ve ilk satirin `Generate N separate images...` oldugunu dogrula,
+ayni mesaji tekrar gonder. Ikinci kez de kolaj geliyorsa o tur icin tek-mesaj-tek-gorsele
+dus ve bunu kullaniciya soyle.
 
 ---
 
@@ -113,7 +137,7 @@ degil.** Her yeni is icin paleti bastan sec:
 
 1. Isin ne oldugunu sor — cozy oyun mu, karanlik survival mi, teknik illustrasyon mu?
 2. Referansi varsa oradan cikar; yoksa 3-4 renkten olusan bir aile + 1 aksan yaz.
-3. Ayni paleti turun tumune tasi (stil blogu her promptta harfi harfine ayni), ama **sahnelerin
+3. Ayni paleti turun tumune tasi (ortak stil blogu harfi harfine sabit), ama **sahnelerin
    kendi tonu olsun** — magara sicak, nehir soguk. Toplam ton bandini kendin dengele.
 
 Doygunlugu "canli" diye yukseltme; ton *ayrimi* aradigin sey, sat% degil.
@@ -212,7 +236,7 @@ kareyi ancak cilalar. Yapisal olarak bozuk olani yeniden uret.
 
 ## Teslim formati
 
-- Her gorsel icin **ayri fenced blok**, icinde o gorselin tam ve kendi basina calisan promptu
+- Tur basina **tek fenced blok**: ortak stil/isik/negatif basligi + numarali konu listesi + sondaki damga
 - Prompt **Ingilizce**; sohbet Turkce
 - Blogun disinda numarali dosya adi eslemesi: `1 push, 2 resupply, 3 mobilize, ...`
 - Kullaniciya sirayi ve "icerige bakarak esle" notunu hatirlat
