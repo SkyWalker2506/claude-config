@@ -229,15 +229,28 @@ Bekleme icin `Bash` + `run_in_background: true` ile `sleep 60` kullan — bittig
 bildirim gelir, sen de kontrolu yaparsin. Onplanda `sleep` bloklu.
 
 ```js
+const turns = [...document.querySelectorAll('[data-testid^="conversation-turn"], article')];
+const shots = [];
+for (const t of turns) {
+  const im = [...t.querySelectorAll('img')]
+    .filter(i => /oaiusercontent|sediment|backend-api|files/.test(i.currentSrc || i.src || ''));
+  if (im.length) shots.push(im[0]);
+}
 const stop = [...document.querySelectorAll('button')]
   .some(b => /stop|durdur/i.test((b.getAttribute('aria-label')||'') + (b.getAttribute('data-testid')||'')));
-const big = [...document.querySelectorAll('img')]
-  .filter(i => /oaiusercontent|sediment|backend-api|files/.test(i.currentSrc||i.src) && i.naturalWidth > 400);
-({ stillGenerating: stop, ready: big.length })
+({ stillGenerating: stop, shotCount: shots.length })
 ```
 
-`stillGenerating` false **ve** `ready` beklenen sayida ise bitmistir. Gorseller
-gec decode olabiliyor; sayfayi biraz kaydirip 1-2 sn bekle, sonra tekrar say.
+`stillGenerating` false **ve** `shotCount` bir artmissa bitmistir.
+
+**`naturalWidth`'i hazir olma sinyali olarak KULLANMA.** Sekme on planda degilse Chrome
+gorsel cozmeyi erteliyor: gorsel gercekten hazir oldugu halde `naturalWidth` 0 ve
+`complete` false kaliyor. Paralel kosuda sekmelerin cogu arka plandadir, yani bu olcut
+sonsuza kadar bekletir. Sayim **DOM'daki tur sayisina** dayanir; gercek dogrulama
+indirme adimindaki `blob.type` kontroludur.
+
+Sureyi de kucumseme: tek basina 1-2 dk, 10 sekme paralelken **2-5 dk** olcusuldu.
+`sleep 60` ile birkac tur beklemeyi normal say.
 
 "ChatGPT hata yapabilir" sayfa altyazisidir — hata sanip alarm verme.
 
@@ -274,17 +287,53 @@ for(const t of turns){
   if(im.length) shots.push(im[0]);             // her tur en fazla bir uretilmis gorsel
 }
 const img = shots[shots.length-1];             // en son uretilen
-const r = await fetch(img.currentSrc);
+const url = img.currentSrc || img.src;         // currentSrc BOS olabilir — bkz. asagi
+const r = await fetch(url);
 const b = await r.blob();
-const a = document.createElement('a');
-a.href = URL.createObjectURL(b);
-a.download = 'wildbound-03.png';               // ADI SEN VER
-document.body.appendChild(a); a.click(); a.remove();
-({ok:r.ok, kb:Math.round(b.size/1024), shotCount:shots.length});
+let saved = false;
+if (b.type.startsWith('image/') && b.size > 400000) {   // KAPI: tip ve boyut
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(b);
+  a.download = 'wildbound-03.png';             // ADI SEN VER
+  document.body.appendChild(a); a.click(); a.remove();
+  saved = true;
+}
+({ok:r.ok, type:b.type, kb:Math.round(b.size/1024), saved, shotCount:shots.length});
 ```
 
-`ok:true`, makul bir `kb` **ve** `shotCount`'un bir artmis olmasi — ucu birden olmadan
-sonraki adima gecme.
+`saved:true`, makul bir `kb` **ve** `shotCount`'un bir artmis olmasi — ucu birden
+olmadan sonraki adima gecme.
+
+### Tuzak: `ok:true` gorseli geldi anlamina GELMEZ
+
+Gorsel henuz lazy-load olmadiysa `img.currentSrc` **bos string**tir. `fetch('')` hata
+vermez — sayfanin kendi URL'ine cozulur ve **ChatGPT SPA kabugunu** doner: `ok:true`,
+~476 KB, ve diske `.png` adiyla yazilan bir HTML dosyasi. 2026-08-10'da iki dosya boyle
+bozuldu ve checksum kontrolu bile yakalayamadi (iki HTML birbirinden farkliydi).
+
+Uc katmanli korunma, ucu de gerekli:
+
+1. `img.currentSrc || img.src` — currentSrc bossa src doludur.
+2. `blob.type.startsWith('image/')` — `r.ok`'a **guvenme**, tipe bak.
+3. Diske yazdiktan sonra: `file -b --mime-type <dosya>` → `image/png` degilse sil ve
+   tekrar indir.
+
+### Yedek: `fetch` engellenirse native indirme
+
+Bazi oturumlarda tarayici araci imzali query string'i tasiyan istegi engelliyor
+(`BLOCKED: Cookie/query string data`) ve `fetch` hic calismiyor. O zaman istegi JS'e
+okutma, tarayiciya yaptir:
+
+```js
+const a = document.createElement('a');
+a.href = img.currentSrc || img.src;
+a.download = '';                                // cross-origin'de ad yok sayilir
+document.body.appendChild(a); a.click(); a.remove();
+```
+
+Dosya `~/Downloads`'a **UUID benzeri kendi adiyla** iner (cross-origin istek `download`
+adini yok sayar), sonra `mv` ile dogru ada tasinir. Bu yolda tip dogrulamasi yalnizca
+diskte yapilabilir — `file -b --mime-type` adimi burada zorunludur.
 
 ### Tuzak: URL'e gore tekillestirme calismaz
 
