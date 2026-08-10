@@ -65,7 +65,7 @@ Prompt metni ajana **hazir** verilir; ajan prompt yazmaz, degistirmez, "iyilesti
 Gorevi: sohbeti ac → yapistir → Return → 1 dk'da bir kontrol → indir → dosyalari
 esle → rapor. Ana hat bu sirada proje isine devam eder.
 
-**Haiku secme.** Indirme akisi (paylas ikonu → Indir) yanlis
+**Haiku secme.** Sohbet/composer akisi yanlis
 dugumu tiklamaya musait; bu skill'in gecmisinde kor tiklama bir kez Reddit gonderi
 formunu acti. Sonnet low bu adimlari guvenle yuruturken Opus'un maliyetinin
 kucuk bir kismini harcar.
@@ -235,19 +235,42 @@ duser, sonraki eslemeyi bozar.
 
 ---
 
-## 4. Gorseli indir — teker teker
+## 4. Gorseli indir — sayfa ici fetch, paylas menusune GIRME
 
-Tek gorsel uretildigi icin akis kisadir:
+**Dogrulanmis yontem (2026-08-10).** Paylas menusunu hic acma; gorseli sayfanin kendi
+oturumuyla indir. Ad da burada verilir, sonradan eslestirme derdi kalmaz:
 
+```js
+const all=[...document.querySelectorAll('img')]
+  .filter(i=>/oaiusercontent|sediment|backend-api|files/.test(i.currentSrc||i.src) && i.naturalWidth>400);
+const seen=new Set(), uniq=[];
+for(const i of all){ const k=(i.currentSrc||i.src).split('?')[0]; if(!seen.has(k)){seen.add(k); uniq.push(i);} }
+const img = uniq[uniq.length-1];               // en son uretilen
+const r = await fetch(img.currentSrc);
+const b = await r.blob();
+const a = document.createElement('a');
+a.href = URL.createObjectURL(b);
+a.download = 'wildbound-03.png';               // ADI SEN VER
+document.body.appendChild(a); a.click(); a.remove();
+({ok:r.ok, kb:Math.round(b.size/1024)});
 ```
-onizlemenin sag altindaki PAYLAS ikonu
-  → acilan pencerede sag uctaki "Indir"
-```
 
-Dosya `~/Downloads`'a tam boyutta PNG olarak iner. Menude "Bu seride yer alan N
-gorselin tamami" secenegi **cikarsa kullanma** — o secenek eski coklu-uretim akisindan
-kalma ve bir kez ayni seriyi ikinci kez indirmeye yol acti. Tek gorsel istedin, tek
-gorsel indir.
+`ok:true` ve makul bir `kb` degeri gormeden sonraki adima gecme.
+
+**Neden paylas menusu degil:** o menude **Indir dugmesinin hemen yaninda Reddit var**
+(sirasi: Baglantiyi kopyala · X · LinkedIn · Reddit · Indir). Bir kor tiklama bir kez
+Reddit gonderi formunu acti, bir kez de ajan menude asili kalip watchdog'a dustu. Ayrica
+o akis herkese acik bir paylasim baglantisi uretebiliyor. Sayfa ici fetch hicbirine
+dokunmaz.
+
+**Bir onceki gorseli indirmek gerekiyorsa** `uniq[uniq.length-1]` yerine indeksi degistir;
+`uniq` dizisi sohbetteki sirayla gelir.
+
+Menu yine de acildiysa (yanlis tiklama) **Escape** ya da sag ustteki X ile kapat —
+composer o pencere acikken yaziyi almaz.
+
+Onceki surumdeki "Bu seride yer alan N gorselin tamami" secenegi coklu-uretim akisindan
+kalmadir; **kullanma**.
 
 **Koordinat yerine DOM'dan tikla.** Sayfa uretim sirasinda kayiyor ve
 ekran goruntusuyle alinan koordinat tiklama anina kadar geceriz oluyor. Butonlari
@@ -418,7 +441,7 @@ echo "0. Sohbeti coz: argüman > kayitli ad > yeni sohbet ac. Kullaniciya SORMA"
 echo "1. /image-prompt kurallariyla promptlari yaz (tek mesaj = tek gorsel)"
 echo "2. Sohbeti ac, damgali promptu gonder"
 echo "3. sleep 60 (run_in_background) ile 1 dk'da bir kontrol et"
-echo "4. Bitince: paylas ikonu > Indir  (tek gorsel; her adimda ekrana bak)"
+echo "4. Bitince: sayfa ici fetch + a.download ile indir (paylas menusune GIRME)"
 echo "5. Dosyayi dogrula, tasi/adlandir, WebP'ye cevir, veri dosyasina bagla"
 echo "6. Kalan prompt varsa 2'ye don; yeni sohbet acildiysa adini memo'ya yaz"
 ```
