@@ -183,19 +183,43 @@ Tarihi **calistirma aninda** uret, uydurma.
 disinda her sey. Turkce prompt gorsel kalitesini dusuruyor.
 
 Composer bir `contenteditable` div. `textarea.value` set etmek **calismaz**
-(React state guncellenmiyor). Calisan yontem:
+(React state guncellenmiyor). Once `insertText` dene, tutmazsa `ClipboardEvent`:
 
 ```js
 const el = document.querySelector('#prompt-textarea') || document.querySelector('div[contenteditable="true"]');
 el.focus();
 document.execCommand('selectAll', false, null);
 document.execCommand('delete', false, null);
-const dt = new DataTransfer();
-dt.setData('text/plain', PROMPT);
-el.dispatchEvent(new ClipboardEvent('paste', { clipboardData: dt, bubbles: true, cancelable: true }));
+
+// 1. tercih — 2026-08-10'da guvenilir calisan yontem
+document.execCommand('insertText', false, PROMPT);
+
+// tutmazsa 2. yol:
+// const dt = new DataTransfer(); dt.setData('text/plain', PROMPT);
+// el.dispatchEvent(new ClipboardEvent('paste', {clipboardData: dt, bubbles: true, cancelable: true}));
 ```
 
-Sonra `computer` ile **Return**. Gonderildigini ekran goruntusuyle dogrula.
+**Yapistirmayi her zaman geri okuyarak dogrula.** Ikisi de **asenkron** uygulanabiliyor;
+hemen ardindan gonderirsen bos mesaj gider:
+
+```js
+await new Promise(r => setTimeout(r, 1000));
+el.textContent.length          // prompt uzunlugu ile kabaca ortusmeli
+```
+
+Uzunluk sifir ya da kisaysa temizle ve tekrar yapistir. 2026-08-10'da `ClipboardEvent`
+bir oturumda `length` 0 birakti ve `insertText` ile cozuldu; ayni gun baska bir ajanda
+`ClipboardEvent` calisti ama gecikmeli uygulandi. Ikisi de olabilir — **dogrulama**
+pazarlik konusu degil.
+
+Sonra gonder. **Tercihen DOM'dan**, `computer` ile degil — birden fazla sekmede paralel
+calisiyorsan `computer` on plandaki sekmeye vurur ve baska bir ajanin isini bozar:
+
+```js
+(document.querySelector('[data-testid="send-button"]') ||
+ [...document.querySelectorAll('button')].find(x => /send|gönder/i.test(x.getAttribute('aria-label')||''))
+).click();
+```
 
 ---
 
@@ -442,6 +466,24 @@ kullanirken ana hat da Chrome'a dokunursa tiklamalar birbirine karisir. Ayni and
   ciktiyi tek kolaja birlestirir — olculmus, iki kez. 10 gorsel = 10 mesaj.
 - Bu, bir turu uzatir: gorsel basina ~1-2 dk uretim + ~1 dk indirme, yani 10'luk bir
   tur ~20-30 dk. Arka plan ajaniyla kosuldugunda ana hat bloklanmaz.
+
+### Paralellik — sekme sayisinda, mesaj icinde degil
+
+Mesaj icine ikinci konu koyarak hizlanamazsin (kolaj). Hizlanmanin tek yolu **ayri
+sekmelerde ayri sohbetler**: her sekmeye bir ajan, her ajan kendi kuyrugunu seri isler.
+
+Kurallar:
+
+- Ajanlara **tabId ver** ve "yalnizca kendi sekmene dokun" de.
+- **`computer` araci ve ekran goruntusu yasak.** Ikisi de on plandaki sekmeye bakar;
+  paralelde bu, baska bir ajanin sayfasina tiklamak demektir. Her sey `javascript_tool`
+  + `tabId` ile yapilir, dogrulama DOM'dan ve diskten.
+- Es zamanli uretim ChatGPT'yi yavaslatir: tek basina ~1-2 dk olan uretim, 10 paralel
+  sekmede **2-3,5 dk**'ya cikti (olculmus). Yine de toplam sure ciddi olcude kisalir.
+- **6-8 sekmeden fazlasina cikma.** 2026-08-10'da 10 es zamanli ajanla kosuldu ve ucu
+  API akis hatasiyla (`response stalled mid-stream`, `connection closed`) dustu. Olen
+  ajanin isi diskte yarim kalir; bu yuzden her ajan **once diske bakip eksikleri**
+  uretmeli, sonda da bir **bosluk doldurma turu** planlanmali.
 - Gorsel uretimi kullanicinin ChatGPT kotasini harcar. Uzun kuyruga girmeden
   once kac gorsel olacagini soyle.
 
