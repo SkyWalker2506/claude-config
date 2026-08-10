@@ -65,10 +65,10 @@ Prompt metni ajana **hazir** verilir; ajan prompt yazmaz, degistirmez, "iyilesti
 Gorevi: sohbeti ac → yapistir → Return → 1 dk'da bir kontrol → indir → dosyalari
 esle → rapor. Ana hat bu sirada proje isine devam eder.
 
-**Haiku secme.** Sohbet/composer akisi yanlis
-dugumu tiklamaya musait; bu skill'in gecmisinde kor tiklama bir kez Reddit gonderi
-formunu acti. Sonnet low bu adimlari guvenle yuruturken Opus'un maliyetinin
-kucuk bir kismini harcar.
+**Haiku secme.** Composer ve sohbet secimi yanlis dugumu tiklamaya musait; bu skill'in
+gecmisinde kor tiklama bir kez Reddit gonderi formunu acti, bir kez de ajan paylas
+penceresinde asili kalip watchdog'a dustu. Sonnet low bu adimlari guvenle yuruturken
+Opus'un maliyetinin kucuk bir kismini harcar.
 
 **Efor'u yukselt** sadece su iki durumda: kolaj geldi ve promptun neden bozuldugunu
 teshis etmek gerekiyor, ya da indirme akisi UI degisikligi yuzunden tutmuyor.
@@ -241,21 +241,46 @@ duser, sonraki eslemeyi bozar.
 oturumuyla indir. Ad da burada verilir, sonradan eslestirme derdi kalmaz:
 
 ```js
-const all=[...document.querySelectorAll('img')]
-  .filter(i=>/oaiusercontent|sediment|backend-api|files/.test(i.currentSrc||i.src) && i.naturalWidth>400);
-const seen=new Set(), uniq=[];
-for(const i of all){ const k=(i.currentSrc||i.src).split('?')[0]; if(!seen.has(k)){seen.add(k); uniq.push(i);} }
-const img = uniq[uniq.length-1];               // en son uretilen
+// Gorselleri KONUSMA SIRASINA gore sec — URL'e gore ayikla DEME (bkz. asagidaki tuzak)
+const turns=[...document.querySelectorAll('[data-testid^="conversation-turn"], article')];
+const shots=[];
+for(const t of turns){
+  const im=[...t.querySelectorAll('img')]
+    .filter(i=>/oaiusercontent|sediment|backend-api|files/.test(i.currentSrc||i.src) && i.naturalWidth>400);
+  if(im.length) shots.push(im[0]);             // her tur en fazla bir uretilmis gorsel
+}
+const img = shots[shots.length-1];             // en son uretilen
 const r = await fetch(img.currentSrc);
 const b = await r.blob();
 const a = document.createElement('a');
 a.href = URL.createObjectURL(b);
 a.download = 'wildbound-03.png';               // ADI SEN VER
 document.body.appendChild(a); a.click(); a.remove();
-({ok:r.ok, kb:Math.round(b.size/1024)});
+({ok:r.ok, kb:Math.round(b.size/1024), shotCount:shots.length});
 ```
 
-`ok:true` ve makul bir `kb` degeri gormeden sonraki adima gecme.
+`ok:true`, makul bir `kb` **ve** `shotCount`'un bir artmis olmasi — ucu birden olmadan
+sonraki adima gecme.
+
+### Tuzak: URL'e gore tekillestirme calismaz
+
+Ilk surumde gorseller `src.split('?')[0]` ile tekillestiriliyordu. **Bu sessizce
+coker:** ChatGPT'nin gorsel URL'leri **ayni yolu paylasir, yalnizca query string'de
+ayrisir**, ustelik tarayici araci query string'i okumayi engelliyor (`[BLOCKED:
+Cookie/query string data]`). Sonuc: butun gorseller tek bir kayda dusuyor ve her
+indirme **ayni ilk gorseli** getiriyor. 2026-08-10'da 3. ve 4. stil boyle indi;
+yalnizca checksum karsilastirmasi yakaladi.
+
+Bu yuzden secim **DOM sirasina** dayanir, URL'e degil.
+
+**Her indirmeden sonra checksum dogrula** — dosya adinin dogru olmasi icerigin dogru
+oldugunu gostermez:
+
+```bash
+shasum ~/Projects/<proje>/art/*.png | awk '{print $1}' | sort | uniq -d
+```
+
+Cikti bossa hepsi farklidir. Tekrar eden hash varsa ayni gorsel iki kez inmistir.
 
 **Neden paylas menusu degil:** o menude **Indir dugmesinin hemen yaninda Reddit var**
 (sirasi: Baglantiyi kopyala · X · LinkedIn · Reddit · Indir). Bir kor tiklama bir kez
