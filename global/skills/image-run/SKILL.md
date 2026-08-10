@@ -1,18 +1,18 @@
 ---
 name: image-run
-description: "ChatGPT'de gorsel batch'lerini uctan uca uretir: promptu damgalayip gonderir, 1 dk'da bir kontrol eder, biten seriyi toplu indirir, sonrakine gecer. Sohbet adi verilmezse kayitli addan devam eder, o da yoksa kendi yeni sohbetini acar. Triggers: image run, gorsel uret indir, chatgpt batch, sohbette uret, otomatik gorsel, batch calistir, gorselleri indir."
+description: "ChatGPT'de gorselleri uctan uca uretir: her gorseli kendi mesajinda damgalayip gonderir, 1 dk'da bir kontrol eder, bitince teker teker indirir, sonrakine gecer. Sohbet adi verilmezse kayitli addan devam eder, o da yoksa kendi yeni sohbetini acar. Triggers: image run, gorsel uret indir, chatgpt gorsel, sohbette uret, otomatik gorsel, gorselleri indir, stil arama calistir."
 user-invocable: true
 argument-hint: "[sohbet adi] — opsiyonel; bos birakilirsa kayitli sohbet ya da yeni sohbet"
 ---
 
 # /image-run — ChatGPT'de uctan uca gorsel uretimi
 
-Kullanicinin kendi Chrome'unda gorsel batch'lerini uretir ve indirir. Hangi
+Kullanicinin kendi Chrome'unda gorselleri **teker teker** uretir ve indirir. Hangi
 sohbette calisilacagini **kendisi cozer** — bkz. 0. adim. Prompt yazimi ve palet
 dogrulamasi ayri bir skill'in isi:
-**[/image-prompt](../image-prompt/SKILL.md)** — once oradaki 10'luk batch formatini
-ve sepya/kolaj tuzaklarini oku, prompt metnini oradaki kurallara gore uret. Bu
-skill o promptu **calistirir**.
+**[/image-prompt](../image-prompt/SKILL.md)** — once oradaki "tek mesaj = tek gorsel"
+formatini ve sepya/kolaj tuzaklarini oku, prompt metnini oradaki kurallara gore uret.
+Bu skill o promptlari **calistirir**.
 
 Arac: `mcp__claude-in-chrome__*` (kullanicinin gercek, oturumu acik Chrome'u).
 Uygulama ici tarayici (`mcp__Claude_Browser__*`) **kullanilmaz** — ChatGPT'ye
@@ -20,21 +20,28 @@ login degil, dosya ucu 401 doner.
 
 ---
 
-## Akis
+## Akis — tek mesaj, tek gorsel, seri
 
 ```
-sohbeti ac  →  batch N'i gonder  →  1 dk'da bir kontrol
+sohbeti ac  →  prompt N'i gonder  →  1 dk'da bir kontrol
                                             ↓ bitti
-                        batch N+1'i HEMEN gonder        (uretim baslar)
+                              gorsel N'i INDIR + dogrula
                                             ↓
-                        batch N'i indir + esle          (N+1 uretilirken)
+                              dosyayi tasi ve adlandir
                                             ↓
-                                    N+1 icin kontrole don
+                                   prompt N+1'i gonder
 ```
 
-**Sira onemli: once sonraki promptu gonder, sonra oncekini indir.** Indirme ve
-dosya isi 1-2 dakika suruyor; bunu bos beklemek yerine bir sonraki uretimin
-altina sakla. Boylece her batch icin indirme suresi sifira iner.
+**Arac tek seferde tek gorsel uretir.** Tek mesajda birden fazla konu istemek ciktiyi
+tek birlesik tuvale cevirir — 2026-08-09'da 8 konuluk bir mesaj boyle coktu, ChatGPT'nin
+kendisi *"Ilk uretim tek tuvalde birlesti; bunu teslim etmiyorum"* dedi. Prompt yazim
+kurali: [/image-prompt](../image-prompt/SKILL.md) Kural 1.
+
+**Indirmeyi bir sonraki gonderimin altina SAKLAMA.** Bu skill'in onceki surumu "once
+sonrakini gonder, sonra oncekini indir" diyordu; o kural coklu-uretim icindi ve tek
+gorselde **tehlikeli**: yeni gorsel senden once biterse "son paylas dugmesi" ona kayar ve
+yanlis dosyayi indirirsin. Kullanicinin talimati da acik — *"birde teker teker indir"*.
+Sira **gonder → bekle → indir → dogrula → sonraki**. Daha yavas, ama eslesme kaymiyor.
 
 ---
 
@@ -44,10 +51,10 @@ Bu skill'in isi ikiye ayrilir ve **ayni modelle yapilmaz**:
 
 | is | model / efor | neden |
 |---|---|---|
-| Prompt yazimi (`/image-prompt`) | **ana model, normal efor — asla low** | Stil blogu, kadraj dagilimi, sepya/kolaj tuzaklari muhakeme isi. Ucuzlatilan prompt tum batch'i cope atar; 10 gorsel yeniden uretmek her tasarrufu geri alir |
+| Prompt yazimi (`/image-prompt`) | **ana model, normal efor — asla low** | Stil blogu, kadraj dagilimi, sepya/kolaj tuzaklari muhakeme isi. Ucuzlatilan prompt tum turu cope atar; 10 gorsel yeniden uretmek her tasarrufu geri alir |
 | Gonder / bekle / kontrol / indir / esle | **Sonnet 5, `effort: low`** | Mekanik: sabit DOM secicileri, sabit tiklama sirasi. Bu dosyada adim adim yazili, muhakeme gerekmiyor |
 
-Calistirma dongusunu **arka plan `Agent`'ina devret** — tek batch'te bile:
+Calistirma dongusunu **arka plan `Agent`'ina devret** — tek gorselde bile:
 
 ```
 Agent(subagent_type: "general-purpose", model: "sonnet", effort: "low",
@@ -58,7 +65,7 @@ Prompt metni ajana **hazir** verilir; ajan prompt yazmaz, degistirmez, "iyilesti
 Gorevi: sohbeti ac → yapistir → Return → 1 dk'da bir kontrol → indir → dosyalari
 esle → rapor. Ana hat bu sirada proje isine devam eder.
 
-**Haiku secme.** Indirme akisi (paylas ikonu → seri secenegi → Indir) yanlis
+**Haiku secme.** Indirme akisi (paylas ikonu → Indir) yanlis
 dugumu tiklamaya musait; bu skill'in gecmisinde kor tiklama bir kez Reddit gonderi
 formunu acti. Sonnet low bu adimlari guvenle yuruturken Opus'un maliyetinin
 kucuk bir kismini harcar.
@@ -110,7 +117,7 @@ Ad olustugunda:
 1. Kullaniciya bildir: `Yeni sohbet actim: "<ad>" — bundan sonra burada uretecegim.`
 2. Adi yukaridaki memo dosyasina yaz ki sonraki calistirma ayni yerde devam etsin.
 
-ChatGPT bazen ada gec karar veriyor; ad henuz gelmediyse batch bitiminde tekrar
+ChatGPT bazen ada gec karar veriyor; ad henuz gelmediyse ilk gorsel bitiminde tekrar
 oku. Ad okunana kadar uretimi bekletme.
 
 ---
@@ -132,39 +139,43 @@ durumuna dus: yeni sohbet ac, memo'yu yeni adla guncelle. **Benzer isimli baska
 bir sohbete yazma.**
 
 Ayni sohbette devam etmek surekliligi saglar: stil blogu ayni yerde birikir,
-kullanici hangi batch'in nerede uretildigini takip edebilir.
+kullanici hangi gorselin nerede uretildigini takip edebilir.
+
+**Ayni projede kal.** Kayitli sohbet yalnizca **ayni proje icinde** varsayilandir; yeni
+bir proje **yeni sohbet** acar. Bir kez baska projenin sanat sohbetine prompt gonderildi
+ve kullanici durdurdu: *"yanlis yerden indiriyorsun sifirdan ac"*.
 
 ---
 
 ## 2. Damgali promptu gonder
 
-Damga kim/ne zaman/hangi batch bilgisini tasir; kullanici kendi elle attigi
-promptlarla senin gonderdiklerini ayirt edebilsin, eski batch'ler yanlislikla
+Damga kim/ne zaman/hangi gorsel bilgisini tasir; kullanici kendi elle attigi
+promptlarla senin gonderdiklerini ayirt edebilsin, eski gorseller yanlislikla
 tekrar indirilmesin.
 
 **Damga basta durur — ama ikinci satirda.** Kullanici sohbeti actiginda hangi
-batch'e baktigini kaydirmadan gormeli; sona konan damga bu isi yapmiyor.
+gorsele baktigini kaydirmadan gormeli; sona konan damga bu isi yapmiyor.
 
 ```
-Generate 10 separate images, one for each numbered subject below.      <- ILK SATIR
-[CLAUDE — 2026-08-09 16:50 — <proje>, batch 3/4]                        <- DAMGA
-IMPORTANT: output each as its OWN separate image file. ...
-STYLE (applies to all 10): ...
-1. ...
-10. ...
+Generate one image.                                          <- ILK SATIR
+[CLAUDE — 2026-08-09 16:50 — <proje>, stil arama 3/10]        <- DAMGA
+<konu, bir-iki cumle>
+FRAMING: ...
+STYLE: ...
+LIGHT: ...
+<negatifler>
 ```
 
 **Birinci satir pazarlik konusu degil.** Damga bir kez gercekten en basa kondu,
-`Generate 10 separate images` ilk satir olmaktan cikti ve model tum istegi tek bir
-konu gibi okuyup **tek birlesik gorsel** uretti — 2026-08-09'da bir batch boyle
-kayboldu. Bu yuzden damga **ikinci** satira gelir: hem gorunur, hem ilk satiri
-yerinden etmez.
+uretim talimati ilk satir olmaktan cikti ve model tum istegi tek bir konu gibi okuyup
+**tek birlesik gorsel** uretti — 2026-08-09'da bir tur boyle kayboldu. Bu yuzden damga
+**ikinci** satira gelir: hem gorunur, hem ilk satiri yerinden etmez.
 
 Damga ile devami arasina **bos satir birakma**; bosluk modelin damgayi ayri bir
 istek gibi okumasini kolaylastiriyor.
 
 Damgaya **kart/konu id listesi yazma** — model onu tek sahnenin ogeleri sanabiliyor.
-Sadece proje adi ve batch numarasi yeter.
+Sadece proje adi ve gorsel numarasi (N/10) yeter.
 
 Tarihi **calistirma aninda** uret, uydurma.
 
@@ -206,43 +217,44 @@ gec decode olabiliyor; sayfayi biraz kaydirip 1-2 sn bekle, sonra tekrar say.
 
 "ChatGPT hata yapabilir" sayfa altyazisidir — hata sanip alarm verme.
 
-### Kolaj kontrolu — gorursen iptal et, bastan baslat
+### Kolaj kontrolu — gorursen iptal et, bastan gonder
 
-Prompt 10 ayri gorsel istedigi halde **tek birlesik gorsel / izgara / contact
-sheet** geldiyse o batch curuktur. Bekleme, duzeltmeye calisma:
+Tek gorsel istendigi halde **izgara / contact sheet / bolunmus tuval** geldiyse o
+gorsel curuktur. Bekleme, duzeltmeye calisma:
 
 1. Uretim suruyorsa **durdur** (stop butonu).
-2. Promptu **duzelt** — en sik sebep damganin basta olmasi (bkz. 2. adim); ilk
-   satir `Generate N separate images...` olmali.
-3. Ayni batch'i **bastan gonder**.
+2. Promptu **duzelt** — ilk satir `Generate one image.` olmali, damga ikinci satirda
+   (bkz. 2. adim). Promptta birden fazla konu varsa boldur; her mesaj tek konu tasir.
+3. Ayni promptu **bastan gonder**.
 
-Tespit: bitmis bir yanitta `ready` sayisi beklenenin cok altindaysa (orn. 10
-istenip 1-2 geldiyse) ya da tek gorselin en/boy orani seri formatindan sapiyorsa
-kolaj uretilmis demektir. Ekran goruntusuyle dogrula, sonra iptal et.
+Tespit: tek gorsel istenmisken cikti birden fazla panele bolunmusse ya da en/boy orani
+istenen kadrajdan sapiyorsa kolaj uretilmis demektir. Ekran goruntusuyle dogrula.
 
-Kolaj gelen batch'i **indirmeye calisma** — bosuna tur yakar ve yanlis dosya
-Downloads'a duser, sonraki eslemeyi bozar.
+Kolaj geleni **indirmeye calisma** — bosuna tur yakar ve yanlis dosya Downloads'a
+duser, sonraki eslemeyi bozar.
 
 ---
 
-## 4. Seriyi indir
+## 4. Gorseli indir — teker teker
 
-**Dogrulanmis tek yol** (10/10 basarili):
+Tek gorsel uretildigi icin akis kisadir:
 
 ```
 onizlemenin sag altindaki PAYLAS ikonu
-  → "Bu seride yer alan N gorselin tamami"
   → acilan pencerede sag uctaki "Indir"
 ```
 
-Dosyalar `~/Downloads`'a tam boyutta PNG olarak iner.
+Dosya `~/Downloads`'a tam boyutta PNG olarak iner. Menude "Bu seride yer alan N
+gorselin tamami" secenegi **cikarsa kullanma** — o secenek eski coklu-uretim akisindan
+kalma ve bir kez ayni seriyi ikinci kez indirmeye yol acti. Tek gorsel istedin, tek
+gorsel indir.
 
-**Koordinat yerine DOM'dan tikla.** Onceki batch uretilirken sayfa kayiyor ve
+**Koordinat yerine DOM'dan tikla.** Sayfa uretim sirasinda kayiyor ve
 ekran goruntusuyle alinan koordinat tiklama anina kadar geceriz oluyor. Butonlari
 metniyle bul ve `.click()` et — kaymadan etkilenmez:
 
 ```js
-// paylas ikonu (en sonuncusu = en son tamamlanan batch)
+// paylas ikonu (en sonuncusu = en son tamamlanan gorsel)
 const shares = [...document.querySelectorAll('button')]
   .filter(b => /Bu görseli paylaş/i.test(b.getAttribute('aria-label') || ''));
 shares[shares.length - 1].click();
@@ -284,7 +296,7 @@ Inen dosya adlari anlamsiz (`ChatGPT Image ... (3).png`).
 
 **Zaman penceresiyle dosya secme.** `son N dakikada inenler` veya `[-10:]` gibi
 secimler kirilgan: baska bir uygulama ayni klasore dosya birakabilir, onceki
-batch'in kuyrugu pencereye girebilir. Bir kez **tam bir pozisyon kaymasina** yol
+onceki gorselin kuyrugu pencereye girebilir. Bir kez **tam bir pozisyon kaymasina** yol
 acti — infantry dusup yerine alakasiz bir grafik girdi, 10 kartin hepsi bir sira
 kaydi ve build yesil kaldigi icin sessizce yanlis baglandi.
 
@@ -297,9 +309,9 @@ const groups = [...document.querySelectorAll('button')]
   .filter(b => /Bu görseli paylaş/i.test(b.getAttribute('aria-label') || '')).length;
 ```
 
-`groups` bir artmadiysa **yeni batch daha bitmemistir**; `shares[son]` hala bir
+`groups` bir artmadiysa **yeni gorsel daha bitmemistir**; `shares[son]` hala bir
 onceki seriyi gosterir ve indirirsen **ayni gorselleri ikinci kez indirirsin**.
-Bu bir kez oldu: 10 dosya indi, hepsi bir onceki batch'in birebir kopyasiydi.
+Bu bir kez oldu: 10 dosya indi, hepsi bir onceki turun birebir kopyasiydi.
 Bekle, tekrar kontrol et.
 
 **Dogru yontem: indirmeden ONCE klasorun anlik goruntusunu al, sonra farki al.**
@@ -335,42 +347,38 @@ olculmus: ~%80 kucultme, kart boyutunda fark gorunmuyor), hedef dizine
 
 ---
 
-## 6. Sonraki batch — pipeline
-
-Batch N bittigi anda **once batch N+1'i gonder**, ancak ondan sonra N'i indir.
-Uretim arka planda donerken indirme, WebP cevirme ve veri baglama isini yap.
+## 6. Sonraki gorsel
 
 ```
-N bitti  →  N+1 gonder  →  N'i indir/esle/bagla  →  N+1 kontrol dongusu
+N bitti  →  N'i indir + dogrula + tasi/adlandir  →  N+1'i gonder
 ```
 
-Tum kuyruk bitene kadar kesintisiz devam et; her batch arasinda kullanicidan
-onay bekleme — kuyruk basta bir kez onaylanir.
+Indirmeyi bir sonrakinin altina **saklama** (sebep: "Akis"). Dosya diskte dogrulanmadan
+yeni prompt gonderme — dogrulanmamis bir indirme, sonraki eslemenin tamamini kaydirir.
 
-Her batch kendi damgasini ve kendi stil blogunu tasir — **stil blogunu harfi
-harfine ayni kopyala**, tek kelime degistirirsen set ikiye bolunur.
+Tum kuyruk bitene kadar kesintisiz devam et; gorseller arasinda kullanicidan onay
+bekleme — kuyruk basta bir kez onaylanir.
 
-Son batch'te gonderilecek yeni prompt kalmaz; o zaman dogrudan indir.
+Her prompt kendi damgasini ve kendi stil blogunu tasir — **stil blogunu harfi harfine
+ayni kopyala**, tek kelime degistirirsen set ikiye bolunur.
 
 ---
 
 ## Paralel calis — ana hat bos kalmasin
 
-Bir batch'in uretimi 2-5 dakika suruyor. **O sure bosa harcanmaz.** Bu skill'in
+Bir gorselin uretimi 1-2 dakika suruyor. **O sure bosa harcanmaz.** Bu skill'in
 bekleme adimlari ana konusma hattini asla bloklamaz:
 
 - Bekleme her zaman `Bash` + `run_in_background: true` ile `sleep 60`. Onplanda
   `sleep` yasak; bildirim geldiginde kontrolu yaparsin.
-- Zamanlayici calisirken **baska is yap**: inen onceki batch'i WebP'ye cevir,
+- Zamanlayici calisirken **baska is yap**: inmis gorselleri WebP'ye cevir,
   veri dosyasina bagla, kod yaz, test kosur, commit at. Bekleme turunda
   "hala uretiyor" deyip durmak israftir.
 - Kontrol turlari **sessiz** olmali. Her dakika "kontrol 3/∞, hala calisiyor"
   yazma; sadece durum degistiginde (bitti / hata / indi) konus.
 - Tum dongoyu bir arka plan `Agent`'ina devret (Sonnet 5 / `effort: low` — bkz.
-  "Model ve efor") ve ana hatta proje isine devam et. Tek batch'te bile boyle;
+  "Model ve efor") ve ana hatta proje isine devam et. Tek gorselde bile boyle;
   bekleme turlarini pahali modelle harcama.
-- **Indirmeyi bir sonraki uretimin altina sakla** (bkz. 6. adim). Indirme bos
-  beklemede degil, uretim donerken yapilir.
 
 **Uyari:** Chrome MCP tek bir tarayiciyi surer. Arka plandaki bir ajan Chrome'u
 kullanirken ana hat da Chrome'a dokunursa tiklamalar birbirine karisir. Ayni anda
@@ -382,9 +390,12 @@ kullanirken ana hat da Chrome'a dokunursa tiklamalar birbirine karisir. Ayni and
 
 - Sadece kullanicinin **kendi** sohbetinde calisir. Paylasim linkinde
   (`/share/<id>`) dosya ucu 401 doner, indirilemez.
-- ChatGPT tek turda ~10 gorsel uretir; fazlasi tek kolaja birlesir. 10'ar bol.
+- **ChatGPT tek mesajda tek gorsel uretir.** Tek mesajda birden fazla konu istemek
+  ciktiyi tek kolaja birlestirir — olculmus, iki kez. 10 gorsel = 10 mesaj.
+- Bu, bir turu uzatir: gorsel basina ~1-2 dk uretim + ~1 dk indirme, yani 10'luk bir
+  tur ~20-30 dk. Arka plan ajaniyla kosuldugunda ana hat bloklanmaz.
 - Gorsel uretimi kullanicinin ChatGPT kotasini harcar. Uzun kuyruga girmeden
-  once kac batch olacagini soyle.
+  once kac gorsel olacagini soyle.
 
 ---
 
@@ -404,10 +415,10 @@ else
 fi
 echo ""
 echo "0. Sohbeti coz: argüman > kayitli ad > yeni sohbet ac. Kullaniciya SORMA"
-echo "1. /image-prompt kurallariyla batch promptlarini yaz"
+echo "1. /image-prompt kurallariyla promptlari yaz (tek mesaj = tek gorsel)"
 echo "2. Sohbeti ac, damgali promptu gonder"
 echo "3. sleep 60 (run_in_background) ile 1 dk'da bir kontrol et"
-echo "4. Bitince: paylas ikonu > seri > Indir  (her adimda ekrana bak)"
-echo "5. Dosyalari icerikle esle, WebP'ye cevir, veri dosyasina bagla"
-echo "6. Kalan batch varsa 2'ye don; yeni sohbet acildiysa adini memo'ya yaz"
+echo "4. Bitince: paylas ikonu > Indir  (tek gorsel; her adimda ekrana bak)"
+echo "5. Dosyayi dogrula, tasi/adlandir, WebP'ye cevir, veri dosyasina bagla"
+echo "6. Kalan prompt varsa 2'ye don; yeni sohbet acildiysa adini memo'ya yaz"
 ```

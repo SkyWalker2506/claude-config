@@ -77,7 +77,7 @@ calisiyor ama sikici ise hicbir test bunu soylemez.
 | Is | Model | Effort |
 |---|---|---|
 | Sen (ana ajan): analiz, iskelet, cekirdek dongu, juice, entegrasyon | oturumun modeli | **dusuk tut** — uzun muhakeme etme, ilk makul cozumu yaz |
-| Sanat prompt'u yazmak (stil blogu, sahne cumleleri) | oturumun modeli, **sen** | normal — `/image-prompt` Kural 2, ucuzlatilan prompt tum batch'i cope atar |
+| Sanat prompt'u yazmak (stil blogu, sahne cumleleri) | oturumun modeli, **sen** | normal — `/image-prompt` Kural 2, ucuzlatilan prompt tum turu cope atar |
 | Sanat hatti ajani (gonder / bekle / indir / tasi) | `sonnet` | **`low`** — mekanik, `/image-run` "Model ve efor" |
 | Mikro ajan (debug / optimizasyon, prototip kostuktan SONRA) | `opus` | **`low`** |
 | Plan/analiz delegasyonu | — | **yok**. 3 dakikalik analizi delege etmek, yapmaktan uzun surer |
@@ -190,8 +190,8 @@ ui_panel      HUD paneli, 9-slice
 bg_forest     arka plan katmani, parallax
 ```
 
-Liste 10'un altindaysa tek batch, ustundeyse **goruntuleme sikligina gore sirala** —
-oyuncunun en cok baktigi sey ilk batch'e girer. Bu liste bittigi anda sanat hattini
+Liste 10'un altindaysa tek tur, ustundeyse **goruntuleme sikligina gore sirala** —
+oyuncunun en cok baktigi sey ilk tura girer. Bu liste bittigi anda sanat hattini
 tetikle ve **beklemeden** Faz 2'ye gec.
 
 ---
@@ -204,44 +204,52 @@ sen kodu placeholder'la yazarsin, gorseller indikce yerlerine oturur.
 ```
 ART.md hazir
    ↓
-stil arama batch'i (10 stil, TEK sahne)   ──┐
+stil arama turu (10 stil, TEK sahne, 10 mesaj) ─┐
    ↓                                        │ sen bu sirada Faz 2-3 yaziyorsun
 kullanici bir stil secer                    │
    ↓                                        │
 stil blogu KILITLENIR                       │
    ↓                                        │
-asset batch'leri (10'arli, sikliga gore) ───┘
-   ↓ her batch indikce
+asset turlari (10'arli, sikliga gore) ────┘
+   ↓ her gorsel indikce
 post-process → assets/ → manifest satiri → oyunda gorunur
 ```
 
 ### Adim 1 — Stil arama: 10 stil, tek sahne
 
-`/image-prompt` normalde 10 farkli sahneyi tek stille uretir. Stil aramada bunu
-**ters cevir**: ayni sahne, 10 farkli stil. Sahne, oyuncunun en cok baktigi sey
-olmali — genelde ana oynanis ekrani ya da kahraman.
+Stil aramasinda **konu sabit, stil degisir**: ayni sahne, 10 farkli stil. Sahne,
+oyuncunun en cok baktigi sey olmali — genelde ana oynanis ekrani. Sahneyi **oyun ici
+goruntu** gibi kadrala (oyunun kamerasi, oyunun kompozisyonu), bagimsiz bir illustrasyon
+gibi degil; secilen sey oyunun nasil gorunecegidir.
+
+**On stil = on ayri mesaj.** `/image-prompt` Kural 1: arac tek mesajda tek gorsel uretir;
+tek mesajda 10 konu istemek ciktiyi tek kolaja cevirir. Her stil kendi mesajinda, kendi
+basina calisan tam bir prompt olarak gider ve **gonderilmeden once oncekinin indigi
+dogrulanir**.
 
 ```
-Generate 10 separate images, one for each numbered style below.
-[CLAUDE — <zaman damgasi> — <proje>, stil arama]
-IMPORTANT: output each as its OWN separate image file. Do not combine them into a grid, contact sheet, collage or single canvas.
-
-SUBJECT (identical in all 10): <tek sahne, bir cumle + kadraj notu>
-
-Render the SAME subject ten times, once in each style below.
-1. <teknik + palet + isik, ~15 kelime>
-...
-10. ...
-
-Absolutely no text, letters, numbers, logos or watermarks.
+Generate one image.
+[CLAUDE — <zaman damgasi> — <proje>, stil arama N/10]
+<SAHNE — on promptta harfi harfine ayni, bir-iki cumle>
+FRAMING: <oyun ici kadraj notu — on promptta ayni>
+STYLE: <teknik + palet + isik, ~25 kelime — SADECE bu satir promptlar arasi degisir>
+LIGHT: <isik dili — on promptta ayni>
+Absolutely no text, letters, numbers, logos or watermarks. No UI, no health bars.
 ```
 
-**On stil gercekten farkli eksenlerde olmali**, ayni seyin on tonu degil. Isleyen
-dagilim: gouache masal kitabi · duz vektor · pixel art · kil/clay render · cel-shaded
-3D · mürekkep-yikama · kagit kesme (cutout) · yari-gercekci painterly · low-poly ·
-risograph. Her stil **kendi paletini** tasisin — `/image-prompt` Kural 2: palet
-projeye aittir, "vivid saturated" sablonu degil. Oyunun tonu cozy ise solgun ve sicak
-paletler de listede olsun; hepsi canli olmak zorunda degil.
+**On stil gercekten farkli eksenlerde olmali**, ayni seyin on tonu degil. Ornek
+havuz: gouache masal kitabi · duz vektor · pixel art · kil/clay · cel-shaded · mürekkep
+yikama · kagit kesme (cutout) · yari-gercekci painterly · low-poly · risograph ·
+sulu boya + ince kontur · art nouveau/vitray · chiaroscuro.
+
+**Havuzu projenin kalite barina gore ayikla.** On stilin hepsi ayni uretim degerinde
+gorunmek zorunda: proje "guzel, yuksek uretim degeri" hedefliyorsa retro/ucuz okunan
+stiller (pixel art, kaba vektor) listeye alinmaz — yoksa secim on secenek arasindan
+degil, uc ciddi secenek arasindan yapilir.
+
+Her stil **kendi paletini** tasisin — `/image-prompt` Kural 2: palet projeye aittir,
+"vivid saturated" sablonu degil. Oyunun tonu cozy ise solgun ve sicak paletler de
+listede olsun; hepsi canli olmak zorunda degil.
 
 ### Adim 2 — Onay: sor, ama durma
 
@@ -250,13 +258,14 @@ bloklayan sanat adimidir**, ama seni bloklamaz — sen bu sirada cekirdek donguy
 yaziyorsun. Kullanici "3 ve 7 karisimi" derse iki stil blogunu birlestir ve
 **tek cumlelik onay** al; ucuncu tura cikma.
 
-Secilen stil blogu **kilitlenir**: bundan sonraki her batch onu **harfi harfine ayni**
+Secilen stil blogu **kilitlenir**: bundan sonraki her prompt onu **harfi harfine ayni**
 kopyalar. Tek kelime degistirirsen set ikiye bolunur.
 
-### Adim 3 — Asset batch'leri, arka plan ajaniyla
+### Adim 3 — Asset turlari, arka plan ajaniyla
 
-`ART.md` listesini 10'arli batch'lere bol, her batch icin `/image-prompt` kurallariyla
-promptu **sen yaz** (prompt yazimi low'a verilmez), calistirmayi `/image-run`'a devret:
+`ART.md` listesini 10'arli turlara bol; **her id kendi promptunu ve kendi mesajini alir**
+(tek mesaj = tek gorsel). Promptlari `/image-prompt` kurallariyla **sen yaz** (prompt yazimi
+low'a verilmez), calistirmayi `/image-run`'a devret:
 
 ```
 Agent(subagent_type: "general-purpose", model: "sonnet", effort: "low",
@@ -296,7 +305,7 @@ almak, bu hattin en pahali hatasidir.
 
 ### Adim 5 — Indikce devreye girsin
 
-Her batch raporu geldiginde, elindeki isi **bitirdikten sonra** (yarim birakma):
+Her tur raporu geldiginde, elindeki isi **bitirdikten sonra** (yarim birakma):
 
 1. WebP'ye cevir — `cwebp -q 82`, kart boyutunda fark gorunmuyor
 2. `assets/<id>.webp` olarak yaz, manifest satirini ekle
@@ -309,7 +318,7 @@ Prototip **hangi asset'in indigine bakmadan** her an teslim edilebilir olmali.
 ### Adim 6 — Begenilmezse: hedefli yeniden uretim
 
 Kullanici bir asset'i begenmezse **tum seti yeniden uretme.** Sadece o id'yi bir
-sonraki batch'e koy, prompt'una neyin yanlis gittigini tek cumleyle ekle
+sonraki tura koy, prompt'una neyin yanlis gittigini tek cumleyle ekle
 (`too dark`, `wrong silhouette`, `reads as a rock not a tent`). Eski dosya yenisi
 inene kadar yerinde kalir — oyun hicbir an kirik gorunmez.
 
@@ -319,14 +328,15 @@ prototipin sorusunu cevaplamiyor, sadece kota harciyor.
 
 ### Hattin sinirlari
 
-- Gorsel uretimi **kullanicinin ChatGPT kotasini** harcar. Kac batch olacagini
+- Gorsel uretimi **kullanicinin ChatGPT kotasini** harcar. Kac gorsel olacagini
   Faz 1'de, liste ciktiginda soyle.
-- Bir batch ~3-5 dk. 30 asset = 3 batch ≈ 15 dk arka planda — prototip suresiyle
-  ortusur, uzatmaz.
+- Bir gorsel ~1-2 dk uretim + ~1 dk indirme; 10'luk bir tur ~20-30 dk. 30 asset ≈ 3 tur
+  ≈ 1-1,5 saat arka planda. Bu, prototip suresinden uzundur — o yuzden hat **arka planda**
+  doner ve prototip her an placeholder'la teslim edilebilir kalir.
 - Chrome MCP **tek tarayiciyi** surer. Sanat ajani Chrome'dayken sen Chrome'a dokunma;
   prototipe ekran goruntusu icin bakacaksan ajanin raporunu bekle.
-- Diskte yer kontrolu: 10'luk batch ~25 MB PNG iner. Yer yoksa dosyalar sessizce
-  eksik iner ve **eslesme kayar** — batch oncesi `df -h` bak.
+- Diskte yer kontrolu: 10'luk tur ~25 MB PNG iner. Yer yoksa dosyalar sessizce
+  eksik iner ve **eslesme kayar** — tur oncesi `df -h` bak.
 
 ## Faz 2 — Iskelet (5 dk)
 
@@ -458,7 +468,8 @@ sadece guzel mi?* Teslimat yayi anlatiyor; sis anlatmiyor.
 | Durum degistiren gorseli **tek** ekran goruntusuyle dogrulamak | Sprite flip kodu dogruydu ama `THREE.Sprite` negatif olcegi yok sayiyor — ozellik bastan sona oluydu, kullanici oynayana kadar fark edilmedi. **Iki durumu da yakala ve karsilastir** |
 | Modul kaynagini test edip **teslim edilen build'i** test etmemek | Tarayici modul onbellegi eski dosyayi servis eder; duzeltilmis bug duzelmemis gorunur. Ciktiyi cache-bust parametresiyle test et |
 | Sayisal alani `undefined` birakmak | Bir kare sonra NaN; AudioParam'a giderse rAF icinde exception atar. **Siyah sahne + calisan HTML HUD = dongu oldu; once konsol, sonra renderer** |
-| Gorsel insin diye kodu bekletmek | Hat 3-5 dk bekleme; o sure cekirdek donguye gider. Placeholder'la yaz, gorsel gelince manifest satirini ekle |
+| Gorsel insin diye kodu bekletmek | Hat saatlerce donebilir; o sure cekirdek donguye gider. Placeholder'la yaz, gorsel gelince manifest satirini ekle |
+| Tek mesajda 10 gorsel istemek | Cikti tek kolaja birlesir, tur cope gider. Olculmus, iki kez — `/image-prompt` Kural 1 |
 | Sanat ajanina `src/` acmak | Olcumdeki iki-sema tuzagi. Ajanin tek kod temasi `data/art.js` manifestidir |
 | Stil onayini beklemek | Onay bloklayan tek sanat adimi ama **seni** bloklamaz; sen Faz 2-3'tesin |
 | Ucuncu stil turu | Ikinci turdan sonra secim kilitli. Ucuncu tur prototipin sorusunu cevaplamiyor, kota harciyor |
@@ -475,7 +486,7 @@ sifir console error, canvas var, bir frame render edildi, 60 saniye ilerlet ve o
 3. Bir ekran goruntusu
 4. Iki olcum: okunabilirlik yuzdesi ve "her yerde bir sey var mi"
 5. **Sanat durumu:** secilen stil (tek cumle) · `ART.md`'de kac id'nin gercek gorseli
-   var, kaci placeholder · arka planda hala donen batch varsa hangisi
+   var, kaci placeholder · arka planda hala donen tur varsa hangisi
 
 Kullanici daha fazlasini isterse: gercek sanat / shader / ses kimligi / performans / UI
 cilasi ise **`/polish`**, yeni sistem veya mekanik ise **`plan-build`**. Prototip,

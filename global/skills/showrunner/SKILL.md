@@ -55,7 +55,7 @@ SKILL.md'nin adi gecen bolumu okunur ve oradaki kurallar aynen uygulanir:
   ART.md          tam asset envanteri (id + tek cumle), durum kolonu: gercek |
                   placeholder | eksik | insan-kilidi
   decisions.md    Perde 2'de varsayilanla verilen kararlar, tek satir + gerekce
-  log.md          faz gecisleri, batch durumlari, olcumler
+  log.md          faz gecisleri, gorsel/tur durumlari, olcumler
 .goal/criteria.json   kabul kriterleri (Perde 2 Faz A'da yazilir)
 ```
 
@@ -63,10 +63,10 @@ SKILL.md'nin adi gecen bolumu okunur ve oradaki kurallar aynen uygulanir:
 
 - Her kapida onaylanan cikti, onay mesajindan **hemen sonra** `brief.md`'ye yazilir
   (G0 ozeti, G1 stil blogu, G2 sahne listesi + onay notu, G3 cevaplar).
-- Her faz girisinde/cikisinda ve her batch gonderim/indirme durumunda `log.md`'ye
-  tek satir eklenir (faz/batch id, zaman, sonuc).
+- Her faz girisinde/cikisinda ve her gorsel gonderim/indirme durumunda `log.md`'ye
+  tek satir eklenir (faz / gorsel id, zaman, sonuc).
 - `status` bu dosyalardan ozet cikarir; `resume` `log.md`'nin son satirindan devam
-  eder — biten batch'leri yeniden uretmez, biten paketleri yeniden calistirmaz
+  eder — inmis gorselleri yeniden uretmez, biten paketleri yeniden calistirmaz
   (`.plan-build/` ve `.goal/` kendi durumunu zaten tasir).
 
 **Calisma dizini ve repo:** icinde bulunulan proje. ClaudeHQ'dan fikirle cagrildiysa
@@ -99,11 +99,19 @@ sonra ozet `brief.md`'ye yazilir ve G1 **hemen** tetiklenir.
 
 ## G1 — Stil turu: 10 stil, tek sahne
 
-`/prototype` "Adim 1 — Stil arama" formati aynen: **ayni sahne, 10 farkli stil**, tek
-batch, uretim limiti 10 — asla fazlasi. Sahne, oyuncunun en cok bakacagi sey (genelde
-ana oynanis ekrani). Prompt `/image-prompt` kurallariyla Ingilizce yazilir, `/image-run`
-ile arka plan ajaninda (Sonnet, `effort: low`) uretilir ve indirilir. Gorsel uretim
-icin izin istenmez — uretim kararlari G0 onayiyla verilmis sayilir.
+`/prototype` "Adim 1 — Stil arama" formati aynen: **ayni sahne, 10 farkli stil**.
+
+- **Tek mesaj = tek gorsel**, yani 10 ayri mesaj (`/image-prompt` Kural 1). Tek mesajda
+  10 konu istemek ciktiyi kolaja cevirir — olculmus, iki kez.
+- **Sahne oyun ici goruntu gibi kadrajlanir**: oyunun kamerasi, oyunun kompozisyonu,
+  bagimsiz bir illustrasyon gibi degil. Secilen sey oyunun nasil gorunecegidir. Sahne
+  oyuncunun en cok bakacagi ekran olmali (genelde ana oynanis ekrani).
+- **On stil projenin kalite barinda olmali.** Hepsi ayni uretim degerinde gorunmezse
+  secim on secenek arasindan degil, birkac ciddi secenek arasindan yapilir.
+
+Prompt `/image-prompt` kurallariyla Ingilizce yazilir, `/image-run` ile arka plan
+ajaninda (Sonnet, `effort: low`) uretilir ve indirilir. Gorsel uretim icin izin
+istenmez — uretim kararlari G0 onayiyla verilmis sayilir.
 
 Inen 10 kareyi **numaralayarak** goster, sectir. Ayni mesajda tek ek soru:
 **sahne turu 1 mi 2 mi** (10 mu 20 gorsel mi)? Sahne cesidi 6'dan fazlaysa 2 oner.
@@ -113,7 +121,7 @@ hicbirini begenmezse **bir kez** yeni 10'luk tur at; ikinci turdan sonra secim
 kilitlidir (`/prototype` "ucuncu stil turu" kurali — kota).
 
 Secilen stil blogu `.showrun/brief.md`'ye **harfi harfine** yazilir. Bundan sonraki
-her batch onu aynen kopyalar; tek kelime degisirse set ikiye bolunur.
+her prompt onu aynen kopyalar; tek kelime degisirse set ikiye bolunur.
 
 ## G2 — Sahne turlari: 10 ya da 20
 
@@ -124,15 +132,15 @@ kaybetme, seviye atlama) · ortamlar/bolgeler · ana karakter(ler) yakin plan. O
 yerler) her alan **ayri sahne olarak** uretilir — bunlar Faz D'de parallax derinlik
 alacak gorsellerdir, tam kadraj ve tek bakis acisiyla iste.
 
-G1'de secilen tur sayisina gore 10 ya da 2x10 = 20 gorsel; her batch kendi damgasini
-tasir, stil blogu aynen tekrar. Iki tur secildiyse ikinci batch **birincisi biter
-bitmez HEMEN** gonderilir; birinci batch, ikincisi uretilirken indirilir
-(`/image-run`: once sonrakini gonder, sonra oncekini indir).
+G1'de secilen tur sayisina gore 10 ya da 2x10 = 20 gorsel; **her gorsel kendi mesajinda**
+gider, her prompt kendi damgasini tasir, stil blogu harfi harfine tekrar eder. Sira
+`/image-run`'daki gibi seridir: **gonder → bekle → indir → dogrula → sonraki**. Indirmeyi
+sonraki gonderimin altina saklama; yanlis dosyayi indirmeye yol acar.
 
 Inen kareleri sahne adlariyla etiketlenmis **tek kontak sayfasi** olarak goster, onay
 iste. Begenilmeyen icin `/prototype` "Adim 6" kurali: **tum seti yeniden uretme**,
 sadece o sahneleri tek duzeltme cumlesiyle (`too dark`, `wrong silhouette`) yeni
-batch'e koy. En fazla 2 duzeltme turu; tavan dolduysa **kendi kendine devam etme** —
+tura koy. En fazla 2 duzeltme turu; tavan dolduysa **kendi kendine devam etme** —
 Perde 1'desin, sorabilirsin: "eldeki setle mi devam, yoksa su sahneler placeholder mi
 kalsin?" Cevap `brief.md`'ye yazilir.
 
@@ -156,9 +164,9 @@ ust uste iki cagri ama tek tur — sonra bir daha yok):
 - three.js vendor mi CDN mi (tek dosya teslim icin **vendor varsayilan**, itiraz yoksa sorma)
 
 Cevaplar `.showrun/brief.md`'ye islenir. Sonra kullaniciya kilit ozetini yaz — stil,
-sahneler, kapsam zarfi, cevaplar, tahmini batch sayisi ve ChatGPT kota maliyeti
+sahneler, kapsam zarfi, cevaplar, tahmini gorsel sayisi ve ChatGPT kota maliyeti
 (kaynak: G2 sahne listesi + GDD'den kaba id sayimi — sahne + karakter + prop + UI,
-10'a bol, +1 yedek batch; etiket `tahmin`) ve su notu ekle: hatlar (kod · sanat · ses)
++1 yedek tur; etiket `tahmin`) ve su notu ekle: hatlar (kod · sanat · ses)
 ilk dakikadan paralel kosar, yalnizca cekirdek dongu paketi olcum geregi tek akistir
 (19 paket = 1,04x hizlanma, 5 saat kayip). Sonra su cumleyle Perde 2'ye gec:
 
@@ -193,7 +201,7 @@ olcum gurultudur (>= 3 seed), 100 kovalanmaz.
 Ayni fazda `ART.md` **tam envanteri** yazilir — `/prototype`'in "ilk set yeter"
 istisnasi burada gecerli degil, hedef bitmis oyun: ekranda gorunecek her sey id alir,
 G2'de inen sahne gorselleri de dahil. Goruntuleme sikligina gore siralanir, 10'arli
-batch'lere bolunur.
+10'arli turlara bolunur; her id kendi promptunu ve kendi mesajini alir.
 
 Sonra plan — `/plan-build` Faz 1-2 semasiyla. Faz 0 recon'un yerine **brief.md +
 ART.md + criteria.json** gecer ve Fable prompt'una aynen girer; recon yine delege
@@ -232,25 +240,25 @@ Ayni anda uc hat kosar; birbirini beklemez:
 | Hat | Kim | Ne |
 |---|---|---|
 | **Kod** | sen (ana ajan) | `/prototype` Faz 2-4 disiplininde iskelet + cekirdek dongu + juice; `data/config.js`, `game.advance()`, `InputManager`, kamera kurali aynen. Cekirdek kosunca **funscore harness'i** yaz |
-| **Sanat** | arka plan Agent (Sonnet, `low`) | `ART.md` kuyrugunu `/image-run` ile batch batch uret-indir-esle; **yalnizca** `assets/` ve `data/art.js` manifestine yazar |
+| **Sanat** | arka plan Agent (Sonnet, `low`) | `ART.md` kuyrugunu `/image-run` ile **teker teker** uret-indir-esle; **yalnizca** `assets/` ve `data/art.js` manifestine yazar |
 | **Ses** | sen, cekirdek kostuktan sonra | Web Audio kimligi: `/polish` §3 — kaynak/artikulasyon ayrimi, tek ezgi isaretcisi, gama kilidi |
 
-`ART.md` durum kolonunu **ana ajan** gunceller — sanat ajaninin her batch raporundan
+`ART.md` durum kolonunu **ana ajan** gunceller — sanat ajaninin her tur raporundan
 sonra ilgili satirlar `gercek` cevrilir, curuk cikan `eksik` isaretlenir. Sanat ajani
 ART.md'ye dokunmaz; iki yazar ayni dosyada bulusmaz.
 
-Sanat hatti kurallari: batch basina limit 10 · stil blogu harfi harfine · damga ikinci
+Sanat hatti kurallari: **tek mesaj = tek gorsel, tur basina 10** · stil blogu harfi harfine · damga ikinci
 satirda · kolaj gelirse durdur-duzelt-yeniden gonder · indirmeden once seri sayisinin
 arttigini dogrula · esleme icerige bakarak, kontak sayfasiyla · WebP her iki hatta
 ayni ayarla: `cwebp -q 82` · Chrome MCP'yi ayni anda tek taraf kullanir.
 
 **Eksik asset'te durma.** Batch curuk cikti, gorsel inmedi — placeholder kalir, id
-`ART.md`'de `eksik` isaretlenir, is devam eder. **Iki yeniden uretim batch'inden sonra
+`ART.md`'de `eksik` isaretlenir, is devam eder. **Iki yeniden uretim turundan sonra
 hala curuk olan ya da kota bittiginde bekleyen id `insan-kilidi`ne tasinir** — "Sanat
 tam" kriterine sayilmaz, teslim raporunda listelenir. Hicbir eksik donguyu bloklamaz.
 
 **Commit noktalari:** cekirdek dongu ilk kostugunda bir commit + push; her sanat
-batch'i entegre edildiginde bir commit + push. Saatlerce commitsiz calisma yasak —
+turu entegre edildiginde bir commit + push. Saatlerce commitsiz calisma yasak —
 `resume`'un kod tarafindaki tek dayanagi budur ve push'suz commit makine olunce kaybolur.
 
 ## Faz C — Genisleme dalgalari
@@ -328,7 +336,7 @@ aynidir: iki teshis tutmadiysa Fable'a danis, sonra devam.
 6. Rapor: ne kuruldu (tek paragraf) · kriter tablosu (hepsi yesil/istisnalar) ·
    funscore bot skoru (seed sayisi + yon) · once/sonra performans · sanat durumu
    (kac id gercek, kac insan-kilidi) · `blocked_by_human` listesi (insan playtest'i
-   dahil) · harcanan batch sayisi · `decisions.md`'den kayda deger varsayilanlar.
+   dahil) · harcanan gorsel sayisi · `decisions.md`'den kayda deger varsayilanlar.
 
 Insan funscore'u ve gercek playtest **teslimden sonra** kullanicinin isidir; rapor
 bunu acikca soyler, beklemez.
@@ -356,7 +364,7 @@ son karar Fable'indir; kodu Opus yazar; Opus takilirsa Fable'a danisilir.
 | Perde 2'de `AskUserQuestion` cagirmak | Sozlesmenin ihlali; varsayilan sec, `decisions.md`'ye yaz |
 | Perde 2'de "ister misin / onaylar misin" yazmak | Ayni ihlalin cumle hali |
 | Perde 1 kapisini kendi kendine onaylamak | Onay kullanicinindir; tikanirsa Perde 1'de sorulur |
-| Batch'te 10'dan fazla gorsel istemek | Kolaja birlesir, batch cope gider |
+| Tek mesajda birden fazla gorsel istemek | Cikti tek kolaja birlesir, tur cope gider — olculmus, iki kez |
 | Stil blogunu "iyilestirmek" | Set ikiye bolunur; kilit kilittir |
 | G2 gorsellerini onay sonrasi cope atmak | Onlar oyunun key art'i; ingestion'a girer |
 | Sanat insin diye kodu bekletmek | Placeholder sozlesmesi bunun icin var |
@@ -369,7 +377,7 @@ son karar Fable'indir; kodu Opus yazar; Opus takilirsa Fable'a danisilir.
 | Funscore bot skorunu optimize etmek | Goodhart; proxy yesillenir, oyun iyilesmez |
 | Kriteri sessizce gevsetmek | Hedef degisikligidir; gorunur yapilir ya da yapilmaz |
 | Insan playtest'ini bekleyerek durmak | `blocked_by_human`'a yaz, teslim et |
-| Uc hatti seri kosturmak | Sanat 3-5 dk/batch bekleme; o sure kod hattinindir |
+| Uc hatti seri kosturmak | Sanat turu ~20-30 dk bekleme; o sure kod hattinindir |
 | Saatlerce commitsiz calismak | Crash = is kaybi; `resume` kod tarafinda commit'e dayanir |
 
 ## Calistir

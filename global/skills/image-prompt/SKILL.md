@@ -1,18 +1,18 @@
 ---
 name: image-prompt
-description: "Gorsel uretim promptlarini dogrulanmis 10'luk batch formatinda yazar ve cikan paleti olcerek dogrular. Sepya-yikama ve kolaj tuzaklarini prompt seviyesinde onler. Triggers: image prompt, gorsel prompt, resim promptu, asset prompt, kart gorseli, batch gorsel, art prompt, 10 resim."
+description: "Gorsel uretim promptlarini dogrulanmis formatta yazar: tek mesaj = tek gorsel, bir tur 10 ayri prompt. Cikan paleti olcerek dogrular; sepya-yikama ve kolaj tuzaklarini prompt seviyesinde onler. Triggers: image prompt, gorsel prompt, resim promptu, asset prompt, kart gorseli, art prompt, 10 resim, stil arama."
 user-invocable: true
 argument-hint: "[konu/proje] — orn. 'kart gorselleri' veya 'ikon seti'"
 ---
 
-# /image-prompt — Batch Image Prompt Generator
+# /image-prompt — Image Prompt Generator
 
-Illustration, key art, ikon ve prop promptlarini **tek istekte 10 ayri gorsel** formatinda
-yazar. Uretim sonrasi paleti olcup dogrular.
+Illustration, key art, ikon ve prop promptlarini **tek mesaj = tek gorsel** formatinda
+yazar; bir tur tipik olarak 10 ayri prompttur. Uretim sonrasi paleti olcup dogrular.
 
 **Promptu yazdirmakla kalmayip uretimi de calistirmak istiyorsan:**
 `/image-run <sohbet adi>` — adi verilen ChatGPT sohbetinde promptu gonderir,
-1 dk'da bir kontrol eder, biten seriyi toplu indirir, sonraki batch'e gecer.
+1 dk'da bir kontrol eder, biten gorseli indirir, sonrakine gecer.
 Bu skill promptu **yazar**, `/image-run` onu **calistirir**; ikisi birlikte kullanilir.
 
 **Bu skill degil, sunun icin:** sprite strip / animasyon / asset-browser hattina asset
@@ -33,46 +33,45 @@ metin Ingilizcedir. Turkce sahne tarifi yazma, ceviri de yaptirma.
 
 ---
 
-## Kural 1 — Tek istek, 10 sahne, tek stil blogu
+## Kural 1 — Tek mesaj, TEK gorsel
 
-Hedef aracin (ChatGPT gorsel uretimi) tek turda ~10 gorsel uretebiliyor. Format:
+**Bu kural bir kez tersine cevrildi. Eski hali "tek istekte 10 sahne" diyordu; olcum
+onu curuttu.** 2026-08-09'da tek mesajda 8 konu istendi ve cikti **tek birlesik tuval**
+oldu — ChatGPT'nin kendisi *"Ilk uretim tek tuvalde birlesti; bunu teslim etmiyorum"*
+deyip bastan uretmeye basladi. Kullanicinin talimati net: *"birde teker teker indir"*.
+2026-08-10'da ayni sey tekrar dogrulandi: **arac tek seferde tek gorsel uretiyor.**
+
+Dogru format — **her gorsel kendi mesajinda, kendi basina calisan tam bir prompt**:
 
 ```
-Generate 10 separate images, one for each numbered scene below.
-IMPORTANT: output each as its OWN separate image file. Do not combine them into a
-grid, contact sheet, collage or single canvas.
-
-STYLE (applies to all 10): <stil blogu, ~60-70 kelime>
-
-1. <sahne bir cumle + kadraj notu>
-2. ...
-10. ...
+Generate one image.
+[CLAUDE — <tarih> — <proje>, <tur adi> N/10]
+<konu, bir-iki cumle>
+FRAMING: <kadraj notu>
+STYLE: <stil blogu — bu promptta TAM haliyle tekrar eder>
+LIGHT: <isik dili>
+<negatifler>
 ```
 
-**Neden boyle:** "her prompt tek basina, stil blogu 10 kez tekrar" formati bu arac icin
-yanlis. Uzun tekrar GPT'yi seri anlatimina sokuyor ("simdi sadece 2. gorseli uretiyorum,
-digerini yok sayiyorum") ve 10'u tamamlamadan kesiyor.
+**Ortak stil basligi YOK.** Onceki surumun "STYLE (applies to all 10)" blogu, ancak tek
+mesajda 10 gorsel isterken anlamliydi. Artik her prompt tek basina gonderildigi icin stil
+blogu **her promptta harfi harfine tekrar eder**. Tek kelime degistirirsen set ikiye
+bolunur — tekrar bir israf degil, tutarliligin tek mekanizmasidir.
 
-**Ilk satir yuk tasiyor.** `Generate N separate images...` promptun **birinci**
-satiri olmali. Onune bir damga, baslik veya aciklama koyarsan model istegi tek bir
-konu gibi okuyup tek birlesik gorsel uretiyor.
+**Damga yine ikinci satirda.** Ilk satir uretim talimati olmali; damgayi en basa koymak
+bir kez modelin tum istegi tek konu gibi okumasina yol acti. Damgaya konu/id listesi
+yazma.
 
-Damga (proje + batch bilgisi) **ikinci satira** gelir — basta, gorunur, ama ilk
-satiri yerinden etmeden. Icine konu/id listesi yazma; model onu tek sahnenin
-ogeleri saniyor. Detay: `/image-run` 2. adim.
+**"10" hala gecerli ama artik tur demek, batch degil.** Bir turda 10 gorsel istemek
+dogru olcek; ama bu **10 ayri mesaj** demek, tek mesajda 10 konu degil. 10'dan fazlasi
+icin turu ikiye bol.
 
-**Prompt metninin icine batch iskelesi YAZMA.** `--- 1/10 -> dosya.png ---` gibi basliklar
-modele "bu bir seri isi" dedirtiyor ve anlatmaya basliyor. Dosya adlari prompt'un
-disinda, sohbet metninde numarali liste olarak verilir.
+**Her gorseli gonderdikten sonra, sonrakini gondermeden ONCE indir.** Toplu "seri indir"
+akisina guvenme — indirmeyi bekletmek dosyalari birbirine karistiriyor ve bir kez tam
+bir pozisyon kaymasina yol acti.
 
-**10'dan fazla isteme.** Fazlasi tek contact sheet'e birlesiyor. 11+ konu varsa 10'arli
-bol; her batch kendi stil blogunu tasir.
-
-**Inen dosyalarin sirasi prompt sirasiyla uyusmaz.** Eslemeyi dosya adina degil
-**goruntu icerigine** bakarak yap; kullaniciya da sirayi ayrica yaz.
-
-Kolaj gelirse tek satir duzeltme:
-`Please separate these into individual image files. Do not use a grid, contact sheet or collage.`
+Yine de kolaj/izgara gelirse tek satir duzeltme:
+`Please output this as a single standalone image. No grid, no contact sheet, no collage.`
 
 ---
 
@@ -114,7 +113,7 @@ degil.** Her yeni is icin paleti bastan sec:
 
 1. Isin ne oldugunu sor — cozy oyun mu, karanlik survival mi, teknik illustrasyon mu?
 2. Referansi varsa oradan cikar; yoksa 3-4 renkten olusan bir aile + 1 aksan yaz.
-3. Ayni paleti tum batch'e tasi (stil blogu harfi harfine ayni), ama **sahnelerin
+3. Ayni paleti turun tumune tasi (stil blogu her promptta harfi harfine ayni), ama **sahnelerin
    kendi tonu olsun** — magara sicak, nehir soguk. Toplam ton bandini kendin dengele.
 
 Doygunlugu "canli" diye yukseltme; ton *ayrimi* aradigin sey, sat% degil.
@@ -130,7 +129,7 @@ Ayni tuzak doygunlukta da var: sepyayi kovalarken "vivid saturated" yazip her ka
 ciglastirmak da tek yone asiri duzeltmedir ve o da AI ciktisi gibi durur. Kural 2'deki
 palet bolumu bunun icin var.
 
-**Cozum:** kadraji sahne bazinda acikca yaz, dagilimi kendin dengele. 10'luk bir batch icin
+**Cozum:** kadraji sahne bazinda acikca yaz, dagilimi kendin dengele. 10'luk bir tur icin
 saglikli dagilim:
 
 | kadraj | adet |
@@ -200,7 +199,7 @@ tutuyorsa palet saglamdir. Doygunlugu sirf sayi yukselsin diye artirma.
 ici, yakin plan ve altin saat sahnelerinde ust serit zaten sicaktir. Once "bu karede gok
 var mi?" diye sor, sonra bayragi ciddiye al.
 
-Batch icindeki gorseller **arasindaki** ton farkina da bak: 10 farkli konu 15° bandina
+Turun gorselleri **arasindaki** ton farkina da bak: 10 farkli konu 15° bandina
 sikismissa palet tasarlanmamis, filtrelenmis demektir. Genis ton bandi da tek basina
 hedef degil — proje bilincli olarak dar bir palet secmis olabilir; o zaman **kare ici**
 spread ve sicaklik ayrimina bak.
@@ -213,7 +212,7 @@ kareyi ancak cilalar. Yapisal olarak bozuk olani yeniden uret.
 
 ## Teslim formati
 
-- Tek sohbet mesaji, **tek fenced blok**, icinde tam prompt (kullanici bir kez kopyalar)
+- Her gorsel icin **ayri fenced blok**, icinde o gorselin tam ve kendi basina calisan promptu
 - Prompt **Ingilizce**; sohbet Turkce
 - Blogun disinda numarali dosya adi eslemesi: `1 push, 2 resupply, 3 mobilize, ...`
 - Kullaniciya sirayi ve "icerige bakarak esle" notunu hatirlat
@@ -236,7 +235,7 @@ cwebp -q 82 in.png -o out.webp     # ~%80 kucultme, kart boyutunda fark gorunmuy
 ```bash
 echo "Konu: ${1:-<belirtilmedi>}"
 echo ""
-echo "1. Konuyu 10'luk gruplara bol (goruntuleme sikligina gore onceliklendir)"
+echo "1. Konuyu 10'luk turlara bol (goruntuleme sikligina gore onceliklendir)"
 echo "2. Stil blogunu yaz — Kural 2'deki yasak kelimeleri kullanma"
 echo "3. Kadraj dagilimini Kural 3'teki tabloya gore dengele"
 echo "4. Tek fenced blok halinde teslim et, dosya eslemesini disinda ver"
