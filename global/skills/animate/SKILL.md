@@ -141,6 +141,11 @@ gradient katmanin `translateX` animasyonundan baska bir sey degildir.
 
 Shader'a ancak **USS + katmanin yetmedigi kanitlandiginda** gec. Gerekcesiz gecme.
 
+> Oyun ici (UI degil) sprite'larda shader ve oyun hissi katmani ayri bir skill:
+> **`/juice`** — squash/yuruyus, hit flash, vurus kenari, hitstop, kamera
+> sarsintisi, havuzlanmis efekt katmani, aura, cozulme. Bu skill karakteri
+> parcalara boler; `/juice` o parcalara (ve tek sprite'lara) tepki verdirir.
+
 ---
 
 ## Uretim promptlari

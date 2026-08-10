@@ -106,6 +106,12 @@ trim (seffaf/duz kenar kirp) -> kenar temizligi -> LANCZOS resize
 Prototipte sprite tek kare cizimdir. Cila, ona **kod yazarak hareket ve tepki** verir —
 ek doku, ek dosya, ek draw call olmadan.
 
+> **Bu alanin tam katalogu ayri bir skill'de: `/juice`.** Asagisi ozettir; is
+> gercekten shader/efekt/oyun hissi ise (squash, yuruyus, hit flash, hitstop,
+> kamera sarsintisi, aura, simsek, cozulme, havuzlanmis efekt katmani) once
+> `/juice`'u yukle — calisan koddan cikarilmis tarifler, olculmus sayilar ve
+> "hangi katmana yazilir" karari orada. `/polish shader` cagrildiginda oraya gec.
+
 ### Ne kazandirir
 
 | Efekt | Nasil | Maliyet |
