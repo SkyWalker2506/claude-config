@@ -217,10 +217,35 @@ post-process → assets/ → manifest satiri → oyunda gorunur
 
 ### Adim 1 — Stil arama: 10 stil, tek sahne
 
-Stil aramasinda **konu sabit, stil degisir**: ayni sahne, 10 farkli stil. Sahne,
-oyuncunun en cok baktigi sey olmali — genelde ana oynanis ekrani. Sahneyi **oyun ici
-goruntu** gibi kadrala (oyunun kamerasi, oyunun kompozisyonu), bagimsiz bir illustrasyon
-gibi degil; secilen sey oyunun nasil gorunecegidir.
+Stil aramasinda **konu sabit, stil degisir**: ayni sahne, 10 farkli stil.
+
+**Sahne, oyunun ONEMLI bir ic sahnesi olmali ve oyun ici goruntu gibi kadrajlanmali** —
+oyunun kamerasi, oyunun kompozisyonu, arayuzun oturacagi kenar bosluklari dahil. Bagimsiz
+bir illustrasyon ya da "karakter portresi" **degil**. Iki sebep:
+
+1. Secilen sey bir resim degil, **oyunun nasil gorunecegi**. Guzel duran bir portre,
+   oyun ekraninda kotu durabilir; ancak ekranin kendisine bakarak karar verilebilir.
+2. O kare cope gitmez — secilen stilin karesi **oyunun ilk gercek ekran gorseli** olur ve
+   dogrudan `ART.md`'ye girer.
+
+**Sahne, oyunun en yogun ANI olmali** — oyuncunun ekranda en cok zaman gecirdigi ve oyunun
+ne oldugunu anlatan durum:
+
+| Oyun | Dogru sahne | Yanlis sahne |
+|---|---|---|
+| Dovus/aksiyon | savasin tam ortasi, iki taraf da is basinda | menu, karakter secimi |
+| Kafe/dukkan simulatoru | musteriler siparis veriyor, tezgah dolu, kafe islerken | bos kafe, gun sonu ekrani |
+| Deckbuilder | kartlar elde, masa kurulu, hamle aninda | kart destesi kapak gorseli |
+| Kesif/expedition | yolculugun icinde, tehlike gorunurken | harita ekrani |
+
+**Oyun sonu / kazandin / kaybettin / yukleme ekranlari yanlis secimdir** — onemsiz anlardir
+ve stil hakkinda bilgi tasimazlar. Sahneyi secerken "bu kareyi oyunun magaza sayfasina
+koyar miydim" diye sor; cevap hayirsa yanlis sahnedir.
+
+**Stil secildikten sonra:** ayni disiplinle, secilen stilde **birkac ayri onemli ekran**
+uret (en cok bakilan iki ekrani sabit tut, kalanlari cesitlendir). Amac artik stil secmek
+degil, **stilin butun ekranlarda tutup tutmadigini** gormek — bir stil dovus sahnesinde
+harika, ust-bakis kesif ekraninda cokebilir ve bu ancak bakinca anlasilir.
 
 **On stil = on ayri mesaj.** `/image-prompt` Kural 1: arac tek mesajda tek gorsel uretir;
 tek mesajda 10 konu istemek ciktiyi tek kolaja cevirir. Her stil kendi mesajinda, kendi
