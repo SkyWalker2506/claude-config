@@ -75,6 +75,54 @@ Teshis ana hatta yapilir, duzeltilmis prompt yine low ajana verilir.
 
 ---
 
+## Saglayici — ChatGPT birincil, kota bitince Gemini
+
+ChatGPT'nin gorsel kotasi bir batch'in ortasinda bitebiliyor. **Kota bitti diye isi
+birakma, Gemini'ye gec** ve kalan batch'leri orada uret.
+
+| durum | ne yap |
+|---|---|
+| ChatGPT normal calisiyor | ChatGPT'de kal |
+| "You've reached your limit for image generation" / gorsel butonu pasif / uretim baslamiyor | Gemini'ye gec, **kalan** dosyalari orada uret |
+| Gemini de reddediyor | Dur, kullaniciya soyle — bos batch gonderip durma |
+
+**Yarim kalan batch'i bastan uretme.** ChatGPT'de inen dosyalari koru, Gemini
+promptunda sadece **eksik kalan numaralari** iste. Stil blogunu harfi harfine ayni
+tasi; iki saglayicinin ciktisi arasindaki fark zaten yeterince buyuk, bir de prompt
+degistirirsen seri tutmaz.
+
+Gecis oldugunda kullaniciya **tek satirla** haber ver:
+`ChatGPT gorsel kotasi bitti — kalan N dosyayi Gemini'de uretiyorum.`
+
+### Gemini'de calistirma
+
+`https://gemini.google.com/app?hl=tr` — kullanicinin Chrome'unda oturum acik.
+
+Composer **Quill** editoru, ChatGPT'ninki gibi degil. **ChatGPT'nin
+`ClipboardEvent('paste')` yontemi Gemini'de sessizce hicbir sey yazmaz** — editor bos
+kalir, sen yazildi sanirsin. Calisan yontem `insertText`:
+
+```js
+const el = document.querySelector('div.ql-editor[contenteditable="true"]');
+el.focus();
+document.execCommand('insertText', false, PROMPT);
+// gonder butonu ancak metin girilince aktiflesir:
+document.querySelector('button[aria-label="Mesaj gönder"]').click();
+```
+
+Gonderdikten sonra `el.innerText` bos mu diye **kontrol et**; bossa metin girilmemis
+demektir, Return'e basmadan once fark et.
+
+Gemini bir turda ChatGPT kadar cok gorsel vermiyor; kac dosya dondugunu **ilk turda
+say** ve batch'i ona gore bol — 10'luk blogu oldugu gibi yapistirip 10 dosya bekleme.
+Indirme akisi da ChatGPT'ninkinden farkli (seri halinde toplu indirme yok, gorsel
+basina indirme var); ilk calistirmada `read_page` ile dogrula, kor tiklama yapma.
+
+Dosya adlari yine **icerige bakarak** eslenir — Gemini'nin indirdigi adlar prompt
+sirasini hic tasimiyor.
+
+---
+
 ## 0. Sohbet adini coz — kullaniciya sorma
 
 Sohbet adi **hicbir zaman** bloklayan bir soru degildir. Su sirayla coz:
