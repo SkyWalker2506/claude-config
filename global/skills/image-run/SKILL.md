@@ -536,6 +536,27 @@ Kurallar:
 - Gorsel uretimi kullanicinin ChatGPT kotasini harcar. Uzun kuyruga girmeden
   once kac gorsel olacagini soyle.
 
+### Kota bitti — tespit et, durdur, sifirlanma saatini soyle
+
+Kota dolunca ChatGPT **hata vermez**; yaniti metin olarak doner ve gorsel gelmez.
+`stillGenerating` false olur, `shotCount` artmaz — yani "hazir olma" kontrolun sonsuza
+kadar bekler. Son turun metnine bak:
+
+```js
+const turns=[...document.querySelectorAll('[data-testid^="conversation-turn"], article')];
+const t=(turns[turns.length-1].textContent||'');
+/hit the .* plan limit|gorsel olusturma hakkin kalmadi|image generation limit/i.test(t)
+```
+
+Yakalarsan **kuyrugu orada kes**: kalan promptlari gondermeye calisma (her deneme ayni
+duvara toslar). Yanit sifirlanma saatini icerir — onu kullaniciya **aynen** ilet.
+Uretilenler zaten diskte; eksik id'ler isaretlenir ve raporda listelenir
+(`/showrunner` "Eksik asset'te durma" kurali).
+
+Kota tek hesaba aittir: **paralel sekmeler kotayi paylasir**, hizlandirmaz. 10 sekmeyle
+kosmak kotayi 10 kat hizli tuketir — plan yaparken toplam gorsel sayisini kotaya gore
+sec, sekme sayisina gore degil.
+
 ---
 
 ## Calistir
