@@ -106,17 +106,59 @@ kalir, sen yazildi sanirsin. Calisan yontem `insertText`:
 const el = document.querySelector('div.ql-editor[contenteditable="true"]');
 el.focus();
 document.execCommand('insertText', false, PROMPT);
-// gonder butonu ancak metin girilince aktiflesir:
-document.querySelector('button[aria-label="Mesaj gönder"]').click();
 ```
 
-Gonderdikten sonra `el.innerText` bos mu diye **kontrol et**; bossa metin girilmemis
-demektir, Return'e basmadan once fark et.
+**GONDER DUGMESINE `.click()` ILE BASMA — SESSIZCE HICBIR SEY OLMAZ.** Gemini'nin
+gonder dugmesi Angular Material; programatik `.click()` uc denemede de tetiklemedi ve
+her seferinde "gonderdim" sanildi. Calisan tek yol otomasyon katmanindan **gercek
+tiklama** (`computer` araci, ekran koordinatiyla). Gonderdikten sonra `el.innerText`
+bos mu diye **kontrol et**; bos degilse mesaj gitmemistir.
 
-Gemini bir turda ChatGPT kadar cok gorsel vermiyor; kac dosya dondugunu **ilk turda
-say** ve batch'i ona gore bol — 10'luk blogu oldugu gibi yapistirip 10 dosya bekleme.
-Indirme akisi da ChatGPT'ninkinden farkli (seri halinde toplu indirme yok, gorsel
-basina indirme var); ilk calistirmada `read_page` ile dogrula, kor tiklama yapma.
+**Sohbet degistiyse metni yazma.** Sekme baska bir sohbete kaymis olabilir; yazmadan
+once `document.title` / URL'yi dogrula. Yanlis sohbete uzun bir prompt yapistirmak
+sessiz bir hata.
+
+Gemini bir turda ChatGPT kadar hizli vermiyor ama **8 konuluk referanssiz sablon
+8/8 dondu** (2026-08-10). Kac dosya dondugunu ilk turda **say**: gorseller tembel
+yuklendigi icin `img` sayisi az gorunur — dogru sayac sayfadaki **"Tam boyutlu resmi
+indir" dugmelerinin adedidir.
+
+#### Indirme — Gemini'de TOPLU INDIRME YOK, ve uretilemez de
+
+Uc yol denendi, ucu de olculdu (2026-08-10):
+
+| yol | sonuc |
+|---|---|
+| Sayfa icinden `fetch(url)` -> blob -> `<a download>` | **0/3.** Gemini'nin gorsel URL'leri CORS'a kapali. (ChatGPT'de bu yol calisiyor.) |
+| Gorsel basina "Tam boyutlu resmi indir" dugmesine sentetik `.click()` | Buton "8/8 tetiklendi" der, diske **1 dosya** duser. Material dugmesi sentetik olayi yutuyor. |
+| Gemini'ye zip sor | Reddediyor: "tek bir tikla veya .zip arsivi olarak toplu indirme ozelligi bulunmuyor". |
+
+Yani **sayfaya enjekte edilen bir "tumunu indir" butonu Gemini'de calismaz.** Toplu
+indirme gerekiyorsa seti **ChatGPT'de uret** — orada seri paylasim penceresinden
+tek tikla tamami iniyor. Gemini'de kalinacaksa dosyalar tek tek, gorselin kendi
+indirme ikonuna **gercek tiklama** ile alinir.
+
+#### Saydamlik guvenilir degilse: DUZ ANAHTAR RENK iste
+
+Gemini bazen gercek alfa veriyor (dama tahtasi gorunur), bazen vermiyor. Alfa
+sartsa prompta su yedegi **her zaman** ekle — boylece kesilemeyen bir cikti
+gelmez:
+
+```text
+If you cannot output a real alpha channel, do NOT fake it. Instead put the object
+on a COMPLETELY FLAT, UNIFORM background in a single colour that appears nowhere in
+the object itself: a saturated blue (#1B34FF). Fill the entire background with
+exactly that one colour — no gradient, no vignette, no texture, no shadow falling
+onto the background, no lighter patch behind the object. The object must not touch
+the canvas edge.
+```
+
+Anahtar renk **konuya gore** secilir: paletin hicbir yerinde olmayan doygun bir renk.
+Sicak krem/kahve/adacayi bir set icin doygun mavi dogru; gri golgelerle karisir,
+beyaz krem nesnelerle karisir. Magenta kullanma — kullanicinin acik kurali.
+Gelen dosya `cozy-critter-cafe/tools/pack_art.py` icindeki `_cut_flat_bg` ile
+kesilir: kenardan bagli zemini rampali kenarla siler, nesnenin ICINDEKI ayni rengi
+korur, zemini boyali olani olcup atlar.
 
 Dosya adlari yine **icerige bakarak** eslenir — Gemini'nin indirdigi adlar prompt
 sirasini hic tasimiyor.
@@ -630,3 +672,66 @@ echo "4. Her gorsel bittikce: sayfa ici fetch + a.download (paylas menusune GIRM
 echo "5. Dosyayi dogrula, tasi/adlandir, WebP'ye cevir, veri dosyasina bagla"
 echo "6. Tur bitip hepsi diskte dogrulaninca sonraki 10'luk tura don"
 ```
+
+---
+
+## Gemini (ChatGPT kotasi bittiginde)
+
+ChatGPT gunluk gorsel hakkini tuketince uretim durur ("simdilik gorsel
+olusturma hakkin kalmadi"). Ikinci yol Gemini — ayni kalitede kart sanati
+veriyor, ama uc davranisi farkli ve ucu de bir tur yakti:
+
+**1. Yapistirma calismiyor.** ChatGPT'nin `ClipboardEvent` yontemi Gemini'nin
+`rich-textarea` bileseninde sessizce bos birakiyor (uzunluk 1 gelir). Calisan:
+
+```js
+const el = document.querySelector('rich-textarea div[contenteditable="true"]');
+el.focus();
+document.execCommand('selectAll', false, null);
+document.execCommand('delete', false, null);
+document.execCommand('insertText', false, PROMPT);
+```
+
+Gonderme de Enter'la degil, `aria-label`'i "Gonder"/"Send" olan butonla.
+
+**2. Toplu uretmez — tek mesaj tek gorsel.** ChatGPT'de calisan "Generate 10
+separate images" burada tek kare dondurur. Gemini icin **her gorsel kendi
+mesaji**: `insertText` → gonder → bekle → indir → yeni sohbet → sirakini.
+Turu 10'a bolme aliskanligi burada gecersiz; sayaci sen tutarsin.
+
+**3. Seffaf arka plan uretemez.** Alpha isteme, bosuna. Iki secenek:
+- **Full-bleed sahne** (kart sanati, key art): zaten arka plan sahnenin
+  kendisi, sorun yok — tercih edilen yol.
+- **Kesme obje** gerekiyorsa duz tek renk zemin iste (`flat matte background,
+  single solid colour, no gradient, no shadow`) ve alpha'yi sonradan kendin
+  cikar. Magenta isteme; koyu notr daha temiz key veriyor.
+
+**4. Filigran var.** Gemini ciktilarinin sag alt kosesine parlak bir elmas
+koyar. Kirpma **cozum degil** — kart oranini bozar. Komsu bandan klonlayip
+yumusak maskeyle kapat:
+
+```python
+x0, y0, x1, y1 = 632, 884, 700, 960          # isaretin kutusu
+patch = a[y0:y1, x0-95:x1-95].copy()          # ayni isikta, ayni doku
+mask = feathered(hgt, wid, blur=7)            # dikdortgen dikis birakma
+a[y0:y1, x0:x1] = a[y0:y1, x0:x1] * (1 - mask) + patch * mask
+```
+
+Isaretin yerini gozle tahmin etme: kosedeki parlak pikselleri esikle bul
+(`lum > mean + 3.2*std`), kutuyu oradan cikar, kapattiktan sonra ayni olcumu
+tekrar kosarak dogrula.
+
+**5. Indirme.** Gemini gorseli `blob:` URL ile verir; `fetch` ile inmez.
+Canvas'a cizip `toDataURL` ile indir:
+
+```js
+const img = [...document.querySelectorAll('img')].filter(i => i.naturalWidth > 380).pop();
+const c = document.createElement('canvas');
+c.width = img.naturalWidth; c.height = img.naturalHeight;
+c.getContext('2d').drawImage(img, 0, 0);
+const a = document.createElement('a');
+a.href = c.toDataURL('image/png'); a.download = '<id>.png';
+document.body.appendChild(a); a.click(); a.remove();
+```
+
+Palet kontrolu ayni: `check_palette.py` her iki motorun ciktisinda da gecerli.
