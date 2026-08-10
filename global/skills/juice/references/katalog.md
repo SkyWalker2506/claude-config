@@ -18,10 +18,8 @@ olculdu. Yeni bir projeye tasirken **dosyayi kopyala**, tarifi yeniden yazma.
 | `src/world/fx/SealMaterial.js` | zemin muhurleri |
 | `src/world/fx/ParticleBatches.js` | partikul gruplari |
 | `src/systems/Effects.js` | ust seviye API: `burst/impact/ring/column/skyBolt/darken/screenFlash/addShake/dissolve/damageNumber` |
-| `src/world/Rig.js` | katmanli cutout rig (bkz. `/animate`) |
 | `src/entities/Enemies.js` | `GAIT` tablosu, dusman basina squash surumu |
 | `src/entities/Player.js` | `punch` surucusu |
-| `tools/rigchk.mjs` | animasyon kapisi ornegi |
 
 ---
 
@@ -43,9 +41,6 @@ sprite.scale.set(
 `+gait` uzayip incelir (adim kalkisi), `−gait` basiklasip genisler (ayak yere basar).
 **Agirlik hissini tasiyan sey bu ters oran.** Ayni oranda olceklersen sadece
 "buyuyup kuculen resim" olur.
-
-Katmanli rig'de tek sprite yok: **butun grup** olceklenir, katmanlarin kendi
-olcegi animasyondan gelir, ustune grup olcegi biner.
 
 ### GAIT tablosu (tip basina)
 
@@ -320,14 +315,14 @@ efekti bilerek sarsintisiz ve flash'sizdir: "kucuk ama net".
 
 ---
 
-## Kapi ornegi (animasyon)
+## Kapi ornegi (zamana yayilan efekt)
 
-`tools/rigchk.mjs` sekli:
-
-1. Oyunu ac, **kart sec** (yoksa simulasyon durur — Demir Kural 7)
+1. Oyunu **oynanir** duruma getir — menu/kart ekrani acikken simulasyon durur ve
+   her sey "0 hareket" cikar (Demir Kural 7)
 2. Dongunun iki ucundan 24 ornek al
-3. Her parca icin min/max fark > 0 mi
-4. Iki referans parca (or. pelerin/cuppe) 24 ornegin **hicbirinde** ayni acida olmamali
-5. Cevirme kac parcayi aynaliyor (tam ortadakiler haric)
+3. Olculen deger icin min/max fark > 0 mi
+4. Ayni anda kosan iki ornek (iki dusman, iki aura, iki mesale) 24 ornegin
+   **hicbirinde** ayni degerde olmamali — faz kaymasi kaniti
+5. Durum degistiren efektlerde (flip, flash) **iki durumu da** yakala
 
 Ciktisi sayi olmali. "Hareket ediyor" cumlesi kapi degildir.

@@ -25,7 +25,6 @@ oradan **kopyalanabilir**. Dosya haritasi `references/katalog.md`'de.
 | "Shader'la guzellestir", "efekt ekle", "daha dolu olsun" | **`/juice`** |
 | Genis cila turu: sanat hatti + ses + performans + UI hizasi | `/polish` (shader alani bu skill'e devreder) |
 | Cekirdek dongu henuz oynanmiyor | `/prototype` |
-| Karakteri parcalara bolup rig'lemek | `/animate` |
 
 `/polish` bu skill'in ustunde durur: `/polish shader` cagrildiginda **buraya gelinir**.
 Ters yon de gecerli — bu skill bir efekti kanitlarken `/polish`'in olcum kuralini
@@ -75,20 +74,22 @@ Masaustu profili WebGPU kosuyor. Tek yola yazmak, **oyuncunun oynadigi surumde
 efektin hic olmamasi** demek. Bu tuzak once boss telegrafinda cokmeye yol acti,
 sonra alevde sessizce olu kaldi.
 
-**5 · Her katmanin/parcanin PERIYODU FARKLI olmali.**
-Hepsi ayni periyotta salinirsa karakter canlanmaz, tek parca gibi yalpalar.
-Periyotlar yakinsa bile `faz` baslangic kaymasi ver. Olculmus tablo:
-nefes 1.85 · takip 1.85/faz 0.34 · pelerin 2.60 · cuppe 2.18/faz 0.62 · sap eli 2.15
-· vurus kolu 1.05 (vurusa kilitli).
+**5 · Ayni anda kosan seylerin PERIYODU/FAZI ayni olmamali.**
+Ayni tipteki 40 dusman ayni adimi ayni anda atarsa tek bir organizma gibi okunur;
+cozum indeksle faz kaydirmak (`sin((t + i * 0.61) * freq)`). Ayni sey sahnedeki
+auralar, mesaleler ve dongusel efektler icin de gecerli — her orneğe kendi fazi
+verilir. Parlaklikta tek sinus da metronom gibi okunur: iki FARKLI hizda gurultu
+kullan (biri yavas nefes, biri catirti).
 
-**6 · Animasyon iddiasi TEK KAREDEN kanitlanmaz.**
-Kapi ucunu birden olcer: (a) her parca hareket ediyor mu — dongunun iki ucundan
-24 ornek, (b) faz kaymasi var mi — iki parca 24 ornegin hicbirinde ayni acida
-olmamali, (c) cevirme kac parcayi aynaliyor.
+**6 · Zamana yayilan bir iddia TEK KAREDEN kanitlanmaz.**
+Dongunun iki ucundan >= 24 ornek al ve degerin gercekten degistigini goster.
+Tek kare, "efekt yok" ile "efekt var ama o an notr" arasindaki farki gostermez.
 
 **7 · Olcerken simulasyon KOSUYOR olmali.**
-Ilk olcumde 10 katmanin hepsi "0 hareket" cikti. Sebep: kart secim ekrani acikken
-orneklemistim, simulasyon duruyordu. Kapi artik once kart seciyor.
+Bir olcum "0 hareket" raporladi ama efekt saglamdi: kart secim ekrani acikken
+orneklenmisti, simulasyon duruyordu. Kapi once oyunu oynanir duruma getirmeli.
+Ayrica gecis animasyonu bitmis olmali — solma sirasinda olcen bir kapi 88 px
+raporladi, oturmus deger 106 px'ti.
 
 **8 · Havuzla ve tek draw call'a indir.**
 Eski halka havuzu 18 ayri `Mesh`'ti; draw call efekt sayisiyla dogrusal buyuyordu.
@@ -167,15 +168,13 @@ Ozet (necrobeat'teki dosya → teknik):
 
 | Efekt turu | Kanit |
 |---|---|
-| Hareket / animasyon | dongunun iki ucundan >= 24 ornek; **her** parca hareket etmeli, faz kaymasi olmali |
+| Zamana yayilan hareket (yuruyus, nefes, dalgalanma, aura) | dongunun iki ucundan >= 24 ornek; deger gercekten degismeli, ayni anda kosanlar ayni degerde olmamali |
 | Durum degistiren gorsel (flip, flash, secili) | **iki durumu da yakala ve karsilastir**; fark yoksa ozellik yok |
 | Sahne efekti (halka, aura, simsek) | efekt aktifken ve kapaliyken kare farki; degisen piksel orani |
 | Performans | draw call + medyan kare suresi, **once ve sonra**, ayni dusman sayisinda |
 | Konfor | ayar acik/kapali iki kayit; kapaliyken oyun hala okunakli mi |
 
-Olcum simulasyon **koşarken** yapilir (Demir Kural 7) ve gecis animasyonu bitmis
-olmali — necrobeat'te bir kapi solma sirasinda olcup 88 px raporladi, oturmus deger
-106 px'ti.
+Olcum simulasyon **kosarken** ve gecis bitmis oldugunda yapilir (Demir Kural 7).
 
 ## Yapma
 
@@ -188,7 +187,7 @@ olmali — necrobeat'te bir kapi solma sirasinda olcup 88 px raporladi, oturmus 
 | Sabit genlik tavani | uzun yaylar duz cizgiye dondu |
 | Tek sinus ile parlaklik | metronom gibi okunuyor; goz periyodu yakaliyor — iki hizda gurultu kullan |
 | Ekrani doldurmak | kullanici asiri flash/shake'ten rahatsiz oldu; efekt anlatmali |
-| Tek kareye bakip "animasyon calisiyor" demek | 10 katman "0 hareket" cikti, sim duruyordu |
+| Tek kareye bakip "efekt calisiyor" demek | duran bir simulasyonda olcum "0 hareket" verdi, efekt saglamdi |
 
 ## Teslim
 
