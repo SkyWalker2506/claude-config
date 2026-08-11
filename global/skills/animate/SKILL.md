@@ -117,6 +117,42 @@ Onaylananlarin listesi ve oyuna verilecek manifest:
 python -m animcreator.cli kabul --olc --json kabul.json
 ```
 
+### Yalnizca video — ve uzun video
+
+Sprite sheet oyuna giren bir sprite icin lazim; sinematik bir sahnede kullanilan
+sey videonun kendisi. Olculdu: sahne klibinde sheet asamasi 37 saniye harcayip
+**hicbir sey uretmiyor** (BiRefNet tum sahneyi "konu" saymaya calisiyor).
+
+```bash
+python -m animcreator.cli video --project "Survival Oyun" \
+    --image kare.png --prompt "..." --saniye 6 --basa
+```
+
+`scene` yuvasinda sheet zaten uretilmiyor; `queue --no-sheet` ile her yuvada
+kapatilabilir.
+
+**Uzunluk parca ekleyerek geliyor.** Wan tek kosuda uzun veremiyor: 81 karede
+sahnedeki nesneler klibin ortasinda dagiliyor, saglam sinir **49 kare = 3.06
+saniye**. `--saniye 12` dort parca uretir; her parca bir oncekinin SON
+KARESINDEN devam eder ve parcalar bitince tek videoda birlesir.
+
+Olculdu (2 parca): 98 kare / 6.12 sn, ek yerindeki kare farki 2.64 — normal
+kare farki 1.85, yani gecis goze carpmiyor.
+
+Durust ol: zincir uzadikca sapma birikir. Ilk parca referansa birebir uyar,
+dorduncu biraz uzaklasir. Uzun istiyorsan ya kisa tut ya da birkac parcada bir
+yeni referans kare ver.
+
+### Yanlis yere dustuyse
+
+```bash
+python -m animcreator.cli tasi --clip cicek --project "Survival Oyun"
+```
+
+Klip ve ona bagli isler BIRLIKTE tasinir. Web'de her klibin ustunde "projeyi
+degistir" var. Silmek icin web'de 🗑 — reddetmekten ayri: reddetmek bir
+karardir (deneme gecmiste kalir, sebebi okunur), silme geri alinamaz.
+
 ### Ciktiyi almak
 
 Sprite sheet her zaman lazim olmuyor — bazen videonun kendisi kullaniliyor
