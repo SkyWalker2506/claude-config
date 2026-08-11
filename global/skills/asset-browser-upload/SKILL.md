@@ -4,6 +4,26 @@ description: "Lokal PNG'leri işleyip asset-browser runtime'a ekle — magenta/s
 argument-hint: "[klasör_yolu]"
 ---
 
+> ## ANIMASYON URETIMI BU SKILL'IN ISI DEGIL
+>
+> Karakter animasyonu **yalnizca** `/animate` ile uretilir: tek durağan
+> gorselden Wan 2.2 I2V ile video, oradan sprite sheet. Baska bir yol yok.
+>
+> Goruntu modeline (Gemini, Imagen, SDXL...) kare kare sprite cizdirmeyin.
+> Denendi ve tutmuyor: her kare bagimsiz uretildigi icin karakter kareler
+> arasinda degisiyor, magenta fon temizlenince kenarlar yeniyor ve sonuc
+> oyunda oynatilamiyor.
+>
+> Bu skill yalnizca **zaten var olan** dosyalari isler. Uretmek icin:
+>
+>     python -m animcreator.cli add-project --name "<oyun>"
+>     python -m animcreator.cli add-character --project <oyun> --name "<ad>" --image <png>
+>     python -m animcreator.cli queue --character <slug> --anim idle --anim walk.side
+>
+> Kuyruk GPU makinesinde isler, sonuc inceleme sitesinde belirir.
+
+
+
 # /asset-browser-upload — Lokal PNG'leri İşle ve Ekle
 
 Argümansız çağrılırsa proje dizinlerini tarar ve seçenekleri listeler.

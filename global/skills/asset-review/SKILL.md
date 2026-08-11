@@ -3,6 +3,26 @@ name: asset-review
 description: Bekleyen asset-browser upload'larini incele — her biri icin onay/red karari ver, onaylananlari post-process edip runtime asset dizinine tasi, commit+push. Triggers: asset review, asset incele, bekleyenleri incele, asset review workflow, waiting review.
 ---
 
+> ## ANIMASYON URETIMI BU SKILL'IN ISI DEGIL
+>
+> Karakter animasyonu **yalnizca** `/animate` ile uretilir: tek durağan
+> gorselden Wan 2.2 I2V ile video, oradan sprite sheet. Baska bir yol yok.
+>
+> Goruntu modeline (Gemini, Imagen, SDXL...) kare kare sprite cizdirmeyin.
+> Denendi ve tutmuyor: her kare bagimsiz uretildigi icin karakter kareler
+> arasinda degisiyor, magenta fon temizlenince kenarlar yeniyor ve sonuc
+> oyunda oynatilamiyor.
+>
+> Bu skill yalnizca **zaten var olan** dosyalari isler. Uretmek icin:
+>
+>     python -m animcreator.cli add-project --name "<oyun>"
+>     python -m animcreator.cli add-character --project <oyun> --name "<ad>" --image <png>
+>     python -m animcreator.cli queue --character <slug> --anim idle --anim walk.side
+>
+> Kuyruk GPU makinesinde isler, sonuc inceleme sitesinde belirir.
+
+
+
 # /asset-review — Bekleyen Asset'leri Incele
 
 `asset-browser` kurulu bir projenin `waiting-for-review` listesini inceler. Her item icin:
