@@ -126,7 +126,9 @@ for PNG in "${PNG_LIST[@]}"; do
   FRAMES=$(echo "$NAME" | grep -oE '_([0-9]+)f$' | grep -oE '[0-9]+' || true)
 
   if [ -n "$FRAMES" ]; then
-    # Animasyon pipeline
+    # ANIMASYON PIPELINE KALDIRILDI — sprite animasyonu /animate ile
+    # uretilir. Asagisi yalnizca eski dosyalari kurtarmak icin durur;
+    # YENI animasyon bu yoldan gecmemeli.
     # 1. Magenta dene
     magick "$PNG" -fuzz 35% -transparent magenta \
       -crop ${FRAMES}x1@ +repage \
