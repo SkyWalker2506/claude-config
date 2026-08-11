@@ -56,6 +56,36 @@ python -m animcreator.cli batch --file plan.json
 `--width/--height` (sprite icin 512×512, sahne icin 832×480),
 `--variants N` ayni yuvadan N farkli seed, `--dry-run` once ne gidecegini goster.
 
+### Sirayi kendin belirle — kimseye sormadan
+
+Kuyruk `created_at`'e gore islenir; en eski bekleyen is once uretilir. Sirayi
+degistirmenin iki yolu var ve **hangisini kullanacagini isin yasi belirler**:
+
+```bash
+# YENI is, kuyrugun onune girsin
+python -m animcreator.cli queue --character crypt-spider --anim idle --basa
+
+# DUN kuyruga girmis isleri one al (proje / karakter / klip suzgeciyle)
+python -m animcreator.cli sira --project necrobeat --basa
+python -m animcreator.cli sira --character crypt-spider --sona
+python -m animcreator.cli sira --clip idle --basa --dry-run   # once ne tasinacagini gor
+```
+
+**O an uretilmekte olan ise dokunulmaz.** Sira yalnizca bekleyenler arasinda
+degisir, yani "basa al" bir sonraki isten itibaren gecerlidir; yarim uretim
+cope gitmez.
+
+Ikisinin ayri komut olmasinin sebebi yetki: olculdu — anon anahtar is
+**eklerken** `created_at` yazabiliyor (yani yeni is dogrudan basa girebiliyor)
+ama var olan bir satiri PATCH edemiyor; istek **0 satir etkileyip 200
+donuyor**, yani sessizce hicbir sey yapmiyor. `sira` bu yuzden istegi depoya
+birakir ve servis anahtarini tasiyan ajan uygular; komut uygulanana kadar
+bekler. Ajan kapaliysa istek depoda durur, acilinca islenir.
+
+`sira` tasiyacagi isleri **komutu verdiginde secip id olarak yazar**, suzgec
+olarak degil: arada kuyruga giren isler kapsama girmez, yani gormedigin bir sey
+tasinmaz.
+
 Sheet karesi diye ayri bir ayar **yok** ve olmamali — sheet uretilen her kareyi
 tasir. Kisa animasyon istiyorsan `--frames` dusur.
 
