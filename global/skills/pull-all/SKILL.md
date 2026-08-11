@@ -1,6 +1,6 @@
 ---
 name: pull-all
-description: Tum projelerdeki remote degisiklikleri cek. Triggers: pull all, pullAll, tum projeleri pulla, toplu pull.
+description: "Tum projelerdeki remote degisiklikleri cek. Triggers: pull all, pullAll, tum projeleri pulla, toplu pull."
 ---
 
 # /pull-all — Tum Projelerde Toplu Pull

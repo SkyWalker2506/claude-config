@@ -1,6 +1,6 @@
 ---
 name: asset-review
-description: Bekleyen asset-browser upload'larini incele — her biri icin onay/red karari ver, onaylananlari post-process edip runtime asset dizinine tasi, commit+push. Triggers: asset review, asset incele, bekleyenleri incele, asset review workflow, waiting review.
+description: "Bekleyen asset-browser upload'larini incele — her biri icin onay/red karari ver, onaylananlari post-process edip runtime asset dizinine tasi, commit+push. Triggers: asset review, asset incele, bekleyenleri incele, asset review workflow, waiting review."
 ---
 
 > ## ANIMASYON URETIMI BU SKILL'IN ISI DEGIL

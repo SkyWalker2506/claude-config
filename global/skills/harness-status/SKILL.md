@@ -1,6 +1,6 @@
 ---
 name: harness-status
-description: On-demand harness status — MCP active servers, project index, graph cache freshness, session sync health. Use when user wants to see reference info previously auto-injected each session. Triggers: harness status, harness-status, mcp active, mcp listesi, graph cache, project info, session info.
+description: "On-demand harness status — MCP active servers, project index, graph cache freshness, session sync health. Use when user wants to see reference info previously auto-injected each session. Triggers: harness status, harness-status, mcp active, mcp listesi, graph cache, project info, session info."
 ---
 
 ## /harness-status

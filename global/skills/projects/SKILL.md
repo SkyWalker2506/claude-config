@@ -1,6 +1,6 @@
 ---
 name: projects
-description: List and inspect projects registered in projects.json — show paths, Jira keys, git repos, and status. Triggers: projects list, show projects, what projects, list all projects.
+description: "List and inspect projects registered in projects.json — show paths, Jira keys, git repos, and status. Triggers: projects list, show projects, what projects, list all projects."
 triggers: projects, list projects, show projects, project list, tum projeler, projeler
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: project-index
-description: Proje index'i yönet — init, show, list, update. L1 katman: on-demand proje detayı.
+description: "Proje index'i yönet — init, show, list, update. L1 katman: on-demand proje detayı."
 triggers: project-index, proje indexi, index init, proje özeti, proje detay
 ---
 
