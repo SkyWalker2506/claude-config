@@ -143,6 +143,34 @@ Durust ol: zincir uzadikca sapma birikir. Ilk parca referansa birebir uyar,
 dorduncu biraz uzaklasir. Uzun istiyorsan ya kisa tut ya da birkac parcada bir
 yeni referans kare ver.
 
+### Iki sira: ORTAK ve OZEL
+
+Kuyruk ortak — kim bastiysa, GPU'su bos olan makine uretir. Ama iki uretici
+ayni kuyruktan beslendiginde biri "once benim su isim ciksin" diyemiyordu:
+oncelik ortak oldugu icin otekinin isini de one aliyordu.
+
+```
+params.kuyruk yok    -> ANA SIRA (ortak, herkesin)
+params.kuyruk = "ad" -> o makinenin OZEL sirasi
+```
+
+Her makine **once kendi ozel sirasini** bosaltir, sonra ortak siradan devam
+eder. Baskasinin ozel sirasindaki is o makinede uretilmez — listede "baska
+makinenin ozel sirasi" diye gorunur, yani kimin bekledigi bellidir.
+
+```bash
+python -m animcreator.cli kurulum              # bu makineye ad ver (bir kez)
+python -m animcreator.cli queue ... --ozel     # kendi sirama
+python -m animcreator.cli kuyruklar            # ikisini birlikte gor
+python -m animcreator.cli sira --clip X --ana --basa   # ozelden ortaga tasi
+```
+
+Ad makine adindan (DESKTOP-XYZ) turer ama `kurulum` ile insan adi vermek
+gerekiyor: kuyruga bakan herkes kimin sirasi oldugunu okuyabilmeli.
+
+Iki sira AYRI duraklatilabiliyor (panelde iki dugme): ozel sirayi durdurup
+ortaktan devam etmek anlamli bir istek.
+
 ### Silmek ve degistirmek — TOPLU, tek istekle
 
 Anon anahtarin SILME ve GUNCELLEME yetkisi yok, ve bunu **sessizce** yapiyor:
