@@ -416,31 +416,31 @@ Toplu bir istek bir SERI uretir, ve seri kendi indirme yolunu tasir: on gorseli 
 kurtarmaya calismak yerine on tanesini birlikte indirir. Ekran kaydindan cikarildi
 (2026-08-12).
 
-**Adim 1 — gorselin KENDI paylas ikonu.** Fare gorselin uzerine gelince sag altta,
-"Duzenle" yazisinin karsisinda bir paylas ikonu belirir. Aciliyor menuede iki satir
-vardir; ikincisi seriyi verir.
+![Adim 1](media/seri-1.png)
 
-![Seri menusu](media/series-menu.png)
+![Adim 2](media/seri-2.png)
 
-Bu ikonu mesajin ustundeki paylas ikonuyla KARISTIRMA. Mesaj duzeyindeki paylas tum
-konusmayi paylasir ve seri secenegi cikmaz.
+![Adim 3](media/seri-3.png)
 
-**Adim 2 — acilan pencerede Indir.** Baslik altinda "N gorsel birlikte paylasiliyor"
-yazar; bu, dogru yerde oldugunun teyididir. Alt sirada **Indir** en sagdadir, hemen
-solunda **Reddit** durur.
+![Adim 4](media/seri-4.png)
 
-![Seri penceresi](media/series-modal.png)
+![Adim 5](media/seri-5.png)
 
-N dosya birden `~/Downloads`'a iner, adlari `ChatGPT Image ... (1..N).png` seklindedir ve
-uretim sirasindadir.
+#### Tuzak: pencere sayfa yuklemesi basina ILK gorsele kilitlenir
 
-**Tuzak — pencere sayfa yuklemesi basina ILK gorsele kilitlenir.** Tek gorsel indirmek
-icin bu pencereyi arka arkaya kullanma: ikinci paylas tiklamasi ayni pencereyi geri
-getirir, baslik degismez ve **ayni dosyayi tekrar indirirsin**. 2026-08-12'de sekiz
-indirme yapildi, sekizinin de MD5'i ayniydi ve dort karta yanlis tablo yazildi.
-Korunma: her indirmeden once pencerenin BASLIGINI oku, beklediginle esles; eslesmiyorsa
-sayfayi yenile. Tek tek indirme icin zaten yukaridaki sayfa ici `fetch` yolu vardir —
-paylas penceresi yalniz SERI icindir.
+Bu pencereyi tek gorseller icin arka arkaya kullanma. Ikinci paylas tiklamasi ayni
+pencereyi geri getirir — baslik degismez — ve **ayni dosyayi tekrar indirirsin**.
+2026-08-12'de sekiz indirme yapildi, sekizinin de MD5'i ayniydi, ve dort karta yanlis
+tablo yazildi; geri almak icin `git checkout` gerekti.
+
+Iki korunma, ikisi de gerekli:
+
+1. Her indirmeden once pencerenin **basligini oku** ve bekledigin gorselle esles.
+   Eslesmiyorsa sayfayi yenile — yenileme kilidi acar.
+2. Diskte **icerige bak**. Sira dogru olsa bile bir kez gozle dogrulamadan karta yazma.
+
+Tek gorsel icin bu menuyu hic acma: yukaridaki sayfa ici `fetch` yolu adi da veriyor ve
+kilitlenme sorunu yok. Seri menusu yalnizca SERI icindir.
 
 ### Yedek: `fetch` engellenirse native indirme
 
