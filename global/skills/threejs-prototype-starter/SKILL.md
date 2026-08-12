@@ -9,6 +9,30 @@ description: Create and iterate simple playable Three.js prototypes with index.h
 
 Create a tiny playable Three.js prototype quickly, without overengineering. Start with `index.html` and separate ESM modules, keep the code easy to iterate, and leave a clean path toward `$threejs-localize` and `$threejs-steam-shipper` Steam/web/mobile exports if the idea becomes serious.
 
+## Before You Scaffold — Read The Brief, Do Not Assume
+
+Three.js is the *renderer*, not the art direction. Never infer a 3D game from
+the fact that this skill is Three.js.
+
+1. **Perspective and art style come from the brief/GDD, never from a default.**
+   If the GDD says "2D", "2.5D", "top-down", "isometric", "pixel art",
+   "sprites", "low-res painted sprites", or names sprite resolutions
+   (e.g. `64x64`), the prototype is a **sprite** game: textured quads /
+   `THREE.Sprite` / billboards on an orthographic camera. Boxes and meshes are
+   NOT an acceptable stand-in for sprites — they change the whole read of the
+   game.
+2. **Only build meshes/3D geometry when the brief explicitly asks for it.**
+   If the brief is silent about perspective and style, ask one short question
+   before scaffolding. Do not "pick something sensible and move on".
+3. **Placeholder art still has to be the right kind of art.** For a sprite
+   game, generate placeholder sprite textures (canvas-drawn or generated
+   images) instead of substituting primitives.
+4. **Show concept art first when the brief has an art direction section.**
+   Use the image-generation skill (`$image-prompt` / `$image-run`) to produce
+   concept frames in the stated style and confirm the look with the user
+   *before* writing gameplay code. Wiring a whole prototype in the wrong
+   visual language wastes the run.
+
 ## Default Shape
 
 Use this structure for new prototypes:
