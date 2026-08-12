@@ -143,6 +143,28 @@ Durust ol: zincir uzadikca sapma birikir. Ilk parca referansa birebir uyar,
 dorduncu biraz uzaklasir. Uzun istiyorsan ya kisa tut ya da birkac parcada bir
 yeni referans kare ver.
 
+### ONAY HICBIR SEYI SILMEZ
+
+Bir denemeyi onaylamak `approved_take` ve `is_current` isaretlerini tasir,
+**baska hicbir seye dokunmaz**. Ayni klibin oteki varyasyonlari yerinde kalir:
+sonradan donup "aslinda ikincisi daha iyiydi" demek mumkun olmali, onay geri
+alinabilir bir karar.
+
+Silme yalnizca ACIKCA istendiginde olur ve yalnizca istenen sey silinir:
+
+| ne dedin | ne silinir |
+|---|---|
+| denemede 🗑 Sil | yalnizca O deneme (video, sheet, kayit) |
+| klip basliginda 🗑 | klip ve butun denemeleri |
+| `cli sil` | eslesen BEKLEYEN isler (uretilmis denemeye dokunmaz) |
+
+Denemesi kalmayan klip de **silinmez** — prompt'u, kaynak gorseli ve karar
+gecmisi onun uzerinde duruyor; silinirse ayni yuvayi yeniden uretmek icin hepsi
+bastan yazilmak zorunda kalir. (Onceki surum bunu yan etki olarak siliyordu.)
+
+Reddetmek silmek DEGIL: deneme listeden cikar ama kayit durur, "Reddedilen"
+sekmesinde gorunur ve sebebi okunur.
+
 ### Iki sira: ORTAK ve OZEL
 
 Kuyruk ortak — kim bastiysa, GPU'su bos olan makine uretir. Ama iki uretici
@@ -158,18 +180,40 @@ Her makine **once kendi ozel sirasini** bosaltir, sonra ortak siradan devam
 eder. Baskasinin ozel sirasindaki is o makinede uretilmez — listede "baska
 makinenin ozel sirasi" diye gorunur, yani kimin bekledigi bellidir.
 
+**Ilk kurulumda ad sorulur** — makinenin adi degil, KISININ adi:
+
 ```bash
-python -m animcreator.cli kurulum              # bu makineye ad ver (bir kez)
-python -m animcreator.cli queue ... --ozel     # kendi sirama
-python -m animcreator.cli kuyruklar            # ikisini birlikte gor
+python -m animcreator.cli kurulum        # "ad: " diye sorar -> secrets'a yazar
+python -m animcreator.cli kurulum --ad furkan     # sormadan
+```
+
+Ad makine adindan (DESKTOP-XYZ) da turetilebilir ama kuyruga bakan kimse kimin
+oldugunu anlamaz; `furkan` okunur. Yeni bir makine kurarken bu adim atlanmaz.
+
+```bash
+python -m animcreator.cli queue ... --ozel     # KENDI sirama
+python -m animcreator.cli queue ...           # ORTAK siraya (varsayilan)
+python -m animcreator.cli kuyruklar           # ikisini birlikte gor
 python -m animcreator.cli sira --clip X --ana --basa   # ozelden ortaga tasi
 ```
 
-Ad makine adindan (DESKTOP-XYZ) turer ama `kurulum` ile insan adi vermek
-gerekiyor: kuyruga bakan herkes kimin sirasi oldugunu okuyabilmeli.
+**Hangi veriye bakiliyor:**
+
+| yaparken | okunan |
+|---|---|
+| `--ozel` ile is basmak | yalnizca KENDI ozel siran; baska makinede uretilmez |
+| ortak siraya is basmak | ORTAK kuyrugun kendisi — kac is var, sonuna eklenir |
+| `kuyruklar` / panel / web | ikisi birden, ayri basliklar altinda |
+
+Ortak siraya bakan her sey ortak veriyi ceker (`params.kuyruk` bos olanlar);
+ozel siraya bakan yalnizca kendi adini. Baskasinin ozel sirasindaki is
+gorunur ama "baska makinenin ozel sirasi" diye isaretlidir ve buradan
+uretilmez — kimin bekledigi bellidir, kimse otekinin isini kapmaz.
 
 Iki sira AYRI duraklatilabiliyor (panelde iki dugme): ozel sirayi durdurup
 ortaktan devam etmek anlamli bir istek.
+
+Yeni bir makineyi bastan kurmak: depodaki `KURULUM.md`.
 
 ### Silmek ve degistirmek — TOPLU, tek istekle
 
