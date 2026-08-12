@@ -143,6 +143,42 @@ Durust ol: zincir uzadikca sapma birikir. Ilk parca referansa birebir uyar,
 dorduncu biraz uzaklasir. Uzun istiyorsan ya kisa tut ya da birkac parcada bir
 yeni referans kare ver.
 
+### LOGLARI VE OLCUMLERI OKU — indirdiginle birlikte gelir
+
+Bir klip "temiz" gorunup kullanilamaz olabilir. Kapilar bunu olcuyor ama
+uyarilar bugune kadar YALNIZCA uretici makinedeki `work/agent.log`'da
+kaliyordu ve o dosya **gitignored** — baska bir makinede calisan kimse
+goremiyordu. Olculdu: ince kanali esigin ustunde 20, dongu dikisi esigin
+ustunde 300 deneme vardi ve indiren taraf hicbirini bilmiyordu.
+
+`download` artik dosyalarin YANINA rapor yaziyor:
+
+```
+out/olcumler.md     insan icin: her deneme + "GOZLE BAK" uyarilari
+out/olcumler.json   makine icin: ayni veri, ham
+```
+
+**Indirdikten sonra once `olcumler.md`'yi oku, sonra videoyu ac.** Rapor sana
+nereye bakacagini soyluyor; uyari "bozuk" demek degil, "gozunle bak" demek.
+
+Esikler: ince kanal > 6.5, delik > 8.0, dongu dikisi > 12.0.
+
+Ayni veri her makineden **sorguyla** da alinabilir (SQL gerekmiyor):
+
+```bash
+# dikisi 12'nin ustunde olan denemeler
+curl "$URL/rest/v1/anim_takes?select=id,measured->sheet->>seam&measured->sheet->>seam=gt.12"
+# govdesi yenmis olabilecekler
+curl "$URL/rest/v1/anim_takes?select=id&measured->sheet->>thinPiercePct=gt.6.5"
+```
+
+Uretici makinedeysen ham log da orada:
+
+```bash
+tail -40 work/agent.log          # uretim, sheet, uyarilar, istekler
+grep "GOZLE BAK\|basarisiz\|UYARI" work/agent.log
+```
+
 ### ONAY HICBIR SEYI SILMEZ
 
 Bir denemeyi onaylamak `approved_take` ve `is_current` isaretlerini tasir,
