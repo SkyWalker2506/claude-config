@@ -143,6 +143,36 @@ Durust ol: zincir uzadikca sapma birikir. Ilk parca referansa birebir uyar,
 dorduncu biraz uzaklasir. Uzun istiyorsan ya kisa tut ya da birkac parcada bir
 yeni referans kare ver.
 
+### Silmek ve degistirmek — TOPLU, tek istekle
+
+Anon anahtarin SILME ve GUNCELLEME yetkisi yok, ve bunu **sessizce** yapiyor:
+PostgREST kapali bir DELETE/UPDATE'i hata ile degil **"0 satir etkilendi"** ile
+donduruyor. Yani istek 200 doner, govde bos gelir, satir yerinde kalir ve
+cagiran taraf sildigini sanir. Olculdu: 82 silme denemesi, hepsi basarili
+gorundu, tabloda hicbir sey degismedi — "33 is iptal edildi" raporu bu yuzden
+yanlisti.
+
+Dogru yol istek birakmak; ajan servis anahtariyla uyguluyor:
+
+```bash
+python -m animcreator.cli sil --project "World Dominion" --dry-run
+python -m animcreator.cli sil --clip ambient2
+python -m animcreator.cli guncelle --project "World Dominion" \
+    --negative "poz degistirme, kollari indirme, ayaga kalkma, yurume, donme"
+```
+
+**Is basina bir istek YOLLAMA.** Iki komut da eslesen butun isleri **tek** dosyada
+gonderiyor (`{"isler": [...]}`); 200 is silmek 200 dosya degil, bir dosya.
+Dongu icinde tek tek istek birakmak depoyu doldurur ve ajanin her turunu
+yavaslatir. Once `--dry-run` ile neyin gidecegini gor.
+
+Ikisi de **gercekten uygulanana kadar bekliyor** ve satirin gittigini/yazildigini
+dogruluyor — "istek gonderildi" ile "is degisti" ayni sey degil.
+
+Yalnizca **bekleyen** isler silinir/degisir. Uretilmis bir isi silmek take'i
+sahipsiz birakir, prompt'unu degistirmek de o klibin neyle uretildigi kaydini
+bozar.
+
 ### Yanlis yere dustuyse
 
 ```bash
