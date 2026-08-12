@@ -410,6 +410,38 @@ Uc katmanli korunma, ucu de gerekli:
 3. Diske yazdiktan sonra: `file -b --mime-type <dosya>` → `image/png` degilse sil ve
    tekrar indir.
 
+### Bir turda uretilen HEPSINI tek seferde indir — seri menusu
+
+Toplu bir istek bir SERI uretir, ve seri kendi indirme yolunu tasir: on gorseli tek tek
+kurtarmaya calismak yerine on tanesini birlikte indirir. Ekran kaydindan cikarildi
+(2026-08-12).
+
+**Adim 1 — gorselin KENDI paylas ikonu.** Fare gorselin uzerine gelince sag altta,
+"Duzenle" yazisinin karsisinda bir paylas ikonu belirir. Aciliyor menuede iki satir
+vardir; ikincisi seriyi verir.
+
+![Seri menusu](media/series-menu.png)
+
+Bu ikonu mesajin ustundeki paylas ikonuyla KARISTIRMA. Mesaj duzeyindeki paylas tum
+konusmayi paylasir ve seri secenegi cikmaz.
+
+**Adim 2 — acilan pencerede Indir.** Baslik altinda "N gorsel birlikte paylasiliyor"
+yazar; bu, dogru yerde oldugunun teyididir. Alt sirada **Indir** en sagdadir, hemen
+solunda **Reddit** durur.
+
+![Seri penceresi](media/series-modal.png)
+
+N dosya birden `~/Downloads`'a iner, adlari `ChatGPT Image ... (1..N).png` seklindedir ve
+uretim sirasindadir.
+
+**Tuzak — pencere sayfa yuklemesi basina ILK gorsele kilitlenir.** Tek gorsel indirmek
+icin bu pencereyi arka arkaya kullanma: ikinci paylas tiklamasi ayni pencereyi geri
+getirir, baslik degismez ve **ayni dosyayi tekrar indirirsin**. 2026-08-12'de sekiz
+indirme yapildi, sekizinin de MD5'i ayniydi ve dort karta yanlis tablo yazildi.
+Korunma: her indirmeden once pencerenin BASLIGINI oku, beklediginle esles; eslesmiyorsa
+sayfayi yenile. Tek tek indirme icin zaten yukaridaki sayfa ici `fetch` yolu vardir —
+paylas penceresi yalniz SERI icindir.
+
 ### Yedek: `fetch` engellenirse native indirme
 
 Bazi oturumlarda tarayici araci imzali query string'i tasiyan istegi engelliyor
