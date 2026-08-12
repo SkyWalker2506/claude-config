@@ -412,35 +412,66 @@ Uc katmanli korunma, ucu de gerekli:
 
 ### Bir turda uretilen HEPSINI tek seferde indir — seri menusu
 
-Toplu bir istek bir SERI uretir, ve seri kendi indirme yolunu tasir: on gorseli tek tek
-kurtarmaya calismak yerine on tanesini birlikte indirir. Ekran kaydindan cikarildi
-(2026-08-12).
+Toplu bir istek bir SERI uretir ve seri kendi indirme yolunu tasir: N gorseli tek tek
+kurtarmaya calismak yerine N tanesini birlikte indirir. Ekran kaydindan cikarildi
+(2026-08-12); asagidaki secici ve metinler o oturumda dogrulandi.
 
-![Adim 1](media/seri-1.png)
+**Ne zaman:** yalnizca bir turda birden fazla gorsel uretildiyse. Tek gorsel icin bu
+menuyu ACMA — yukaridaki sayfa ici `fetch` yolu hem adi verir hem de asagidaki kilitlenme
+sorunu yoktur.
 
-![Adim 2](media/seri-2.png)
+**Tiklamalar gercek girdi olmali.** `computer` araciyla tikla. Menuyu acmak icin JS
+`.click()` de calisir, ama indirmeyi tetikleyen adimda gercek tiklama kullan.
 
-![Adim 3](media/seri-3.png)
+```js
+// 1. Paylas dugmeleri yalniz fare gorselin uzerindeyken DOM'a girer.
+//    Once hedef gorseli goruse getir ve uzerine gel, sonra say.
+const shares = [...document.querySelectorAll('button')]
+  .filter(b => /bu görseli paylaş/i.test(b.getAttribute('aria-label') || ''));
+shares.length            // 0 ise hover etmemissin: once img.scrollIntoView + pointerover
+```
 
-![Adim 4](media/seri-4.png)
+Sirasiyla:
 
-![Adim 5](media/seri-5.png)
+| # | Eylem | Dogrulama — bunu okumadan sonraki adima gecme |
+|---|---|---|
+| 1 | Hedef gorsele hover et | `shares.length > 0` |
+| 2 | O gorselin paylas dugmesine tikla | menude iki satir: `Bu görsel` ve `Bu seride yer alan N görselin tamamı` |
+| 3 | **Ikinci** satira tikla | `document.querySelector('[role="dialog"]')` var |
+| 4 | Pencerenin alt basligini oku | `N görsel birlikte paylaşılıyor` — N beklediginle ayni mi |
+| 5 | `İndir`e tikla | Diskte N yeni dosya |
+
+Penceredeki dugmeler sirayla: `['', 'Bağlantıyı kopyala', 'X', 'LinkedIn', 'Reddit',
+'İndir']`. **`İndir` sondadir ve hemen solunda `Reddit` vardir** — koordinatla degil,
+metinle bul:
+
+```js
+const dlg = document.querySelector('[role="dialog"]');
+const title = dlg?.querySelector('h1,h2,h3')?.textContent;          // hangi gorsel/seri
+const sub   = dlg?.textContent.match(/(\d+)\s+görsel birlikte/)?.[1];  // kac dosya inecek
+const btn   = [...dlg.querySelectorAll('button')]
+  .find(b => (b.textContent || '').trim() === 'İndir');
+```
+
+Dosyalar `~/Downloads`'a `ChatGPT Image ... (1..N).png` adiyla, uretim sirasinda iner.
 
 #### Tuzak: pencere sayfa yuklemesi basina ILK gorsele kilitlenir
 
-Bu pencereyi tek gorseller icin arka arkaya kullanma. Ikinci paylas tiklamasi ayni
-pencereyi geri getirir — baslik degismez — ve **ayni dosyayi tekrar indirirsin**.
-2026-08-12'de sekiz indirme yapildi, sekizinin de MD5'i ayniydi, ve dort karta yanlis
-tablo yazildi; geri almak icin `git checkout` gerekti.
+Ikinci bir paylas tiklamasi ayni pencereyi geri getirir — baslik degismez — ve **ayni
+dosya tekrar iner**. Taze `find` almak, JS ile dogrudan tiklamak, farkli bir dugme secmek:
+ucu de denendi, ucu de ayni pencereyi acti. Kilidi yalnizca sayfa yenilemesi cozer.
 
-Iki korunma, ikisi de gerekli:
+2026-08-12'de bu sekilde sekiz indirme yapildi, sekizinin de MD5'i ayniydi ve dort karta
+yanlis tablo yazildi; geri almak icin `git checkout` gerekti.
 
-1. Her indirmeden once pencerenin **basligini oku** ve bekledigin gorselle esles.
-   Eslesmiyorsa sayfayi yenile — yenileme kilidi acar.
-2. Diskte **icerige bak**. Sira dogru olsa bile bir kez gozle dogrulamadan karta yazma.
+Iki kapi, ikisi de zorunlu:
 
-Tek gorsel icin bu menuyu hic acma: yukaridaki sayfa ici `fetch` yolu adi da veriyor ve
-kilitlenme sorunu yok. Seri menusu yalnizca SERI icindir.
+1. **Her indirmeden once pencerenin basligini oku.** Bekledigin gorsel degilse indirme —
+   sayfayi yenile, hover'dan bastan basla.
+2. **Diske yazmadan once icerige bak.** Sira dogru gorunse bile en az bir kez gozle
+   dogrula; ayni MD5 kontrolu de ucuzdur:
+   `md5 ~/Downloads/ChatGPT*.png | awk '{print $NF}' | sort | uniq -d` — cikti varsa
+   ayni dosyayi birden fazla kez indirmissin.
 
 ### Yedek: `fetch` engellenirse native indirme
 
