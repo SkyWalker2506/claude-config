@@ -15,6 +15,12 @@ pahaliya patlayan hatalarin hepsi operator tarafinda oldu.
 - Inceleme sitesi: https://animation-review-skywalker2506s-projects.vercel.app
 - Kuyrugu suren surec: GPU'lu makinede `python -m animcreator.agent --watch`
 
+**Kaynak kare = referans.** Bu hatta stil zaten tarif edilmiyor, kaynak
+gorselden geliyor — ve o yuzden kaynak karenin kendisi tek stil otoritesi.
+Ayni karakterin farkli animasyonlari icin **ayni kaynak sprite** kullanilir;
+yuruyuste kapusonlu, saldirida kel bir karakter tutarsizligi buradan cikar.
+Genel kural: **[/reference-style](../reference-style/SKILL.md)**.
+
 ---
 
 ## Isin akisi

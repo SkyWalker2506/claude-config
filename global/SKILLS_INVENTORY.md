@@ -49,6 +49,7 @@ Auto-generated from global/skills/. Total: 54 skills.
 | ralph | /ralph | Convert PRD to prd.json for Ralph autonomous agent loop |
 | rbg | /rbg | Görevi arka planda çalıştır (run_in_background) |
 | refine | /refine | CLAUDE.md, SKILL.md, settings.json ve diger config dosyalarini rafine et |
+| reference-style | /reference-style | Referanstan stil aktarimi — stili TARIF ETME, GOSTER; adherence olculerek ayarlanir |
 | repeat | /repeat | Herhangi bir skill/komutu N kez tekrarla |
 | review | /review | Tek task/PR/commit review — C3 (AI Reviewer) veya C1 (Lead Reviewer) |
 | review-ops | /review-ops | Orchestrator/A1 büyük iş bitince tetikle — batch task review, PR merge |

@@ -21,6 +21,22 @@ Bu skill tek kare illustrasyon ve kart gorselleri icin.
 
 ---
 
+## Kural −1 — Referans varsa STILI TARIF ETME
+
+**Bu kural otekilerin hepsinden once gelir.** Elde bir referans gorsel varsa
+prompt stil tarifi ICERMEZ: yalniz ozne ve kisitlar kalir, stil blogu
+BOSALTILIR.
+
+Olculdu: metinle stil tanimlama dort tur surdu ve dordu de iskaladi; referans
+dogrudan verilince **tek turda** oturdu. Gerekce, olculmus agirliklar ve
+"benzesin" isteginin iki ayri anlami:
+**[/reference-style](../reference-style/SKILL.md)**.
+
+Kullanici "buna benzesin" diyor ama referans verilmemisse **referansi ISTE**.
+Tarif etmeye kalkma — dort tur boyunca denendi.
+
+---
+
 ## Kural 0 — Prompt her zaman Ingilizce
 
 Gorsel uretim modelleri Ingilizce promptta belirgin sekilde daha iyi sonuc veriyor:
