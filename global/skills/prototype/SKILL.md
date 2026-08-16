@@ -147,7 +147,7 @@ denemesi bos yere uretilmis olur ve kota gider.
 
 | Girdi | Ne yap |
 |---|---|
-| GDD dosyasi verildi | Oku, bir paragrafla ozetle, **onay al**, devam et |
+| GDD dosyasi verildi | Oku, bir paragrafla ozetle, **onay al**, devam et. Dokuman supheliyse (kapsam sisik, mekanikler sayisiz) once **`/gdd-review`** — puanla ve v2'yi onaylat |
 | Sadece fikir verildi | **Tek sayfa GDD'yi sen yaz** (asagidaki 6 baslik), goster, onay al |
 | Fikir de belirsiz | Tek turda sor — tur, ton, kamera, oyuncunun ana eylemi. Cevabi bekle |
 
@@ -159,6 +159,10 @@ Bu tek bloklayan adimdir; onaysiz Faz 1'e gecme. Onaydan sonra **hicbir sey icin
 durma** — sanat stili onayi dahil, o hat arkada doner.
 
 ## Faz 1 — GDD analizi (3 dk)
+
+> Bu fazin tam tarifi **`/gdd-review extract`**'tedir. Buradaki ozet kendi basina
+> yeterlidir; GDD buyukse ya da kapsam belirsizse o skill'i cagir, `SCOPE.md` +
+> `ART.md` hazir gelsin — ama **bekleme, ayni oturumda kendin de yapabilirsin.**
 
 Kod yazmadan once **cekirdek donguyu** cikar:
 
