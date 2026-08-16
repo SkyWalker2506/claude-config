@@ -165,6 +165,23 @@ sirasini hic tasimiyor.
 
 ---
 
+## 0.5 Uretmeden once: EKSIK LISTESI
+
+Kuyruga koymadan once diskte ne oldugunu oku ve **yalnizca eksikleri** uret.
+Ayrintili kural: [/image-prompt](../image-prompt/SKILL.md) Kural 0.5. Ozet:
+hedef listesi eksi diskteki dosyalar = uretilecekler; projede eksik hesabi yapan
+bir arac varsa once o calisir.
+
+---
+
+## 0.5 Uretmeden once: EKSIK LISTESI
+
+Kuyruga koymadan once diskte ne oldugunu oku, **yalnizca eksikleri** uret. Kural
+ve komutlar: [/image-prompt](../image-prompt/SKILL.md) Kural 0.5. Projede eksik
+hesabi yapan bir arac varsa once o calisir.
+
+---
+
 ## 0. Sohbet adini coz — kullaniciya sorma
 
 Sohbet adi **hicbir zaman** bloklayan bir soru degildir. Su sirayla coz:

@@ -33,6 +33,46 @@ metin Ingilizcedir. Turkce sahne tarifi yazma, ceviri de yaptirma.
 
 ---
 
+## Kural 0.5 — Once EKSIKLERI cikar, sonra uret
+
+Uretime baslamadan once **neyin zaten var oldugunu** diskten oku ve yalnizca
+eksikleri kuyruga koy. Var olani yeniden uretmek iki sekilde zarar verir: kota
+yakar ve elde duran, onaylanmis bir varligi daha kotusuyle degistirme riski
+dogurur.
+
+```bash
+# ornek: hedef listesi ile diskteki dosyalari karsilastir
+ls art/raw/*.png | sed 's/.*\///' > /tmp/var.txt
+# hedefte olup /tmp/var.txt'te olmayanlar = uretilecekler
+```
+
+Projede eksik hesabini yapan bir arac varsa (orn. animation-creator'daki
+`scripts/eksikler.py`) **once onu calistir**, listeyi elle cikarma.
+
+Kullaniciya gonderilen ozet de eksik listesini soyler: "24 varliktan 6'si eksik,
+o 6'yi uretiyorum" — "hepsini uretiyorum" cumlesi, var olani ezmenin habercisi.
+
+---
+
+## Kural 0.5 — Once EKSIKLERI cikar, sonra uret
+
+Uretime baslamadan once **neyin zaten var oldugunu** diskten oku; kuyruga yalnizca
+EKSIKLER girer. Var olani yeniden uretmek iki turlu zarar: kotayi yakar ve elde
+duran, onaylanmis bir varligi daha kotusuyle degistirme riski dogurur.
+
+```bash
+# hedef listesi eksi diskte olanlar = uretilecekler
+ls art/raw/*.png | sed 's|.*/||' > /tmp/var.txt
+```
+
+Projede eksik hesabini yapan bir arac varsa (orn. animation-creator'daki
+`scripts/eksikler.py`) listeyi elle cikarma, **once o araci calistir**.
+
+Kullaniciya verilen ozet de eksik listesini soyler: "24 varligin 6'si eksik, o
+6'yi uretiyorum". "Hepsini uretiyorum" cumlesi, var olani ezmenin habercisidir.
+
+---
+
 ## Kural 1 — Tek mesajda 10 konu, damga EN SONDA
 
 **Tek mesaj = tek istek. Uretim yine teker teker olur, ama sen 10 yerine 1 istek
@@ -92,10 +132,23 @@ kaymasi uretti.
 
 ### Kolaj gelirse
 
-Tek mesajda 10 istendigi halde izgara/contact sheet geldiyse: uretimi durdur, damganin
-gercekten **en sonda** ve ilk satirin `Generate N separate images...` oldugunu dogrula,
-ayni mesaji tekrar gonder. Ikinci kez de kolaj geliyorsa o tur icin tek-mesaj-tek-gorsele
-dus ve bunu kullaniciya soyle.
+**Once tespit, sonra karar.** Kolaji indirmeden yakalamanin uc olculmus yolu var;
+ekran goruntusune bakmadan once bunlara bak:
+
+| olcut | kolaj isareti |
+|---|---|
+| `img.alt` metni | "Alti ... Amblemi", "Six ... icons" gibi COKLUK bildiren ad (2026-08-13'te tam boyle yakalandi) |
+| donen benzersiz dosya sayisi | Istenen N iken 1-2 dosya dondu |
+| en/boy orani | Kare istendi, 3:2 / 2:3 geldi |
+
+Kolaj gorursen o gorseli **indirme** ve `Generate N separate images` formatini
+tekrar gondermeyi **bir kez** dene. **Ikinci kez zorlama:** ilk tekrar da kolaj
+verirse o tur icin tek-mesaj-tek-gorsele dus. (Once "iki kez dene" yaziyordu;
+olculdu, ikinci toplu deneme 5 dakika yakip yine kolaj verdi. Tek tek gonderim
+konu basina ~1.5 dk ve %100 ayri dosya dondurdu.)
+
+Tek-tek moda dusunce STYLE/BACKGROUND/NEGATIVE bloklari **harfi harfine ayni**
+tasinir; yalniz konu satiri degisir. Bloklari kisaltirsan seri tutmaz.
 
 ---
 
