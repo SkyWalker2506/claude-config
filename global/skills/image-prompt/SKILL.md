@@ -198,6 +198,47 @@ konularda promptun tamami reddedilebiliyor; gorsel/mekanik dilde kal.
 
 ---
 
+## Kural 7 — Sonradan ANIMASYON uretilecekse form bastan degisir
+
+Bir karakter/yaratik gorseli ileride I2V ile canlandirilacaksa (bkz. `/animate`),
+gorselin **yonu, pozu, kadraji ve zemini** o anda karara baglanir. Model verilen kareyi
+canlandirir, **icerigini degistiremez**: onden bakan bir figure yuruyus, kilic tutan bir
+figure silahsiz saldiri, cuppeli bir figure adim verilemez. Sonradan duzeltilmiyor —
+sprite yeniden uretiliyor.
+
+Tam standart ve kabul kapisi: **`~/.claude/skills/animate/animation-ready-sprite.md`**.
+Prompt yazarken zorunlu ozet:
+
+| | |
+|---|---|
+| Yon | **screen-right**, govde yan 3/4 (~20-30 derece kameraya donuk). Sol taraf uretilmez, runtime flip |
+| Poz | notr dovus durusu; ayaklar ayrik, kollar govdeden ayrik. T/A-pose degil, donmus aksiyon degil |
+| Bacak | yuruyecekse ayak bilegi + alt bacak gorunur |
+| Silüet | kol-govde, bacak-bacak arasinda negatif bosluk; pelerin/sac govdeye yapisik degil |
+| Kadraj | tam boy, ~%6 pay, ortalanmis, ayak tabani sabit taban cizgisinde |
+| Zemin | **duz saf siyah**; gradient/zemin plakasi/temas golgesi yok |
+| Isik | duz onden; sert rim/arka isik yok |
+| Efekt | motion blur / partikul / aura / emissive tasma yok — emissive ayri maske |
+| Tek figur | kolaj, contact sheet, bust, uzuv parcasi animasyon kaynagi olamaz |
+
+Bu tur icin **Kural 4'un "seffaf zemin" satiri gecersizdir** — animasyona girecek
+karakter siyah zeminde uretilir. Saydami model boslugu uydurarak dolduruyor.
+
+Metin yasagi (Kural 5) burada iki kat onemli: sprite flip edildiginde harf ters okunur.
+
+Ingilizce prompt karsiligi — ortak blogun icine harfi harfine:
+
+> `Full-body character, facing screen-right, body turned to a side three-quarter view
+> about 25 degrees toward camera. Neutral combat stance, feet apart, arms clear of the
+> torso, knees slightly bent. Ankles and lower legs visible. Whole figure inside frame
+> with even margin, feet resting on a consistent baseline, centred. Flat pure black
+> background, no floor, no contact shadow, no gradient, no vignette. Even frontal
+> lighting, no strong rim or backlight. One single figure only. No motion blur, no
+> particles, no glow spill outside the silhouette. Absolutely no text, letters, numbers
+> or logos.`
+
+---
+
 ## Uretim sonrasi — olc, goz karari verme
 
 Cikti geldiginde paleti **olc**. Goz "iyi gibi" der, sayi yalan soylemez.

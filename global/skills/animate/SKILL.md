@@ -340,6 +340,16 @@ politikayi degil.
 
 ## 2. Kaynagi hazirla — ajan bunu yapmaz
 
+**Once forma bak: [animation-ready-sprite.md](animation-ready-sprite.md).** Sprite
+hangi yone bakiyor, pozu ne, bacaklari gorunuyor mu, zemini ne — animasyonun
+kalitesini bunlar belirliyor, prompt degil. Yanlis formda uretilmis bir sprite
+hazirlik adimlariyla kurtarilmaz; o belge hem uretim standardini hem kabul kapisini
+tasiyor. **Sprite'i uretirken de o belgeye gore uret** — animasyon uretecegini
+biliyorsan form karari sprite promptunda verilir, burada degil.
+
+Ozet: saga bakan yan 3/4, notr durus, ayaklar gorunur, tek figur, duz siyah zemin,
+golge yok, tam boy + %6 pay. Sol taraf uretilmez — runtime flip.
+
 Yukledigin gorsel ne ise model onu canlandirir. Hazirlik senin isin:
 
 1. Alfa kutusuna kirp
@@ -387,3 +397,9 @@ Model verilen kareyi canlandirir; icerigini degistiremez.
 
 Yeni bir nesne istiyorsan onu **hareket olarak** yaz: "ates ekle" calismaz,
 "egilip feneri yere birakiyor, onunde ates yaniyor, elini uzatiyor" calisir.
+
+Bu bolumdeki uc madde de ayni koke bakiyor: **kaynagin formu**. Yuva/silüet
+uyusmazligini tek tek kovalamak yerine sprite'i bastan animasyona uygun uret —
+[animation-ready-sprite.md](animation-ready-sprite.md) o formu ve kabul kapisini
+tanimliyor. Elinde zaten yanlis formda master varsa cope atma: kimlik kilidini
+master'dan okuyup ondan **ayri bir anchor** turet (§9), master kanon olarak kalir.

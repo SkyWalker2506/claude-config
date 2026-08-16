@@ -106,6 +106,32 @@ Walk cycle için image-gen güvenilmez; video-gen kullan. Anchor PNG'yi referans
 
 ---
 
+## Side-scroller / I2V modu — 4 yön DEĞİL, tek yön
+
+Yukarıdaki 4-yön (up/down/right/idle) mimarisi **top-down** oyunlar için. Yan bakışlı
+(side-scroller / platformer / metroidvania) bir oyunda ve animasyon Wan I2V ile
+üretilecekse mimari değişir:
+
+| | top-down strip modu | side-scroller I2V modu |
+|---|---|---|
+| Çıktı | 4 × 1×8 strip | **1 adet tam boy tek figür PNG** (anchor) |
+| Yön | up / down / right + idle | **yalnız screen-right**, gövde yan 3/4 (~20-30°) |
+| Sol | ayrı strip yok, runtime flip | aynı — runtime flip (oyuncu sağa, düşman sola) |
+| Arka plan | magenta #FF00FF | **düz saf siyah** — I2V saydamı/magentayı fon sanıp uyduruyor |
+| Animasyon | image-gen strip / video-gen | I2V, anchor'dan üretilir |
+
+Tam standart ve kabul kapısı: **`~/.claude/skills/animate/animation-ready-sprite.md`**.
+Zorunlu maddeler: nötr duruş (T/A-pose değil, donmuş aksiyon değil), ayak bileği + alt
+bacak görünür, kol-gövde arası negatif boşluk, tam boy + ~%6 pay, ayak tabanı sabit
+taban çizgisinde, temas gölgesi yok, düz frontal ışık, tek figür, metin yok
+(flip'te ters okunur), emissive/VFX gömülü değil.
+
+**BACKGROUND LOCK bu modda magenta değil siyahtır.** `master_style` ve mevcut
+BG_RULE'ların üzerine geçer; iki kural çakışırsa I2V modu kazanır — magenta chroma-key
+alpha için iyi ama I2V girdisi olarak ölçülmüş şekilde bozuk sonuç veriyor.
+
+---
+
 ## Lessons Learned (kanlı bedeller)
 
 Bu skill'in iterasyonlarında öğrenilen kritik prompt mühendisliği dersleri. Yeni proje veya yeni strip türü eklerken bu öğrenimleri koru:
