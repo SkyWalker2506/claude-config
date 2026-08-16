@@ -95,6 +95,26 @@ NEGATIVE (identical in all 10): <negatifler>
 [CLAUDE — <tarih saat> — <proje>, <tur adi>]                             <- DAMGA, EN SON
 ```
 
+### Ilk satiri guclendirmeden 10'luk gonderme
+
+Tek basina `Generate 10 separate images` yetmiyor: model onu "on konuyu tek tuvale
+diz" diye okuyabiliyor (olculdu 2026-08-16 — on karakter tek siyah tuvalde izgara
+halinde dondu, kadraj ve yon talimatlari da o izgarada eridi).
+
+Ilk blok bu uc cumleyi **birlikte** tasimali:
+
+```
+Generate 10 separate images, one for each numbered subject below.
+Produce them SEQUENTIALLY, one image file at a time: finish subject 1 as its own
+image, then subject 2, and so on through subject 10.
+IMPORTANT: each output is its OWN separate image file. Do not combine them into a
+grid, contact sheet, collage, line-up or single canvas. One single subject per image.
+```
+
+"Sequentially / one at a time" cumlesi kritik olan: kolaj, modelin isi **tek uretim
+cagrisi** sanmasindan cikiyor. Sirali uretim istendiginde her konu kendi cagrisini
+aliyor ve per-konu kadraj/yon talimatlari ayakta kaliyor.
+
 ### Damga neden sonda
 
 Bu iki kez yer degistirdi, ikisinin de sebebi olculdu:

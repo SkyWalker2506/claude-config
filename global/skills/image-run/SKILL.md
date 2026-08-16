@@ -75,6 +75,47 @@ Teshis ana hatta yapilir, duzeltilmis prompt yine low ajana verilir.
 
 ---
 
+## MOD — "Sohbet"te uret, "Calisma"da ASLA
+
+ChatGPT'nin ust ortasindaki iki sekme (`Sohbet` / `Calisma`) ayni sey degil ve
+**ayri kotalari var**. Gorsel uretimi **her zaman `Sohbet` modunda** yapilir.
+
+Olculdu (2026-08-16): yeni sekme `Calisma` modunda aciliyor, composer'in ustunde
+*"Simdilik Calisma kullanim hakkiniz kalmadi"* ve kenar cubugunda *"Haftalik limit
+%0 kaldi"* cikiyor; gonder dugmesi pasif. Ayni hesapta `Sohbet` sekmesine gecince
+dugme aninda aktif oldu ve uretim normal calisti. Yani "kota bitti" sanip Gemini'ye
+dusmeden **once modu kontrol et** — cogu zaman biten kota Calisma kotasidir.
+
+Her sekmede, prompt yazmadan **once**:
+
+```js
+const t = [...document.querySelectorAll('button,[role="tab"],[role="radio"]')]
+  .find(b => b.textContent.trim() === 'Sohbet');   // EN arayuzde 'Chat'
+if (t) t.click();
+```
+
+Calisma modu ayrica ajan gibi davranip promptu yorumluyor; bu hatta istenen sey
+promptun **oldugu gibi** uretime gitmesi. Iki sebep de ayni sonuca cikiyor:
+Sohbet modu.
+
+---
+
+## GONDER — koordinatla degil, `ref` ile tikla
+
+Olculdu (2026-08-16): ekran koordinatiyla yapilan uc gonder tiklamasi **sessizce
+hicbir sey yapmadi** — URL `chatgpt.com/` olarak kaldi, mesaj gitmedi, ama tiklama
+"basarili" dondu. Ayni sekmede `find` ile bulunan `Prompt gonder` dugmesine `ref`
+ile tiklaninca mesaj aninda gitti ve URL sohbete dondu.
+
+```
+find(query: "send prompt button")  ->  computer(action: "left_click", ref: "ref_N")
+```
+
+**Gonderiyi her zaman URL'den dogrula:** `chatgpt.com/` hala aciksa mesaj gitmemistir.
+Composer'in bosalmasi da yeterli kanit degil.
+
+---
+
 ## Saglayici — ChatGPT birincil, kota bitince Gemini
 
 ChatGPT'nin gorsel kotasi bir batch'in ortasinda bitebiliyor. **Kota bitti diye isi
