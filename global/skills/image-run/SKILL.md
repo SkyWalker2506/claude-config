@@ -75,6 +75,33 @@ Teshis ana hatta yapilir, duzeltilmis prompt yine low ajana verilir.
 
 ---
 
+## 0. KAPI — gonderilecek her konu icin "bu diskte var mi?"
+
+`/image-prompt` Kural 0.5 eksik listesi cikarmayi soyluyor; burasi onun **gonderme
+kapisi**: eksik listesi cikarilmadan hicbir batch gonderilmez.
+
+Olculdu (2026-08-16): onaylanmis 54 karakter master'i diskte dururken ayni
+karakterler icin 10'luk anchor batch'leri gonderildi. Ikisi de kolaj/yon hatasiyla
+geri geldi, arada hesabin gorsel kotasi bitti ve **gercekten eksik olan** liste
+(87 environment/ambient varligi) hic uretilemedi. Kotayi bitiren sey yeni is degil,
+var olanin kopyasiydi.
+
+Gondermeden once, tek satirlik kanit uret:
+
+```bash
+ls <asset-dizini> | wc -l          # elde ne var
+# hedef listesi - eldekiler = uretilecekler
+```
+
+Ve kullaniciya **sayiyla** soyle: `87 varliktan 87'si eksik, 10'luk 9 tur gidiyor`.
+"Hepsini uretiyorum" cumlesi kurulmussa kapi acilmamis demektir.
+
+**Yeni gorunum ≠ eksik varlik.** Var olan bir master'in baska acisi (yan bakis
+anchor, farkli poz) **turetme** isidir: kaynak referans olarak yuklenir, sifirdan
+uretilmez. Sifirdan uretim onaylanmis kimligi tazeler ve GDD drift yasagina girer.
+
+---
+
 ## MOD — "Sohbet"te uret, "Calisma"da ASLA
 
 ChatGPT'nin ust ortasindaki iki sekme (`Sohbet` / `Calisma`) ayni sey degil ve
