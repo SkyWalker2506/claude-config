@@ -191,6 +191,47 @@ Gemini bir turda ChatGPT kadar hizli vermiyor ama **8 konuluk referanssiz sablon
 yuklendigi icin `img` sayisi az gorunur — dogru sayac sayfadaki **"Tam boyutlu resmi
 indir" dugmelerinin adedidir.
 
+#### Gemini bir mesaja BIR gorsel verir — parcayi mesaja degil SEKMEYE bol
+
+Olculdu (2026-08-16): 10 numarali konu iceren tek mesaj **1 gorsel** dondurdu, kalan
+dokuzu hic uretmedi. ChatGPT'nin "tek mesaj 10 konu" ekonomisi Gemini'de **yok**.
+
+Dogru sekil: **bir mesaj = bir konu**, hiz paralel sekmeden gelir. Bes sekme acilir,
+her sekme kendi konu dilimini sirayla yurutur (gonder -> bekle -> indir -> sonraki).
+Bir sekmeye, oncekinin gorseli inmeden ikinci konu gonderilmez. Bu sekilde 15 konuluk
+L1 seti tek oturumda, kota duvarina carpmadan tamamlandi.
+
+Bu bicimde metin sablonunun **degismeden** her mesaja yeniden gitmesi gerekir; blok
+kisaltilirsa seri tutmaz.
+
+#### Metni Quill'e yazmak — insertText ilk satirda kesiyor
+
+Olculdu (2026-08-16): `execCommand('insertText', ...)` cok satirli promptun **yalnizca
+ilk satirini** yaziyor (4600 karakterlik metinden 152 karakter dustu), `insertHTML` ise
+Trusted Types'a takilip `TypeError` firlatiyor. Calisan tek yol Quill ornegi:
+
+```js
+const el = document.querySelector('div.ql-editor');
+el.parentElement.__quill.setText(PROMPT, 'user');   // 'user' kaynagi Angular'i tetikler
+```
+
+Yazdiktan sonra `el.innerText.length`'i **geri oku**; beklenenden kisaysa metin eksiktir.
+
+#### Sekme cursu — ayni thread'de tekrar deneme, YENI sohbet ac
+
+Olculdu (2026-08-16): bes paralel sekmeden ikisi, gonderilen mesaji aninda
+*"Bu yanıtı durdurdunuz"* haline dusurdu ve ayni thread'de 4-5 tekrar denemenin hicbiri
+tutmadi (60-120 sn beklemeler dahil). Ayni prompt **yeni bir sohbette** ilk denemede
+calisti. Yani bu global rate limit degil, thread'e yapisan bir durum: stop/resend
+dongusu birikiyor.
+
+Kural: bir sekmede iki kez "durduruldu" gorursen o thread'i birak, `gemini.google.com/app`
+uzerinde yeni sohbet ac ve konuyu orada iste. Ucuncu kez deneme.
+
+Gonder dugmesinin ikonu tiklanir tiklanmaz ok'tan kareye donuyor; tek mantiksal gonderi
+icin bazen **iki** `left_click` gerekiyor (ilki yalnizca odakliyor). Gonderiyi
+composer'in bosalmasindan dogrula.
+
 #### Indirme — Gemini'de TOPLU INDIRME YOK, ve uretilemez de
 
 Uc yol denendi, ucu de olculdu (2026-08-10):
