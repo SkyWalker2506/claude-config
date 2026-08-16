@@ -203,6 +203,27 @@ def sor(model: str, metin: str, gorseller: list[str], sessiz: bool) -> int:
     return 0
 
 
+def _hakem():
+    """GPU hakemi — dort hat tek karti paylasiyor. Bulunamazsa None."""
+    import importlib.util
+    for dizin in (os.environ.get("GPU_HAKEM_DIZIN"),
+                  r"D:\Projects\ClaudeHQ\gpu",
+                  os.path.expanduser("~/Projects/ClaudeHQ/gpu")):
+        if not dizin:
+            continue
+        yol = os.path.join(dizin, "baglan.py")
+        if not os.path.isfile(yol):
+            continue
+        try:
+            spec = importlib.util.spec_from_file_location("gpu_baglan", yol)
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
+            return mod.hakem_yukle(sessiz=True)
+        except Exception:  # noqa: BLE001 - hakem soruyu engellemez
+            return None
+    return None
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(
         prog="sor", description="Yerel Ollama'ya sor, duz metin cevap al.")
@@ -213,6 +234,8 @@ def main() -> int:
                     help="gorsel dosyasi (goren modele gecer)")
     ap.add_argument("--modeller", action="store_true", help="kurulu modelleri listele")
     ap.add_argument("-s", "--sessiz", action="store_true", help="model satirini yazma")
+    ap.add_argument("--gpu-bekleme", action="store_true",
+                    help="GPU hakemine girme (kucuk model / hizli soru)")
     a = ap.parse_args()
 
     if not baslat():
@@ -246,7 +269,29 @@ def main() -> int:
                   file=sys.stderr)
         istenen = "goz"
 
-    return sor(model_coz(istenen, kurulu), metin, a.gorsel, a.sessiz)
+    model = model_coz(istenen, kurulu)
+
+    # GPU HAKEMI. Ollama modeli karta yukluyor; video hatti tek basina 15.7 GB
+    # tepe yapiyor ve kart 16.3 GB. Sirayla calisma kurali burada da gecerli.
+    #
+    # `--gpu-bekleme` bilerek var: kucuk bir modele tek satirlik soru sormak
+    # icin video kuyrugunun bir klibi bitirmesini beklemek sacma olur. Karar
+    # kullanicinin, cunku maliyeti bilen o.
+    h = None if a.gpu_bekleme else _hakem()
+    if h is not None:
+        if not h.iste("soru"):
+            d = h.durum()
+            print(f"GPU '{d.get('tutan')}' hattinda — bekleniyor. "
+                  f"(beklemeden sormak icin: --gpu-bekleme)", file=sys.stderr)
+            while not h.iste("soru"):
+                time.sleep(3)
+    try:
+        return sor(model, metin, a.gorsel, a.sessiz)
+    finally:
+        # `finally`: istisna yolunda birakmayi unutmak GPU'yu 15 dakika bos
+        # bekletir ve panelde her sey normal gorunur.
+        if h is not None:
+            h.birak("soru")
 
 
 if __name__ == "__main__":
