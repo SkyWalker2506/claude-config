@@ -5,6 +5,19 @@ description: Create 2D game character spritesheets from art direction, master ch
 
 # Spritesheet Character Generator
 
+> **Bu depo icin hat ayrimi (2026-08-17):** sprite animasyonlari BU hattan
+> uretilir. Video/sinematik icin **[/animate](../animate/SKILL.md)**, tek
+> duran gorsel icin **[/gorsel-uret](../gorsel-uret/SKILL.md)**, 3D model icin
+> **[/threejs-3d-character-pipeline](../threejs-3d-character-pipeline/SKILL.md)**.
+> Kararsizsan: **[/uretim-hatti-sec](../uretim-hatti-sec/SKILL.md)**.
+>
+> Referans verildiginde stil tarif EDILMEZ, gosterilir:
+> **[/reference-style](../reference-style/SKILL.md)**. Ayni karakterin farkli
+> animasyonlari icin ayni kaynak gorsel kullanilir — olculdu, yuruyuste
+> kapusonlu / saldirida kel tutarsizligi buradan cikiyor.
+>
+> Bu hat ortak GPU kuyruguna GIRMEZ; proje icinde kendi araclariyla calisir.
+
 ## Overview
 
 Use this skill to turn a character idea into a practical 2D game spritesheet pipeline. It works standalone, and it can feed assets into browser/Three.js games, prototype projects, localization-ready UI, or later shipper/export workflows.

@@ -1,10 +1,22 @@
 ---
 name: animate
-description: "Tek bir duragan karakter gorselinden oyuna girecek sprite animasyonu uret (Wan 2.2 I2V + olc-ve-karar ver dongusu). Triggers: animate, animasyon, sprite animasyon, karakter animasyonu, idle, yuruyus, saldiri animasyonu, sprite sheet, i2v, wan, animation-creator."
+description: "VIDEO hatti: duragan bir gorselden hareketli klip uret (Wan 2.2 I2V + olc-ve-karar ver dongusu). Sprite sheet istiyorsan /spritesheet-character-generator kullan. Triggers: animate, video uret, sinematik, kesme sahne, i2v, wan, animation-creator, klip uret."
 user-invocable: true
 ---
 
-# Animate — Duragan Gorselden Sprite Animasyonu
+# Animate — VIDEO hatti (duragan gorselden hareketli klip)
+
+> **Sprite sheet mi ariyorsun?** Bu hat degil.
+> Oyun icine girecek yuruyus/saldiri/idle sprite'lari icin
+> **[/spritesheet-character-generator](../spritesheet-character-generator/SKILL.md)**.
+> Hangisi oldugundan emin degilsen:
+> **[/uretim-hatti-sec](../uretim-hatti-sec/SKILL.md)**.
+>
+> Ayirt edici soru: cikti oyun motoruna **sprite olarak** mi girecek, yoksa
+> ekranda **video olarak** mi oynayacak? Sprite ise oteki hat.
+>
+> Bu belge sprite sheet uretimini hala anlatiyor (kod duruyor ve calisiyor),
+> ama yeni sprite isleri icin kullanilmiyor.
 
 Tek bir karakter gorselini image-to-video ile canlandirip sprite sheet'e cevirir.
 Uretimi `animation-creator` yapiyor; bu belge **operatorun** ne yapmasi

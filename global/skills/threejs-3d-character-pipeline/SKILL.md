@@ -5,6 +5,15 @@ description: Build game-ready 3D character asset pipelines for Three.js projects
 
 # Three.js 3D Character Pipeline
 
+> **Bu depo icin hat ayrimi (2026-08-17):** 3D model/mesh/rig BU hattan.
+> 2D sprite animasyonu icin
+> **[/spritesheet-character-generator](../spritesheet-character-generator/SKILL.md)**,
+> video icin **[/animate](../animate/SKILL.md)**, tek gorsel icin
+> **[/gorsel-uret](../gorsel-uret/SKILL.md)**.
+> Kararsizsan: **[/uretim-hatti-sec](../uretim-hatti-sec/SKILL.md)**.
+>
+> Bu hat ortak GPU kuyruguna GIRMEZ; proje icinde kendi araclariyla calisir.
+
 ## Overview
 
 Use this skill to move from a character idea to a previewable animated Three.js asset without pretending heavyweight AI/Blender/Mixamo steps are available when they are not. The normal output is a project-local `buildable/characters/<name>/` work area plus final `public/assets/characters/<name>/` GLB/texture/animation files.
