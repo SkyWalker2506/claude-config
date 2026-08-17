@@ -4,6 +4,22 @@ Sprite/asset üretim prompt'larını proje config'inden standardize üretir. Idl
 
 ---
 
+## Kural −1 — Referans varsa STILI TARIF ETME
+
+Bu skill zaten anchor-first calisiyor; kural onun genel hali. Elde referans
+gorsel varsa prompt **stil tarifi icermez** — yalniz ozne ve kisitlar.
+
+Kritik ek: "referansa benzesin" istegi iki ayri sey demek ve biri otekinin
+hatasi. Adherence sikildikca **icerik sizintisi** artiyor (olculdu:
+IP-Adapter agirligi 0.3'te %40-50 marka logosu sizdi; tek referans 44
+portrenin ten rengini ezdi). Cesitlilik agirlik dusurerek degil **anchor
+swap** ile saglanir.
+
+Tam kural, olculmus agirliklar ve iki ayri olcum sarti:
+**[/reference-style](../reference-style/SKILL.md)**.
+
+---
+
 ## Pipeline philosophy — Anchor-first hybrid (v3, 2026-05-02)
 
 1. **South-facing neutral anchor önce.** Silahsız, efektsiz, nötr poz. Tüm yön/animasyonlar bu anchor'dan türesin (image-to-image). East = West flip.
