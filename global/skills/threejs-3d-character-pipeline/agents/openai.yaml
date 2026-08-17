@@ -1,0 +1,4 @@
+interface:
+  display_name: "Three.js 3D Character Pipeline"
+  short_description: "Imagegen to rigged animated GLB workflow"
+  default_prompt: "Create a game-ready 3D character pipeline for this Three.js project."

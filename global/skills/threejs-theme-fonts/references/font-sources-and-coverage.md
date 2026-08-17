@@ -13,6 +13,14 @@ Useful current sources:
 - The font's upstream GitHub/foundry page for license files and current releases.
 - Noto Fonts as the fallback coverage family.
 
+Research gate:
+
+- Browse current font sources unless the user explicitly requested offline work.
+- Compare at least 3 plausible UI candidates when available.
+- Do not select a candidate only because it looks thematic in Latin; reject it for localized UI if it fails the required scripts.
+- Use the font's current license/source page, not memory, before bundling it.
+- Prefer self-hosting via downloaded font files or Fontsource packages for Steam/Electron/Cordova.
+
 When researching, record:
 
 - candidate family name and source URL,
@@ -34,7 +42,7 @@ Use this fallback set when a theme font cannot cover all required scripts safely
 - `Noto Sans KR`
 - `Noto Sans Thai`
 
-This set covers the practical script buckets used by `$threejs-localize` Steam full platform languages, but it should be the fallback layer after better theme-fit options are considered.
+This set covers the practical script buckets used by `$threejs-localize` Steam full platform languages, but it should be the fallback layer after better theme-fit options are considered. Do not describe Noto as the chosen art-direction font unless the game theme is intentionally neutral or no researched option survives coverage/licensing QA.
 
 ## Display Fonts
 

@@ -160,6 +160,9 @@ const plan = {
   theme,
   researchRequired: !researchedUiFont,
   selectionRule: 'Use a researched theme-appropriate free/open-source UI font first; keep Noto as fallback coverage, not the default first choice.',
+  researchGate: researchedUiFont
+    ? 'Research font was provided through --ui-font. Verify source URL, license, weights, and script coverage before shipping.'
+    : 'Research is still required. Browse current free/open-source font sources and compare theme-fit candidates before treating this scaffold as final.',
   roles: {
     ui: [uiPrimary, ...themeUiCandidates.filter((font) => font !== uiPrimary)],
     fallback: notoFallbacks,
@@ -179,6 +182,8 @@ Chosen UI candidate: ${uiPrimary}
 Chosen display candidate: ${displayPrimary}
 
 Verify current source URLs and licenses before shipping. Prefer theme-appropriate free/open-source fonts found through current research. Keep Noto families only as fallback coverage when candidates miss scripts.
+
+Research status: ${researchedUiFont ? 'UI font was provided manually; verify and record its source/license.' : 'Provisional scaffold only; perform internet font research before shipping.'}
 
 Fallback source: https://notofonts.github.io/
 Fallback license: Verify current font files before shipping; Noto families are commonly distributed under the SIL Open Font License.

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Spritesheet Character Generator"
+  short_description: "Plan and QA 2D game character spritesheets with imagegen references and HF LoRA routes"

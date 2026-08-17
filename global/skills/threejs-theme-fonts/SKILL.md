@@ -33,6 +33,8 @@ Use theme/display fonts only for short, non-critical titles if their glyph cover
 
 This skill works standalone. If `$threejs-localize` is used, align locale/script buckets with its locale files. If `$threejs-steam-shipper` is used, self-host fonts under `public/fonts/` so the packaged build works offline.
 
+Do not scaffold final font choices before the research gate unless the user explicitly asks for offline/no-internet work. In offline mode, generate only a provisional theme-candidate stack and mark Noto as fallback in `font-plan.json`.
+
 ## Workflow
 
 1. **Analyze theme and current fonts.**
@@ -44,11 +46,12 @@ This skill works standalone. If `$threejs-localize` is used, align locale/script
    Read `buildable/typography/theme-font-analysis.md`. If the visual style is unclear, use Playwright or browser screenshots and infer the theme from actual HUD/gameplay, not only filenames.
 
 2. **Research and choose font roles.** Load `references/font-selection-theory.md` and `references/font-sources-and-coverage.md`.
-   - Search current free/open-source font sources for the detected theme and required scripts before accepting defaults.
+   - Search current free/open-source font sources for the detected theme and required scripts before accepting defaults. Use current internet sources when network is available.
+   - Check Google Fonts API/metadata for subsets/scripts and variants, Fontsource for self-hostable packages, and upstream repository/license files for game bundling.
    - Pick one theme-appropriate multilingual UI stack when possible, with Noto only as fallback.
    - Pick at most one optional display/accent font.
    - Define HUD popup style separately: strong, readable, centered, short-lived, and not layout-breaking.
-   - Record rejected candidates and why in `buildable/typography/theme-font-analysis.md` or `font-plan.json`.
+   - Record at least 3 candidates when available, including rejected candidates and why, in `buildable/typography/theme-font-analysis.md` or `font-plan.json`.
 
 3. **Scaffold typography tokens and HUD classes.**
 
@@ -56,7 +59,7 @@ This skill works standalone. If `$threejs-localize` is used, align locale/script
    node <skill>/scripts/scaffold-typography-system.mjs <target-project> --theme sci-fi
    ```
 
-   This creates `src/theme/typography.css`, `src/theme/font-plan.json`, and `buildable/typography/FONT_NOTICES.md` without overwriting existing files. Pass `--ui-font` and `--display-font` when research finds better current fonts; otherwise the scaffold writes theme candidates with Noto fallback.
+   This creates `src/theme/typography.css`, `src/theme/font-plan.json`, and `buildable/typography/FONT_NOTICES.md` without overwriting existing files. Pass `--ui-font` and `--display-font` when research finds better current fonts; otherwise the scaffold writes provisional theme candidates with Noto fallback and marks research as still required.
 
 4. **Preview multilingual samples and stress text.**
 

@@ -114,7 +114,8 @@ const report = {
     ui: 'Research current free/open-source theme-fit UI fonts first; keep Noto families as fallback coverage only.',
     fallback: ['Noto Sans', 'Noto Sans Arabic', 'Noto Sans SC', 'Noto Sans TC', 'Noto Sans JP', 'Noto Sans KR', 'Noto Sans Thai'],
     display: 'Pick one optional theme display font only after checking license and glyph coverage.',
-    hud: 'Use the UI stack with stronger weight, shadow/backplate, and stable responsive sizing.'
+    hud: 'Use the UI stack with stronger weight, shadow/backplate, and stable responsive sizing.',
+    researchGate: 'Before scaffolding final choices, browse current Google Fonts/Fontsource/upstream pages and compare at least 3 theme-fit candidates when available.'
   }
 };
 
@@ -138,8 +139,14 @@ const md = [
   '',
   '## Font Research Guidance',
   `- UI: ${report.recommendation.ui}`,
+  `- Gate: ${report.recommendation.researchGate}`,
   '- Search current Google Fonts/Fontsource/upstream font pages for theme-fit candidates before falling back.',
   '- Record candidate source URLs, licenses, scripts/subsets, weights, and rejection reasons.',
+  '',
+  '## Candidate Matrix',
+  '| Candidate | Source URL | License | Theme fit | Covered scripts | Missing scripts | Decision |',
+  '| --- | --- | --- | --- | --- | --- | --- |',
+  '| Fill after internet research |  |  |  |  |  |  |',
   '',
   '## Noto Fallback Set',
   ...report.recommendation.fallback.map((font) => `- ${font}`),
