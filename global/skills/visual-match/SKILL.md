@@ -173,18 +173,62 @@ dort birim ustunde asili kaldi. "Sanat yanlis cizilmis" gibi gorunur.
 
 ---
 
-## Kural 10 — Yeterince genis olmak, dogru boyutta olmak degil
+## Kural 10 — Yazili kutu bir KOMPOZISYON niyetidir, olcek emri degil
 
-Parallax bandi `f` faktorunde `baseX + cameraX * (1 - f)` konumunda cizilir, yani
-plaka gorusun yarisi **arti** artik kayma `f * menzil` kadar genis olmali. Bir
-bant icin bu 46 birimdi. Sanatin 2.87 en-boy oraninda 46 birimlik plaka 16 birim
-yuksek durur — 12 birimlik karenin tamamindan uzun bir kemer.
+Bu, tek bir odada bir kez degil, **on iki odada birden** yasandi ve hicbiri
+gozle "esnemis" diye okunmuyordu.
 
-Genislik parallax cozumunun, yukseklik sanatin oraninin isi; ikisi bagimsiz ve
-cakisiyorlar. **Doseme** valfi: sanati germek yerine tekrarla.
+Odalar arka plan plakalarini `w`/`h` ile yazar. O kutu kompozisyon niyetidir:
+"bu bant sunu kaplasin". Sanatin kendi orani bambaska olabilir. Ikisini
+esitlemek = resmi germek.
+
+Olculdu: `L1_stone_arch` **1.02:1** sanat, oda onu **5.50:1** kutuya yazmis —
+kare bir kemer yana **bes buçuk kat** cekilmis. Platformlar yedi kata varmis.
+
+> **Kural.** Fazla genisligi **doseyerek** doldur, gererek degil. Sanatin orani
+> korunur, tekrar sayisi degisir.
+
+Iki bant kurali birbirinden ayrilir ve **karistirilmasi iki yonlu hata**dir:
+
+| bant | boyut nereden | neden |
+|---|---|---|
+| oyun / on plan (prop) | **sanattan** | heykel, fener; Cael'e gore olceklenmis |
+| oyun (platform, dekor) | **kutudan** (`sizeLock`) | 9 birimlik yurume yolu 1.6 birimlik suse donuyor |
+| arka plan | oran sanattan, genislik dosemeden | uzaktaki yapinin karesi kadraja gore, resmi degil |
+
+### Plaka yerlesim cozumu
+
+Parallax bandi `f` faktorunde `baseX + cameraX * (1 - f)` konumunda cizilir.
+Bundan iki sonuc cikar ve ikisi de hesaplanir, tahmin edilmez:
+
+```
+merkez  = f * kameraMerkezi
+yariGen >= gorusYarisi + f * (kameraMenzili / 2)
+y       = -h * (1 - ufukOrani) - kameraY * (1 - f) * dikeyParallax
+```
+
+Bir odanin sayilarini digerine **kopyalamak** ayni siniftan hatadir: kamerasi
+8..56 icin ortalanmis bir plaka, 8..104 kosan odada kadrajdan kayar — germek
+kadar yanlis, sadece daha az gorunur.
 
 ---
 
+## Kural 10.5 — Kisa plakanin ust kenari sert bir cizgidir
+
+Doseme sanati kendi boyunda tutar, yani plaka **kisa** kalir. Kisa plakanin ust
+kenari karenin ortasindan gecen sert bir yatay cizgi olur — olculdu, karenin
+%25'inde, her odada.
+
+Bir odada gorunmemesi duzeldigi anlamina gelmez: DG-00'da o kenar tesadufen
+karanlik bir bandin ve tavan ezmesinin altinda kaliyordu.
+
+**Denenip basarisiz olan:** dikisi bandin kendi rengiyle "yumusatmak". Bir
+plakanin **alfasini maskelemek**, ustune renk cizmekle ayni islem degil — ortaya
+cikan sey bir bant, cozunme degil. Ya plaka kareyi asacak kadar uzatilir (bedeli
+daha buyuk bir yapi, ki arka plan icin kompozisyon karari), ya da alfa rampasi
+dokuya **pisirilir**.
+
+---
 ## Kural 11 — Olcum aracinin kendisi de bozulur
 
 Bunlar hepsi yasandi ve her biri once "oyun bozuk" gibi okundu:
@@ -202,6 +246,19 @@ Bunlar hepsi yasandi ve her biri once "oyun bozuk" gibi okundu:
 
 > **Kural.** Bir harness ilk kosusunda felaket bir hata buluyorsa, bozuk taraf
 > genellikle harness'tir. Once kendi araciniza inanmayi birakin.
+
+### Ve duzelten ile olcen AYRI arac olmali
+
+Bir kare-ici zoom duzeltmesi yazdim, oran ters yazilmisti: kaldirmasi gereken
+kaymayi **artiriyordu**. Build memnuniyetle `scale-fixed %7` diyordu, denetim
+ayni klipte hala %8.2 olcuyordu.
+
+Yakalanmasinin **tek** sebebi ikisinin ayri arac olmasi ve birbirini
+tutmamasiydi. Duzeltmeyi uygulayan arac kendi basarisini rapor ediyorsa, o rapor
+bir dilek listesidir.
+
+> **Kural.** Duzeltmeyi uygulayan kod, duzeltmeyi olcen kod olamaz. Ikisi ayni
+> sayiyi bagimsiz uretmeli.
 
 ---
 
@@ -227,3 +284,10 @@ Kayda deger, cunku duzeltmek icin neredeyse zaman harcandi: kamera olcegi
   bir kare gerileme, iyilesme degil.
 - **"%99 benzedi" deme.** Sayilari koy, referansi yanina koy, kullanici karar
   verir.
+- **Yedek painter'i cilalama.** Sanati olmayan oda prosedurel bir painter'a
+  duser; onu guzellestirmek yanlis seyi cilalamaktir. Ya gercek plaka uret, ya
+  var olan plakayi odaya gore yeniden coz.
+- **Bir bandin ici bant olmali.** 9 birim yuksek bir on plan seridine "alt
+  yarisina" yaprak serpmek, dort birim acik havaya leke asmaktir.
+- **Tek turda iki sinif duzeltme yapma** — hangisinin isledigini ayirt edemezsin,
+  ve bu dosyadaki hatalarin yarisi o yuzden iki tur surdu.
