@@ -15,7 +15,8 @@
 - Match the brief's perspective and art style before anything else — a 2D/2.5D/
   isometric/sprite brief means textured quads on an orthographic camera, not
   boxes.
-- Use simple geometry and material colors **only in a brief that asks for 3D**.
+- Use simple geometry and material colors **only when the brief explicitly asks
+  for 3D models/meshes**. Silence means sprites, not primitives.
 - Keep UI text centralized.
 - Keep gameplay input as intent (`moveX`, `moveY`, `action`) instead of platform checks.
 - Use Pointer Events for mouse/touch/pen and show virtual controls only for touch/mobile targets.
@@ -26,6 +27,7 @@
 ## Avoid
 
 - Assuming a 3D mesh look because the renderer is Three.js.
+- Treating an unstated art style as permission to use primitives — default to sprites.
 - Substituting primitives for sprites in a sprite-styled brief.
 - Writing gameplay code before confirming the art direction when the brief has one.
 - React/Vue/Svelte for the first draft unless the user asks.

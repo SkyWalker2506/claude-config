@@ -14,16 +14,20 @@ Create a tiny playable Three.js prototype quickly, without overengineering. Star
 Three.js is the *renderer*, not the art direction. Never infer a 3D game from
 the fact that this skill is Three.js.
 
-1. **Perspective and art style come from the brief/GDD, never from a default.**
-   If the GDD says "2D", "2.5D", "top-down", "isometric", "pixel art",
-   "sprites", "low-res painted sprites", or names sprite resolutions
-   (e.g. `64x64`), the prototype is a **sprite** game: textured quads /
-   `THREE.Sprite` / billboards on an orthographic camera. Boxes and meshes are
-   NOT an acceptable stand-in for sprites — they change the whole read of the
-   game.
-2. **Only build meshes/3D geometry when the brief explicitly asks for it.**
-   If the brief is silent about perspective and style, ask one short question
-   before scaffolding. Do not "pick something sensible and move on".
+1. **Sprites are the default. 3D must be asked for in words.**
+   Build meshes/3D geometry **only** when the brief explicitly says so — "3D
+   models", "meshes", "glTF/FBX assets", "3D characters", "full 3D". If the
+   brief does not say that, the prototype is a **sprite** game, even when the
+   space it renders is three-dimensional (Necrobeat is 3D space, sprite
+   actors). A brief that is silent about art style is a sprite brief: assume
+   sprites and keep going — do not ask, and do not reach for primitives.
+2. **Sprite game means textured quads, not boxes.**
+   Textured quads / `THREE.Sprite` / billboards, orthographic or perspective
+   camera as the view demands. Boxes, spheres and capsules are NOT an
+   acceptable stand-in for sprites — they change the whole read of the game.
+   Explicit sprite cues to honour when present: "2D", "2.5D", "top-down",
+   "isometric", "cutout sprites", "hand-painted", "pixel art", "sprite-only",
+   or named sprite resolutions (e.g. `64x64`).
 3. **Placeholder art still has to be the right kind of art.** For a sprite
    game, generate placeholder sprite textures (canvas-drawn or generated
    images) instead of substituting primitives.
