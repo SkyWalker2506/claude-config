@@ -1,6 +1,8 @@
 # Unity CLI + Pipeline — reference (all projects)
 
-> Unity'yi terminalden yönetmenin ve **çalışan editörü komut/komut-satırından sürmenin** resmi yolu. Unity 6.x ve üzeriyle çalışır. Hub'a alternatif + AI ajan/CI için native köprü. **Deneysel/beta** (2026-07 itibarıyla `0.1.0-beta.7`).
+> Unity'yi terminalden yönetmenin ve **çalışan editörü komut/komut-satırından sürmenin** resmi yolu. Unity 6.x ve üzeriyle çalışır. Hub'a alternatif + AI ajan/CI için native köprü. **Beta** — 2026-08-21 itibarıyla kurulu sürüm `1.0.0-beta.5` (önceki not `0.1.0-beta.7` idi; komut ağacı o günden beri genişledi).
+>
+> **Editör içi MCP sunucusu artık kullanımdan kalktı.** `com.unity.ai.assistant` paketinin MCP sunucusu yerini CLI'ye bıraktı: daha hızlı, daha az token. Eski paketi kullanıyorsan çakışmayı önlemek için **2.13 veya üstüne** güncelle. Resmî not: <https://docs.unity.com/en-us/unity-cli/replace-mcp-server-unity-cli>
 >
 > Bu doküman bir referanstır — Unity otomasyonu gereken HER projede geçerlidir (sadece tek proje değil). Ajan bir Unity işini otomatikleştirecekse computer-use ile GUI tıklamak yerine önce bunu değerlendir.
 
@@ -108,11 +110,64 @@ Kod tarafında bir metoda `[CliCommand]` attribute'u koyarsan CLI onu bir komut 
 ### `unity mcp` — native MCP köprüsü (ayrı MCP paketi GEREKMEZ)
 
 ```bash
-unity mcp        # stdio üzerinden MCP sunucusu; client bekler
-unity mcp --help
+unity mcp                                     # stdio MCP sunucusu; client bekler
+unity mcp --project-path /path/to/MyProject   # belirli projeye bağlı sunucu
+unity mcp configure claude                    # client'a MCP girdisini YAZ
+unity mcp configure --list                    # desteklenen client'lar + durum
 ```
 
-Claude Desktop / Cursor / VS Code / MCP Inspector doğrudan bağlanır. Unity 7 yol haritasında **ücretsiz native MCP** olarak geliyor — 3. parti Unity-MCP paketlerine (asmdef sızıntısı, WebGL derdi) ihtiyaç kalmıyor.
+Client adları: `claude`, `cursor`, `vscode`, `windsurf`. `configure`, MCP girdisini client'ın kendi
+config dosyasına yazar — elle JSON düzenlemeye gerek yok; `--project-path` ile girdiyi o projeye
+sabitler.
+
+**Ama önce şunu sor: MCP gerçekten gerekli mi?** Unity'nin kendi tavsiyesi, mümkünse MCP yerine
+doğrudan `unity command` ve `unity eval` kullanmak — ikisi de daha hızlı ve belirgin biçimde daha az
+token harcar. MCP'yi, ajanın araç listesinde Unity'yi görmesi gerektiği durumlar için sakla.
+
+### `unity skill` — CLI'nin kendi ajan skill'i
+
+```bash
+unity skill install claude     # Unity CLI skill'ini client'ın skills dizinine yaz (gömülü, offline)
+unity skill install --list     # desteklenen client'lar
+unity skill refresh            # kurulu skill'leri güncel ağaca göre yeniden üret
+```
+
+### Uzun işler: `--detach` + `unity job`
+
+Batchmode derlemesi dakikalarca sürüyor ve terminali kilitliyorsa, komutu **ayrık iş** olarak gönder:
+
+```bash
+unity command --detach <komut>      # iş kimliğini hemen basar
+unity job status <job-id>            # durum + ilerleme
+unity job wait <job-id>              # bitmesini bekle, sonucu bas
+unity job cancel <job-id>            # iptal iste
+unity command --timeout 300 <komut>  # bağlı çalıştırmada zaman aşımı (varsayılan 30 sn)
+```
+
+### Komut listesini filtrelemek
+
+`unity command` ~140 komut sunar; hepsini basmak yerine ara:
+
+```bash
+unity list                                  # Pipeline paketinin kaydettiği araçlar
+unity command --query capture               # adı/açıklaması eşleşenler
+unity command --tag assets/import           # etiket alt ağacı
+unity command --detail compact --limit 40   # kısa liste
+unity command --group_by package            # pakete göre grupla
+```
+
+### İlk seviye komutlar: build, test, run
+
+```bash
+unity build ./MyProject          # batchmode derleme, CI bayraklarını iletir
+unity test ./MyProject           # EditMode/PlayMode testleri + sonuç raporu
+unity run ./MyProject -- <args>  # batchmode çalıştır, argümanları editöre ilet
+unity doctor                     # ortam teşhisi
+unity diagnose                   # destek için maskelenmiş teşhis çıktısı
+unity changelog                  # kurulu CLI'nin sürüm notları
+```
+
+`--format` artık `human | json | tsv | ndjson` kabul eder (`ndjson` akış hâlinde işlemek için).
 
 ### `unity shell` — interaktif REPL
 
