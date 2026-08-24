@@ -23,7 +23,6 @@
 | F | Veri & Analiz | 0 | 10 | 10 |
 | G | AI Ops / Workflow | 3 | 7 | 10 |
 | H | Pazar Arastirmasi | 3 | 9 | 12 |
-| I | Jira & Proje Yonetimi | 3 | 7 | 10 |
 | J | DevOps & Altyapi | 2 | 6 | 8 |
 | K | Arastirma & Ogrenme | 3 | 6 | 9 |
 | L | Kisisel Verimlilik | 1 | 5 | 6 |

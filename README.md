@@ -42,8 +42,8 @@ A portable, self-installing configuration system that turns Claude Code into a m
 
 - **204 registered agents** in [`agent-registry.json`](./config/agent-registry.json) · 15 categories (activate on demand)
 - **21 plugins** on our [marketplace](https://github.com/SkyWalker2506/claude-marketplace)
-- **8 MCP servers** integrated (GitHub, Atlassian/Jira, Firebase, Flutter, jCodeMunch, Git, Fetch, Context7)
-- **98 slash commands** (/yolo, /team-build, /jira-run, /audit, /web-research, /sprint-plan, and more)
+- **7 MCP servers** integrated (GitHub, Firebase, Flutter, jCodeMunch, Git, Fetch, Context7)
+- **91 slash commands** (/yolo, /team-build, /audit, /web-research, /sprint-plan, and more)
 - **Telegram bot** with persistent Haiku agent — control Claude from your phone
 - **Local-first model routing** — Ollama → Claude → Groq free (saves tokens)
 - **Cost control** — automatic model tier switching based on quota remaining
@@ -94,7 +94,6 @@ Then browse with `/plugin > Discover` or install directly:
 
 | Plugin | What it does |
 |--------|-------------|
-| [jira-suite](https://github.com/SkyWalker2506/ccplugin-jira-suite) | Jira loops, dashboard, sprint, decisions — Atlassian MCP |
 | [code-quality](https://github.com/SkyWalker2506/ccplugin-code-quality) | Code audit, CLAUDE.md refine, jCodeMunch indexing |
 | [research-tools](https://github.com/SkyWalker2506/ccplugin-research-tools) | Web research, project analysis, PRD, Ralph |
 | [autonomous-ops](https://github.com/SkyWalker2506/ccplugin-autonomous-ops) | /yolo, /team-build, /rbg autonomous modes |
@@ -129,7 +128,6 @@ Knowledge-First agents across **15 categories** (registry on `main`). Each agent
 | Backend | B1–B19 | Architect (Opus), Coder (Sonnet), Bug Hunter, Security Auditor (Opus) |
 | Code Review | C1–C6 | Lint Hook, Security Scanner, AI Reviewer |
 | AI Ops | G1–G10 | Agent Coordinator, MCP Health, Update Checker |
-| Jira & PM | I1–I10 | Jira Router, Sprint Planner, Status Reporter |
 | Research | K1–K9 | Web Researcher, Doc Fetcher, AI Tool Evaluator |
 | Market Research | H1–H12 | Competitor Analyst, SEO, GEO |
 | DevOps | J1–J8 | Cloud Deploy, Incident Responder |
@@ -209,7 +207,7 @@ claude-config/
 ├── global/
 │   ├── CLAUDE.md           # → ~/.claude/CLAUDE.md
 │   ├── settings.json.template  # MCP servers, hooks, permissions
-│   └── skills/             # 98 slash commands
+│   └── skills/             # 91 slash commands
 ├── agents/                 # Knowledge-First agent trees
 │   ├── orchestrator/       # A1–A8
 │   ├── backend/            # B1–B19

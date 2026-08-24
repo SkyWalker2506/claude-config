@@ -17,9 +17,6 @@ Auto-generated from global/skills/. Total: 54 skills.
 | bind | /bind | claude-config baglantisi kur — global ve projects CLAUDE.md'yi yonlendirici yap |
 | claude-repos | /claude-repos | Claude ile ilgili tüm GitHub repolarını listele — ccplugin-*, claude-* |
 | commit-all | /commit-all | Tum projelerdeki degisiklikleri tara, her biri icin commit at |
-| dashboard | /dashboard | Terminal dashboard — cache'ten oku, sifir token |
-| dashboard-sync | /dashboard-sync | Jira MCP'den taze veri cek, cache'e yaz, sonra dashboard goster |
-| decide | /decide | Quick decision loop for WAITING cards |
 | dispatch | /dispatch | Gorevi analiz et, registry'den uygun agent sec, o kurallarla sub-agent baslat |
 | download-repos | /download-repos | Git'ten repoları indir — DownloadEssentials, DownloadClaude, DownloadAll |
 | download-secrets | /download-secrets | Download secrets from private GitHub repo |
@@ -30,12 +27,6 @@ Auto-generated from global/skills/. Total: 54 skills.
 | hook-status | /hook-status | SessionStart hook'larinin calisip calismadigini kontrol et |
 | index | /index | jCodeMunch ile mevcut projeyi indexle |
 | install | /install | Run claude-config installer with interactive setup |
-| jira-cancel | /jira-cancel | jira-run döngüsünü durdurur (stop dosyası) |
-| jira-run | /jira-run | Jira wait-and-check döngüsü |
-| jira-run-detailed | /jira-run-detailed | Jira board'unu detayli incele ve bakim yap — routing, kalite kontrol |
-| jira-run-fast | /jira-run-fast | Jira wait-and-check hizli dongu — tur arasi 1 saniye |
-| jira-spaces | /jira-spaces | Jira'daki tüm projeleri açık task sayısıyla listele |
-| jira-start-new-task | /jira-start-new-task | Sahipsiz IP veya To Do'dan N task seç, her biri için Sonnet kod + Opus review |
 | memory-prune | /memory-prune | Memory dosyalarini tara — stale/duplicate/yanlis kayitlari temizle |
 | migration | /migration | Bullet-Proof Project Setup & Health Check |
 | opencode | /opencode | OpenCode — Zen (web) ve Ollama (lokal) birlikte |
@@ -54,7 +45,7 @@ Auto-generated from global/skills/. Total: 54 skills.
 | review | /review | Tek task/PR/commit review — C3 (AI Reviewer) veya C1 (Lead Reviewer) |
 | review-ops | /review-ops | Orchestrator/A1 büyük iş bitince tetikle — batch task review, PR merge |
 | set-jarvis-model | /set-jarvis-model | Jarvis ana model seç — cache'den listele, tek model test et |
-| sprint-plan | /sprint-plan | Analiz Raporlarından Sprint Planı + Jira Girişi |
+| sprint-plan | /sprint-plan | Analiz Raporlarından Sprint Planı |
 | suggest-plugins | /suggest-plugins | Projeyi tarayip uygun marketplace plugin'lerini oner |
 | team-build | /team-build | Multi-agent takım oluştur: Opus tasarlar, Sonnet/Haiku kodlar, loop ile calistir |
 | web-research | /web-research | Web arastirmasi — rakip, kullanici yorumlari, pazar trendleri |

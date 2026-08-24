@@ -10,7 +10,7 @@ sources: 4
 ## Quick Reference
 
 - **Skill** = packaged instructions (e.g. `SKILL.md`) with triggers + procedure; loaded **on demand**, not at every session start.
-- **Trigger discipline:** narrow phrases — “install”, “commit all”, “jira spaces” — avoid broad words that fire constantly.
+- **Trigger discipline:** narrow phrases — “install”, “commit all”, “push all” — avoid broad words that fire constantly.
 - **Structure:** Title → When to use → Steps → Scripts/paths → Failure modes → Related agents.
 - **Dynamic prompts:** optional `$(shell)` snippets — document security (no secrets in output).
 - **Ownership:** N2 designs skill *shape* and cross-links; **N7 Skill Design Specialist** deep-dives taxonomy when the catalog is large (Bridge both ways).

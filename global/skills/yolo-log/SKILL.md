@@ -54,7 +54,6 @@ Yapilan isler + atlananlar:
 | Ne | Neden | Workaround |
 |----|-------|------------|
 | Database setup | No credentials | In-memory SQLite |
-| Jira task | No access | Skipped |
 
 **Toplam:** 3 adim, 3 commit, 2 skip
 ```

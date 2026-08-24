@@ -1,30 +1,27 @@
-# /sprint-plan — Analiz Raporlarından Sprint Planı + Jira Girişi
+# /sprint-plan — Analiz Raporlarından Sprint Planı
 
 ## Açıklama
 
-Proje analiz raporlarını (`analysis/` klasörü) okuyarak sprint planı oluşturur ve Jira'ya task olarak girer.
+Proje analiz raporlarını (`analysis/` klasörü) okuyarak sprint planı oluşturur ve task'lari `forge/sprints/sprint-{N}.json` dosyasina yazar.
 
 ## Kullanım
 
 ```
-/sprint-plan                    # Tam akış: plan oluştur + Jira'ya gir
-/sprint-plan plan-only          # Sadece plan oluştur (Jira girişi yok)
-/sprint-plan jira-only          # Mevcut planı Jira'ya gir
-/sprint-plan sync               # Jira'daki mevcut task'ları planla senkronize et
+/sprint-plan                    # Tam akış: plan oluştur + sprint dosyasina yaz
+/sprint-plan plan-only          # Sadece plan oluştur (dosyaya yazma yok)
+/sprint-plan sync               # Mevcut sprint dosyasini planla senkronize et
 ```
 
 ## Ön koşul
 
 - `analysis/` klasöründe en az 1 analiz raporu olmalı
 - `analysis/MASTER_ANALYSIS.md` varsa öncelikli kaynak
-- Jira girişi için Atlassian MCP aktif olmalı
 
 ## Akış
 
 ### 1. Proje bilgilerini tespit et
 
-CLAUDE.md veya mevcut Jira task'larından proje anahtarını bul (örn: AC, VOC, vb.).
-Bulamazsan kullanıcıya sor: "Jira proje anahtarı nedir? (örn: AC, VOC)"
+`projects.json` ve CLAUDE.md'den proje adini ve path'ini bul. Mevcut `forge/sprints/` altindaki en yuksek sprint numarasini tespit et; yeni sprint bir sonraki numaradir.
 
 ### 2. Analiz Raporlarını Oku
 
@@ -40,7 +37,7 @@ Her rapordan:
 ### 3. Task Çıkarımı
 
 Her bulgu/öneri için:
-- **Kısa başlık** (Jira summary — max 80 karakter, İngilizce)
+- **Kısa başlık** (task summary — max 80 karakter, İngilizce)
 - **Açıklama** (Türkçe — ne/neden/nasıl + kabul kriterleri checkbox listesi)
 - **Label** (security, perf, arch, ui, growth, analytics, data, content, monetization, a11y, seo)
 - **Öncelik** (P0/P1/P2/P3)
@@ -94,16 +91,32 @@ SPRINT_PLAN.md'de her task'ın formatı:
 
 Her task `verify:` alanını içermelidir — mekanik doğrulama komutu (test, curl, dosya varlığı kontrolü, lint). Verify eksik task SPRINT_PLAN.md'ye alınmaz.
 
-### 6. Jira Girişi
+### 6. Sprint Dosyasi
 
-1. Her sprint için **Epic** oluştur: `[Sprint N] Odak Alanı`
-2. Her task için issue oluştur (proje anahtarı: tespit edilen değer)
-   - Summary: İngilizce (max 80 karakter)
-   - Description: Türkçe (ne/neden/nasıl + kabul kriterleri)
-   - Priority: P0→Highest, P1→High, P2→Medium, P3→Low
-   - Labels + Story Points
+Her sprint icin `forge/sprints/sprint-{N}.json` yaz:
 
-**Paralel çalışma:** 5 sprint → 5 agent paralel Jira girişi yapabilir.
+```json
+{
+  "sprint": 1,
+  "epic": "Security & Critical Fixes",
+  "tasks": [
+    {
+      "id": "T-001",
+      "summary": "Rotate leaked API keys",
+      "description": "Ne/neden/nasil + kabul kriterleri",
+      "priority": "P0",
+      "labels": ["security"],
+      "points": 2,
+      "verify": "npm run test:secrets",
+      "status": "todo"
+    }
+  ]
+}
+```
+
+Task ID'leri sprint icinde `T-001`'den baslar. `status` degerleri: `todo` | `in_progress` | `done`.
+
+**Paralel çalışma:** 5 sprint → 5 agent paralel dosya yazabilir (her agent kendi sprint dosyasina).
 
 ## Notlar
 

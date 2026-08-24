@@ -43,7 +43,7 @@ $ARGUMENTS
 ## Slash işlendikten sonra (sıra gelince)
 
 1. Görevi **anında** arka plana al: `run_in_background: true` / Background Agent / Task — ortamındaki mekanizma.
-2. **`CLAUDE.md`**, güvenlik, Jira/MCP için **`docs/CLAUDE_JIRA.md`**.
+2. **`CLAUDE.md`** ve güvenlik kurallari.
 3. Bittiğinde ana sohbete **kısa özet**.
 
 Ana oturumda dosyayı **anında** senin elle düzenlemen gerekiyorsa: `scripts/` veya editör; `/rbg` sıra bekler.

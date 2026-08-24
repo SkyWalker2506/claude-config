@@ -94,7 +94,6 @@ AGENDA_SNIPPET (for L6)
 ## When NOT to Use
 - E-posta triage ve taslak → L1 Email Summarizer
 - Sabah birlestirilmis brifing → L3 Daily Briefing Agent
-- Jira sprint planlama → I2 Sprint Planner veya I ilgili agent
 
 ## Red Flags
 - Katilimci listesi bos veya tek tarafli — onay iste
@@ -146,7 +145,7 @@ Model secim tablosu:
 
 ## Escalation
 - Organizasyon politikasi (sadece belirli saatlerde toplanti) → A1 veya kullanici
-- Toplanti notu ve Jira aksiyonu → L6 + I8
+- Toplanti notu ve aksiyon takibi → L6
 
 ## Knowledge map
 

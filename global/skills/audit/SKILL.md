@@ -6,7 +6,7 @@ argument-hint: "[security|cost|performance|cleanup|all]"
 
 ## /audit
 
-Proje kodunu tarayıp sorunları raporla. Jira değil, **kod** taraması.
+Proje kodunu tarayıp sorunları raporla — bu bir **kod** taramasidir.
 
 ### Odak seçenekleri
 
@@ -175,7 +175,6 @@ Agent tamamlandığında raporu kullanıcıya göster. Kritik bulgular varsa vur
 ## Kurallar
 
 - Kod YAZMA, sadece oku ve raporla
-- Jira'ya dokunma — bu kod taraması, Jira değil
 - Her bulguyu dosya:satır ile referansla
 - Gerçek bulgu ver, spekülatif uyarı verme
 

@@ -15,7 +15,6 @@ Mevcut projeyi analiz edip Claude Code marketplace'den uygun plugin'leri oneriri
 Asagidakileri kontrol et:
 - `pubspec.yaml` → Flutter projesi
 - `package.json` → Node.js / Next.js
-- `docs/CLAUDE_JIRA.md` veya Jira referansi → Jira kullanimi
 - `.github/workflows/` → CI/CD var
 - `firebase.json` veya `google-services.json` → Firebase
 - `README.md` → proje tipi ve teknoloji stack
@@ -30,8 +29,7 @@ Tarama sonucuna gore uygun plugin'leri sec:
 | `git-github` | Her zaman |
 | `devtools-setup` | Her zaman |
 | `flutter-firebase` | pubspec.yaml varsa |
-| `jira-suite` | Jira referansi varsa |
-| `sprint-planner` | Jira + agile referansi varsa |
+| `sprint-planner` | Sprint/agile referansi varsa |
 | `research-tools` | README'de pazar/arastirma bahsi varsa |
 | `autonomous-ops` | Buyuk/karmasik proje ise |
 | `ai-review` | .github/workflows/ varsa |
@@ -51,7 +49,6 @@ Tarama sonucuna gore uygun plugin'leri sec:
 
 ### Proje icin uygun
 - `flutter-firebase` — pubspec.yaml bulundu
-- `jira-suite` — docs/CLAUDE_JIRA.md bulundu
 
 ### Ihtiyac olursa
 - `autonomous-ops` — /yolo ve /team-build modlari

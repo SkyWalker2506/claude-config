@@ -25,7 +25,6 @@ get_field() {
 
 PROJECT=$(get_field "project")
 STACK=$(get_field "stack")
-JIRA=$(get_field "jira")
 FOCUS=$(get_field "focus")
 
 # First non-empty, non-frontmatter body line
@@ -34,7 +33,6 @@ SUMMARY=$(awk '/^---$/{f=!f;next} f{next} NF{print;exit}' "$INDEX_FILE")
 # Build signal
 OUT="PROJECT_INDEX:"
 [ -n "$PROJECT" ] && OUT="$OUT $PROJECT"
-[ -n "$JIRA" ]    && OUT="$OUT ($JIRA)"
 [ -n "$STACK" ]   && OUT="$OUT | $STACK"
 [ -n "$SUMMARY" ] && OUT="$OUT | $SUMMARY"
 [ -n "$FOCUS" ]   && OUT="$OUT | Focus: $FOCUS"

@@ -100,7 +100,7 @@ Kapsamdaki tum dosyalari oku. Her dosya icin:
 |---------|----------|
 | **Tekrar** | Ayni kural/talimat birden fazla dosyada mi? Hangisi yetkili (single source of truth)? |
 | **Catisma** | Iki dosya celisen sey mi soyluyor? (orn. model=opus vs model=sonnet) |
-| **Hardcode** | Proje adi, path, Jira key, Firebase ID gibi degerler sabitlendigi yerler |
+| **Hardcode** | Proje adi, path, Firebase ID gibi degerler sabitlendigi yerler |
 | **Olu icerik** | Referans verdigi dosya/fonksiyon artik yok; gecmis karar; TODO/eski tarih |
 | **Siskinlik** | Gereksiz uzun aciklama, ornek, tekrar; daha kisa yazilabilir |
 | **MCP cakismasi** | Ayni MCP settings.json + mcp.json + .mcp.json'da farkli config ile |

@@ -253,6 +253,6 @@ if [ -f "$SECRETS_ENV" ]; then
   fi
 else
   echo "🔑 SECRETS_NONE: Secrets dosyasi bulunamadi."
-  echo "   MCP servisleri (GitHub, Jira) calismayabilir."
+  echo "   MCP servisleri (GitHub vb.) calismayabilir."
   echo "   Kurmak icin: cd ~/Projects/claude-config && ./install.sh"
 fi

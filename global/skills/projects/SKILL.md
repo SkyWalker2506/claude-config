@@ -1,12 +1,12 @@
 ---
 name: projects
-description: "List and inspect projects registered in projects.json — show paths, Jira keys, git repos, and status. Triggers: projects list, show projects, what projects, list all projects."
+description: "List and inspect projects registered in projects.json — show paths, git repos, and status. Triggers: projects list, show projects, what projects, list all projects."
 triggers: projects, list projects, show projects, project list, tum projeler, projeler
 ---
 
 # /projects
 
-List all projects registered in `~/Projects/ClaudeHQ/projects.json` with their paths, Jira keys, git repos, and active status.
+List all projects registered in `~/Projects/ClaudeHQ/projects.json` with their paths, git repos, and active status.
 
 ## Usage
 
@@ -20,7 +20,7 @@ List all projects registered in `~/Projects/ClaudeHQ/projects.json` with their p
 
 ```
 ━━ Projects ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  #   Name              Path                        Jira   Git
+  #   Name              Path                        Git
   ──  ────────────────  ──────────────────────────  ─────  ─────────────────────────────────
   1   claude-config     ~/Projects/claude-config    CC     SkyWalker2506/claude-config
   2   ClaudeHQ          ~/Projects/ClaudeHQ         CHQ    SkyWalker2506/ClaudeHQ

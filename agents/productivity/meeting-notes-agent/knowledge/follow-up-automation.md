@@ -14,7 +14,7 @@ sources: 3
 | Otomasyon | İnsan onayı |
 |-------------|-------------|
 | Özet gönder | Önerilir (ilk hafta) |
-| Jira yorum | Opsiyonel |
+| Tracker yorumu | Opsiyonel |
 | Toplantı serisi oluştur | Zorunlu |
 
 ```text
@@ -69,7 +69,7 @@ action_due_soon -> reminder -> done | escalate_to_manager
 ## Anti-Patterns
 
 - **Herkesi CC ile spam:** Sadece DACI listesi ve aksiyon sahipleri.
-- **Otomatik Jira oluşturma çoğaltması:** Önce duplicate arama (I8).
+- **Otomatik ticket oluşturma çoğaltması:** Önce duplicate arama (I8).
 - **Gizli kararları dışarı sızdırma:** Özet önce iç dağıtım.
 - **Hatırlatma saati TZ’siz:** Her alıcı için yerel iş saati.
 
@@ -78,5 +78,4 @@ action_due_soon -> reminder -> done | escalate_to_manager
 > Agent derine inmesi gerekirse bu kaynaklardan fetch eder:
 
 - [Zapier — multi-step Zaps](https://zapier.com/) — otomasyon desenleri
-- [Jira REST — add comment](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-comments/) — API
 - [RFC 5545 — VALARM](https://www.rfc-editor.org/rfc/rfc5545#section-3.6.6) — takvim uyarıları

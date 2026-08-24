@@ -12,7 +12,7 @@ Verilen komutu/skill'i N kez sirayla calistirir. Her iterasyon bitince sonraki b
 
 ```
 /repeat 3 /forge                    # 3 kez forge
-/repeat 5 /jira-start-new-task      # 5 kez jira task al ve calis
+/repeat 5 /review                   # 5 kez review dongusu calistir
 /repeat 2 /yolo fix all tests       # 2 kez yolo
 /repeat 4 /fbf                      # 4 kez feedback fix
 /repeat 3 "README guncelle"         # 3 kez serbest prompt

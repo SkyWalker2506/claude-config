@@ -38,15 +38,6 @@
       "repo": "https://github.com/SkyWalker2506/ccplugin-sync-agents",
       "local": "plugins/sync-agents"
     },
-    "jira-suite": {
-      "name": "Jira Suite",
-      "version": "1.0.0",
-      "description": "Complete Jira management — /jira-run loops, sprint dashboard, task routing, decision workflow, Atlassian MCP included.",
-      "category": "productivity",
-      "complexity": "medium",
-      "repo": "https://github.com/SkyWalker2506/ccplugin-jira-suite",
-      "local": "plugins/jira-suite"
-    },
     "code-quality": {
       "name": "Code Quality",
       "version": "1.0.0",
@@ -104,7 +95,7 @@
     "sprint-planner": {
       "name": "Sprint Planner",
       "version": "1.0.0",
-      "description": "Sprint planning from PRD/analysis — epic/story generation, estimation, Jira task creation.",
+      "description": "Sprint planning from PRD/analysis — epic/story generation, estimation, local sprint task files.",
       "category": "productivity",
       "complexity": "medium",
       "repo": "https://github.com/SkyWalker2506/ccplugin-sprint-planner",

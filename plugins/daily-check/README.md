@@ -5,7 +5,6 @@ Automated daily project health check — surfaces stale tasks, uncommitted work,
 ## Features
 
 - Scans all active projects for uncommitted changes
-- Reports Jira tasks stuck in In Progress
 - Identifies failing CI/CD pipelines
 - Summarizes agent activity from the last 24 hours
 
@@ -14,7 +13,6 @@ Automated daily project health check — surfaces stale tasks, uncommitted work,
 | Requirement | Details |
 |-------------|---------|
 | Deps | `bash`, `gh`, `git` |
-| MCP | Atlassian (optional, for Jira reporting) |
 
 ## Usage
 

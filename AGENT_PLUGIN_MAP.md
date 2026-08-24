@@ -17,7 +17,6 @@ Which agents benefit from each plugin. Install a plugin when you frequently use 
 | [ccplugin-git-github](https://github.com/SkyWalker2506/ccplugin-git-github) | B1, B2, B3, B5, B7, B13, C3, J2, J7, J10 | Development |
 | [ccplugin-agent-browser](https://github.com/SkyWalker2506/ccplugin-agent-browser) | K1 (Web Researcher), H1 (Market Researcher), H2 (Competitor Analyst), H5 (SEO Agent) | Development |
 | [ccplugin-opencode-bridge](https://github.com/SkyWalker2506/ccplugin-opencode-bridge) | A3 (Fallback Manager), A5 (Context Pruner), B2, B3 (free-model fallback path) | Development |
-| [ccplugin-jira-suite](https://github.com/SkyWalker2506/ccplugin-jira-suite) | I1 (Jira Router), I2 (Sprint Planner), I4 (Status Reporter), I3–I10 (all Jira PM agents) | Productivity |
 | [ccplugin-sprint-planner](https://github.com/SkyWalker2506/ccplugin-sprint-planner) | I2 (Sprint Planner), I3 (Task Decomposer), I6 (Backlog Groomer), A1 (Lead Orchestrator) | Productivity |
 | [ccplugin-research-tools](https://github.com/SkyWalker2506/ccplugin-research-tools) | K1 (Web Researcher), K3 (Doc Fetcher), K4 (Trend Analyzer), H1 (Market Researcher) | Productivity |
 | [ccplugin-devtools-setup](https://github.com/SkyWalker2506/ccplugin-devtools-setup) | A0 (Jarvis), A1 (Lead Orchestrator), G3 (MCP Health), G7 (Update Checker) | Productivity |
@@ -70,7 +69,6 @@ Active agents only (`status: active`). Agents with `mcps: ["*"]` accept all avai
 | Market Researcher | H1 | `fetch`, `context7` | Competitor + trend research |
 | SEO Agent | H5 | `fetch` | SEO audit, keyword research |
 | GEO Agent | H6 | `fetch`, `context7` | AI-visibility optimization |
-| Jira Router | I1 | `atlassian` | Issue triage, routing |
 | Sprint Planner | I2 | `atlassian` | Sprint planning, estimation |
 | Status Reporter | I4 | `atlassian` | Burndown, dashboard |
 | Cloud Deploy Agent | J2 | `github`, `git` | Vercel, Firebase, CI/CD |
@@ -92,7 +90,6 @@ Active agents only (`status: active`). Agents with `mcps: ["*"]` accept all avai
 | `git` | B1, B2, B3, B5, B7, B13, B15, C3, J2, J7, J10 |
 | `jcodemunch` | B1, B2, B5, B7, B13 |
 | `context7` | B1, B2, B3, B15, H1, H6, K1, K3 |
-| `atlassian` | I1, I2, I4 (all active Jira PM agents) |
 | `fetch` | G7, H1, H5, H6, J7, K1, K3, K4 |
 | `flutter-dev` | B15 (Mobile Dev Agent) |
 | `firebase` | J6 (Firebase Agent — pool) |
@@ -106,7 +103,6 @@ Some plugins bundle or configure specific MCPs. Use this when planning installs.
 
 | Plugin | Bundled/Required MCP | Notes |
 |--------|---------------------|-------|
-| ccplugin-jira-suite | `atlassian` | Atlassian MCP included in plugin |
 | ccplugin-research-tools | `fetch` | Fetch MCP required |
 | ccplugin-flutter-firebase | `flutter-dev`, `firebase` | Both MCPs required |
 | ccplugin-git-github | `git`, `github` | Both MCPs required |
@@ -114,7 +110,7 @@ Some plugins bundle or configure specific MCPs. Use this when planning installs.
 | ccplugin-agent-browser | `playwright` | Playwright MCP (headless browser) |
 | ccplugin-devtools-setup | — | Manages MCP config, no runtime dependency |
 | ccplugin-code-quality | `jcodemunch` | jCodeMunch indexing integration |
-| ccplugin-sprint-planner | `atlassian` | Jira task creation |
+| ccplugin-sprint-planner | — | Local sprint task files |
 
 ---
 

@@ -207,16 +207,9 @@ Her run 7 fazdan olusur:
 
 ---
 
-### Jira Mode Detection
+### Gorev Kaydi
 
-Forge, calistigi projeyi `~/Projects/ClaudeHQ/projects.json` uzerinden bulur ve `jira` alanina bakar:
-
-| `jira` alani | Mode | Davranis |
-|--------------|------|---------|
-| Set (orn. `"CHQ"`) | **Jira mode** | Atlassian MCP uzerinden epic/task acilir, transition'lar yapilir |
-| `null`/`false`/yok | **Jira-less mode** | Tasklar `forge/sprints/sprint-{N}.json` icinde local ID ile (`T-001`, `T-002`...) tutulur, Jira cagrisi yapilmaz |
-
-Ayni pipeline; sadece gorev kayit yeri farkli. Pre-flight check'leri, Phase 2/3 olusturma, Phase 4 status label'lari ve Phase 5 ozet hepsi mod'a gore uyarlanir. **Bu karar Phase 0'in basinda alinir** ve sonraki tum fazlara aktarilir.
+Tasklar her zaman local'de tutulur: `forge/sprints/sprint-{N}.json` icinde `T-001`, `T-002`... ID'leriyle. Harici bir issue tracker'a bagimlilik yoktur.
 
 ---
 
@@ -230,7 +223,6 @@ Run baslamadan once tum bagimliliklari kontrol et. Biri bile fail ederse **durur
 ━━ Pre-flight Checks ━━━━━━━━━━━━━━━━━━
   [✓] Git           — clean working tree, on main
   [✓] GitHub CLI    — gh auth status OK
-  [✓] Jira          — Jira mode'da MCP+KEY gecerli, Jira-less mode'da skip
   [✓] Flutter/Node  — proje stack'ine gore build tool mevcut
   [✓] Secrets       — secrets.env yuklu, gerekli key'ler var
   [✓] Disk          — min 1GB bos alan
@@ -243,14 +235,10 @@ Run baslamadan once tum bagimliliklari kontrol et. Biri bile fail ederse **durur
 | **Git clean** | `git status --porcelain` bos mu | "Uncommitted changes var. Commit veya stash et." |
 | **Git branch** | `git branch --show-current` = main/master | "main branch'te degilsin. `git checkout main` yap." |
 | **gh auth** | `gh auth status` | "GitHub CLI giris yapmamis. `gh auth login` calistir." |
-| **Jira MCP** *(Jira mode'da)* | Atlassian MCP tool'larini cagir (getVisibleJiraProjects) | "Jira baglantisi yok. MCP kontrol et." |
-| **Jira KEY** *(Jira mode'da)* | Proje KEY'i Jira'da var mi | "Proje KEY '{KEY}' Jira'da bulunamadi." |
 | **Build tool** | `pubspec.yaml` → flutter, `package.json` → node, vb. | "Flutter/Node bulunamadi. Yukle." |
 | **Secrets** | `source secrets.env`, gerekli key'ler set mi | "SUPABASE_URL eksik. secrets.env kontrol et." |
 | **Disk** | `df -h .` kontrol | "Disk alani yetersiz." |
 | **Models** | Sonnet + Opus API erisilebilir mi (basit test) | "Model erisimi yok. API key kontrol et." |
-
-> **Jira-less mode'da** Jira MCP/KEY satirlari skip edilir; geri kalan kontroller aynen calisir.
 
 Tum kontroller gecerse:
 ```
@@ -338,22 +326,16 @@ Lead'lerin tum onerilerini **otomatik kabul et** — soru sormadan:
 - Task oncelikleri → kabul
 - Sprint sirasi → kabul
 - Efor tahminleri → kabul
-- Gorev kaydi → **Jira mode**'da Jira'da epic/task ac, **Jira-less mode**'da `forge/sprints/sprint-{N}.json`'a yaz
+- Gorev kaydi → `forge/sprints/sprint-{N}.json`'a yaz
 
-Cikti: `analysis/SPRINT_PLAN.md` + (Jira mode → Jira'da epic/task'lar) veya (Jira-less mode → `forge/sprints/sprint-1.json`)
+Cikti: `analysis/SPRINT_PLAN.md` + `forge/sprints/sprint-1.json`
 
 ---
 
 ### Phase 3 — Sprint Creation
 
-Sprint plan'daki task'lari **mod'a gore** olustur (Phase 2'de yapilmadiysa):
+Sprint plan'daki task'lari olustur (Phase 2'de yapilmadiysa):
 
-**Jira mode:**
-1. Epic olustur
-2. Task'lari olustur (summary, description, priority, story points)
-3. Sprint 1'i aktif yap
-
-**Jira-less mode:**
 1. `forge/sprints/sprint-{N}.json` dosyasina yaz:
    ```json
    {
@@ -418,7 +400,7 @@ Her agent (Coder ve Reviewer) aktif olarak çalışırken her adım başında te
 [KEY-101] done ✓
 ```
 
-Format: `[{TASK_ID}] {eylem}` — `TASK_ID`, Jira mode'da Jira KEY (orn. `KEY-101`), Jira-less mode'da local ID (orn. `T-001`). Eylem tam olarak 1 kelime. Proje forge agentı için:
+Format: `[{TASK_ID}] {eylem}` — `TASK_ID` local ID'dir (orn. `T-001`). Eylem tam olarak 1 kelime. Proje forge agentı için:
 ```
 [CoinHQ] indexing
 [CoinHQ] analyzing
@@ -430,7 +412,7 @@ Format: `[{TASK_ID}] {eylem}` — `TASK_ID`, Jira mode'da Jira KEY (orn. `KEY-10
 
 Bu etiketler her adım **başında** yazılır (bitmeden önce) — bu sayede paralel çalışan agentların durumu gerçek zamanlı izlenebilir.
 
-Her task icin **`{TASK_ID}`** ile (Jira mode → Jira KEY, Jira-less mode → `T-NNN`) pipeline'i calistir. Jira mode'da `/jira-start-new-task` skill'i kullanilabilir; Jira-less mode'da pipeline dogrudan agent ile koşturulur:
+Her task icin **`{TASK_ID}`** (`T-NNN`) ile pipeline'i dogrudan agent ile koştur:
 
 1. **Branch olustur** — `feat/{task-id-lower}-xxx` (orn. `feat/key-101-xxx` veya `feat/t-001-xxx`)
 2. **Kod yaz** — Sonnet model (worktree izolasyonu)
@@ -448,12 +430,12 @@ Her task icin **`{TASK_ID}`** ile (Jira mode → Jira KEY, Jira-less mode → `T
    - Pass → devam
    - Fail → fix loop'a geri dön (max 3 retry)
    - 3 retry sonra fail → PR'a yorum bırak, sonraki task'a geç
-8. **Status update** — Jira mode'da `transitionJiraIssue` (Done); Jira-less mode'da `forge/sprints/sprint-{N}.json` icinde task'in `status`'ünü `"done"` yap, `completed_at` ekle
+8. **Status update** — `forge/sprints/sprint-{N}.json` icinde task'in `status`'ünü `"done"` yap, `completed_at` ekle
 
 **Paralel calisma:**
 - Ayni sprint icerisindeki task'lar wave sirasina gore paralel calisir (max 5 concurrent per wave)
 - Farkli sprint'ler sirayla calisir
-- Dosya lock sistemi cakismayi onler (`.jira-state/file-locks/`)
+- Dosya lock sistemi cakismayi onler (`.forge-state/file-locks/`)
 
 **Event Journal (`forge/event-log.jsonl`):**
 
@@ -749,7 +731,7 @@ Akis:
 1. `~/Projects/ClaudeHQ/projects.json` oku — `forge_wave_order` alanını parse et
 2. Aktif session tespiti yap — atlanacakları belirle
 3. Her wave'i sırayla işle: wave içindeki projeler paralel background agent olarak başlatılır:
-   - Her agent kendi projesini tam forge eder (analysis → tasks → PR → merge → Jira)
+   - Her agent kendi projesini tam forge eder (analysis → tasks → PR → merge → sprint kaydi)
    - Wave içi agent'lar birbirini beklemez; bir sonraki wave tüm önceki wave tamamlanınca başlar
    - Max 12 concurrent agent (tüm wave'ler dahil)
 4. Tüm agent'lar tamamlanınca özet göster:
@@ -784,7 +766,7 @@ Akis:
 │   ├── state-manifest.json                 # Recovery state — her phase geçişinde güncellenir
 │   ├── auto-report-{tarih}.md              # Unattended run özeti (auto mode)
 │   └── ...
-└── .jira-state/                            # Lock dosyalari
+└── .forge-state/                            # Lock dosyalari
 ```
 
 `forge/` klasorunu `.gitignore`'a ekle.
@@ -806,7 +788,7 @@ Bir proje "aktif" sayilir eger asagidaki sinyallerden **en az ikisi** positif:
 | **Claude session** | Son 30 dakikada `.jsonl` aktivitesi var mi | `find ~/.claude/projects/{proje-slug}/ -name "*.jsonl" -newer /tmp/forge-check-ts 2>/dev/null` |
 | **Git dirty** | Uncommitted degisiklik var mi | `git -C {path} status --porcelain` |
 | **Git lock** | `.git/index.lock` mevcut mu | `test -f {path}/.git/index.lock` |
-| **Forge lock** | `.jira-state/forge.lock` mevcut mu (baska forge calisiyor) | `test -f {path}/.jira-state/forge.lock` |
+| **Forge lock** | `.forge-state/forge.lock` mevcut mu (baska forge calisiyor) | `test -f {path}/.forge-state/forge.lock` |
 | **Recent file change** | Son 15 dakikada kaynak dosya degisti mi | `find {path}/lib {path}/src -newer /tmp/forge-check-ts -name "*.dart" -o -name "*.ts" -o -name "*.py" 2>/dev/null | head -1` |
 
 **Proje slug** cikarsimi:
@@ -872,10 +854,10 @@ Her forge baslayinca o projeye lock koy, bitince kaldir:
 
 ```bash
 # Forge baslangicinda:
-mkdir -p {path}/.jira-state && touch {path}/.jira-state/forge.lock
+mkdir -p {path}/.forge-state && touch {path}/.forge-state/forge.lock
 
 # Forge bitince (Phase 7 sonunda):
-rm -f {path}/.jira-state/forge.lock
+rm -f {path}/.forge-state/forge.lock
 ```
 
 Bu sayede iki ayri `forge all` ayni projeye cakismaz.
@@ -898,11 +880,11 @@ Bu sayede iki ayri `forge all` ayni projeye cakismaz.
 10a. **Phase 5.5 atlanamazz** — her run sonunda per-run scoring (browser test + GDD compliance + UI + functional + perf) zorunlu; skor < 5.0 ise sonraki run otomatik durur
 11. **Verimlilik skoru < 50 ise dur** — kullaniciya bildir, sonraki run'i baslatma
 12. **`all` modunda aktif session tespiti zorunlu** — skor ≥ 2 projeyi forge etme, kullaniciya bildir
-13. **Forge lock** — her forge baslayinca `.jira-state/forge.lock` yaz, bitince sil
+13. **Forge lock** — her forge baslayinca `.forge-state/forge.lock` yaz, bitince sil
 15. **forge choose** — `choose` argümanı verilince önce müsaitlik kontrolü yap, sonra kullanıcı proje seçsin, seçilenleri paralel forge et
 16. **Project index zorunlu** — Phase 0 sonunda `mcp__jcodemunch__index_repo` ile projeyi indexle; bu adım atlanamaz
 17. **Agent 1-kelime durum etiketi** — her agent her adım başında `[PROJE/KEY] eylem` formatında tek satır yazar (branching, coding, reviewing, merging, done); sessiz çalışma yasak
-18. **Jira mode otomatik tespit** — `projects.json` `jira` alanından mod belirlenir; Jira-less mode'da Jira çağrıları skip edilir, gorevler `forge/sprints/sprint-{N}.json`'a yazilir
+18. **Gorev kaydi** — gorevler her zaman `forge/sprints/sprint-{N}.json`'a yazilir
 14. **9+ puan eşiği — başta sor, 9'da dur:**
     - Forge **başlamadan önce** (Phase 0 sonrası, Phase 1 öncesi) şunu sor:
       ```

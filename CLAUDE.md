@@ -61,7 +61,7 @@ Asagidaki kurallar `~/Projects/` altindaki **tum projeler** icin gecerlidir. Pro
 
 #### 8a. Gorev parcalama
 
-- Gorev ≤ ~10 dakika; asarsa Jira'da alt goreve bol, sonra tek tek uygula
+- Gorev ≤ ~10 dakika; asarsa alt goreve bol, sonra tek tek uygula
 - **Paten → Kaykay → Bisiklet → Araba:** Her sprint sonunda deploy edilebilir, test edilebilir, kullanici tarafindan deneyimlenebilir bir butun teslim et
 - **Kapsam:** "Sunu da yapayim" yok; refactor gorursen ayri task ac
 - **Sirala:** IP'deki isi tamamla → commit → push → CI yesil → Done
@@ -91,15 +91,6 @@ Asagidaki kurallar `~/Projects/` altindaki **tum projeler** icin gecerlidir. Pro
 - **Akilli tekrar:** ayni hatayi tekrarlama; farkli cozum dene
 - **Riskli is oncesi yedek:** `.backup/<timestamp>/` — buyuk refactor, toplu silme, config degisimi
 - **Dogrulama donguleri:** Yap → dogrula zinciri kur. Ornek: build et → loglari izle → hata olmadigini dogrula. Sadece "calisiyor" yetmez — log/test/lint ile dogrula
-
-#### 8e. Jira (kullanan projeler icin)
-
-> Jira detaylari projenin `docs/CLAUDE_JIRA.md` dosyasinda. Lock sistemi: `~/Projects/claude-config/docs/LOCK_SYSTEM.md`. Implementation agent şablonu: skill'in `docs/agent-template.md` dosyasinda.
-
-- Koda baslamadan **In Progress** (transition 21)
-- Tum alt gorevler bitmeden ana gorevi Done yapma
-- **WAITING (7):** onay, credential, ucretli servis, urun karari gereken isler
-- IP'de "bekletme" yok — ya tamamla ya WAITING'e tasi
 
 #### 8f. Plugin ekleme (zorunlu checklist)
 

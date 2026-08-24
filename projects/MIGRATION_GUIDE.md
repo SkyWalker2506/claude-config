@@ -12,18 +12,17 @@ Bu rehber, `__PROJECTS_ROOT__/` altindaki **tum projeler** icin ortak MCP, skill
 
 ### v2.0 (2026-03-31) — Bulletproof refactor
 - **MCP tek kaynak:** Tum MCP tanimlari yalnizca `~/.claude/settings.json`'da. Proje `.mcp.json` ve `~/.claude/mcp.json` **silindi**. Projeler `enabledMcpjsonServers` ile secim yapar.
-- **Skills konsolidasyonu (35 → 18):** 10 `web-research-*` ve 10 `jira-run-detailed-*` varyanti silindi. Base skill'ler parametrik (`/web-research competitors`, `/jira-run-detailed security`).
+- **Skills konsolidasyonu (35 → 18):** 10 `web-research-*` varyanti silindi. Base skill'ler parametrik (`/web-research competitors`).
 - **3 katmanli CLAUDE.md:** `~/.claude/CLAUDE.md` (global) → `~/Projects/CLAUDE.md` (ortak) → `proje/CLAUDE.md` (ozel). Her katman sadece kendi sorumlulugunu tasir; tekrar yok.
-- **Projects/CLAUDE.md framework-agnostik:** Flutter, Jira VOC, APK gibi proje detaylari cikarildi.
+- **Projects/CLAUDE.md framework-agnostik:** Flutter, APK gibi proje detaylari cikarildi.
 - **Watchdog §10 kaldirildi:** Karmasik Haiku→Opus zinciri pratikte calismiyor.
-- **Hardcoded referanslar temizlendi:** audit, web-research, jira-run-detailed skill'lerindeki VocabLearningApp yollari ve VOC referanslari parametrik yapildi.
+- **Hardcoded referanslar temizlendi:** audit, web-research skill'lerindeki VocabLearningApp yollari ve VOC referanslari parametrik yapildi.
 - **Yeni skill:** `/refine [global|all] [model]` — config dosyalarini rafine et.
 
 **v1.0 → v2.0 delta adimlari:**
 1. `~/.claude/mcp.json` sil (varsa)
 2. Proje `.mcp.json` sil (varsa) — `enabledMcpjsonServers` yeterli
 3. `~/.claude/skills/web-research-*/` dizinlerini sil (10 adet)
-4. `~/.claude/skills/jira-run-detailed-*/` dizinlerini sil (10 adet)
 5. `~/.claude/CLAUDE.md`'yi guncelle (yeni format: global kurallar + skill tablosu)
 6. `~/Projects/CLAUDE.md`'yi guncelle (framework-agnostik ortak kurallar)
 7. Proje `CLAUDE.md`'sindeki tekrar eden bolumleri cikar (global/ortak'tan devraliniyor)
@@ -51,7 +50,6 @@ Bu rehber, `__PROJECTS_ROOT__/` altindaki **tum projeler** icin ortak MCP, skill
 8. [CI/CD (GitHub Actions)](#8-cicd-github-actions)
 9. [Scripts](#9-scripts)
 10. [Environment Variables](#10-environment-variables)
-11. [Jira Entegrasyonu](#11-jira-entegrasyonu)
 12. [Projeye Ozel Degistirilecekler](#12-projeye-ozel-degistirilecekler)
 
 ---
@@ -83,8 +81,6 @@ Kullaniciya hangi servisleri kullanacagini sor:
 ```
 Hangi servisleri kullanacaksiniz? (kullanmayacaklara "-" yazin)
 
-8.  **Jira:** Proje anahtari? (orn. "VOC", "TASK")
-9.  **Jira site:** (orn. "myteam.atlassian.net")
 10. **Firebase:** Project ID? (orn. "myapp-12345")
 11. **Firebase Android App ID:** (orn. "1:123:android:abc")
 12. **Firebase iOS App ID:** (orn. "1:123:ios:abc")
@@ -107,8 +103,6 @@ Kullanicinin cevaplarina gore asagidaki placeholder'lari degistir ve dosyalari o
 | `LINT_CMD` | Soru 5 | hooks, CI, CLAUDE.md |
 | `USER_LANG` | Soru 6 | CLAUDE.md |
 | `GITHUB_REPO` | Soru 7 | .mcp.json, CI |
-| `JIRA_PROJECT_KEY` | Soru 8 | skills, CLAUDE_JIRA.md, scripts |
-| `JIRA_SITE` | Soru 9 | .env, scripts |
 | `FIREBASE_PROJECT_ID` | Soru 10 | firebase.json, .env, CI |
 | `FIREBASE_ANDROID_APP_ID` | Soru 11 | firebase.json, .env |
 | `FIREBASE_IOS_APP_ID` | Soru 12 | firebase.json, .env |
@@ -128,7 +122,6 @@ Kullanicinin cevaplarina gore asagidaki placeholder'lari degistir ve dosyalari o
 7. firestore.rules     — Firebase varsa
 8. storage.rules       — Firebase varsa
 9. .github/workflows/  — CI (framework'e gore test/lint komutu)
-10. docs/CLAUDE_JIRA.md — Jira varsa (proje anahtari degistirilmis)
 11. scripts/           — kullanilacak scriptler
 ```
 
@@ -160,7 +153,7 @@ Kullanicinin cevaplarina gore asagidaki placeholder'lari degistir ve dosyalari o
 # Claude Code
 .mcp.json
 .claude/settings.local.json
-.jira-state/
+.forge-state/
 .agent_locks/
 .agent_progress.json
 .worktrees/
@@ -199,7 +192,6 @@ Kullanici asagidaki cevaplari verdiyse:
 6. Turkce
 7. github.com/user/task-manager
 8. TM
-9. myteam.atlassian.net
 10. taskmanager-abc12
 11. 1:123:android:abc
 12. -
@@ -210,9 +202,9 @@ Kullanici asagidaki cevaplari verdiyse:
 ```
 
 Claude su dosyalari olusturur:
-- `CLAUDE.md` → proje adi "TaskManager", test komutu "flutter test", Jira "TM"
+- `CLAUDE.md` → proje adi "TaskManager", test komutu "flutter test"
 - `.claude/settings.json` → yalnizca Flutter hooks + enabledMcpjsonServers (permissions global'den gelir)
-- `.env.example` → yalnizca Firebase + Jira alanlari (Telegram/Drive/AdMob/RC yok)
+- `.env.example` → yalnizca Firebase alanlari (Telegram/Drive/AdMob/RC yok)
 - `firebase.json` → project ID "taskmanager-abc12", yalnizca Android (iOS yok)
 - `.github/workflows/flutter_ci.yml` → Flutter CI
 - **Skill'ler:** `~/.claude/skills/` altinda global — proje klasorune kopyalanmaz
@@ -280,7 +272,6 @@ gh auth login
     "github": { "command": "npx", "args": ["-y", "@modelcontextprotocol/server-github"],
       "env": { "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}" } },
     "git": { "command": "/Users/KULLANICI/.local/bin/uvx", "args": ["mcp-server-git"] },
-    "atlassian": { "command": "npx", "args": ["-y", "mcp-remote@latest", "https://mcp.atlassian.com/v1/mcp"] },
     "flutter-dev": { "command": "npx", "args": ["-y", "flutter-dev-mcp"] },
     "firebase": { "command": "npx", "args": ["-y", "@gannonh/firebase-mcp"],
       "env": { "SERVICE_ACCOUNT_KEY_PATH": "${FIREBASE_SERVICE_ACCOUNT_PATH}" } },
@@ -292,7 +283,7 @@ gh auth login
 
 **Dosya:** `~/.claude/skills/`
 
-> **Tum ortak skill'ler (jira-run, audit, dashboard, web-research vb.) burada — proje klasorlerine kopyalamak gerekmez.** Yeni proje acildiginda global skill'ler otomatik yuklenir. Skill ekleme/guncelleme sadece bu dizinde yapilir.
+> **Tum ortak skill'ler (audit, web-research vb.) burada — proje klasorlerine kopyalamak gerekmez.** Yeni proje acildiginda global skill'ler otomatik yuklenir. Skill ekleme/guncelleme sadece bu dizinde yapilir.
 
 **Dosya:** `~/.claude/CLAUDE.md`
 
@@ -329,10 +320,6 @@ Global talimatlar dosyasi. Icerik projeye gore uyarlanir. Ornek:
       "command": "/Users/KULLANICI/.local/bin/uvx",
       "args": ["mcp-server-git"]
     },
-    "atlassian": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote@latest", "https://mcp.atlassian.com/v1/mcp"]
-    },
     "flutter-dev": {
       "command": "npx",
       "args": ["-y", "flutter-dev-mcp"]
@@ -358,7 +345,6 @@ Global talimatlar dosyasi. Icerik projeye gore uyarlanir. Ornek:
 |-----|-------|----------|-------------|
 | **github** | `@modelcontextprotocol/server-github` | PR, issue, repo islemleri | `GITHUB_TOKEN` |
 | **git** | `mcp-server-git` | Git komutlari (status, diff, log, commit) | - |
-| **atlassian** | `mcp-remote` + Atlassian URL | Jira/Confluence islemleri | Atlassian OAuth (ilk calistirmada) |
 | **flutter-dev** | `flutter-dev-mcp` | Flutter build, analyze, test, hot reload | - |
 | **firebase** | `@gannonh/firebase-mcp` | Firestore, Storage, Auth islemleri | `FIREBASE_SERVICE_ACCOUNT_PATH` |
 | **context7** | `@upstash/context7-mcp` | Guncel kutuphane dokumantasyonu | - |
@@ -369,7 +355,7 @@ Global talimatlar dosyasi. Icerik projeye gore uyarlanir. Ornek:
 
 ```json
 {
-  "enabledMcpjsonServers": ["github", "git", "atlassian", "context7", "firebase"]
+  "enabledMcpjsonServers": ["github", "git", "context7", "firebase"]
 }
 ```
 
@@ -391,7 +377,7 @@ Global talimatlar dosyasi. Icerik projeye gore uyarlanir. Ornek:
 ```json
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "enabledMcpjsonServers": ["github", "git", "atlassian", "context7"],
+  "enabledMcpjsonServers": ["github", "git", "context7"],
   "hooks": {
     "Stop": [
       {
@@ -414,11 +400,11 @@ Global talimatlar dosyasi. Icerik projeye gore uyarlanir. Ornek:
 
 | Proje | enabledMcpjsonServers | Hook |
 |-------|----------------------|------|
-| VocabLearningApp | github, git, atlassian, context7, firebase | `flutter gen-l10n && flutter test` |
-| ApApp-CrossPlatform | github, git, atlassian, jcodemunch | `flutter pub get && flutter analyze && flutter test` |
-| football-ai-platform | github, git, atlassian, context7 | `npx next lint` |
-| ByteCraftHQ | github, git, context7, atlassian | (yok) |
-| KnightOnlineAI | github, git, atlassian, context7 | (yok) |
+| VocabLearningApp | github, git, context7, firebase | `flutter gen-l10n && flutter test` |
+| ApApp-CrossPlatform | github, git, jcodemunch | `flutter pub get && flutter analyze && flutter test` |
+| football-ai-platform | github, git, context7 | `npx next lint` |
+| ByteCraftHQ | github, git, context7 | (yok) |
+| KnightOnlineAI | github, git, context7 | (yok) |
 
 ### MODIFIYE: Projeye ozel
 
@@ -445,20 +431,8 @@ Tum skill'ler `.claude/skills/<skill-adi>/SKILL.md` konumunda. Asagidaki tabloda
 | **audit** | `/audit [security\|cost\|performance\|cleanup\|all]` | Kod taramasi |
 | **rbg** | `/rbg <gorev>` | Arka plan delegasyonu |
 | **dashboard** | `/dashboard` | Terminal dashboard (cache, 0 token) |
-| **dashboard-sync** | `/dashboard-sync` | Jira'dan taze veri + dashboard |
 | **agent-browser** | `/agent-browser` | Browser otomasyon CLI |
 | **claude-api** | `/claude-api` | Claude API/SDK yardim |
-
-### Jira Skills (Jira kullanan projeler icin)
-
-| Skill | Komut | Aciklama |
-|-------|-------|----------|
-| **jira-run** | `/jira-run [N] [aralik]` | Wait-and-check dongusu |
-| **jira-run-fast** | `/jira-run-fast [N]` | 1s aralikli hizli dongu |
-| **jira-run-detailed** | `/jira-run-detailed [odak]` | Board derinlemesine audit + bakim (parametrik) |
-| **jira-cancel** | `/jira-cancel` | jira-run durdur |
-| **jira-start-new-task** | `/jira-start-new-task` | Coklu agent pipeline |
-| **decide** | `/decide` | WAITING kartlari hizli karar |
 
 ### Arastirma ve Analiz Skills
 
@@ -468,7 +442,7 @@ Tum skill'ler `.claude/skills/<skill-adi>/SKILL.md` konumunda. Asagidaki tabloda
 | **project-analysis** | `/project-analysis` | 12 kategori paralel audit |
 | **sprint-plan** | `/sprint-plan` | Analiz raporlarindan sprint plani |
 
-> **Not:** `web-research` ve `jira-run-detailed` **parametrik** — ayri varyant skill'ler kaldirildi. Odak arguman olarak verilir: `/web-research competitors`, `/jira-run-detailed security` vb.
+> **Not:** `web-research` **parametrik** — ayri varyant skill'ler kaldirildi. Odak arguman olarak verilir: `/web-research competitors` vb.
 
 ### Skill Konumu
 
@@ -488,8 +462,6 @@ mkdir -p ~/.claude/skills/SKILL_ADI
 
 ### MODIFIYE: Projeye ozel
 
-- Jira skill'leri Jira proje anahtarini `docs/CLAUDE_JIRA.md`'den okur — skill dosyasinda degistirme gerekmez
-- Dashboard skill'i proje JQL'ini CLAUDE_JIRA.md'ye bagli okur
 - web-research skill'lerindeki rakip/urun isimleri gerekiyorsa skill prompt'unda belirt
 
 ---
@@ -558,7 +530,6 @@ mkdir -p ~/.claude/skills/SKILL_ADI
 ~/.claude/CLAUDE.md                      # Global (tum projeler)
 ~/Projects/CLAUDE.md                     # Ust dizin (ortak kurallar)
 ~/Projects/YeniProje/CLAUDE.md           # Proje ozel (ana talimat)
-~/Projects/YeniProje/docs/CLAUDE_JIRA.md # Jira protokolu (Jira kullananlar)
 ```
 
 ### Yeni Proje CLAUDE.md Sablonu
@@ -571,7 +542,6 @@ mkdir -p ~/.claude/skills/SKILL_ADI
 | Once | Kaynak | Not |
 |------|--------|-----|
 | 1 | Bu dosya (`CLAUDE.md`) | Davranis, Git, CI |
-| 2 | `docs/CLAUDE_JIRA.md` | Jira protokolu (varsa) |
 
 **Kesin kurallar:**
 1. Oncelik: MCP/tool → script / mevcut kod → reasoning
@@ -612,7 +582,6 @@ mkdir -p ~/.claude/skills/SKILL_ADI
 ### MODIFIYE: Projeye ozel
 
 - `[Proje Adi]`, `[TEST_KOMUTU]`, `[FRAMEWORK]`, `[DIL]`, `[PAKET_YONETICI]`, `[LINT]`, `[ADIMLAR]` placeholder'larini doldurun
-- Jira kullanmiyorsaniz Jira referanslarini cikarin
 - Projeye ozel kurallar ekleyin
 
 ---
@@ -768,12 +737,6 @@ jobs:
 
 | Script | Aciklama | Bagimlilik | Degistirilecek |
 |--------|----------|------------|----------------|
-| `dashboard.py` | Terminal dashboard | Python3, `.jira_cache.json` | Jira proje anahtari |
-| `jira_run_cancel.sh` | jira-run durdur | Bash | - |
-| `jira_clear_working_lock.sh` | Working lock temizle | Bash | - |
-| `jira_draft_to_todo.py` | Bulk Draft→To Do | Python3, Jira API | Jira URL, proje |
-| `jira_setup_board.py` | Board baslat | Python3, Jira API | Jira URL, proje |
-| `jira_sync.sh` | Jira sync | Bash, Jira API | Jira URL |
 | `build_and_distribute.sh` | APK build + dagitim | Bash, Flutter | Build path |
 | `notify_telegram.sh` | Telegram bildirim | Bash, curl | Bot token, chat ID |
 | `upload_drive.sh` | Google Drive upload | Bash, gcloud | Drive folder ID |
@@ -787,7 +750,6 @@ chmod +x HEDEF_PROJE/scripts/*.sh
 
 ### MODIFIYE: Projeye ozel
 
-- Jira URL'leri ve proje anahtarlarini degistir
 - Telegram bot token/chat ID'yi degistir
 - Build path'leri projeye uyarla
 
@@ -803,10 +765,6 @@ TELEGRAM_BOT_TOKEN=
 TELEGRAM_CHAT_ID=
 TELEGRAM_ALLOWED_CHAT_ID=
 
-# === Jira API ===
-JIRA_URL=https://SITE.atlassian.net
-JIRA_USERNAME=
-JIRA_API_TOKEN=
 
 # === Google Drive ===
 GOOGLE_DRIVE_FOLDER_ID=
@@ -841,40 +799,6 @@ ADMOB_IOS_BANNER_ID=
 
 ---
 
-## 11. Jira Entegrasyonu
-
-### Gerekli dosyalar
-
-```
-docs/CLAUDE_JIRA.md          # Jira protokolu (tam metin)
-docs/CLAUDE_JIRA_NOTES.md    # Degisiklik logu
-docs/jira_loop_log.md        # Tur izleme logu (append-only)
-.jira_cache.json             # Dashboard cache (otomatik olusur)
-```
-
-### Jira Transition ID'leri
-
-| Durum | ID | Aciklama |
-|-------|----|----------|
-| Draft | 2 | Taslak |
-| Feedback | 3 | Geri bildirim bekliyor |
-| Backlog | 4 | Backlog |
-| Refine | 5 | Detaylandirma |
-| Blocked | 6 | Engellenmis |
-| Waiting | 7 | Onay bekliyor |
-| To Do | 11 | Yapilacak |
-| In Progress | 21 | Devam ediyor |
-| Done | 31 | Tamamlandi |
-
-### MODIFIYE: Projeye ozel
-
-- `VOC` → kendi Jira proje anahtariniz
-- Transition ID'leri projenizin workflow'una gore degisebilir — `getTransitionsForJiraIssue` ile kontrol edin
-- Cloud ID'yi `getAccessibleAtlassianResources` ile alin
-- `CLAUDE_JIRA.md` icerigini proje akisina uyarlayin
-
----
-
 ## 12. Projeye Ozel Degistirilecekler — Kontrol Listesi
 
 Yeni projeye tasirken asagidaki maddeleri tek tek kontrol edin:
@@ -895,13 +819,6 @@ Yeni projeye tasirken asagidaki maddeleri tek tek kontrol edin:
 - [ ] `firestore.rules` → Veri yapisina gore kurallari yazin
 - [ ] `storage.rules` → Upload kurallarina uyarlayin
 - [ ] `firebase deploy --only firestore:rules,storage`
-
-### Jira Kullananlar
-
-- [ ] `docs/CLAUDE_JIRA.md` → Proje anahtarini degistirin
-- [ ] Transition ID'leri kontrol edin
-- [ ] Cloud ID'yi guncelleyin
-- (Skill'lerde degistirme gerekmez — Jira anahtari CLAUDE_JIRA.md'den okunur)
 
 ### CI/CD
 
@@ -943,7 +860,7 @@ mkdir -p .claude
 cat > .claude/settings.json << 'EOF'
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "enabledMcpjsonServers": ["github", "git", "atlassian", "context7"],
+  "enabledMcpjsonServers": ["github", "git", "context7"],
   "hooks": {
     "Stop": [{ "hooks": [{ "type": "command", "command": "YOUR_TEST_CMD", "async": true, "timeout": 300 }] }]
   }

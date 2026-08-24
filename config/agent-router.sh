@@ -48,7 +48,6 @@ INTENT = {
     'refactor':    ('refactoring',  2.5),
     'architecture':('system-design',3.0),
     'sprint':      ('sprint',       3.0),
-    'jira':        ('jira',         2.5),
     'plan':        ('planning',     2.0),
     'research':    ('web-search',   2.5),
     'performance': ('performance',  2.5),

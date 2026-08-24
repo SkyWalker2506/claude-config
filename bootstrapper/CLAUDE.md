@@ -18,7 +18,6 @@ Kullanicidan su bilgileri al (parametre olarak verilmemisse sor):
 |-------|-------|---------|
 | Proje adi | `my-app` | Evet |
 | Stack | flutter / next / react / node / python / go / rust / custom | Evet |
-| Jira proje anahtari | `MYAPP` | Hayir |
 | Git remote URL | `git@github.com:user/repo.git` | Hayir |
 
 **Validasyon:**
@@ -52,11 +51,6 @@ Kullanicidan su bilgileri al (parametre olarak verilmemisse sor):
   analysis/                    ← Analiz raporlari (/project-analysis ciktisi)
 ```
 
-Jira varsa ek:
-```
-  docs/CLAUDE_JIRA.md          ← Jira entegrasyonu
-```
-
 **Baska dosya olusturma.** Framework init (`flutter create`, `npx create-next-app` vs.) calistirma — kullanici kendisi yapar.
 
 ---
@@ -72,7 +66,6 @@ Jira varsa ek:
 | `__PKG_MANAGER__` | Stack haritasindan |
 | `__TEST_CMD__` | Stack haritasindan |
 | `__LINT_CMD__` | Stack haritasindan |
-| `__JIRA_KEY__` | Kullanicidan (yoksa "Yok") |
 
 ---
 
@@ -127,31 +120,7 @@ Thumbs.db
 
 ---
 
-## Adim 6 — Jira (varsa)
-
-Jira key verilmisse `docs/CLAUDE_JIRA.md` olustur:
-
-```markdown
-# <PROJE_ADI> — Jira Entegrasyonu
-
-## Proje
-- **Jira Key:** <JIRA_KEY>
-- **Board:** (doldurulacak)
-
-## Workflow
-| Durum | Transition ID | Kullanim |
-|-------|--------------|----------|
-| In Progress | 21 | Ise baslarken |
-| Done | 31 | Is tamamlaninca |
-| WAITING | 7 | Onay/credential beklerken |
-
-## Notlar
-Projeye ozel Jira kurallari buraya yazilir.
-```
-
----
-
-## Adim 7 — Git Init + Ilk Commit
+## Adim 6 — Git Init + Ilk Commit
 
 ```bash
 cd ~/Projects/<proje-adi>
@@ -167,7 +136,7 @@ git remote add origin <url>
 
 ---
 
-## Adim 8 — Rapor
+## Adim 7 — Rapor
 
 Islem bitince su formatta rapor ver:
 
@@ -178,7 +147,6 @@ Islem bitince su formatta rapor ver:
 |---------|-------|
 | Konum   | ~/Projects/<proje-adi> |
 | Stack   | <stack> |
-| Jira    | <key veya Yok> |
 | Git     | Initialized |
 
 ### Olusturulan Dosyalar
@@ -187,7 +155,6 @@ Islem bitince su formatta rapor ver:
 - .gitignore
 - docs/
 - analysis/
-(jira varsa: docs/CLAUDE_JIRA.md)
 
 ### Sonraki Adimlar
 1. `cd ~/Projects/<proje-adi> && claude`

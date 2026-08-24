@@ -1,7 +1,6 @@
 ---
 project: <proje-adi>
 stack: <dil/framework, virgülle>
-jira: <JIRA-KEY>
 git: SkyWalker2506/<repo>
 focus: <aktif sprint/odak — kisa>
 ---

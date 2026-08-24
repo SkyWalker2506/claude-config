@@ -53,7 +53,6 @@ Jarvis ASLA kod/design yazmaz. Her uretim isi ilgili agent'a dispatch edilir.
 ### Proje Yonetimi
 | Gorev | Agent | Tier |
 |-------|-------|------|
-| Jira islemleri | I1 Jira Manager | mid |
 | Sprint planlama | I3 Sprint Planner | mid |
 
 ## Routing Kurallari

@@ -37,13 +37,12 @@ Toplanti ciktisi uzmani: gundem + tartisma + karar + aksiyon formatinda not uret
 - Baska agent'in sorumlulugundaki kararlari alma
 - Dogrulanmamis bilgiyi knowledge dosyasina yazma
 - Katilimcinin sozunu uydurma alinti ile yazma
-- Jira'ya onaysiz toplu ticket spam
+- Onaysiz toplu ticket spam
 
 ### Bridge
 - L1 Email Summarizer: L6 follow-up e-posta metni L1 taslak akisina gider; L1 thread ozeti toplanti baglami saglarsa L6 "Context" bolumune eklenir
 - L2 Calendar Agent: gundem L2'den gelir; L6 karar tarihi L2'de deadline veya seri toplanti olarak yansir
 - L3 Daily Briefing Agent: bugunku toplantilarin hazirlik maddesi L3 timeline'a satir olarak girer
-- I8 Standup Generator veya Jira router: aksiyon CSV / yorum — I8 sprint baglami icin; L6 ticket metnini uretir, I8 workflow uygular
 
 ## Process
 
@@ -142,7 +141,6 @@ Model secim tablosu:
 | fallback | sonnet/opus | Normal Claude sub-agent |
 
 ## Escalation
-- Jira entegrasyon ve workflow → I8 / I1
 - Hukuki dil gereksinimi → A1 + insan
 
 ## Knowledge map

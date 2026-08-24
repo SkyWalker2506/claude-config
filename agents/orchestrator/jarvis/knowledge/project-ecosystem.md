@@ -8,20 +8,20 @@ confidence: high
 
 ## Aktif Projeler (projects.json'dan)
 
-| Proje | Jira | Tech Stack | Durum |
-|-------|------|-----------|-------|
-| VocabLearningApp | VOC | Flutter/Dart, Firebase, Riverpod | Aktif — Sprint 3 UX overhaul |
-| ClaudeHQ | CHQ | Shell, JSON, Markdown | Aktif — cross-project workspace |
-| claude-config | CC | Shell, JSON, Markdown | Aktif — config + agent sistemi |
-| ByteCraftHQ | BYT | Flutter | Aktif |
-| Viralyze | VIR | Flutter | Aktif |
-| CoinHQ | COIN | Flutter | Aktif |
-| Gardirop | GARD | Flutter | Aktif |
-| ProjeBirlik | PROJ | Flutter | Aktif |
-| KnightOnlineAI | KOAI | Unity/C# | Aktif |
-| trading-bot | TB | Python | Aktif |
+| Proje | Tech Stack | Durum |
+|-------|-----------|-------|
+| VocabLearningApp | Flutter/Dart, Firebase, Riverpod | Aktif — Sprint 3 UX overhaul |
+| ClaudeHQ | Shell, JSON, Markdown | Aktif — cross-project workspace |
+| claude-config | Shell, JSON, Markdown | Aktif — config + agent sistemi |
+| ByteCraftHQ | Flutter | Aktif |
+| Viralyze | Flutter | Aktif |
+| CoinHQ | Flutter | Aktif |
+| Gardirop | Flutter | Aktif |
+| ProjeBirlik | Flutter | Aktif |
+| KnightOnlineAI | Unity/C# | Aktif |
+| trading-bot | Python | Aktif |
 | football-ai-platform | — | Flutter | Aktif |
-| transcriptr | TSCR | Flutter | Aktif |
+| transcriptr | Flutter | Aktif |
 | 3d-asset-foundry | — | Python, Blender, multi-LLM (Claude/Gemini/OpenAI/Ollama), refinement loop | Aktif — Phase 0 scaffold (ARCHITECTURE v0.10, STRUCTURE v0.10) |
 
 ## 3d-asset-foundry Notlari
@@ -49,5 +49,5 @@ confidence: high
 - Firebase yaygin (Auth, Firestore, FCM)
 - Riverpod state management standart (Flutter tarafi)
 - Material 3 tema sistemi
-- Jira ile sprint yonetimi (Jira-less: 3d-asset-foundry, football-ai-platform)
+- Sprint yonetimi local sprint dosyalari ile
 - Conventional commit + PR workflow

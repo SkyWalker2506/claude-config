@@ -67,7 +67,7 @@ Web ve urun deneylerinde hipotez, metrik hiyerarsisi, varyant tanimi, istatistik
 - `test-documentation.md` sablonuna gore arsiv
 
 ## Output Format
-`docs/experiments/EXP-YYYY-NNN.md`: hipotez, metrikler, varyant ozeti, runtime, sonuc tablosu, karar, follow-up ticket. Jira/Notion linki ve M2 PR, M4 dashboard linki.
+`docs/experiments/EXP-YYYY-NNN.md`: hipotez, metrikler, varyant ozeti, runtime, sonuc tablosu, karar, follow-up ticket. Notion linki ve M2 PR, M4 dashboard linki.
 
 ## When to Use
 - LP veya onboarding A/B veya cok hucreli test

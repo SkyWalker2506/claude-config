@@ -82,7 +82,7 @@ All routing intelligence lives in A2. Jarvis only passes task + constraints.
 ### 1. Gorev analizi (max 3 tool call)
 
 Kullanicinin gorevini analiz et:
-- Hangi capability'ler gerekiyor? (api, flutter, security, jira, research, vb.)
+- Hangi capability'ler gerekiyor? (api, flutter, security, research, vb.)
 - Hangi kategoriye dusuyor? (backend, code-review, market-research, vb.)
 - Kac kategori overlap ediyor?
 
@@ -130,7 +130,7 @@ Agent secildikten sonra `strategy` alanina bak:
 - Basarisizsa → `fallbacks[0]` ile tekrar dispatch (retry_strategy adimlari)
 
 **`two_pass` nasil calisir:**
-- Forge / jira-start-new-task pipeline'i otomatik uygular bu stratejiyi
+- Forge pipeline'i otomatik uygular bu stratejiyi
 - Manuel dispatch'te: once coder agent → PR olustur → sonra C3 (reviewer) agent'ini dispatch et
 
 **Strategy eksikse:** `direct` olarak davran.

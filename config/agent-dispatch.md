@@ -243,24 +243,6 @@ is_owner = git_user in OWNER_EMAILS
 
 Alternatif: `$USER` == `musabkara` veya `$HOME` == `/Users/musabkara` → owner.
 
-### Owner ise → Jira CA projesi
-
-```bash
-# CA = Claude Agents projesi (id: 10437)
-# MCP ile:
-# createJiraIssue cloudId=1216fb6b-a912-41d7-9e2e-f19a7db50ae6 projectKey=CA
-# summary="[Agent Request] {agent_name} — {capability}"
-# description="Görev: {görev}\nGerekli capability: {capability}\nMevcut alternatif: {fallback_agent}"
-```
-
-Format:
-```
-CA-X  [Agent Request] {agent_name}
-      Görev: {görev açıklaması}
-      Capability: {eksik capability}
-      Öneri: marketplace'e eklenmeli veya yeni agent yazılmalı
-```
-
 ### User (owner değil) ise → GitHub Issue
 
 ```bash
@@ -288,9 +270,7 @@ gh issue create \
 ```
 1. Görev geldi → agent-router.sh ile ara
 2. Bulunamadı → marketplace'de ara (claude-agent-catalog)
-3. Orada da yok → requester tespit et
-   - Owner → CA Jira issue aç
-   - User  → GitHub issue aç (SkyWalker2506/claude-agent-catalog)
+3. Orada da yok → GitHub issue aç (SkyWalker2506/claude-agent-catalog)
 4. Fallback agent ile devam et (en yakın capability match)
-5. Kullanıcıya bildir: "X agent bulunamadı, {fallback} ile devam ediyorum. İstek {CA-X / GitHub#N} açıldı."
+5. Kullanıcıya bildir: "X agent bulunamadı, {fallback} ile devam ediyorum. İstek GitHub#N açıldı."
 ```

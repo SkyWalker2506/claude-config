@@ -26,7 +26,7 @@ confidence: high
 - Flutter + Riverpod + Firebase stack
 - Material 3 tema sistemi
 - Conventional commit format
-- Jira ile sprint yonetimi
+- Local sprint dosyalari ile sprint yonetimi
 - Free model once, ucretli model sadece gerekli ise
 
 ## Hassas Konular

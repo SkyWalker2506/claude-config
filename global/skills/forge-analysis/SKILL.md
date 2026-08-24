@@ -163,7 +163,7 @@ Reviewer (Opus) çok sık reject ediyorsa:
 Coder (Sonnet) fix loop'a giriyorsa:
 - Task description kalitesini artırmak için Phase 3'e öneri ekle
 
-#### 4.4 — Jira Süreç Optimizasyonu
+#### 4.4 — Sprint Süreç Optimizasyonu
 
 Sprint gecikmesi varsa:
 - Sprint plan kapasitesini düşür (velocity hesapla)
@@ -286,7 +286,7 @@ Her run'da ne kadar **gerçek değer** üretildi?
 | Soru | Veri kaynağı | Sonuç |
 |------|-------------|-------|
 | Toplam kaç task tamamlandı? | summary dosyaları | ∑ completed |
-| Her run'da yeni task mı yoksa tekrar mı yapıldı? | Jira key'leri karşılaştır | yeni vs. tekrar |
+| Her run'da yeni task mı yoksa tekrar mı yapıldı? | sprint task ID'lerini karşılaştır | yeni vs. tekrar |
 | Zamanla task'lar zorlaşıyor mu, kolaylaşıyor mu? | story points trend | ↗/↘/→ |
 | Verimlilik skoru platoya girdi mi? | score trend | plato tespiti |
 | Son run'da tamamlanan task sayısı ilk run'un <%50'si mi? | R1 vs RN completed | havuz tükeniyor |
@@ -335,7 +335,7 @@ Yukarıdaki analize göre bir sonuç üret:
   
   Öneri:
   ├─ Forge frekansını düşür (haftalık → 2 haftada bir)
-  ├─ Sonraki forge öncesi Jira backlog'u zenginleştir
+  ├─ Sonraki forge öncesi backlog'u zenginleştir
   └─ R4-R5'teki fix loop yüksekliği → lint pre-check ekle (zaten eklendi)
   
   ALTERNATIF DEĞİL — forge devam edebilir, sadece frekans ayarı yeter.
@@ -343,7 +343,7 @@ Yukarıdaki analize göre bir sonuç üret:
 ```
 
 Eğer "farklı yaklaşım" veya "durma" sinyali varsa, alternatifi de öner:
-- **Forge yerine manuel sprint**: Backlog küçüldüyse, sprint-plan + jira-start-new-task yeterli
+- **Forge yerine manuel sprint**: Backlog küçüldüyse, /sprint-plan + tek tek task pipeline'i yeterli
 - **Daha az otonom**: Sadece yüksek öncelikli task'larda forge, gerisi manuel
 - **Temizlik modu**: Yeni feature yerine test coverage, refactor, docs odaklı mini-forge
 

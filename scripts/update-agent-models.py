@@ -41,7 +41,7 @@ CATEGORY_MODELS = {
         "junior": "gpt-5.4-nano",
         "fallback": "sonnet",
     },
-    # Productivity, AI ops, Jira: full GPT
+    # Productivity, AI ops: full GPT
     "productivity": {
         "lead": "gpt-5.4-mini",
         "senior": "gpt-5.4-nano",
@@ -56,14 +56,6 @@ CATEGORY_MODELS = {
         "junior": "gpt-5.4-nano",
         "fallback": "sonnet",
     },
-    "jira-pm": {
-        "lead": "gpt-5.4-mini",
-        "senior": "gpt-5.4-nano",
-        "mid": "gpt-5.4-nano",
-        "junior": "gpt-5.4-nano",
-        "fallback": "sonnet",
-    },
-    # DevOps: GPT strong at terminal, full GPT
     "devops": {
         "lead": "gpt-5.4",
         "senior": "gpt-5.4-mini",

@@ -46,8 +46,3 @@ Agent/plugin/skill degisikligi yapildiginda:
 2. README'leri guncelle
 3. Ilgili repo'larda commit
 
-## Jira Ortak Kurallar
-- Koda baslamadan In Progress (transition 21)
-- Alt gorevler bitmeden ana gorevi Done yapma
-- Bekleyen is → WAITING (7)
-- IP'de bekletme yok — ya tamamla ya WAITING

@@ -197,9 +197,6 @@ _create_secrets_template() {
     cat > "$CLAUDE_SECRETS_FILE" <<'TMPL'
 # Claude Config Secrets — fill in and keep private
 GITHUB_TOKEN=
-JIRA_URL=
-JIRA_USERNAME=
-JIRA_API_TOKEN=
 FIREBASE_SERVICE_ACCOUNT_PATH=
 TELEGRAM_BOT_TOKEN=
 TELEGRAM_CHAT_ID=
@@ -418,7 +415,6 @@ if ! command -v claude &>/dev/null; then
 else
   mcp_register github claude mcp add -s user github -e "GITHUB_PERSONAL_ACCESS_TOKEN=$GITHUB_TOKEN_VAL" -- $NPX_CMD -y @modelcontextprotocol/server-github
   mcp_register git claude mcp add -s user git -- "$UVX_PATH" mcp-server-git
-  mcp_register atlassian claude mcp add -s user atlassian -- $NPX_CMD -y mcp-remote@latest https://mcp.atlassian.com/v1/mcp
   mcp_register fetch claude mcp add -s user fetch -- $NPX_CMD -y mcp-fetch-server
   # context7 + jcodemunch: 2026-08-04 core'dan cikarildi — tum transcript
   # arsivinde 0 cagri, jcodemunch tek basina ~120 tool tanimi tasiyordu.
@@ -1028,12 +1024,6 @@ setup_plugins() {
   # Flutter projects
   if [ -f "pubspec.yaml" ]; then
     claude plugin install "flutter-firebase@musabkara-claude-marketplace" 2>/dev/null && echo "✅ flutter-firebase" || true
-  fi
-
-  # Jira projects (check for CLAUDE_JIRA.md or jira config)
-  if [ -f "docs/CLAUDE_JIRA.md" ] || [ -f ".jira" ]; then
-    claude plugin install "jira-suite@musabkara-claude-marketplace" 2>/dev/null && echo "✅ jira-suite" || true
-    claude plugin install "sprint-planner@musabkara-claude-marketplace" 2>/dev/null && echo "✅ sprint-planner" || true
   fi
 
   # Plugin auto-update — kurulu pluginleri güncelle

@@ -11,7 +11,7 @@ sources: 4
 
 **Living doc** answers: Why did we run? What did we change? How did we measure? What did we decide?
 
-- **IDs:** `EXP-YYYY-NNN` in Jira/Notion + same in GA4 custom dimension / warehouse.
+- **IDs:** `EXP-YYYY-NNN` in Notion + same in GA4 custom dimension / warehouse.
 - **Handoffs:** M2 (assets) → M3 (design) → M4 (instrumentation) → M3 (analysis) → PM (ship).
 - **Bridge to M2:** Archive final copy tables and screenshots—**M2** is source of visual truth.
 - **Bridge to M4:** Event dictionary appendix—**M4** signs off that `exposure` fires before conversions.

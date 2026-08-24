@@ -76,6 +76,8 @@ Sonnet her zaman son fallback. Sonnet'e geçmeden önce kullanıcıya sor.
 
 - **UI testleri = islev + gorsel kalite (ZORUNLU):** Playwright/screenshot ile test ederken sadece "JS calisti, console temiz" yetmez. Her UI degisiminden sonra screenshot'a tasarimci gozuyle bak: hizalama, hiyerarsi, bosluk, netlik dogru mu? Yeni eleman entegre mi yoksa bosluga dusmus debug widget gibi mi duruyor? Yan paneller/komsular ezildi mi? Calisan-ama-cirkin sonuc regression sayilir; iterate et. Tek satirlik cevap: "screenshot'a tasarimci gibi bak — calismasi yetmez, guzel olmali."
 
+- **Surekli buyukluk ayarinda panel iste, sayi pinponu yapma (ZORUNLU):** Isik, ton, renk, zamanlama gibi **surekli** bir gorsel buyukluk ayarlanacaksa commit → olc → bant ver → tekrar commit dongusune girme. Calistiriciya kaydiricili + hazir ayarli bir kontrol paneli yazdir; degeri insan dogrudan cevirsin. Kanit (ROQ case, 2026-08-23): Case 2/4 ton ve zamanlama ayari bu donguyle yuruldu, her tur ~30 dk. Sinir: panelin yazdigi deger sahnede elle tutuluyorsa sahne otorite — kod tarafindan yeniden kurup ezme (bkz. harness.md "Tek is, tek temiz oturum").
+
 - **Browser native dialog'lara takilma (ZORUNLU):** Playwright/automation sirasinda `beforeunload`, `alert`, `confirm`, `prompt`, file picker, basic auth gibi yerli tarayici dialog'lari **dead-end**'tir — her zaman onceden handler register et:
   ```js
   page.on('dialog', d => d.dismiss());  // veya .accept(), niyete gore
@@ -236,7 +238,6 @@ Hesaplama: `(kalan all-models %) / (reset'e kalan gun)` — ortukte uyar, mod de
 
 | Key | Servis |
 |-----|--------|
-| `JIRA_API_TOKEN` + `JIRA_URL` | Jira — dogrudan API cagrisi yapilabilir |
 | `GITHUB_TOKEN` | GitHub — gh CLI + MCP |
 | `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID` | Telegram bot |
 | `GROQ_API_KEY` | Groq — ucretsiz modeller |

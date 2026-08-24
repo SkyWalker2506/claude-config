@@ -1,7 +1,7 @@
 # Agent Prompt Şablonları
 
 Bu dosya tüm skill'ler için paylaşılan agent prompt yapılarını tanımlar.  
-Referans veren skill'ler: `/audit`, `/web-research`, `/yolo`, `/jira-run-detailed`, `/team-build`
+Referans veren skill'ler: `/audit`, `/web-research`, `/yolo`, `/team-build`
 
 ---
 
@@ -18,7 +18,7 @@ Tüm skill'lerde yeni görev önerisi şu tablo formatında yapılır:
 
 ---
 
-## Analiz Agent Şablonu (audit, web-research, jira-run-detailed)
+## Analiz Agent Şablonu (audit, web-research)
 
 ```
 Sen bir [alan] analiz ajanısın. Aşağıdaki görevi tamamla.

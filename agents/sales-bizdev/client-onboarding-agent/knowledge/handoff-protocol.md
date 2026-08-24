@@ -86,4 +86,3 @@ CSM accepts handoff: _________________ Date: _____
 - [TSIA — sales to services handoff](https://www.tsia.com/) — research-backed workflows
 - [Gainsight — handoff templates](https://www.gainsight.com/) — CS tooling
 - [PRINCE2 / project handover](https://www.axelos.com/) — formal transition concepts
-- [Atlassian Jira — CS projects](https://www.atlassian.com/software/jira/service-management) — ticket linkage

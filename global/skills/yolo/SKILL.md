@@ -11,7 +11,7 @@ Verilen gorevi **sifir soru sorarak**, gidebildigi yere kadar uygular. Engeller 
 ## Temel ilkeler
 
 1. **ASLA soru sorma** — ne kullaniciya ne de onay bekle
-2. **Engeli atla, durma** — DB? Mock. Login? Skip. Jira? Skip. API key? Fake. Ucretli servis? Skip.
+2. **Engeli atla, durma** — DB? Mock. Login? Skip. API key? Fake. Ucretli servis? Skip.
 3. **Her onemli adimda commit** — kucuk, anlamli commit'ler
 4. **Arka planda calis** — `run_in_background: true`
 5. **Log tut** — ne yaptigini `.yolo/` altina yaz
@@ -91,7 +91,6 @@ Atlanan seyler ayri dosyaya:
 | **Veritabani** | SQLite in-memory veya JSON dosya, seed data ile |
 | **Auth/Login** | Sahte auth middleware, hardcoded test user |
 | **API key** | `.env.example` olustur, kodda `process.env.X \|\| "demo-key"` fallback |
-| **Jira/Ticket** | Tamamen atla, log'a yaz |
 | **Ucretli servis** | Atla veya free tier alternatif kullan |
 | **Docker/Container** | Lokal calistir, Docker skip |
 | **CI/CD** | Basit script yaz, platform entegrasyonu atla |
@@ -133,7 +132,7 @@ Agent(
 
   KURALLAR:
   1. ASLA soru sorma. Engeli atla, ilerle.
-  2. DB gerekiyorsa: SQLite/JSON mock. Login gerekiyorsa: sahte auth. API key: fallback. Jira: atla.
+  2. DB gerekiyorsa: SQLite/JSON mock. Login gerekiyorsa: sahte auth. API key: fallback.
   3. Her onemli adimda git commit at (conventional commit, Ingilizce).
   4. Log tut: .yolo/log.json (JSON array, her adim bir entry).
   5. Atlananlar: .yolo/skipped.json (JSON array).
@@ -147,7 +146,7 @@ Agent(
   SKIP ENTRY FORMAT:
   {"what": "...", "reason": "...", "workaround": "..."}
 
-  ENGEL ATLAMA: DB→mock, Auth→fake, API key→fallback, Jira→skip, Ucretli→skip, Docker→skip, CI→basit script.
+  ENGEL ATLAMA: DB→mock, Auth→fake, API key→fallback, Ucretli→skip, Docker→skip, CI→basit script.
 
   WATCHDOG: Bu gorev long. Max 50 tool call. Her 5 call self-check.
   """,

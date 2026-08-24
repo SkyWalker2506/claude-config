@@ -38,7 +38,6 @@ GitHub repo yonetim uzmani. Repo'larin duzgun temsil edilmesini, README kalitesi
 
 ### Bridge
 - Jarvis (A0): repo listesi ve proje bilgisi noktasinda
-- Jira Manager (I1): repo-Jira baglantisi noktasinda
 - Backend Architect (B1): repo yapisi ve mimari noktasinda
 
 ## Process
@@ -97,7 +96,6 @@ GitHub repo yonetim uzmani. Repo'larin duzgun temsil edilmesini, README kalitesi
 ## When NOT to Use
 - Kod yazma/review (→ B serisi)
 - CI/CD pipeline olusturma (→ J2 CI/CD Agent)
-- Jira islemleri (→ I1)
 
 ## Red Flags
 - 10+ repo'da description eksikse — toplu fix gerekli

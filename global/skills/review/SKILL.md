@@ -1,7 +1,7 @@
 ---
 name: review
 description: "Tek task/PR/commit review — C3 (AI Reviewer) veya C1 (Lead Reviewer) tetikler, puan verir, eksik varsa düzeltir. Triggers: review, incele, kod incele, PR review, commit review, kontrol et."
-argument-hint: "[PR# | commit-hash | dosya-yolu | jira-key]"
+argument-hint: "[PR# | commit-hash | dosya-yolu | task-id]"
 ---
 
 # /review — Tek İş Review
@@ -18,7 +18,7 @@ Tek bir task, PR veya commit'i C-level reviewer agent'larla incele.
 |---------|---------|
 | PR# | O PR'ı GitHub'dan çek, diff incele |
 | commit hash | O commit'i incele |
-| Jira key (CC-10) | Task'ı bul, ilgili commit/PR'ı çek |
+| Task ID (T-001) | Task'ı sprint dosyasında bul, ilgili commit/PR'ı çek |
 | dosya yolu | O dosyayı incele |
 | argümansız | Son commit'i incele |
 
@@ -49,7 +49,7 @@ Skor: 8.5/10
 ✅ Güvenlik: Risk yok
 ⚠️ Basitlik: 3 iç içe koşul — flatten edilebilir (nice-to-have)
 ✅ Git: Kural uygun (tek commit, 1 dosya)
-✅ Jira: Done, yorum mevcut
+✅ Task: done, yorum mevcut
 
 Aksiyon: Onaylandı. Nice-to-have iyileştirme için CC-XX açıldı.
 ```
@@ -59,14 +59,14 @@ Aksiyon: Onaylandı. Nice-to-have iyileştirme için CC-XX açıldı.
 | Skor | Aksiyon |
 |------|---------|
 | ≥ 8 | Onayla |
-| 6-8 | Jira'ya improvement notu, kullanıcıya sor |
+| 6-8 | Sprint dosyasına improvement notu, kullanıcıya sor |
 | < 6 | Yeniden yap — B7 (Bug Hunter) veya ilgili agent'a ver |
 
 ## Pipeline entegrasyonu
 
 Bu skill A1/B-agent'ların son adımı olarak da çağrılabilir:
-- A1 task tamamlayınca: `→ /review <jira-key>` ile kapat
-- Otomatik pipeline: implement → test → review → jira-done
+- A1 task tamamlayınca: `→ /review <task-id>` ile kapat
+- Otomatik pipeline: implement → test → review → done
 
 ## Kurallar
 - Max 15 tool call

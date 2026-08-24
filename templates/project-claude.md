@@ -19,13 +19,6 @@ __PKG_MANAGER__ → __LINT_CMD__ → __TEST_CMD__
 
 ---
 
-## 2. Jira (varsa)
-
-- **Proje anahtari:** __JIRA_KEY__
-- Detay: `docs/CLAUDE_JIRA.md`
-
----
-
 ## 3. Notlar
 
 Projeye ozel kurallar, ozel dosya yapisi, dikkat edilecekler buraya yazilir.

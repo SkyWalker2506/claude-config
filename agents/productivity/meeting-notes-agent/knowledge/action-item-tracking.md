@@ -26,14 +26,14 @@ ID format: A-{meetingDate}-{seq} örn. A-20260410-01
 | Araç | Artı | Eksi |
 |------|------|------|
 | Markdown tablo + Git | Sürüm kontrolü | Otomasyon az |
-| Jira / Linear | İş akışı | Bağlam iki yerde |
+| Linear | İş akışı | Bağlam iki yerde |
 | Notion DB | Esnek | Export karmaşık |
 
 **I9 retrospective ile fark:** I9 takım süreci; L6 toplantı çıktısı odaklı.
 
 ## Code Examples
 
-**CSV dışa aktarım (Jira içe aktarım için):**
+**CSV dışa aktarım (tracker içe aktarımı için):**
 
 ```csv
 Summary,Assignee,Due date,Description
@@ -69,6 +69,5 @@ actions:
 
 > Agent derine inmesi gerekirse bu kaynaklardan fetch eder:
 
-- [Jira — importing CSV](https://support.atlassian.com/jira-cloud-administration/docs/import-issues-from-a-csv-file/) — toplu oluşturma
 - [Linear — issue API](https://developers.linear.app/docs/graphql/working-with-the-graphql-api) — programatik
 - [GTD — next actions](https://gettingthingsdone.com/) — tek sonraki eylem disiplini

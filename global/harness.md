@@ -6,6 +6,7 @@
 | Bolum | Satir | Ne zaman oku |
 |-------|-------|-------------|
 | Dispatch-First Rule | ~10 | Gorev routing karari |
+| Tek is, tek temiz oturum | ~7 | Is bolme, oturum sinirlari, kod mu sahne mi otorite |
 | 9. Task Discipline & Watchdog | ~100 | Plan, self-monitoring, overrun, recovery |
 | 9a. Plan | ~30 | Her gorev basinda plan zorunlu |
 | 9b. Self-monitoring | ~20 | Tool call kontrol, alarm kosullari |
@@ -27,6 +28,13 @@ Non-trivial görevlerde: classify → lane seç → dispatch → bekle.
 - Multimodal (DALL-E vb.) → human_in_loop handoff üret
 - API billing gerektiren → varsayılan policy ile reddet
 - Kendim yapmak yerine dispatch et; dispatch sonrası aggregator ol
+
+### Tek is, tek temiz oturum (ZORUNLU)
+
+- Bir oturum tek is tasir. Is listesi tek uzun iplige dizilmez — her is kendi temiz oturumunda kosar
+- Her is bir **testle** biter. Test cakarsa proje degil, **sadece o is** geri doner
+- Kanit (ROQ case, 2026-08-23): tek iplikte 17 maddelik kuyruk tasindi; Case 4'te gecmekte olan kabul bandi baska bir bant duzeltilirken bozuldu (0.00-0.65s 98.862 → 109.570, bant 76-103 bin), Case 2'de derinlik eklenirken tahta karardi (tahta ici ortanca 75.3 → 39.7). Ikisi de ayri oturumlarda olmazdi
+- **Sinir — otorite kimde:** "geri don, kodu duzelt, yeniden calistir" yalniz **uretim tek yonluyse** gecerli; o zaman kod otorite. **Sahne elle ayarlaniyorsa sahne otorite** — yeniden kurma elle yapilan isi siler. Kanit: ROQ SceneSetup'larda sirasiyla 6/3/8 DestroyImmediate ve sifir koruma kapisi; koruma kapisi olan Case 1 gun boyu sabit kaldi
 
 ### 9. Task Discipline & Watchdog
 
@@ -72,7 +80,6 @@ Agent: [registry'den uygun agent ID + isim] | Fallback: [fallback agent]
 | Flutter widget | B15 Mobile Dev | Sonnet, high |
 | Bug fix, debug | B7 Bug Hunter | Sonnet, medium |
 | Security audit | B13 Security Auditor | Opus, high |
-| Jira sprint plan | I2 Sprint Planner | Sonnet, medium |
 | Web arastirmasi | K1 Web Researcher | Free, medium |
 | GitHub polish | H5 SEO + H6 GEO | Free/Haiku, medium |
 | Phaser/JS game | B16 Web Game Dev | Sonnet, high |
@@ -293,7 +300,7 @@ Workers = **GPT (Codex CLI) + Gemini**. Claude orchestrator only.
 **Chain ornegi:** `user → Jarvis → A2 (route) → B7 (implement) → C3 (review) → Jarvis (rapor)`
 
 **Review pipeline (zorunlu):**
-- **Kucuk is (tek task):** B/D/K agent implement eder → biter bitmez C3 (Local AI Reviewer) otomatik tetiklenir → skor ≥8 → Jira Done; skor <8 → revize
+- **Kucuk is (tek task):** B/D/K agent implement eder → biter bitmez C3 (Local AI Reviewer) otomatik tetiklenir → skor ≥8 → task done; skor <8 → revize
 - **Buyuk is (A1 batch):** A1 tum task'lari bitirince → `/review-ops` skill'i tetiklenir → batch skorlama, PR audit, eksik task acma
 - Kucuk isler icin C1 (Opus) **sadece** guvenlik/mimari eskalasyonunda devreye girer
 

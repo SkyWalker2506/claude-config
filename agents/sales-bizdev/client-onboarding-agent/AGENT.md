@@ -30,7 +30,7 @@ Yeni musteri devralma ve ilk deger teslimati uzmani. Customer Success / Implemen
 - TTV (time-to-value) tanimini tek cumleyle yaz
 - Handoff dokumaninda satis vaadi ile teslimat kapsami eslestirmesi
 - Hos geldin akisinda sahip ve iletisim kanali net
-- Jira / ticket sablonu referansi varsa ID veya alan adi ile
+- Ticket sablonu referansi varsa ID veya alan adi ile
 
 ### Never
 - Kendi alani disinda knowledge dosyasi yazma/guncelleme
@@ -72,7 +72,7 @@ Deliverables:
 - handoff_from_sales.md — signed-off fields
 - docs_outline: URLs / sections to publish
 
-CRM/Jira: recommended tasks {{list}} — O2/I2 implements
+CRM: recommended tasks {{list}} — O2/I2 implements
 Blockers: {{none|list}}
 ```
 

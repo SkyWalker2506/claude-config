@@ -1,13 +1,13 @@
-# Jira Lock Sistemi
+# Forge Lock Sistemi
 
-Bu dosya tüm Jira skill'leri için ortak lock protokolünü tanımlar.  
-Referans veren skill'ler: `/jira-run`, `/jira-start-new-task`
+Bu dosya otonom task pipeline'lari icin ortak lock protokolünü tanımlar.  
+Referans veren skill'ler: `/forge`, `/yolo`
 
 ---
 
-## Jira İşlem Lock (`.jira-state/jira-op.lock`)
+## Sprint Dosyasi Lock (`.forge-state/sprint-op.lock`)
 
-Birden çok agent aynı anda Jira'ya yazmasın diye kullanılır.
+Birden çok agent aynı anda sprint dosyasina yazmasın diye kullanılır.
 
 | Durum | Aksiyon |
 |-------|---------|
@@ -18,15 +18,15 @@ Birden çok agent aynı anda Jira'ya yazmasın diye kullanılır.
 
 ```bash
 # Lock yaz
-date -u +"%Y-%m-%dT%H:%M:%SZ" > .jira-state/jira-op.lock
+date -u +"%Y-%m-%dT%H:%M:%SZ" > .forge-state/sprint-op.lock
 
 # Lock sil
-rm -f .jira-state/jira-op.lock
+rm -f .forge-state/sprint-op.lock
 ```
 
 ---
 
-## Working Lock (`.jira-state/working-{KEY-XX}.lock`)
+## Working Lock (`.forge-state/working-{T-NNN}.lock`)
 
 Implementation agent'ın aktif olduğunu gösterir.
 
@@ -37,27 +37,27 @@ Implementation agent'ın aktif olduğunu gösterir.
 
 ```bash
 # Lock oluştur (agent başlarken)
-date -u +"%Y-%m-%dT%H:%M:%SZ" > .jira-state/working-{KEY-XX}.lock
+date -u +"%Y-%m-%dT%H:%M:%SZ" > .forge-state/working-{T-NNN}.lock
 
 # Her 10dk yenile
-date -u +"%Y-%m-%dT%H:%M:%SZ" > .jira-state/working-{KEY-XX}.lock
+date -u +"%Y-%m-%dT%H:%M:%SZ" > .forge-state/working-{T-NNN}.lock
 
 # Bitince MUTLAKA sil (hata olsa bile)
-rm -f .jira-state/working-{KEY-XX}.lock
+rm -f .forge-state/working-{T-NNN}.lock
 ```
 
 ---
 
-## Stop Dosyası (`.jira-state/jira-run.stop`)
+## Stop Dosyası (`.forge-state/forge-run.stop`)
 
-`/jira-cancel` tarafından oluşturulur. Her tur başında kontrol edilir.
+Kullanici iptal ettiginde olusturulur. Her tur başında kontrol edilir.
 
 ```bash
 # Kontrol (her tur başı)
-[ -f .jira-state/jira-run.stop ] && rm -f .jira-state/jira-run.stop && exit
+[ -f .forge-state/forge-run.stop ] && rm -f .forge-state/forge-run.stop && exit
 
 # Cancel komutu
-bash scripts/jira_run_cancel.sh
+touch .forge-state/forge-run.stop
 ```
 
 ---
@@ -65,10 +65,10 @@ bash scripts/jira_run_cancel.sh
 ## Dizin yapısı
 
 ```
-.jira-state/
-  jira-op.lock          # İşlem lock (geçici)
-  jira-run.stop         # Cancel sinyali
-  working-{KEY-XX}.lock # Implementation agent lock
+.forge-state/
+  sprint-op.lock          # İşlem lock (geçici)
+  forge-run.stop         # Cancel sinyali
+  working-{T-NNN}.lock # Implementation agent lock
 ```
 
-`mkdir -p .jira-state` ile dizin oluşturulmuş olmalı.
+`mkdir -p .forge-state` ile dizin oluşturulmuş olmalı.

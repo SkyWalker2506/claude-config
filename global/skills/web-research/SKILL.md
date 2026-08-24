@@ -132,7 +132,7 @@ Arastirma bulgularini projeye uygula:
 - WebSearch ve WebFetch kullan — güncel bilgi topla
 - Somut, actionable öneriler sun
 - Her öneri için kaynak belirt (hangi rakip, trend, kullanıcı yorumu)
-- Jira task formatında öner (başlık, açıklama, öncelik, efor)
+- Task formatında öner (başlık, açıklama, öncelik, efor)
 - Kod yazma, dosya düzenleme YAPMA
 - Raporu Türkçe yaz
 - Max 30 tool call
@@ -147,12 +147,12 @@ Agent tamamlandığında rapor döner. Ana oturum:
 
 ```
 Ne yapalım?
-  1) Jira'da task olarak aç (onaylananları WAITING FOR APPROVAL'da oluşturur)
-  2) Kenara not al (docs/tavsiyeler.md'ye ekler, Jira'ya dokunmaz)
+  1) Sprint dosyasına task olarak ekle (onaylananları `forge/sprints/`e yazar)
+  2) Kenara not al (docs/tavsiyeler.md'ye ekler, sprint dosyasına dokunmaz)
   3) Hiçbir şey yapma (sadece rapor bilgi amaçlı)
 ```
 
-- **Secenek 1:** Jira aktifse onaylanan onerileri WAITING FOR APPROVAL'da olusturur
+- **Secenek 1:** onaylanan onerileri sprint dosyasina `todo` statusuyle ekler
 - **Secenek 2:** Onerileri `docs/tavsiyeler.md`'ye tarih ve kaynak ile ekler
 - **Secenek 3:** Hicbir islem yapmaz, rapor bilgi amaclidir
 

@@ -33,10 +33,6 @@
       "prefix": "H",
       "description": "Pazar Arastirmasi"
     },
-    "jira-pm": {
-      "prefix": "I",
-      "description": "Jira & Proje Yonetimi"
-    },
     "devops": {
       "prefix": "J",
       "description": "DevOps & Altyapi"
@@ -90,9 +86,6 @@
     "H1",
     "H5",
     "H6",
-    "I1",
-    "I2",
-    "I4",
     "J10",
     "J2",
     "J7",
@@ -2796,360 +2789,6 @@
       "interaction_mode": "automated",
       "model_source": "gemini_api"
     },
-    "I1": {
-      "name": "Jira Router",
-      "version": "1.0",
-      "category": "jira-pm",
-      "status": "active",
-      "primary_model": "gpt-5.4-mini",
-      "fallbacks": [
-        "gemini-2.5-flash",
-        "sonnet"
-      ],
-      "mcps": [
-        "atlassian"
-      ],
-      "capabilities": [
-        "jira-routing",
-        "issue-triage",
-        "sprint-assignment",
-        "status-transition"
-      ],
-      "max_tool_calls": 15,
-      "effort": "medium",
-      "template": "autonomous",
-      "tier": "junior",
-      "strategy": "direct",
-      "execution_backends": {
-        "primary": "openai-codex-cli",
-        "fallback": [
-          "gemini-cli",
-          "claude"
-        ]
-      },
-      "execution_mode": "codex_cli",
-      "billing_mode": "plan_included",
-      "interaction_mode": "automated",
-      "model_source": "codex_cli"
-    },
-    "I2": {
-      "name": "Sprint Planner",
-      "version": "1.0",
-      "category": "jira-pm",
-      "status": "active",
-      "primary_model": "gpt-5.4-mini",
-      "fallbacks": [
-        "gemini-2.5-flash",
-        "sonnet"
-      ],
-      "mcps": [
-        "atlassian"
-      ],
-      "capabilities": [
-        "sprint-planning",
-        "capacity-planning",
-        "backlog-prioritization",
-        "estimation"
-      ],
-      "max_tool_calls": 20,
-      "effort": "medium",
-      "template": "analiz",
-      "tier": "mid",
-      "model_source": "codex_cli",
-      "strategy": "cheap_first",
-      "execution_backends": {
-        "primary": "openai-codex-cli",
-        "fallback": [
-          "gemini-cli",
-          "claude"
-        ]
-      },
-      "execution_mode": "codex_cli",
-      "billing_mode": "plan_included",
-      "interaction_mode": "automated",
-      "codex_model": "gpt-5.4"
-    },
-    "I3": {
-      "name": "Task Decomposer",
-      "version": "1.0",
-      "category": "jira-pm",
-      "status": "pool",
-      "primary_model": "gpt-5.4-mini",
-      "fallbacks": [
-        "gemini-2.5-flash",
-        "sonnet"
-      ],
-      "mcps": [
-        "atlassian"
-      ],
-      "capabilities": [
-        "task-splitting",
-        "subtask-creation"
-      ],
-      "max_tool_calls": 15,
-      "effort": "medium",
-      "template": "autonomous",
-      "tier": "junior",
-      "model_source": "codex_cli",
-      "on_source_unavailable": "use_fallbacks",
-      "strategy": "direct",
-      "execution_backends": {
-        "primary": "openai-codex-cli",
-        "fallback": [
-          "gemini-cli",
-          "claude"
-        ]
-      },
-      "execution_mode": "codex_cli",
-      "billing_mode": "plan_included",
-      "interaction_mode": "automated"
-    },
-    "I4": {
-      "name": "Status Reporter",
-      "version": "1.0",
-      "category": "jira-pm",
-      "status": "active",
-      "primary_model": "gpt-5.4-mini",
-      "fallbacks": [
-        "gemini-2.5-flash",
-        "sonnet"
-      ],
-      "mcps": [
-        "atlassian"
-      ],
-      "capabilities": [
-        "status-report",
-        "burndown",
-        "sprint-progress",
-        "dashboard"
-      ],
-      "max_tool_calls": 8,
-      "effort": "low",
-      "template": "autonomous",
-      "tier": "junior",
-      "strategy": "direct",
-      "execution_backends": {
-        "primary": "openai-codex-cli",
-        "fallback": [
-          "gemini-cli",
-          "claude"
-        ]
-      },
-      "execution_mode": "codex_cli",
-      "billing_mode": "plan_included",
-      "interaction_mode": "automated",
-      "model_source": "codex_cli"
-    },
-    "I5": {
-      "name": "WAITING Decision Agent",
-      "version": "1.0",
-      "category": "jira-pm",
-      "status": "pool",
-      "primary_model": "gpt-5.4-mini",
-      "fallbacks": [
-        "gemini-2.5-flash",
-        "sonnet"
-      ],
-      "mcps": [
-        "atlassian"
-      ],
-      "capabilities": [
-        "decision",
-        "triage",
-        "priority"
-      ],
-      "max_tool_calls": 10,
-      "effort": "low",
-      "template": "autonomous",
-      "tier": "junior",
-      "model_source": "codex_cli",
-      "on_source_unavailable": "use_fallbacks",
-      "strategy": "direct",
-      "execution_backends": {
-        "primary": "openai-codex-cli",
-        "fallback": [
-          "gemini-cli",
-          "claude"
-        ]
-      },
-      "execution_mode": "codex_cli",
-      "billing_mode": "plan_included",
-      "interaction_mode": "automated"
-    },
-    "I6": {
-      "name": "Backlog Groomer",
-      "version": "1.0",
-      "category": "jira-pm",
-      "status": "pool",
-      "primary_model": "gpt-5.4-mini",
-      "fallbacks": [
-        "gemini-2.5-flash",
-        "sonnet"
-      ],
-      "mcps": [
-        "atlassian"
-      ],
-      "capabilities": [
-        "backlog-cleanup",
-        "prioritization"
-      ],
-      "max_tool_calls": 15,
-      "effort": "medium",
-      "template": "autonomous",
-      "tier": "junior",
-      "strategy": "direct",
-      "execution_backends": {
-        "primary": "openai-codex-cli",
-        "fallback": [
-          "gemini-cli",
-          "claude"
-        ]
-      },
-      "execution_mode": "codex_cli",
-      "billing_mode": "plan_included",
-      "interaction_mode": "automated",
-      "model_source": "codex_cli"
-    },
-    "I7": {
-      "name": "Burndown Tracker",
-      "version": "1.0",
-      "category": "jira-pm",
-      "status": "pool",
-      "primary_model": "gpt-5.4-mini",
-      "fallbacks": [
-        "gemini-2.5-flash",
-        "sonnet"
-      ],
-      "mcps": [
-        "atlassian"
-      ],
-      "capabilities": [
-        "burndown",
-        "velocity",
-        "tracking"
-      ],
-      "max_tool_calls": 5,
-      "effort": "low",
-      "template": "autonomous",
-      "tier": "junior",
-      "strategy": "direct",
-      "execution_backends": {
-        "primary": "openai-codex-cli",
-        "fallback": [
-          "gemini-cli",
-          "claude"
-        ]
-      },
-      "execution_mode": "codex_cli",
-      "billing_mode": "plan_included",
-      "interaction_mode": "automated",
-      "model_source": "codex_cli"
-    },
-    "I8": {
-      "name": "Standup Generator",
-      "version": "1.0",
-      "category": "jira-pm",
-      "status": "pool",
-      "primary_model": "gpt-5.4-mini",
-      "fallbacks": [
-        "gemini-2.5-flash",
-        "sonnet"
-      ],
-      "mcps": [
-        "atlassian"
-      ],
-      "capabilities": [
-        "standup",
-        "daily-summary"
-      ],
-      "max_tool_calls": 10,
-      "effort": "low",
-      "template": "autonomous",
-      "tier": "junior",
-      "strategy": "direct",
-      "execution_backends": {
-        "primary": "openai-codex-cli",
-        "fallback": [
-          "gemini-cli",
-          "claude"
-        ]
-      },
-      "execution_mode": "codex_cli",
-      "billing_mode": "plan_included",
-      "interaction_mode": "automated",
-      "model_source": "codex_cli"
-    },
-    "I9": {
-      "name": "Retrospective Agent",
-      "version": "1.0",
-      "category": "jira-pm",
-      "status": "pool",
-      "primary_model": "gpt-5.4-mini",
-      "fallbacks": [
-        "gemini-2.5-flash",
-        "sonnet"
-      ],
-      "mcps": [
-        "atlassian"
-      ],
-      "capabilities": [
-        "retrospective",
-        "lessons-learned"
-      ],
-      "max_tool_calls": 15,
-      "effort": "medium",
-      "template": "analiz",
-      "tier": "junior",
-      "model_source": "codex_cli",
-      "on_source_unavailable": "use_fallbacks",
-      "strategy": "direct",
-      "execution_backends": {
-        "primary": "openai-codex-cli",
-        "fallback": [
-          "gemini-cli",
-          "claude"
-        ]
-      },
-      "execution_mode": "codex_cli",
-      "billing_mode": "plan_included",
-      "interaction_mode": "automated"
-    },
-    "I10": {
-      "name": "Estimation Agent",
-      "version": "1.0",
-      "category": "jira-pm",
-      "status": "pool",
-      "primary_model": "gpt-5.4-mini",
-      "fallbacks": [
-        "gemini-2.5-flash",
-        "sonnet"
-      ],
-      "mcps": [
-        "atlassian"
-      ],
-      "capabilities": [
-        "story-points",
-        "estimation",
-        "complexity"
-      ],
-      "max_tool_calls": 10,
-      "effort": "low",
-      "template": "analiz",
-      "tier": "junior",
-      "model_source": "codex_cli",
-      "on_source_unavailable": "use_fallbacks",
-      "strategy": "direct",
-      "execution_backends": {
-        "primary": "openai-codex-cli",
-        "fallback": [
-          "gemini-cli",
-          "claude"
-        ]
-      },
-      "execution_mode": "codex_cli",
-      "billing_mode": "plan_included",
-      "interaction_mode": "automated"
-    },
     "J1": {
       "name": "Docker Agent",
       "version": "1.0",
@@ -4152,7 +3791,7 @@
       "max_tool_calls": 30,
       "effort": "high",
       "template": "autonomous",
-      "notes": "\u00dccretli. B16 (free) yetersiz kal\u0131rsa.",
+      "notes": "Ücretli. B16 (free) yetersiz kalırsa.",
       "strategy": "two_pass",
       "execution_backends": {
         "primary": "openai-codex-cli",
@@ -8170,7 +7809,7 @@
     "groq": {
       "secret_key": "GROQ_API_KEY",
       "status": "available",
-      "test_result": "\u2705 tested 2026-04-07",
+      "test_result": "✅ tested 2026-04-07",
       "setup_url": "https://console.groq.com/keys",
       "notes": "Free tier. Fast inference. Get key at console.groq.com",
       "working_models": [
@@ -8197,7 +7836,7 @@
       "status": "available",
       "on_missing": "skip",
       "notes": "Optional. HF Inference API free tier.",
-      "test_result": "\u2705 token set 2026-04-07"
+      "test_result": "✅ token set 2026-04-07"
     }
   },
   "jarvis_session": {
@@ -8206,16 +7845,16 @@
       "agent_id": "Jarvis",
       "name": "Claude Code Main Session",
       "model": "claude-sonnet-4-6",
-      "cost_emoji": "\ud83d\udd36",
+      "cost_emoji": "🔶",
       "cost_label": "mid",
       "tier": "session"
     },
     "cost_labels": {
-      "\ud83c\udd93 free": "Groq \u00fccretsiz tier",
-      "\ud83d\udcbb local": "Ollama lokal model",
-      "\ud83d\udc9b cheap": "Haiku \u2014 d\u00fc\u015f\u00fck \u00fccretli",
-      "\ud83d\udd36 mid": "Sonnet \u2014 orta \u00fccretli",
-      "\ud83d\udd34 paid": "Opus \u2014 y\u00fcksek \u00fccretli"
+      "🆓 free": "Groq ücretsiz tier",
+      "💻 local": "Ollama lokal model",
+      "💛 cheap": "Haiku — düşük ücretli",
+      "🔶 mid": "Sonnet — orta ücretli",
+      "🔴 paid": "Opus — yüksek ücretli"
     }
   },
   "cost_policy": {

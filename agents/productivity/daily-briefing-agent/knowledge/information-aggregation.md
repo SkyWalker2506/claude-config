@@ -9,13 +9,13 @@ sources: 3
 
 ## Quick Reference
 
-**Kaynaklar:** L1 (e-posta), L2 (takvim), görev listesi (Jira/Linear/Apple Reminders), opsiyonel RSS/haber MCP. Birleştirme = tek zaman damgası ekseninde sıralama + çakışma tespiti.
+**Kaynaklar:** L1 (e-posta), L2 (takvim), görev listesi (Linear/Apple Reminders), opsiyonel RSS/haber MCP. Birleştirme = tek zaman damgası ekseninde sıralama + çakışma tespiti.
 
 | Kaynak | Çekirdek alan | Tazelik SLA |
 |--------|---------------|-------------|
 | Gmail | `internalDate`, thread | <15 dk |
 | Calendar | `updated`, `start` | Canlı |
-| Jira | `updated` | Pull sırasında |
+| Linear | `updatedAt` | Pull sırasında |
 
 **Çakışma:** Aynı slot’ta iki hard meeting → üstte uyarı kutusu.
 
@@ -41,7 +41,7 @@ merge_policy: email_threads_dedupe_by_threadId | calendar_wins_on_time_conflict_
 08:00  [CAL] Focus block
 09:30  [CAL] Team sync
 10:00  [MAIL] P1 — Vendor invoice (thread 18ab…)
-10:30  [TASK] CRITICAL JIRA-441 — assigned you
+10:30  [TASK] CRITICAL LIN-441 — assigned you
 ```
 
 **Pseudo-merge (Python):**
@@ -58,7 +58,7 @@ def merge_events(cal, mail_actions, tasks):
 **Veri çizgisi uyumu (log):**
 
 ```json
-{"briefing_id":"bf-20260409","sources":{"gmail":42,"calendar":6,"jira":3},"merged":51,"deduped":2}
+{"briefing_id":"bf-20260409","sources":{"gmail":42,"calendar":6,"linear":3},"merged":51,"deduped":2}
 ```
 
 ## Anti-Patterns

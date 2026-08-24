@@ -87,8 +87,7 @@ Aynı MCP 2+ kaynakta farklı config ile tanımlıysa → UYAR + hangisinin doğ
 | `.claude/settings.json` | `enabledMcpjsonServers` var mı? | MIGRATION_GUIDE.md'den şablon oluştur |
 | `.claude/migration_version` | Master ile eşleşiyor mu? | Setup wizard başlat veya delta uygula |
 | `.gitignore` | Var mı? `.env` dahil mi? | Framework'e göre oluştur |
-| `.env.example` | Var mı? (Jira/Firebase kullanıyorsa) | Şablon oluştur |
-| `docs/CLAUDE_JIRA.md` | Jira aktifse var mı? | Şablon oluştur |
+| `.env.example` | Var mı? (Firebase vb. servis kullanıyorsa) | Şablon oluştur |
 
 ### Aşama 3 — Karar Matrisi
 
@@ -109,7 +108,7 @@ Her sorun için:
     - Credentials placeholder → kullanıcıya doldurmasını söyle
 
   skip:
-    - Kullanmadığı servis (Firebase yok, Jira yok)
+    - Kullanmadığı servis (orn. Firebase yok)
     - İsteğe bağlı dosyalar
 ```
 
@@ -212,7 +211,7 @@ Bir MCP bağlı değilse, o servisi kullanan skill'ler şu sırayla dener:
 
 Bu skill `~/.claude/skills/migration/` altındadır. Tüm projelerde `/migration` komutu ile çağrılabilir.
 
-Proje-spesifik bilgileri (framework, Jira key, servisler) CLAUDE.md veya setup wizard'dan alır — skill dosyasına hardcode etmez.
+Proje-spesifik bilgileri (framework, servisler) CLAUDE.md veya setup wizard'dan alır — skill dosyasına hardcode etmez.
 
 ## When NOT to Use
 - Tek satirlik basit soru/cevap ise
