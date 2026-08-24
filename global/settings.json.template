@@ -186,14 +186,6 @@
         "mcp-server-git"
       ]
     },
-    "atlassian": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote@latest",
-        "https://mcp.atlassian.com/v1/mcp"
-      ]
-    },
     "firebase": {
       "command": "npx",
       "args": [
