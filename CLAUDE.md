@@ -203,3 +203,35 @@ ciktilari) **"resim uret / gorsel uret / asset uret"** dediginde:
 dogrulanmis. Sadece kullanicinin ChatGPT kotasini harcadigini, kac batch olacagini
 ve hangi sohbette uretilecegini bastan soyle.
 
+
+## Rapor Kurali — ciktilar dokumana yazilir
+
+Anlamli her is bitiminde raporu **calisilan repo icinde** su dosyaya yaz:
+
+```
+docs/runs/<YYYY-MM-DD-HHMM>-<slug>.md
+```
+
+Sohbet ciktisi kalici degildir; oturum kapaninca kaybolur. Repoya yazilan rapor
+kalir, git gecmisine girer ve bir sonraki oturum onu okuyabilir.
+
+**Sablon:**
+
+| Baslik | Icerik |
+|---|---|
+| Ust tablo | tarih · calistiran (Claude/model/effort ya da agy) · dizin |
+| Gorev | verilen is, tek paragraf |
+| Yapilanlar | madde madde, her maddede dokunulan dosya yolu |
+| Degisen dosyalar | `git diff --stat` ciktisi |
+| Dogrulama | ne calistirildi, cikti neydi. Calistirilmadiysa **acikca** "calistirilmadi" |
+| Yapilmayanlar | varsa eksikler ve nedeni. Yoksa "yok" — bos birakma |
+
+**Kurallar:**
+
+- Rapor yazilmadan is bitmis sayilmaz.
+- Raporda yazilan her iddia diskteki gercek durumla uyusmali. Yapilmamis bir sey
+  yapilmis gibi yazilmaz; olculmemis bir sey olculmus gibi yazilmaz.
+- Delege edilen isler (agy, sub-agent, harici model) de kendi raporunu ayni yere
+  yazar. Delege edilenin raporu **kanit degildir** — `git diff` ile dogrulanir.
+- Uzun/cok fazli islerde ayrica `PLAN.md` (basta) ve `README.md` (sonda) guncellenir.
+- Kucuk, tek dosyalik trivial degisiklikler icin rapor gerekmez; commit mesaji yeter.
