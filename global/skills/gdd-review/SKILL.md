@@ -54,6 +54,10 @@ Ayni gecte iki sayim yap, ikisi de rapora girer:
 
 Ikisi de tahmin degil **sayim**: hangi satirdan geldigini yaz.
 
+Sayim mekaniktir — **`agy`'ye ver**, sen okumaya devam et. Brief'e "her kalem icin
+satir numarasi dondur, carpimlari acikca yaz" koy. Donen listeden iki kalemi
+dokumandan dogrula; tutmuyorsa sayimi kendin yap.
+
 ---
 
 ## Faz 2 — Puanlama: 7 boyut, capali
@@ -137,6 +141,10 @@ Puanlama yok. Uc cikti:
    Liste 10'un ustundeyse **goruntuleme sikligina gore sirala**; oyuncunun en cok
    baktigi sey ilk tura girer.
 
+Uc ciktinin ucu de cikarimdir, muhakeme degil: **`agy`'ye delege edilir.** Kesme
+karari — neyin *Olmali*, neyin *Yok* oldugu — sende kalir; ajana kesilmis kapsami
+verirsin, ajan listeyi cikarir.
+
 **Ilk prototip 1-3 dakikalik oynanistir.** GDD 7 gun istiyorsa 2 gun, 10 kart istiyorsa
 4 kart. GDD'nin "kabul kriterleri" bolumu urun hattinindir, extract'i baglamaz.
 
@@ -144,13 +152,31 @@ Puanlama yok. Uc cikti:
 
 ## Model ve effort
 
-| Is | Model | Effort |
-|---|---|---|
-| Okuma, sayim, puanlama, v2 | oturumun modeli | `medium` |
-| Cok uzun GDD (>1500 satir) bolum ozeti | `agy (Gemini)` | `low` — bolum basina bir ajan, ozet doner, **puani ana ajan verir** |
-| `extract` modu | oturumun modeli | `low` — bu bir cikarim, muhakeme degil |
+Bu skill'in isinin buyuk kismi **mekanik**: saymak, listelemek, cikarmak. Onlar
+`agy` uzerinden Gemini'ye gider. Claude'da kalan tek sey **yargi**: puan, bant,
+bulgunun siddeti, neyin kesilecegi.
 
-Puanlama delege edilmez: farkli ajanlar farkli capa okur, puanlar karsilastirilamaz hale gelir.
+| Is | Nereye | Neden |
+|---|---|---|
+| Sayilastirilmis mekanik sayimi | **`agy`** | sayim, yorum degil |
+| Benzersiz asset sayimi ve carpimi ("6 aile × 5 kademe = 30") | **`agy`** | aritmetik |
+| Cok uzun GDD (>1500 satir) bolum ozeti | **`agy`**, bolum basina bir serit | paralel, birbirini beklemez |
+| `extract` modu — `SCOPE.md`, `ART.md`, cekirdek dongu cikarimi | **`agy`** | cikarim, muhakeme degil |
+| Alinti toplama (bir iddianin gectigi satirlari bulmak) | **`agy`** | arama |
+| **Puanlama, bant, bulgu siddeti** | **Claude** | delege edilmez |
+| **v2'nin yeniden yazimi** | **Claude** | neyin neden degistigi karardir |
+| Terminoloji/format birlestirme, baslik duzeni, tablo hizasi (v2 yazildiktan sonra) | **`agy`** | mekanik temizlik |
+
+```bash
+~/Projects/ClaudeHQ/scripts/hq agy --file <brief> --dir <gdd-dizini> --slug gdd-<is> --json
+```
+
+**Puanlama delege edilmez:** farkli ajanlar farkli capa okur, puanlar
+karsilastirilamaz hale gelir. Ayni sebeple bant ve kill/duzelt karari da kalir.
+
+**Delege edilen her sayim satir numarasi ile doner.** Sayi tek basina kanit degil —
+`hq agy` ciktisi iddiadir; en az iki satiri dokumandan **kendin** dogrula, tutmuyorsa
+sayimi kendin yap. Yanlis bir asset sayimi dogrudan Boyut 4'un puanini bozar.
 
 ---
 
