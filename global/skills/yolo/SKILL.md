@@ -6,6 +6,8 @@ argument-hint: "<gorev aciklamasi>"
 
 # /yolo — Full Autonomous Mode
 
+> Model yonlendirmesi: global/model-routing.md
+
 Verilen gorevi **sifir soru sorarak**, gidebildigi yere kadar uygular. Engeller atlanir, her milestone'da commit atilir, sonuc raporlanir.
 
 ## Temel ilkeler
@@ -150,11 +152,20 @@ Agent(
 
   WATCHDOG: Bu gorev long. Max 50 tool call. Her 5 call self-check.
   """,
-  model="sonnet",
   run_in_background=True,
   description="yolo: <gorev ozeti>"
 )
 ```
+
+Gorev **mekanikse** bunun yerine Bash'ten `agy` serittir — Claude'un `Agent`
+tool'u Gemini kabul etmez:
+
+```bash
+~/Projects/ClaudeHQ/scripts/hq agy --file <prompt-dosyasi> --dir <proje> \
+  --slug yolo-<gorev> --json &
+```
+
+Karar, mimari ve teshis gerektiren gorevler Opus'ta kalir.
 
 ---
 

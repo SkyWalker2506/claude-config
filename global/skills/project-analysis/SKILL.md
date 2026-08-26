@@ -1,5 +1,7 @@
 # /project-analysis [-focus]
 
+> Model yonlendirmesi: global/model-routing.md
+
 **Focus modları** (isteğe bağlı, `-` ile):
 ```
 /project-analysis                   # Tüm kategoriler (12 lead)
@@ -164,7 +166,7 @@ Research phase max 3 dakika sürer. Timeout olan researcher atlanır, lead'ler o
 Analiz için ajan atama modunu seç:
   1) Lead Orchestrator — A1 projeyi inceler, her departman için Lead + ajan atar
   2) Manuel            — her kategori için ajan ve modeli kendim seçerim
-  3) Hızlı             — tüm kategoriler Sonnet ile, standart agent'lar
+  3) Hızlı             — tüm kategoriler agy (Gemini) ile, standart agent'lar
 
 Seçiminiz (1/2/3):
 ```
@@ -181,7 +183,7 @@ Seçiminiz (1/2/3):
 - `PROJECT_ANALYSIS.md` §3'teki kategori + agent eşleşme tablosuna bak, öner
 
 **3 seçilirse (Hızlı):**
-- Tüm 12 kategoriyi Sonnet modeli + varsayılan agent'larla başlat (kategori seçimi yok)
+- Tüm 12 kategoriyi agy (Gemini) modeli + varsayılan agent'larla başlat (kategori seçimi yok)
 
 ## Adım 2 — Lead'leri başlat (paralel, background)
 
@@ -208,10 +210,10 @@ Lead'ler başlatılmadan önce kullanıcıya dispatch tablosunu göster:
 ━━ Agent Dispatch ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   Agent        Model          Kategoriler
   ─────────    ───────────    ──────────────────────────
-  ArtLead      Sonnet 4.6     UI/UX, Content, A11y
-  CodeLead     Sonnet 4.6     Perf, Data, Arch
-  GrowthLead   Sonnet 4.6     SEO, Growth, Analytics
-  BizLead      Sonnet 4.6     Monetization, Competitive
+  ArtLead      agy (Gemini)   UI/UX, Content, A11y
+  CodeLead     agy (Gemini)   Perf, Data, Arch
+  GrowthLead   agy (Gemini)   SEO, Growth, Analytics
+  BizLead      agy (Gemini)   Monetization, Competitive
   SecLead      Opus 4.6       Security
   Master       Opus 4.6       Final report (Phase 4)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -224,11 +226,11 @@ Bu tablo her zaman gösterilir — kullanıcı hangi agent'ın hangi modelle ça
 Her 3 dakikada bir durum göster (model bilgisi dahil):
 ```
 Analiz durumu (X/Y tamamlandı):
-✅ ArtLead   [Sonnet 4.6]  3m 12s — UI/UX ✅, Content ✅, A11y ✅
-✅ SecLead   [Opus 4.6]    2m 30s — Security ✅
-⏳ CodeLead  [Sonnet 4.6]  4m 45s — Perf ✅, Data ✅, Arch ⏳
-⏳ GrowthLead[Sonnet 4.6]  3m 50s — SEO ✅, Growth ⏳, Analytics ⏳
-⏳ BizLead   [Sonnet 4.6]  2m 10s — Monetization ⏳, Competitive ⏳
+✅ ArtLead   [agy (Gemini)] 3m 12s — UI/UX ✅, Content ✅, A11y ✅
+✅ SecLead   [Opus 4.6]     2m 30s — Security ✅
+⏳ CodeLead  [agy (Gemini)] 4m 45s — Perf ✅, Data ✅, Arch ⏳
+⏳ GrowthLead[agy (Gemini)] 3m 50s — SEO ✅, Growth ⏳, Analytics ⏳
+⏳ BizLead   [agy (Gemini)] 2m 10s — Monetization ⏳, Competitive ⏳
 ```
 8 dakika geçen lead → kullanıcıya sor, onay gelirse yeniden başlat.
 
@@ -251,10 +253,10 @@ Tüm Lead'ler tamamlanınca bir **Opus agent** başlat:
 ━━ Execution Summary ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   Agent        Model          Süre      Çıktı
   ─────────    ───────────    ──────    ─────
-  ArtLead      Sonnet 4.6     3m 12s    3 reports
-  CodeLead     Sonnet 4.6     4m 45s    3 reports
-  GrowthLead   Sonnet 4.6     3m 50s    3 reports
-  BizLead      Sonnet 4.6     2m 10s    2 reports
+  ArtLead      agy (Gemini)   3m 12s    3 reports
+  CodeLead     agy (Gemini)   4m 45s    3 reports
+  GrowthLead   agy (Gemini)   3m 50s    3 reports
+  BizLead      agy (Gemini)   2m 10s    2 reports
   SecLead      Opus 4.6       2m 30s    1 report
   Master       Opus 4.6       1m 45s    MASTER_ANALYSIS.md
   ─────────    ───────────    ──────    ─────

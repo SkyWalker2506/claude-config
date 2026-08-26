@@ -6,6 +6,8 @@ argument-hint: "[gorev aciklamasi]"
 
 # /dispatch — Agent Router & Dispatcher
 
+> Model yonlendirmesi: global/model-routing.md
+
 Gelen gorevi analiz edip `config/agent-registry.json`'dan uygun agent'i secer ve o agent'in kurallariyla sub-agent baslatir.
 
 ### Hibrit Routing (Phase 0)
@@ -121,9 +123,9 @@ Agent secildikten sonra `strategy` alanina bak:
 | Strategy | Model atama | Dispatch yontemi |
 |----------|-------------|-----------------|
 | `direct` | `primary_model` olarak kullan | Tek agent, degisiklik yok |
-| `cheap_first` | `primary_model` (ucuz/free/haiku) ile basla | Basarisizsa `fallbacks` zincirinden yuksel |
-| `two_pass` | Executor: `primary_model`, Reviewer: `opus` | Sonnet/free ile kod yaz, Opus ile review |
-| `opus_plan` | Plan: `opus`, Execution: `sonnet` | /plan modunda Opus, execution'da Sonnet |
+| `cheap_first` | `primary_model` (ucuz/free/gemini) ile basla | Basarisizsa `fallbacks` zincirinden yuksel |
+| `two_pass` | Executor: `primary_model`, Reviewer: `opus` | agy (Gemini)/free ile kod yaz, Opus ile review |
+| `opus_plan` | Plan: `opus`, Execution: `agy (Gemini)` | /plan modunda Opus, execution'da agy (Gemini) |
 
 **`cheap_first` basari kriteri:**
 - Sub-agent ciktisi bos degil + hata mesaji yok → basarili

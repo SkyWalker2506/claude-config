@@ -7,6 +7,8 @@ argument-hint: "[GDD dosya yolu veya oyun fikri] veya [status|resume]"
 
 # /showrunner — tek komut, bitmis oyun
 
+> Model yonlendirmesi: global/model-routing.md
+
 `/prototype` "bu fikir eglenceli mi" sorusunu cevaplar ve durur. `/polish` kosan seyi
 iyilestirir. Bu skill ikisini ve sanat hattini **tek akista birlestirir**: basta stil ve
 sahne gorselleriyle gorsel kimligi kullaniciya SECTIRIR, kalan tum kararlari tek soru
@@ -111,7 +113,7 @@ sonra ozet `brief.md`'ye yazilir ve G1 **hemen** tetiklenir.
   secim on secenek arasindan degil, birkac ciddi secenek arasindan yapilir.
 
 Prompt `/image-prompt` kurallariyla Ingilizce yazilir, `/image-run` ile arka plan
-ajaninda (Sonnet, `effort: low`) uretilir ve indirilir. Gorsel uretim icin izin
+ajaninda (`agy (Gemini)`, `effort: low`) uretilir ve indirilir. Gorsel uretim icin izin
 istenmez — uretim kararlari G0 onayiyla verilmis sayilir.
 
 Inen 10 kareyi **numaralayarak** goster, sectir. Ayni mesajda tek ek soru:
@@ -241,7 +243,7 @@ Ayni anda uc hat kosar; birbirini beklemez:
 | Hat | Kim | Ne |
 |---|---|---|
 | **Kod** | sen (ana ajan) | `/prototype` Faz 2-4 disiplininde iskelet + cekirdek dongu + juice; `data/config.js`, `game.advance()`, `InputManager`, kamera kurali aynen. Cekirdek kosunca **funscore harness'i** yaz |
-| **Sanat** | arka plan Agent (Sonnet, `low`) | `ART.md` kuyrugunu `/image-run` ile **teker teker** uret-indir-esle; **yalnizca** `assets/` ve `data/art.js` manifestine yazar |
+| **Sanat** | arka plan Agent (`agy (Gemini)`, `low`) | `ART.md` kuyrugunu `/image-run` ile **teker teker** uret-indir-esle; **yalnizca** `assets/` ve `data/art.js` manifestine yazar |
 | **Ses** | sen, cekirdek kostuktan sonra | Web Audio kimligi: `/polish` §3 — kaynak/artikulasyon ayrimi, tek ezgi isaretcisi, gama kilidi |
 
 `ART.md` durum kolonunu **ana ajan** gunceller — sanat ajaninin her tur raporundan
@@ -349,7 +351,7 @@ son karar Fable'indir; kodu Opus yazar; Opus takilirsa Fable'a danisilir.
 | Is | Model | Effort |
 |---|---|---|
 | Perde 1 promptlari (stil blogu, sahne cumleleri) | oturum modeli, **sen** | normal — asla low; ucuz prompt 10 gorseli cope atar |
-| `/image-run` calistirma ajani | Sonnet | `low` |
+| `/image-run` calistirma ajani | `agy (Gemini)` | `low` |
 | Cekirdek dongu + harness + ses (Faz B) | oturum modeli, sen | dusuk tut — `/prototype` kurali, `high` yasak |
 | Plan taslagi + son karar (Faz A) | Fable | **duruma gore kendi secer**: bolme kolaysa `medium`, cok modullu/girift ise `high` |
 | Plan itirazi (Faz A) | Opus | `medium` |
@@ -395,7 +397,7 @@ echo "  G3  Soru turu: kapsam zarfi + kalan kararlar tek turda -> kilit ozeti ->
 echo ""
 echo "PERDE 2 — sifir soru:"
 echo "  A   /goal kriterleri + ART.md tam envanter + plan: Fable taslak, Opus itiraz, Fable karar"
-echo "  B   Uc paralel hat: kod+harness (tek akis) | sanat (Sonnet low) | ses — commit+push noktalari"
+echo "  B   Uc paralel hat: kod+harness (tek akis) | sanat (agy (Gemini) low) | ses — commit+push noktalari"
 echo "  C   /plan-build dalgalari (Opus, tavan high) — takilinca Fable'a danis"
 echo "  D   /polish tam gecis + /sprite-parallax derinlik + kart parilti — her iddia olcumlu"
 echo "  E   /goal dongusu + /funscore bot (>=3 seed, bant 85-90, yon)"

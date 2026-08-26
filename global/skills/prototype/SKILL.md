@@ -7,6 +7,8 @@ argument-hint: "[GDD dosya yolu veya oyun fikri]"
 
 # /prototype — fikrin ise yaradiginin kaniti
 
+> Model yonlendirmesi: global/model-routing.md
+
 Oyun yapmiyorsun. **Oyun fikrinin ise yaradiginin kanitini** yapiyorsun.
 
 > Hiz > Mimari · His > Icerik · Oynanir > Mukemmel
@@ -78,7 +80,7 @@ calisiyor ama sikici ise hicbir test bunu soylemez.
 |---|---|---|
 | Sen (ana ajan): analiz, iskelet, cekirdek dongu, juice, entegrasyon | oturumun modeli | **dusuk tut** — uzun muhakeme etme, ilk makul cozumu yaz |
 | Sanat prompt'u yazmak (stil blogu, sahne cumleleri) | oturumun modeli, **sen** | normal — `/image-prompt` Kural 2, ucuzlatilan prompt tum turu cope atar |
-| Sanat hatti ajani (gonder / bekle / indir / tasi) | `sonnet` | **`low`** — mekanik, `/image-run` "Model ve efor" |
+| Sanat hatti ajani (gonder / bekle / indir / tasi) | `agy (Gemini)` | **`low`** — mekanik, `/image-run` "Model ve efor" |
 | Mikro ajan (debug / optimizasyon, prototip kostuktan SONRA) | `opus` | **`low`** |
 | Plan/analiz delegasyonu | — | **yok**. 3 dakikalik analizi delege etmek, yapmaktan uzun surer |
 
@@ -302,10 +304,12 @@ kopyalar. Tek kelime degistirirsen set ikiye bolunur.
 stil blogu, damga en sonda). Promptlari `/image-prompt` kurallariyla **sen yaz** (prompt
 yazimi low'a verilmez), calistirmayi `/image-run`'a devret:
 
+```bash
+~/Projects/ClaudeHQ/scripts/hq agy "<ajan gorevi>" --dir <proje> --slug art-run &
 ```
-Agent(subagent_type: "general-purpose", model: "sonnet", effort: "low",
-      run_in_background: true)
-```
+
+Claude'un `Agent` tool'u Gemini kabul etmez — mekanik serit **Bash'ten `hq agy`**
+ile acilir, arka planda. Model/efor wrapper'da (`gemini-3.7-flash-high`, `high`).
 
 Ajanin gorevi dar ve yazili: sohbeti ac → promptu gonder → 1 dk'da bir kontrol →
 seriyi indir → icerige bakarak esle → `assets/`'a tasi → manifest satirini ekle →

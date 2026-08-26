@@ -16,6 +16,7 @@ Non-trivial görevlerde: classify → lane seç → dispatch → bekle.
 
 ### Davranis Kurallari
 > Calisma tarzi, tool kullanimi, model secimi, dil kurallari → `global/charter.md`
+> Is delegasyonunda model secimi → `global/model-routing.md` (**delege etmeden once oku**)
 
 ### 4. jCodeMunch MCP
 
@@ -235,3 +236,16 @@ kalir, git gecmisine girer ve bir sonraki oturum onu okuyabilir.
   yazar. Delege edilenin raporu **kanit degildir** — `git diff` ile dogrulanir.
 - Uzun/cok fazli islerde ayrica `PLAN.md` (basta) ve `README.md` (sonda) guncellenir.
 - Kucuk, tek dosyalik trivial degisiklikler icin rapor gerekmez; commit mesaji yeter.
+
+## Model Yonlendirme — kisa hali
+
+Ayrinti: `global/model-routing.md`. Ozet:
+
+- **Tasarim, mimari, kapsam kesme, zor bug** → Fable 5 / Opus 5, Claude'da kalir.
+- **Mekanik kod, boilerplate, refactor, paralel serit, gorsel uretimi** → `agy` ile
+  Gemini: `~/Projects/ClaudeHQ/scripts/hq agy "<gorev>" --dir <proje>`
+- **Sonnet/Haiku delegasyon hedefi degildir.** Kucuk Claude kademesi yerine Gemini.
+- **Kotadan cekinme** — paralel serit ac, subagent takimi kur. Kisitlama sadece
+  gercek rate-limit hatasinda.
+- **Video** `agy`'de yok; tarayicidan Gemini web.
+- Delege ciktisi **iddiadir**; `git diff` ile dogrulanmadan uzerine bina edilmez.

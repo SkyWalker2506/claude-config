@@ -6,6 +6,8 @@ argument-hint: "[N=1] [proje] [-focus]"
 
 # /forge — Full Development Cycle
 
+> Model yonlendirmesi: global/model-routing.md
+
 Projeyi analiz et, sprint plan, paralel task'lari calistir, PR/review/merge dongusu, ozet ve dersler cikar. Tek komutla uçtan uca.
 
 ## Kullanim
@@ -226,7 +228,7 @@ Run baslamadan once tum bagimliliklari kontrol et. Biri bile fail ederse **durur
   [✓] Flutter/Node  — proje stack'ine gore build tool mevcut
   [✓] Secrets       — secrets.env yuklu, gerekli key'ler var
   [✓] Disk          — min 1GB bos alan
-  [✓] Agent Models  — Sonnet (kod) + Opus (review) erisilebilir
+  [✓] Agent Models  — agy (Gemini) (kod) + Opus (review) erisilebilir
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -238,7 +240,7 @@ Run baslamadan once tum bagimliliklari kontrol et. Biri bile fail ederse **durur
 | **Build tool** | `pubspec.yaml` → flutter, `package.json` → node, vb. | "Flutter/Node bulunamadi. Yukle." |
 | **Secrets** | `source secrets.env`, gerekli key'ler set mi | "SUPABASE_URL eksik. secrets.env kontrol et." |
 | **Disk** | `df -h .` kontrol | "Disk alani yetersiz." |
-| **Models** | Sonnet + Opus API erisilebilir mi (basit test) | "Model erisimi yok. API key kontrol et." |
+| **Models** | agy (Gemini) + Opus API erisilebilir mi (basit test) | "Model erisimi yok. API key kontrol et." |
 
 Tum kontroller gecerse:
 ```
@@ -379,9 +381,9 @@ Sprint baslamadan once dispatch tablosu goster:
 ━━ Sprint 1 — Task Pipeline ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   Task         Wave  Agent     Model          Gorev
   ──────────   ────  ──────    ───────────    ──────────
-  KEY-101      W1    Coder     Sonnet 4.6     Branch + code + PR
-  KEY-102      W1    Coder     Sonnet 4.6     Branch + code + PR
-  KEY-104      W2    Coder     Sonnet 4.6     Branch + code + PR (after 101)
+  KEY-101      W1    Coder     agy (Gemini)   Branch + code + PR
+  KEY-102      W1    Coder     agy (Gemini)   Branch + code + PR
+  KEY-104      W2    Coder     agy (Gemini)   Branch + code + PR (after 101)
   ...
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
@@ -415,7 +417,7 @@ Bu etiketler her adım **başında** yazılır (bitmeden önce) — bu sayede pa
 Her task icin **`{TASK_ID}`** (`T-NNN`) ile pipeline'i dogrudan agent ile koştur:
 
 1. **Branch olustur** — `feat/{task-id-lower}-xxx` (orn. `feat/key-101-xxx` veya `feat/t-001-xxx`)
-2. **Kod yaz** — Sonnet model (worktree izolasyonu)
+2. **Kod yaz** — agy (Gemini) model (worktree izolasyonu)
 3. **PR ac** — `gh pr create`
 4. **Review** — Opus model
 5. **Sorun varsa → Fix Loop:**
@@ -470,9 +472,9 @@ Tum sprint'ler tamamlaninca:
    - PRs merged: 12
 
    ## Agent Execution
-   - Coder agents: Sonnet 4.6 (12 tasks)
+   - Coder agents: agy (Gemini) (12 tasks)
    - Reviewer agents: Opus 4.6 (12 reviews, 3 fix loops)
-   - Analysis: Sonnet 4.6 (5 leads) + Opus 4.6 (master)
+   - Analysis: agy (Gemini) (5 leads) + Opus 4.6 (master)
    - Total agent time: 45m
 
    ## Completed Tasks
@@ -627,7 +629,7 @@ GDD ve build en ağır — GDD birebir uyum forge'un nihai amacı, build kırık
 
 **Score agent dispatch:**  
 Skorlama Phase 4'teki Reviewer agent değil — **ayrı dispatch** edilir:
-- Sonnet 4.6 model (hızlı + ucuz)
+- agy (Gemini) model (hızlı + ucuz)
 - Tools: Read, Bash (build), mcp__playwright__*, mcp__jcodemunch__search_text
 - Süre limit: 8 dk; aşılırsa partial score yazılır
 

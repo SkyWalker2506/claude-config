@@ -1,18 +1,20 @@
 ---
 name: team-build
-description: "Multi-agent takım oluştur: Opus tasarlar, Sonnet/Haiku kodlar, loop ile otonom çalışır. Triggers: team build, takım kur, agent takımı, multi-agent."
+description: "Multi-agent takım oluştur: Opus tasarlar, agy (Gemini) kodlar, loop ile otonom çalışır. Triggers: team build, takım kur, agent takımı, multi-agent."
 user-invocable: true
 argument-hint: "[setup|run|status]"
 ---
 
 # Team Build — Multi-Agent Otonom Geliştirme
 
-Opus agent'lar tasarlar + plan yazar, Sonnet/Haiku agent'lar kodlar. Loop ile otonom çalışır, her turda commit+push yapar, raporlar üretir.
+> Model yonlendirmesi: global/model-routing.md
+
+Opus agent'lar tasarlar + plan yazar, agy (Gemini) agent'lar kodlar. Loop ile otonom çalışır, her turda commit+push yapar, raporlar üretir.
 
 ## Akış
 
 ```
-Setup → Opus Spec → Loop [ Sonnet/Haiku Kod → Commit+Push → Opus Review → Sonraki Tur ]
+Setup → Opus Spec → Loop [ agy (Gemini) Kod → Commit+Push → Opus Review → Sonraki Tur ]
 ```
 
 ## Argümanlar
@@ -79,7 +81,7 @@ Cevaplardan `.team-build/config.json` oluştur:
       "role": "Renk, font, spacing, animasyon kuralları ve ortak component spec'leri",
       "specFile": ".team-build/specs/agent-01-tasarim-sistemi.md",
       "reportFile": ".team-build/reports/agent-01-report.md",
-      "model": "sonnet",
+      "model": "agy",
       "dependsOn": [],
       "priority": 1
     }
@@ -91,10 +93,12 @@ Cevaplardan `.team-build/config.json` oluştur:
 }
 ```
 
-Agent model ataması:
-- **Basit/tekrarlayan iş** (sahte veri, basit component, birebir spec uygulama) → `haiku`
-- **Orta-ağır kodlama** (karmaşık UI, state, animasyon, filtreleme) → `sonnet`
-- Model alanı config'de belirtilir, loop scripti bunu kullanır
+Agent model ataması (`model` alanı):
+- `"agy"` → **mekanik kodlama / veri / component** (sahte veri, component, spec
+  uygulama, UI/state). Loop scripti bunu Bash'ten çalıştırır:
+  `~/Projects/ClaudeHQ/scripts/hq agy --file <spec> --dir <proje> --slug <agent-id>`
+- `"opus"` → spec yazımı, review, mimari karar. Claude'un `Agent` tool'u ile.
+- `"agy"` bir Claude modeli **değildir** — `Agent(model=...)` alanına yazılmaz.
 
 ---
 
@@ -173,7 +177,7 @@ Shell script'i başlat:
 
 Script şöyle çalışır (her iterasyon):
 
-### 3a. Kod İterasyonu (Sonnet/Haiku)
+### 3a. Kod İterasyonu (agy / Gemini)
 
 1. `.team-build/config.json` oku
 2. `.team-build/reports/` altındaki önceki raporları oku
@@ -252,13 +256,12 @@ Tüm agent'lar tamamlandığında:
 ## Önemli Kurallar
 
 1. **Opus asla kod yazmaz** — sadece spec, plan, review, not
-2. **Sonnet ağır kodlama yapar** — karmaşık component, animasyon, state
-3. **Haiku basit işleri yapar** — sahte veri, basit component, birebir uygulama
-4. **Her iterasyon commit+push** — kesintiye dayanıklı
-5. **Raporlar dosyada** — context temizlense bile bilgi kaybolmaz
-6. **Proje dışına çıkma** — sadece proje dizininde çalış
-7. **Soru sorma** — setup hariç tamamen otonom
-8. **Tutarlılık** — her agent tasarım sistemine uymalı
+2. **Mekanik kodlama agy (Gemini) ile yapılır** — component, animasyon, state, sahte veri, spec uygulama
+3. **Her iterasyon commit+push** — kesintiye dayanıklı
+4. **Raporlar dosyada** — context temizlense bile bilgi kaybolmaz
+5. **Proje dışına çıkma** — sadece proje dizininde çalış
+6. **Soru sorma** — setup hariç tamamen otonom
+7. **Tutarlılık** — her agent tasarım sistemine uymalı
 
 ## When NOT to Use
 - Tek satirlik basit soru/cevap ise

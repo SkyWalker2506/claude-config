@@ -7,6 +7,8 @@ argument-hint: "[GDD dosya yolu] [review|improve|extract — ops., varsayilan re
 
 # /gdd-review — dokuman uygulanabilir mi?
 
+> Model yonlendirmesi: global/model-routing.md
+
 `/greenlight` **neyi** yapmaya deger sorusunu cevaplar, `/prototype` **eglenceli mi**
 sorusunu. Bu skill ikisinin arasindaki bosluktur: elde bir GDD var, **bu dokumandan
 oyun cikar mi?**
@@ -145,7 +147,7 @@ Puanlama yok. Uc cikti:
 | Is | Model | Effort |
 |---|---|---|
 | Okuma, sayim, puanlama, v2 | oturumun modeli | `medium` |
-| Cok uzun GDD (>1500 satir) bolum ozeti | `sonnet` | `low` — bolum basina bir ajan, ozet doner, **puani ana ajan verir** |
+| Cok uzun GDD (>1500 satir) bolum ozeti | `agy (Gemini)` | `low` — bolum basina bir ajan, ozet doner, **puani ana ajan verir** |
 | `extract` modu | oturumun modeli | `low` — bu bir cikarim, muhakeme degil |
 
 Puanlama delege edilmez: farkli ajanlar farkli capa okur, puanlar karsilastirilamaz hale gelir.

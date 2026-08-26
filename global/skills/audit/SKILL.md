@@ -6,6 +6,8 @@ argument-hint: "[security|cost|performance|cleanup|all]"
 
 ## /audit
 
+> Model yonlendirmesi: global/model-routing.md
+
 Proje kodunu tarayıp sorunları raporla — bu bir **kod** taramasidir.
 
 ### Odak seçenekleri
@@ -34,14 +36,13 @@ Proje kodunu tarayıp sorunları raporla — bu bir **kod** taramasidir.
 
 Agent tool ile arka planda çalıştır:
 
-```python
-Agent(
-  prompt=<aşağıdaki şablon>,
-  model="sonnet",
-  run_in_background=True,
-  description="project audit: <odak>"
-)
+```bash
+~/Projects/ClaudeHQ/scripts/hq agy --file <şablon-dosyası> --dir <proje> \
+  --slug audit-<odak> --json &
 ```
+
+Tarama mekanik iştir, `agy` üzerinden Gemini'ye gider. Claude'un `Agent` tool'u
+Gemini kabul etmediği için model parametresiyle değil, Bash'ten çağrılır.
 
 ### Agent prompt şablonu
 
