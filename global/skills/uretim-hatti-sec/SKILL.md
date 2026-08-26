@@ -18,6 +18,7 @@ saatler kaybettirir: hatların modelleri, çıktıları ve kapıları farklı.
 | **Video / sinematik** (kesme sahne, tanıtım, hareketli plan) | **[/animate](../animate/SKILL.md)** | Wan 2.2 I2V | mp4 klip |
 | **Tek duran görsel** (ikon, portre, sahne, kart resmi) | **[/gorsel-uret](../gorsel-uret/SKILL.md)** | ortak GPU kuyruğu (SDXL / Qwen) | PNG |
 | **3D model** (mesh, rig, GLB) | **[/threejs-3d-character-pipeline](../threejs-3d-character-pipeline/SKILL.md)** | TRELLIS.2 + Blender + Mixamo | GLB / FBX |
+| **3D model, kod olarak** (prosedurel, animasyona hazir, bagimliliksiz) | **[/img2threejs](../img2threejs-setup/SKILL.md)** | referans görsel + prosedurel sculpt | TS factory + spec JSON |
 
 ## Sınır nerede — sprite mi video mu
 
@@ -45,6 +46,21 @@ girecek, yoksa ekranda video olarak mı oynayacak?**
 **Hareket eden bir karakterin kare dizisi** istiyorsan sprite hattına git.
 Tek tek görsel üretip elle birleştirmek, tutarlılığı kaybettirir —
 kareler arasında karakter değişir.
+
+## Sınır nerede — mesh mi kod mu
+
+İkisi de 3B, çıktıları farklı türden.
+
+- **[/threejs-3d-character-pipeline](../threejs-3d-character-pipeline/SKILL.md)** →
+  **mesh**. Foto-gerçekçi yüzey, doku haritaları, Mixamo rig'i. Bedeli: TRELLIS.2 +
+  Blender bağımlılığı, ikili dosyalar, repoda diff'lenemeyen varlıklar.
+- **[/img2threejs](../img2threejs-setup/SKILL.md)** → **kod**. Primitive ve prosedurel
+  shader'lardan kurulu bir TS factory; okunur, diff'lenir, pivot/socket hiyerarşisiyle
+  animasyona hazır gelir. Bedeli: yaklaşıklık — tek görsel gizli geometriyi göstermez,
+  foto-gerçekçilik hedefliyorsan yanlış hat.
+
+Karar: **stilize / düşük poli / versiyonlanabilir kaynak** → img2threejs.
+**Gerçekçi doku + standart rig** → mesh hattı.
 
 ## Hepsinin ortak kuralı: referans
 

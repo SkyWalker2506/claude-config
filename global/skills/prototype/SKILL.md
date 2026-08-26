@@ -377,6 +377,39 @@ prototipin sorusunu cevaplamiyor, sadece kota harciyor.
 - Diskte yer kontrolu: 10'luk tur ~25 MB PNG iner. Yer yoksa dosyalar sessizce
   eksik iner ve **eslesme kayar** — tur oncesi `df -h` bak.
 
+### 3B calisiyorsak — gorsel zinciri modele kadar uzar
+
+**Sprite varsayilandir; bu bolum yalnizca brief acikca 3B model istediginde acilir.**
+img2threejs'in var olmasi bir sprite oyununu 3B'ye cevirmek icin gerekce degildir.
+
+3B ise zincir sudur:
+
+```
+Gemini generate_image  →  referans kare  →  img2threejs  →  TS factory  →  sahnede canli
+```
+
+1. **Referans kareyi uret.** Nesneyi tek basina, temiz zeminde, silueti okunur bir
+   aciyla. Oyun ici kare degil — burada istedigimiz **nesnenin kendisi**. Karakterde
+   T/A-poz, propta uc-ceyrek acisi.
+2. **`img2threejs` skill'ini yukle ve calistir.** Cikti: `createXModel(): THREE.Group`
+   TypeScript factory'si + `ObjectSculptSpec` JSON'u. Mesh dosyasi yok, indirme yok —
+   okunabilir, diff'lenebilir, **animasyona hazir** kod (pivot + socket hiyerarsisi).
+3. **Sahneye tak.** Factory `data/art.js` manifestinin degil, `src/` altindaki model
+   modulunun isidir — cunku ciktisi kod, asset degil. Placeholder sozlesmesi burada da
+   gecerli: model gelene kadar primitive dursun, gelince degissin.
+4. **Animasyon** factory'nin verdigi pivotlardan surulur. Bu, img2threejs'i primitive
+   yiginina tercih etmenin asil sebebi: kutu yiginini rig'leyemezsin, bunu rig'lersin.
+
+**Kurulum yoksa** `img2threejs-setup` skill'i kurar (tek checkout + Claude/Antigravity
+symlink'leri). Sculpt hatti deterministik ve mekaniktir — **`agy` uzerinden Gemini'ye
+delege edilir**; Claude'da kalan tek sey kabul karari: benzedi mi, oyunun stiline
+oturdu mu.
+
+**Sinir:** tek gorsel gizli geometriyi gostermez, sonuc yaklasiktir — ozellikle
+karakterlerde. Arac guven seviyesini kendi isaretler; o isareti teslim raporuna tasi.
+Ve bu hat **kahraman nesne** icindir. Sahnedeki her cop parcasini boyle kurmaya
+kalkarsan prototip suresi patlar.
+
 ## Faz 2 — Iskelet (5 dk)
 
 ```

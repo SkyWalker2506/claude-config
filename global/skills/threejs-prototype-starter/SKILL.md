@@ -71,6 +71,35 @@ hand-drawn canvas fills, whenever the brief has an art direction:
 - Sprites stay textured quads. Regenerating art is cheap; substituting primitives for
   a sprite game is not — it changes the read of the whole game.
 
+### 3D Lane — image, then model, then animation
+
+Sprites remain the default; this lane opens **only when the brief asks for 3D in
+words**. img2threejs existing is not a reason to turn a sprite game into a 3D one.
+
+When the brief is 3D, the chain runs:
+
+```
+Gemini generate_image  →  reference frame  →  img2threejs  →  TS factory  →  live in scene
+```
+
+- **The reference frame is of the object, not the game.** Clean background, silhouette
+  readable: three-quarter view for props, T/A-pose for characters. This is the one
+  place where an in-game frame is the wrong frame.
+- **`img2threejs` returns code, not assets** — a `createXModel(): THREE.Group`
+  TypeScript factory plus an `ObjectSculptSpec` JSON. Readable, diffable, and
+  animation-ready: it hands you a pivot/socket hierarchy you can rig. That is the
+  whole reason to prefer it over a pile of primitives, which you cannot rig.
+- **Wire the factory into `src/`,** not `public/assets/` — its output is source. The
+  placeholder contract still holds: a primitive stands in until the factory lands.
+- **Hero objects only.** Sculpting every piece of scene litter this way blows the
+  prototype budget. Use it for the thing the player looks at.
+- Not installed? The `img2threejs-setup` skill handles the checkout and the
+  Claude/Antigravity symlinks. The sculpt pipeline is deterministic and mechanical —
+  **delegate it to Gemini via `agy`**; keep only the acceptance call in Claude.
+- **Limit:** one image cannot reveal hidden geometry, so the result is approximate,
+  characters most of all. The tool flags its own confidence and inferred regions —
+  carry those flags into the handoff instead of swallowing them.
+
 ### Video Lane
 
 Neither Antigravity nor `agy` has a text-to-video engine. When the brief needs motion

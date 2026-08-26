@@ -13,6 +13,13 @@ description: Build game-ready 3D character asset pipelines for Three.js projects
 > Kararsizsan: **[/uretim-hatti-sec](../uretim-hatti-sec/SKILL.md)**.
 >
 > Bu hat ortak GPU kuyruguna GIRMEZ; proje icinde kendi araclariyla calisir.
+>
+> **Mesh mi kod mu:** bu hat **mesh** uretir (TRELLIS.2 + Blender + GLB) — gercekci
+> yuzey, doku haritalari, standart rig. **[/img2threejs](../img2threejs-setup/SKILL.md)**
+> ise **kod** uretir: primitive ve prosedurel shader'lardan kurulu, okunabilir,
+> diff'lenebilir bir TS factory. Stilize/dusuk poli bir prop ya da karakter, sifir
+> bagimlilik ve versiyonlanabilir kaynak istiyorsan img2threejs; foto-gercekci doku
+> ve Mixamo rig'i gerekiyorsa bu hat.
 
 ## Overview
 
