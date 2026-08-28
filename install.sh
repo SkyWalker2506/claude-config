@@ -24,6 +24,24 @@ case "$(uname -s)" in
   MINGW*|MSYS*|CYGWIN*) OS="windows" ;;
 esac
 
+# Git Bash'te "ln -s" bir dizini sessizce KOPYALAR (MSYS winsymlinks kapali, gelistirici
+# modu ya da yonetici yoksa). Sonuc: 51MB'lik ucuncu bir checkout ve "tek checkout"
+# kuralinin ihlali -- guncelleme artik yayilmaz, kopyalar birbirinden ayrisir. Windows'ta
+# junction (mklink /J) kurulur; yonetici gerektirmez ve gercek bir baglantidir.
+link_img2threejs() {
+  dest="$1"
+  rm -rf "$dest"
+  if [ "$OS" = "windows" ]; then
+    src_win=$(cygpath -w "$PROJECTS_ROOT/img2threejs")
+    dst_win=$(cygpath -w "$dest")
+    if cmd //c mklink //J "$dst_win" "$src_win" >/dev/null 2>&1; then
+      return 0
+    fi
+    echo "  WARN img2threejs junction kurulamadi -- kopyalaniyor (guncelleme yayilmaz)"
+  fi
+  ln -sfn "$PROJECTS_ROOT/img2threejs" "$dest"
+}
+
 # Windows-specific: fix common PATH issues
 if [ "$OS" = "windows" ]; then
   # Add common Windows tool paths if missing
@@ -361,8 +379,8 @@ if [ "${SKIP_GEMINI:-0}" != "1" ]; then
     done
     # img2threejs: tek checkout, symlink ile girilir (repo vendor EDILMEZ)
     if [ -d "$PROJECTS_ROOT/img2threejs" ]; then
-      ln -sfn "$PROJECTS_ROOT/img2threejs" "$HOME/.gemini/config/skills/img2threejs"
-      ln -sfn "$PROJECTS_ROOT/img2threejs" "$HOME/.claude/skills/img2threejs"
+      link_img2threejs "$HOME/.gemini/config/skills/img2threejs"
+      link_img2threejs "$HOME/.claude/skills/img2threejs"
     fi
     echo "  ✅ Antigravity config (~/.gemini/config)"
   fi
