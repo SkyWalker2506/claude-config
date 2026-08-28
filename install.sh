@@ -74,6 +74,7 @@ while [[ $# -gt 0 ]]; do
     --skip-local-models) SKIP_LOCAL_MODELS=1; shift ;;
     --skip-agents) SKIP_AGENTS=1; WITH_AGENTS=0; shift ;;
     --skip-cron) SKIP_CRON=1; shift ;;
+    --skip-gemini) SKIP_GEMINI=1; shift ;;
     --only-agents) ONLY_AGENTS=1; shift ;;
     --with-auto-dream) WITH_AUTO_DREAM=1; shift ;;
     *) shift ;;
@@ -345,6 +346,29 @@ for skill_dir in "$SCRIPT_DIR/global/skills"/*/; do
   mkdir -p "$HOME/.claude/skills/$skill_name"
   cp -r "$skill_dir"* "$HOME/.claude/skills/$skill_name/" 2>/dev/null || true
 done
+
+# Antigravity (agy) — bizim skill'ler + global kurallar
+# Google'in kendi kurulu skill'lerine DOKUNULMAZ: sadece adi gecenler kopyalanir.
+if [ "${SKIP_GEMINI:-0}" != "1" ]; then
+  if [ -d "$SCRIPT_DIR/gemini" ]; then
+    mkdir -p "$HOME/.gemini/config/skills"
+    cp "$SCRIPT_DIR/gemini/AGENTS.md" "$HOME/.gemini/config/AGENTS.md" 2>/dev/null || true
+    for gskill_dir in "$SCRIPT_DIR/gemini/skills"/*/; do
+      [ -d "$gskill_dir" ] || continue
+      gskill_name=$(basename "$gskill_dir")
+      mkdir -p "$HOME/.gemini/config/skills/$gskill_name"
+      cp -r "$gskill_dir"* "$HOME/.gemini/config/skills/$gskill_name/" 2>/dev/null || true
+    done
+    # img2threejs: tek checkout, symlink ile girilir (repo vendor EDILMEZ)
+    if [ -d "$PROJECTS_ROOT/img2threejs" ]; then
+      ln -sfn "$PROJECTS_ROOT/img2threejs" "$HOME/.gemini/config/skills/img2threejs"
+      ln -sfn "$PROJECTS_ROOT/img2threejs" "$HOME/.claude/skills/img2threejs"
+    fi
+    echo "  ✅ Antigravity config (~/.gemini/config)"
+  fi
+else
+  echo "  ⏭  Antigravity atlandi (--skip-gemini)"
+fi
 
 # settings.json — template with path substitution
 sed \
