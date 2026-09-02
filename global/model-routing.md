@@ -27,7 +27,7 @@ gorunur — o zaman da delege edilen ise degil, konusmaya aittir.
 
 Kota korkusu isi ic tarafta tutmak icin gerekce degildir. Paralel `agy` seritleri
 kos, subagent takimi serbestce ac, stil tutana kadar gorseli yeniden uret.
-Varsayilan `gemini-3.7-flash-high` + `--effort high`.
+Varsayilan `gemini-3.8-flash-high` + `--effort high`.
 
 Kisitlama **sadece gercek rate-limit hatasi** gelince devreye girer; o zaman da
 tum delegasyon birakilmaz, o serit geri cekilir.
