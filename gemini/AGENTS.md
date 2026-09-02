@@ -32,5 +32,11 @@ Uzun/cok fazli isler (prototip, migration, sprint) icin ayrica `PLAN.md` ve
 `README.md` guncellenir — plan basta, README sonda.
 
 ## Çıktı Konumu Kuralı (Outputs to Documents)
-Üretilen nihai teslimat çıktıları (yalnızca tekil PDF, nihai export/rapor dosyası vb.) kullanıcının `~/Documents` (`/Users/musabkara/Documents/`) dizini altına yerleştirilmelidir. Proje kaynak kodları, ara dosyalar, asset'ler ve scriptler kendi proje/çalışma dizininde kalmalı; Documents klasörü gereksiz dosya ve klasörlerle doldurulmamalıdır.
+Kullanıcının **kendi açıp okuyacağı** tekil nihai çıktılar — PDF, sunum, dışa
+aktarılmış rapor dosyası — `~/Documents` altına konur. Proje kaynak kodu, ara
+dosyalar, asset'ler ve scriptler kendi çalışma dizininde kalır.
+
+**Bu kural çalışma raporlarını KAPSAMAZ.** `docs/runs/<tarih>-<slug>.md` raporu
+repo içinde kalır ve `~/Documents`'e **kopyalanmaz** — yukarıdaki Rapor Kuralı
+bu kuralı ezer. İki yere birden yazma; rapor tek yerde durur.
 
