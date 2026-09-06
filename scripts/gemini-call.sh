@@ -24,7 +24,7 @@ if [ -z "$PROMPT" ]; then
   exit 1
 fi
 
-MODEL="${GEMINI_MODEL:-gemini-3-flash-preview}"
+MODEL="${GEMINI_MODEL:-gemini-3.8-flash}"
 MAX_TOKENS="${GEMINI_MAX_TOKENS:-4096}"
 
 response=$(curl -s \
