@@ -27,8 +27,8 @@ gorunur — o zaman da delege edilen ise degil, konusmaya aittir.
 
 Kota korkusu isi ic tarafta tutmak icin gerekce degildir. Paralel `agy` seritleri
 kos, subagent takimi serbestce ac, stil tutana kadar gorseli yeniden uret.
-Varsayilan `gemini-4-argon-high` + `--effort high`. **Sadece Gemini 4 Argon kullanilir; Gemini 3 serisi (3.x Flash/Pro) kullanilmaz** (Musab, 2026-10-14).
-Basit mekanik islerde effort dusurulebilir: `gemini-4-argon-medium` / `--effort medium` ya da `-low` / `low`. Argon'da effort model id'sine gomulu oldugu icin ikisi eslesmeli; `xhigh`/`max` reddedilir.
+Varsayilan `gemini-4-argon-low` + `--effort low`. Is yanlis, eksik ya da uydurma donerse ayni isi `-medium`/`medium`, gerekirse `-high`/`high` ile yeniden kos. **Sadece Gemini 4 Argon kullanilir; Gemini 3 serisi (3.x Flash/Pro) kullanilmaz** (Musab, 2026-10-14).
+Argon'da effort model id'sine gomulu oldugu icin ikisi eslesmeli; `xhigh`/`max` reddedilir.
 
 Kisitlama **sadece gercek rate-limit hatasi** gelince devreye girer; o zaman da
 tum delegasyon birakilmaz, o serit geri cekilir.
