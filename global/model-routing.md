@@ -3,6 +3,14 @@
 > Tek kaynak. Skill'ler ve agent'lar model secimini burada tanimlar, kendi
 > icinde tekrar etmez. Degisiklik burada yapilir.
 
+## KURAL: Gemini = sadece Gemini 4 Argon, varsayilan low (Musab, 2026-10-14)
+
+1. Gemini'ye giden her is **`gemini-4-argon-low` + `--effort low`** ile kosar. `agy-task.sh` varsayilani da budur.
+2. **Gemini 3 serisi (3.x Flash/Pro) kullanilmaz.** Hicbir is icin, fallback olarak bile.
+3. Effort **sadece sorun cikan iste** artirilir. Is yanlis, eksik ya da uydurma donerse (olmayan dosya adi, tutmayan iddia), ayni is `gemini-4-argon-medium`/`medium` ile, o da yetmezse `-high`/`high` ile yeniden kosar. Model id'si ile `--effort` eslesmeli; `xhigh`/`max` reddedilir.
+4. Claude yonetici konumunda durur. Isi Argon'a verir, ciktiyi `git diff` ve testlerle dogrular, merge eder ve raporlar. Argon'un yapabilecegi is Claude'da tutulmaz.
+5. Gemini kotasi biterse (429), kota gelene kadar is Claude'da devam eder. Gemini 3'e dusulmez.
+
 ## Kural: is **gereken dusunme turune** gore yonlendirilir, kolayliga gore degil
 
 | Is | Motor | Nasil |
