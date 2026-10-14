@@ -9,7 +9,8 @@
 2. **Gemini 3 serisi (3.x Flash/Pro) kullanilmaz.** Hicbir is icin, fallback olarak bile.
 3. Effort **sadece sorun cikan iste** artirilir. Is yanlis, eksik ya da uydurma donerse (olmayan dosya adi, tutmayan iddia), ayni is `gemini-4-argon-medium`/`medium` ile, o da yetmezse `-high`/`high` ile yeniden kosar. Model id'si ile `--effort` eslesmeli; `xhigh`/`max` reddedilir.
 4. Claude yonetici konumunda durur. Isi Argon'a verir, ciktiyi `git diff` ve testlerle dogrular, merge eder ve raporlar. Argon'un yapabilecegi is Claude'da tutulmaz.
-5. Gemini kotasi biterse (429), kota gelene kadar is Claude'da devam eder. Gemini 3'e dusulmez.
+5. **Gorsel incelemeler de Argon'a verilir.** Video veya capture'in saniyede bir karelik QA'si, still ve contact sheet kontrolu (clipping, havada duran obje, pozlama, animasyon pozu) Argon'un isidir. Argon bulgulari kare numarasi ve ekran koordinatiyla raporlar; Claude supheli kareleri kendisi acip dogrular.
+6. Gemini kotasi biterse (429), kota gelene kadar is Claude'da devam eder. Gemini 3'e dusulmez.
 
 ## Kural: is **gereken dusunme turune** gore yonlendirilir, kolayliga gore degil
 
