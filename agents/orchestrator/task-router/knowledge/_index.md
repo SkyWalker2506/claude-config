@@ -1,8 +1,8 @@
 ---
-last_updated: 2026-04-11
+last_updated: 2026-10-03
 knowledge_filled: true
 mega_prompt_aligned: true
-total_topics: 5
+total_topics: 6
 ---
 
 # Knowledge Index
@@ -14,3 +14,4 @@ total_topics: 5
 - [Dag Planning](dag-planning.md) — `knowledge/dag-planning.md`
 - [Load Balancing](load-balancing.md) — `knowledge/load-balancing.md`
 - [Prompt Structure Framework](prompt-structure-framework.md) — LangGPT template, dispatch pattern, quality signals
+- [Gemini / AGY / Antigravity Dispatch](gemini-antigravity-dispatch.md) — Current cross-project human policy: Gemini 4 Argon only (gemini-4-argon-high; -medium/-low for simple work), never the Gemini 3 series; quota-only extra Claude/GPT → budget-conscious native fallback. Subscription CLI preflight, historical execution evidence, watchdog and acceptance gates.
