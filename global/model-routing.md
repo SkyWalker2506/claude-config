@@ -3,13 +3,13 @@
 > Tek kaynak. Skill'ler ve agent'lar model secimini burada tanimlar, kendi
 > icinde tekrar etmez. Degisiklik burada yapilir.
 
-## KURAL: Gemini = sadece Gemini 4 Argon, varsayilan low (Musab, 2026-10-14)
+## KURAL: Gemini = Gemini 3.8 Flash, varsayilan low (Musab, 2026-10-16: Argon cok harciyor)
 
-1. Gemini'ye giden her is **`gemini-4-argon-low` + `--effort low`** ile kosar. `agy-task.sh` varsayilani da budur.
+1. Gemini'ye giden her is **`gemini-3.8-flash-low` + `--effort low`** ile kosar. `agy-task.sh` varsayilani da budur.
 2. **Gemini 3 serisi (3.x Flash/Pro) kullanilmaz.** Hicbir is icin, fallback olarak bile.
-3. Effort **sadece sorun cikan iste** artirilir. Is yanlis, eksik ya da uydurma donerse (olmayan dosya adi, tutmayan iddia), ayni is `gemini-4-argon-medium`/`medium` ile, o da yetmezse `-high`/`high` ile yeniden kosar. Model id'si ile `--effort` eslesmeli; `xhigh`/`max` reddedilir.
-4. Claude yonetici konumunda durur. Isi Argon'a verir, ciktiyi `git diff` ve testlerle dogrular, merge eder ve raporlar. Argon'un yapabilecegi is Claude'da tutulmaz.
-5. **Gorsel incelemeler de Argon'a verilir.** Video veya capture'in saniyede bir karelik QA'si, still ve contact sheet kontrolu (clipping, havada duran obje, pozlama, animasyon pozu) Argon'un isidir. Argon bulgulari kare numarasi ve ekran koordinatiyla raporlar; Claude supheli kareleri kendisi acip dogrular.
+3. Effort **sadece sorun cikan iste** artirilir. Is yanlis, eksik ya da uydurma donerse (olmayan dosya adi, tutmayan iddia), ayni is `gemini-3.8-flash-medium`/`medium` ile, o da yetmezse `-high`/`high` ile yeniden kosar. Model id'si ile `--effort` eslesmeli; `xhigh`/`max` reddedilir.
+4. Claude yonetici konumunda durur. Isi Gemini'ye verir, ciktiyi `git diff` ve testlerle dogrular, merge eder ve raporlar. Gemini'nin yapabilecegi is Claude'da tutulmaz.
+5. **Gorsel incelemeler de Gemini'ye verilir.** Video veya capture'in saniyede bir karelik QA'si, still ve contact sheet kontrolu (clipping, havada duran obje, pozlama, animasyon pozu) Gemini'nin isidir. Gemini bulgulari kare numarasi ve ekran koordinatiyla raporlar; Claude supheli kareleri kendisi acip dogrular.
 6. Gemini kotasi biterse (429), kota gelene kadar is Claude'da devam eder. Gemini 3'e dusulmez.
 
 ## Kural: is **gereken dusunme turune** gore yonlendirilir, kolayliga gore degil
@@ -36,8 +36,8 @@ gorunur — o zaman da delege edilen ise degil, konusmaya aittir.
 
 Kota korkusu isi ic tarafta tutmak icin gerekce degildir. Paralel `agy` seritleri
 kos, subagent takimi serbestce ac, stil tutana kadar gorseli yeniden uret.
-Varsayilan `gemini-4-argon-low` + `--effort low`. Is yanlis, eksik ya da uydurma donerse ayni isi `-medium`/`medium`, gerekirse `-high`/`high` ile yeniden kos. **Sadece Gemini 4 Argon kullanilir; Gemini 3 serisi (3.x Flash/Pro) kullanilmaz** (Musab, 2026-10-14).
-Argon'da effort model id'sine gomulu oldugu icin ikisi eslesmeli; `xhigh`/`max` reddedilir.
+Varsayilan `gemini-3.8-flash-low` + `--effort low`. Is yanlis, eksik ya da uydurma donerse ayni isi `-medium`/`medium`, gerekirse `-high`/`high` ile yeniden kos. **Varsayilan Gemini 3.8 Flash; Argon kota yaktigi icin kullanilmaz** (Musab, 2026-10-16).
+Effort model id'sine gomulu oldugu icin ikisi eslesmeli; `xhigh`/`max` reddedilir.
 
 Kisitlama **sadece gercek rate-limit hatasi** gelince devreye girer; o zaman da
 tum delegasyon birakilmaz, o serit geri cekilir.
