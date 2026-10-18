@@ -222,6 +222,9 @@
   "modelSettings": {
     "claude-haiku-5-5": {
       "autoCompactWindow": 100000
+    },
+    "claude-opus-5-5": {
+      "autoCompactWindow": 750000
     }
   }
 }
