@@ -14,6 +14,8 @@
 4. Opus / Fable sadece tasarim, zor teshis ve ana dongu icindir; ayak isine verilmez. Fable sadece arastirma.
 5. Claude yonetici konumunda durur: isi zincire verir, ciktiyi `git diff` ve testlerle dogrular, merge eder, raporlar.
 6. Gemini kotasi biterse (429) zincir Haiku'dan devam eder.
+7. **Abonelik notu (2026-10-18, YouTube oturumu ile dogrulandi):** Sonnet 5.5 ve Opus 5.5'te 100K esigi yok (duz fiyat). Haiku'nun 100K/5x fiyati resmi olarak sadece API fiyati; Max plan sayacina uygulanip uygulanmadigi yazili degil. Plan kullaniminda modellerin farkli agirliklandigina dair resmi bilgi yok. Subagent'lar (Haiku olsa da) ana oturumla ayni 5 saatlik/haftalik limitten yer; Opus/Sonnet'in ek aile limitleri var. En buyuk kota yakici uzun ana oturumlardir: baglam buyuyunce ozetle veya yeni oturum ac.
+8. **Effort hipotezi (olculmedi):** Haiku-high ile Sonnet-medium benzer sonuc verebilir. Olcum gelene kadar zincirdeki varsayilanlar gecerli.
 
 ## Kural: is **gereken dusunme turune** gore yonlendirilir, kolayliga gore degil
 
