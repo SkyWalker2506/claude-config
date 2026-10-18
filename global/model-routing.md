@@ -14,14 +14,15 @@
 | Konsept sanat, placeholder sprite, stil arama, asset uretimi | **Gemini `generate_image`** | `agy` uzerinden |
 | Video / hareket referansi | **Web'de Gemini** | tarayicidan gemini.google.com; `agy`'de video motoru yok |
 
-## Sonnet ve Haiku delegasyon hedefi degildir
+## Kullanıcının genel kota ve bağlam tercihi — 2026-10-18
 
-Kucuk bir Claude kademesinin kullanilacagi her yerde **`agy` uzerinden Gemini**
-gecer. Abonelikle faturalanir, headless kosar ve mekanik iste dusurulmus bir
-Claude kademesinden guclu.
-
-Sonnet/Haiku yalnizca kullanici oturum modelini oyle sectiyse ana dongude
-gorunur — o zaman da delege edilen ise degil, konusmaya aittir.
+Bu tercih tüm projelerde geçerlidir; önceki Sonnet/Haiku delegasyon yasağının yerine geçer.
+- Rutin/ayak işleri için öncelik **Gemini 3.8 Flash High**, kullanılabilir model kimliğini gerçek sağlayıcı/CLI üzerinden doğrula. Başka bir modeli bu adla sunma.
+- Gemini kotasının gerçekten bittiği doğrulanırsa **Haiku** kullan. Kimlik doğrulama/boş çıktı/araç hatası kota bitişi değildir.
+- Haiku'da bağlamı **100k token altı** tut; hedef olarak **90k civarında compact** et. Compact sonrası görev, kanıtlar, dosya sahipliği ve açık işler korunmalı. Ölçülemeyen bağlam için sahte token sayısı verme.
+- İşin 100k üstünde bağlam gerektirmesi kaçınılmazsa **Sonnet'e geç**; bunu 100k eşiğini aşmadan planla. Desteklenmeyen otomatik model değişimini olmuş gibi raporlama.
+- Kullanıcının “100k üstünde Haiku ve Sonnet aynı parayı harcıyor” varsayımı **doğrulanmış fiyat bilgisi değildir**. Güncel resmi sağlayıcı/model fiyatlarını, abonelik/API farkını, cache ücretini ve uzun bağlam eşiklerini araştır; kaynak ve tarihiyle bu notu güncelle. Evrensel 100k fiyat eşiği varsayma.
+- Ana ajan karar, teşhis ve doğrulama sorumluluğunu taşır. Proje guardrail'leri önceliklidir: Unity projesinde tek yazıcı ve tek Unity; yardımcılar yalnız ayrılmış salt-okunur snapshot/aday paketlerinde çalışır.
 
 ## Kotadan cekinme
 
