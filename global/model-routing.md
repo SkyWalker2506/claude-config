@@ -128,7 +128,7 @@ Bolum 4'teki baslangiclar bu notlara gore guncellenir. Yeni model cikinca ayni t
 - Animasyon/IK isinde birim testi yesil ama gercek oyunda calismadi: brief'e 'gercek sim/oyun yolundan test' sart konur.
 - Gemini Flash high arastirma taslagi iyi ama kaynak zayif ve olgu hatasi yapabiliyor: dogrula.
 - WhatsApp okuma (Haiku low) sabit ~90K; JS okuma bloklaninca ekran goruntusu gerekiyor.
-- Detay: BoxSim docs/model-routing-notes.md
+- Detay: BoxSim docs/model-routing-notes.md; oturumlar arasi karne: global/model-scorecard.md
 
 ## 8. Abonelik notlari
 
