@@ -3,19 +3,38 @@
 > Tek kaynak. Skill'ler ve agent'lar model secimini burada tanimlar, kendi
 > icinde tekrar etmez. Degisiklik burada yapilir.
 
-## KURAL: ayak isi zinciri = Gemini 3.8 Flash high -> Haiku 5.5 -> Sonnet 5.5 (Musab, 2026-10-18)
+## KURAL: ayak isi zinciri = Gemini 3.8 Flash high -> Haiku 5.5 -> Sonnet 5.5 (Musab, 2026-10-18; karar: Jarvis/Opus, resmi dokumanlara dayali)
 
-1. **Ilk tercih Gemini:** her ayak isi (mekanik kod, rename, doc sync, manifest, QA taramasi, kare inceleme) `agy` ile **`gemini-3.8-flash-high` + `--effort high`** kosar. `agy-task.sh` varsayilani budur. Argon kullanilmaz (cok pahali).
-2. **Gemini yetersiz kalirsa Haiku 5.5:** ayni isi Claude subagent'ina `model: haiku`, `effort: low` ile ver (dusunme gerektiren is: `medium`). Haiku 5.5 fiyati 100K token'a kadar $0.10/$0.50; 100K'yi asan istekte $0.50/$2.50 (5 kat). Bu yuzden Haiku isi **100K altinda** tutulur:
-   - `~/.claude/settings.json` -> `modelSettings.claude-haiku-5-5.autoCompactWindow: 100000` (alt sinir 100K; Haiku oturumu bu pencerede auto-compact olur).
-   - Haiku subagent frontmatter'i: `autoCompactWindow: 100000`.
-   - Brief kisa, dosya listesi dar; buyuk dosyalari okutma, gereken bolumu ver.
-3. **Haiku yetersizse Sonnet 5.5** (`model: sonnet`, `effort: medium`; kolay iste `low`). Not: 100K ustu Haiku bile Sonnet'ten ~4 kat ucuz ($0.50/$2.50 vs $2/$10); Sonnet'e gecis kalite icindir, fiyat icin degil. 100K'yi asacagi belli buyuk baglamli isler (cok dosya, uzun log) dogrudan Sonnet'e gider.
-4. Opus / Fable sadece tasarim, zor teshis ve ana dongu icindir; ayak isine verilmez. Fable sadece arastirma.
-5. Claude yonetici konumunda durur: isi zincire verir, ciktiyi `git diff` ve testlerle dogrular, merge eder, raporlar.
-6. Gemini kotasi biterse (429) zincir Haiku'dan devam eder.
-7. **Abonelik notu (2026-10-18, YouTube oturumu ile dogrulandi):** Sonnet 5.5 ve Opus 5.5'te 100K esigi yok (duz fiyat). Haiku'nun 100K/5x fiyati resmi olarak sadece API fiyati; Max plan sayacina uygulanip uygulanmadigi yazili degil. Plan kullaniminda modellerin farkli agirliklandigina dair resmi bilgi yok. Subagent'lar (Haiku olsa da) ana oturumla ayni 5 saatlik/haftalik limitten yer; Opus/Sonnet'in ek aile limitleri var. En buyuk kota yakici uzun ana oturumlardir: baglam buyuyunce ozetle veya yeni oturum ac.
-8. **Effort hipotezi (olculmedi):** Haiku-high ile Sonnet-medium benzer sonuc verebilir. Olcum gelene kadar zincirdeki varsayilanlar gecerli.
+### Veri (platform.claude.com pricing + effort + cost-optimization sayfalari, 2026-10-18)
+| Model | Girdi / cikti $/MTok | Cache okuma | Not |
+|---|---|---|---|
+| Haiku 5.5, prompt <=100K | 0.10 / 0.50 | 0.01 | cache okuma/yazma da prompt uzunluguna sayilir |
+| Haiku 5.5, prompt >100K | 0.50 / 2.50 | 0.05 | 5 kat |
+| Sonnet 5.5 | 2 / 10 | 0.10 | 100K esigi yok |
+| Opus 5.5 | 4 / 20 | 0.20 | 100K esigi yok |
+- Olculmus tek karsilastirma: GPQA'da Haiku 5.5 medium %85, Sonnet 5.5 %91; Haiku'nun dogru cevap basina maliyeti Sonnet'in ~1/10'u.
+- "Haiku high = Sonnet medium" olculmus degil. Fiyat farki token basina ~20 kat (<=100K) / ~4 kat (>100K); Haiku high + bir tekrar bile Sonnet medium'dan ucuz kalir.
+- Dokuman: dusuk effort ile kos, sadece basarisiz olanlari yuksek effort ile tekrar kos -> ayni basari, ~%40 daha ucuz. O da yetmezse bir ust kademe, kendi varsayilan effort'unda.
+
+### Zincir
+1. **Gemini 3.8 Flash high** (`agy`, `gemini-3.8-flash-high`, `--effort high`; `agy-task.sh` varsayilani). Argon yok. Kota bitikse (429; 2026-10-21'e kadar bitik) bu adim atlanir.
+2. **Haiku 5.5** (subagent `model: haiku`):
+   - `low`: tek dosya, mekanik, ciktisi kontrol edilebilir is (rename, format, manifest, commit mesaji, log/test ciktisindan hata ayiklama ozeti, json/data duzeltme).
+   - `medium` (varsayilan): cok adimli ama iyi tanimli is (test iskeleti, modul baglama, birkac dosyalik refactor, doc sync, kare/still QA).
+   - `high`: daha uzun ajan isi, bilgi isi; ya da medium'da basarisiz olan is.
+   - **Baglam <100K**: `modelSettings.claude-haiku-5-5.autoCompactWindow: 100000` (global), frontmatter'da `autoCompactWindow: 100000`. Brief'e dosya yolu ver, dosya yapistirma; sonucu dosyaya yazdir.
+3. **Sonnet 5.5** (`model: sonnet`, `effort: medium`; sohbet/basit is `low`; zor is `high`). Gecis sebebi **kalite**, fiyat degil:
+   - Haiku high'da da basarisiz olan is.
+   - Muhakeme agirlikli is: belirsiz brief, cok dosyali tasarim karari, ince bug teshisi, gercekten uzun baglamda bilgi bulma.
+   - 100K ustune cikacak ama ciktisi kolay kontrol edilemeyen is. (Kontrol edilebilir ve >100K ise Haiku medium + compaction yine 4 kat ucuz.)
+4. **Opus 5.5 medium**: ana dongu, tasarim, zor teshis, son karar. **Fable**: sadece arastirma.
+5. Gemini kotasi biterse (429) zincir Haiku'dan devam eder. Claude yonetici: isi zincire verir, ciktiyi `git diff` + testlerle dogrular, merge eder, raporlar.
+
+### Abonelik notu
+Haiku'nun 100K/5x fiyati resmi olarak API fiyati; Max plan sayacina nasil yansidigi yazili degil, plan kullaniminda model agirliklari resmi degil. Subagent'lar ana oturumla ayni 5 saatlik/haftalik limitten yer; Opus/Sonnet'in ek aile limitleri var. En buyuk kota yakici uzun ana oturumdur: baglam buyuyunce ozetle / yeni oturum ac.
+
+### Acik olcum
+Haiku high vs Sonnet medium bizim isimizde olculmedi. Kontrol edilebilir 10-20 gercek ayak isiyle (test gecer / diff dogru) bir tur olcum yapilinca bu bolum guncellenir.
 
 ## Kural: is **gereken dusunme turune** gore yonlendirilir, kolayliga gore degil
 
