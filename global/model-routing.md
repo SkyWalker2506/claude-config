@@ -1,124 +1,136 @@
-# Model Yonlendirme — kim hangi isi yapar
+# Model Yonlendirme — kim hangi isi, hangi effort'la yapar
 
-> Tek kaynak. Skill'ler ve agent'lar model secimini burada tanimlar, kendi
-> icinde tekrar etmez. Degisiklik burada yapilir.
+> Tek kaynak. Tum oturumlar ve tum PC'ler (Windows, Mac) bunu kullanir. Skill'ler ve
+> agent'lar model secimini burada tanimlar, kendi icinde tekrar etmez.
+> Son yapilandirma: 2026-10-18 (Musab'in kararlari; Jarvis/Opus derledi).
 
-## KURAL: ayak isi zinciri = Gemini 3.8 Flash high -> Haiku 5.5 -> Sonnet 5.5 (Musab, 2026-10-18; karar: Jarvis/Opus, resmi dokumanlara dayali)
+## 1. Ozet
 
-### Veri (platform.claude.com pricing + effort + cost-optimization sayfalari, 2026-10-18)
-| Model | Girdi / cikti $/MTok | Cache okuma | Not |
+Ucuzdan basla, yetmezse once effort'u, sonra modeli yukselt:
+
+**Gemini 3.8 Flash → Claude Haiku 5.5 → Claude Sonnet 5.5 → Claude Opus 5.5 → (Fable)**
+
+- Her is tipi kendi baslangic seviyesinden baslar (bolum 4).
+- Bir modelde tepe effort'a cikilmaz; `high`'dan sonra bir ust modelin `medium`'una gecilir (bolum 3).
+- Sonuclar not edilir, baslangiclar zamanla olcumle ayarlanir (bolum 7).
+- **Argon hic kullanilmaz. Yerel modeller (Ollama vb.) kullanilmaz** (ekran karti ses uretimi ve Unity icin).
+
+## 2. Veri
+
+### Fiyat (milyon token basina, girdi / cikti)
+| Model | Fiyat | Cache okuma | Not |
 |---|---|---|---|
-| Haiku 5.5, prompt <=100K | 0.10 / 0.50 | 0.01 | cache okuma/yazma da prompt uzunluguna sayilir |
+| Gemini 3.8 Flash | aboneyle (API: 0.75 / 3.75*) | — | kota 5 saatlik + haftalik; yuksek effort daha cok kota yer* |
+| Haiku 5.5, prompt <=100K | 0.10 / 0.50 | 0.01 | prompt uzunluguna cache okuma/yazma da dahil |
 | Haiku 5.5, prompt >100K | 0.50 / 2.50 | 0.05 | 5 kat |
 | Sonnet 5.5 | 2 / 10 | 0.10 | 100K esigi yok |
 | Opus 5.5 | 4 / 20 | 0.20 | 100K esigi yok |
-- Olculmus tek karsilastirma: GPQA'da Haiku 5.5 medium %85, Sonnet 5.5 %91; Haiku'nun dogru cevap basina maliyeti Sonnet'in ~1/10'u.
-- "Haiku high = Sonnet medium" olculmus degil. Fiyat farki token basina ~20 kat (<=100K) / ~4 kat (>100K); Haiku high + bir tekrar bile Sonnet medium'dan ucuz kalir.
-- Dokuman: dusuk effort ile kos, sadece basarisiz olanlari yuksek effort ile tekrar kos -> ayni basari, ~%40 daha ucuz. O da yetmezse bir ust kademe, kendi varsayilan effort'unda.
+| Fable 5.1 | 10 / 50 | 0.25 | sadece buyuk arastirma |
+| Gemini 4 Argon | API 2 / 10* | — | **kullanilmaz** |
 
-### Ana kural (Musab, 2026-10-18; tum oturumlar ve PC'ler icin ortak)
-1. Her **is tipi** kendine yeterli gorulen effort'tan baslar (asagidaki tablo). Gemini 3.8 Flash, Haiku ve Sonnet icin ayni mantik.
-2. Sonuc yetersizse **o is tipi** icin effort bir basamak artar, tekrar denenir; yine olmazsa bir basamak daha.
-3. En ust effort'ta da olmazsa bir ust model: Flash -> Haiku -> Sonnet. Opus sadece gercek ihtiyacta, Fable cok buyuk ihtiyacta (arastirma).
-4. Sonuc not edilir: is tipi, model, effort, basarili mi. Is tipinin varsayilani zamanla buna gore ayarlanir (proje icinde `docs/model-routing-notes.md`).
-5. Yeni model cikinca degerlendirilir, uygunsa gecilir. **Argon sisteme hic girmez.**
-6. **Yerel modeller (Ollama vb.) kullanilmaz:** yerel ekran karti ses uretimi ve Unity icin ayrilmis.
+Claude fiyatlari: platform.claude.com pricing sayfasi (2026-10-18). `*` isaretliler Gemini'nin kendi web arastirmasi (2026-10-18), kaynaklari zayif, dogrulanmadi.
 
-### Model gecis esikleri (Musab, 2026-10-18)
-Bir modeli tepe effort'ta zorlamak yerine bir ust modele gec. Tavanlar:
-| Model | Kullanilan en ust effort | Bunun yerine |
+### Olculmus / bilinen
+- 100K esigi **sadece Haiku'da**. 100K ustunde bile Haiku, Sonnet'ten ~4 kat ucuz → Sonnet'e gecis **kalite** icin, fiyat icin degil.
+- GPQA Diamond: Haiku 5.5 medium %85, Sonnet 5.5 %91; dogru cevap basina Haiku ~Sonnet'in 1/10'u (Anthropic "Optimizing for cost and intelligence").
+- Anthropic: dusuk effort'la kos, sadece basarisiz olanlari yuksek effort'la tekrar kos → ayni basari, ~%40 ucuz. O da yetmezse bir ust model, kendi varsayilan effort'unda.
+- Arastirma/bilgi isinde effort egrisi duz (medium ≈ high); uzun kodlama isinde effort basina birkac puan fark var.
+- Gemini Flash (kendi arastirmasi, dogrulanmadi): mekanik duzenleme, log ozeti, kare QA'da iyi; derin bagimli cok dosyali refactor'da baglam kaybi yasar.
+- **Olculmedi:** "Haiku high = Sonnet medium". Bolum 7'deki kesisme testiyle olculecek.
+
+### Varsayilan effort'lar
+| Model | Seviyeler | Varsayilan |
+|---|---|---|
+| Gemini 3.8 Flash | low / medium / high | medium (`agy-task.sh` varsayilani) |
+| Haiku 5.5 | low … max | medium |
+| Sonnet 5.5 | low … max | high (biz medium'dan baslatiriz) |
+| Opus 5.5 | low … max | medium |
+
+## 3. Effort tavanlari (model gecis esikleri)
+
+Bir modeli tepe effort'ta zorlamak yerine bir ust modele gec.
+
+| Model | Kullanilan en ust effort | Tavan asilacaksa |
 |---|---|---|
 | Gemini 3.8 Flash | high | Haiku medium |
-| Haiku 5.5 | high | xhigh/max yerine Sonnet medium |
-| Sonnet 5.5 | high | xhigh/max yerine Opus medium |
-| Opus 5.5 | xhigh (nadiren) | max yerine Fable (sadece arastirma/cok zor karar) |
+| Haiku 5.5 | high | Sonnet medium (Haiku xhigh/max kullanilmaz) |
+| Sonnet 5.5 | high | Opus medium (Sonnet xhigh/max kullanilmaz) |
+| Opus 5.5 | xhigh, nadiren | Fable (Opus max kullanilmaz; sadece arastirma / cok zor karar) |
 
-**Kesisme testi:** bir is tipi bir modelde `high`'a cikinca, ayni isi bir kez de ust modelin `medium`'unda dene. Ikisini sonuc kalitesi (test/diff/kontrol gecti mi, tekrar gerekti mi) ve **tamamlanan is basina** harcama (token, sure, tekrar sayisi) ile karsilastir:
-- Ust model medium daha iyi ya da ayni maliyete yakin daha iyiyse: o is tipinin baslangici ust model medium olur.
-- Alt model high yeterli ve belirgin ucuzsa: alt model high kalir.
-Karar ve sayilar `docs/model-routing-notes.md`'ye "is tipi | alt model+effort | ust model+effort | sonuc | maliyet | karar" satiri olarak yazilir; bu tablo bu dosyadaki baslangiclari zamanla gunceller.
+## 4. Is tipi → baslangic
 
-### Is tipi -> baslangic
 | Is tipi | Baslangic | Basarisizsa |
 |---|---|---|
-| Rename, format, manifest, json/data duzeltme, commit mesaji | Flash low | Flash medium -> Haiku low |
-| Log/test ciktisi ozeti, hata ayiklama ozeti, dosya arama | Flash medium | Haiku low -> medium |
-| Test iskeleti, doc sync, modul baglama, birkac dosyalik refactor | Flash medium | Flash high -> Haiku medium -> high |
-| Kare/still/contact sheet QA | Flash medium | Haiku medium (Claude supheli kareyi kendisi acar) |
-| Cok adimli ajan isi, bilgi isi, uzun gorev | Haiku medium | Haiku high -> Sonnet medium |
-| Belirsiz brief, cok dosyali tasarim karari, ince bug, uzun baglamda bilgi bulma | Sonnet medium | Sonnet high -> Opus |
-| Tasarim, mimari, son karar | Opus medium | Opus high |
+| Rename, format, manifest, json/veri duzeltme, commit mesaji | Flash low | Flash medium → high → Haiku medium |
+| Log/test ciktisi ozeti, dosya arama, hata ozeti | Flash medium | Flash high → Haiku medium |
+| Test iskeleti, doc sync, modul baglama, birkac dosyalik duzenleme | Flash medium | Flash high → Haiku medium → high |
+| Kare / still / contact sheet QA | Flash medium | Haiku medium (supheli kareyi yonetici kendisi acar) |
+| Konsept gorsel, placeholder sprite, stil arama | Flash (`generate_image`, agy) | — |
+| Cok adimli ajan isi, uzun bilgi isi, web arastirmasi ozeti | Haiku medium | Haiku high → Sonnet medium |
+| Derin bagimli cok dosyali refactor | Sonnet medium | Sonnet high → Opus medium |
+| Belirsiz brief, cok dosyali tasarim karari, ince bug, uzun baglamda bilgi bulma | Sonnet medium | Sonnet high → Opus medium |
+| Zor implementasyon (yeni matematik, shader, perf gizemi, teshissiz bug) | Opus medium | Opus high → xhigh |
+| Tasarim, mimari, kapsam, son karar | Opus medium | Opus high |
+| Buyuk arastirma | Fable | — |
 
-### Baglam bariyeri (Haiku 100K)
-- Global: `~/.claude/settings.json` -> `modelSettings.claude-haiku-5-5.autoCompactWindow: 100000`. Claude Code'un izin verdigi en dusuk deger 100000 (90000 kabul edilmez); compaction pencerenin dolmasindan once tetiklenir.
-- Haiku subagent frontmatter: `model: haiku`, `effort: <tablodan>`, `autoCompactWindow: 100000`.
+Ana dongu (yonetici) Opus medium'dur: isi zincire verir, ciktiyi `git diff` + testlerle dogrular, merge eder, raporlar.
+
+## 5. Yukselme kurali
+
+1. Is tipi tablodaki baslangictan kosar.
+2. Sonuc yetersizse (test/kontrol gecmedi, eksik, uydurma) **ayni modelde** effort bir basamak artar, tekrar denenir.
+3. Tavana (bolum 3) gelinip yine olmuyorsa bir ust modelin `medium`'una gecilir.
+4. Basarisiz denemenin ciktisi silinmez; ust kademeye "su denendi, su yuzden olmadi" diye verilir.
+5. Kota biterse (429) o serit bir ust kademeden devam eder; Gemini bittiyse Haiku.
+
+## 6. Baglam bariyeri (Haiku 100K)
+
+- Global ayar (`install.sh` ile kurulur): `~/.claude/settings.json` →
+  `"modelSettings": { "claude-haiku-5-5": { "autoCompactWindow": 100000 } }`.
+  Claude Code'un izin verdigi en dusuk deger 100000 (90000 kabul edilmez).
+- Haiku alt-ajan frontmatter'i:
+  ```yaml
+  model: haiku
+  effort: medium        # tablodan
+  autoCompactWindow: 100000
+  ```
 - `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` kullanilmaz: global, Opus/Sonnet oturumlarini da erken compact eder.
-- Brief'e dosya yolu ver, dosyayi yapistirma; sonucu dosyaya yazdir, ozet don. Buyuk log/dosyanin sadece ilgili bolumunu oku.
-- Isin 100K'yi asacagi bastan belliyse ve cikti kolay kontrol edilemiyorsa dogrudan Sonnet medium.
+- Brief'e dosya yolu ver, dosya yapistirma. Sonucu dosyaya yazdir, ozet don. Buyuk dosyanin sadece ilgili bolumunu oku.
+- Ekran goruntusu agir: tarayici isinde once metin/JS ile oku, olmazsa tek ve kirpilmis ekran goruntusu al.
+- Isin 100K'yi gececegi bastan belli ve ciktisi zor kontrol ediliyorsa dogrudan Sonnet medium.
 
-### Zincir
-1. **Gemini 3.8 Flash** (`agy`; baslangic seviyesi yukaridaki tablodan, `AGY_MODEL=gemini-3.8-flash-<low|medium|high>` + eslesen `AGY_EFFORT`; `agy-task.sh` varsayilani medium). Argon yok. Kota bitikse (429) bu adim atlanir, Haiku'dan devam edilir.
-2. **Haiku 5.5** (subagent `model: haiku`):
-   - `low`: tek dosya, mekanik, ciktisi kontrol edilebilir is (rename, format, manifest, commit mesaji, log/test ciktisindan hata ayiklama ozeti, json/data duzeltme).
-   - `medium` (varsayilan): cok adimli ama iyi tanimli is (test iskeleti, modul baglama, birkac dosyalik refactor, doc sync, kare/still QA).
-   - `high`: daha uzun ajan isi, bilgi isi; ya da medium'da basarisiz olan is.
-   - **Baglam <100K**: `modelSettings.claude-haiku-5-5.autoCompactWindow: 100000` (global), frontmatter'da `autoCompactWindow: 100000`. Brief'e dosya yolu ver, dosya yapistirma; sonucu dosyaya yazdir.
-3. **Sonnet 5.5** (`model: sonnet`, `effort: medium`; sohbet/basit is `low`; zor is `high`). Gecis sebebi **kalite**, fiyat degil:
-   - Haiku high'da da basarisiz olan is.
-   - Muhakeme agirlikli is: belirsiz brief, cok dosyali tasarim karari, ince bug teshisi, gercekten uzun baglamda bilgi bulma.
-   - 100K ustune cikacak ama ciktisi kolay kontrol edilemeyen is. (Kontrol edilebilir ve >100K ise Haiku medium + compaction yine 4 kat ucuz.)
-4. **Opus 5.5 medium**: ana dongu, tasarim, zor teshis, son karar. **Fable**: sadece arastirma.
-5. Gemini kotasi biterse (429) zincir Haiku'dan devam eder. Claude yonetici: isi zincire verir, ciktiyi `git diff` + testlerle dogrular, merge eder, raporlar.
+## 7. Olcum ve kesisme testi
 
-### Abonelik notu
-Haiku'nun 100K/5x fiyati resmi olarak API fiyati; Max plan sayacina nasil yansidigi yazili degil, plan kullaniminda model agirliklari resmi degil. Subagent'lar ana oturumla ayni 5 saatlik/haftalik limitten yer; Opus/Sonnet'in ek aile limitleri var. En buyuk kota yakici uzun ana oturumdur: baglam buyuyunce ozetle / yeni oturum ac.
+**Kesisme testi:** bir is tipi bir modelde `high`'a cikinca ayni isi bir kez de ust modelin `medium`'unda kos. Karsilastir:
+- Kalite: test/diff/kontrol gecti mi, tekrar gerekti mi.
+- **Tamamlanan is basina** maliyet: token, sure, tekrar sayisi (ucuz ama tekrar gerektiren deneme ucuz degildir).
 
-### Acik olcum
-Haiku high vs Sonnet medium bizim isimizde olculmedi. Kontrol edilebilir 10-20 gercek ayak isiyle (test gecer / diff dogru) bir tur olcum yapilinca bu bolum guncellenir.
+Karar:
+- Ust model medium daha iyi, ya da yakin maliyetle daha iyi → o is tipinin baslangici ust model medium olur.
+- Alt model high yeterli ve belirgin ucuz → alt model high kalir.
 
-## Kural: is **gereken dusunme turune** gore yonlendirilir, kolayliga gore degil
+Her deneme projenin `docs/model-routing-notes.md` dosyasina bir satir:
 
-| Is | Motor | Nasil |
-|---|---|---|
-| Tasarim, mimari, kapsam kesme, sanat yonu, bulanik brief, "neden eglenceli degil" | **Fable 5** (plan) → **Opus 5** (uygula) | Claude'da kalir, delege edilmez |
-| Gercekten zor implementasyon: yeni matematik, cetrefil shader, perf gizemi, teshissiz bug | **Opus 5** | Claude'da kalir |
-| Mekanik kod: scaffold, boilerplate, rename, refactor, config, test iskeleti, doc sync, format gecisi, modul baglama | **`agy` ile Gemini** | `~/Projects/ClaudeHQ/scripts/hq agy "<gorev>" --dir <proje>` |
-| Genis paralel is: bagimsiz moduller, asset manifest, icerik verisi, QA taramasi, bolum ozeti | **Gemini teamwork** | `agy` + `define_subagent` / `invoke_subagent` / `/teamwork-preview` |
-| Konsept sanat, placeholder sprite, stil arama, asset uretimi | **Gemini `generate_image`** | `agy` uzerinden |
-| Video / hareket referansi | **Web'de Gemini** | tarayicidan gemini.google.com; `agy`'de video motoru yok |
+```
+| tarih | is tipi | model+effort | sonuc (gecti/kaldi) | token/sure | tekrar | karar |
+```
 
-## Kotadan cekinme
+Bolum 4'teki baslangiclar bu notlara gore guncellenir. Yeni model cikinca ayni test onunla da kosulur.
 
-Kota korkusu isi ic tarafta tutmak icin gerekce degildir. Paralel `agy` seritleri
-kos, subagent takimi serbestce ac, stil tutana kadar gorseli yeniden uret.
-Varsayilan `gemini-3.8-flash-high` + `--effort high`; is yanlis/eksik donerse zincirde bir sonraki kademeye (Haiku, sonra Sonnet) gecilir. Argon kullanilmaz (Musab, 2026-10-18).
-Effort model id'sine gomulu oldugu icin ikisi eslesmeli; `xhigh`/`max` reddedilir.
+## 8. Abonelik notlari
 
-Kisitlama **sadece gercek rate-limit hatasi** gelince devreye girer; o zaman da
-tum delegasyon birakilmaz, o serit geri cekilir.
+- Max planda alt-ajanlar (Haiku olsa da) ana oturumla ayni 5 saatlik ve haftalik limitten yer; Opus ve Sonnet'in ek aile limitleri var.
+- Haiku'nun 100K/5x fiyati resmi olarak API fiyati; plan sayacina nasil yansidigi yazili degil. Yine de 100K alti guvenli taraf.
+- En buyuk kota yakici uzun ana oturumdur (her mesajda tum baglam yeniden islenir). Baglam buyuyunce ozetle ya da yeni oturum ac.
+- Gemini kotasi 5 saatlik + haftalik pencerelidir; yuksek effort daha cok yer (dogrulanmadi).
 
-## Delegasyonun satin almadigi tek sey
+## 9. Delegasyon kurallari
 
-`agy` ciktisi **iddiadir, kanit degil.** Her delege is `git diff` / dosya okumasi /
-sayfayi acma ile biter. "Yaptim ve dogruladim" diyen rapor, disk onaylayana kadar
-hicbir sey ifade etmez. Delege kosular raporunu proje icindeki
-`docs/runs/<YYYY-MM-DD-HHMM>-<slug>.md` dosyasina yazar.
-
-## Paralelligi nerede kurmali
-
-Olculmus: ayni icerik tek odakli gecise **18 dakika**, 19 pakete bolunmus 14 ajanli
-kosuda **5 saat**. Kayip arayuz kesfindeydi — paketler birbirinin seklini ogrenmeyi
-bekledi, ikisi ayni nesne icin cakisan sema uydurdu.
-
-**Arayuz paylasmayan eksende paralellestir.** Sanat, icerik verisi, QA ve arastirma
-birbirini beklemez; cekirdek dongu bekler. Her delege seride acik dosya sahipligi
-satiri ver:
-
-> Sadece su dosyalara yaz: `<liste>`. Baska bir dosya degismesi gerekiyorsa yapma,
-> rapor et.
-
-## Antigravity tarafinda
-
-`agy` bu tabloda **uygulayicidir**, yonlendirici degil. Antigravity icinde kosarken
-model secimi `--model` / `--effort` ile disaridan verilir; skill kendi icinde model
-secmez.
+- `agy` cagrisi: `AGY_MODEL=gemini-3.8-flash-<low|medium|high> AGY_EFFORT=<ayni> ~/Projects/ClaudeHQ/scripts/hq agy --file <prompt> --dir <proje> --slug <ad>`. Model id'si ile effort eslesmeli.
+- Genis paralel is (bagimsiz moduller, asset manifest, icerik verisi, QA taramasi) Gemini teamwork ile (`define_subagent` / `invoke_subagent`).
+- Video / hareket referansi: web'de gemini.google.com (`agy`'de video yok).
+- **Cikti iddiadir, kanit degil.** Her delege is `git diff` / dosya okuma / sayfayi acma ile dogrulanir. Delege kosular raporunu `docs/runs/<YYYY-MM-DD-HHMM>-<slug>.md`'ye yazar.
+- **Paralellik:** arayuz paylasmayan eksende paralellestir (sanat, icerik, QA, arastirma). Olculmus: tek odakli gecis 18 dk, 19 pakete bolunmus 14 ajanli kosu 5 saat. Her seride dosya sahipligi satiri ver:
+  > Sadece su dosyalara yaz: `<liste>`. Baska dosya degismesi gerekiyorsa yapma, rapor et.
+- Kota korkusu isi ic tarafta tutma gerekcesi degildir; kisitlama sadece gercek rate-limit (429) gelince o seritte devreye girer.
+- Antigravity icinde `agy` uygulayicidir: model `--model` / `--effort` ile disaridan verilir, skill kendi icinde model secmez.
