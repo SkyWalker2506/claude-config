@@ -3,14 +3,17 @@
 > Tek kaynak. Skill'ler ve agent'lar model secimini burada tanimlar, kendi
 > icinde tekrar etmez. Degisiklik burada yapilir.
 
-## KURAL: Gemini = Gemini 3.8 Flash, varsayilan low (Musab, 2026-10-16: Argon cok harciyor)
+## KURAL: ayak isi zinciri = Gemini 3.8 Flash high -> Haiku 5.5 -> Sonnet 5.5 (Musab, 2026-10-18)
 
-1. Gemini'ye giden her is **`gemini-3.8-flash-low` + `--effort low`** ile kosar. `agy-task.sh` varsayilani da budur.
-2. **Gemini 3 serisi (3.x Flash/Pro) kullanilmaz.** Hicbir is icin, fallback olarak bile.
-3. Effort **sadece sorun cikan iste** artirilir. Is yanlis, eksik ya da uydurma donerse (olmayan dosya adi, tutmayan iddia), ayni is `gemini-3.8-flash-medium`/`medium` ile, o da yetmezse `-high`/`high` ile yeniden kosar. Model id'si ile `--effort` eslesmeli; `xhigh`/`max` reddedilir.
-4. Claude yonetici konumunda durur. Isi Gemini'ye verir, ciktiyi `git diff` ve testlerle dogrular, merge eder ve raporlar. Gemini'nin yapabilecegi is Claude'da tutulmaz.
-5. **Gorsel incelemeler de Gemini'ye verilir.** Video veya capture'in saniyede bir karelik QA'si, still ve contact sheet kontrolu (clipping, havada duran obje, pozlama, animasyon pozu) Gemini'nin isidir. Gemini bulgulari kare numarasi ve ekran koordinatiyla raporlar; Claude supheli kareleri kendisi acip dogrular.
-6. Gemini kotasi biterse (429), kota gelene kadar is Claude'da devam eder. Gemini 3'e dusulmez.
+1. **Ilk tercih Gemini:** her ayak isi (mekanik kod, rename, doc sync, manifest, QA taramasi, kare inceleme) `agy` ile **`gemini-3.8-flash-high` + `--effort high`** kosar. `agy-task.sh` varsayilani budur. Argon kullanilmaz (cok pahali).
+2. **Gemini yetersiz kalirsa Haiku 5.5:** ayni isi Claude subagent'ina `model: haiku`, `effort: low` ile ver (dusunme gerektiren is: `medium`). Haiku 5.5 fiyati 100K token'a kadar $0.10/$0.50; 100K'yi asan istekte $0.50/$2.50 (5 kat). Bu yuzden Haiku isi **100K altinda** tutulur:
+   - `~/.claude/settings.json` -> `modelSettings.claude-haiku-5-5.autoCompactWindow: 100000` (alt sinir 100K; Haiku oturumu bu pencerede auto-compact olur).
+   - Haiku subagent frontmatter'i: `autoCompactWindow: 100000`.
+   - Brief kisa, dosya listesi dar; buyuk dosyalari okutma, gereken bolumu ver.
+3. **Haiku yetersizse Sonnet 5.5** (`model: sonnet`, `effort: medium`; kolay iste `low`). Not: 100K ustu Haiku bile Sonnet'ten ~4 kat ucuz ($0.50/$2.50 vs $2/$10); Sonnet'e gecis kalite icindir, fiyat icin degil. 100K'yi asacagi belli buyuk baglamli isler (cok dosya, uzun log) dogrudan Sonnet'e gider.
+4. Opus / Fable sadece tasarim, zor teshis ve ana dongu icindir; ayak isine verilmez. Fable sadece arastirma.
+5. Claude yonetici konumunda durur: isi zincire verir, ciktiyi `git diff` ve testlerle dogrular, merge eder, raporlar.
+6. Gemini kotasi biterse (429) zincir Haiku'dan devam eder.
 
 ## Kural: is **gereken dusunme turune** gore yonlendirilir, kolayliga gore degil
 
@@ -23,20 +26,11 @@
 | Konsept sanat, placeholder sprite, stil arama, asset uretimi | **Gemini `generate_image`** | `agy` uzerinden |
 | Video / hareket referansi | **Web'de Gemini** | tarayicidan gemini.google.com; `agy`'de video motoru yok |
 
-## Sonnet ve Haiku delegasyon hedefi degildir
-
-Kucuk bir Claude kademesinin kullanilacagi her yerde **`agy` uzerinden Gemini**
-gecer. Abonelikle faturalanir, headless kosar ve mekanik iste dusurulmus bir
-Claude kademesinden guclu.
-
-Sonnet/Haiku yalnizca kullanici oturum modelini oyle sectiyse ana dongude
-gorunur — o zaman da delege edilen ise degil, konusmaya aittir.
-
 ## Kotadan cekinme
 
 Kota korkusu isi ic tarafta tutmak icin gerekce degildir. Paralel `agy` seritleri
 kos, subagent takimi serbestce ac, stil tutana kadar gorseli yeniden uret.
-Varsayilan `gemini-3.8-flash-low` + `--effort low`. Is yanlis, eksik ya da uydurma donerse ayni isi `-medium`/`medium`, gerekirse `-high`/`high` ile yeniden kos. **Varsayilan Gemini 3.8 Flash; Argon kota yaktigi icin kullanilmaz** (Musab, 2026-10-16).
+Varsayilan `gemini-3.8-flash-high` + `--effort high`; is yanlis/eksik donerse zincirde bir sonraki kademeye (Haiku, sonra Sonnet) gecilir. Argon kullanilmaz (Musab, 2026-10-18).
 Effort model id'sine gomulu oldugu icin ikisi eslesmeli; `xhigh`/`max` reddedilir.
 
 Kisitlama **sadece gercek rate-limit hatasi** gelince devreye girer; o zaman da

@@ -218,5 +218,10 @@
       "env": {}
     }
   },
-  "model": "claude-sonnet-4-6"
+  "model": "claude-sonnet-4-6",
+  "modelSettings": {
+    "claude-haiku-5-5": {
+      "autoCompactWindow": 100000
+    }
+  }
 }
