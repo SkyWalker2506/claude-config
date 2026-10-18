@@ -66,7 +66,11 @@ Bir modeli tepe effort'ta zorlamak yerine bir ust modele gec.
 | Test iskeleti, doc sync, modul baglama, birkac dosyalik duzenleme | Flash medium | Flash high → Haiku medium → high |
 | Kare / still / contact sheet QA | Flash medium | Haiku medium (supheli kareyi yonetici kendisi acar) |
 | Konsept gorsel, placeholder sprite, stil arama | Flash (`generate_image`, agy) | — |
-| Cok adimli ajan isi, uzun bilgi isi, web arastirmasi ozeti | Haiku medium | Haiku high → Sonnet medium |
+| Saf veri/asset kopyalama, test verisi yeniden uretme, tek dosya ayari | Haiku medium | Haiku high → Sonnet medium |
+| Web arastirmasi (taslak) | Flash high (agy) | Haiku medium; her iddia elle dogrulanir |
+| Cok adimli ajan isi, uzun bilgi isi | Haiku medium | Haiku high → Sonnet medium |
+| IK / poz / eklem limiti / animasyon duzeltmesi | Sonnet medium | Sonnet high → Opus medium (Haiku medium burada basarisiz, 2026-10-18) |
+| Asset entegrasyonu + yerlesim karari (generator/layout) | Sonnet medium | Sonnet high (sadece kopyala-listele ise Haiku medium) |
 | Derin bagimli cok dosyali refactor | Sonnet medium | Sonnet high → Opus medium |
 | Belirsiz brief, cok dosyali tasarim karari, ince bug, uzun baglamda bilgi bulma | Sonnet medium | Sonnet high → Opus medium |
 | Zor implementasyon (yeni matematik, shader, perf gizemi, teshissiz bug) | Opus medium | Opus high → xhigh |
@@ -116,6 +120,15 @@ Her deneme projenin `docs/model-routing-notes.md` dosyasina bir satir:
 ```
 
 Bolum 4'teki baslangiclar bu notlara gore guncellenir. Yeni model cikinca ayni test onunla da kosulur.
+
+## 7b. Olculmus bulgular (BoxSim, 2026-10-18)
+- Haiku medium: tek alanli kopyala/listele/regen islerinde basarili; IK/poz ve yerlesim karari gerektiren iste basarisiz veya yarim kaldi.
+- Haiku ajanlari brief kisa olsa da 118-211K token'a cikti (100K kademesini asiyor): dar kapsam, az dosya ver; karar noktasi cikinca hemen yukselt.
+- Sonnet medium: sistem/IK/layout/upgrade islerinin hepsini tek seferde kapatti (114-440K). Buyuk isleri bol (once sistem, sonra cila).
+- Animasyon/IK isinde birim testi yesil ama gercek oyunda calismadi: brief'e 'gercek sim/oyun yolundan test' sart konur.
+- Gemini Flash high arastirma taslagi iyi ama kaynak zayif ve olgu hatasi yapabiliyor: dogrula.
+- WhatsApp okuma (Haiku low) sabit ~90K; JS okuma bloklaninca ekran goruntusu gerekiyor.
+- Detay: BoxSim docs/model-routing-notes.md
 
 ## 8. Abonelik notlari
 
