@@ -22,6 +22,7 @@
 3. En ust effort'ta da olmazsa bir ust model: Flash -> Haiku -> Sonnet. Opus sadece gercek ihtiyacta, Fable cok buyuk ihtiyacta (arastirma).
 4. Sonuc not edilir: is tipi, model, effort, basarili mi. Is tipinin varsayilani zamanla buna gore ayarlanir (proje icinde `docs/model-routing-notes.md`).
 5. Yeni model cikinca degerlendirilir, uygunsa gecilir. **Argon sisteme hic girmez.**
+6. **Yerel modeller (Ollama vb.) kullanilmaz:** yerel ekran karti ses uretimi ve Unity icin ayrilmis.
 
 ### Is tipi -> baslangic
 | Is tipi | Baslangic | Basarisizsa |
@@ -42,7 +43,7 @@
 - Isin 100K'yi asacagi bastan belliyse ve cikti kolay kontrol edilemiyorsa dogrudan Sonnet medium.
 
 ### Zincir
-1. **Gemini 3.8 Flash** (`agy`; baslangic seviyesi yukaridaki tablodan, `AGY_MODEL=gemini-3.8-flash-<low|medium|high>` + eslesen `AGY_EFFORT`; `agy-task.sh` varsayilani medium). Argon yok. Kota bitikse (429; 2026-10-21'e kadar bitik) bu adim atlanir.
+1. **Gemini 3.8 Flash** (`agy`; baslangic seviyesi yukaridaki tablodan, `AGY_MODEL=gemini-3.8-flash-<low|medium|high>` + eslesen `AGY_EFFORT`; `agy-task.sh` varsayilani medium). Argon yok. Kota bitikse (429) bu adim atlanir, Haiku'dan devam edilir.
 2. **Haiku 5.5** (subagent `model: haiku`):
    - `low`: tek dosya, mekanik, ciktisi kontrol edilebilir is (rename, format, manifest, commit mesaji, log/test ciktisindan hata ayiklama ozeti, json/data duzeltme).
    - `medium` (varsayilan): cok adimli ama iyi tanimli is (test iskeleti, modul baglama, birkac dosyalik refactor, doc sync, kare/still QA).
