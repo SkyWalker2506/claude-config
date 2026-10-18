@@ -16,8 +16,33 @@
 - "Haiku high = Sonnet medium" olculmus degil. Fiyat farki token basina ~20 kat (<=100K) / ~4 kat (>100K); Haiku high + bir tekrar bile Sonnet medium'dan ucuz kalir.
 - Dokuman: dusuk effort ile kos, sadece basarisiz olanlari yuksek effort ile tekrar kos -> ayni basari, ~%40 daha ucuz. O da yetmezse bir ust kademe, kendi varsayilan effort'unda.
 
+### Ana kural (Musab, 2026-10-18; tum oturumlar ve PC'ler icin ortak)
+1. Her **is tipi** kendine yeterli gorulen effort'tan baslar (asagidaki tablo). Gemini 3.8 Flash, Haiku ve Sonnet icin ayni mantik.
+2. Sonuc yetersizse **o is tipi** icin effort bir basamak artar, tekrar denenir; yine olmazsa bir basamak daha.
+3. En ust effort'ta da olmazsa bir ust model: Flash -> Haiku -> Sonnet. Opus sadece gercek ihtiyacta, Fable cok buyuk ihtiyacta (arastirma).
+4. Sonuc not edilir: is tipi, model, effort, basarili mi. Is tipinin varsayilani zamanla buna gore ayarlanir (proje icinde `docs/model-routing-notes.md`).
+5. Yeni model cikinca degerlendirilir, uygunsa gecilir. **Argon sisteme hic girmez.**
+
+### Is tipi -> baslangic
+| Is tipi | Baslangic | Basarisizsa |
+|---|---|---|
+| Rename, format, manifest, json/data duzeltme, commit mesaji | Flash low | Flash medium -> Haiku low |
+| Log/test ciktisi ozeti, hata ayiklama ozeti, dosya arama | Flash medium | Haiku low -> medium |
+| Test iskeleti, doc sync, modul baglama, birkac dosyalik refactor | Flash medium | Flash high -> Haiku medium -> high |
+| Kare/still/contact sheet QA | Flash medium | Haiku medium (Claude supheli kareyi kendisi acar) |
+| Cok adimli ajan isi, bilgi isi, uzun gorev | Haiku medium | Haiku high -> Sonnet medium |
+| Belirsiz brief, cok dosyali tasarim karari, ince bug, uzun baglamda bilgi bulma | Sonnet medium | Sonnet high -> Opus |
+| Tasarim, mimari, son karar | Opus medium | Opus high |
+
+### Baglam bariyeri (Haiku 100K)
+- Global: `~/.claude/settings.json` -> `modelSettings.claude-haiku-5-5.autoCompactWindow: 100000`. Claude Code'un izin verdigi en dusuk deger 100000 (90000 kabul edilmez); compaction pencerenin dolmasindan once tetiklenir.
+- Haiku subagent frontmatter: `model: haiku`, `effort: <tablodan>`, `autoCompactWindow: 100000`.
+- `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` kullanilmaz: global, Opus/Sonnet oturumlarini da erken compact eder.
+- Brief'e dosya yolu ver, dosyayi yapistirma; sonucu dosyaya yazdir, ozet don. Buyuk log/dosyanin sadece ilgili bolumunu oku.
+- Isin 100K'yi asacagi bastan belliyse ve cikti kolay kontrol edilemiyorsa dogrudan Sonnet medium.
+
 ### Zincir
-1. **Gemini 3.8 Flash high** (`agy`, `gemini-3.8-flash-high`, `--effort high`; `agy-task.sh` varsayilani). Argon yok. Kota bitikse (429; 2026-10-21'e kadar bitik) bu adim atlanir.
+1. **Gemini 3.8 Flash** (`agy`; baslangic seviyesi yukaridaki tablodan, `AGY_MODEL=gemini-3.8-flash-<low|medium|high>` + eslesen `AGY_EFFORT`; `agy-task.sh` varsayilani medium). Argon yok. Kota bitikse (429; 2026-10-21'e kadar bitik) bu adim atlanir.
 2. **Haiku 5.5** (subagent `model: haiku`):
    - `low`: tek dosya, mekanik, ciktisi kontrol edilebilir is (rename, format, manifest, commit mesaji, log/test ciktisindan hata ayiklama ozeti, json/data duzeltme).
    - `medium` (varsayilan): cok adimli ama iyi tanimli is (test iskeleti, modul baglama, birkac dosyalik refactor, doc sync, kare/still QA).
