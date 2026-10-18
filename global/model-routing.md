@@ -24,6 +24,20 @@
 5. Yeni model cikinca degerlendirilir, uygunsa gecilir. **Argon sisteme hic girmez.**
 6. **Yerel modeller (Ollama vb.) kullanilmaz:** yerel ekran karti ses uretimi ve Unity icin ayrilmis.
 
+### Model gecis esikleri (Musab, 2026-10-18)
+Bir modeli tepe effort'ta zorlamak yerine bir ust modele gec. Tavanlar:
+| Model | Kullanilan en ust effort | Bunun yerine |
+|---|---|---|
+| Gemini 3.8 Flash | high | Haiku medium |
+| Haiku 5.5 | high | xhigh/max yerine Sonnet medium |
+| Sonnet 5.5 | high | xhigh/max yerine Opus medium |
+| Opus 5.5 | xhigh (nadiren) | max yerine Fable (sadece arastirma/cok zor karar) |
+
+**Kesisme testi:** bir is tipi bir modelde `high`'a cikinca, ayni isi bir kez de ust modelin `medium`'unda dene. Ikisini sonuc kalitesi (test/diff/kontrol gecti mi, tekrar gerekti mi) ve **tamamlanan is basina** harcama (token, sure, tekrar sayisi) ile karsilastir:
+- Ust model medium daha iyi ya da ayni maliyete yakin daha iyiyse: o is tipinin baslangici ust model medium olur.
+- Alt model high yeterli ve belirgin ucuzsa: alt model high kalir.
+Karar ve sayilar `docs/model-routing-notes.md`'ye "is tipi | alt model+effort | ust model+effort | sonuc | maliyet | karar" satiri olarak yazilir; bu tablo bu dosyadaki baslangiclari zamanla gunceller.
+
 ### Is tipi -> baslangic
 | Is tipi | Baslangic | Basarisizsa |
 |---|---|---|
