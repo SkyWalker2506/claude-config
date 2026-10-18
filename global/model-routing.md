@@ -15,6 +15,9 @@ Ucuzdan basla, yetmezse once effort'u, sonra modeli yukselt:
 - Sonuclar not edilir, baslangiclar zamanla olcumle ayarlanir (bolum 7).
 - **Argon hic kullanilmaz. Yerel modeller (Ollama vb.) kullanilmaz** (ekran karti ses uretimi ve Unity icin).
 
+## 1b. agy uzerinden ek modeller (Gemini aboneliginin kendi kotasi, 2026-10-18)
+agy, Gemini'nin yaninda `claude-sonnet-5-5-low/medium/high`, `claude-opus-5-5-low/medium/high` ve `gpt-oss-120b-medium` da sunuyor; bunlar Claude Code kotasindan degil Gemini aboneliginin ek kotasindan yer. Sira: Gemini Flash (low→high) → Flash kotasi azalinca/biterse agy'den `claude-sonnet-5-5-medium` veya `gpt-oss-120b-medium` → en son Claude Code kotasindan Haiku/Sonnet. agy'de Opus sadece gercek ihtiyacta.
+
 ## 2. Veri
 
 ### Fiyat (milyon token basina, girdi / cikti)

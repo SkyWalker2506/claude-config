@@ -30,6 +30,8 @@ Bu karne dört oturumun kendi işlerinden çıkan sonuçları birleştiriyor: Bo
 | Prosedürel Blender modelleme | Sonnet medium | çalıştı, ikinci tur gerekti | 240–340K | 3.5–4 | Assetler |
 | Ses toplama (kulak kontrolü yok) | Sonnet medium | metadata ile seçildi | 240K | 3 | Assetler |
 | Görsel iş (kamera, sinematik, framing) | Sonnet (tek ajan) | karanlık/uzak çekim, 2 tur | 430–490K | 2–3 | Survival |
+| 29 dile çeviri (onaylı cümle kalıbı + sözlük ile) | Flash high | ilk denemede doğru | 0 | 5 (ama medium yeterdi) | Survival mac |
+| Canlı editörde teşhis (Unity, tek yazar repo) | Opus oturum içi (delege edilmedi) | en iyi yol; brief yazmak işi çözmekle aynı | - | 5 | Survival mac |
 | WhatsApp okuma (JS bloklu, 1 ekran görüntüsü) | Haiku low | her seferinde doğru | ~90K sabit | 4 | BoxSim |
 
 ## Çıkarımlar
@@ -41,6 +43,9 @@ Bu karne dört oturumun kendi işlerinden çıkan sonuçları birleştiriyor: Bo
 6. Birim test yeşil olması yetmez. Brief'e "gerçek oyun/sim yolundan test" ve rapor sonunda "test edilmemiş varsayımlar" bölümü şart.
 7. Paralel Claude alt-ajanı çoğaltmak pahalı. Önce script, sonra Gemini, sonra tek ajan.
 8. En büyük kota yakıcı uzun ana oturum, çünkü her mesajda tüm bağlam yeniden işleniyor. Bağlam 100–200K'ya gelince özetle ya da yeni oturum aç.
+
+9. Asıl kaldıraç brief: onaylı kalıp + sözlük + örnek verilince ucuz model bile 5 puan aldı (çeviri). Daha güçlü model yerine daha iyi brief.
+10. Canlı editör/oyun karşısında ölç-düzelt döngüsü (teşhis) delege edilmez; oturum içinde kalır.
 
 ## Sırada denenecek
 - Haiku high ile Sonnet medium'u aynı iş tipinde kıyaslamak (kesişme testi). İlk aday: bilinen dosyada küçük bug düzeltmesi.
