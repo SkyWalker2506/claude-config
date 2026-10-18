@@ -12,6 +12,7 @@ Bu karne dört oturumun kendi işlerinden çıkan sonuçları birleştiriyor: Bo
 | Gelen mail sınıflandırma (192) | Flash high, tek çağrı | doğru (örneklemle doğrulandı) | 0 | 4 | YouTube |
 | Kişi toplama | LLM'siz script (API) | en verimli | 0 | 5 | YouTube |
 | Kişi toplama | paralel Claude alt-ajanları | çok pahalı, az sonuç (bir tanesi 290K token, 34 kişi) | 290K | 1 | YouTube |
+| Web araştırma (ücretsiz kaynak/lisans) | Flash medium (agy) | Haiku medium'u açık ara geçti (Haiku ~120K token, çok 'doğrulanamadı', Sketchfab'ı önerdi) | 0 | 4 | Assetler |
 | Web araştırma taslağı | Flash high (agy) | iyi taslak, kaynak zayıf, olgu hatası | 0 | 4 | BoxSim |
 | Derin araştırma | 3 paralel Claude alt-ajanı | iyi sentez, pahalı | 3×120K | 3 | YouTube |
 | Katalog arama, LOD dönüştürme | sadece kod | sorunsuz | ~0 | 5 | Assetler |
