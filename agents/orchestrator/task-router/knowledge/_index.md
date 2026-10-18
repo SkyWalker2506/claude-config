@@ -14,4 +14,4 @@ total_topics: 6
 - [Dag Planning](dag-planning.md) — `knowledge/dag-planning.md`
 - [Load Balancing](load-balancing.md) — `knowledge/load-balancing.md`
 - [Prompt Structure Framework](prompt-structure-framework.md) — LangGPT template, dispatch pattern, quality signals
-- [Gemini / AGY / Antigravity Dispatch](gemini-antigravity-dispatch.md) — Current cross-project human policy: Gemini 4 Argon only (gemini-4-argon-high; -medium/-low for simple work), never the Gemini 3 series; quota-only extra Claude/GPT → budget-conscious native fallback. Subscription CLI preflight, historical execution evidence, watchdog and acceptance gates.
+- [Gemini / AGY / Antigravity Dispatch](gemini-antigravity-dispatch.md) — Current cross-project policy: Gemini 3.8 Flash → Haiku 5.5 → Sonnet 5.5, per-task-type start level, never Argon (see global/model-routing.md)

@@ -309,7 +309,7 @@ yazimi low'a verilmez), calistirmayi `/image-run`'a devret:
 ```
 
 Claude'un `Agent` tool'u Gemini kabul etmez — mekanik serit **Bash'ten `hq agy`**
-ile acilir, arka planda. Model/efor wrapper'da: `gemini-4-argon-low`, `low`. Gemini 3 serisi kullanilmaz. Sorun cikan seridi `AGY_MODEL=gemini-4-argon-medium AGY_EFFORT=medium` (gerekirse `-high`/`high`) ile yeniden kos.
+ile acilir, arka planda. Model/efor wrapper'da: `gemini-3.8-flash-medium`, `medium` (is tipine gore global/model-routing.md). Argon kullanilmaz. Sorun cikan seridi `AGY_MODEL=gemini-3.8-flash-high AGY_EFFORT=high` (gerekirse `-high`/`high`) ile yeniden kos.
 
 Ajanin gorevi dar ve yazili: sohbeti ac → promptu gonder → 1 dk'da bir kontrol →
 seriyi indir → icerige bakarak esle → `assets/`'a tasi → manifest satirini ekle →

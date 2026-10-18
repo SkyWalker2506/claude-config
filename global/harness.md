@@ -292,7 +292,7 @@ Sira (zorunlu):
 Workers = **GPT (Codex CLI) + Gemini**. Claude orchestrator only.
 - Dispatch ederken `primary_model` Claude/Sonnet/Opus olan agent'lari tercih ETME — Gemini-primary veya GPT-primary olanlari sec.
 - Claude-primary agent kullanilmasi sart oluyorsa (orn. fallback olmadan), once registry entry'sini Gemini-primary'e flip et.
-- Inline visual/code lifting: `codex exec -c model=gpt-5.4 …` veya `~/Projects/ClaudeHQ/scripts/hq agy …` (Gemini 4 Argon, low by default; raise only for failed tasks; never the Gemini 3 series).
+- Inline visual/code lifting: `codex exec -c model=gpt-5.4 …` veya `~/Projects/ClaudeHQ/scripts/hq agy …` (Gemini 3.8 Flash; start at the task type's level, step up effort then model per global/model-routing.md; never Argon).
 - Memory referansi: `feedback_no_gpt_models.md` (project) — kural 2026-05-05'te flip edildi.
 
 **Logging:** Kural ihlali (general-purpose dispatch veya Claude-primary worker) `~/Projects/.watchdog/agent-rule-violations.log`'a yaz.
