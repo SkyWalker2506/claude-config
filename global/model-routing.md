@@ -18,6 +18,10 @@ Ucuzdan basla, yetmezse once effort'u, sonra modeli yukselt:
 ## 1b. agy uzerinden ek modeller (Gemini aboneliginin kendi kotasi, 2026-10-18)
 agy, Gemini'nin yaninda `claude-sonnet-5-5-low/medium/high`, `claude-opus-5-5-low/medium/high` ve `gpt-oss-120b-medium` da sunuyor; bunlar Claude Code kotasindan degil Gemini aboneliginin ek kotasindan yer. Sira: Gemini Flash (low→high) → Flash kotasi azalinca/biterse agy'den `claude-sonnet-5-5-medium` veya `gpt-oss-120b-medium` → en son Claude Code kotasindan Haiku/Sonnet. agy'de Opus sadece gercek ihtiyacta.
 
+## 1c. Musab kararlari 2026-10-25
+- **Gemini 3.8 Flash** gorsel/texture uretiminde ve test/yakalama verimliligi arastirmasinda da ilk tercih.
+- **Fable arastirma yapmaz**, web/dosya aramasi yapmaz. Arastirma once Haiku, yetmezse Sonnet (web arastirmasi dahil); ham veri Gemini 3.8 Flash. Fable sadece neye ihtiyaci oldugunu soyler, baska ajanlar getirir. Fable en son ve en az kullanilir; once Musab'a sorulur.
+
 ## 2. Veri
 
 ### Fiyat (milyon token basina, girdi / cikti)
