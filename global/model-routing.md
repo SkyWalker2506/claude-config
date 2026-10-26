@@ -37,6 +37,8 @@ agy, Gemini'nin yaninda `claude-sonnet-5-5-low/medium/high`, `claude-opus-5-5-lo
 
 Claude fiyatlari: platform.claude.com pricing sayfasi (2026-10-18). `*` isaretliler Gemini'nin kendi web arastirmasi (2026-10-18), kaynaklari zayif, dogrulanmadi.
 
+Esik (100K/200K) mekanigi, resmi sayfalardan dogrulanmis: `docs/llm-pricing-thresholds.md` (2026-10-26). Ozet: Haiku 5.5 icin istek bazli, 100K ustunde TUM istek 5x; Sonnet/Opus/Fable esiksiz; Gemini 3.1 Pro esigi 200K, 3.8 Flash esiksiz.
+
 ### Olculmus / bilinen
 - 100K esigi **sadece Haiku'da**. 100K ustunde bile Haiku, Sonnet'ten ~4 kat ucuz → Sonnet'e gecis **kalite** icin, fiyat icin degil.
 - GPQA Diamond: Haiku 5.5 medium %85, Sonnet 5.5 %91; dogru cevap basina Haiku ~Sonnet'in 1/10'u (Anthropic "Optimizing for cost and intelligence").
