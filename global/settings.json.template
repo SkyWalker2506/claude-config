@@ -82,6 +82,11 @@
             "type": "command",
             "description": "Auto migration check on prompt submit",
             "command": "bash __CLAUDE_CONFIG_ROOT__/projects/scripts/migration_check.sh 2>/dev/null || true"
+          },
+          {
+            "type": "command",
+            "description": "Model-routing reminder, injected on every prompt",
+            "command": "bash __CLAUDE_CONFIG_ROOT__/global/hooks/routing-reminder.sh 2>/dev/null || true"
           }
         ]
       }
@@ -113,6 +118,11 @@
           {
             "type": "command",
             "command": "__HOME__/Projects/ClaudeHQ/tools/kb-baseline/observe_dispatch.sh"
+          },
+          {
+            "type": "command",
+            "description": "Require the routing line in every subagent prompt",
+            "command": "bash __CLAUDE_CONFIG_ROOT__/global/hooks/agent-routing-guard.sh"
           }
         ]
       }
