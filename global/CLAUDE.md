@@ -39,8 +39,10 @@ Bu dosyalar HER ZAMAN yuklenmez. Ihtiyac oldugunda oku:
 ## Session Baslangici
 
 1. Bu dosyayi oku (zaten okudun)
-2. Yanit basinda: `(Jarvis | Model Adi | effort)` — model **ve** effort her zaman yazilir.
-   Ornek: `(Jarvis | Opus 5 | high)`, `(Jarvis | Sonnet 5 | medium)`, `(Jarvis | Fable 5 | low)`.
+2. Yanit basinda: `(Jarvis | Model Adi | effort | SS:DD)` — model, effort **ve** yerel saat her zaman yazilir.
+   Ornek: `(Jarvis | Opus 5 | high | 04:53)`, `(Jarvis | Sonnet 5 | medium | 14:07)`.
+   Saat tahmin edilmez: bir shell'de `date +%H:%M` ile ya da son tool/hook ciktisindaki zamandan alinir;
+   bilinmiyorsa `--:--` yazilir. Ayni etiket baska oturumlara/gruplara giden mesajlarda da kullanilir.
    Effort bilinmiyorsa tahmin etme, `effort?` yaz. Sonnet'te de model adi atlanmaz —
    "etiket yoksa Sonnet'tir" cikarimi bir varsayimdir ve varsayim etiketin isini yapmaz.
 3. Dil: kullaniciya Turkce, kod/commit Ingilizce

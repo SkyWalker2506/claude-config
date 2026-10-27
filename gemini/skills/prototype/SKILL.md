@@ -27,9 +27,9 @@ akisi, menu labirenti yok.
 
 Bu ortamda ayri bir "Deep Think" modeli yok. Onun yerine **sen** derinlestir:
 
-- Oturumu **`gemini-3.7-flash-high`** ve **`--effort high`** ile kos. Ortamda daha
-  derin bir muhakeme secenegi varsa (Deep Think, extended thinking, ust reasoning
-  kademesi) **onu ac** — varsa her zaman en yuksegini kullan.
+- Oturumu **`gemini-4-argon-low`** ve **`--effort low`** ile baslat. Gemini 3 serisi kullanilmaz.
+  Bir adim yanlis, eksik ya da uydurma donerse o adimi `gemini-4-argon-medium`/`medium`
+  ile, o da yetmezse `-high`/`high` ile yeniden kos (kural: `global/model-routing.md`).
 - **Kod yazmadan once** sessizce sunlari cozumle ve `PLAN.md`'ye yaz: cekirdek
   dongunun tam akisi, hangi anlarin gorsel geri bildirim istedigi, veri modeli,
   dosya sinirlari, hangi sayilarin `data/config.js`'e gidecegi, ilk 3 muhtemel

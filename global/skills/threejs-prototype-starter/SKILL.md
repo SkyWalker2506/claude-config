@@ -29,8 +29,9 @@ is stronger than a downgraded Claude tier for mechanical work.
 
 **Do not ration Gemini.** Quota fear is not a reason to keep work in-house. Run
 several `agy` lanes in parallel, spawn subagent teams freely, regenerate images until
-the style is right. Default to `--effort high` and `gemini-3.7-flash-high`; the
-wrapper already does. Reserve throttling for actual rate-limit errors, and when one
+the style is right. Default to `gemini-3.8-flash-medium` with `--effort medium` (task-type levels in global/model-routing.md; never Argon), which is what the
+wrapper already does. Never use the Gemini 3 series. Rerun a lane that comes back wrong,
+incomplete or invented at `gemini-3.8-flash-high`/`high`, then Haiku, then Sonnet. Reserve throttling for actual rate-limit errors, and when one
 hits, back off that lane rather than abandoning the delegation.
 
 ### The one rule delegation does not buy you
