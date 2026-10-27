@@ -5,10 +5,19 @@
 # Why a BLOCK and not a reminder: the parent forgetting is exactly the failure this exists to
 # stop. A reminder depends on the thing that already fails. exit 2 does not.
 # Written 2026-10-27.
-P=$(printf '%s' "$CLAUDE_TOOL_INPUT" | python3 -c \
-  "import sys,json
-try: print(json.load(sys.stdin).get('prompt',''))
+# Claude Code sends the hook payload on stdin: {"tool_name":..,"tool_input":{"prompt":..}}.
+# (The old $CLAUDE_TOOL_INPUT read was always empty, so the guard never blocked.)
+IN=$(cat 2>/dev/null)
+[ -z "$IN" ] && IN="$CLAUDE_TOOL_INPUT"
+if command -v jq >/dev/null 2>&1; then
+  P=$(printf '%s' "$IN" | jq -r '(.tool_input.prompt // .prompt // "")' 2>/dev/null)
+else
+  P=$(printf '%s' "$IN" | python3 -c \
+    "import sys,json
+try:
+  d=json.load(sys.stdin); print((d.get('tool_input') or d).get('prompt',''))
 except Exception: print('')" 2>/dev/null)
+fi
 
 # Empty input: never block on our own parsing failure.
 [ -z "$P" ] && exit 0
