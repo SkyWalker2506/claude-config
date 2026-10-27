@@ -97,8 +97,8 @@
         "hooks": [
           {
             "type": "command",
-            "description": "Block editing secrets files via tool input",
-            "command": "f=$(echo \"$CLAUDE_TOOL_INPUT\" | python3 -c \"import sys,json;print(json.load(sys.stdin).get('file_path',''))\" 2>/dev/null); case \"$f\" in *.env*|*/secrets/*) echo \"BLOCKED: $f is a secrets file — edit ~/.claude/secrets/ directly\"; exit 2;; esac"
+            "description": "Block writing secrets files (payload read from stdin)",
+            "command": "bash __CLAUDE_CONFIG_ROOT__/global/hooks/secrets-guard.sh"
           }
         ]
       },
